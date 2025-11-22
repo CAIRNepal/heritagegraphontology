@@ -1,0 +1,6718 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.5), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "undefined" ],
+    "baseIris" : [ "http://www.w3.org/2000/01/rdf-schema", "https://cair-nepal.org/nchlod", "http://www.w3.org/2001/XMLSchema" ],
+    "iri" : "file:/C:/linkml/CHLOD/NCHLOD.owl.ttl",
+    "labels" : {
+      "undefined" : "nepalCulturalHeritageLinkedOpenData"
+    },
+    "other" : {
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "A LinkML schema implementing CIDOC-CRM-aligned classes, event-centric patterns, and provenance for Nepal cultural heritage linked open data.",
+        "type" : "label"
+      } ],
+      "version" : [ {
+        "identifier" : "version",
+        "language" : "undefined",
+        "value" : "2025-11-22",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "0",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "3",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "2",
+    "type" : "owl:Class"
+  }, {
+    "id" : "8",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "25",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "33",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "35",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "11",
+    "type" : "owl:Class"
+  }, {
+    "id" : "42",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "44",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "51",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "50",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "39",
+    "type" : "owl:Class"
+  }, {
+    "id" : "65",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "66",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "67",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "70",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "71",
+    "type" : "owl:Class"
+  }, {
+    "id" : "36",
+    "type" : "owl:Class"
+  }, {
+    "id" : "81",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "85",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "86",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "87",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "40",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "88",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "24",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "89",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "90",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "93",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "96",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "97",
+    "type" : "owl:Class"
+  }, {
+    "id" : "54",
+    "type" : "owl:Class"
+  }, {
+    "id" : "77",
+    "type" : "owl:Class"
+  }, {
+    "id" : "47",
+    "type" : "owl:Class"
+  }, {
+    "id" : "101",
+    "type" : "owl:Class"
+  }, {
+    "id" : "104",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "108",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "111",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "112",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "115",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "116",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "100",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "84",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "120",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "74",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "103",
+    "type" : "owl:Class"
+  }, {
+    "id" : "73",
+    "type" : "owl:Class"
+  }, {
+    "id" : "13",
+    "type" : "owl:Class"
+  }, {
+    "id" : "140",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "61",
+    "type" : "owl:Class"
+  }, {
+    "id" : "27",
+    "type" : "owl:Class"
+  }, {
+    "id" : "14",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "145",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "118",
+    "type" : "owl:Class"
+  }, {
+    "id" : "151",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "160",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "168",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "167",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "170",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "124",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "173",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "174",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "176",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "180",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "31",
+    "type" : "owl:Class"
+  }, {
+    "id" : "186",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "187",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "188",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "128",
+    "type" : "owl:Class"
+  }, {
+    "id" : "193",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "194",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "64",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "148",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "107",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "95",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "200",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "20",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "69",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "199",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "23",
+    "type" : "owl:Thing"
+  }, {
+    "id" : "114",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "203",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "92",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "211",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "83",
+    "type" : "owl:Class"
+  }, {
+    "id" : "110",
+    "type" : "owl:Class"
+  }, {
+    "id" : "215",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "59",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "213",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "218",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "62",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "80",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "32",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "223",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "225",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "230",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "138",
+    "type" : "owl:Class"
+  }, {
+    "id" : "235",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "49",
+    "type" : "owl:Class"
+  }, {
+    "id" : "239",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "57",
+    "type" : "owl:Class"
+  }, {
+    "id" : "55",
+    "type" : "owl:Class"
+  }, {
+    "id" : "253",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "16",
+    "type" : "owl:Class"
+  }, {
+    "id" : "268",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "271",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "273",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "276",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "278",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  }, {
+    "id" : "281",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "285",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "291",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "19",
+    "type" : "owl:Class"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "294",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "10",
+    "type" : "owl:Class"
+  }, {
+    "id" : "297",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "29",
+    "type" : "owl:Class"
+  }, {
+    "id" : "229",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "300",
+    "type" : "rdfs:Datatype"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "0",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "3",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E54Dimension",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Dimension record (length, height, depth, weight).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E54Dimension",
+      "undefined" : "E54_Dimension"
+    },
+    "attributes" : [ "external" ],
+    "id" : "2"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "8",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "25",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "33",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "35",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E39Actor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor: individuals, groups or organisations involved in events.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E39Actor",
+      "undefined" : "E39_Actor"
+    },
+    "subClasses" : [ "36" ],
+    "attributes" : [ "external" ],
+    "id" : "11"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "42",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "44",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "51",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "50",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E21Person",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Individual human actor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E21Person",
+      "undefined" : "E21_Person"
+    },
+    "attributes" : [ "external" ],
+    "id" : "39"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "65",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "66",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "67",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "70",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#Place",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Project place specialization with common slots.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Place",
+      "undefined" : "Place"
+    },
+    "attributes" : [ "external" ],
+    "id" : "71",
+    "superClasses" : [ "29" ]
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#Contributor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Project contributor (subclass of E39_Actor).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Contributor",
+      "undefined" : "Contributor"
+    },
+    "attributes" : [ "external" ],
+    "id" : "36",
+    "superClasses" : [ "11" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "81",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "85",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "86",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "87",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "40",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "88",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "24",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "89",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "90",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "93",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "96",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E98Currency",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Currency used in monetary records.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E98Currency",
+      "undefined" : "E98_Currency"
+    },
+    "attributes" : [ "external" ],
+    "id" : "97"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E12Production",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "The beginning of existence of a physical thing (production event).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E12Production",
+      "undefined" : "E12_Production"
+    },
+    "attributes" : [ "external" ],
+    "id" : "54"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E33LinguisticObject",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Statements, inscriptions, or textual objects.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E33LinguisticObject",
+      "undefined" : "E33_Linguistic_Object"
+    },
+    "attributes" : [ "external" ],
+    "id" : "77",
+    "superClasses" : [ "17" ]
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E16Measurement",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Measurement event/value (dimensions, weight, dating).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E16Measurement",
+      "undefined" : "E16_Measurement"
+    },
+    "attributes" : [ "external" ],
+    "id" : "47"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E10TransferOfCustody",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event representing custody transfer.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E10TransferOfCustody",
+      "undefined" : "E10_Transfer_of_Custody"
+    },
+    "attributes" : [ "external" ],
+    "id" : "101",
+    "superClasses" : [ "57" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "104",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "108",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "111",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "112",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "115",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "116",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "100",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E58MeasurementUnit",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Units such as cm, in, kg.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E58MeasurementUnit",
+      "undefined" : "E58_Measurement_Unit"
+    },
+    "attributes" : [ "external" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "84",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "120",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "74",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E42Identifier",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier assigned to an entity (value + optional assigner).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E42Identifier",
+      "undefined" : "E42_Identifier"
+    },
+    "attributes" : [ "external" ],
+    "id" : "103"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E13AttributeAssignment",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Record of an assigned attribute (deprecated/previous values, contested assertions).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E13AttributeAssignment",
+      "undefined" : "E13_Attribute_Assignment"
+    },
+    "attributes" : [ "external" ],
+    "id" : "73",
+    "superClasses" : [ "57" ]
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E57Material",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Material type (can be linked to AAT or local lists).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E57Material",
+      "undefined" : "E57_Material"
+    },
+    "attributes" : [ "external" ],
+    "id" : "13"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "140",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E11Modification",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "An event that modifies an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E11Modification",
+      "undefined" : "E11_Modification"
+    },
+    "attributes" : [ "external" ],
+    "id" : "61",
+    "superClasses" : [ "57" ]
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E18PhysicalThing",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Superclass for all physical things including monuments, artefacts, buildings and parts.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E18PhysicalThing",
+      "undefined" : "E18_Physical_Thing"
+    },
+    "subClasses" : [ "55" ],
+    "attributes" : [ "external" ],
+    "id" : "27"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "14",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "145",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E92SpatetimeVolume",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Spatial and temporal extent used for precise spatio-temporal modelling (site extents, archaeological layers).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E92SpatetimeVolume",
+      "undefined" : "E92_Spatetime_Volume"
+    },
+    "attributes" : [ "external" ],
+    "id" : "118"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "151",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "160",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "168",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "167",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "170",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "124",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "173",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "174",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "176",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "180",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E29DesignOrProcedure",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Designs, procedures or protocols (restoration workflows, ritual procedures).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E29DesignOrProcedure",
+      "undefined" : "E29_Design_or_Procedure"
+    },
+    "attributes" : [ "external" ],
+    "id" : "31"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "186",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "187",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "188",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E7Activity",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Action or process that results in a change of state.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E7Activity",
+      "undefined" : "E7_Activity"
+    },
+    "attributes" : [ "external" ],
+    "id" : "128",
+    "superClasses" : [ "57" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "193",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "194",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "64",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "148",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "107",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "95",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "200",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "20",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "69",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "199",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2002/07/owl#Thing",
+    "baseIri" : "http://owl2vowl.de",
+    "id" : "23",
+    "label" : {
+      "undefined" : "Thing"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "114",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "203",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "92",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "211",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E14ConditionAssessment",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Conservation assessment of physical state of an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E14ConditionAssessment",
+      "undefined" : "E14_Condition_Assessment"
+    },
+    "attributes" : [ "external" ],
+    "id" : "83"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E73InformationObject",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Concepts, schemes, records, and textual objects carrying information.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E73InformationObject",
+      "undefined" : "E73_Information_Object"
+    },
+    "attributes" : [ "external" ],
+    "id" : "110"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "215",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "59",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "213",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#float",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "218",
+    "label" : {
+      "IRI-based" : "float"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "62",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "80",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "32",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "223",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "225",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "230",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E6Destruction",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event resulting in destruction of an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E6Destruction",
+      "undefined" : "E6_Destruction"
+    },
+    "attributes" : [ "external" ],
+    "id" : "138",
+    "superClasses" : [ "57" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "235",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E52TimeSpan",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "A time-span object (has beginning and end).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E52TimeSpan",
+      "undefined" : "E52_Time_Span"
+    },
+    "attributes" : [ "external" ],
+    "id" : "49"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "239",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E5Event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "General event (change of state). Use sub-classes for specificity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E5Event",
+      "undefined" : "E5_Event"
+    },
+    "subClasses" : [ "138", "61", "101", "128", "73" ],
+    "attributes" : [ "external" ],
+    "id" : "57"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E22HumanMadeObject",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Physical objects created by humans (artworks, artifacts, tools).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E22HumanMadeObject",
+      "undefined" : "E22_Human_Made_Object"
+    },
+    "attributes" : [ "external" ],
+    "id" : "55",
+    "superClasses" : [ "27" ]
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "253",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#DataProvenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Digital provenance metadata for dataset records (PROV-compatible).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "DataProvenance",
+      "undefined" : "DataProvenance"
+    },
+    "attributes" : [ "external" ],
+    "id" : "16"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "268",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "271",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "273",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "276",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "278",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E31Document",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Document, record or archival source that provides evidence.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E31Document",
+      "undefined" : "E31_Document"
+    },
+    "subClasses" : [ "77" ],
+    "attributes" : [ "external" ],
+    "id" : "17"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "281",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "285",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "291",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E30Right",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Legal rights or custodial claims associated with an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E30Right",
+      "undefined" : "E30_Right"
+    },
+    "attributes" : [ "external" ],
+    "id" : "19"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E55Type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Types from external vocabularies (AAT, local taxonomies).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E55Type",
+      "undefined" : "E55_Type"
+    },
+    "attributes" : [ "external" ],
+    "id" : "7"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "294",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E56Language",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Language (ISO 639-3 or external URI).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E56Language",
+      "undefined" : "E56_Language"
+    },
+    "attributes" : [ "external" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "297",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#E53Place",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "instances" : 0,
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Location in the natural or built environment.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "E53Place",
+      "undefined" : "E53_Place"
+    },
+    "subClasses" : [ "71" ],
+    "attributes" : [ "external" ],
+    "id" : "29"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "229",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "300",
+    "label" : {
+      "IRI-based" : "dateTime"
+    }
+  } ],
+  "property" : [ {
+    "id" : "1",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "4",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "6",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "9",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "12",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "15",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "18",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "21",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "22",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "26",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "28",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "30",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "34",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "37",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "38",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "41",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "43",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "45",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "46",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "48",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "52",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "53",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "56",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "58",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "60",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "63",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "68",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "72",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "75",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "76",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "78",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "79",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "82",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "91",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "94",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "98",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "99",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "102",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "105",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "106",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "109",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "113",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "117",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "119",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "121",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "122",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "123",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "125",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "126",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "127",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "129",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "130",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "131",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "132",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "133",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "134",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "135",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "136",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "137",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "139",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "141",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "142",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "143",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "144",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "146",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "147",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "149",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "150",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "152",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "153",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "154",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "155",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "156",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "157",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "158",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "159",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "161",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "162",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "163",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "164",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "165",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "166",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "169",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "171",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "172",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "175",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "177",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "178",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "179",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "181",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "182",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "183",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "184",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "185",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "189",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "190",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "191",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "192",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "195",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "196",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "197",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "198",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "201",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "202",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "204",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "205",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "206",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "207",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "208",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "209",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "210",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "212",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "214",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "216",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "217",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "219",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "220",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "221",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "222",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "224",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "226",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "227",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "228",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "231",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "232",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "233",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "234",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "236",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "237",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "238",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "240",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "241",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "242",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "243",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "244",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "245",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "246",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "247",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "248",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "249",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "250",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "251",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "252",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "254",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "255",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "256",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "257",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "258",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "259",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "260",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "261",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "262",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "263",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "264",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "265",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "266",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "267",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "269",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "270",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "272",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "274",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "275",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "277",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "279",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "280",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "282",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "283",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "284",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "286",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "287",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "288",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "289",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "290",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "292",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "293",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "295",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "296",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "298",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "299",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "301",
+    "type" : "owl:allValuesFrom"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "https://cair-nepal.org/nchlod#has_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "3",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Numeric value for a dimension.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_value",
+      "undefined" : "has_value"
+    },
+    "domain" : "2",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "1"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_unit",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "5",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Unit for a dimension.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_unit",
+      "undefined" : "has_unit"
+    },
+    "domain" : "2",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "4"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#referenced_in",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "8",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "External vocabulary reference.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "referenced_in",
+      "undefined" : "referenced_in"
+    },
+    "domain" : "7",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "6"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#spoken_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who speaks the language.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "spoken_by",
+      "undefined" : "spoken_by"
+    },
+    "domain" : "10",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "9"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#referenced_in",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "14",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "External vocabulary reference.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "referenced_in",
+      "undefined" : "referenced_in"
+    },
+    "domain" : "13",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "12"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#source_document",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "17",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Source document (E31 Document) used as evidence.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "source_document",
+      "undefined" : "source_document"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "object", "external" ],
+    "id" : "15"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#valid_from",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "20",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Start date of validity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "valid_from",
+      "undefined" : "valid_from"
+    },
+    "maxCardinality" : "1",
+    "domain" : "19",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "18"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#spoken_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who speaks the language.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "spoken_by",
+      "undefined" : "spoken_by"
+    },
+    "maxCardinality" : "1",
+    "domain" : "10",
+    "attributes" : [ "object", "external" ],
+    "id" : "21"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#description",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "24",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "General description field.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "description",
+      "undefined" : "description"
+    },
+    "maxCardinality" : "1",
+    "domain" : "23",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "22"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#former_owner",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Prior custodial actor for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "former_owner",
+      "undefined" : "former_owner"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "external" ],
+    "id" : "26"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#gazetteer_id",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "0",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "External gazetteer identifier (TGN, GeoNames, Wikidata).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "gazetteer_id",
+      "undefined" : "gazetteer_id"
+    },
+    "domain" : "29",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "28"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#procedure_name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "32",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Name of a procedure.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "procedure_name",
+      "undefined" : "procedure_name"
+    },
+    "maxCardinality" : "1",
+    "domain" : "31",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "30"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#latitude",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "35",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Latitude of a place (decimal degrees).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "latitude",
+      "undefined" : "latitude"
+    },
+    "domain" : "29",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "34"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "29",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "37"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "40",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Name of a person or actor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_name",
+      "undefined" : "has_name"
+    },
+    "maxCardinality" : "1",
+    "domain" : "39",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "38"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#geometry",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "42",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "GeoJSON geometry for complex extents (Polygon, MultiPolygon, Point).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "geometry",
+      "undefined" : "geometry"
+    },
+    "domain" : "29",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "41"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "44",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Human-readable name or title.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "name",
+      "undefined" : "name"
+    },
+    "domain" : "29",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "43"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#longitude",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "25",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Longitude of a place (decimal degrees).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "longitude",
+      "undefined" : "longitude"
+    },
+    "domain" : "29",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "45"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measured_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object the measurement pertains to.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measured_object",
+      "undefined" : "measured_object"
+    },
+    "maxCardinality" : "1",
+    "domain" : "47",
+    "attributes" : [ "object", "external" ],
+    "id" : "46"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_end",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "50",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "End datetime of a timespan.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_end",
+      "undefined" : "has_end"
+    },
+    "domain" : "49",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "48"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_beginning",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "33",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Start datetime of a timespan.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_beginning",
+      "undefined" : "has_beginning"
+    },
+    "domain" : "49",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "52"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#produced_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "55",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object produced by a production event (P108_has_produced).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "produced_object",
+      "undefined" : "produced_object"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "external" ],
+    "id" : "53"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#took_place_at",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "29",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Place where an event took place. (P7_took_place_at)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "took_place_at",
+      "undefined" : "took_place_at"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "external" ],
+    "id" : "56"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_method",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "59",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Method used for measurement.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_method",
+      "undefined" : "measurement_method"
+    },
+    "maxCardinality" : "1",
+    "domain" : "47",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "58"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#modification_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "62",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Note describing the details or nature of the modification event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "modification_note",
+      "undefined" : "modification_note"
+    },
+    "maxCardinality" : "1",
+    "domain" : "61",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "60"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#start_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "64",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Contributor start date.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "start_date",
+      "undefined" : "start_date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "63"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#valid_to",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "69",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "End date of validity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "valid_to",
+      "undefined" : "valid_to"
+    },
+    "maxCardinality" : "1",
+    "domain" : "19",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "68"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_attribute",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "74",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attribute or property that is being assigned during an attribution event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_attribute",
+      "undefined" : "assigned_attribute"
+    },
+    "maxCardinality" : "1",
+    "domain" : "73",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "72"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_unit",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "5",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Unit of measurement (E58 Measurement Unit).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_unit",
+      "undefined" : "measurement_unit"
+    },
+    "maxCardinality" : "1",
+    "domain" : "47",
+    "attributes" : [ "object", "external" ],
+    "id" : "75"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#written_in_language",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "10",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Language the linguistic object is written in.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "written_in_language",
+      "undefined" : "written_in_language"
+    },
+    "maxCardinality" : "1",
+    "domain" : "77",
+    "attributes" : [ "object", "external" ],
+    "id" : "76"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#death_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Death event of a person.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "death_event",
+      "undefined" : "death_event"
+    },
+    "maxCardinality" : "1",
+    "domain" : "39",
+    "attributes" : [ "object", "external" ],
+    "id" : "78"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "80",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Human-readable name or title.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "name",
+      "undefined" : "name"
+    },
+    "maxCardinality" : "1",
+    "domain" : "23",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "79"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessment_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "84",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date of condition assessment.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessment_date",
+      "undefined" : "assessment_date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "83",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "82"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#right_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "92",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Type of right.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "right_type",
+      "undefined" : "right_type"
+    },
+    "maxCardinality" : "1",
+    "domain" : "19",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "91"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#url",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "95",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "URL of a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "url",
+      "undefined" : "url"
+    },
+    "maxCardinality" : "1",
+    "domain" : "17",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "94"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#participated_in",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event the actor participated in.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "participated_in",
+      "undefined" : "participated_in"
+    },
+    "maxCardinality" : "1",
+    "domain" : "11",
+    "attributes" : [ "object", "external" ],
+    "id" : "98"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#affiliation",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "100",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Organization affiliation for a contributor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "affiliation",
+      "undefined" : "affiliation"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "99"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assignment_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "73",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event recording the assignment of an identifier.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assignment_event",
+      "undefined" : "assignment_event"
+    },
+    "maxCardinality" : "1",
+    "domain" : "103",
+    "attributes" : [ "object", "external" ],
+    "id" : "102"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_coordinates",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "85",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Legacy coordinates field (kept for compatibility). Prefer latitude/longitude or geometry.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_coordinates",
+      "undefined" : "has_coordinates"
+    },
+    "domain" : "29",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "105"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#unit_of",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "107",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "What this unit measures.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "unit_of",
+      "undefined" : "unit_of"
+    },
+    "maxCardinality" : "1",
+    "domain" : "5",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "106"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#contains_information",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "111",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Information content.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "contains_information",
+      "undefined" : "contains_information"
+    },
+    "maxCardinality" : "1",
+    "domain" : "110",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "109"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#record_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "114",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date when the record was created (digitization/ingest).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "record_date",
+      "undefined" : "record_date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "113"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_timespan",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Timespan for spatiotemporal volume.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_timespan",
+      "undefined" : "has_timespan"
+    },
+    "domain" : "118",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "117"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#gazetteer_id",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "93",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "External gazetteer identifier (TGN, GeoNames, Wikidata).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "gazetteer_id",
+      "undefined" : "gazetteer_id"
+    },
+    "maxCardinality" : "1",
+    "domain" : "29",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "119"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#from_actor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor transferring custody FROM.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "from_actor",
+      "undefined" : "from_actor"
+    },
+    "maxCardinality" : "1",
+    "domain" : "101",
+    "attributes" : [ "object", "external" ],
+    "id" : "121"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessment_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "120",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Textual note about condition or conservation findings.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessment_note",
+      "undefined" : "assessment_note"
+    },
+    "maxCardinality" : "1",
+    "domain" : "83",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "122"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#language",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "10",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Language of the content.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "language",
+      "undefined" : "language"
+    },
+    "maxCardinality" : "1",
+    "domain" : "124",
+    "attributes" : [ "object", "external" ],
+    "id" : "123"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_end",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "86",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "End datetime of a timespan.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_end",
+      "undefined" : "has_end"
+    },
+    "maxCardinality" : "1",
+    "domain" : "49",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "125"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#language",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "10",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Language of the content.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "language",
+      "undefined" : "language"
+    },
+    "domain" : "110",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "126"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#used_material",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "13",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Material used during an activity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "used_material",
+      "undefined" : "used_material"
+    },
+    "domain" : "128",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "127"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#produced_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "55",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object produced by a production event (P108_has_produced).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "produced_object",
+      "undefined" : "produced_object"
+    },
+    "domain" : "128",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "129"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_geometry",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "116",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Geometry for spatiotemporal volume.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_geometry",
+      "undefined" : "has_geometry"
+    },
+    "domain" : "118",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "130"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#took_place_at",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "29",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Place where an event took place. (P7_took_place_at)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "took_place_at",
+      "undefined" : "took_place_at"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "131"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#recorded_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who recorded or digitized the record.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "recorded_by",
+      "undefined" : "recorded_by"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "object", "external" ],
+    "id" : "132"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#carried_out_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor(s) who carried out an event. (P14_carried_out_by)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "carried_out_by",
+      "undefined" : "carried_out_by"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "133"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "134"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_time_span",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Time-span for events or measurements (P4_has_time-span).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_time_span",
+      "undefined" : "has_time_span"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "135"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#transferred_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object transferred during custody transfer.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "transferred_object",
+      "undefined" : "transferred_object"
+    },
+    "maxCardinality" : "1",
+    "domain" : "101",
+    "attributes" : [ "object", "external" ],
+    "id" : "136"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#destroyed_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object destroyed in a destruction event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "destroyed_object",
+      "undefined" : "destroyed_object"
+    },
+    "domain" : "138",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "137"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#contains_information",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "140",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Information content.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "contains_information",
+      "undefined" : "contains_information"
+    },
+    "domain" : "110",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "139"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#destroyed_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object destroyed in a destruction event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "destroyed_object",
+      "undefined" : "destroyed_object"
+    },
+    "maxCardinality" : "1",
+    "domain" : "138",
+    "attributes" : [ "object", "external" ],
+    "id" : "141"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_timespan",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Timespan for spatiotemporal volume.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_timespan",
+      "undefined" : "has_timespan"
+    },
+    "maxCardinality" : "1",
+    "domain" : "118",
+    "attributes" : [ "object", "external" ],
+    "id" : "142"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_beginning",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "81",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Start datetime of a timespan.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_beginning",
+      "undefined" : "has_beginning"
+    },
+    "maxCardinality" : "1",
+    "domain" : "49",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "143"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#unit_of",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "145",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "What this unit measures.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "unit_of",
+      "undefined" : "unit_of"
+    },
+    "domain" : "5",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "144"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#produced_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "55",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object produced by a production event (P108_has_produced).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "produced_object",
+      "undefined" : "produced_object"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "146"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#title",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "148",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Document or object title.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "title",
+      "undefined" : "title"
+    },
+    "maxCardinality" : "1",
+    "domain" : "23",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "147"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_dimension",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "2",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Dimension object or measurement for an item.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_dimension",
+      "undefined" : "has_dimension"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "external" ],
+    "id" : "149"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#carried_out_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor(s) who carried out an event. (P14_carried_out_by)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "carried_out_by",
+      "undefined" : "carried_out_by"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "150"
+  }, {
+    "range" : "57",
+    "domain" : "73",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "152"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "104",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Value assigned to the attribute.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_value",
+      "undefined" : "assigned_value"
+    },
+    "maxCardinality" : "1",
+    "domain" : "73",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "153"
+  }, {
+    "range" : "17",
+    "domain" : "77",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "154"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#to_actor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor transferring custody TO.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "to_actor",
+      "undefined" : "to_actor"
+    },
+    "domain" : "101",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "155"
+  }, {
+    "range" : "29",
+    "domain" : "71",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "156"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#from_actor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor transferring custody FROM.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "from_actor",
+      "undefined" : "from_actor"
+    },
+    "domain" : "101",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "157"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#modification_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "151",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Note describing the details or nature of the modification event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "modification_note",
+      "undefined" : "modification_note"
+    },
+    "domain" : "61",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "158"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#modified_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object modified in a modification event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "modified_object",
+      "undefined" : "modified_object"
+    },
+    "domain" : "61",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "159"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#provenance_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "160",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Free text provenance notes or evidence summary.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "provenance_note",
+      "undefined" : "provenance_note"
+    },
+    "domain" : "16",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "161"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#transferred_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object transferred during custody transfer.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "transferred_object",
+      "undefined" : "transferred_object"
+    },
+    "domain" : "101",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "162"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#derived_from",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "110",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Information object derived from another information object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "derived_from",
+      "undefined" : "derived_from"
+    },
+    "domain" : "16",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "163"
+  }, {
+    "range" : "57",
+    "domain" : "128",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "164"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#carried_out_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor(s) who carried out an event. (P14_carried_out_by)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "carried_out_by",
+      "undefined" : "carried_out_by"
+    },
+    "domain" : "57",
+    "attributes" : [ "object", "external" ],
+    "id" : "165"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#record_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "167",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date when the record was created (digitization/ingest).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "record_date",
+      "undefined" : "record_date"
+    },
+    "domain" : "16",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "166"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#end_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "90",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Contributor end date.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "end_date",
+      "undefined" : "end_date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "169"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#email",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "89",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Email of contributor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "email",
+      "undefined" : "email"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "171"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#recorded_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who recorded or digitized the record.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "recorded_by",
+      "undefined" : "recorded_by"
+    },
+    "domain" : "16",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "172"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#license",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "168",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "License or rights statement (dataset or record level).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "license",
+      "undefined" : "license"
+    },
+    "domain" : "16",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "175"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#source_document",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "17",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Source document (E31 Document) used as evidence.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "source_document",
+      "undefined" : "source_document"
+    },
+    "domain" : "16",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "177"
+  }, {
+    "range" : "11",
+    "domain" : "36",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "178"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#role",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "180",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Role of a contributor in the project (curator, digitizer, researcher).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "role",
+      "undefined" : "role"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "179"
+  }, {
+    "range" : "27",
+    "domain" : "55",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "181"
+  }, {
+    "range" : "57",
+    "domain" : "138",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "182"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#confidence",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "173",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Confidence score for an asserted statement (0.0-1.0).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "confidence",
+      "undefined" : "confidence"
+    },
+    "domain" : "16",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "183"
+  }, {
+    "range" : "57",
+    "domain" : "61",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "184"
+  }, {
+    "range" : "57",
+    "domain" : "101",
+    "attributes" : [ "object", "anonymous" ],
+    "id" : "185"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_unit",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "5",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Unit of measurement (E58 Measurement Unit).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_unit",
+      "undefined" : "measurement_unit"
+    },
+    "domain" : "47",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "189"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measured_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object the measurement pertains to.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measured_object",
+      "undefined" : "measured_object"
+    },
+    "domain" : "47",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "190"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#birth_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Birth event of a person.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "birth_event",
+      "undefined" : "birth_event"
+    },
+    "maxCardinality" : "1",
+    "domain" : "39",
+    "attributes" : [ "object", "external" ],
+    "id" : "191"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_unit",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "5",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Unit for a dimension.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_unit",
+      "undefined" : "has_unit"
+    },
+    "maxCardinality" : "1",
+    "domain" : "2",
+    "attributes" : [ "object", "external" ],
+    "id" : "192"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "193",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Numeric value of a measurement.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_value",
+      "undefined" : "measurement_value"
+    },
+    "domain" : "47",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "195"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_method",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "186",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Method used for measurement.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_method",
+      "undefined" : "measurement_method"
+    },
+    "domain" : "47",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "196"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_time_span",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Time-span for events or measurements (P4_has_time-span).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_time_span",
+      "undefined" : "has_time_span"
+    },
+    "domain" : "47",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "197"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessment_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "199",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Textual note about condition or conservation findings.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessment_note",
+      "undefined" : "assessment_note"
+    },
+    "domain" : "83",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "198"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor performing the condition assessment.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessor",
+      "undefined" : "assessor"
+    },
+    "domain" : "83",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "201"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#modified_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object modified in a modification event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "modified_object",
+      "undefined" : "modified_object"
+    },
+    "maxCardinality" : "1",
+    "domain" : "61",
+    "attributes" : [ "object", "external" ],
+    "id" : "202"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessment_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "200",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date of condition assessment.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessment_date",
+      "undefined" : "assessment_date"
+    },
+    "domain" : "83",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "204"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#to_actor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor transferring custody TO.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "to_actor",
+      "undefined" : "to_actor"
+    },
+    "maxCardinality" : "1",
+    "domain" : "101",
+    "attributes" : [ "object", "external" ],
+    "id" : "205"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessed_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object being assessed.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessed_object",
+      "undefined" : "assessed_object"
+    },
+    "domain" : "83",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "206"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#right_holder",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Holder of a right.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "right_holder",
+      "undefined" : "right_holder"
+    },
+    "maxCardinality" : "1",
+    "domain" : "19",
+    "attributes" : [ "object", "external" ],
+    "id" : "207"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_title",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "88",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Title or appellation for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_title",
+      "undefined" : "has_title"
+    },
+    "domain" : "27",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "208"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#role",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "194",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Role of a contributor in the project (curator, digitizer, researcher).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "role",
+      "undefined" : "role"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "209"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#latitude",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "67",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Latitude of a place (decimal degrees).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "latitude",
+      "undefined" : "latitude"
+    },
+    "maxCardinality" : "1",
+    "domain" : "29",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "210"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_attribute",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "213",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attribute or property that is being assigned during an attribution event.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_attribute",
+      "undefined" : "assigned_attribute"
+    },
+    "domain" : "73",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "212"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who assigned an identifier or attribute.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_by",
+      "undefined" : "assigned_by"
+    },
+    "domain" : "73",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "214"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#derived_from",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "110",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Information object derived from another information object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "derived_from",
+      "undefined" : "derived_from"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "object", "external" ],
+    "id" : "216"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "211",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Value assigned to the attribute.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_value",
+      "undefined" : "assigned_value"
+    },
+    "domain" : "73",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "217"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#took_place_at",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "29",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Place where an event took place. (P7_took_place_at)",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "took_place_at",
+      "undefined" : "took_place_at"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "219"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_time_span",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Time-span for events or measurements (P4_has_time-span).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_time_span",
+      "undefined" : "has_time_span"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "220"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "73",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "221"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "54",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "222"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#right_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "225",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Type of right.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "right_type",
+      "undefined" : "right_type"
+    },
+    "domain" : "19",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "224"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#license",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "70",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "License or rights statement (dataset or record level).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "license",
+      "undefined" : "license"
+    },
+    "maxCardinality" : "1",
+    "domain" : "23",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "226"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#right_holder",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Holder of a right.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "right_holder",
+      "undefined" : "right_holder"
+    },
+    "domain" : "19",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "227"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#valid_to",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "229",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "End date of validity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "valid_to",
+      "undefined" : "valid_to"
+    },
+    "domain" : "19",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "228"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "7",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Type classification for an entity (maps to E55 Type).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_type",
+      "undefined" : "has_type"
+    },
+    "domain" : "187",
+    "attributes" : [ "object", "external" ],
+    "id" : "231"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#geometry",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "96",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "GeoJSON geometry for complex extents (Polygon, MultiPolygon, Point).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "geometry",
+      "undefined" : "geometry"
+    },
+    "maxCardinality" : "1",
+    "domain" : "29",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "232"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#procedure_name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "230",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Name of a procedure.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "procedure_name",
+      "undefined" : "procedure_name"
+    },
+    "domain" : "31",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "233"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_geometry",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "87",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Geometry for spatiotemporal volume.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_geometry",
+      "undefined" : "has_geometry"
+    },
+    "maxCardinality" : "1",
+    "domain" : "118",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "234"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#author",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Author of a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "author",
+      "undefined" : "author"
+    },
+    "maxCardinality" : "1",
+    "domain" : "17",
+    "attributes" : [ "object", "external" ],
+    "id" : "236"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#identifier_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "66",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Literal identifier value (string).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "identifier_value",
+      "undefined" : "identifier_value"
+    },
+    "maxCardinality" : "1",
+    "domain" : "103",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "237"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "239",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Name of a person or actor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_name",
+      "undefined" : "has_name"
+    },
+    "domain" : "39",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "238"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#death_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Death event of a person.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "death_event",
+      "undefined" : "death_event"
+    },
+    "domain" : "39",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "240"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#description",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "235",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "General description field.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "description",
+      "undefined" : "description"
+    },
+    "domain" : "31",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "241"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_dimension",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "2",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Dimension object or measurement for an item.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_dimension",
+      "undefined" : "has_dimension"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "242"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "243"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "39",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "244"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#birth_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Birth event of a person.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "birth_event",
+      "undefined" : "birth_event"
+    },
+    "domain" : "39",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "245"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#identifier_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "7",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier type or vocabulary (e.g., ISBN, inventoryNo).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "identifier_type",
+      "undefined" : "identifier_type"
+    },
+    "maxCardinality" : "1",
+    "domain" : "103",
+    "attributes" : [ "object", "external" ],
+    "id" : "246"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#current_owner",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Current custodial actor for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "current_owner",
+      "undefined" : "current_owner"
+    },
+    "maxCardinality" : "1",
+    "domain" : "27",
+    "attributes" : [ "object", "external" ],
+    "id" : "247"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_time_span",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "49",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Time-span for events or measurements (P4_has_time-span).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_time_span",
+      "undefined" : "has_time_span"
+    },
+    "maxCardinality" : "1",
+    "domain" : "188",
+    "attributes" : [ "object", "external" ],
+    "id" : "248"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#contribution_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "112",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date of a specific contribution.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "contribution_date",
+      "undefined" : "contribution_date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "36",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "249"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#longitude",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "215",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Longitude of a place (decimal degrees).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "longitude",
+      "undefined" : "longitude"
+    },
+    "maxCardinality" : "1",
+    "domain" : "29",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "250"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessed_object",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "27",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Object being assessed.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessed_object",
+      "undefined" : "assessed_object"
+    },
+    "maxCardinality" : "1",
+    "domain" : "83",
+    "attributes" : [ "object", "external" ],
+    "id" : "251"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_title",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "253",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Title or appellation for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_title",
+      "undefined" : "has_title"
+    },
+    "domain" : "27",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "252"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_identifier",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "103",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier(s) for an entity (URI, catalog number, local id).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_identifier",
+      "undefined" : "has_identifier"
+    },
+    "domain" : "170",
+    "attributes" : [ "object", "external" ],
+    "id" : "254"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "7",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Type classification for an entity (maps to E55 Type).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_type",
+      "undefined" : "has_type"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "255"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "65",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Numeric value for a dimension.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_value",
+      "undefined" : "has_value"
+    },
+    "maxCardinality" : "1",
+    "domain" : "2",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "256"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_identifier",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "103",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier(s) for an entity (URI, catalog number, local id).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_identifier",
+      "undefined" : "has_identifier"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "257"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "115",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date associated with a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "date",
+      "undefined" : "date"
+    },
+    "maxCardinality" : "1",
+    "domain" : "17",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "258"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#former_owner",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Prior custodial actor for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "former_owner",
+      "undefined" : "former_owner"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "259"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#current_owner",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Current custodial actor for an object.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "current_owner",
+      "undefined" : "current_owner"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "260"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_material",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "13",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Material(s) composing an object (link to E57 Material).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_material",
+      "undefined" : "has_material"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "261"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assignment_event",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "73",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event recording the assignment of an identifier.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assignment_event",
+      "undefined" : "assignment_event"
+    },
+    "domain" : "103",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "262"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#provenance_note",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "223",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Free text provenance notes or evidence summary.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "provenance_note",
+      "undefined" : "provenance_note"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "263"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#identifier_type",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "7",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier type or vocabulary (e.g., ISBN, inventoryNo).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "identifier_type",
+      "undefined" : "identifier_type"
+    },
+    "domain" : "103",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "264"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#identifier_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "51",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Literal identifier value (string).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "identifier_value",
+      "undefined" : "identifier_value"
+    },
+    "domain" : "103",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "265"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who assigned an identifier or attribute.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_by",
+      "undefined" : "assigned_by"
+    },
+    "domain" : "103",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "266"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_identifier",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "103",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Identifier(s) for an entity (URI, catalog number, local id).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_identifier",
+      "undefined" : "has_identifier"
+    },
+    "domain" : "11",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "267"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#name",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "268",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Human-readable name or title.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "name",
+      "undefined" : "name"
+    },
+    "domain" : "11",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "269"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#affiliation",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "271",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Organization affiliation for a contributor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "affiliation",
+      "undefined" : "affiliation"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "270"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#contribution_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "273",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date of a specific contribution.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "contribution_date",
+      "undefined" : "contribution_date"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "272"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assessor",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor performing the condition assessment.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assessor",
+      "undefined" : "assessor"
+    },
+    "maxCardinality" : "1",
+    "domain" : "83",
+    "attributes" : [ "object", "external" ],
+    "id" : "274"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#email",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "276",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Email of contributor.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "email",
+      "undefined" : "email"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "275"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#start_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "278",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Contributor start date.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "start_date",
+      "undefined" : "start_date"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "277"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_material",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "13",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Material(s) composing an object (link to E57 Material).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_material",
+      "undefined" : "has_material"
+    },
+    "domain" : "27",
+    "attributes" : [ "object", "external" ],
+    "id" : "279"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#end_date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "281",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Contributor end date.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "end_date",
+      "undefined" : "end_date"
+    },
+    "domain" : "36",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "280"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "174",
+    "attributes" : [ "object", "external" ],
+    "id" : "282"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#confidence",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "108",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Confidence score for an asserted statement (0.0-1.0).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "confidence",
+      "undefined" : "confidence"
+    },
+    "maxCardinality" : "1",
+    "domain" : "16",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "283"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#author",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Author of a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "author",
+      "undefined" : "author"
+    },
+    "domain" : "17",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "284"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#participated_in",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "57",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Event the actor participated in.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "participated_in",
+      "undefined" : "participated_in"
+    },
+    "domain" : "11",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "286"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#used_material",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "13",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Material used during an activity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "used_material",
+      "undefined" : "used_material"
+    },
+    "maxCardinality" : "1",
+    "domain" : "128",
+    "attributes" : [ "object", "external" ],
+    "id" : "287"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#assigned_by",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "11",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Actor who assigned an identifier or attribute.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "assigned_by",
+      "undefined" : "assigned_by"
+    },
+    "maxCardinality" : "1",
+    "domain" : "176",
+    "attributes" : [ "object", "external" ],
+    "id" : "288"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#written_in_language",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "10",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Language the linguistic object is written in.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "written_in_language",
+      "undefined" : "written_in_language"
+    },
+    "domain" : "77",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "289"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#license",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "291",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "License or rights statement (dataset or record level).",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "license",
+      "undefined" : "license"
+    },
+    "domain" : "17",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "290"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#has_provenance",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "16",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Attach DataProvenance records to objects/events/documents.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "has_provenance",
+      "undefined" : "has_provenance"
+    },
+    "domain" : "17",
+    "attributes" : [ "object", "allValues", "external" ],
+    "id" : "292"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#url",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "285",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "URL of a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "url",
+      "undefined" : "url"
+    },
+    "domain" : "17",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "293"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#date",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "294",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Date associated with a document.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "date",
+      "undefined" : "date"
+    },
+    "domain" : "17",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "295"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#measurement_value",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "218",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Numeric value of a measurement.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "measurement_value",
+      "undefined" : "measurement_value"
+    },
+    "maxCardinality" : "1",
+    "domain" : "47",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "296"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#referenced_in",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "203",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "External vocabulary reference.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "referenced_in",
+      "undefined" : "referenced_in"
+    },
+    "maxCardinality" : "1",
+    "domain" : "23",
+    "attributes" : [ "datatype", "external" ],
+    "id" : "298"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#valid_from",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "300",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Start date of validity.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "valid_from",
+      "undefined" : "valid_from"
+    },
+    "domain" : "19",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "299"
+  }, {
+    "iri" : "https://cair-nepal.org/nchlod#title",
+    "baseIri" : "https://cair-nepal.org/nchlod",
+    "range" : "297",
+    "annotations" : {
+      "inScheme" : [ {
+        "identifier" : "inScheme",
+        "language" : "undefined",
+        "value" : "file:/C:/linkml/CHLOD/NCHLOD",
+        "type" : "iri"
+      } ],
+      "definition" : [ {
+        "identifier" : "definition",
+        "language" : "undefined",
+        "value" : "Document or object title.",
+        "type" : "label"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "title",
+      "undefined" : "title"
+    },
+    "domain" : "17",
+    "attributes" : [ "allValues", "datatype", "external" ],
+    "id" : "301"
+  } ]
+}

@@ -1,0 +1,1995 @@
+@prefix : <file:/C:/linkml/CHLOD/NCHLOD.owl.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <file:/C:/linkml/CHLOD/NCHLOD.owl.ttl#> .
+
+<file:/C:/linkml/CHLOD/NCHLOD.owl.ttl> rdf:type owl:Ontology ;
+                                        <http://purl.org/pav/version> "2025-11-22" ;
+                                        rdfs:label "nepalCulturalHeritageLinkedOpenData" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "A LinkML schema implementing CIDOC-CRM-aligned classes, event-centric patterns, and provenance for Nepal cultural heritage linked open data." .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/pav/version
+<http://purl.org/pav/version> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+<http://www.w3.org/2004/02/skos/core#definition> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#inScheme
+<http://www.w3.org/2004/02/skos/core#inScheme> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://cair-nepal.org/nchlod#assessed_object
+<https://cair-nepal.org/nchlod#assessed_object> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E14ConditionAssessment> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                rdfs:label "assessed_object" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Object being assessed." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assessor
+<https://cair-nepal.org/nchlod#assessor> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E14ConditionAssessment> ;
+                                         rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                         rdfs:label "assessor" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Actor performing the condition assessment." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assigned_by
+<https://cair-nepal.org/nchlod#assigned_by> rdf:type owl:ObjectProperty ;
+                                            rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                            rdfs:label "assigned_by" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Actor who assigned an identifier or attribute." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assignment_event
+<https://cair-nepal.org/nchlod#assignment_event> rdf:type owl:ObjectProperty ;
+                                                 rdfs:domain <https://cair-nepal.org/nchlod#E42Identifier> ;
+                                                 rdfs:range <https://cair-nepal.org/nchlod#E13AttributeAssignment> ;
+                                                 rdfs:label "assignment_event" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Event recording the assignment of an identifier." ;
+                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#author
+<https://cair-nepal.org/nchlod#author> rdf:type owl:ObjectProperty ;
+                                       rdfs:domain <https://cair-nepal.org/nchlod#E31Document> ;
+                                       rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                       rdfs:label "author" ;
+                                       <http://www.w3.org/2004/02/skos/core#definition> "Author of a document." ;
+                                       <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#birth_event
+<https://cair-nepal.org/nchlod#birth_event> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <https://cair-nepal.org/nchlod#E21Person> ;
+                                            rdfs:range <https://cair-nepal.org/nchlod#E5Event> ;
+                                            rdfs:label "birth_event" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Birth event of a person." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#carried_out_by
+<https://cair-nepal.org/nchlod#carried_out_by> rdf:type owl:ObjectProperty ;
+                                               rdfs:domain <https://cair-nepal.org/nchlod#E5Event> ;
+                                               rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                               rdfs:label "carried_out_by" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Actor(s) who carried out an event. (P14_carried_out_by)" ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#current_owner
+<https://cair-nepal.org/nchlod#current_owner> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                              rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                              rdfs:label "current_owner" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Current custodial actor for an object." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#death_event
+<https://cair-nepal.org/nchlod#death_event> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <https://cair-nepal.org/nchlod#E21Person> ;
+                                            rdfs:range <https://cair-nepal.org/nchlod#E5Event> ;
+                                            rdfs:label "death_event" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Death event of a person." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#derived_from
+<https://cair-nepal.org/nchlod#derived_from> rdf:type owl:ObjectProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                             rdfs:range <https://cair-nepal.org/nchlod#E73InformationObject> ;
+                                             rdfs:label "derived_from" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Information object derived from another information object." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#destroyed_object
+<https://cair-nepal.org/nchlod#destroyed_object> rdf:type owl:ObjectProperty ;
+                                                 rdfs:domain <https://cair-nepal.org/nchlod#E6Destruction> ;
+                                                 rdfs:range <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                 rdfs:label "destroyed_object" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Object destroyed in a destruction event." ;
+                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#former_owner
+<https://cair-nepal.org/nchlod#former_owner> rdf:type owl:ObjectProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                             rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                             rdfs:label "former_owner" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Prior custodial actor for an object." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#from_actor
+<https://cair-nepal.org/nchlod#from_actor> rdf:type owl:ObjectProperty ;
+                                           rdfs:domain <https://cair-nepal.org/nchlod#E10TransferOfCustody> ;
+                                           rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                           rdfs:label "from_actor" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Actor transferring custody FROM." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_dimension
+<https://cair-nepal.org/nchlod#has_dimension> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                              rdfs:range <https://cair-nepal.org/nchlod#E54Dimension> ;
+                                              rdfs:label "has_dimension" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Dimension object or measurement for an item." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_identifier
+<https://cair-nepal.org/nchlod#has_identifier> rdf:type owl:ObjectProperty ;
+                                               rdfs:range <https://cair-nepal.org/nchlod#E42Identifier> ;
+                                               rdfs:label "has_identifier" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Identifier(s) for an entity (URI, catalog number, local id)." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_material
+<https://cair-nepal.org/nchlod#has_material> rdf:type owl:ObjectProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                             rdfs:range <https://cair-nepal.org/nchlod#E57Material> ;
+                                             rdfs:label "has_material" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Material(s) composing an object (link to E57 Material)." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_provenance
+<https://cair-nepal.org/nchlod#has_provenance> rdf:type owl:ObjectProperty ;
+                                               rdfs:range <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                               rdfs:label "has_provenance" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Attach DataProvenance records to objects/events/documents." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_time_span
+<https://cair-nepal.org/nchlod#has_time_span> rdf:type owl:ObjectProperty ;
+                                              rdfs:range <https://cair-nepal.org/nchlod#E52TimeSpan> ;
+                                              rdfs:label "has_time_span" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Time-span for events or measurements (P4_has_time-span)." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_timespan
+<https://cair-nepal.org/nchlod#has_timespan> rdf:type owl:ObjectProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E92SpatetimeVolume> ;
+                                             rdfs:range <https://cair-nepal.org/nchlod#E52TimeSpan> ;
+                                             rdfs:label "has_timespan" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Timespan for spatiotemporal volume." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_type
+<https://cair-nepal.org/nchlod#has_type> rdf:type owl:ObjectProperty ;
+                                         rdfs:range <https://cair-nepal.org/nchlod#E55Type> ;
+                                         rdfs:label "has_type" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Type classification for an entity (maps to E55 Type)." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_unit
+<https://cair-nepal.org/nchlod#has_unit> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E54Dimension> ;
+                                         rdfs:range <https://cair-nepal.org/nchlod#E58MeasurementUnit> ;
+                                         rdfs:label "has_unit" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Unit for a dimension." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#identifier_type
+<https://cair-nepal.org/nchlod#identifier_type> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E42Identifier> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E55Type> ;
+                                                rdfs:label "identifier_type" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Identifier type or vocabulary (e.g., ISBN, inventoryNo)." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#language
+<https://cair-nepal.org/nchlod#language> rdf:type owl:ObjectProperty ;
+                                         rdfs:range <https://cair-nepal.org/nchlod#E56Language> ;
+                                         rdfs:label "language" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Language of the content." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#measured_object
+<https://cair-nepal.org/nchlod#measured_object> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E16Measurement> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                rdfs:label "measured_object" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Object the measurement pertains to." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#measurement_unit
+<https://cair-nepal.org/nchlod#measurement_unit> rdf:type owl:ObjectProperty ;
+                                                 rdfs:domain <https://cair-nepal.org/nchlod#E16Measurement> ;
+                                                 rdfs:range <https://cair-nepal.org/nchlod#E58MeasurementUnit> ;
+                                                 rdfs:label "measurement_unit" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Unit of measurement (E58 Measurement Unit)." ;
+                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#modified_object
+<https://cair-nepal.org/nchlod#modified_object> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E11Modification> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                rdfs:label "modified_object" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Object modified in a modification event." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#participated_in
+<https://cair-nepal.org/nchlod#participated_in> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E39Actor> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E5Event> ;
+                                                rdfs:label "participated_in" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Event the actor participated in." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#produced_object
+<https://cair-nepal.org/nchlod#produced_object> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E12Production> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E22HumanMadeObject> ;
+                                                rdfs:label "produced_object" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Object produced by a production event (P108_has_produced)." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#recorded_by
+<https://cair-nepal.org/nchlod#recorded_by> rdf:type owl:ObjectProperty ;
+                                            rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                            rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                            rdfs:label "recorded_by" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Actor who recorded or digitized the record." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#right_holder
+<https://cair-nepal.org/nchlod#right_holder> rdf:type owl:ObjectProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E30Right> ;
+                                             rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                             rdfs:label "right_holder" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Holder of a right." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#source_document
+<https://cair-nepal.org/nchlod#source_document> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                                rdfs:range <https://cair-nepal.org/nchlod#E31Document> ;
+                                                rdfs:label "source_document" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Source document (E31 Document) used as evidence." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#spoken_by
+<https://cair-nepal.org/nchlod#spoken_by> rdf:type owl:ObjectProperty ;
+                                          rdfs:domain <https://cair-nepal.org/nchlod#E56Language> ;
+                                          rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                          rdfs:label "spoken_by" ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Actor who speaks the language." ;
+                                          <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#to_actor
+<https://cair-nepal.org/nchlod#to_actor> rdf:type owl:ObjectProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E10TransferOfCustody> ;
+                                         rdfs:range <https://cair-nepal.org/nchlod#E39Actor> ;
+                                         rdfs:label "to_actor" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Actor transferring custody TO." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#took_place_at
+<https://cair-nepal.org/nchlod#took_place_at> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <https://cair-nepal.org/nchlod#E5Event> ;
+                                              rdfs:range <https://cair-nepal.org/nchlod#E53Place> ;
+                                              rdfs:label "took_place_at" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Place where an event took place. (P7_took_place_at)" ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#transferred_object
+<https://cair-nepal.org/nchlod#transferred_object> rdf:type owl:ObjectProperty ;
+                                                   rdfs:domain <https://cair-nepal.org/nchlod#E10TransferOfCustody> ;
+                                                   rdfs:range <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                   rdfs:label "transferred_object" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Object transferred during custody transfer." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#used_material
+<https://cair-nepal.org/nchlod#used_material> rdf:type owl:ObjectProperty ;
+                                              rdfs:domain <https://cair-nepal.org/nchlod#E7Activity> ;
+                                              rdfs:range <https://cair-nepal.org/nchlod#E57Material> ;
+                                              rdfs:label "used_material" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Material used during an activity." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#written_in_language
+<https://cair-nepal.org/nchlod#written_in_language> rdf:type owl:ObjectProperty ;
+                                                    rdfs:domain <https://cair-nepal.org/nchlod#E33LinguisticObject> ;
+                                                    rdfs:range <https://cair-nepal.org/nchlod#E56Language> ;
+                                                    rdfs:label "written_in_language" ;
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Language the linguistic object is written in." ;
+                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://cair-nepal.org/nchlod#affiliation
+<https://cair-nepal.org/nchlod#affiliation> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                            rdfs:range xsd:string ;
+                                            rdfs:label "affiliation" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Organization affiliation for a contributor." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assessment_date
+<https://cair-nepal.org/nchlod#assessment_date> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E14ConditionAssessment> ;
+                                                rdfs:range xsd:dateTime ;
+                                                rdfs:label "assessment_date" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Date of condition assessment." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assessment_note
+<https://cair-nepal.org/nchlod#assessment_note> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E14ConditionAssessment> ;
+                                                rdfs:range xsd:string ;
+                                                rdfs:label "assessment_note" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Textual note about condition or conservation findings." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assigned_attribute
+<https://cair-nepal.org/nchlod#assigned_attribute> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://cair-nepal.org/nchlod#E13AttributeAssignment> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:label "assigned_attribute" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Attribute or property that is being assigned during an attribution event." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#assigned_value
+<https://cair-nepal.org/nchlod#assigned_value> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain <https://cair-nepal.org/nchlod#E13AttributeAssignment> ;
+                                               rdfs:range xsd:string ;
+                                               rdfs:label "assigned_value" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Value assigned to the attribute." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#confidence
+<https://cair-nepal.org/nchlod#confidence> rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                           rdfs:range xsd:float ;
+                                           rdfs:label "confidence" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Confidence score for an asserted statement (0.0-1.0)." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#contains_information
+<https://cair-nepal.org/nchlod#contains_information> rdf:type owl:DatatypeProperty ;
+                                                     rdfs:domain <https://cair-nepal.org/nchlod#E73InformationObject> ;
+                                                     rdfs:range xsd:string ;
+                                                     rdfs:label "contains_information" ;
+                                                     <http://www.w3.org/2004/02/skos/core#definition> "Information content." ;
+                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#contribution_date
+<https://cair-nepal.org/nchlod#contribution_date> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                                  rdfs:range xsd:dateTime ;
+                                                  rdfs:label "contribution_date" ;
+                                                  <http://www.w3.org/2004/02/skos/core#definition> "Date of a specific contribution." ;
+                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#date
+<https://cair-nepal.org/nchlod#date> rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain <https://cair-nepal.org/nchlod#E31Document> ;
+                                     rdfs:range xsd:dateTime ;
+                                     rdfs:label "date" ;
+                                     <http://www.w3.org/2004/02/skos/core#definition> "Date associated with a document." ;
+                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#description
+<https://cair-nepal.org/nchlod#description> rdf:type owl:DatatypeProperty ;
+                                            rdfs:range xsd:string ;
+                                            rdfs:label "description" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "General description field." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#email
+<https://cair-nepal.org/nchlod#email> rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                      rdfs:range xsd:string ;
+                                      rdfs:label "email" ;
+                                      <http://www.w3.org/2004/02/skos/core#definition> "Email of contributor." ;
+                                      <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#end_date
+<https://cair-nepal.org/nchlod#end_date> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                         rdfs:range xsd:dateTime ;
+                                         rdfs:label "end_date" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Contributor end date." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#gazetteer_id
+<https://cair-nepal.org/nchlod#gazetteer_id> rdf:type owl:DatatypeProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E53Place> ;
+                                             rdfs:range xsd:string ;
+                                             rdfs:label "gazetteer_id" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "External gazetteer identifier (TGN, GeoNames, Wikidata)." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#geometry
+<https://cair-nepal.org/nchlod#geometry> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E53Place> ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:label "geometry" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "GeoJSON geometry for complex extents (Polygon, MultiPolygon, Point)." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_beginning
+<https://cair-nepal.org/nchlod#has_beginning> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <https://cair-nepal.org/nchlod#E52TimeSpan> ;
+                                              rdfs:range xsd:dateTime ;
+                                              rdfs:label "has_beginning" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Start datetime of a timespan." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_coordinates
+<https://cair-nepal.org/nchlod#has_coordinates> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#E53Place> ;
+                                                rdfs:range xsd:string ;
+                                                rdfs:label "has_coordinates" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Legacy coordinates field (kept for compatibility). Prefer latitude/longitude or geometry." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_end
+<https://cair-nepal.org/nchlod#has_end> rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain <https://cair-nepal.org/nchlod#E52TimeSpan> ;
+                                        rdfs:range xsd:dateTime ;
+                                        rdfs:label "has_end" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "End datetime of a timespan." ;
+                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_geometry
+<https://cair-nepal.org/nchlod#has_geometry> rdf:type owl:DatatypeProperty ;
+                                             rdfs:domain <https://cair-nepal.org/nchlod#E92SpatetimeVolume> ;
+                                             rdfs:range xsd:string ;
+                                             rdfs:label "has_geometry" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Geometry for spatiotemporal volume." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_name
+<https://cair-nepal.org/nchlod#has_name> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E21Person> ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:label "has_name" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Name of a person or actor." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_title
+<https://cair-nepal.org/nchlod#has_title> rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                          rdfs:range xsd:string ;
+                                          rdfs:label "has_title" ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Title or appellation for an object." ;
+                                          <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#has_value
+<https://cair-nepal.org/nchlod#has_value> rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain <https://cair-nepal.org/nchlod#E54Dimension> ;
+                                          rdfs:range xsd:float ;
+                                          rdfs:label "has_value" ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Numeric value for a dimension." ;
+                                          <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#identifier_value
+<https://cair-nepal.org/nchlod#identifier_value> rdf:type owl:DatatypeProperty ;
+                                                 rdfs:domain <https://cair-nepal.org/nchlod#E42Identifier> ;
+                                                 rdfs:range xsd:string ;
+                                                 rdfs:label "identifier_value" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Literal identifier value (string)." ;
+                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#latitude
+<https://cair-nepal.org/nchlod#latitude> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E53Place> ;
+                                         rdfs:range xsd:float ;
+                                         rdfs:label "latitude" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Latitude of a place (decimal degrees)." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#license
+<https://cair-nepal.org/nchlod#license> rdf:type owl:DatatypeProperty ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:label "license" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "License or rights statement (dataset or record level)." ;
+                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#longitude
+<https://cair-nepal.org/nchlod#longitude> rdf:type owl:DatatypeProperty ;
+                                          rdfs:domain <https://cair-nepal.org/nchlod#E53Place> ;
+                                          rdfs:range xsd:float ;
+                                          rdfs:label "longitude" ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Longitude of a place (decimal degrees)." ;
+                                          <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#measurement_method
+<https://cair-nepal.org/nchlod#measurement_method> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://cair-nepal.org/nchlod#E16Measurement> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:label "measurement_method" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Method used for measurement." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#measurement_value
+<https://cair-nepal.org/nchlod#measurement_value> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:domain <https://cair-nepal.org/nchlod#E16Measurement> ;
+                                                  rdfs:range xsd:float ;
+                                                  rdfs:label "measurement_value" ;
+                                                  <http://www.w3.org/2004/02/skos/core#definition> "Numeric value of a measurement." ;
+                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#modification_note
+<https://cair-nepal.org/nchlod#modification_note> rdf:type owl:DatatypeProperty ;
+                                                  rdfs:domain <https://cair-nepal.org/nchlod#E11Modification> ;
+                                                  rdfs:range xsd:string ;
+                                                  rdfs:label "modification_note" ;
+                                                  <http://www.w3.org/2004/02/skos/core#definition> "Note describing the details or nature of the modification event." ;
+                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#name
+<https://cair-nepal.org/nchlod#name> rdf:type owl:DatatypeProperty ;
+                                     rdfs:range xsd:string ;
+                                     rdfs:label "name" ;
+                                     <http://www.w3.org/2004/02/skos/core#definition> "Human-readable name or title." ;
+                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#procedure_name
+<https://cair-nepal.org/nchlod#procedure_name> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain <https://cair-nepal.org/nchlod#E29DesignOrProcedure> ;
+                                               rdfs:range xsd:string ;
+                                               rdfs:label "procedure_name" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Name of a procedure." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#provenance_note
+<https://cair-nepal.org/nchlod#provenance_note> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                                rdfs:range xsd:string ;
+                                                rdfs:label "provenance_note" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Free text provenance notes or evidence summary." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#record_date
+<https://cair-nepal.org/nchlod#record_date> rdf:type owl:DatatypeProperty ;
+                                            rdfs:domain <https://cair-nepal.org/nchlod#DataProvenance> ;
+                                            rdfs:range xsd:dateTime ;
+                                            rdfs:label "record_date" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Date when the record was created (digitization/ingest)." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#referenced_in
+<https://cair-nepal.org/nchlod#referenced_in> rdf:type owl:DatatypeProperty ;
+                                              rdfs:range xsd:string ;
+                                              rdfs:label "referenced_in" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "External vocabulary reference." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#right_type
+<https://cair-nepal.org/nchlod#right_type> rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain <https://cair-nepal.org/nchlod#E30Right> ;
+                                           rdfs:range xsd:string ;
+                                           rdfs:label "right_type" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Type of right." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#role
+<https://cair-nepal.org/nchlod#role> rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                     rdfs:range xsd:string ;
+                                     rdfs:label "role" ;
+                                     <http://www.w3.org/2004/02/skos/core#definition> "Role of a contributor in the project (curator, digitizer, researcher)." ;
+                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#start_date
+<https://cair-nepal.org/nchlod#start_date> rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain <https://cair-nepal.org/nchlod#Contributor> ;
+                                           rdfs:range xsd:dateTime ;
+                                           rdfs:label "start_date" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Contributor start date." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#title
+<https://cair-nepal.org/nchlod#title> rdf:type owl:DatatypeProperty ;
+                                      rdfs:range xsd:string ;
+                                      rdfs:label "title" ;
+                                      <http://www.w3.org/2004/02/skos/core#definition> "Document or object title." ;
+                                      <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#unit_of
+<https://cair-nepal.org/nchlod#unit_of> rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain <https://cair-nepal.org/nchlod#E58MeasurementUnit> ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:label "unit_of" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "What this unit measures." ;
+                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#url
+<https://cair-nepal.org/nchlod#url> rdf:type owl:DatatypeProperty ;
+                                    rdfs:domain <https://cair-nepal.org/nchlod#E31Document> ;
+                                    rdfs:range xsd:string ;
+                                    rdfs:label "url" ;
+                                    <http://www.w3.org/2004/02/skos/core#definition> "URL of a document." ;
+                                    <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#valid_from
+<https://cair-nepal.org/nchlod#valid_from> rdf:type owl:DatatypeProperty ;
+                                           rdfs:domain <https://cair-nepal.org/nchlod#E30Right> ;
+                                           rdfs:range xsd:dateTime ;
+                                           rdfs:label "valid_from" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Start date of validity." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#valid_to
+<https://cair-nepal.org/nchlod#valid_to> rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain <https://cair-nepal.org/nchlod#E30Right> ;
+                                         rdfs:range xsd:dateTime ;
+                                         rdfs:label "valid_to" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "End date of validity." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://cair-nepal.org/nchlod#Contributor
+<https://cair-nepal.org/nchlod#Contributor> rdf:type owl:Class ;
+                                            rdfs:subClassOf <https://cair-nepal.org/nchlod#E39Actor> ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#affiliation> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#contribution_date> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#email> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#end_date> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#role> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#start_date> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#affiliation> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#contribution_date> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#email> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#end_date> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#role> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#start_date> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#affiliation> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#contribution_date> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#email> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#end_date> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#role> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#start_date> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ;
+                                            rdfs:label "Contributor" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Project contributor (subclass of E39_Actor)." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#DataProvenance
+<https://cair-nepal.org/nchlod#DataProvenance> rdf:type owl:Class ;
+                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#derived_from> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E73InformationObject>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#recorded_by> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#source_document> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E31Document>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#derived_from> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#recorded_by> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#source_document> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#derived_from> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#recorded_by> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#source_document> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#confidence> ;
+                                                                 owl:allValuesFrom xsd:float
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                                 owl:allValuesFrom xsd:string
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#provenance_note> ;
+                                                                 owl:allValuesFrom xsd:string
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#record_date> ;
+                                                                 owl:allValuesFrom xsd:dateTime
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#confidence> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#provenance_note> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#record_date> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#confidence> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#provenance_note> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#record_date> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ;
+                                               rdfs:label "DataProvenance" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Digital provenance metadata for dataset records (PROV-compatible)." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E10TransferOfCustody
+<https://cair-nepal.org/nchlod#E10TransferOfCustody> rdf:type owl:Class ;
+                                                     rdfs:subClassOf <https://cair-nepal.org/nchlod#E5Event> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#from_actor> ;
+                                                                       owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#to_actor> ;
+                                                                       owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#transferred_object> ;
+                                                                       owl:allValuesFrom <https://cair-nepal.org/nchlod#E18PhysicalThing>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#from_actor> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#to_actor> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#transferred_object> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#from_actor> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#to_actor> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#transferred_object> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ;
+                                                     rdfs:label "E10_Transfer_of_Custody" ;
+                                                     <http://www.w3.org/2004/02/skos/core#definition> "Event representing custody transfer." ;
+                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E11Modification
+<https://cair-nepal.org/nchlod#E11Modification> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://cair-nepal.org/nchlod#E5Event> ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modified_object> ;
+                                                                  owl:allValuesFrom <https://cair-nepal.org/nchlod#E18PhysicalThing>
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modified_object> ;
+                                                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modified_object> ;
+                                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modification_note> ;
+                                                                  owl:allValuesFrom xsd:string
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modification_note> ;
+                                                                  owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                ] ,
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <https://cair-nepal.org/nchlod#modification_note> ;
+                                                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                ] ;
+                                                rdfs:label "E11_Modification" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "An event that modifies an object." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E12Production
+<https://cair-nepal.org/nchlod#E12Production> rdf:type owl:Class ;
+                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#carried_out_by> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E52TimeSpan>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#produced_object> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E22HumanMadeObject>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#took_place_at> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E53Place>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#carried_out_by> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#produced_object> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#took_place_at> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ;
+                                              rdfs:label "E12_Production" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "The beginning of existence of a physical thing (production event)." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E13AttributeAssignment
+<https://cair-nepal.org/nchlod#E13AttributeAssignment> rdf:type owl:Class ;
+                                                       rdfs:subClassOf <https://cair-nepal.org/nchlod#E5Event> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                         owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                         owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_attribute> ;
+                                                                         owl:allValuesFrom xsd:string
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_value> ;
+                                                                         owl:allValuesFrom xsd:string
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_attribute> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_value> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_attribute> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assigned_value> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ;
+                                                       rdfs:label "E13_Attribute_Assignment" ;
+                                                       <http://www.w3.org/2004/02/skos/core#definition> "Record of an assigned attribute (deprecated/previous values, contested assertions)." ;
+                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E14ConditionAssessment
+<https://cair-nepal.org/nchlod#E14ConditionAssessment> rdf:type owl:Class ;
+                                                       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessed_object> ;
+                                                                         owl:allValuesFrom <https://cair-nepal.org/nchlod#E18PhysicalThing>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessor> ;
+                                                                         owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessed_object> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessor> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessed_object> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessor> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_date> ;
+                                                                         owl:allValuesFrom xsd:dateTime
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_note> ;
+                                                                         owl:allValuesFrom xsd:string
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_date> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_note> ;
+                                                                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_date> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty <https://cair-nepal.org/nchlod#assessment_note> ;
+                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                       ] ;
+                                                       rdfs:label "E14_Condition_Assessment" ;
+                                                       <http://www.w3.org/2004/02/skos/core#definition> "Conservation assessment of physical state of an object." ;
+                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E16Measurement
+<https://cair-nepal.org/nchlod#E16Measurement> rdf:type owl:Class ;
+                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E52TimeSpan>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measured_object> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E18PhysicalThing>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_unit> ;
+                                                                 owl:allValuesFrom <https://cair-nepal.org/nchlod#E58MeasurementUnit>
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measured_object> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_unit> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measured_object> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_unit> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_method> ;
+                                                                 owl:allValuesFrom xsd:string
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_value> ;
+                                                                 owl:allValuesFrom xsd:float
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_method> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_value> ;
+                                                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_method> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ,
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty <https://cair-nepal.org/nchlod#measurement_value> ;
+                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                               ] ;
+                                               rdfs:label "E16_Measurement" ;
+                                               <http://www.w3.org/2004/02/skos/core#definition> "Measurement event/value (dimensions, weight, dating)." ;
+                                               <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E18PhysicalThing
+<https://cair-nepal.org/nchlod#E18PhysicalThing> rdf:type owl:Class ;
+                                                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#current_owner> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#former_owner> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_dimension> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E54Dimension>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_identifier> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E42Identifier>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_material> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E57Material>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_type> ;
+                                                                   owl:allValuesFrom <https://cair-nepal.org/nchlod#E55Type>
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#current_owner> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#former_owner> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_dimension> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_identifier> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_material> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_type> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#current_owner> ;
+                                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_title> ;
+                                                                   owl:allValuesFrom xsd:string
+                                                                 ] ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <https://cair-nepal.org/nchlod#has_title> ;
+                                                                   owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                 ] ;
+                                                 rdfs:label "E18_Physical_Thing" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Superclass for all physical things including monuments, artefacts, buildings and parts." ;
+                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E21Person
+<https://cair-nepal.org/nchlod#E21Person> rdf:type owl:Class ;
+                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#birth_event> ;
+                                                            owl:allValuesFrom <https://cair-nepal.org/nchlod#E5Event>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#death_event> ;
+                                                            owl:allValuesFrom <https://cair-nepal.org/nchlod#E5Event>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                            owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#birth_event> ;
+                                                            owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#death_event> ;
+                                                            owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                            owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#birth_event> ;
+                                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#death_event> ;
+                                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#has_name> ;
+                                                            owl:allValuesFrom xsd:string
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#has_name> ;
+                                                            owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                          ] ,
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty <https://cair-nepal.org/nchlod#has_name> ;
+                                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                          ] ;
+                                          rdfs:label "E21_Person" ;
+                                          <http://www.w3.org/2004/02/skos/core#definition> "Individual human actor." ;
+                                          <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E22HumanMadeObject
+<https://cair-nepal.org/nchlod#E22HumanMadeObject> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <https://cair-nepal.org/nchlod#E18PhysicalThing> ;
+                                                   rdfs:label "E22_Human_Made_Object" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Physical objects created by humans (artworks, artifacts, tools)." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E29DesignOrProcedure
+<https://cair-nepal.org/nchlod#E29DesignOrProcedure> rdf:type owl:Class ;
+                                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#description> ;
+                                                                       owl:allValuesFrom xsd:string
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#procedure_name> ;
+                                                                       owl:allValuesFrom xsd:string
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#description> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#procedure_name> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#description> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#procedure_name> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ;
+                                                     rdfs:label "E29_Design_or_Procedure" ;
+                                                     <http://www.w3.org/2004/02/skos/core#definition> "Designs, procedures or protocols (restoration workflows, ritual procedures)." ;
+                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E30Right
+<https://cair-nepal.org/nchlod#E30Right> rdf:type owl:Class ;
+                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_holder> ;
+                                                           owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_holder> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_holder> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_type> ;
+                                                           owl:allValuesFrom xsd:string
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_from> ;
+                                                           owl:allValuesFrom xsd:dateTime
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_to> ;
+                                                           owl:allValuesFrom xsd:dateTime
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_type> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_from> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_to> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#right_type> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_from> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#valid_to> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ;
+                                         rdfs:label "E30_Right" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Legal rights or custodial claims associated with an object." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E31Document
+<https://cair-nepal.org/nchlod#E31Document> rdf:type owl:Class ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#author> ;
+                                                              owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                              owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#author> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#author> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#date> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#title> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#url> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#date> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#title> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#url> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#date> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#license> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#title> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#url> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ;
+                                            rdfs:label "E31_Document" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Document, record or archival source that provides evidence." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E33LinguisticObject
+<https://cair-nepal.org/nchlod#E33LinguisticObject> rdf:type owl:Class ;
+                                                    rdfs:subClassOf <https://cair-nepal.org/nchlod#E31Document> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://cair-nepal.org/nchlod#written_in_language> ;
+                                                                      owl:allValuesFrom <https://cair-nepal.org/nchlod#E56Language>
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://cair-nepal.org/nchlod#written_in_language> ;
+                                                                      owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty <https://cair-nepal.org/nchlod#written_in_language> ;
+                                                                      owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                    ] ;
+                                                    rdfs:label "E33_Linguistic_Object" ;
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Statements, inscriptions, or textual objects." ;
+                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E39Actor
+<https://cair-nepal.org/nchlod#E39Actor> rdf:type owl:Class ;
+                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#has_identifier> ;
+                                                           owl:allValuesFrom <https://cair-nepal.org/nchlod#E42Identifier>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#participated_in> ;
+                                                           owl:allValuesFrom <https://cair-nepal.org/nchlod#E5Event>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#has_identifier> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#participated_in> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#participated_in> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:allValuesFrom xsd:string
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ;
+                                         rdfs:label "E39_Actor" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Actor: individuals, groups or organisations involved in events." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E42Identifier
+<https://cair-nepal.org/nchlod#E42Identifier> rdf:type owl:Class ;
+                                              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assignment_event> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E13AttributeAssignment>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_type> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E55Type>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assignment_event> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_type> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assigned_by> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#assignment_event> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_type> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_value> ;
+                                                                owl:allValuesFrom xsd:string
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_value> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#identifier_value> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ;
+                                              rdfs:label "E42_Identifier" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Identifier assigned to an entity (value + optional assigner)." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E52TimeSpan
+<https://cair-nepal.org/nchlod#E52TimeSpan> rdf:type owl:Class ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_beginning> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_end> ;
+                                                              owl:allValuesFrom xsd:dateTime
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_beginning> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_end> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_beginning> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#has_end> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ;
+                                            rdfs:label "E52_Time_Span" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "A time-span object (has beginning and end)." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E53Place
+<https://cair-nepal.org/nchlod#E53Place> rdf:type owl:Class ;
+                                         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                           owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#gazetteer_id> ;
+                                                           owl:allValuesFrom xsd:string
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#geometry> ;
+                                                           owl:allValuesFrom xsd:string
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#latitude> ;
+                                                           owl:allValuesFrom xsd:float
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#longitude> ;
+                                                           owl:allValuesFrom xsd:float
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:allValuesFrom xsd:string
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#gazetteer_id> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#geometry> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#latitude> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#longitude> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#gazetteer_id> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#geometry> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#latitude> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#longitude> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ,
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty <https://cair-nepal.org/nchlod#name> ;
+                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                         ] ;
+                                         rdfs:label "E53_Place" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Location in the natural or built environment." ;
+                                         <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E54Dimension
+<https://cair-nepal.org/nchlod#E54Dimension> rdf:type owl:Class ;
+                                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_unit> ;
+                                                               owl:allValuesFrom <https://cair-nepal.org/nchlod#E58MeasurementUnit>
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_unit> ;
+                                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_unit> ;
+                                                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_value> ;
+                                                               owl:allValuesFrom xsd:float
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_value> ;
+                                                               owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                             ] ,
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty <https://cair-nepal.org/nchlod#has_value> ;
+                                                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                             ] ;
+                                             rdfs:label "E54_Dimension" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Dimension record (length, height, depth, weight)." ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E55Type
+<https://cair-nepal.org/nchlod#E55Type> rdf:type owl:Class ;
+                                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                          owl:allValuesFrom xsd:string
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                        ] ;
+                                        rdfs:label "E55_Type" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "Types from external vocabularies (AAT, local taxonomies)." ;
+                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E56Language
+<https://cair-nepal.org/nchlod#E56Language> rdf:type owl:Class ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#spoken_by> ;
+                                                              owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#spoken_by> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#spoken_by> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ;
+                                            rdfs:label "E56_Language" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Language (ISO 639-3 or external URI)." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E57Material
+<https://cair-nepal.org/nchlod#E57Material> rdf:type owl:Class ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                              owl:allValuesFrom xsd:string
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                            ] ,
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty <https://cair-nepal.org/nchlod#referenced_in> ;
+                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                            ] ;
+                                            rdfs:label "E57_Material" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Material type (can be linked to AAT or local lists)." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E58MeasurementUnit
+<https://cair-nepal.org/nchlod#E58MeasurementUnit> rdf:type owl:Class ;
+                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#unit_of> ;
+                                                                     owl:allValuesFrom xsd:string
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#unit_of> ;
+                                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#unit_of> ;
+                                                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                   ] ;
+                                                   rdfs:label "E58_Measurement_Unit" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Units such as cm, in, kg." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E5Event
+<https://cair-nepal.org/nchlod#E5Event> rdf:type owl:Class ;
+                                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#carried_out_by> ;
+                                                          owl:allValuesFrom <https://cair-nepal.org/nchlod#E39Actor>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                          owl:allValuesFrom <https://cair-nepal.org/nchlod#DataProvenance>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                          owl:allValuesFrom <https://cair-nepal.org/nchlod#E52TimeSpan>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#took_place_at> ;
+                                                          owl:allValuesFrom <https://cair-nepal.org/nchlod#E53Place>
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#carried_out_by> ;
+                                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#has_provenance> ;
+                                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#took_place_at> ;
+                                                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                        ] ,
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <https://cair-nepal.org/nchlod#has_time_span> ;
+                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                        ] ;
+                                        rdfs:label "E5_Event" ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "General event (change of state). Use sub-classes for specificity." ;
+                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E6Destruction
+<https://cair-nepal.org/nchlod#E6Destruction> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://cair-nepal.org/nchlod#E5Event> ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#destroyed_object> ;
+                                                                owl:allValuesFrom <https://cair-nepal.org/nchlod#E18PhysicalThing>
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#destroyed_object> ;
+                                                                owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                              ] ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://cair-nepal.org/nchlod#destroyed_object> ;
+                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                              ] ;
+                                              rdfs:label "E6_Destruction" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Event resulting in destruction of an object." ;
+                                              <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E73InformationObject
+<https://cair-nepal.org/nchlod#E73InformationObject> rdf:type owl:Class ;
+                                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#language> ;
+                                                                       owl:allValuesFrom <https://cair-nepal.org/nchlod#E56Language>
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#language> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#language> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#contains_information> ;
+                                                                       owl:allValuesFrom xsd:string
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#contains_information> ;
+                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                     ] ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty <https://cair-nepal.org/nchlod#contains_information> ;
+                                                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                     ] ;
+                                                     rdfs:label "E73_Information_Object" ;
+                                                     <http://www.w3.org/2004/02/skos/core#definition> "Concepts, schemes, records, and textual objects carrying information." ;
+                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E7Activity
+<https://cair-nepal.org/nchlod#E7Activity> rdf:type owl:Class ;
+                                           rdfs:subClassOf <https://cair-nepal.org/nchlod#E5Event> ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://cair-nepal.org/nchlod#produced_object> ;
+                                                             owl:allValuesFrom <https://cair-nepal.org/nchlod#E22HumanMadeObject>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://cair-nepal.org/nchlod#used_material> ;
+                                                             owl:allValuesFrom <https://cair-nepal.org/nchlod#E57Material>
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://cair-nepal.org/nchlod#produced_object> ;
+                                                             owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://cair-nepal.org/nchlod#used_material> ;
+                                                             owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                           ] ,
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty <https://cair-nepal.org/nchlod#used_material> ;
+                                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                           ] ;
+                                           rdfs:label "E7_Activity" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "Action or process that results in a change of state." ;
+                                           <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E92SpatetimeVolume
+<https://cair-nepal.org/nchlod#E92SpatetimeVolume> rdf:type owl:Class ;
+                                                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_timespan> ;
+                                                                     owl:allValuesFrom <https://cair-nepal.org/nchlod#E52TimeSpan>
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_timespan> ;
+                                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_timespan> ;
+                                                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_geometry> ;
+                                                                     owl:allValuesFrom xsd:string
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_geometry> ;
+                                                                     owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                   ] ,
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <https://cair-nepal.org/nchlod#has_geometry> ;
+                                                                     owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                                                   ] ;
+                                                   rdfs:label "E92_Spatetime_Volume" ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Spatial and temporal extent used for precise spatio-temporal modelling (site extents, archaeological layers)." ;
+                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#E98Currency
+<https://cair-nepal.org/nchlod#E98Currency> rdf:type owl:Class ;
+                                            rdfs:label "E98_Currency" ;
+                                            <http://www.w3.org/2004/02/skos/core#definition> "Currency used in monetary records." ;
+                                            <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  https://cair-nepal.org/nchlod#Place
+<https://cair-nepal.org/nchlod#Place> rdf:type owl:Class ;
+                                      rdfs:subClassOf <https://cair-nepal.org/nchlod#E53Place> ;
+                                      rdfs:label "Place" ;
+                                      <http://www.w3.org/2004/02/skos/core#definition> "Project place specialization with common slots." ;
+                                      <http://www.w3.org/2004/02/skos/core#inScheme> <file:/C:/linkml/CHLOD/NCHLOD> .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
