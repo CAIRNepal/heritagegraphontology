@@ -18,7 +18,7 @@ classes:
     class_uri: crm:E18_Physical_Thing
     description:
     slots:
-      - ArtifactID # we need to remove this
+      # - ArtifactID # we need to remove this
       - Name 
       - Aliases
       - Description
@@ -27,13 +27,26 @@ classes:
       - DateCreated
       - Condition 
       - DigitalRepresentation 
-      - Status 
+      - ConditionState
+
+      # Relationships with other classes
+      - created_by
+      - originated_in
+      - associated_with
+      - documented_in
+      - belongs_to_period
+
+  Cultural_Association:
+    description: "Superclass for Event and Tradition_or_Practise that a Cultural Entity can be associated with"
+    slots: 
+      - associated_event
+      - associated_tradition
 
   Actor:
     class_uri: crm:E39_Actor
     description:
     slots:
-      - PersonID 
+      # - PersonID 
       - Name 
       - Aliases
       - BirthDate
@@ -41,22 +54,28 @@ classes:
       - Occupation
       - Description
 
+      # Relationship with other class
+      - created
+      - mentioned_in 
+      - participated_in
+
   Location:
     class_uri: crm:E53_Place # crm:E27_Site
     description:
     slots:
-      - LocationID
+      # - LocationID
       - Name 
       - Coordinates 
       - Type 
       - Description
-      - Status
+      - ConditionState
 
   Event:
     class_uri: crm:E5_Event
+    is_a: Cultural_Association
     description: 
     slots:
-      - EventID 
+      # - EventID 
       - Name 
       - Type 
       - StartDate 
@@ -68,7 +87,7 @@ classes:
     class_uri: crm:E4_Period
     description:
     slots:
-      - PeriodID
+      # - PeriodID
       - Name 
       - StartDate
       - EndDate
@@ -76,9 +95,10 @@ classes:
 
   Tradition_or_Practise:
     class_uri: crm:E28_Conceptual_Object # I guess this is too vague maybe we can define custom class
+    is_a: Cultural_Association
     description: 
     slots:
-      - TraditionID 
+      # - TraditionID 
       - Name 
       - Type 
       - Description 
@@ -89,8 +109,8 @@ classes:
     class_uri: crm:E31_Document
     description: 
     slots:
-      - SourceID 
-      - Title 
+      # - SourceID 
+      - Name
       - Authors
       - PublicationYear
       - Type 
@@ -169,7 +189,7 @@ slots:
 
   Value:
     slot_uri: crm:P90_has_value
-    range: number
+    range: integer
     description: Numeric value of the dimension or spacetime.
 
   Unit:
@@ -182,7 +202,7 @@ slots:
     range: string 
     description: Type of dimension, e.g., maximum linear extent, wingspan, weight.
 
-  Dimensions:
+  Dimension:
     slot_uri: crm:P43_has_dimension
     range: Dimension
     description: Physical dimensions of the artifact
@@ -215,7 +235,7 @@ slots:
 
   Condition:
     slot_uri: crm:P44_has_condition_assessment  # pseudo-property linking Cultural_Entity → E14
-    range: ConditionAssessment
+    range: ConditionAssesment
     description: Records the condition of the artifact as determined by an assessment.
     multivalued: true
 
@@ -303,6 +323,76 @@ slots:
     slot_uri: prov:generatedAtTime
     range: datetime
     description: Date/time when the source or record was created.
+
+  Authors:
+    slot_uri: crm:P14_carried_out_by
+    range: Actor
+    multivalued: true
+    description: Actor(s) responsible for creating the source.
+
+  PublicationYear:
+    slot_uri: crm:P4_has_time-span
+    range: integer
+    description: Year the source was published.
+
+  URL_or_DigitalLink:
+    slot_uri: crm:P65_shows_visual_item
+    range: string
+    multivalued: true
+
+  # Relationships of Cultural Entity with other classes
+  created_by:
+    slot_uri: crm:P14_carried_out_by
+    range: Actor
+    multivalued: true  
+
+  originated_in:
+    slot_uri: crm:P7_took_place_at
+    range: Location 
+    multivalued: true 
+
+  associated_with:
+    slot_uri: crm:P46_is_composed_of
+    multivalued: true 
+    range: Cultural_Association
+
+  documented_in:
+    slot_uri: crm:P70_documents
+    range: Source 
+    multivalued: true 
+    
+  belongs_to_period:
+    slot_uri: crm:P4_has_time
+    range: Historical_Period
+    multivalued: false 
+
+  associated_event:
+    range: Event
+    multivalued: true
+
+  associated_tradition:
+    range: Tradition_or_Practise
+    multivalued: true
+
+  # Relationships of Actor class with others
+  created:
+    slot_uri: crm:P14_carried_out_by
+    range: Cultural_Entity
+    multivalued: true 
+
+  mentioned_in:
+    slot_uri: crm:P70_documents
+    range: Source 
+    multivalued: true 
+
+  participated_in:
+    slot_uri: crm:P11_had_participant
+    range: Event
+    multivalued: true 
+
+
+
+
 
 
 
