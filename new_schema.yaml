@@ -1,0 +1,320 @@
+id: heritageGraph
+name: heritageGraph
+description: "A LinkML schema implementing CIDOC-CRM-aligned classes, event-centric patterns, and provenance for Nepal cultural heritage linked open data."
+version: 1
+imports:
+  linkml:types 
+
+prefixes:
+  crm: "http://www.cidoc-crm.org/cidoc-crm/"
+  linkml: "https://w3id.org/linkml/"
+  chlod: "https://cair-nepal.org/chlod"
+  prov: "" # TBA (To Be Added)
+
+default_prefix: chlod 
+
+classes:
+  Cultural_Entity:
+    class_uri: crm:E18_Physical_Thing
+    description:
+    slots:
+      - ArtifactID # we need to remove this
+      - Name 
+      - Aliases
+      - Description
+      - Material 
+      - Dimension
+      - DateCreated
+      - Condition 
+      - DigitalRepresentation 
+      - Status 
+
+  Actor:
+    class_uri: crm:E39_Actor
+    description:
+    slots:
+      - PersonID 
+      - Name 
+      - Aliases
+      - BirthDate
+      - DeathDate 
+      - Occupation
+      - Description
+
+  Location:
+    class_uri: crm:E53_Place # crm:E27_Site
+    description:
+    slots:
+      - LocationID
+      - Name 
+      - Coordinates 
+      - Type 
+      - Description
+      - Status
+
+  Event:
+    class_uri: crm:E5_Event
+    description: 
+    slots:
+      - EventID 
+      - Name 
+      - Type 
+      - StartDate 
+      - EndDate 
+      - Description 
+      - Recurrence
+
+  Historical_Period:
+    class_uri: crm:E4_Period
+    description:
+    slots:
+      - PeriodID
+      - Name 
+      - StartDate
+      - EndDate
+      - Description 
+
+  Tradition_or_Practise:
+    class_uri: crm:E28_Conceptual_Object # I guess this is too vague maybe we can define custom class
+    description: 
+    slots:
+      - TraditionID 
+      - Name 
+      - Type 
+      - Description 
+      - AssociatedMaterials
+
+## MARK
+  Source:
+    class_uri: crm:E31_Document
+    description: 
+    slots:
+      - SourceID 
+      - Title 
+      - Authors
+      - PublicationYear
+      - Type 
+      - URL_or_DigitalLink
+
+  ### Additional Added
+  Material:
+    class_uri: crm:E57_Material
+    description: >
+      Conceptual material used to make artifacts, e.g., gold, brick, resin.
+    slots:
+      - Name 
+      - Description 
+
+  Dimension:
+    class_uri: crm:E54_Dimension
+    description: >
+      Quantifiable property of an object, measured or approximated, e.g., length, height, weight.
+    slots: 
+      - Value
+      - Unit
+      - Type 
+
+  ConditionAssesment:
+    class_uri: 
+    description: >
+      The act of assessing the state of preservation of a Cultural_Entity.
+    slots:
+      - AssessedObject
+      - ConditionState
+      - AssessmentDate
+      - Assessor
+
+  Occupation:
+    class_uri: crm:E55_Type # E55 Type subclass, e.g., "Painter", "Sculptor"
+    description: Standardized types for actor roles or professions (e.g., painter, historian, sculptor).
+
+  VisualItem:
+    class_uri: crm:E36_Visual_Item
+    description: >
+      Visual or digital representation of an artifact, such as a photograph, scan, or 3D model.
+    slots:
+      - RepresentationOf
+      - Mode 
+      - FileURI
+
+  SpacePrimitive:
+    class_uri: crm:E94_Space_Primitive # ISSUE: docs doesn't provide exact URI for this
+    description: Representation of spatial coordinates or geometry for a location.
+    slots:
+      - Value 
+      - CRS
+
+slots:
+  Name:
+    slot_uri: crm:P1_is_identified_by
+    range: string
+    description: Preferred name of the entity (person, artifact, Location, etc.).
+
+  Aliases:
+    slot_uri: crm:P1_is_identified_by
+    range: string
+    multivalued: true 
+    description: Alternative names, historical names, or nicknames.
+
+  Description:
+    slot_uri: crm:P3_has_note
+    range: string 
+    description: Notes, biography, or textual description.
+
+  Material:
+    slot_uri: crm:P45_consists_of
+    range: Material 
+    description: The physical materials used to make the artifact.
+    multivalued: true 
+
+  Value:
+    slot_uri: crm:P90_has_value
+    range: number
+    description: Numeric value of the dimension or spacetime.
+
+  Unit:
+    slot_uri: crm_P91_has_unit
+    range: string
+    description: Unit of measurement for the value 
+
+  Type:
+    slot_uri: crm:P2_has_type 
+    range: string 
+    description: Type of dimension, e.g., maximum linear extent, wingspan, weight.
+
+  Dimensions:
+    slot_uri: crm:P43_has_dimension
+    range: Dimension
+    description: Physical dimensions of the artifact
+    multivalued: true
+
+  DateCreated:
+    slot_uri: P108i_was_produced_by
+    range: string 
+    description: Date or period when the artifact was created.
+
+  AssessedObject:
+    slot_uri: crm:P34_concerned 
+    range: Cultural_Entity
+    description: The artifact whose condition is being assessed.
+
+  ConditionState:
+    slot_uri: crm:P35_has_identified
+    range: string  # Can later link to a controlled vocabulary or E3 Condition State
+    description: The identified condition of the artifact (e.g., good, damaged).
+
+  AssessmentDate:
+    slot_uri: crm:P4_has_time-span
+    range: string  # Could also link to an Event if you model assessments as events
+    description: Date or period of the assessment.
+
+  Assessor:
+    slot_uri: crm:P14_carried_out_by
+    range: Actor  # Person or group performing the assessment
+    description: The person or entity performing the condition assessment.
+
+  Condition:
+    slot_uri: crm:P44_has_condition_assessment  # pseudo-property linking Cultural_Entity → E14
+    range: ConditionAssessment
+    description: Records the condition of the artifact as determined by an assessment.
+    multivalued: true
+
+  RepresentationOf:
+    slot_uri: crm:P138_represents
+    range: Cultural_Entity
+    description: The artifact that this visual item represents.
+
+  Mode:
+    slot_uri: crm:P138_1_mode_of_representation
+    range: string
+    description: Mode of representation (e.g., digitization, photo, 3D scan).
+
+  FileURI:
+    slot_uri: crm:P128_carries
+    range: string
+    description: URI or file reference for the digital representation.
+
+  DigitalRepresentation:
+    range: VisualItem
+    multivalued: true
+    description: One or more visual/digital representations of the artifact.
+
+  BirthDate:
+    slot_uri: crm:P98i_was_born
+    range: string
+    description: Birth date of the actor.
+
+  DeathDate:
+    slot_uri: crm:P100i_died_in
+    range: string
+    description: Death date of the actor.
+
+  Occupation:
+    slot_uri: crm:P2_has_type
+    range: string  # or E55 Type subclass for occupation
+    multivalued: true
+    description: Occupation or role of the actor.
+
+  CRS:
+    range: string
+    description: Coordinate Reference System, e.g., "EPSG:4326".
+
+  Coordinates:
+    slot_uri: crm:P168_place_is_defined_by 
+    range: SpacePrimitive 
+    description: Spatial representation (coordinates, geometry) defining the location.
+
+  # this is bit sketchy here (StartDate, EndDate) maybe we need to define the Date class here 
+  StartDate:
+    slot_uri: crm:P4_has_time-span
+    range: string
+    description: Start date or time-span of the event.
+
+  EndDate:
+    slot_uri: crm:P4_has_time-span
+    range: string
+    description: End date or time-span of the event.
+
+  Recurrence: 
+    slot_uri: crm:P2_has_type 
+    range: string  # e.g., "annual festival", "weekly" 
+    description: Recurrence pattern or frequency of the event.
+
+  AssociatedMaterials:
+    slot_uri: crm:P129_is_about 
+    range: Material 
+    multivalued: true 
+    description: Physical objects used or associated with the tradition or practice.
+
+  ## these are prov ontology
+  wasDerivedFrom:
+    slot_uri: prov:wasDerivedFrom
+    range: Source
+    multivalued: true
+    description: Another source or entity from which this source was derived.
+
+  wasAttributedTo:
+    slot_uri: prov:wasAttributedTo
+    range: Actor
+    multivalued: true
+    description: Person or organization responsible for this source.
+
+  generatedAtTime:
+    slot_uri: prov:generatedAtTime
+    range: datetime
+    description: Date/time when the source or record was created.
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+
+
+
