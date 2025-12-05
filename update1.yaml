@@ -47,12 +47,12 @@ classes:
     class_uri: crm:E39_Actor
     description:
     slots:
-      # - PersonID 
+      # PersonID 
       - Name 
       - Aliases
       - BirthDate
       - DeathDate 
-      - Occupation # Range now restricted to Type (E55)
+      - Occupation 
       - Description
 
       # Relationship with other class
@@ -61,7 +61,7 @@ classes:
       - participated_in
 
   Location:
-    class_uri: crm:E53_Place # crm:E27_Site
+    class_uri: crm:E53_Place 
     description:
     slots:
       # LocationID
@@ -85,7 +85,7 @@ classes:
       # EventID 
       - Name 
       - Type 
-      - timespan # Replaces StartDate/EndDate slots for CRM-compliant temporal modeling
+      - timespan 
       - Description 
       - Recurrence
     
@@ -102,7 +102,7 @@ classes:
     slots:
       # PeriodID
       - Name 
-      - timespan # Replaces StartDate/EndDate
+      - timespan
       - Description 
 
       # Relationship
@@ -126,7 +126,7 @@ classes:
       - documented_in
       - tradition_associated_with 
 
-  CreationEvent: # NEW: Enforces event-centric modeling for production and dating (E12)
+  CreationEvent: # NEW
     class_uri: crm:E12_Production
     description: >
       An event representing the creation or production of a Cultural_Entity.
@@ -138,9 +138,9 @@ classes:
       - timespan
       - carried_out_by
       - took_place_at
-      - produced_cultural_entity # Inverse of P108i
+      - produced_cultural_entity 
 
-  DataGenerationEvent: # NEW: Enforces PROV-O modeling for data record provenance (E7)
+  DataGenerationEvent: # Prov-O new_Activity
     class_uri: crm:E7_Activity
     description: >
       The activity of producing a digital record or data assertion (e.g., transcription,
@@ -159,13 +159,13 @@ classes:
     class_uri: crm:E31_Document
     description: "The original source document or reference used for knowledge extraction (e.g., historical text, field recording, archival photo)."
     slots:
-      # - SourceID 
+      # SourceID 
       - Name
       - Authors
       - PublicationYear
       - Type 
       - URL_or_DigitalLink
-      # Removed PROV slots, now mediated by DataGenerationEvent
+     
 
       # Relationships
       - documents_cultural_entity
@@ -290,7 +290,7 @@ slots:
 
   AssessmentDate:
     slot_uri: crm:P4_has_time-span
-    range: string  # Could also link to an Event if you model assessments as events
+    range: string  # Could also link to an Event if we model assessments as events
     description: Date or period of the assessment.
 
   Assessor:
