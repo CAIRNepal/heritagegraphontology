@@ -1,564 +1,265 @@
-id: heritageGraph
-name: heritageGraph
-description: "A LinkML schema implementing CIDOC-CRM-aligned classes, event-centric patterns, and provenance for Nepal cultural heritage linked open data."
+# ============================================================================
+# Nepali Cultural Heritage Ontology (heritageGraph) - CIDOC + PROV Event-Centric Version
+# ============================================================================
+
+id: nepaliCulturalHeritageOntology
+name: NepaliCulturalHeritageOntology
+description: >
+  A LinkML schema implementing CIDOC-CRM-aligned classes for Nepal-specific
+  cultural heritage including temples, Buddhist monuments, rituals, Guthi organizations,
+  and provenance tracking using event-centric patterns.
 version: 1
 imports:
-  linkml:types 
+  linkml:types
 
 prefixes:
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
   linkml: "https://w3id.org/linkml/"
-  chlod: "https://cair-nepal.org/heritagegraph/"
+  heritageGraph: "https://cair-nepal.org/heritageGraph/"
   prov: "https://www.w3.org/ns/prov/"
+  owl: "http://www.w3.org/2002/07/owl#"
 
-default_prefix: chlod 
+default_prefix: heritageGraph
+
+# ============================================================================
+# CLASSES
+# ============================================================================
 
 classes:
-  Cultural_Entity:
-    class_uri: crm:E18_Physical_Thing
-    description:
+  # --- TANGIBLE HERITAGE ---
+
+  ArchitecturalStructure:
+    class_uri: crm:E22_Human-Made_Object
+    description: Physical structures such as temples, monasteries, water features
     slots:
-      # - ArtifactID # we need to remove this
-      - Name 
-      - Aliases
-      - Description
-      - Material 
-      - Dimension
-      - DateCreated
-      - Condition 
-      - DigitalRepresentation 
-      - ConditionState
-
-      # Relationships with other classes
-      - was_produced_by
-      - current_location
-      - associated_with
-      - documented_in
-      - belongs_to_period
-
-  Cultural_Association:
-    class_uri: chlod:Cultural_Association
-    description: "Superclass for Event and Tradition_or_Practice that a Cultural Entity can be associated with"
-    slots: 
-      - associated_event
-      - associated_tradition
-
-  Actor:
-    class_uri: crm:E39_Actor
-    description:
-    slots:
-      # - PersonID 
-      - Name 
-      - Aliases
-      - BirthDate
-      - DeathDate 
-      - Occupation
-      - Description
-
-      # Relationship with other class
-      - created
-      - mentioned_in 
-      - participated_in
-
-  Location:
-    class_uri: crm:E53_Place # crm:E27_Site
-    description:
-    slots:
-      # - LocationID
-      - Name 
-      - Coordinates 
-      - Type 
-      - Description
-      - ConditionState
-      - currently_holds 
-
-      # Relationships
-      - site_of
-      - hosted_event
-      - belongs_to_period
-
-  # Activity:
-  #   class_uri: crm:E7_Activity
-  #   description: 
-  #   slots:
-  #     - P14_carried_out_by 
-  #     - P15_was_influenced_by
-  #     - P32_used_general_technique
-  #     - P33_used_specific_technique
-  #     - P125_used_object_of_type
-  #     - P134_continued
-
-  Event:
-    class_uri: crm:E5_Event
-    is_a: Cultural_Association
-    description: 
-    slots:
-      # - EventID 
-      - Name 
-      - Type 
-      - StartDate 
-      - EndDate 
-      - Description 
-      - Recurrence
-    
-      # Relationships
-      - has_practice_type
-      - occurs_at
-      - event_involves
-      - associated_cultural_entity
-      - documented_in
-
-  Historical_Period:
-    class_uri: crm:E4_Period
-    description:
-    slots:
-      # - PeriodID
-      - Name 
-      - StartDate
-      - EndDate
-      - Description 
-
-      # Relationship
-      - includes_cultural_entity
-      - includes_event
-      - includes_person
-
-  Tradition_or_Practice:
-    class_uri: crm:E28_Conceptual_Object # I guess this is too vague maybe we can define custom class
-    is_a: Cultural_Association
-    description: 
-    slots:
-      # - TraditionID 
-      - Name 
-      - Type 
-      - Description 
-      - AssociatedMaterials
-
-      # Relationships
-      # - practiced_by
-      - uses
-      - documented_in
-      - tradition_associated_with 
-
-## MARK
-  Source:
-    class_uri: crm:E31_Document
-    description: 
-    slots:
-      # - SourceID 
       - Name
-      - Authors
-      - PublicationYear
-      - Type 
-      - URL_or_DigitalLink
+      - nepali_name
+      - newari_name
+      - english_description
+      - construction_year
+      - last_modified_date
+      - missing_information_note
 
-      # Relationships
-      - documents_cultural_entity
-      - documents_event
-      - documents_tradition
-      - documents_actor
-      - documents_historical_period
-  
+  NepaleseTemple:
+    is_a: ArchitecturalStructure
+    class_uri: heritageGraph:NepaleseTemple
+    description: A place of worship in Nepalese tradition
 
-  ### Additional Added
-  Material:
-    class_uri: crm:E57_Material
+  PagodaStyleTemple:
+    is_a: NepaleseTemple
+    class_uri: heritageGraph:PagodaStyleTemple
+    description: Multi-tiered roof temple indigenous to Nepal
+
+  # --- INTANGIBLE HERITAGE ---
+
+  RitualEvent:
+    class_uri: crm:E7_Activity
     description: >
-      Conceptual material used to make artifacts, e.g., gold, brick, resin.
+      Intentional ritual or ceremonial action; event-centric modeling
     slots:
-      - Name 
-      - Description 
+      - Name
+      - english_description
+      - lunar_date_tithi
+      - last_modified_date
 
-  Dimension:
-    class_uri: crm:E54_Dimension
+  Puja:
+    is_a: RitualEvent
+    class_uri: heritageGraph:Puja
+    description: Worship ceremony or prayer ritual
+
+  NityaPuja:
+    is_a: Puja
+    class_uri: heritageGraph:NityaPuja
+    description: Daily ritual worship
+
+  Festival:
+    is_a: RitualEvent
+    class_uri: heritageGraph:Festival
+    description: Large-scale community festival or religious procession
+
+  # --- SOCIAL ORGANIZATIONS ---
+
+  Guthi:
+    class_uri: crm:E74_Group
+    description: Endowed trust for religious, social, or cultural service
+    slots:
+      - Name
+      - english_description
+
+  TempleGuthi:
+    is_a: Guthi
+    class_uri: heritageGraph:TempleGuthi
+    description: Trust responsible for temple maintenance and rituals
+
+  # --- DEITIES & ICONOGRAPHIC OBJECTS ---
+
+  Deity:
+    class_uri: crm:E28_Conceptual_Object
+    description: Divine being worshipped in Hindu, Buddhist, or syncretic traditions
+    slots:
+      - Name
+      - english_description
+
+  HinduDeity:
+    is_a: Deity
+    class_uri: heritageGraph:HinduDeity
+    description: Deity in Hindu pantheon
+
+  BuddhistDeity:
+    is_a: Deity
+    class_uri: heritageGraph:BuddhistDeity
+    description: Buddha or Bodhisattva
+
+  Murti:
+    is_a: crm:E22_Human-Made_Object
+    class_uri: heritageGraph:Murti
+    description: Consecrated statue of a deity
+
+  # --- CIDOC-PROV EVENTS ---
+
+  CustodianshipEvent:
+    class_uri: crm:E10_Transfer_of_Custody
     description: >
-      Quantifiable property of an object, measured or approximated, e.g., length, height, weight.
-    slots: 
-      - Value
-      - Unit
-      - Type 
+      Transfer of custodianship or management of temple to a Guthi
+    slots:
+      - Name
+      - P30_transferred_custody_of
+      - P29_custody_received_by
+      - event_date
 
-  ConditionAssesment:
-    class_uri: crm:E14_Condition_Assessment
+  DocumentationEvent:
+    class_uri: crm:E65_Creation
     description: >
-      The act of assessing the state of preservation of a Cultural_Entity.
+      Documentation or verification activity
     slots:
-      - AssessedObject
-      - ConditionState
-      - AssessmentDate
-      - Assessor
+      - Name
+      - documentation_date
+      - performed_by_agent
+      - has_generated_record
+      - source_reference
 
-  Occupation:
-    class_uri: crm:E55_Type # E55 Type subclass, e.g., "Painter", "Sculptor"
-    description: Standardized types for actor roles or professions (e.g., painter, historian, sculptor).
+  # --- ACTORS ---
 
-  VisualItem:
-    class_uri: crm:E36_Visual_Item
-    description: >
-      Visual or digital representation of an artifact, such as a photograph, scan, or 3D model.
+  Person:
+    class_uri: crm:E21_Person
+    description: Individual person involved in ritual, documentation, or custodianship
     slots:
-      - RepresentationOf
-      - Mode 
-      - FileURI
+      - Name
+      - english_description
 
-  SpacePrimitive:
-    class_uri: crm:E94_Space_Primitive # ISSUE: docs doesn't provide exact URI for this
-    description: Representation of spatial coordinates or geometry for a location.
+  PhysicalFeature:
+    class_uri: crm:E25_Physical_Feature
+    description: Architectural component or element
     slots:
-      - Value 
-      - CRS
+      - Name
+      - english_description
 
-  Type:
-    class_uri: crm:E55_Type
+  # --- DATA SOURCES / PROVENANCE ---
 
-  TimeSpan:
-    class_uri: crm:E52_Time-Span
+  DataSource:
+    class_uri: prov:Entity
+    description: Original source from which heritage data was derived
     slots:
-      - BeginDate
-      - EndDate
+      - Name
+      - data_source_type
+      - source_reference
 
+  DataCustodian:
+    class_uri: prov:Agent
+    description: Person or institution holding heritage data
+    slots:
+      - Name
+      - english_description
 
+# ============================================================================
+# SLOTS (PROPERTIES)
+# ============================================================================
 
 slots:
   Name:
     slot_uri: crm:P1_is_identified_by
     range: string
-    description: Preferred name of the entity (person, artifact, Location, etc.).
+    description: Primary name or label
 
-  Aliases:
-    slot_uri: crm:P1_is_identified_by
+  nepali_name:
+    slot_uri: heritageGraph:nepali_name
     range: string
-    multivalued: true 
-    description: Alternative names, historical names, or nicknames.
 
-  Description:
-    slot_uri: crm:P3_has_note
-    range: string 
-    description: Notes, biography, or textual description.
+  newari_name:
+    slot_uri: heritageGraph:newari_name
+    range: string
 
-  Material:
-    slot_uri: crm:P45_consists_of
-    range: Material 
-    description: The physical materials used to make the artifact.
-    multivalued: true 
+  english_description:
+    slot_uri: heritageGraph:english_description
+    range: string
 
-  Value:
-    slot_uri: crm:P90_has_value
+  construction_year:
+    slot_uri: heritageGraph:construction_year
     range: integer
-    description: Numeric value of the dimension or spacetime.
 
-  Unit:
-    slot_uri: crm:P91_has_unit
+  lunar_date_tithi:
+    slot_uri: heritageGraph:lunar_date_tithi
     range: string
-    description: Unit of measurement for the value 
 
-  Type:
-    slot_uri: crm:P2_has_type 
-    range: Type 
-    description: Type of dimension, e.g., maximum linear extent, wingspan, weight.
-
-  Dimension:
-    slot_uri: crm:P43_has_dimension
-    range: Dimension
-    description: Physical dimensions of the artifact
-    multivalued: true
-
-  DateCreated:
-    slot_uri: crm:P108i_was_produced_by
-    range: string 
-    description: Date or period when the artifact was created.
-
-  AssessedObject:
-    slot_uri: crm:P34_concerned 
-    range: Cultural_Entity
-    description: The artifact whose condition is being assessed.
-
-  ConditionState:
-    slot_uri: crm:P35_has_identified
-    range: string  # Can later link to a controlled vocabulary or E3 Condition State
-    description: The identified condition of the artifact (e.g., good, damaged).
-
-  AssessmentDate:
-    slot_uri: crm:P4_has_time-span
-    range: string  # Could also link to an Event if you model assessments as events
-    description: Date or period of the assessment.
-
-  Assessor:
-    slot_uri: crm:P14_carried_out_by
-    range: Actor  # Person or group performing the assessment
-    description: The person or entity performing the condition assessment.
-
-  Condition:
-    slot_uri: crm:P44_has_condition_assessment  # pseudo-property linking Cultural_Entity → E14
-    range: ConditionAssesment
-    description: Records the condition of the artifact as determined by an assessment.
-    multivalued: true
-
-  RepresentationOf:
-    slot_uri: crm:P138_represents
-    range: Cultural_Entity
-    description: The artifact that this visual item represents.
-
-  Mode:
-    slot_uri: crm:P138_1_mode_of_representation
+  last_modified_date:
+    slot_uri: heritageGraph:last_modified_date
     range: string
-    description: Mode of representation (e.g., digitization, photo, 3D scan).
-  
-  timespan:
-    slot_uri: crm:P4_has_time-span
-    range: TimeSpan
 
-
-  FileURI:
-    slot_uri: crm:P128_carries
+  missing_information_note:
+    slot_uri: heritageGraph:missing_information_note
     range: string
-    description: URI or file reference for the digital representation.
 
-  DigitalRepresentation:
-    range: VisualItem
-    multivalued: true
-    description: One or more visual/digital representations of the artifact.
+  # --- CIDOC EVENT PROPERTIES ---
 
-  BirthDate:
-    slot_uri: crm:P98i_was_born
-    range: string
-    description: Birth date of the actor.
-
-  DeathDate:
-    slot_uri: crm:P100i_died_in
-    range: string
-    description: Death date of the actor.
-
-  Occupation:
-    slot_uri: crm:P2_has_type
-    range: string  # or E55 Type subclass for occupation
-    multivalued: true
-    description: Occupation or role of the actor.
-
-  CRS:
-    range: string
-    description: Coordinate Reference System, e.g., "EPSG:4326".
-
-  Coordinates:
-    slot_uri: crm:P168_place_is_defined_by 
-    range: SpacePrimitive 
-    description: Spatial representation (coordinates, geometry) defining the location.
-
-  # this is bit sketchy here (StartDate, EndDate) maybe we need to define the Date class here 
-  StartDate:
-    slot_uri: crm:P4_has_time-span
-    range: TimeSpan
-    description: Start date or time-span of the event.
-
-  EndDate:
-    slot_uri: crm:P4_has_time-span
-    range: TimeSpan
-    description: End date or time-span of the event.
-
-  Recurrence: 
-    slot_uri: crm:P2_has_type 
-    range: string  # e.g., "annual festival", "weekly" 
-    description: Recurrence pattern or frequency of the event.
-
-  AssociatedMaterials:
-    slot_uri: crm:P129_is_about 
-    range: Material 
-    multivalued: true 
-    description: Physical objects used or associated with the tradition or practice.
-
-  ## these are prov ontology
-  wasDerivedFrom:
-    slot_uri: prov:wasDerivedFrom
-    range: Source
-    multivalued: true
-    description: Another source or entity from which this source was derived.
-
-  wasAttributedTo:
-    slot_uri: prov:wasAttributedTo
-    range: Actor
-    multivalued: true
-    description: Person or organization responsible for this source.
-
-  generatedAtTime:
-    slot_uri: prov:generatedAtTime
-    range: datetime
-    description: Date/time when the source or record was created.
-
-  Authors:
-    slot_uri: crm:P14_carried_out_by
-    range: Actor
-    multivalued: true
-    description: Actor(s) responsible for creating the source.
-
-  PublicationYear:
-    slot_uri: crm:P4_has_time-span
-    range: integer
-    description: Year the source was published.
-
-  URL_or_DigitalLink:
-    slot_uri: crm:P65_shows_visual_item
-    range: string
-    multivalued: true
-
-  # Relationships of Cultural Entity with other classes
-  was_produced_by:
-    slot_uri: crm:P108i_was_produced_by
-    range: Actor
-    multivalued: true  
-
-  current_location:
-    slot_uri: crm:P55_has_current_location
-    range: Location 
-    multivalued: true 
-
-  currently_holds:
-    slot_uri: crm:P55i_currently_holds
-    range: Cultural_Entity   
-
-  associated_with:
-    slot_uri: crm:P46_is_composed_of
-    multivalued: true 
-    range: Cultural_Association
-
-  documented_in:
-    slot_uri: crm:P70_documents
-    range: Source 
-    multivalued: true 
-    
-  belongs_to_period:
-    slot_uri: crm:P4_has_time-span
-    range: Historical_Period
-    multivalued: false 
-
-  associated_event:
-    range: Event
-    multivalued: true
-
-  associated_tradition:
-    range: Tradition_or_Practice
-    multivalued: true
-
-  # Relationships of Actor class with others
-  created:
-    slot_uri: crm:P14i_performed
-    range: Cultural_Entity
-    multivalued: true 
-
-  mentioned_in:
-    slot_uri: crm:P70_documents
-    range: Source 
-    multivalued: true 
-
-  participated_in:
-    slot_uri: crm:P11_had_participant
-    range: Event
-    multivalued: true 
-
-  # Relationship of Location with other classes
-  site_of:
-    slot_uri: crm:P53_has_former_or_current_location
-    range: Cultural_Entity
-    multivalued: true 
-
-  hosted_event:
-    slot_uri: crm:E5_Event
-    range: Event
-    multivalued: true 
-
-  # Relationship of Event with other classes
-  occurs_at:
+  P7_took_place_at:
     slot_uri: crm:P7_took_place_at
-    range: Location 
-    multivalued: true 
+    range: ArchitecturalStructure
+    multivalued: true
+    description: Event occurs at this place
 
-  event_involves:
+  P11_had_participant:
     slot_uri: crm:P11_had_participant
-    range: Actor 
-    multivalued: true 
+    range: [Person, Deity, Guthi]
+    multivalued: true
+    description: Participant in event
 
-  associated_cultural_entity:
-    slot_uri: crm:P12_occurred_in_the_presence_of
-    range: Cultural_Entity
-    multivalued: true 
+  P16_used_specific_object:
+    slot_uri: crm:P16_used_specific_object
+    range: Murti
+    multivalued: true
+    description: Physical object used in event
 
-
-  # Relationship of Historical Period with other classes
-  includes_cultural_entity:
-    slot_uri: crm:P12_occurred_in_the_presence_of  # or consider a custom property if needed
-    range: Cultural_Entity
+  P30_transferred_custody_of:
+    slot_uri: crm:P30_transferred_custody_of
+    range: ArchitecturalStructure
     multivalued: true
 
-  includes_event:
-    slot_uri: crm:P12_occurred_in_the_presence_of  # could define separate property to distinguish
-    range: Event
-    multivalued: true
-    
-  includes_person:
-    slot_uri: crm:P12_occurred_in_the_presence_of  # or define custom property linking period to Actor
-    range: Actor
+  P29_custody_received_by:
+    slot_uri: crm:P29_custody_received_by
+    range: Guthi
     multivalued: true
 
-  # Relations of tradition_or_practice
-  # practiced_by:
-  #   slot_uri: crm:P14_carried_out_by 
-  #   range: Actor 
-  #   multivalued: true 
+  event_date:
+    slot_uri: heritageGraph:event_date
+    range: string
 
-  has_practice_type:
-    slot_uri: crm:P2_has_type
-    range: Tradition_or_Practice
+  # --- PROV PROPERTIES ---
+
+  documentation_date:
+    slot_uri: heritageGraph:documentation_date
+    range: string
+
+  performed_by_agent:
+    slot_uri: prov:wasAssociatedWith
+    range: Person
     multivalued: true
 
-  uses: 
-    slot_uri: crm:P45_consists_of
-    range: Material 
-    multivalued: true 
-
-  tradition_associated_with:
-    slot_uri: crm:P129_is_about
-    range: Event 
-    multivalued: true 
-
-  # Source class 
-  documents_cultural_entity:
-    slot_uri: crm:P70i_is_documented_in
-    range: Cultural_Entity
+  has_generated_record:
+    slot_uri: prov:generated
+    range: prov:Entity
     multivalued: true
 
-  documents_event:
-    slot_uri: crm:P70i_is_documented_in
-    range: Event
+  source_reference:
+    slot_uri: prov:wasDerivedFrom
+    range: DataSource
     multivalued: true
-
-  documents_tradition:
-    slot_uri: crm:P70i_is_documented_in
-    range: Tradition_or_Practice
-    multivalued: true
-
-  documents_actor:
-    slot_uri: crm:P70i_is_documented_in
-    range: Actor
-    multivalued: true
-    
-  documents_historical_period:
-    slot_uri: crm:P70i_is_documented_in
-    range: Historical_Period
-    multivalued: true
-
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-
-
-

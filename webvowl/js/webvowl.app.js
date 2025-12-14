@@ -4164,7 +4164,7 @@ webvowl.app =
 	  };
 	  
 	  /**
-	   * Quick fix: update all anchor tags that are used as buttons because a click on them
+	   * Quick fix: update all aheritageGraphr tags that are used as buttons because a click on them
 	   * changes the url and this will load an other ontology.
 	   */
 	  function updateNavigationHrefs(){
