@@ -57,7 +57,7 @@ classes:
       - aat:300007595           # Getty Art & Architecture Thesaurus (Thesaurus ID for 'temples')
       - wd:Q44539               # Wikidata ID for 'Temple'
     
-    # 
+    
     broad_mappings:
       - dbo:ReligiousBuilding
     slots:
@@ -446,21 +446,36 @@ classes:
       - source_language
       - publication_timespan
 
-  Document:
+
+ 
+
+  FieldSurveyActivity:
+    is_a: DocumentationActivity
+    class_uri: crmsci:S4_Observation 
+    description: "The activity of measuring, photographing, or assessing a site in person."
+    comments:
+      - "Aligned with CHEDO model for damage assessment processes."
+
+  OralHistoryInterview:
+    is_a: DocumentationActivity
+    class_uri: crm:E65_Creation    # The event of creating the interview
+    description: "The interaction event between a researcher and a knowledge holder."
+
+ 
+  DataSource:
+    class_uri: crm:E73_Information_Object
+    description: "The informational content produced by documentation activities."
+
+  FieldSurveyDataset:
     is_a: DataSource
     class_uri: crm:E31_Document
-    description: "Identifiable document that records or conveys information about heritage entities or events"
+    description: "The structured data or report resulting from a field survey."
 
-
-  FieldSurvey:
+  OralHistoryRecording:
     is_a: DataSource
-    class_uri: heritageGraph:FieldSurvey
-    description: "Direct observation and measurement at heritage site"
+    class_uri: crm:E33_Linguistic_Object
+    description: "The recording or transcript of an oral history interview."
 
-  OralHistory:
-    is_a: DataSource
-    class_uri: heritageGraph:OralHistory
-    description: "Interview or testimony from community knowledge holders"
 
   ArchivalRecord:
     is_a: DataSource
