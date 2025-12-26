@@ -279,6 +279,7 @@ classes:
       - english_description
       - element_type
       - is_component_of
+    inverse: has_component
     slot_usage:
       Name:
         required: true
@@ -1037,6 +1038,7 @@ slots:
     slot_uri: heritageGraph:structure_managed_by
     range: Guthi
     multivalued: true
+    inverse: manages_structure
 
   performs_ritual:
     slot_uri: crm:P14i_performed
