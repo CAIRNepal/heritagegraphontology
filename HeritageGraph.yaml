@@ -11,7 +11,9 @@ comments:
 imports:
   linkml:types 
   linkml:skos
+
 enums:
+
   RitualTypeEnum:
     permissible_values:
       NityaPuja:
@@ -20,8 +22,109 @@ enums:
       NaimittikaPuja:
         description: "Occasional/Festival worship"
         meaning: heritageGraph:NaimittikaPuja
-      KamyPuja:
+      KamyaPuja:
         description: "Desire-based optional worship"
+        meaning: heritageGraph:KamyaPuja
+      Abhisheka:
+        description: "Ritual bathing/anointing of deity"
+        meaning: heritageGraph:Abhisheka
+      Homa:
+        description: "Fire offering ritual"
+        meaning: heritageGraph:Homa
+      Bhajan:
+        description: "Devotional singing ritual"
+        meaning: heritageGraph:Bhajan
+      Yagna:
+        description: "Vedic sacrifice ritual"
+        meaning: heritageGraph:Yagna
+      Vrata:
+        description: "Vow observance ritual"
+        meaning: heritageGraph:Vrata
+      Jatra:
+        description: "Festival procession ritual"
+        meaning: heritageGraph:Jatra
+      ChariotProcession:
+        description: "Ritual chariot pulling"
+        meaning: heritageGraph:ChariotProcession
+      MaskedPerformance:
+        description: "Ritual masked dance"
+        meaning: heritageGraph:MaskedPerformance
+
+  # Calendar system enum
+  CalendarSystemEnum:
+    permissible_values:
+      Gregorian:
+        description: "ISO 8601 Gregorian calendar"
+        meaning: heritageGraph:GregorianCalendar
+      BikramSambat:
+        description: "Official Nepali calendar (BS), epoch 57 BCE"
+        meaning: heritageGraph:BikramSambatCalendar
+      NepalSambat:
+        description: "Newar cultural calendar (NS), epoch 879 CE"
+        meaning: heritageGraph:NepalSambatCalendar
+      LunarTithi:
+        description: "Hindu lunar calendar by tithi (lunar day)"
+        meaning: heritageGraph:LunarCalendar
+
+  
+  DatePrecisionEnum:
+    permissible_values:
+      Exact:
+        description: "Precise date known"
+      Year:
+        description: "Year-level precision only"
+      Decade:
+        description: "Within 10-year range"
+      Century:
+        description: "Within century range"
+      Circa:
+        description: "Approximate date"
+
+  #Syncretic relationship types
+  SyncreticTypeEnum:
+    permissible_values:
+      Equivalence:
+        description: "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)"
+      Appropriation:
+        description: "Deity borrowed from one tradition into another"
+      Fusion:
+        description: "Intrinsically syncretic deity merging multiple traditions"
+      Historical:
+        description: "Gradual syncretism over time"
+
+  
+  ArchitecturalStyleEnum:
+    permissible_values:
+      Pagoda:
+        description: "Multi-tiered roof style indigenous to Nepal"
+      Shikhara:
+        description: "North Indian spire-shaped style"
+      Dome:
+        description: "Dome-based style (Mughal/Neo-classical influence)"
+      Chaitya:
+        description: "Buddhist votive shrine style"
+      Stupa:
+        description: "Buddhist dome-shaped reliquary"
+
+  #Guthi type enum
+  GuthiTypeEnum:
+    permissible_values:
+      SiGuthi:
+        description: "Funeral trust"
+      JatraGuthi:
+        description: "Festival organization trust"
+      PujaGuthi:
+        description: "Daily worship trust"
+      TempleGuthi:
+        description: "Temple maintenance trust"
+      NashaGuthi:
+        description: "Music and dance trust"
+      SanaGuthi:
+        description: "Agricultural cooperative trust"
+      SanGuthi:
+        description: "Life-cycle ritual trust"
+      RajGuthi:
+        description: "Royal endowment trust"
 
 prefixes:
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
@@ -33,7 +136,10 @@ prefixes:
   dbr: "http://dbpedia.org/resource/"    
   dbp: "http://dbpedia.org/property/"    
   crmsci: "http://www.ics.forth.gr/isl/CRMsci/"
-  rico: "https://www.ica.org/standards/RiC/ontology#" 
+  rico: "https://www.ica.org/standards/RiC/ontology#"
+  chedo: "http://chedo.org/ontology#"
+  crmarchaeo: "http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/"
+  crmdig: "http://www.cidoc-crm.org/cidoc-crm/CRMdig/"
 
 default_prefix: heritageGraph 
 
@@ -58,11 +164,18 @@ classes:
       - documented_by_event
       - has_condition_assessment
       - has_component
+    slot_usage:
+      name:
+        required: true
+      has_current_location:
+        required: true
+        minimum_cardinality: 1
+        maximum_cardinality: 1
 
   Temples:
     is_a: ArchitecturalStructure
     class_uri: heritageGraph:Temples
-    # Functional definition for YOUR graph
+    
     description: "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation."
     
     # Mappings to global standards (The "Right Way")
@@ -77,21 +190,11 @@ classes:
     slots:
       - enshrines_deity_through_event
       - has_architectural_style
+    slot_usage:
+      has_architectural_style:
+        required: true
+        range: ArchitecturalStyleEnum  
 
-  PagodaStyle:
-    is_a: ArchitecturalStyle
-    class_uri: heritageGraph:PagodaStyle
-    description: "Multi-tiered roof architectural style indigenous to Nepal"
-
-  ShikharaStyle:
-    is_a: ArchitecturalStyle
-    class_uri: heritageGraph:ShikharaStyle
-    description: "North Indian spire-shaped architectural style"
-
-  DomeStyle:
-    is_a: ArchitecturalStyle
-    class_uri: heritageGraph:DomeStyle
-    description: "Dome-based architectural style with Mughal or Neo-classical influence"
 
 
   BuddhistMonument:
@@ -174,6 +277,12 @@ classes:
       - Name
       - english_description
       - element_type
+      - is_component_of
+    slot_usage:
+      name:
+        required: true
+      is_component_of:
+        required: true
 
   # ========================================================================
   # CONCEPTUAL ENTITIES (CIDOC E28 Conceptual Objects)
@@ -246,8 +355,7 @@ classes:
       - Name
       - english_description
       - ritual_type
-      - took_place_at_structure
-      - took_place_at_location
+      - ritual_on_structure
       - has_timespan
       - lunar_date_tithi
       - recurrence_pattern
@@ -257,12 +365,13 @@ classes:
      
       - is_part_of_festival
       - managed_by_guthi
+      - structure_managed_by
       - follows_tradition
       - was_documented_by
       - has_provenance_assertion
       - occurs_before
       - occurs_after
-      - consumes_materials
+      - consumes_material
 
     
 
@@ -455,7 +564,7 @@ classes:
       - reconciliation_status
 
   DataSource:
-    class_uri: prov:Entity
+    class_uri: crm:E73_Information_Object
     description: "Original source from which heritage information was derived"
     slots:
       - Name
@@ -479,11 +588,6 @@ classes:
     is_a: DocumentationActivity
     class_uri: crm:E65_Creation    # The event of creating the interview
     description: "The interaction event between a researcher and a knowledge holder."
-
- 
-  DataSource:
-    class_uri: crm:E73_Information_Object
-    description: "The informational content produced by documentation activities."
 
   FieldSurveyDataset:
     is_a: DataSource
@@ -510,7 +614,7 @@ classes:
     class_uri: crm:E13_Attribute_Assignment 
     
     
-    exact_mappings:
+    broad_mappings:
       - prov:Activity
     
       
@@ -575,6 +679,11 @@ slots:
     slot_uri: crm:P1_is_identified_by
     range: string
     description: "Primary name or label"
+    
+  is_component_of:
+    slot_uri: crm:P46i_forms_part_of
+    range: ArchitecturalStructure
+    description: "Larger structure that this element is part of"
 
 
   english_description:
@@ -659,17 +768,14 @@ slots:
   took_place_at:
     slot_uri: crm:P7_took_place_at
     range: Place
-    description: "Where event occurred"
+    description: "Place Where event occurred"
 
-  took_place_at_structure:
-    slot_uri: crm:P7_took_place_at
+  ritual_on_structure:
+    slot_uri: crm:P8_took_place_on_or_within
     range: ArchitecturalStructure
     description: "Ritual occurs at specific temple or monument"
 
-  took_place_at_location:
-    slot_uri: crm:P7_took_place_at
-    range: Place
-    description: "Geographic location of event"
+
 
   contains_structure:
     slot_uri: crm:P53_has_former_or_current_location
@@ -692,8 +798,16 @@ slots:
 
   produced_object:
     slot_uri: crm:P108_has_produced
-    range: ArchitecturalStructure
+    range: PhysicalProduction
     description: "Object produced by this production event"
+  
+ 
+  
+PhysicalProduction:
+  union_of:
+    - ArchitecturalStructure
+    - IconographicObject
+    - ArchitecturalElement
 
   carried_out_by_actor:
     slot_uri: crm:P14_carried_out_by
@@ -706,6 +820,15 @@ slots:
     range: Actor
     multivalued: true
     description: "Person or group who commissioned production"
+    inverse: has_commissioned 
+    #inverse is has commissioned
+
+  has_commissioned:
+    slot_uri: crm:P17i_motivated
+    range: Production
+    multivalued: true
+    description: "Production events commissioned by this actor"
+    inverse: commissioned_by
 
   used_technique:
     slot_uri: crm:P32_used_general_technique
@@ -727,7 +850,7 @@ slots:
     description: "Points to the next ritual in the canonical sequence."
 
   occurs_after:
-    slot_uri: crm:P115_finishes
+    slot_uri: crm:P120i_is_occurred_before_by
     range: RitualEvent
     description: "Points to the prerequisite ritual."
 
@@ -812,12 +935,15 @@ slots:
     range: Deity
     multivalued: true
     description: "Deity depicted iconographically (not cultic presence)"
+    inverse: is_depicted_in
 
   is_depicted_in:
     slot_uri: crm:P62i_is_depicted_by
     range: IconographicObject
     multivalued: true
-    description: "Objects depicting this deity"
+    inverse: depicts_deity
+
+
 
   houses_deity_presence:
     slot_uri: heritageGraph:houses_deity_presence
@@ -971,6 +1097,13 @@ slots:
     range: ArchitecturalElement
     multivalued: true
     description: "Architectural elements composing structure"
+    inverse: is_component_of  
+
+  is_component_of:
+    slot_uri: crm:P46i_forms_part_of
+    range: ArchitecturalStructure
+    description: "The parent structure this element belongs to"
+    inverse: has_component
 
   element_type:
     slot_uri: crm:P2_has_type
