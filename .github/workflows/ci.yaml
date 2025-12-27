@@ -1,0 +1,41 @@
+name: Generate Ontology Docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Create docs folder
+        run: mkdir -p docs
+
+      - name: Run Widoco
+        run: |
+          docker run --rm -u 0 \
+            -v ${{ github.workspace }}/HeritageGraph.ttl:/input/HeritageGraph.ttl \
+            -v ${{ github.workspace }}/docs:/output \
+            ghcr.io/dgarijo/widoco:v1.4.23 \
+            -ontFile /input/HeritageGraph.ttl \
+            -outFolder /output \
+            -lang en \
+            -rewriteAll \
+            -webVowl
+
+          # Rename index-en.html → index.html for GitHub Pages
+          if [ -f docs/index-en.html ]; then
+              mv docs/index-en.html docs/index.html
+          fi
+
+      - name: Deploy to GitHub Pages
+        # uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs

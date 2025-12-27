@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl#"
-     xml:base="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl"
+<rdf:RDF xmlns="file:/input/nepaliCulturalHeritageOntology.owl.ttl#"
+     xml:base="file:/input/nepaliCulturalHeritageOntology.owl.ttl"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:pav="http://purl.org/pav/"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -9,7 +9,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:skos="http://www.w3.org/2004/02/skos/core#"
      xmlns:terms="http://purl.org/dc/terms/">
-    <owl:Ontology rdf:about="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl">
+    <owl:Ontology rdf:about="file:/input/nepaliCulturalHeritageOntology.owl.ttl">
         <terms:license>CC-BY-4.0</terms:license>
         <pav:version>2.0</pav:version>
         <rdfs:label>NepaliCulturalHeritageOntology</rdfs:label>
@@ -93,7 +93,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>asserts_about_entity</rdfs:label>
         <skos:definition>Heritage entity this assertion is about</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -105,7 +105,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>asserts_about_event</rdfs:label>
         <skos:definition>Event this assertion is about</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -117,7 +117,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>assessed_object</rdfs:label>
         <skos:definition>Object assessed for condition</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -129,7 +129,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TimeSpan"/>
         <rdfs:label>birth_timespan</rdfs:label>
         <skos:definition>Person&apos;s birth timespan</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -141,7 +141,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>carried_out_activity</rdfs:label>
         <skos:definition>Activities performed by this actor</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -153,7 +153,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Actor"/>
         <rdfs:label>carried_out_by_actor</rdfs:label>
         <skos:definition>Actor(s) who performed this event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -165,7 +165,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Actor"/>
         <rdfs:label>commissioned_by</rdfs:label>
         <skos:definition>Person or group who commissioned production</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -177,7 +177,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Consecration"/>
         <rdfs:label>consecrated_by_event</rdfs:label>
         <skos:definition>Consecration event that activated this murti</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -189,7 +189,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Murti"/>
         <rdfs:label>consecrated_object</rdfs:label>
         <skos:definition>Murti transformed by consecration</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -201,7 +201,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>contains_structure</rdfs:label>
         <skos:definition>Structures located in this place</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -213,7 +213,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TimeSpan"/>
         <rdfs:label>death_timespan</rdfs:label>
         <skos:definition>Person&apos;s death timespan</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -225,7 +225,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Deity"/>
         <rdfs:label>depicts_deity</rdfs:label>
         <skos:definition>Deity depicted iconographically (not cultic presence)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -237,7 +237,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>documented_by_agent</rdfs:label>
         <skos:definition>Person or institution who documented this entity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -249,7 +249,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/DocumentationActivity"/>
         <rdfs:label>documented_by_event</rdfs:label>
         <skos:definition>Documentation event that recorded this entity or event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -261,7 +261,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>documented_entity</rdfs:label>
         <skos:definition>Heritage entity documented by this activity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -273,7 +273,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>documented_event</rdfs:label>
         <skos:definition>Event documented by this activity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -285,7 +285,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Deity"/>
         <rdfs:label>enshrined_deity</rdfs:label>
         <skos:definition>Deity installed through enshrinement</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -297,7 +297,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/NepaleseTemple"/>
         <rdfs:label>enshrined_in_structure</rdfs:label>
         <skos:definition>Temple where deity was enshrined</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -309,7 +309,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Enshrinement"/>
         <rdfs:label>enshrines_deity_through_event</rdfs:label>
         <skos:definition>Enshrinement event that installed deity in temple</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -321,7 +321,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TraditionOrPractice"/>
         <rdfs:label>follows_tradition</rdfs:label>
         <skos:definition>Transmitted ritual protocol followed</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -333,7 +333,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Production"/>
         <rdfs:label>founded_by_event</rdfs:label>
         <skos:definition>Event that established the Guthi</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -345,7 +345,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ProvenanceAssertion"/>
         <rdfs:label>generated_assertion</rdfs:label>
         <skos:definition>Assertions generated by documentation activity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -357,7 +357,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStyle"/>
         <rdfs:label>has_architectural_style</rdfs:label>
         <skos:definition>Architectural style classification</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -369,7 +369,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalElement"/>
         <rdfs:label>has_component</rdfs:label>
         <skos:definition>Architectural elements composing structure</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -381,7 +381,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ConditionAssessment"/>
         <rdfs:label>has_condition_assessment</rdfs:label>
         <skos:definition>Condition assessment events for this structure</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -393,7 +393,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Place"/>
         <rdfs:label>has_current_location</rdfs:label>
         <skos:definition>Current location of object or structure</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -405,7 +405,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/DataCustodian"/>
         <rdfs:label>has_custodian</rdfs:label>
         <skos:definition>Current custodian of this record or object</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -417,7 +417,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TransferOfCustody"/>
         <rdfs:label>has_custody_event</rdfs:label>
         <skos:definition>Custody transfer events for this structure</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -429,7 +429,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>has_membership</rdfs:label>
         <skos:definition>Members of Guthi organization</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -441,7 +441,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ProvenanceAssertion"/>
         <rdfs:label>has_provenance_assertion</rdfs:label>
         <skos:definition>Provenance assertions about this entity or event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -453,7 +453,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TimeSpan"/>
         <rdfs:label>has_timespan</rdfs:label>
         <skos:definition>Links event to its temporal extent</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -465,7 +465,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>holds_custody_of</rdfs:label>
         <skos:definition>Structures under Guthi custodianship</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -477,7 +477,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Deity"/>
         <rdfs:label>houses_deity_presence</rdfs:label>
         <skos:definition>Deity made present through consecration (not mere depiction)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -489,7 +489,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>includes_ritual_event</rdfs:label>
         <skos:definition>Component rituals of festival</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -501,7 +501,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Deity"/>
         <rdfs:label>invokes_deity</rdfs:label>
         <skos:definition>Deity invoked or made present through ritual</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -513,7 +513,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/IconographicObject"/>
         <rdfs:label>is_depicted_in</rdfs:label>
         <skos:definition>Objects depicting this deity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -525,7 +525,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Enshrinement"/>
         <rdfs:label>is_enshrined_through_event</rdfs:label>
         <skos:definition>Events where this deity was enshrined</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -537,7 +537,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>is_invoked_in_ritual</rdfs:label>
         <skos:definition>Rituals where this deity is invoked</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -549,7 +549,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Festival"/>
         <rdfs:label>is_part_of_festival</rdfs:label>
         <skos:definition>Larger festival this ritual is part of</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -561,7 +561,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>is_performed_in_event</rdfs:label>
         <skos:definition>Events where this tradition is performed</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -573,7 +573,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>is_setting_for_event</rdfs:label>
         <skos:definition>Events that occurred at this place</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -585,7 +585,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Deity"/>
         <rdfs:label>makes_deity_present</rdfs:label>
         <skos:definition>Deity made present through consecration</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -597,7 +597,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Guthi"/>
         <rdfs:label>managed_by_guthi</rdfs:label>
         <skos:definition>Guthi organization managing this structure or ritual</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -609,7 +609,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>manages_structure</rdfs:label>
         <skos:definition>Structures managed by this Guthi</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -621,7 +621,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Guthi"/>
         <rdfs:label>member_of_group</rdfs:label>
         <skos:definition>Groups this person belongs to</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -633,7 +633,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>participates_in_ritual</rdfs:label>
         <skos:definition>Rituals in which this structure participates</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -645,7 +645,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>performed_by_actor</rdfs:label>
         <skos:definition>Individual who performed ritual</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -657,7 +657,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>performed_by_agent</rdfs:label>
         <skos:definition>Agent who performed documentation</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -669,7 +669,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Guthi"/>
         <rdfs:label>performed_by_group</rdfs:label>
         <skos:definition>Group (Guthi, caste) responsible for ritual</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -681,7 +681,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/RitualEvent"/>
         <rdfs:label>performs_ritual</rdfs:label>
         <skos:definition>Rituals performed by this Guthi</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -693,7 +693,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>produced_object</rdfs:label>
         <skos:definition>Object produced by this production event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -705,7 +705,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/TimeSpan"/>
         <rdfs:label>publication_timespan</rdfs:label>
         <skos:definition>When source was published</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -717,7 +717,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Place"/>
         <rdfs:label>took_place_at</rdfs:label>
         <skos:definition>Where event occurred</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -729,7 +729,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Place"/>
         <rdfs:label>took_place_at_location</rdfs:label>
         <skos:definition>Geographic location of event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -741,7 +741,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>took_place_at_structure</rdfs:label>
         <skos:definition>Ritual occurs at specific temple or monument</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -753,7 +753,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Actor"/>
         <rdfs:label>transferred_from_actor</rdfs:label>
         <skos:definition>Previous custodian</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -765,7 +765,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>transferred_object</rdfs:label>
         <skos:definition>Object transferred in custody event</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -777,7 +777,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Actor"/>
         <rdfs:label>transferred_to_actor</rdfs:label>
         <skos:definition>New custodian (person)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -789,7 +789,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Guthi"/>
         <rdfs:label>transferred_to_guthi</rdfs:label>
         <skos:definition>New custodian (Guthi)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -801,7 +801,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Technique"/>
         <rdfs:label>used_technique</rdfs:label>
         <skos:definition>Craft technique used in production</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -813,7 +813,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ArchitecturalStructure"/>
         <rdfs:label>uses_chariot</rdfs:label>
         <skos:definition>Ritual chariot used in festival</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -825,7 +825,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/IconographicObject"/>
         <rdfs:label>uses_ritual_object</rdfs:label>
         <skos:definition>Sacred object used in ritual</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -837,7 +837,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Verification"/>
         <rdfs:label>verification_status</rdfs:label>
         <skos:definition>Verification activity for this entity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -849,7 +849,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/ProvenanceAssertion"/>
         <rdfs:label>verified_assertion</rdfs:label>
         <skos:definition>Assertions verified by this activity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -861,7 +861,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>verified_by</rdfs:label>
         <skos:definition>Expert who verified this information</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -873,7 +873,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>verified_by_expert</rdfs:label>
         <skos:definition>Expert who performed verification</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -885,7 +885,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Person"/>
         <rdfs:label>was_attributed_to_agent</rdfs:label>
         <skos:definition>Person who made this assertion</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -897,7 +897,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/DataSource"/>
         <rdfs:label>was_derived_from_source</rdfs:label>
         <skos:definition>Source(s) from which this assertion was derived</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -909,7 +909,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/DocumentationActivity"/>
         <rdfs:label>was_documented_by</rdfs:label>
         <skos:definition>Documentation event that recorded this entity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -921,7 +921,7 @@
         <rdfs:range rdf:resource="https://cair-nepal.org/heritageGraph/Production"/>
         <rdfs:label>was_produced_by_event</rdfs:label>
         <skos:definition>Event that created this object or structure</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:ObjectProperty>
     
 
@@ -945,7 +945,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>Name</rdfs:label>
         <skos:definition>Primary name or label</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -957,7 +957,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>activity_type</rdfs:label>
         <skos:definition>Type of documentation activity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -969,7 +969,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>assertion_content</rdfs:label>
         <skos:definition>The factual claim being asserted</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -981,7 +981,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>assessed_condition_state</rdfs:label>
         <skos:definition>Identified condition state (good, damaged, ruined)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -993,7 +993,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>assessment_method</rdfs:label>
         <skos:definition>Method used for condition assessment</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1005,7 +1005,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>begin_date</rdfs:label>
         <skos:definition>Start date (ISO 8601 or Nepali calendar)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1017,7 +1017,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>calendar_system</rdfs:label>
         <skos:definition>Calendar used (e.g., Gregorian, Bikram Sambat, Nepal Sambat)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1029,7 +1029,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label>confidence_score</rdfs:label>
         <skos:definition>Reliability score for assertion (0.0-1.0)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1041,7 +1041,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>custodian_type</rdfs:label>
         <skos:definition>Type of custodian (government, academic, community)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1053,7 +1053,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>data_quality_note</rdfs:label>
         <skos:definition>Notes on data quality, completeness, or uncertainty</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1065,7 +1065,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>date_earliest</rdfs:label>
         <skos:definition>Earliest possible date (for uncertain dates)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1077,7 +1077,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>date_latest</rdfs:label>
         <skos:definition>Latest possible date (for uncertain dates)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1089,7 +1089,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>deity_tradition</rdfs:label>
         <skos:definition>Religious tradition of deity (Hindu, Buddhist, Syncretic)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1101,7 +1101,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>element_type</rdfs:label>
         <skos:definition>Type of architectural element (Gajur, Torana, Tundal)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1113,7 +1113,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>end_date</rdfs:label>
         <skos:definition>End date (ISO 8601 or Nepali calendar)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1125,7 +1125,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>english_description</rdfs:label>
         <skos:definition>Descriptive text in English</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1137,7 +1137,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>generated_at_time</rdfs:label>
         <skos:definition>When this assertion was recorded (ISO 8601)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1149,7 +1149,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>guthi_type</rdfs:label>
         <skos:definition>Type of Guthi (Si, Jatra, Temple)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1161,7 +1161,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>has_land_endowment</rdfs:label>
         <skos:definition>Description of land holdings supporting Guthi</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1173,7 +1173,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>lunar_date_tithi</rdfs:label>
         <skos:definition>Lunar day (Tithi) for ritual timing</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1185,7 +1185,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>nepali_name</rdfs:label>
         <skos:definition>Name in Nepali script (Devanagari)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1197,7 +1197,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>newari_name</rdfs:label>
         <skos:definition>Name in Nepal Bhasa (Newari)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1209,7 +1209,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>occupation</rdfs:label>
         <skos:definition>Person&apos;s occupation or role</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1221,7 +1221,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>place_coordinates</rdfs:label>
         <skos:definition>Geographic coordinates (WGS84: lat,lon)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1233,7 +1233,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>place_name_nepali</rdfs:label>
         <skos:definition>Place name in Nepali</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1245,7 +1245,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>place_type</rdfs:label>
         <skos:definition>Type of place (city, village, region)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1257,7 +1257,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>reconciliation_status</rdfs:label>
         <skos:definition>Status of multi-source reconciliation (confirmed, conflicting, unverified)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1269,7 +1269,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>recurrence_pattern</rdfs:label>
         <skos:definition>Frequency of recurring ritual (e.g., annual, monthly)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1281,7 +1281,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>ritual_type</rdfs:label>
         <skos:definition>Classification of ritual (puja, jatra, consecration)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1293,7 +1293,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>source_citation</rdfs:label>
         <skos:definition>Formal citation of source</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1305,7 +1305,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>source_language</rdfs:label>
         <skos:definition>Language of source document</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1317,7 +1317,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>source_type</rdfs:label>
         <skos:definition>Type of source (manuscript, inscription, survey, oral)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1329,7 +1329,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>source_url</rdfs:label>
         <skos:definition>URL or digital identifier for source</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1341,7 +1341,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>syncretic_identity_note</rdfs:label>
         <skos:definition>Explanation of syncretic dual identity</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1353,7 +1353,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>traditional_role</rdfs:label>
         <skos:definition>Hereditary occupation or ritual duty</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1365,7 +1365,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>used_equipment</rdfs:label>
         <skos:definition>Equipment used in documentation</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1377,7 +1377,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>used_method</rdfs:label>
         <skos:definition>Documentation method used</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1389,7 +1389,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>verification_method</rdfs:label>
         <skos:definition>Method used for verification (cross-check, expert review, field visit)</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1401,7 +1401,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
         <rdfs:label>verification_notes</rdfs:label>
         <skos:definition>Notes from verification process</skos:definition>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:DatatypeProperty>
     
 
@@ -1461,7 +1461,7 @@
         <rdfs:label>Actor</rdfs:label>
         <skos:definition>General actor (person or group) responsible for events</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E39_Actor"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1527,7 +1527,7 @@
         <rdfs:label>ArchitecturalElement</rdfs:label>
         <skos:definition>Carved or constructed component of a temple (e.g., Gajur, Torana, Tundal)</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E25_Physical_Feature"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1707,7 +1707,7 @@
         <rdfs:label>ArchitecturalStructure</rdfs:label>
         <skos:definition>Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation.</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1755,7 +1755,7 @@
         <rdfs:label>ArchitecturalStyle</rdfs:label>
         <skos:definition>Typological classification of temple architecture (Pagoda, Shikhara, Dome)</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1768,7 +1768,7 @@
         <rdfs:label>ArchivalRecord</rdfs:label>
         <skos:definition>Government or institutional administrative record</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/ArchivalRecord"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1781,7 +1781,7 @@
         <rdfs:label>BuddhistDeity</rdfs:label>
         <skos:definition>Buddha or Bodhisattva in Vajrayana Buddhist tradition</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/BuddhistDeity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1794,7 +1794,7 @@
         <rdfs:label>BuddhistMonument</rdfs:label>
         <skos:definition>Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/BuddhistMonument"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1860,7 +1860,7 @@
         <rdfs:label>CasteGroup</rdfs:label>
         <skos:definition>Hereditary social group (Jati) with specific ritual roles and occupational duties</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1873,7 +1873,7 @@
         <rdfs:label>Chaitya</rdfs:label>
         <skos:definition>Buddhist votive shrine or prayer hall</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Chaitya"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -1904,7 +1904,7 @@
         <rdfs:label>ChariotFestival</rdfs:label>
         <skos:definition>Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/ChariotFestival"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2018,7 +2018,7 @@
         <rdfs:label>ConditionAssessment</rdfs:label>
         <skos:definition>Event of evaluating the physical state of a heritage object or structure</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2132,7 +2132,7 @@
         <rdfs:label>Consecration</rdfs:label>
         <skos:definition>Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2198,7 +2198,7 @@
         <rdfs:label>DataCustodian</rdfs:label>
         <skos:definition>Institution or person currently stewarding heritage data</skos:definition>
         <skos:exactMatch rdf:resource="https://www.w3.org/ns/prov/Agent"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2318,7 +2318,7 @@
         <rdfs:label>DataSource</rdfs:label>
         <skos:definition>Original source from which heritage information was derived</skos:definition>
         <skos:exactMatch rdf:resource="https://www.w3.org/ns/prov/Entity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2420,7 +2420,7 @@
         <rdfs:label>Deity</rdfs:label>
         <skos:definition>Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences.</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2433,7 +2433,7 @@
         <rdfs:label>Dharmashala</rdfs:label>
         <skos:definition>Pilgrim lodge operated by a Guthi organization</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Dharmashala"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2446,7 +2446,7 @@
         <rdfs:label>DhungeDhara</rdfs:label>
         <skos:definition>Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/DhungeDhara"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2590,7 +2590,7 @@
         <rdfs:label>DocumentationActivity</rdfs:label>
         <skos:definition>Process of recording, verifying, or digitizing heritage information</skos:definition>
         <skos:exactMatch rdf:resource="https://www.w3.org/ns/prov/Activity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2603,7 +2603,7 @@
         <rdfs:label>DomeStyleTemple</rdfs:label>
         <skos:definition>Dome-shaped temples with Mughal or Neo-classical influence</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/DomeStyleTemple"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2699,7 +2699,7 @@
         <rdfs:label>Enshrinement</rdfs:label>
         <skos:definition>Event of installing a deity&apos;s murti or symbol within a temple sanctum</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2724,7 +2724,7 @@
         <rdfs:label>Festival</rdfs:label>
         <skos:definition>Large-scale community ritual event (Jatra) involving processions, music, and collective participation</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Festival"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2737,7 +2737,7 @@
         <rdfs:label>FieldSurvey</rdfs:label>
         <skos:definition>Direct observation and measurement at heritage site</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/FieldSurvey"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2887,7 +2887,7 @@
         <rdfs:label>Guthi</rdfs:label>
         <skos:definition>Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2900,7 +2900,7 @@
         <rdfs:label>HinduDeity</rdfs:label>
         <skos:definition>Deity in Hindu pantheon (e.g., Shiva, Parvati, Bhairav)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/HinduDeity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -2913,7 +2913,7 @@
         <rdfs:label>HistoricalDocument</rdfs:label>
         <skos:definition>Primary or secondary written source (manuscript, inscription, chronicle)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/HistoricalDocument"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3003,7 +3003,7 @@
         <rdfs:label>IconographicObject</rdfs:label>
         <skos:definition>Sacred visual art objects that depict or embody deities through iconographic conventions</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3016,7 +3016,7 @@
         <rdfs:label>JatraGuthi</rdfs:label>
         <skos:definition>Festival trust responsible for organizing and funding annual Jatra events</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/JatraGuthi"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3029,7 +3029,7 @@
         <rdfs:label>MaskedDanceFestival</rdfs:label>
         <skos:definition>Festival featuring masked dancers embodying deities (e.g., Kartik Naach)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/MaskedDanceFestival"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3077,7 +3077,7 @@
         <rdfs:label>Material</rdfs:label>
         <skos:definition>Physical substance used in construction or crafting</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E57_Material"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3126,7 +3126,7 @@
         <rdfs:label>Murti</rdfs:label>
         <skos:definition>Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Murti"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3139,7 +3139,7 @@
         <rdfs:label>NaimittikaPuja</rdfs:label>
         <skos:definition>Occasional worship ritual tied to festivals or life events</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/NaimittikaPuja"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3182,7 +3182,7 @@
         <rdfs:label>NepaleseTemple</rdfs:label>
         <skos:definition>Sacred architectural structure for worship, characterized by style, deity enshrinement events, and ritual activation patterns</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/NepaleseTemple"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3195,7 +3195,7 @@
         <rdfs:label>NityaPuja</rdfs:label>
         <skos:definition>Daily worship ritual performed continuously</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/NityaPuja"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3208,7 +3208,7 @@
         <rdfs:label>OralHistory</rdfs:label>
         <skos:definition>Interview or testimony from community knowledge holders</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/OralHistory"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3221,7 +3221,7 @@
         <rdfs:label>PagodaStyleTemple</rdfs:label>
         <skos:definition>Multi-tiered roof temple indigenous to Nepal (e.g., Nyatapola, Taleju)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/PagodaStyleTemple"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3234,7 +3234,7 @@
         <rdfs:label>Pati</rdfs:label>
         <skos:definition>Open-air pavilion for resting travelers</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Pati"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3247,7 +3247,7 @@
         <rdfs:label>Paubha</rdfs:label>
         <skos:definition>Traditional Newari scroll painting (thangka) with mandala and deity iconography</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Paubha"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3367,7 +3367,7 @@
         <rdfs:label>Person</rdfs:label>
         <skos:definition>Individual person who performs, commissions, documents, or verifies heritage activities</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E21_Person"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3475,7 +3475,7 @@
         <rdfs:label>Place</rdfs:label>
         <skos:definition>Defined geographic location where events occur and structures exist</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3488,7 +3488,7 @@
         <rdfs:label>Pokhari</rdfs:label>
         <skos:definition>Pond or tank for water storage, ritual bathing, and ecological management</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Pokhari"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3632,7 +3632,7 @@
         <rdfs:label>Production</rdfs:label>
         <skos:definition>Event of creating an architectural structure, murti, or paubha</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E12_Production"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3794,7 +3794,7 @@
         <rdfs:label>ProvenanceAssertion</rdfs:label>
         <skos:definition>A single factual claim about a heritage entity, with explicit source, author, date, and confidence</skos:definition>
         <skos:exactMatch rdf:resource="https://www.w3.org/ns/prov/Entity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3807,7 +3807,7 @@
         <rdfs:label>Puja</rdfs:label>
         <skos:definition>Worship ceremony directed toward a deity or sacred object</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Puja"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -3820,7 +3820,7 @@
         <rdfs:label>RestHouse</rdfs:label>
         <skos:definition>Community structures for travelers and pilgrims, maintained by Guthi organizations</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/RestHouse"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4096,7 +4096,7 @@
         <rdfs:label>RitualEvent</rdfs:label>
         <skos:definition>Intentional ritual activity that activates sacred space, invokes deities, and binds social groups</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4109,7 +4109,7 @@
         <rdfs:label>Sattal</rdfs:label>
         <skos:definition>Multi-story rest house (3-5 floors) with ritual and social functions</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Sattal"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4122,7 +4122,7 @@
         <rdfs:label>ShikharaStyleTemple</rdfs:label>
         <skos:definition>Spire-shaped temple with North Indian influence (e.g., Krishna Mandir)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/ShikharaStyleTemple"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4135,7 +4135,7 @@
         <rdfs:label>SiGuthi</rdfs:label>
         <skos:definition>Funeral trust responsible for death rituals and cremation ceremonies</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/SiGuthi"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4148,7 +4148,7 @@
         <rdfs:label>Stupa</rdfs:label>
         <skos:definition>Buddhist dome-shaped reliquary shrine (e.g., Boudhanath, Swayambhunath)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Stupa"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4179,7 +4179,7 @@
         <rdfs:label>SyncreticDeity</rdfs:label>
         <skos:definition>Deity worshipped in both Hindu and Buddhist contexts (e.g., Machhindranath/Avalokiteshvara)</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/SyncreticDeity"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4227,7 +4227,7 @@
         <rdfs:label>Technique</rdfs:label>
         <skos:definition>Method or craft process used in production or ritual</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4240,7 +4240,7 @@
         <rdfs:label>TempleGuthi</rdfs:label>
         <skos:definition>Trust managing temple maintenance, daily puja, and priest salaries</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/TempleGuthi"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4342,7 +4342,7 @@
         <rdfs:label>TimeSpan</rdfs:label>
         <skos:definition>Temporal extent of an event or period</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4402,7 +4402,7 @@
         <rdfs:label>TraditionOrPractice</rdfs:label>
         <skos:definition>Transmitted knowledge, belief system, or ritual protocol (e.g., Tantric initiation sequences, festival choreography)</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4540,7 +4540,7 @@
         <rdfs:label>TransferOfCustody</rdfs:label>
         <skos:definition>Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship</skos:definition>
         <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4613,7 +4613,7 @@
         <rdfs:label>Verification</rdfs:label>
         <skos:definition>Process of cross-checking heritage claims against multiple sources</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/Verification"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
     
 
@@ -4626,7 +4626,7 @@
         <rdfs:label>WaterStructure</rdfs:label>
         <skos:definition>Engineered water supply systems with ritual and civic significance</skos:definition>
         <skos:exactMatch rdf:resource="https://cair-nepal.org/heritageGraph/WaterStructure"/>
-        <skos:inScheme rdf:resource="file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology"/>
+        <skos:inScheme rdf:resource="file:/input/nepaliCulturalHeritageOntology"/>
     </owl:Class>
 </rdf:RDF>
 
