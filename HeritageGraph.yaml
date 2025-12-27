@@ -10,7 +10,7 @@ comments:
 
 imports:
   - linkml:types 
-  - linkml:skos
+  # - linkml:skos
 default_range: string
 
 enums:
@@ -51,7 +51,7 @@ enums:
         description: "Ritual masked dance"
         meaning: heritageGraph:MaskedPerformance
 
-  # Calendar system enum
+
   CalendarSystemEnum:
     permissible_values:
       Gregorian:
@@ -179,11 +179,11 @@ classes:
     
     description: "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation."
     
-    # Mappings to global standards (The "Right Way")
+   
     exact_mappings:
-      - schema:HinduTemple      # Hindu context
-      - aat:300007595           # Getty Art & Architecture Thesaurus (Thesaurus ID for 'temples')
-      - wd:Q44539               # Wikidata ID for 'Temple'
+      - schema:HinduTemple     
+      - aat:300007595           
+      - wd:Q44539              
     
     
     broad_mappings:
@@ -419,10 +419,7 @@ classes:
     is_a: Festival
     class_uri: heritageGraph:MaskedDance
     description: "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)"
-    annotations:
-      rdfs:label:
-        - "Masked Dance"@en
-        - "मुखौटा नृत्य"@np
+   
 
   Consecration:
     class_uri: crm:E7_Activity
@@ -485,7 +482,7 @@ classes:
       - has_membership
       - founded_by_event
       - has_land_endowment
-  slot_usage:
+    slot_usage:
       guthi_type:
         range: GuthiTypeEnum
 
@@ -619,6 +616,7 @@ classes:
       - source_url
       - source_language
       - publication_timespan
+      - english_description
 
 
  
@@ -713,6 +711,176 @@ classes:
       - name
       - english_description
 
+  Container:
+    tree_root: true
+    description: "Root container for cultural heritage data instances"
+    attributes:
+      places:
+        description: "Collection of Place instances"
+        range: Place
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      calendar_systems:
+        description: "Collection of CalendarSystem instances"
+        range: CalendarSystem
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      religious_traditions:
+        description: "Collection of ReligiousTradition instances"
+        range: ReligiousTradition
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      deities:
+        description: "Collection of Deity instances"
+        range: Deity
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      architectural_styles:
+        description: "Collection of ArchitecturalStyle instances"
+        range: ArchitecturalStyle
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      architectural_structures:
+        description: "Collection of ArchitecturalStructure instances"
+        range: ArchitecturalStructure
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      architectural_elements:
+        description: "Collection of ArchitecturalElement instances"
+        range: ArchitecturalElement
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      persons:
+        description: "Collection of Person instances"
+        range: Person
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      caste_groups:
+        description: "Collection of CasteGroup instances"
+        range: CasteGroup
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      guthis:
+        description: "Collection of Guthi instances"
+        range: Guthi
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      production_events:
+        description: "Collection of Production event instances"
+        range: Production
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      enshrinement_events:
+        description: "Collection of Enshrinement event instances"
+        range: Enshrinement
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      consecration_events:
+        description: "Collection of Consecration event instances"
+        range: Consecration
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      ritual_events:
+        description: "Collection of RitualEvent instances"
+        range: RitualEvent
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      festivals:
+        description: "Collection of Festival instances"
+        range: Festival
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      custody_events:
+        description: "Collection of TransferOfCustody event instances"
+        range: TransferOfCustody
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      data_sources:
+        description: "Collection of DataSource instances"
+        range: DataSource
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      data_custodians:
+        description: "Collection of DataCustodian instances"
+        range: DataCustodian
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      provenance_assertions:
+        description: "Collection of ProvenanceAssertion instances"
+        range: ProvenanceAssertion
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      documentation_activities:
+        description: "Collection of DocumentationActivity instances"
+        range: DocumentationActivity
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      materials:
+        description: "Collection of Material instances"
+        range: Material
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      metadata:
+        description: "Dataset metadata"
+        range: metadata
+
+  Metadata:
+    description: "Dataset metadata information"
+    attributes:
+      dataset_name:
+        range: string
+      dataset_version:
+        range: string
+      schema_version:
+        range: string
+      generated_date:
+        range: string
+      license:
+        range: string
+      curator:
+        range: string
 # ============================================================================
 # SLOTS (PROPERTIES)
 # ============================================================================
@@ -1270,7 +1438,7 @@ slots:
     multivalued: true
     description: "Expert who performed verification"
 
-  # --- DATA SOURCE PROPERTIES ---
+ 
 
   source_type:
     slot_uri: crm:P2_has_type
