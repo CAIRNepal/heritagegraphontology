@@ -153,7 +153,7 @@ classes:
     class_uri: crm:E22_Human-Made_Object
     description: "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation."
     slots:
-      - Name
+      - name
 
       - english_description
       
@@ -166,16 +166,16 @@ classes:
       - has_condition_assessment
       - has_component
     slot_usage:
-      Name:
+      name:
         required: true
       has_current_location:
         required: true
         minimum_cardinality: 1
         maximum_cardinality: 1
 
-  Temples:
+  Temple:
     is_a: ArchitecturalStructure
-    class_uri: heritageGraph:Temples
+    class_uri: heritageGraph:Temple
     
     description: "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation."
     
@@ -252,7 +252,7 @@ classes:
     class_uri: crm:E22_Human-Made_Object
     description: "Sacred visual art objects that depict or embody deities through iconographic conventions"
     slots:
-      - Name
+      - name
       - english_description
       - depicts_deity
       - was_produced_by_event
@@ -275,13 +275,13 @@ classes:
     class_uri: crm:E25_Physical_Feature
     description: "Carved or constructed component of a temple (e.g., Gajur, Torana, Tundal)"
     slots:
-      - Name
+      - name
       - english_description
       - element_type
       - is_component_of
-    inverse: has_component
+   
     slot_usage:
-      Name:
+      name:
         required: true
       is_component_of:
         required: true
@@ -290,13 +290,17 @@ classes:
   # CONCEPTUAL ENTITIES (CIDOC E28 Conceptual Objects)
   # ========================================================================
 
-
+  PhysicalHeritageThing:
+    union_of:
+      - ArchitecturalStructure
+      - IconographicObject
+      - ArchitecturalElement
 
   Deity:
     class_uri: crm:E28_Conceptual_Object
     description: "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences."
     slots:
-      - Name
+      - name
       - english_description
       - has_religious_tradition
       - is_depicted_in
@@ -307,7 +311,7 @@ classes:
     class_uri: crm:E55_Type
     description: "Religious or spiritual tradition within which a deity or sacred figure is venerated"
     slots:
-      - Name
+      - name
       - english_description
 
 
@@ -316,27 +320,26 @@ classes:
     class_uri: crm:E28_Conceptual_Object
     description: "Transmitted knowledge, belief system, or ritual protocol (e.g., Tantric initiation sequences, festival choreography)"
     slots:
-      - Name
+      - name
       - english_description
-      - is_performed_in_event
 
   ArchitecturalStyle:
     class_uri: crm:E55_Type
     description: "Typological classification of temple architecture (Pagoda, Shikhara, Dome)"
     slots:
-      - Name
+      - name
       - english_description
 
   CalendarSystem:
     class_uri: heritageGraph:CalendarSystem
     description: "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning"
     slots:
-      - Name
+      - name
       - calendar_system
       - epoch_date_gregorian
       - year_offset_from_gregorian
     slot_usage:
-      Name:
+      name:
         required: true
       calendar_system:
         required: true
@@ -349,7 +352,7 @@ classes:
     class_uri: crm:E12_Production
     description: "Event of creating an architectural structure, murti, or paubha"
     slots:
-      - Name
+      - name
       - produced_object
       - carried_out_by_actor
       - used_technique
@@ -363,7 +366,7 @@ classes:
     class_uri: crm:E7_Activity
     description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
     slots:
-      - Name
+      - name
       - english_description
       - ritual_type
       - ritual_on_structure
@@ -375,14 +378,13 @@ classes:
       - performed_by_group
      
       - is_part_of_festival
-      - managed_by_guthi
-      - structure_managed_by
+      - managed_by_guthi 
       - follows_tradition
       - was_documented_by
       - has_provenance_assertion
       - occurs_before
       - occurs_after
-      - consumes_material
+      - used_materials
 
     
 
@@ -412,8 +414,6 @@ classes:
     is_a: Festival
     class_uri: heritageGraph:ChariotFestival
     description: "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)"
-    slots:
-      - uses_chariot
 
   MaskedDance:
     is_a: Festival
@@ -428,7 +428,7 @@ classes:
     class_uri: crm:E7_Activity
     description: "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"
     slots:
-      - Name
+      - name
       - consecrated_object
       - performed_by_actor
       - took_place_at
@@ -439,7 +439,7 @@ classes:
     class_uri: crm:E7_Activity
     description: "Event of installing a deity's murti or symbol within a temple sanctum"
     slots:
-      - Name
+      - name
       - enshrined_deity
       - enshrined_in_structure
       - performed_by_actor
@@ -449,7 +449,7 @@ classes:
     class_uri: crm:E10_Transfer_of_Custody
     description: "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship"
     slots:
-      - Name
+      - name
       - transferred_object
       - transferred_from_actor
       - transferred_to_actor
@@ -461,7 +461,7 @@ classes:
     class_uri: crm:E14_Condition_Assessment
     description: "Event of evaluating the physical state of a heritage object or structure"
     slots:
-      - Name
+      - name
       - assessed_object
       - assessed_condition_state
       - carried_out_by_actor
@@ -476,7 +476,7 @@ classes:
     class_uri: crm:E74_Group
     description: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership"
     slots:
-      - Name
+      - name
       - english_description
       - guthi_type
       - manages_structure
@@ -533,7 +533,7 @@ classes:
     class_uri: crm:E74_Group
     description: "Hereditary social group (Jati) with specific ritual roles and occupational duties"
     slots:
-      - Name
+      - name
       - english_description
       - traditional_role
 
@@ -545,7 +545,7 @@ classes:
     class_uri: crm:E21_Person
     description: "Individual person who performs, commissions, documents, or verifies heritage activities"
     slots:
-      - Name
+      - name
       - english_description
       - birth_timespan
       - death_timespan
@@ -557,7 +557,7 @@ classes:
     class_uri: crm:E39_Actor
     description: "General actor (person or group) responsible for events"
     slots:
-      - Name
+      - name
       - english_description
 
   # ========================================================================
@@ -568,11 +568,11 @@ classes:
     class_uri: crm:E53_Place
     description: "Defined geographic location where events occur and structures exist"
     slots:
-      - Name
+      - name
       - place_coordinates
       - place_type
       - contains_structure
-      - is_setting_for_event
+     
 
   TimeSpan:
     class_uri: crm:E52_Time-Span
@@ -613,7 +613,7 @@ classes:
     class_uri: crm:E73_Information_Object
     description: "Original source from which heritage information was derived"
     slots:
-      - Name
+      - name
       - source_type
       - source_citation
       - source_url
@@ -667,7 +667,7 @@ classes:
     
 
     slots:
-      - Name
+      - name
       - activity_type
       - documented_entity
       - documented_event
@@ -691,7 +691,7 @@ classes:
     class_uri: prov:Agent
     description: "Institution or person currently stewarding heritage data"
     slots:
-      - Name
+      - name
       - custodian_type
       - english_description
 
@@ -703,14 +703,14 @@ classes:
     class_uri: crm:E29_Design_or_Procedure
     description: "Method or craft process used in production or ritual"
     slots:
-      - Name
+      - name
       - english_description
 
   Material:
     class_uri: crm:E57_Material
     description: "Physical substance used in construction or crafting"
     slots:
-      - Name
+      - name
       - english_description
 
 # ============================================================================
@@ -720,7 +720,7 @@ classes:
 slots:
   # --- IDENTIFIERS AND LABELS ---
   
-  Name:
+  name:
     slot_uri: crm:P1_is_identified_by
     range: string
     description: "Primary name or label"
@@ -831,12 +831,6 @@ slots:
     multivalued: true
     description: "Structures located in this place"
 
-  is_setting_for_event:
-    slot_uri: crm:P7i_witnessed
-    range: RitualEvent
-    multivalued: true
-    description: "Events that occurred at this place"
-
   # --- EVENT-CENTRIC PRODUCTION RELATIONSHIPS ---
 
   was_produced_by_event:
@@ -845,11 +839,9 @@ slots:
     description: "Event that created this object or structure"
 
   produced_object:
-    slot_uri: crm:P108_has_produced
-    any_of:
-      - range: ArchitecturalStructure
-      - range: IconographicObject
-      - range: ArchitecturalElement
+    slot_uri: crm:P108i_was_produced_by
+    
+    range: PhysicalHeritageThing
     description: "Object produced by this production event"
     
   
@@ -867,15 +859,7 @@ slots:
     range: Actor
     multivalued: true
     description: "Person or group who commissioned production"
-    inverse: has_commissioned 
-    #inverse is has commissioned
-
-  has_commissioned:
-    slot_uri: crm:P17i_motivated
-    range: Production
-    multivalued: true
-    description: "Production events commissioned by this actor"
-    inverse: commissioned_by
+   
 
   used_technique:
     slot_uri: crm:P32_used_general_technique
@@ -913,13 +897,6 @@ slots:
     multivalued: true
     description: "Group (Guthi, caste) responsible for ritual"
 
-  
-
-  uses_chariot:
-    slot_uri: crm:P16_used_specific_object
-    range: ArchitecturalStructure
-    description: "Ritual chariot used in festival"
-
   follows_tradition:
     slot_uri: crm:P33_used_specific_technique
     range: TraditionOrPractice
@@ -955,7 +932,7 @@ slots:
     multivalued: true
     description: "Enshrinement event that installed deity in temple"
 
-  consumes_material:
+  used_materials: 
     slot_uri: crm:P125_used_object_of_type
     range: Material
     multivalued: true
@@ -967,8 +944,8 @@ slots:
     description: "Deity installed through enshrinement"
 
   enshrined_in_structure:
-    slot_uri: crm:P7_took_place_at
-    range: Temples
+    slot_uri: crm:P8_took_place_on_or_within
+    range: Temple
     description: "Temple where deity was enshrined"
 
   is_enshrined_through_event:
@@ -982,13 +959,13 @@ slots:
     range: Deity
     multivalued: true
     description: "Deity depicted iconographically (not cultic presence)"
-    inverse: is_depicted_in
+    
 
   is_depicted_in:
     slot_uri: crm:P62i_is_depicted_by
     range: IconographicObject
     multivalued: true
-    inverse: depicts_deity
+    
 
 
 
@@ -1029,16 +1006,12 @@ slots:
   manages_structure:
     slot_uri: heritageGraph:manages_structure
     range: ArchitecturalStructure
-    inverse: structure_managed_by
+    
     multivalued: true
     description: "Structures managed by this Guthi"
 
-  # structure managed by is for inverse relationship
-  structure_managed_by:            
-    slot_uri: heritageGraph:structure_managed_by
-    range: Guthi
-    multivalued: true
-    inverse: manages_structure
+
+   
 
   performs_ritual:
     slot_uri: crm:P14i_performed
@@ -1314,17 +1287,12 @@ slots:
     range: string
     description: "URL or digital identifier for source"
 
-  source_language:
-    slot_uri: crm:P72_has_language
-    range: string
-    description: "Language of source document"
+
 
   custodian_type:
     slot_uri: crm:P2_has_type
     range: string
     description: "Type of custodian (government, academic, community)"
-
-
 
   occupation:
     slot_uri: crm:P2_has_type
@@ -1344,17 +1312,9 @@ slots:
     multivalued: true
     description: "Rituals in which this structure participates"
 
-  is_performed_in_event:
-    slot_uri: crm:P33i_was_used_by
-    range: RitualEvent
-    multivalued: true
-    description: "Events where this tradition is performed"
 
 
-  syncretic_identity_note:
-    slot_uri: crm:P3_has_note
-    range: string
-    description: "Explanation of syncretic dual identity"
+
 
 
 
@@ -1364,26 +1324,4 @@ slots:
     multivalued: true
     description: "Documentation event that recorded this entity or event"
 
-  documented_by_agent:
-    slot_uri: prov:wasAttributedTo
-    range: Person
-    multivalued: true
-    description: "Person or institution who documented this entity"
-
-  verification_status:
-    slot_uri: heritageGraph:verification_status
-    range: string
-    multivalued: true
-    description: "Verification activity for this entity"
-
-  verified_by:
-    slot_uri: crm:P14_carried_out_by
-    range: Person
-    multivalued: true
-    description: "Expert who verified this information"
-
-  has_custodian:
-    slot_uri: prov:wasAssociatedWith
-    range: DataCustodian
-    multivalued: true
-    description: "Current custodian of this record or object"
+ 
