@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - HeritageGraph
   workflow_dispatch:
 
 jobs:
@@ -18,7 +19,7 @@ jobs:
 
       - name: Run Widoco
         run: |
-          docker run --rm -u 0 \
+          docker run --rm \
             -v ${{ github.workspace }}/HeritageGraph.ttl:/input/HeritageGraph.ttl \
             -v ${{ github.workspace }}/docs:/output \
             ghcr.io/dgarijo/widoco:v1.4.23 \
@@ -28,9 +29,10 @@ jobs:
             -rewriteAll \
             -webVowl
 
-          # Rename index-en.html → index.html for GitHub Pages
-          if [ -f docs/index-en.html ]; then
-              mv docs/index-en.html docs/index.html
+      - name: Rename index-en.html to index.html
+        run: |
+          if [ -f "${GITHUB_WORKSPACE}/docs/index-en.html" ]; then
+            mv "${GITHUB_WORKSPACE}/docs/index-en.html" "${GITHUB_WORKSPACE}/docs/index.html"
           fi
 
       - name: Deploy to GitHub Pages
