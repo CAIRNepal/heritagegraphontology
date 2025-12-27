@@ -14,12 +14,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Create docs folder
-        run: mkdir -p docs
+      - name: Prepare docs folder
+        run: |
+          rm -rf docs
+          mkdir docs
+          chmod 777 docs
+
 
       - name: Run Widoco
         run: |
-          docker run --rm \
+          docker run --rm -u 0 \
             -v ${{ github.workspace }}/HeritageGraph.ttl:/input/HeritageGraph.ttl \
             -v ${{ github.workspace }}/docs:/output \
             ghcr.io/dgarijo/widoco:v1.4.23 \
