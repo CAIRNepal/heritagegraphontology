@@ -6,7 +6,11 @@ license: CC-BY-4.0
 
 comments:
   - "This ontology addresses gaps in existing CIDOC-CRM extensions (CRMba, CRMsoc) by modeling Nepal-specific institutional forms (Guthi), ritual activation of sacred space, and multi-source provenance reconciliation."
+  ## Comment about DataSource and PROV-O
+  - "DataSource is modeled as a CIDOC E73 Information Object and conceptually aligned with DataCite metadata to support scholarly citation, persistent identifiers, and reuse, while PROV-O is reserved for assertion-level provenance."
+
   - "Competency Questions: (1) Which rituals activate which deities at which sites? (2) How do Guthis mediate temple-ritual-community relationships? (3) What is the provenance chain for contested construction dates? (4) How do syncretic deities bridge Hindu-Buddhist practices spatially and temporally?"
+
 
 imports:
   - linkml:types 
@@ -143,6 +147,9 @@ prefixes:
   crmdig: "http://www.cidoc-crm.org/cidoc-crm/CRMdig/"
   aat: https://www.getty.edu/vow/AATFullDisplay
   wd: http://www.wikidata.org/entity/
+
+  ## DataCite
+  datacite: http://purl.org/spar/datacite/
 
 default_prefix: heritageGraph 
 
@@ -611,14 +618,16 @@ classes:
     description: "Original source from which heritage information was derived"
     slots:
       - name
+      - datacite_identifier
+      - datacite_identifier_type
+      - datacite_creator
+      - datacite_publisher
+      - datacite_resource_type
+      - publication_timespan
       - source_citation
       - source_url
       - source_language
-      - publication_timespan
       - note
-
-
- 
 
   FieldSurveyActivity:
     is_a: DocumentationActivity
@@ -1640,4 +1649,32 @@ slots:
     multivalued: true
     description: "Documentation event that recorded this entity or event"
 
- 
+
+  ###########################################################################
+  #      DATA CITE IDENTIFIER TYPES ENUMERATION
+  ##########################################################################
+  datacite_identifier:
+    slot_uri: datacite:identifier
+    range: string
+    description: "Persistent identifier for the source (DOI, archive ID, catalog number)"
+
+  datacite_identifier_type:
+    slot_uri: datacite:identifierType
+    range: string
+    description: "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)"
+
+  datacite_creator:
+    slot_uri: datacite:creator
+    range: Actor
+    multivalued: true
+    description: "Person or organization primarily responsible for creating the source"
+
+  datacite_publisher:
+    slot_uri: datacite:publisher
+    range: Actor
+    description: "Entity responsible for making the source available"
+
+  datacite_resource_type:
+    slot_uri: datacite:resourceType
+    range: string
+    description: "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)"
