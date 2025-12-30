@@ -157,7 +157,7 @@ classes:
     slots:
       - name
 
-      - english_description
+      - note
       
       # Event-centric relationships (not direct attribution)
       - was_produced_by_event
@@ -257,7 +257,7 @@ classes:
     description: "Sacred visual art objects that depict or embody deities through iconographic conventions"
     slots:
       - name
-      - english_description
+      - note
       - depicts_deity
       - was_produced_by_event
       - participates_in_ritual
@@ -280,8 +280,7 @@ classes:
     description: "Carved or constructed component of a temple (e.g., Gajur, Torana, Tundal)"
     slots:
       - name
-      - english_description
-      - element_type
+      - note
       - is_component_of
    
     slot_usage:
@@ -305,7 +304,7 @@ classes:
     description: "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences."
     slots:
       - name
-      - english_description
+      - note
       - has_religious_tradition
       - is_depicted_in
       - is_invoked_in_ritual
@@ -316,7 +315,7 @@ classes:
     description: "Religious or spiritual tradition within which a deity or sacred figure is venerated"
     slots:
       - name
-      - english_description
+      - note
 
 
 
@@ -325,14 +324,14 @@ classes:
     description: "Transmitted knowledge, belief system, or ritual protocol (e.g., Tantric initiation sequences, festival choreography)"
     slots:
       - name
-      - english_description
+      - note
 
   ArchitecturalStyle:
     class_uri: crm:E55_Type
     description: "Typological classification of temple architecture (Pagoda, Shikhara, Dome)"
     slots:
       - name
-      - english_description
+      - note
 
   CalendarSystem:
     class_uri: heritageGraph:CalendarSystem
@@ -371,14 +370,14 @@ classes:
     description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
     slots:
       - name
-      - english_description
+      - note
       - ritual_type
       - ritual_on_structure
       - has_timespan
       - lunar_date_tithi
       - recurrence_pattern
       - invokes_deity
-      - performed_by_actor
+      - carried_out_by
       - performed_by_group
      
       - is_part_of_festival
@@ -431,7 +430,7 @@ classes:
     slots:
       - name
       - consecrated_object
-      - performed_by_actor
+      - carried_out_by
       - took_place_at
       - has_timespan
       - makes_deity_present
@@ -443,7 +442,7 @@ classes:
       - name
       - enshrined_deity
       - enshrined_in_structure
-      - performed_by_actor
+      - carried_out_by
       - has_timespan
 
   TransferOfCustody:
@@ -478,7 +477,7 @@ classes:
     description: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership"
     slots:
       - name
-      - english_description
+      - note
       - guthi_type
       - manages_structure
       - performs_ritual
@@ -535,7 +534,7 @@ classes:
     description: "Hereditary social group (Jati) with specific ritual roles and occupational duties"
     slots:
       - name
-      - english_description
+      - note
       - traditional_role
 
   # ========================================================================
@@ -547,10 +546,9 @@ classes:
     description: "Individual person who performs, commissions, documents, or verifies heritage activities"
     slots:
       - name
-      - english_description
+      - note
       - birth_timespan
       - death_timespan
-      - occupation
       - member_of_group
       - carried_out_activity
 
@@ -559,7 +557,7 @@ classes:
     description: "General actor (person or group) responsible for events"
     slots:
       - name
-      - english_description
+      - note
 
   # ========================================================================
   # SPATIOTEMPORAL CLASSES
@@ -615,12 +613,11 @@ classes:
     description: "Original source from which heritage information was derived"
     slots:
       - name
-      - source_type
       - source_citation
       - source_url
       - source_language
       - publication_timespan
-      - english_description
+      - note
 
 
  
@@ -670,7 +667,6 @@ classes:
 
     slots:
       - name
-      - activity_type
       - documented_entity
       - documented_event
       - performed_by_agent
@@ -685,7 +681,7 @@ classes:
     description: "Process of cross-checking heritage claims against multiple sources"
     slots:
       - verification_method
-      - verification_notes
+      - note
       - verified_assertion
       - verified_by_expert
 
@@ -695,25 +691,183 @@ classes:
     slots:
       - name
       - custodian_type
-      - english_description
+      - note
 
-  # ========================================================================
-  # SUPPORTING CLASSES
-  # ========================================================================
+ 
 
+    # ============================================================================
+  # LIVING GODDESS (KUMARI) CLASSES
+  # ============================================================================
+
+  LivingGoddessTenure:
+    class_uri: heritageGraph:LivingGoddessTenure
+    description: "Time-bounded role where a person embodies a deity as Living Goddess (Kumari),
+      residing at a specific god-house and supported by religious institutions.
+      This class captures the unique Nepali tradition of living deity embodiment
+      in young girls selected from Buddhist Shakya/Vajracharya families."
+    
+    exact_mappings:
+      - crm:E7_Activity
+    
+    slots:
+      - name
+      - has_participant
+      - embodied_deity
+      - residence_structure
+      - has_timespan
+      - supported_by_institution
+      - has_current_location
+    
+      - was_documented_by
+    
+    slot_usage:
+      name:
+        required: true
+        description: "Name of this tenure period (e.g., 'Kumari Samita Bajracharya Tenure 2015-2023')"
+  
+      
+      has_participant:
+        required: true
+        range: Person
+        description: "The girl serving as Living Goddess during this period"
+      
+      embodied_deity:
+        required: true
+        range: Deity
+        description: "Deity believed to be present in this person (e.g., Taleju, Kumari Devi)"
+      
+      residence_structure:
+        required: true
+        range: ArchitecturalStructure
+        description: "God-house where Living Goddess resides (e.g., Kumari Ghar)"
+      
+      has_timespan:
+        required: true
+        range: TimeSpan
+        description: "Duration of Living Goddess tenure (from selection to retirement)"
+      
+      supported_by_institution:
+        range: Guthi
+        multivalued: true
+        description: "Guthi or state body providing economic/ritual support during tenure"
+      
+      has_current_location:
+        range: Place
+        description: "Place where tenure occurred (e.g., Kathmandu Durbar Square)"
+
+  LivingGoddessRetirement:
+    is_a: RitualEvent
+    class_uri: heritageGraph:LivingGoddessRetirement
+    description: "
+      Ritual or administrative event that formally ends a Living Goddess tenure,
+      marking the person's return to secular status. Common triggers include
+      first menstruation, injury causing blood loss, or serious illness.
+      This event terminates the divine embodiment and restores the girl to ordinary status."
+
+    
+    exact_mappings:
+      - crm:E7_Activity
+    
+    slots:
+      - name
+      - ended_tenure_of
+      - has_timespan
+      - note
+      - carried_out_by
+      - performed_by_group
+      - took_place_at
+      - follows_tradition
+      - has_provenance_assertion
+      - was_documented_by
+    
+    slot_usage:
+      name:
+        required: true
+        description: "Name of retirement event"
+
+      
+      ended_tenure_of:
+        required: true
+        range: LivingGoddessTenure
+        description: "The Living Goddess tenure that this event terminated"
+      
+      has_timespan:
+        required: true
+        range: TimeSpan
+        description: "When the retirement occurred"
+
+      
+      carried_out_by:
+        range: Person
+        multivalued: true
+        description: "Priests or officials who performed the retirement ritual"
+      
+      took_place_at:
+        range: Place
+        description: "Where the retirement ceremony occurred"
+
+  LivingGoddessSelection:
+    is_a: RitualEvent
+    class_uri: heritageGraph:LivingGoddessSelection
+    description: "
+      Tantric ritual process of selecting a new Living Goddess from eligible candidates.
+      Involves examination of 32 auspicious physical marks (lakshana), horoscope matching
+      with the city and ruling authority, and tests of fearlessness (e.g., remaining calm
+      among buffalo heads and masked dancers in darkness). Performed by committee of
+      Vajracharya priests, royal priest (Raj Jyotish), and astrologer."
+    
+
+    
+    exact_mappings:
+      - crm:E7_Activity
+    
+    slots:
+      - name
+      - selected_person
+      - initiated_tenure
+      - has_timespan
+      - carried_out_by
+      - performed_by_group
+      - follows_tradition
+      - took_place_at
+      - selection_criteria_met
+      - has_provenance_assertion
+      - was_documented_by
+    
+    slot_usage:
+      name:
+        required: true
+        description: "Name of selection event"
+      
+      selected_person:
+        required: true
+        range: Person
+        description: "Girl selected to become Living Goddess"
+      
+      initiated_tenure:
+        required: true
+        range: LivingGoddessTenure
+        description: "Living Goddess tenure that this selection event initiated"
+      
+      selection_criteria_met:
+        range: string
+        multivalued: true
+        description: "List of selection criteria verified"
+
+  
   Technique:
     class_uri: crm:E29_Design_or_Procedure
     description: "Method or craft process used in production or ritual"
     slots:
       - name
-      - english_description
+      - note
 
   Material:
     class_uri: crm:E57_Material
     description: "Physical substance used in construction or crafting"
     slots:
       - name
-      - english_description
+      - note
 
   Container:
     tree_root: true
@@ -903,13 +1057,68 @@ slots:
     description: "Larger structure that this element is part of"
 
 
-  english_description:
+  note:
     slot_uri: crm:P3_has_note
     range: string
-    description: "Descriptive text in English"
+    description: "Free-text note (description, reason, verification notes"
+
+    # ============================================================================
+  # LIVING GODDESS (KUMARI) SLOTS
+  # ============================================================================
+
+  has_participant:
+    slot_uri: crm:P11_had_participant
+    range: Person
+    multivalued: true
+    description: "Person(s) who participated in or were subject of this event or situation"
+   
+
+  embodied_deity:
+    slot_uri: heritageGraph:embodied_deity
+    range: Deity
+    description: "Deity believed to be present in and embodied by a person during Living Goddess tenure. Distinct from worship (invokes_deity) or depiction (depicts_deity) - the person IS the deity's living form."
+  
+
+  residence_structure:
+    slot_uri: crm:P74_has_current_or_former_residence
+    range: ArchitecturalStructure
+    description: "Structure where a person resides during a specific period. For Living Goddess, this is typically a Kumari Ghar (god-house)."
 
 
-  # --- TEMPORAL PROPERTIES ---
+  supported_by_institution:
+    slot_uri: heritageGraph:supported_by_institution
+    range: Guthi
+    multivalued: true
+    description: "Institution(s) providing economic support (stipend, land endowment) or ritual support (priest salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support."
+
+
+  ended_tenure_of:
+    slot_uri: heritageGraph:ended_tenure_of
+    range: LivingGoddessTenure
+    description: "Points from a LivingGoddessRetirement event to the tenure that it terminated. Enables reconstruction of complete Living Goddess lifecycle."
+    inverse: has_retirement_event
+
+  has_retirement_event:
+    slot_uri: heritageGraph:has_retirement_event
+    range: LivingGoddessRetirement
+    description: "Retirement event that ended this Living Goddess tenure"
+    inverse: ended_tenure_of
+
+  selected_person:
+    slot_uri: heritageGraph:selected_person
+    range: Person
+    description: "Person selected through a ritual selection process to assume a sacred role or office"
+
+  initiated_tenure:
+    slot_uri: heritageGraph:initiated_tenure
+    range: LivingGoddessTenure
+    description: "Living Goddess tenure that was initiated by this selection event"
+
+  selection_criteria_met:
+    slot_uri: heritageGraph:selection_criteria_met
+    range: string
+    multivalued: true
+    description: "List of selection criteria verified during Living Goddess selection process (e.g., '32 lakshana present', 'No scars or blemishes', 'Horoscope compatible with city', 'Passed fearlessness test')"
 
   has_timespan:
     slot_uri: crm:P4_has_time-span
@@ -940,9 +1149,6 @@ slots:
     slot_uri: heritageGraph:calendar_system
     range: CalendarSystemEnum 
     description: "Calendar system used for date representation"
-
-
-
 
   lunar_date_tithi:
     slot_uri: heritageGraph:lunar_date_tithi
@@ -1017,11 +1223,8 @@ slots:
     range: PhysicalHeritageThing
     description: "Object produced by this production event"
     
-  
-  
 
-
-  carried_out_by_actor:
+  carried_out_by:
     slot_uri: crm:P14_carried_out_by
     range: Actor
     multivalued: true
@@ -1058,14 +1261,10 @@ slots:
     range: RitualEvent
     description: "Points to the prerequisite ritual."
 
-  performed_by_actor:
-    slot_uri: crm:P14_carried_out_by
-    range: Person
-    multivalued: true
-    description: "Individual who performed ritual"
+
 
   performed_by_group:
-    slot_uri: crm:P14_carried_out_by
+    is_a: carried_out_by
     range: Guthi
     multivalued: true
     description: "Group (Guthi, caste) responsible for ritual"
@@ -1139,9 +1338,6 @@ slots:
     range: IconographicObject
     multivalued: true
     
-
-
-
   houses_deity_presence:
     slot_uri: heritageGraph:houses_deity_presence
     range: Deity
@@ -1181,10 +1377,7 @@ slots:
     range: ArchitecturalStructure
     
     multivalued: true
-    description: "Structures managed by this Guthi"
-
-
-   
+    description: "Structures managed by this Guthi" 
 
   performs_ritual:
     slot_uri: crm:P14i_performed
@@ -1193,7 +1386,6 @@ slots:
     multivalued: true
     description: "Rituals performed by this Guthi"
   
-
 
   holds_custody_of:
     slot_uri: crm:P52_has_current_owner
@@ -1304,14 +1496,6 @@ slots:
     range: ArchitecturalElement
     multivalued: true
     description: "Architectural elements composing structure"
-  
-
-
-
-  element_type:
-    slot_uri: crm:P2_has_type
-    range: string
-    description: "Type of architectural element (Gajur, Torana, Tundal)"
 
   has_architectural_style:
     slot_uri: crm:P2_has_type
@@ -1319,9 +1503,6 @@ slots:
     description: "Architectural style classification"
 
   # --- PROVENANCE (PROV-O aligned with CIDOC) ---
-
-
-
   documented_entity:
     slot_uri: prov:generated
     range: ArchitecturalStructure
@@ -1350,11 +1531,6 @@ slots:
     range: string
     multivalued: true
     description: "Equipment used in documentation"
-
-  activity_type:
-    slot_uri: crm:P2_has_type
-    range: string
-    description: "Type of documentation activity"
 
   # --- ASSERTION-LEVEL PROVENANCE ---
 
@@ -1425,53 +1601,28 @@ slots:
     slot_uri: heritageGraph:verification_method
     range: string
     description: "Method used for verification (cross-check, expert review, field visit)"
-
-  verification_notes:
-    slot_uri: crm:P3_has_note
-    range: string
-    description: "Notes from verification process"
-
   verified_assertion:
     slot_uri: heritageGraph:verified_assertion
     range: ProvenanceAssertion
     multivalued: true
     description: "Assertions verified by this activity"
-
   verified_by_expert:
-    slot_uri: crm:P14_carried_out_by
+    is_a: carried_out_by
     range: Person
     multivalued: true
     description: "Expert who performed verification"
-
- 
-
-  source_type:
-    slot_uri: crm:P2_has_type
-    range: string
-    description: "Type of source (manuscript, inscription, survey, oral)"
-
   source_citation:
-    slot_uri: crm:P3_has_note
+    is_a: note
     range: string
     description: "Formal citation of source"
-
   source_url:
     slot_uri: heritageGraph:source_url
     range: string
     description: "URL or digital identifier for source"
-
-
-
   custodian_type:
     slot_uri: crm:P2_has_type
     range: string
     description: "Type of custodian (government, academic, community)"
-
-  occupation:
-    slot_uri: crm:P2_has_type
-    range: string
-    multivalued: true
-    description: "Person's occupation or role"
 
   carried_out_activity:
     slot_uri: crm:P14i_performed
@@ -1484,12 +1635,6 @@ slots:
     range: RitualEvent
     multivalued: true
     description: "Rituals in which this structure participates"
-
-
-
-
-
-
 
   was_documented_by:
     slot_uri: prov:wasGeneratedBy
