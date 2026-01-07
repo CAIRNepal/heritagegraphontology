@@ -302,7 +302,7 @@ classes:
       - houses_deity_presence
 
   ArchitecturalElement:
-    class_uri: crm:E25_Physical_Feature
+    class_uri: crm:E22_Human-Made_Object
     description: "Carved or constructed component of a architectural strucuture (e.g., Gajur, Torana, Tundal)"
     slots:
       - name
@@ -447,7 +447,7 @@ classes:
 
   Festival:
     is_a: RitualEvent
-    class_uri: heritageGraph:Festival
+    class_uri: crm:E5_Event
     description: "Large-scale community ritual event (Jatra) involving processions, music, and collective participation"
     slots:
       - includes_ritual_event
@@ -528,45 +528,45 @@ classes:
       guthi_type:
         range: GuthiTypeEnum
 
-  SiGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:SiGuthi
-    description: "Funeral trust responsible for death rituals and cremation ceremonies"
+  # SiGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SiGuthi
+  #   description: "Funeral trust responsible for death rituals and cremation ceremonies"
 
-  JatraGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:JatraGuthi
-    description: "Festival trust responsible for organizing and funding annual Jatra events"
+  # JatraGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:JatraGuthi
+  #   description: "Festival trust responsible for organizing and funding annual Jatra events"
 
-  PujaGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:PujaGuthi
-    description: "Worship trust responsible for daily puja rituals. Distinct from JatraGuthi."
+  # PujaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:PujaGuthi
+  #   description: "Worship trust responsible for daily puja rituals. Distinct from JatraGuthi."
 
-  TempleGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:TempleGuthi
-    description: "Trust managing temple maintenance, daily puja, and priest salaries"
+  # TempleGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:TempleGuthi
+  #   description: "Trust managing temple maintenance, daily puja, and priest salaries"
 
-  NashaGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:NashaGuthi
-    description: "Music and dance trust (nāsaḥdyaḥ) preserving ritual performance traditions"
+  # NashaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:NashaGuthi
+  #   description: "Music and dance trust (nāsaḥdyaḥ) preserving ritual performance traditions"
 
-  SanaGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:SanaGuthi
-    description: "Agricultural cooperative managing communal farmland"
+  # SanaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SanaGuthi
+  #   description: "Agricultural cooperative managing communal farmland"
 
-  SanGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:SanGuthi
-    description: "Life-cycle ritual trust managing rites of passage"
+  # SanGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SanGuthi
+  #   description: "Life-cycle ritual trust managing rites of passage"
 
-  RajGuthi:
-    is_a: Guthi
-    class_uri: heritageGraph:RajGuthi
-    description: "Royal Guthi established by Malla or Shah monarchy (pre-1964)"
+  # RajGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:RajGuthi
+  #   description: "Royal Guthi established by Malla or Shah monarchy (pre-1964)"
 
   CasteGroup:
     class_uri: crm:E74_Group
@@ -783,7 +783,7 @@ classes:
 
 
   LivingGoddessTenure:
-    class_uri: heritageGraph:LivingGoddessTenure
+    class_uri: crm:E4_Period
     description: "Time-bounded role where a person embodies a deity as Living Goddess (Kumari),
       residing at a specific god-house and supported by religious institutions.
       This class captures the unique Nepali tradition of living deity embodiment
@@ -799,7 +799,6 @@ classes:
       - residence_structure
       - has_timespan
       - supported_by_institution
-      - has_current_location
       - has_retirement_event 
       - was_documented_by
     
@@ -833,9 +832,7 @@ classes:
         multivalued: true
         description: "Guthi or state body providing economic/ritual support during tenure"
       
-      has_current_location:
-        range: Place
-        description: "Place where tenure occurred (e.g., Kathmandu Durbar Square)"
+
 
   LivingGoddessRetirement:
     is_a: RitualEvent
