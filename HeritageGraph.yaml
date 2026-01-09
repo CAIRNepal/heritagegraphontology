@@ -4,13 +4,10 @@ description: "An event-centric LinkML schema for representing cultural heritage 
 version: 0.1.0-alpha.2
 license: CC-BY-4.0
 
-comments:
-  - "This ontology addresses gaps in existing CIDOC-CRM extensions (CRMba, CRMsoc) by modeling Nepal-specific institutional forms (Guthi), ritual activation of sacred space, and multi-source provenance reconciliation."
-  - "Competency Questions: (1) Which rituals activate which deities at which sites? (2) How do Guthis mediate temple-ritual-community relationships? (3) What is the provenance chain for contested construction dates? (4) How do syncretic deities bridge Hindu-Buddhist practices spatially and temporally?"
 
 imports:
   - linkml:types 
-  # - linkml:skos
+  - "https://w3id.org/linkml/skos"
 default_range: string
 
 enums:
@@ -143,23 +140,35 @@ enums:
         description: "Royal endowment trust"
 
 prefixes:
-  crm: "http://www.cidoc-crm.org/cidoc-crm/"
-  linkml: "https://w3id.org/linkml/"
-  heritageGraph: "https://cair-nepal.org/heritageGraph/"
-  prov: "https://www.w3.org/ns/prov/"
+  
+  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  rdfs: "http://www.w3.org/2000/01/rdf-schema#"
   owl: "http://www.w3.org/2002/07/owl#"
-  dbo: "http://dbpedia.org/ontology/"    
-  dbr: "http://dbpedia.org/resource/"    
-  dbp: "http://dbpedia.org/property/"    
-  crmsci: "http://www.ics.forth.gr/isl/CRMsci/"
-  rico: "https://www.ica.org/standards/RiC/ontology#"
-  chedo: "http://chedo.org/ontology#"
-  crmarchaeo: "http://www.cidoc-crm.org/cidoc-crm/CRMarchaeo/"
-  crmdig: "http://www.cidoc-crm.org/cidoc-crm/CRMdig/"
-  aat: https://www.getty.edu/vow/AATFullDisplay
-  wd: http://www.wikidata.org/entity/
-
-  ## DataCite
+  xsd: "http://www.w3.org/2001/XMLSchema#"
+  skos: "http://www.w3.org/2004/02/skos/core#"
+  dcterms: "http://purl.org/dc/terms/"
+  
+ 
+  geo: "http://www.opengis.net/ont/geosparql#"
+  time: "http://www.w3.org/2006/time#"
+  wgs84: "http://www.w3.org/2003/01/geo/wgs84_pos#"
+  
+  
+  aat: "http://vocab.getty.edu/aat/"
+  tgn: "http://vocab.getty.edu/tgn/"
+  wikidata: "http://www.wikidata.org/entity/"
+  schema: "https://schema.org/"
+  dbo: "http://dbpedia.org/ontology/"
+  foaf: "http://xmlns.com/foaf/0.1/"
+  
+  prov: "http://www.w3.org/ns/prov#"
+  
+ 
+  crm: "http://www.cidoc-crm.org/cidoc-crm/"
+  crmsci: "http://www.cidoc-crm.org/crmsci/"
+  crmdig: "http://www.cidoc-crm.org/crmdig/"
+  crminf: "http://www.cidoc-crm.org/crminf/"
+  
   datacite: http://purl.org/spar/datacite/
 
 default_prefix: heritageGraph 
@@ -168,10 +177,26 @@ classes:
   # ========================================================================
   # CORE TANGIBLE HERITAGE (CIDOC E22 Human-Made Objects)
   # ========================================================================
-  
-  ArchitecturalStructure:
+  HumanMadeObject:
     class_uri: crm:E22_Human-Made_Object
+    description: "Physical objects created by human activity"
+    exact_mappings:
+      - schema:CreativeWork
+    slots:
+      - id
+      - name
+      - has_current_location
+      - was_produced_by
+      - has_condition_assessment
+
+  ArchitecturalStructure:
+    is_a: HumanMadeObject
+    class_uri: crm:E24_Physical_Man-Made_Thing
     description: "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation."
+    
+    exact_mappings:
+      - aat:300006888
+      - schema:Place
     slots:
       - name
       - note
@@ -278,7 +303,7 @@ classes:
     description: "Pond or tank for water storage, ritual bathing, and ecological management"
 
   IconographicObject:
-    class_uri: crm:E22_Human-Made_Object
+    class_uri: crm:E28_Conceptual_Object
     description: "Sacred visual art objects that depict or embody deities through iconographic conventions"
     slots:
       - name
