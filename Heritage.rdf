@@ -1,0 +1,241 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix heritagegraph: <https://cair-nepal.org/heritageGraph/> .
+@prefix prov1: <https://www.w3.org/ns/prov/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a heritageGraph:Container ;
+    heritageGraph:architectural_elements [ a crm:E25_Physical_Feature ;
+            crm:P1_is_identified_by "Golden Torana" ;
+            crm:P2_has_type "Torana (ornamental gateway)" ;
+            crm:P3_has_note "Gilded copper gateway depicting Shiva, Parvati, and attendant deities above main entrance" ;
+            crm:P46i_forms_part_of [ a crm:E22_Human-Made_Object ;
+                    crm:P1_is_identified_by "Pashupatinath Main Temple" ;
+                    crm:P55_has_current_location [ a crm:E53_Place ;
+                            crm:P168_place_is_defined_by "27.7104,85.3484" ;
+                            crm:P1_is_identified_by "Pashupatinath Area" ;
+                            crm:P2_has_type "Sacred Site" ] ] ] ;
+    heritageGraph:architectural_structures [ a crm:E22_Human-Made_Object ;
+            crm:P1_is_identified_by "Pashupatinath Main Temple" ;
+            crm:P2_has_type "Pagoda" ;
+            crm:P3_has_note "Two-tiered pagoda temple with gold-plated roof, housing Chaturmukha (four-faced) Shiva linga. UNESCO World Heritage Site component since 1979." ;
+            crm:P55_has_current_location [ a crm:E53_Place ;
+                    crm:P168_place_is_defined_by "27.7104,85.3484" ;
+                    crm:P1_is_identified_by "Pashupatinath Area" ;
+                    crm:P2_has_type "Sacred Site" ] ],
+        [ a crm:E22_Human-Made_Object ;
+            crm:P1_is_identified_by "Bagmati River Ghats" ;
+            crm:P3_has_note "Series of stone bathing and cremation platforms (ghats) along both banks of Bagmati River, including Arya Ghat for royal cremations" ;
+            crm:P55_has_current_location [ a crm:E53_Place ;
+                    crm:P168_place_is_defined_by "27.7104,85.3484" ;
+                    crm:P1_is_identified_by "Pashupatinath Area" ;
+                    crm:P2_has_type "Sacred Site" ] ] ;
+    heritageGraph:architectural_styles [ a crm:E55_Type ;
+            crm:P1_is_identified_by "Pagoda" ;
+            crm:P3_has_note "Multi-tiered roof style indigenous to Nepal, adopted across East Asia" ],
+        [ a crm:E55_Type ;
+            crm:P1_is_identified_by "Shikhara" ;
+            crm:P3_has_note "North Indian spire-shaped temple architecture" ] ;
+    heritageGraph:calendar_systems [ a heritageGraph:CalendarSystem ;
+            crm:P1_is_identified_by "Bikram Sambat" ;
+            heritageGraph:calendar_system heritageGraph:BikramSambatCalendar ;
+            heritageGraph:epoch_date_gregorian "-0057-01-01" ;
+            heritageGraph:year_offset_from_gregorian 57 ],
+        [ a heritageGraph:CalendarSystem ;
+            crm:P1_is_identified_by "Gregorian Calendar" ;
+            heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+            heritageGraph:epoch_date_gregorian "0001-01-01" ;
+            heritageGraph:year_offset_from_gregorian 0 ] ;
+    heritageGraph:caste_groups [ a crm:E74_Group ;
+            crm:P1_is_identified_by "Rajopadhyaya Bhatta" ;
+            crm:P3_has_note "Brahmin priest caste with hereditary rights to perform Pashupatinath rituals" ;
+            heritageGraph:traditional_role "Temple priest (pujari) for Pashupatinath shrine" ] ;
+    heritageGraph:consecration_events [ a crm:E7_Activity ;
+            crm:P1_is_identified_by "Consecration of Nandi Statue" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1654" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Circa" ] ;
+            heritageGraph:makes_deity_present [ a crm:E28_Conceptual_Object ;
+                    crm:P1_is_identified_by "Nandi" ;
+                    crm:P3_has_note "Sacred bull, vehicle of Shiva" ] ] ;
+    heritageGraph:custody_events [ a crm:E10_Transfer_of_Custody ;
+            crm:P1_is_identified_by "Transfer to Pashupati Area Development Trust" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1987" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ] ;
+    heritageGraph:data_custodians [ a prov1:Agent ;
+            crm:P1_is_identified_by "Pashupati Area Development Trust (PADT)" ;
+            crm:P2_has_type "Government Agency" ;
+            crm:P3_has_note "Nepalese government body managing Pashupatinath temple and surrounding heritage area since 1987" ],
+        [ a prov1:Agent ;
+            crm:P1_is_identified_by "Department of Archaeology, Nepal" ;
+            crm:P2_has_type "Government Agency" ;
+            crm:P3_has_note "National heritage conservation authority" ] ;
+    heritageGraph:data_sources [ a crm:E73_Information_Object ;
+            crm:P1_is_identified_by "Deupatan Inscription 464 CE" ;
+            crm:P2_has_type "Epigraphic Record" ;
+            crm:P3_has_note "Inscriptions of Nepal, Vol. 1, Dhanvajra Bajracharya (1973)",
+                "Stone inscription mentioning Pashupatinath worship during Licchavi period" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "0464" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ;
+            crm:P72_has_language "Sanskrit" ],
+        [ a crm:E73_Information_Object ;
+            crm:P1_is_identified_by "Bhaktapur Vamsavali (Royal Chronicles)" ;
+            crm:P2_has_type "Manuscript" ;
+            crm:P3_has_note "Historical chronicle documenting Malla dynasty construction activities",
+                "Nepal-German Manuscript Preservation Project (NGMPP), Reel E 1195/6" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1750" ;
+                    heritageGraph:date_precision "Circa" ] ;
+            crm:P72_has_language "Sanskrit and Nepali" ],
+        [ a crm:E73_Information_Object ;
+            crm:P1_is_identified_by "UNESCO World Heritage Nomination Dossier" ;
+            crm:P2_has_type "Administrative Record" ;
+            crm:P3_has_note "UNESCO World Heritage Centre, Kathmandu Valley nomination file (1979)" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1979" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ;
+            crm:P72_has_language "English" ;
+            heritageGraph:source_url "https://whc.unesco.org/en/list/121" ] ;
+    heritageGraph:deities [ a crm:E28_Conceptual_Object ;
+            crm:P1_is_identified_by "Pashupatinath" ;
+            crm:P2_has_type [ a crm:E55_Type ;
+                    crm:P1_is_identified_by "Shaivism" ],
+                [ a crm:E55_Type ;
+                    crm:P1_is_identified_by "Tantra" ] ;
+            crm:P3_has_note "Form of Shiva as 'Lord of Animals' (Pashupati), patron deity of Nepal" ],
+        [ a crm:E28_Conceptual_Object ;
+            crm:P1_is_identified_by "Guhyeshwari" ;
+            crm:P2_has_type [ a crm:E55_Type ;
+                    crm:P1_is_identified_by "Shaivism" ],
+                [ a crm:E55_Type ;
+                    crm:P1_is_identified_by "Tantra" ] ;
+            crm:P3_has_note "Tantric goddess, consort of Pashupatinath, Shakti Peetha site" ],
+        [ a crm:E28_Conceptual_Object ;
+            crm:P1_is_identified_by "Nandi" ;
+            crm:P2_has_type [ a crm:E55_Type ;
+                    crm:P1_is_identified_by "Shaivism" ] ;
+            crm:P3_has_note "Sacred bull, vehicle (vahana) of Shiva" ] ;
+    heritageGraph:documentation_activities [ a crm:E13_Attribute_Assignment ;
+            crm:P1_is_identified_by "Heritage Mapping Field Survey 2023" ;
+            crm:P2_has_type "Field Survey" ;
+            crm:P33_used_specific_technique "GPS mapping, photogrammetry, structural assessment" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "2023-08-15" ;
+                    crm:P82b_end_of_the_end "2023-09-30" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Exact" ] ] ;
+    heritageGraph:enshrinement_events [ a crm:E7_Activity ;
+            crm:P12_occurred_in_the_presence_of [ a crm:E28_Conceptual_Object ;
+                    crm:P1_is_identified_by "Pashupatinath" ;
+                    crm:P3_has_note "Form of Shiva as Lord of Animals" ] ;
+            crm:P1_is_identified_by "Enshrinement of Pashupatinath Linga" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "0400" ;
+                    crm:P82b_end_of_the_end "0750" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Century" ] ] ;
+    heritageGraph:festivals [ a heritageGraph:Festival ;
+            crm:P1_is_identified_by "Maha Shivaratri Festival Complex" ;
+            crm:P3_has_note "Week-long festival activities including processions, sadhus gathering, and continuous temple rituals" ] ;
+    heritageGraph:guthis [ a crm:E74_Group ;
+            crm:P1_is_identified_by "Bala Chaturdashi Jatra Guthi" ;
+            crm:P2_has_type "JatraGuthi" ;
+            crm:P3_has_note "Festival trust organizing annual Bala Chaturdashi night vigil and lamp offerings" ],
+        [ a crm:E74_Group ;
+            crm:P1_is_identified_by "Pashupatinath Temple Guthi" ;
+            crm:P2_has_type "TempleGuthi" ;
+            crm:P3_has_note "Temple management trust responsible for daily rituals, priest salaries, and maintenance under Pashupati Area Development Trust (PADT)" ;
+            heritageGraph:has_land_endowment "Historical Guthi lands along Bagmati River, now managed by PADT (government body established 1987)" ] ;
+    heritageGraph:materials [ a crm:E57_Material ;
+            crm:P1_is_identified_by "Milk" ;
+            crm:P3_has_note "Cow's milk used in puja offerings" ],
+        [ a crm:E57_Material ;
+            crm:P1_is_identified_by "Ghee" ;
+            crm:P3_has_note "Clarified butter used in ritual lamps and offerings" ],
+        [ a crm:E57_Material ;
+            crm:P1_is_identified_by "Ganges Water" ;
+            crm:P3_has_note "Sacred water from Ganges River used in abhisheka rituals" ] ;
+    heritageGraph:metadata [ a heritageGraph:Metadata ;
+            heritageGraph:curator "Centre for AI Research Nepal - Heritage Documentation Initiative" ;
+            heritageGraph:dataset_name "Pashupatinath Temple Complex" ;
+            heritageGraph:dataset_version "1.0.0" ;
+            heritageGraph:generated_date "2024-12-27" ;
+            heritageGraph:license "CC-BY-4.0" ;
+            heritageGraph:schema_version "1.0.0" ] ;
+    heritageGraph:persons [ a crm:E21_Person ;
+            crm:P100_was_death_of [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1722" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ;
+            crm:P1_is_identified_by "King Bhupatindra Malla" ;
+            crm:P3_has_note "Malla Dynasty ruler of Bhaktapur (r. 1696-1722), patron of arts and architecture" ;
+            crm:P98_brought_into_life [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1672" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Circa" ] ],
+        [ a crm:E21_Person ;
+            crm:P100_was_death_of [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1674" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ;
+            crm:P1_is_identified_by "King Pratap Malla" ;
+            crm:P3_has_note "Malla Dynasty ruler of Kathmandu (r. 1641-1674), renovated temple complex" ;
+            crm:P98_brought_into_life [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1624" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Circa" ] ] ;
+    heritageGraph:places [ a crm:E53_Place ;
+            crm:P168_place_is_defined_by "27.7172,85.3240" ;
+            crm:P1_is_identified_by "Kathmandu Valley" ;
+            crm:P2_has_type "Cultural Landscape" ],
+        [ a crm:E53_Place ;
+            crm:P168_place_is_defined_by "27.7104,85.3484" ;
+            crm:P1_is_identified_by "Pashupatinath Area" ;
+            crm:P2_has_type "Sacred Site" ] ;
+    heritageGraph:production_events [ a crm:E12_Production ;
+            crm:P1_is_identified_by "Reconstruction of Main Temple" ;
+            crm:P4_has_time-span [ a crm:E52_Time-Span ;
+                    crm:P82a_begin_of_the_begin "1690" ;
+                    crm:P82b_end_of_the_end "1692" ;
+                    heritageGraph:calendar_system heritageGraph:GregorianCalendar ;
+                    heritageGraph:date_precision "Year" ] ] ;
+    heritageGraph:provenance_assertions [ a prov1:Entity ;
+            heritageGraph:confidence_score "0.9"^^xsd:float ;
+            heritageGraph:data_quality_note "Direct epigraphic evidence, though exact date of shrine installation uncertain" ;
+            heritageGraph:reconciliation_status "confirmed" ;
+            prov1:generatedAtTime "1973-01-01T00:00:00Z" ;
+            prov1:value "Pashupatinath worship documented in Licchavi period (400-750 CE) via Deupatan Inscription 464 CE" ],
+        [ a prov1:Entity ;
+            heritageGraph:confidence_score "0.95"^^xsd:float ;
+            heritageGraph:data_quality_note "Corroborated by multiple historical sources including royal chronicles and architectural analysis" ;
+            heritageGraph:reconciliation_status "confirmed" ;
+            prov1:generatedAtTime "2023-11-15T10:30:00Z" ;
+            prov1:value "Main temple structure built by King Bhupatindra Malla in 1690-1692 CE" ] ;
+    heritageGraph:religious_traditions [ a crm:E55_Type ;
+            crm:P1_is_identified_by "Tantra" ;
+            crm:P3_has_note "Esoteric practices blending Hindu and Buddhist elements" ],
+        [ a crm:E55_Type ;
+            crm:P1_is_identified_by "Shaivism" ;
+            crm:P3_has_note "Hindu tradition focused on Shiva as supreme deity" ] ;
+    heritageGraph:ritual_events [ a crm:E7_Activity ;
+            crm:P1_is_identified_by "Bala Chaturdashi" ;
+            crm:P2_has_type heritageGraph:NaimittikaPuja ;
+            crm:P3_has_note "Annual night vigil honoring deceased ancestors. Devotees scatter seven types of grains (Sat Beej) and light oil lamps throughout temple forest." ;
+            heritageGraph:lunar_date_tithi "Krishna Paksha Chaturdashi of Margashirsha" ;
+            heritageGraph:recurrence_pattern "Annual" ],
+        [ a crm:E7_Activity ;
+            crm:P1_is_identified_by "Daily Morning Puja" ;
+            crm:P2_has_type heritageGraph:NityaPuja ;
+            crm:P3_has_note "Daily worship ritual performed at dawn (4:00 AM), including abhisheka (ritual bathing) of the linga with milk, yogurt, honey, ghee, and Ganges water" ;
+            heritageGraph:recurrence_pattern "Daily" ],
+        [ a crm:E7_Activity ;
+            crm:P1_is_identified_by "Maha Shivaratri Celebration" ;
+            crm:P2_has_type heritageGraph:NaimittikaPuja ;
+            crm:P3_has_note "Major annual Shiva festival attracting 700,000+ pilgrims. Devotees perform overnight vigil, offer bilva leaves, and bathe in Bagmati River." ;
+            heritageGraph:lunar_date_tithi "Krishna Paksha Chaturdashi of Phalguna" ;
+            heritageGraph:recurrence_pattern "Annual" ] .

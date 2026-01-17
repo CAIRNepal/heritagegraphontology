@@ -1,10 +1,10 @@
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://purl.org/dc/terms/license> "CC-BY-4.0" .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://purl.org/pav/version> "2.0" .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2000/01/rdf-schema#label> "NepaliCulturalHeritageOntology" .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#definition> "An event-centric LinkML schema for Nepal cultural heritage, fully aligned with CIDOC-CRM and PROV-O, enabling assertion-level provenance tracking and ritual-spatial-temporal reasoning." .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#note> "Competency Questions: (1) Which rituals activate which deities at which sites? (2) How do Guthis mediate temple-ritual-community relationships? (3) What is the provenance chain for contested construction dates? (4) How do syncretic deities bridge Hindu-Buddhist practices spatially and temporally?" .
-<file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#note> "This ontology addresses gaps in existing CIDOC-CRM extensions (CRMba, CRMsoc) by modeling Nepal-specific institutional forms (Guthi), ritual activation of sacred space, and multi-source provenance reconciliation." .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://purl.org/dc/terms/license> "CC-BY-4.0" .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://purl.org/pav/version> "2.0" .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2000/01/rdf-schema#label> "NepaliCulturalHeritageOntology" .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#definition> "An event-centric LinkML schema for Nepal cultural heritage, fully aligned with CIDOC-CRM and PROV-O, enabling assertion-level provenance tracking and ritual-spatial-temporal reasoning." .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#note> "Competency Questions: (1) Which rituals activate which deities at which sites? (2) How do Guthis mediate temple-ritual-community relationships? (3) What is the provenance chain for contested construction dates? (4) How do syncretic deities bridge Hindu-Buddhist practices spatially and temporally?" .
+<file:/input/nepaliCulturalHeritageOntology.owl.ttl> <http://www.w3.org/2004/02/skos/core#note> "This ontology addresses gaps in existing CIDOC-CRM extensions (CRMba, CRMsoc) by modeling Nepal-specific institutional forms (Guthi), ritual activation of sacred space, and multi-source provenance reconciliation." .
 # 
 # 
 # #################################################################
@@ -46,490 +46,490 @@
 <https://cair-nepal.org/heritageGraph/asserts_about_entity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/asserts_about_entity> <http://www.w3.org/2000/01/rdf-schema#label> "asserts_about_entity" .
 <https://cair-nepal.org/heritageGraph/asserts_about_entity> <http://www.w3.org/2004/02/skos/core#definition> "Heritage entity this assertion is about" .
-<https://cair-nepal.org/heritageGraph/asserts_about_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/asserts_about_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/asserts_about_event
 <https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/2000/01/rdf-schema#label> "asserts_about_event" .
 <https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/2004/02/skos/core#definition> "Event this assertion is about" .
-<https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/asserts_about_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/assessed_object
 <https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/2000/01/rdf-schema#label> "assessed_object" .
 <https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/2004/02/skos/core#definition> "Object assessed for condition" .
-<https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/assessed_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/birth_timespan
 <https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TimeSpan> .
 <https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/2000/01/rdf-schema#label> "birth_timespan" .
 <https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/2004/02/skos/core#definition> "Person's birth timespan" .
-<https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/birth_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/carried_out_activity
 <https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/2000/01/rdf-schema#label> "carried_out_activity" .
 <https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/2004/02/skos/core#definition> "Activities performed by this actor" .
-<https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/carried_out_activity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/carried_out_by_actor
 <https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Actor> .
 <https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/2000/01/rdf-schema#label> "carried_out_by_actor" .
 <https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/2004/02/skos/core#definition> "Actor(s) who performed this event" .
-<https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/carried_out_by_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/commissioned_by
 <https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Actor> .
 <https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/2000/01/rdf-schema#label> "commissioned_by" .
 <https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/2004/02/skos/core#definition> "Person or group who commissioned production" .
-<https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/commissioned_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/consecrated_by_event
 <https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Consecration> .
 <https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/2000/01/rdf-schema#label> "consecrated_by_event" .
 <https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/2004/02/skos/core#definition> "Consecration event that activated this murti" .
-<https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/consecrated_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/consecrated_object
 <https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Murti> .
 <https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/2000/01/rdf-schema#label> "consecrated_object" .
 <https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/2004/02/skos/core#definition> "Murti transformed by consecration" .
-<https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/consecrated_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/contains_structure
 <https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/2000/01/rdf-schema#label> "contains_structure" .
 <https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/2004/02/skos/core#definition> "Structures located in this place" .
-<https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/contains_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/death_timespan
 <https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TimeSpan> .
 <https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/2000/01/rdf-schema#label> "death_timespan" .
 <https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/2004/02/skos/core#definition> "Person's death timespan" .
-<https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/death_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/depicts_deity
 <https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Deity> .
 <https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/2000/01/rdf-schema#label> "depicts_deity" .
 <https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/2004/02/skos/core#definition> "Deity depicted iconographically (not cultic presence)" .
-<https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/depicts_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/documented_by_agent
 <https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/2000/01/rdf-schema#label> "documented_by_agent" .
 <https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/2004/02/skos/core#definition> "Person or institution who documented this entity" .
-<https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/documented_by_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/documented_by_event
 <https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/DocumentationActivity> .
 <https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/2000/01/rdf-schema#label> "documented_by_event" .
 <https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/2004/02/skos/core#definition> "Documentation event that recorded this entity or event" .
-<https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/documented_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/documented_entity
 <https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/2000/01/rdf-schema#label> "documented_entity" .
 <https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/2004/02/skos/core#definition> "Heritage entity documented by this activity" .
-<https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/documented_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/documented_event
 <https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/2000/01/rdf-schema#label> "documented_event" .
 <https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/2004/02/skos/core#definition> "Event documented by this activity" .
-<https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/documented_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/enshrined_deity
 <https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Deity> .
 <https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/2000/01/rdf-schema#label> "enshrined_deity" .
 <https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/2004/02/skos/core#definition> "Deity installed through enshrinement" .
-<https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/enshrined_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/enshrined_in_structure
 <https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/NepaleseTemple> .
 <https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/2000/01/rdf-schema#label> "enshrined_in_structure" .
 <https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/2004/02/skos/core#definition> "Temple where deity was enshrined" .
-<https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/enshrined_in_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/enshrines_deity_through_event
 <https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Enshrinement> .
 <https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/2000/01/rdf-schema#label> "enshrines_deity_through_event" .
 <https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/2004/02/skos/core#definition> "Enshrinement event that installed deity in temple" .
-<https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/enshrines_deity_through_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/follows_tradition
 <https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TraditionOrPractice> .
 <https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/2000/01/rdf-schema#label> "follows_tradition" .
 <https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/2004/02/skos/core#definition> "Transmitted ritual protocol followed" .
-<https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/follows_tradition> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/founded_by_event
 <https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Production> .
 <https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/2000/01/rdf-schema#label> "founded_by_event" .
 <https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/2004/02/skos/core#definition> "Event that established the Guthi" .
-<https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/founded_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/generated_assertion
 <https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> .
 <https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/2000/01/rdf-schema#label> "generated_assertion" .
 <https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/2004/02/skos/core#definition> "Assertions generated by documentation activity" .
-<https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/generated_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_architectural_style
 <https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStyle> .
 <https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/2000/01/rdf-schema#label> "has_architectural_style" .
 <https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/2004/02/skos/core#definition> "Architectural style classification" .
-<https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_architectural_style> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_component
 <https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalElement> .
 <https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/2000/01/rdf-schema#label> "has_component" .
 <https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/2004/02/skos/core#definition> "Architectural elements composing structure" .
-<https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_component> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_condition_assessment
 <https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ConditionAssessment> .
 <https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/2000/01/rdf-schema#label> "has_condition_assessment" .
 <https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/2004/02/skos/core#definition> "Condition assessment events for this structure" .
-<https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_condition_assessment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_current_location
 <https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Place> .
 <https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/2000/01/rdf-schema#label> "has_current_location" .
 <https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/2004/02/skos/core#definition> "Current location of object or structure" .
-<https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_current_location> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_custodian
 <https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/DataCustodian> .
 <https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/2000/01/rdf-schema#label> "has_custodian" .
 <https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/2004/02/skos/core#definition> "Current custodian of this record or object" .
-<https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_custodian> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_custody_event
 <https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TransferOfCustody> .
 <https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/2000/01/rdf-schema#label> "has_custody_event" .
 <https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/2004/02/skos/core#definition> "Custody transfer events for this structure" .
-<https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_custody_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_membership
 <https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/2000/01/rdf-schema#label> "has_membership" .
 <https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/2004/02/skos/core#definition> "Members of Guthi organization" .
-<https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_membership> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_provenance_assertion
 <https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> .
 <https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/2000/01/rdf-schema#label> "has_provenance_assertion" .
 <https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/2004/02/skos/core#definition> "Provenance assertions about this entity or event" .
-<https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_provenance_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_timespan
 <https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TimeSpan> .
 <https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/2000/01/rdf-schema#label> "has_timespan" .
 <https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/2004/02/skos/core#definition> "Links event to its temporal extent" .
-<https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/holds_custody_of
 <https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/2000/01/rdf-schema#label> "holds_custody_of" .
 <https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/2004/02/skos/core#definition> "Structures under Guthi custodianship" .
-<https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/holds_custody_of> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/houses_deity_presence
 <https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Deity> .
 <https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/2000/01/rdf-schema#label> "houses_deity_presence" .
 <https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/2004/02/skos/core#definition> "Deity made present through consecration (not mere depiction)" .
-<https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/houses_deity_presence> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/includes_ritual_event
 <https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/2000/01/rdf-schema#label> "includes_ritual_event" .
 <https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/2004/02/skos/core#definition> "Component rituals of festival" .
-<https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/includes_ritual_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/invokes_deity
 <https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Deity> .
 <https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/2000/01/rdf-schema#label> "invokes_deity" .
 <https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/2004/02/skos/core#definition> "Deity invoked or made present through ritual" .
-<https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/invokes_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_depicted_in
 <https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/IconographicObject> .
 <https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/2000/01/rdf-schema#label> "is_depicted_in" .
 <https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/2004/02/skos/core#definition> "Objects depicting this deity" .
-<https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_depicted_in> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_enshrined_through_event
 <https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Enshrinement> .
 <https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/2000/01/rdf-schema#label> "is_enshrined_through_event" .
 <https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/2004/02/skos/core#definition> "Events where this deity was enshrined" .
-<https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_enshrined_through_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_invoked_in_ritual
 <https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/2000/01/rdf-schema#label> "is_invoked_in_ritual" .
 <https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/2004/02/skos/core#definition> "Rituals where this deity is invoked" .
-<https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_invoked_in_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_part_of_festival
 <https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Festival> .
 <https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/2000/01/rdf-schema#label> "is_part_of_festival" .
 <https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/2004/02/skos/core#definition> "Larger festival this ritual is part of" .
-<https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_part_of_festival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_performed_in_event
 <https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/2000/01/rdf-schema#label> "is_performed_in_event" .
 <https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/2004/02/skos/core#definition> "Events where this tradition is performed" .
-<https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_performed_in_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/is_setting_for_event
 <https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/2000/01/rdf-schema#label> "is_setting_for_event" .
 <https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/2004/02/skos/core#definition> "Events that occurred at this place" .
-<https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/is_setting_for_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/makes_deity_present
 <https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Deity> .
 <https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/2000/01/rdf-schema#label> "makes_deity_present" .
 <https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/2004/02/skos/core#definition> "Deity made present through consecration" .
-<https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/makes_deity_present> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/managed_by_guthi
 <https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Guthi> .
 <https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/2000/01/rdf-schema#label> "managed_by_guthi" .
 <https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/2004/02/skos/core#definition> "Guthi organization managing this structure or ritual" .
-<https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/managed_by_guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/manages_structure
 <https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/2000/01/rdf-schema#label> "manages_structure" .
 <https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/2004/02/skos/core#definition> "Structures managed by this Guthi" .
-<https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/manages_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/member_of_group
 <https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Guthi> .
 <https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/2000/01/rdf-schema#label> "member_of_group" .
 <https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/2004/02/skos/core#definition> "Groups this person belongs to" .
-<https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/member_of_group> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/participates_in_ritual
 <https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/2000/01/rdf-schema#label> "participates_in_ritual" .
 <https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/2004/02/skos/core#definition> "Rituals in which this structure participates" .
-<https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/participates_in_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/performed_by_actor
 <https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/2000/01/rdf-schema#label> "performed_by_actor" .
 <https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/2004/02/skos/core#definition> "Individual who performed ritual" .
-<https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/performed_by_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/performed_by_agent
 <https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/2000/01/rdf-schema#label> "performed_by_agent" .
 <https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/2004/02/skos/core#definition> "Agent who performed documentation" .
-<https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/performed_by_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/performed_by_group
 <https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Guthi> .
 <https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/2000/01/rdf-schema#label> "performed_by_group" .
 <https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/2004/02/skos/core#definition> "Group (Guthi, caste) responsible for ritual" .
-<https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/performed_by_group> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/performs_ritual
 <https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/RitualEvent> .
 <https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/2000/01/rdf-schema#label> "performs_ritual" .
 <https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/2004/02/skos/core#definition> "Rituals performed by this Guthi" .
-<https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/performs_ritual> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/produced_object
 <https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/2000/01/rdf-schema#label> "produced_object" .
 <https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/2004/02/skos/core#definition> "Object produced by this production event" .
-<https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/produced_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/publication_timespan
 <https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/TimeSpan> .
 <https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/2000/01/rdf-schema#label> "publication_timespan" .
 <https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/2004/02/skos/core#definition> "When source was published" .
-<https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/publication_timespan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/took_place_at
 <https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Place> .
 <https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/2000/01/rdf-schema#label> "took_place_at" .
 <https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/2004/02/skos/core#definition> "Where event occurred" .
-<https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/took_place_at> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/took_place_at_location
 <https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Place> .
 <https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/2000/01/rdf-schema#label> "took_place_at_location" .
 <https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/2004/02/skos/core#definition> "Geographic location of event" .
-<https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/took_place_at_location> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/took_place_at_structure
 <https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/2000/01/rdf-schema#label> "took_place_at_structure" .
 <https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/2004/02/skos/core#definition> "Ritual occurs at specific temple or monument" .
-<https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/took_place_at_structure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/transferred_from_actor
 <https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Actor> .
 <https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/2000/01/rdf-schema#label> "transferred_from_actor" .
 <https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/2004/02/skos/core#definition> "Previous custodian" .
-<https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/transferred_from_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/transferred_object
 <https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/2000/01/rdf-schema#label> "transferred_object" .
 <https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/2004/02/skos/core#definition> "Object transferred in custody event" .
-<https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/transferred_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/transferred_to_actor
 <https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Actor> .
 <https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/2000/01/rdf-schema#label> "transferred_to_actor" .
 <https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/2004/02/skos/core#definition> "New custodian (person)" .
-<https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/transferred_to_actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/transferred_to_guthi
 <https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Guthi> .
 <https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/2000/01/rdf-schema#label> "transferred_to_guthi" .
 <https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/2004/02/skos/core#definition> "New custodian (Guthi)" .
-<https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/transferred_to_guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/used_technique
 <https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Technique> .
 <https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/2000/01/rdf-schema#label> "used_technique" .
 <https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/2004/02/skos/core#definition> "Craft technique used in production" .
-<https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/used_technique> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/uses_chariot
 <https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> .
 <https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/2000/01/rdf-schema#label> "uses_chariot" .
 <https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/2004/02/skos/core#definition> "Ritual chariot used in festival" .
-<https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/uses_chariot> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/uses_ritual_object
 <https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/IconographicObject> .
 <https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/2000/01/rdf-schema#label> "uses_ritual_object" .
 <https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/2004/02/skos/core#definition> "Sacred object used in ritual" .
-<https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/uses_ritual_object> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verification_status
 <https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Verification> .
 <https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/2000/01/rdf-schema#label> "verification_status" .
 <https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/2004/02/skos/core#definition> "Verification activity for this entity" .
-<https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verification_status> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verified_assertion
 <https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> .
 <https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/2000/01/rdf-schema#label> "verified_assertion" .
 <https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/2004/02/skos/core#definition> "Assertions verified by this activity" .
-<https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verified_assertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verified_by
 <https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/2000/01/rdf-schema#label> "verified_by" .
 <https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/2004/02/skos/core#definition> "Expert who verified this information" .
-<https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verified_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verified_by_expert
 <https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/2000/01/rdf-schema#label> "verified_by_expert" .
 <https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/2004/02/skos/core#definition> "Expert who performed verification" .
-<https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verified_by_expert> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/was_attributed_to_agent
 <https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Person> .
 <https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/2000/01/rdf-schema#label> "was_attributed_to_agent" .
 <https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/2004/02/skos/core#definition> "Person who made this assertion" .
-<https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/was_attributed_to_agent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/was_derived_from_source
 <https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/DataSource> .
 <https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/2000/01/rdf-schema#label> "was_derived_from_source" .
 <https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/2004/02/skos/core#definition> "Source(s) from which this assertion was derived" .
-<https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/was_derived_from_source> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/was_documented_by
 <https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/DocumentationActivity> .
 <https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/2000/01/rdf-schema#label> "was_documented_by" .
 <https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/2004/02/skos/core#definition> "Documentation event that recorded this entity" .
-<https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/was_documented_by> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/was_produced_by_event
 <https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritageGraph/Production> .
 <https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/2000/01/rdf-schema#label> "was_produced_by_event" .
 <https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/2004/02/skos/core#definition> "Event that created this object or structure" .
-<https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/was_produced_by_event> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # 
 # 
@@ -545,273 +545,273 @@
 <https://cair-nepal.org/heritageGraph/Name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/Name> <http://www.w3.org/2000/01/rdf-schema#label> "Name" .
 <https://cair-nepal.org/heritageGraph/Name> <http://www.w3.org/2004/02/skos/core#definition> "Primary name or label" .
-<https://cair-nepal.org/heritageGraph/Name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/activity_type
 <https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/2000/01/rdf-schema#label> "activity_type" .
 <https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of documentation activity" .
-<https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/activity_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/assertion_content
 <https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/2000/01/rdf-schema#label> "assertion_content" .
 <https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/2004/02/skos/core#definition> "The factual claim being asserted" .
-<https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/assertion_content> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/assessed_condition_state
 <https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/2000/01/rdf-schema#label> "assessed_condition_state" .
 <https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/2004/02/skos/core#definition> "Identified condition state (good, damaged, ruined)" .
-<https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/assessed_condition_state> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/assessment_method
 <https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/2000/01/rdf-schema#label> "assessment_method" .
 <https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/2004/02/skos/core#definition> "Method used for condition assessment" .
-<https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/assessment_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/begin_date
 <https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/2000/01/rdf-schema#label> "begin_date" .
 <https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/2004/02/skos/core#definition> "Start date (ISO 8601 or Nepali calendar)" .
-<https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/begin_date> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/calendar_system
 <https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/2000/01/rdf-schema#label> "calendar_system" .
 <https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/2004/02/skos/core#definition> "Calendar used (e.g., Gregorian, Bikram Sambat, Nepal Sambat)" .
-<https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/calendar_system> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/confidence_score
 <https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
 <https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/2000/01/rdf-schema#label> "confidence_score" .
 <https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/2004/02/skos/core#definition> "Reliability score for assertion (0.0-1.0)" .
-<https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/confidence_score> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/custodian_type
 <https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/2000/01/rdf-schema#label> "custodian_type" .
 <https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of custodian (government, academic, community)" .
-<https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/custodian_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/data_quality_note
 <https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/2000/01/rdf-schema#label> "data_quality_note" .
 <https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/2004/02/skos/core#definition> "Notes on data quality, completeness, or uncertainty" .
-<https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/data_quality_note> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/date_earliest
 <https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/2000/01/rdf-schema#label> "date_earliest" .
 <https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/2004/02/skos/core#definition> "Earliest possible date (for uncertain dates)" .
-<https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/date_earliest> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/date_latest
 <https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/2000/01/rdf-schema#label> "date_latest" .
 <https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/2004/02/skos/core#definition> "Latest possible date (for uncertain dates)" .
-<https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/date_latest> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/deity_tradition
 <https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/2000/01/rdf-schema#label> "deity_tradition" .
 <https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/2004/02/skos/core#definition> "Religious tradition of deity (Hindu, Buddhist, Syncretic)" .
-<https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/deity_tradition> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/element_type
 <https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/2000/01/rdf-schema#label> "element_type" .
 <https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of architectural element (Gajur, Torana, Tundal)" .
-<https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/element_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/end_date
 <https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/2000/01/rdf-schema#label> "end_date" .
 <https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/2004/02/skos/core#definition> "End date (ISO 8601 or Nepali calendar)" .
-<https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/end_date> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/english_description
 <https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/2000/01/rdf-schema#label> "english_description" .
 <https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/2004/02/skos/core#definition> "Descriptive text in English" .
-<https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/english_description> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/generated_at_time
 <https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/2000/01/rdf-schema#label> "generated_at_time" .
 <https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/2004/02/skos/core#definition> "When this assertion was recorded (ISO 8601)" .
-<https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/generated_at_time> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/guthi_type
 <https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/2000/01/rdf-schema#label> "guthi_type" .
 <https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of Guthi (Si, Jatra, Temple)" .
-<https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/guthi_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/has_land_endowment
 <https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/2000/01/rdf-schema#label> "has_land_endowment" .
 <https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/2004/02/skos/core#definition> "Description of land holdings supporting Guthi" .
-<https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/has_land_endowment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/lunar_date_tithi
 <https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/2000/01/rdf-schema#label> "lunar_date_tithi" .
 <https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/2004/02/skos/core#definition> "Lunar day (Tithi) for ritual timing" .
-<https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/lunar_date_tithi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/nepali_name
 <https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/2000/01/rdf-schema#label> "nepali_name" .
 <https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/2004/02/skos/core#definition> "Name in Nepali script (Devanagari)" .
-<https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/nepali_name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/newari_name
 <https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/2000/01/rdf-schema#label> "newari_name" .
 <https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/2004/02/skos/core#definition> "Name in Nepal Bhasa (Newari)" .
-<https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/newari_name> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/occupation
 <https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/2000/01/rdf-schema#label> "occupation" .
 <https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/2004/02/skos/core#definition> "Person's occupation or role" .
-<https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/occupation> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/place_coordinates
 <https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/2000/01/rdf-schema#label> "place_coordinates" .
 <https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/2004/02/skos/core#definition> "Geographic coordinates (WGS84: lat,lon)" .
-<https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/place_coordinates> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/place_name_nepali
 <https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/2000/01/rdf-schema#label> "place_name_nepali" .
 <https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/2004/02/skos/core#definition> "Place name in Nepali" .
-<https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/place_name_nepali> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/place_type
 <https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/2000/01/rdf-schema#label> "place_type" .
 <https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of place (city, village, region)" .
-<https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/place_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/reconciliation_status
 <https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/2000/01/rdf-schema#label> "reconciliation_status" .
 <https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/2004/02/skos/core#definition> "Status of multi-source reconciliation (confirmed, conflicting, unverified)" .
-<https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/reconciliation_status> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/recurrence_pattern
 <https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/2000/01/rdf-schema#label> "recurrence_pattern" .
 <https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/2004/02/skos/core#definition> "Frequency of recurring ritual (e.g., annual, monthly)" .
-<https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/recurrence_pattern> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ritual_type
 <https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/2000/01/rdf-schema#label> "ritual_type" .
 <https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/2004/02/skos/core#definition> "Classification of ritual (puja, jatra, consecration)" .
-<https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ritual_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/source_citation
 <https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/2000/01/rdf-schema#label> "source_citation" .
 <https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/2004/02/skos/core#definition> "Formal citation of source" .
-<https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/source_citation> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/source_language
 <https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/2000/01/rdf-schema#label> "source_language" .
 <https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/2004/02/skos/core#definition> "Language of source document" .
-<https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/source_language> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/source_type
 <https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/2000/01/rdf-schema#label> "source_type" .
 <https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of source (manuscript, inscription, survey, oral)" .
-<https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/source_type> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/source_url
 <https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/2000/01/rdf-schema#label> "source_url" .
 <https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/2004/02/skos/core#definition> "URL or digital identifier for source" .
-<https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/source_url> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/syncretic_identity_note
 <https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/2000/01/rdf-schema#label> "syncretic_identity_note" .
 <https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/2004/02/skos/core#definition> "Explanation of syncretic dual identity" .
-<https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/syncretic_identity_note> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/traditional_role
 <https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/2000/01/rdf-schema#label> "traditional_role" .
 <https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/2004/02/skos/core#definition> "Hereditary occupation or ritual duty" .
-<https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/traditional_role> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/used_equipment
 <https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/2000/01/rdf-schema#label> "used_equipment" .
 <https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/2004/02/skos/core#definition> "Equipment used in documentation" .
-<https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/used_equipment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/used_method
 <https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/2000/01/rdf-schema#label> "used_method" .
 <https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/2004/02/skos/core#definition> "Documentation method used" .
-<https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/used_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verification_method
 <https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/2000/01/rdf-schema#label> "verification_method" .
 <https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/2004/02/skos/core#definition> "Method used for verification (cross-check, expert review, field visit)" .
-<https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verification_method> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/verification_notes
 <https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/2000/01/rdf-schema#label> "verification_notes" .
 <https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/2004/02/skos/core#definition> "Notes from verification process" .
-<https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/verification_notes> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # 
 # 
@@ -851,7 +851,7 @@ _:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 <https://cair-nepal.org/heritageGraph/Actor> <http://www.w3.org/2000/01/rdf-schema#label> "Actor" .
 <https://cair-nepal.org/heritageGraph/Actor> <http://www.w3.org/2004/02/skos/core#definition> "General actor (person or group) responsible for events" .
 <https://cair-nepal.org/heritageGraph/Actor> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E39_Actor> .
-<https://cair-nepal.org/heritageGraph/Actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Actor> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ArchitecturalElement
 <https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -894,7 +894,7 @@ _:genid15 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/2000/01/rdf-schema#label> "ArchitecturalElement" .
 <https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#definition> "Carved or constructed component of a temple (e.g., Gajur, Torana, Tundal)" .
 <https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E25_Physical_Feature> .
-<https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ArchitecturalStructure
 <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1013,7 +1013,7 @@ _:genid43 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/2000/01/rdf-schema#label> "ArchitecturalStructure" .
 <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#definition> "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation." .
 <https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> .
-<https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ArchitecturalStyle
 <https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1044,7 +1044,7 @@ _:genid49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/2000/01/rdf-schema#label> "ArchitecturalStyle" .
 <https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#definition> "Typological classification of temple architecture (Pagoda, Shikhara, Dome)" .
 <https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E55_Type> .
-<https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ArchivalRecord
 <https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1052,7 +1052,7 @@ _:genid49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/2000/01/rdf-schema#label> "ArchivalRecord" .
 <https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#definition> "Government or institutional administrative record" .
 <https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/ArchivalRecord> .
-<https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/BuddhistDeity
 <https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1060,7 +1060,7 @@ _:genid49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/2000/01/rdf-schema#label> "BuddhistDeity" .
 <https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/2004/02/skos/core#definition> "Buddha or Bodhisattva in Vajrayana Buddhist tradition" .
 <https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/BuddhistDeity> .
-<https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/BuddhistDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/BuddhistMonument
 <https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1068,7 +1068,7 @@ _:genid49 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/2000/01/rdf-schema#label> "BuddhistMonument" .
 <https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns" .
 <https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/BuddhistMonument> .
-<https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/CasteGroup
 <https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1111,7 +1111,7 @@ _:genid58 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/2000/01/rdf-schema#label> "CasteGroup" .
 <https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#definition> "Hereditary social group (Jati) with specific ritual roles and occupational duties" .
 <https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
-<https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Chaitya
 <https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1119,7 +1119,7 @@ _:genid58 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/2000/01/rdf-schema#label> "Chaitya" .
 <https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine or prayer hall" .
 <https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Chaitya> .
-<https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Chaitya> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ChariotFestival
 <https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1139,7 +1139,7 @@ _:genid61 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/2000/01/rdf-schema#label> "ChariotFestival" .
 <https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#definition> "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)" .
 <https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/ChariotFestival> .
-<https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ConditionAssessment
 <https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1214,7 +1214,7 @@ _:genid78 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/2000/01/rdf-schema#label> "ConditionAssessment" .
 <https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#definition> "Event of evaluating the physical state of a heritage object or structure" .
 <https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment> .
-<https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Consecration
 <https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1289,7 +1289,7 @@ _:genid95 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/2000/01/rdf-schema#label> "Consecration" .
 <https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/2004/02/skos/core#definition> "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)" .
 <https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
-<https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Consecration> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/DataCustodian
 <https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1332,7 +1332,7 @@ _:genid104 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/2000/01/rdf-schema#label> "DataCustodian" .
 <https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/2004/02/skos/core#definition> "Institution or person currently stewarding heritage data" .
 <https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://www.w3.org/ns/prov/Agent> .
-<https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/DataCustodian> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/DataSource
 <https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1411,7 +1411,7 @@ _:genid122 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/2000/01/rdf-schema#label> "DataSource" .
 <https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/2004/02/skos/core#definition> "Original source from which heritage information was derived" .
 <https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://www.w3.org/ns/prov/Entity> .
-<https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/DataSource> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Deity
 <https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1478,7 +1478,7 @@ _:genid137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/2000/01/rdf-schema#label> "Deity" .
 <https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/2004/02/skos/core#definition> "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences." .
 <https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> .
-<https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Deity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Dharmashala
 <https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1486,7 +1486,7 @@ _:genid137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/2000/01/rdf-schema#label> "Dharmashala" .
 <https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#definition> "Pilgrim lodge operated by a Guthi organization" .
 <https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Dharmashala> .
-<https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/DhungeDhara
 <https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1494,7 +1494,7 @@ _:genid137 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/2000/01/rdf-schema#label> "DhungeDhara" .
 <https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#definition> "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply" .
 <https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/DhungeDhara> .
-<https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/DocumentationActivity
 <https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1589,7 +1589,7 @@ _:genid159 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/2000/01/rdf-schema#label> "DocumentationActivity" .
 <https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#definition> "Process of recording, verifying, or digitizing heritage information" .
 <https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://www.w3.org/ns/prov/Activity> .
-<https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/DomeStyleTemple
 <https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1597,7 +1597,7 @@ _:genid159 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/2000/01/rdf-schema#label> "DomeStyleTemple" .
 <https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/2004/02/skos/core#definition> "Dome-shaped temples with Mughal or Neo-classical influence" .
 <https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/DomeStyleTemple> .
-<https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/DomeStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Enshrinement
 <https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1660,7 +1660,7 @@ _:genid173 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/2000/01/rdf-schema#label> "Enshrinement" .
 <https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#definition> "Event of installing a deity's murti or symbol within a temple sanctum" .
 <https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
-<https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Festival
 <https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1676,7 +1676,7 @@ _:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/2000/01/rdf-schema#label> "Festival" .
 <https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/2004/02/skos/core#definition> "Large-scale community ritual event (Jatra) involving processions, music, and collective participation" .
 <https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Festival> .
-<https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Festival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/FieldSurvey
 <https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1684,7 +1684,7 @@ _:genid175 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/2000/01/rdf-schema#label> "FieldSurvey" .
 <https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/2004/02/skos/core#definition> "Direct observation and measurement at heritage site" .
 <https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/FieldSurvey> .
-<https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/FieldSurvey> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Guthi
 <https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1783,7 +1783,7 @@ _:genid198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/2000/01/rdf-schema#label> "Guthi" .
 <https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/2004/02/skos/core#definition> "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership" .
 <https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
-<https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Guthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/HinduDeity
 <https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1791,7 +1791,7 @@ _:genid198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/2000/01/rdf-schema#label> "HinduDeity" .
 <https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/2004/02/skos/core#definition> "Deity in Hindu pantheon (e.g., Shiva, Parvati, Bhairav)" .
 <https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/HinduDeity> .
-<https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/HinduDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/HistoricalDocument
 <https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1799,7 +1799,7 @@ _:genid198 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/2000/01/rdf-schema#label> "HistoricalDocument" .
 <https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/2004/02/skos/core#definition> "Primary or secondary written source (manuscript, inscription, chronicle)" .
 <https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/HistoricalDocument> .
-<https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/HistoricalDocument> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/IconographicObject
 <https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1858,7 +1858,7 @@ _:genid211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/2000/01/rdf-schema#label> "IconographicObject" .
 <https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/2004/02/skos/core#definition> "Sacred visual art objects that depict or embody deities through iconographic conventions" .
 <https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> .
-<https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/IconographicObject> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/JatraGuthi
 <https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1866,7 +1866,7 @@ _:genid211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/2000/01/rdf-schema#label> "JatraGuthi" .
 <https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/2004/02/skos/core#definition> "Festival trust responsible for organizing and funding annual Jatra events" .
 <https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/JatraGuthi> .
-<https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/JatraGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/MaskedDanceFestival
 <https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1874,7 +1874,7 @@ _:genid211 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/2000/01/rdf-schema#label> "MaskedDanceFestival" .
 <https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/2004/02/skos/core#definition> "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)" .
 <https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/MaskedDanceFestival> .
-<https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/MaskedDanceFestival> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Material
 <https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1905,7 +1905,7 @@ _:genid217 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/2000/01/rdf-schema#label> "Material" .
 <https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/2004/02/skos/core#definition> "Physical substance used in construction or crafting" .
 <https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E57_Material> .
-<https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Material> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Murti
 <https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1937,7 +1937,7 @@ _:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/2000/01/rdf-schema#label> "Murti" .
 <https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/2004/02/skos/core#definition> "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)" .
 <https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Murti> .
-<https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Murti> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/NaimittikaPuja
 <https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1945,7 +1945,7 @@ _:genid223 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/2000/01/rdf-schema#label> "NaimittikaPuja" .
 <https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/2004/02/skos/core#definition> "Occasional worship ritual tied to festivals or life events" .
 <https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/NaimittikaPuja> .
-<https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/NaimittikaPuja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/NepaleseTemple
 <https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1973,7 +1973,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/2000/01/rdf-schema#label> "NepaleseTemple" .
 <https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/2004/02/skos/core#definition> "Sacred architectural structure for worship, characterized by style, deity enshrinement events, and ritual activation patterns" .
 <https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/NepaleseTemple> .
-<https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/NepaleseTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/NityaPuja
 <https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1981,7 +1981,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/2000/01/rdf-schema#label> "NityaPuja" .
 <https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/2004/02/skos/core#definition> "Daily worship ritual performed continuously" .
 <https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/NityaPuja> .
-<https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/NityaPuja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/OralHistory
 <https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1989,7 +1989,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/2000/01/rdf-schema#label> "OralHistory" .
 <https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/2004/02/skos/core#definition> "Interview or testimony from community knowledge holders" .
 <https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/OralHistory> .
-<https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/OralHistory> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/PagodaStyleTemple
 <https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -1997,7 +1997,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/2000/01/rdf-schema#label> "PagodaStyleTemple" .
 <https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/2004/02/skos/core#definition> "Multi-tiered roof temple indigenous to Nepal (e.g., Nyatapola, Taleju)" .
 <https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/PagodaStyleTemple> .
-<https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/PagodaStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Pati
 <https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2005,7 +2005,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/2000/01/rdf-schema#label> "Pati" .
 <https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/2004/02/skos/core#definition> "Open-air pavilion for resting travelers" .
 <https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Pati> .
-<https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Pati> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Paubha
 <https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2013,7 +2013,7 @@ _:genid228 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/2000/01/rdf-schema#label> "Paubha" .
 <https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/2004/02/skos/core#definition> "Traditional Newari scroll painting (thangka) with mandala and deity iconography" .
 <https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Paubha> .
-<https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Paubha> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Person
 <https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2092,7 +2092,7 @@ _:genid246 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
 <https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/2004/02/skos/core#definition> "Individual person who performs, commissions, documents, or verifies heritage activities" .
 <https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E21_Person> .
-<https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Person> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Place
 <https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2163,7 +2163,7 @@ _:genid262 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/2000/01/rdf-schema#label> "Place" .
 <https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/2004/02/skos/core#definition> "Defined geographic location where events occur and structures exist" .
 <https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E53_Place> .
-<https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Place> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Pokhari
 <https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2171,7 +2171,7 @@ _:genid262 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/2000/01/rdf-schema#label> "Pokhari" .
 <https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/2004/02/skos/core#definition> "Pond or tank for water storage, ritual bathing, and ecological management" .
 <https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Pokhari> .
-<https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Pokhari> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Production
 <https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2266,7 +2266,7 @@ _:genid284 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/2000/01/rdf-schema#label> "Production" .
 <https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/2004/02/skos/core#definition> "Event of creating an architectural structure, murti, or paubha" .
 <https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E12_Production> .
-<https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Production> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ProvenanceAssertion
 <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2373,7 +2373,7 @@ _:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/2000/01/rdf-schema#label> "ProvenanceAssertion" .
 <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/2004/02/skos/core#definition> "A single factual claim about a heritage entity, with explicit source, author, date, and confidence" .
 <https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://www.w3.org/ns/prov/Entity> .
-<https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ProvenanceAssertion> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Puja
 <https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2381,7 +2381,7 @@ _:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/2000/01/rdf-schema#label> "Puja" .
 <https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/2004/02/skos/core#definition> "Worship ceremony directed toward a deity or sacred object" .
 <https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Puja> .
-<https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Puja> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/RestHouse
 <https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2389,7 +2389,7 @@ _:genid309 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/2000/01/rdf-schema#label> "RestHouse" .
 <https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/2004/02/skos/core#definition> "Community structures for travelers and pilgrims, maintained by Guthi organizations" .
 <https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/RestHouse> .
-<https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/RestHouse> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/RitualEvent
 <https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2572,7 +2572,7 @@ _:genid353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/2000/01/rdf-schema#label> "RitualEvent" .
 <https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#definition> "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups" .
 <https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
-<https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Sattal
 <https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2580,7 +2580,7 @@ _:genid353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/2000/01/rdf-schema#label> "Sattal" .
 <https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/2004/02/skos/core#definition> "Multi-story rest house (3-5 floors) with ritual and social functions" .
 <https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Sattal> .
-<https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Sattal> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/ShikharaStyleTemple
 <https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2588,7 +2588,7 @@ _:genid353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/2000/01/rdf-schema#label> "ShikharaStyleTemple" .
 <https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/2004/02/skos/core#definition> "Spire-shaped temple with North Indian influence (e.g., Krishna Mandir)" .
 <https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> .
-<https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/ShikharaStyleTemple> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/SiGuthi
 <https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2596,7 +2596,7 @@ _:genid353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/2000/01/rdf-schema#label> "SiGuthi" .
 <https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/2004/02/skos/core#definition> "Funeral trust responsible for death rituals and cremation ceremonies" .
 <https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/SiGuthi> .
-<https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/SiGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Stupa
 <https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2604,7 +2604,7 @@ _:genid353 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/2000/01/rdf-schema#label> "Stupa" .
 <https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist dome-shaped reliquary shrine (e.g., Boudhanath, Swayambhunath)" .
 <https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Stupa> .
-<https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Stupa> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/SyncreticDeity
 <https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2624,7 +2624,7 @@ _:genid356 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/2000/01/rdf-schema#label> "SyncreticDeity" .
 <https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/2004/02/skos/core#definition> "Deity worshipped in both Hindu and Buddhist contexts (e.g., Machhindranath/Avalokiteshvara)" .
 <https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/SyncreticDeity> .
-<https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/SyncreticDeity> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Technique
 <https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2655,7 +2655,7 @@ _:genid362 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/2000/01/rdf-schema#label> "Technique" .
 <https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/2004/02/skos/core#definition> "Method or craft process used in production or ritual" .
 <https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure> .
-<https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Technique> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/TempleGuthi
 <https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2663,7 +2663,7 @@ _:genid362 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/2000/01/rdf-schema#label> "TempleGuthi" .
 <https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/2004/02/skos/core#definition> "Trust managing temple maintenance, daily puja, and priest salaries" .
 <https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/TempleGuthi> .
-<https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/TempleGuthi> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/TimeSpan
 <https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2730,7 +2730,7 @@ _:genid377 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/2000/01/rdf-schema#label> "TimeSpan" .
 <https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/2004/02/skos/core#definition> "Temporal extent of an event or period" .
 <https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span> .
-<https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/TimeSpan> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/TraditionOrPractice
 <https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2769,7 +2769,7 @@ _:genid385 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/2000/01/rdf-schema#label> "TraditionOrPractice" .
 <https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/2004/02/skos/core#definition> "Transmitted knowledge, belief system, or ritual protocol (e.g., Tantric initiation sequences, festival choreography)" .
 <https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> .
-<https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/TraditionOrPractice> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/TransferOfCustody
 <https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2860,7 +2860,7 @@ _:genid406 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/2000/01/rdf-schema#label> "TransferOfCustody" .
 <https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/2004/02/skos/core#definition> "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship" .
 <https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> .
-<https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/TransferOfCustody> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/Verification
 <https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2908,7 +2908,7 @@ _:genid416 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/2000/01/rdf-schema#label> "Verification" .
 <https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/2004/02/skos/core#definition> "Process of cross-checking heritage claims against multiple sources" .
 <https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/Verification> .
-<https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/Verification> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # https://cair-nepal.org/heritageGraph/WaterStructure
 <https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -2916,6 +2916,6 @@ _:genid416 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/2000/01/rdf-schema#label> "WaterStructure" .
 <https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/2004/02/skos/core#definition> "Engineered water supply systems with ritual and civic significance" .
 <https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/2004/02/skos/core#exactMatch> <https://cair-nepal.org/heritageGraph/WaterStructure> .
-<https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/home/nabin2004/heritagegraphontology/nepaliCulturalHeritageOntology> .
+<https://cair-nepal.org/heritageGraph/WaterStructure> <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/nepaliCulturalHeritageOntology> .
 # 
 # Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

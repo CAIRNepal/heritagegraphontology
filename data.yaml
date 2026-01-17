@@ -1,0 +1,260 @@
+
+
+places:
+  - name: "Pashupatinath Area"
+    place_coordinates: "27.7104,85.3484"
+    place_type: "Sacred Site"
+
+  - name: "Kathmandu Valley"
+    place_coordinates: "27.7172,85.3240"
+    place_type: "Cultural Landscape"
+
+calendar_systems:
+  - name: "Gregorian Calendar"
+    calendar_system: Gregorian
+    epoch_date_gregorian: "0001-01-01"
+    year_offset_from_gregorian: 0
+
+  - name: "Bikram Sambat"
+    calendar_system: BikramSambat
+    epoch_date_gregorian: "-0057-01-01"
+    year_offset_from_gregorian: 57
+
+religious_traditions:
+  - name: "Shaivism"
+    english_description: "Hindu tradition focused on Shiva as supreme deity"
+
+  - name: "Tantra"
+    english_description: "Esoteric practices blending Hindu and Buddhist elements"
+
+deities:
+  - name: "Pashupatinath"
+    english_description: "Form of Shiva as 'Lord of Animals' (Pashupati), patron deity of Nepal"
+    has_religious_tradition:
+      - name: "Shaivism"
+      - name: "Tantra"
+
+  - name: "Nandi"
+    english_description: "Sacred bull, vehicle (vahana) of Shiva"
+    has_religious_tradition:
+      - name: "Shaivism"
+
+  - name: "Guhyeshwari"
+    english_description: "Tantric goddess, consort of Pashupatinath, Shakti Peetha site"
+    has_religious_tradition:
+      - name: "Shaivism"
+      - name: "Tantra"
+
+architectural_styles:
+  - name: "Pagoda"
+    english_description: "Multi-tiered roof style indigenous to Nepal, adopted across East Asia"
+
+  - name: "Shikhara"
+    english_description: "North Indian spire-shaped temple architecture"
+
+persons:
+  - name: "King Bhupatindra Malla"
+    english_description: "Malla Dynasty ruler of Bhaktapur (r. 1696-1722), patron of arts and architecture"
+    birth_timespan:
+      begin_date: "1672"
+      calendar_system: Gregorian
+      date_precision: Circa
+    death_timespan:
+      begin_date: "1722"
+      calendar_system: Gregorian
+      date_precision: Year
+
+  - name: "King Pratap Malla"
+    english_description: "Malla Dynasty ruler of Kathmandu (r. 1641-1674), renovated temple complex"
+    birth_timespan:
+      begin_date: "1624"
+      calendar_system: Gregorian
+      date_precision: Circa
+    death_timespan:
+      begin_date: "1674"
+      calendar_system: Gregorian
+      date_precision: Year
+
+caste_groups:
+  - name: "Rajopadhyaya Bhatta"
+    english_description: "Brahmin priest caste with hereditary rights to perform Pashupatinath rituals"
+    traditional_role: "Temple priest (pujari) for Pashupatinath shrine"
+
+materials:
+  - name: "Ganges Water"
+    english_description: "Sacred water from Ganges River used in abhisheka rituals"
+
+  - name: "Milk"
+    english_description: "Cow's milk used in puja offerings"
+
+  - name: "Ghee"
+    english_description: "Clarified butter used in ritual lamps and offerings"
+
+guthis:
+  - name: "Pashupatinath Temple Guthi"
+    guthi_type: TempleGuthi
+    english_description: "Temple management trust responsible for daily rituals, priest salaries, and maintenance under Pashupati Area Development Trust (PADT)"
+    has_land_endowment: "Historical Guthi lands along Bagmati River, now managed by PADT (government body established 1987)"
+
+  - name: "Bala Chaturdashi Jatra Guthi"
+    guthi_type: JatraGuthi
+    english_description: "Festival trust organizing annual Bala Chaturdashi night vigil and lamp offerings"
+
+architectural_structures:
+  - name: "Pashupatinath Main Temple"
+    english_description: "Two-tiered pagoda temple with gold-plated roof, housing Chaturmukha (four-faced) Shiva linga. UNESCO World Heritage Site component since 1979."
+    has_current_location:
+      name: "Pashupatinath Area"
+      place_coordinates: "27.7104,85.3484"
+      place_type: "Sacred Site"
+    has_architectural_style: "Pagoda" 
+
+  - name: "Bagmati River Ghats"
+    english_description: "Series of stone bathing and cremation platforms (ghats) along both banks of Bagmati River, including Arya Ghat for royal cremations"
+    has_current_location:
+      name: "Pashupatinath Area"
+      place_coordinates: "27.7104,85.3484"
+      place_type: "Sacred Site"
+
+architectural_elements:
+  - name: "Golden Torana"
+    element_type: "Torana (ornamental gateway)"
+    english_description: "Gilded copper gateway depicting Shiva, Parvati, and attendant deities above main entrance"
+    is_component_of:
+      name: "Pashupatinath Main Temple"
+      has_current_location:
+        name: "Pashupatinath Area"
+        place_coordinates: "27.7104,85.3484"
+        place_type: "Sacred Site"
+
+production_events:
+  - name: "Reconstruction of Main Temple"
+    
+    has_timespan:
+      begin_date: "1690"
+      end_date: "1692"
+      calendar_system: Gregorian
+      date_precision: Year
+
+enshrinement_events:
+  - name: "Enshrinement of Pashupatinath Linga"
+    
+    enshrined_deity:
+      name: "Pashupatinath"
+      english_description: "Form of Shiva as Lord of Animals"
+    has_timespan:
+      date_earliest: "0400"
+      date_latest: "0750"
+      calendar_system: Gregorian
+      date_precision: Century
+
+consecration_events:
+  - name: "Consecration of Nandi Statue"
+    
+    makes_deity_present:
+      name: "Nandi"
+      english_description: "Sacred bull, vehicle of Shiva"
+    has_timespan:
+      begin_date: "1654"
+      calendar_system: Gregorian
+      date_precision: Circa
+
+ritual_events:
+  - name: "Daily Morning Puja"
+    ritual_type: NityaPuja
+    english_description: "Daily worship ritual performed at dawn (4:00 AM), including abhisheka (ritual bathing) of the linga with milk, yogurt, honey, ghee, and Ganges water"
+    recurrence_pattern: "Daily"
+
+  - name: "Maha Shivaratri Celebration"
+    ritual_type: NaimittikaPuja
+    english_description: "Major annual Shiva festival attracting 700,000+ pilgrims. Devotees perform overnight vigil, offer bilva leaves, and bathe in Bagmati River."
+    lunar_date_tithi: "Krishna Paksha Chaturdashi of Phalguna"
+    recurrence_pattern: "Annual"
+
+  - name: "Bala Chaturdashi"
+    ritual_type: NaimittikaPuja
+    english_description: "Annual night vigil honoring deceased ancestors. Devotees scatter seven types of grains (Sat Beej) and light oil lamps throughout temple forest."
+    lunar_date_tithi: "Krishna Paksha Chaturdashi of Margashirsha"
+    recurrence_pattern: "Annual"
+
+custody_events:
+  - name: "Transfer to Pashupati Area Development Trust"
+    
+    has_timespan:
+      begin_date: "1987"
+      calendar_system: Gregorian
+      date_precision: Year
+
+data_sources:
+  - name: "Bhaktapur Vamsavali (Royal Chronicles)"
+    source_type: "Manuscript"
+    source_citation: "Nepal-German Manuscript Preservation Project (NGMPP), Reel E 1195/6"
+    source_language: "Sanskrit and Nepali"
+    english_description: "Historical chronicle documenting Malla dynasty construction activities"
+    publication_timespan:
+      begin_date: "1750"
+      date_precision: Circa
+
+  - name: "Deupatan Inscription 464 CE"
+    source_type: "Epigraphic Record"
+    source_citation: "Inscriptions of Nepal, Vol. 1, Dhanvajra Bajracharya (1973)"
+    source_language: "Sanskrit"
+    english_description: "Stone inscription mentioning Pashupatinath worship during Licchavi period"
+    publication_timespan:
+      begin_date: "0464"
+      calendar_system: Gregorian
+      date_precision: Year
+
+  - name: "UNESCO World Heritage Nomination Dossier"
+    source_type: "Administrative Record"
+    source_citation: "UNESCO World Heritage Centre, Kathmandu Valley nomination file (1979)"
+    source_url: "https://whc.unesco.org/en/list/121"
+    source_language: "English"
+    publication_timespan:
+      begin_date: "1979"
+      calendar_system: Gregorian
+      date_precision: Year
+
+data_custodians:
+  - name: "Pashupati Area Development Trust (PADT)"
+    custodian_type: "Government Agency"
+    english_description: "Nepalese government body managing Pashupatinath temple and surrounding heritage area since 1987"
+
+  - name: "Department of Archaeology, Nepal"
+    custodian_type: "Government Agency"
+    english_description: "National heritage conservation authority"
+
+provenance_assertions:
+  - assertion_content: "Main temple structure built by King Bhupatindra Malla in 1690-1692 CE"
+    generated_at_time: "2023-11-15T10:30:00Z"
+    confidence_score: 0.95
+    reconciliation_status: "confirmed"
+    data_quality_note: "Corroborated by multiple historical sources including royal chronicles and architectural analysis"
+
+  - assertion_content: "Pashupatinath worship documented in Licchavi period (400-750 CE) via Deupatan Inscription 464 CE"
+    generated_at_time: "1973-01-01T00:00:00Z"
+    confidence_score: 0.90
+    reconciliation_status: "confirmed"
+    data_quality_note: "Direct epigraphic evidence, though exact date of shrine installation uncertain"
+
+documentation_activities:
+  - name: "Heritage Mapping Field Survey 2023"
+    activity_type: "Field Survey"
+    used_method: "GPS mapping, photogrammetry, structural assessment"
+    has_timespan:
+      begin_date: "2023-08-15"
+      end_date: "2023-09-30"
+      calendar_system: Gregorian
+      date_precision: Exact
+
+festivals:
+  - name: "Maha Shivaratri Festival Complex"
+    english_description: "Week-long festival activities including processions, sadhus gathering, and continuous temple rituals"
+
+metadata:
+  dataset_name: "Pashupatinath Temple Complex"
+  dataset_version: "1.0.0"
+  schema_version: "1.0.0"
+  generated_date: "2024-12-27"
+  license: "CC-BY-4.0"
+  curator: "Centre for AI Research Nepal - Heritage Documentation Initiative"

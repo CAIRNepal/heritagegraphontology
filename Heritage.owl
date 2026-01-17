@@ -1,0 +1,2899 @@
+@prefix aat: <https://www.getty.edu/vow/AATFullDisplay> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmsci: <http://www.ics.forth.gr/isl/CRMsci/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix heritageGraph: <https://cair-nepal.org/heritageGraph/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix prov1: <https://www.w3.org/ns/prov/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<CulturalHeritageOntology.owl.ttl> a owl:Ontology ;
+    rdfs:label "CulturalHeritageOntology" ;
+    dcterms:license "CC-BY-4.0" ;
+    pav:version "1.0.0" ;
+    skos:definition "An event-centric LinkML schema for representing cultural heritage information that fully aligns with CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning." ;
+    skos:note "Competency Questions: (1) Which rituals activate which deities at which sites? (2) How do Guthis mediate temple-ritual-community relationships? (3) What is the provenance chain for contested construction dates? (4) How do syncretic deities bridge Hindu-Buddhist practices spatially and temporally?",
+        "This ontology addresses gaps in existing CIDOC-CRM extensions (CRMba, CRMsoc) by modeling Nepal-specific institutional forms (Guthi), ritual activation of sacred space, and multi-source provenance reconciliation." .
+
+heritageGraph:Container a owl:Class ;
+    rdfs:label "Container" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:guthis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:deities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:architectural_structures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:religious_traditions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documentation_activities ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:places ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
+            owl:onProperty heritageGraph:architectural_elements ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:enshrinement_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:places ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:materials ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrinement_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Metadata ;
+            owl:onProperty heritageGraph:metadata ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Material ;
+            owl:onProperty heritageGraph:materials ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_custodians ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStyle ;
+            owl:onProperty heritageGraph:architectural_styles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:guthis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ProvenanceAssertion ;
+            owl:onProperty heritageGraph:provenance_assertions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:ritual_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Festival ;
+            owl:onProperty heritageGraph:festivals ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:CalendarSystem ;
+            owl:onProperty heritageGraph:calendar_systems ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:production_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:architectural_elements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:provenance_assertions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TransferOfCustody ;
+            owl:onProperty heritageGraph:custody_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:consecration_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:deities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Consecration ;
+            owl:onProperty heritageGraph:consecration_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:architectural_styles ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:production_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:caste_groups ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:architectural_structures ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:persons ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:documentation_activities ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:custody_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ReligiousTradition ;
+            owl:onProperty heritageGraph:religious_traditions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:persons ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:data_sources ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:CasteGroup ;
+            owl:onProperty heritageGraph:caste_groups ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:calendar_systems ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataCustodian ;
+            owl:onProperty heritageGraph:data_custodians ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_sources ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:festivals ] ;
+    skos:definition "Root container for cultural heritage data instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:FieldSurveyActivity a owl:Class ;
+    rdfs:label "FieldSurveyActivity" ;
+    rdfs:subClassOf heritageGraph:DocumentationActivity ;
+    skos:definition "The activity of measuring, photographing, or assessing a site in person." ;
+    skos:exactMatch crmsci:S4_Observation ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:FieldSurveyDataset a owl:Class ;
+    rdfs:label "FieldSurveyDataset" ;
+    rdfs:subClassOf heritageGraph:DataSource ;
+    skos:definition "The structured data or report resulting from a field survey." ;
+    skos:exactMatch crm:E31_Document ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:OralHistoryInterview a owl:Class ;
+    rdfs:label "OralHistoryInterview" ;
+    rdfs:subClassOf heritageGraph:DocumentationActivity ;
+    skos:definition "The interaction event between a researcher and a knowledge holder." ;
+    skos:exactMatch crm:E65_Creation ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:OralHistoryRecording a owl:Class ;
+    rdfs:label "OralHistoryRecording" ;
+    rdfs:subClassOf heritageGraph:DataSource ;
+    skos:definition "The recording or transcript of an oral history interview." ;
+    skos:exactMatch crm:E33_Linguistic_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ArchitecturalStyle a owl:Class ;
+    rdfs:label "ArchitecturalStyle" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Typological classification of temple architecture (Pagoda, Shikhara, Dome)" ;
+    skos:exactMatch crm:E55_Type ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ArchivalRecord a owl:Class ;
+    rdfs:label "ArchivalRecord" ;
+    rdfs:subClassOf heritageGraph:DataSource ;
+    skos:broadMatch crm:E31_Document ;
+    skos:definition "Government or institutional administrative record" ;
+    skos:exactMatch heritageGraph:ArchivalRecord,
+        rico:Record ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:CasteGroup a owl:Class ;
+    rdfs:label "CasteGroup" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:traditional_role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:traditional_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:traditional_role ] ;
+    skos:definition "Hereditary social group (Jati) with specific ritual roles and occupational duties" ;
+    skos:exactMatch crm:E74_Group ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Chaitya a owl:Class ;
+    rdfs:label "Chaitya" ;
+    rdfs:subClassOf heritageGraph:BuddhistMonument ;
+    skos:definition "Buddhist votive shrine or prayer hall" ;
+    skos:exactMatch heritageGraph:Chaitya ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ChariotFestival a owl:Class ;
+    rdfs:label "ChariotFestival" ;
+    rdfs:subClassOf heritageGraph:Festival ;
+    skos:definition "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)" ;
+    skos:exactMatch heritageGraph:ChariotFestival ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:DataCustodian a owl:Class ;
+    rdfs:label "DataCustodian" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:custodian_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:custodian_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:custodian_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ] ;
+    skos:definition "Institution or person currently stewarding heritage data" ;
+    skos:exactMatch prov1:Agent ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Dharmashala a owl:Class ;
+    rdfs:label "Dharmashala" ;
+    rdfs:subClassOf heritageGraph:RestHouse ;
+    skos:definition "Pilgrim lodge operated by a Guthi organization" ;
+    skos:exactMatch heritageGraph:Dharmashala ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:DhungeDhara a owl:Class ;
+    rdfs:label "DhungeDhara" ;
+    rdfs:subClassOf heritageGraph:WaterStructure ;
+    skos:definition "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply" ;
+    skos:exactMatch heritageGraph:DhungeDhara ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:JatraGuthi a owl:Class ;
+    rdfs:label "JatraGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Festival trust responsible for organizing and funding annual Jatra events" ;
+    skos:exactMatch heritageGraph:JatraGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:MaskedDance a owl:Class ;
+    rdfs:label "MaskedDance" ;
+    rdfs:subClassOf heritageGraph:Festival ;
+    skos:definition "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)" ;
+    skos:exactMatch heritageGraph:MaskedDance ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Metadata a owl:Class ;
+    rdfs:label "Metadata" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:license ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:schema_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:dataset_version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:curator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:schema_version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:schema_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:dataset_name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:license ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:dataset_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:generated_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:dataset_version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:generated_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:dataset_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:curator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:curator ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:dataset_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:license ] ;
+    skos:definition "Dataset metadata information" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:NashaGuthi a owl:Class ;
+    rdfs:label "NashaGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Music and dance trust (nāsaḥdyaḥ) preserving ritual performance traditions" ;
+    skos:exactMatch heritageGraph:NashaGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Pati a owl:Class ;
+    rdfs:label "Pati" ;
+    rdfs:subClassOf heritageGraph:RestHouse ;
+    skos:definition "Open-air pavilion for resting travelers" ;
+    skos:exactMatch heritageGraph:Pati ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Paubha a owl:Class ;
+    rdfs:label "Paubha" ;
+    rdfs:subClassOf heritageGraph:IconographicObject ;
+    skos:definition "Traditional Newari scroll painting (thangka) with mandala and deity iconography" ;
+    skos:exactMatch heritageGraph:Paubha ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Pokhari a owl:Class ;
+    rdfs:label "Pokhari" ;
+    rdfs:subClassOf heritageGraph:WaterStructure ;
+    skos:definition "Pond or tank for water storage, ritual bathing, and ecological management" ;
+    skos:exactMatch heritageGraph:Pokhari ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:PujaGuthi a owl:Class ;
+    rdfs:label "PujaGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Worship trust responsible for daily puja rituals. Distinct from JatraGuthi." ;
+    skos:exactMatch heritageGraph:PujaGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:RajGuthi a owl:Class ;
+    rdfs:label "RajGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Royal Guthi established by Malla or Shah monarchy (pre-1964)" ;
+    skos:exactMatch heritageGraph:RajGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:SanGuthi a owl:Class ;
+    rdfs:label "SanGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Life-cycle ritual trust managing rites of passage" ;
+    skos:exactMatch heritageGraph:SanGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:SanaGuthi a owl:Class ;
+    rdfs:label "SanaGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Agricultural cooperative managing communal farmland" ;
+    skos:exactMatch heritageGraph:SanaGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Sattal a owl:Class ;
+    rdfs:label "Sattal" ;
+    rdfs:subClassOf heritageGraph:RestHouse ;
+    skos:definition "Multi-story rest house (3-5 floors) with ritual and social functions" ;
+    skos:exactMatch heritageGraph:Sattal ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:SiGuthi a owl:Class ;
+    rdfs:label "SiGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Funeral trust responsible for death rituals and cremation ceremonies" ;
+    skos:exactMatch heritageGraph:SiGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Stupa a owl:Class ;
+    rdfs:label "Stupa" ;
+    rdfs:subClassOf heritageGraph:BuddhistMonument ;
+    skos:definition "Buddhist dome-shaped reliquary shrine (e.g., Boudhanath, Swayambhunath)" ;
+    skos:exactMatch heritageGraph:Stupa ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:TempleGuthi a owl:Class ;
+    rdfs:label "TempleGuthi" ;
+    rdfs:subClassOf heritageGraph:Guthi ;
+    skos:definition "Trust managing temple maintenance, daily puja, and priest salaries" ;
+    skos:exactMatch heritageGraph:TempleGuthi ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Verification a owl:Class ;
+    rdfs:label "Verification" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:verification_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:verification_notes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ProvenanceAssertion ;
+            owl:onProperty heritageGraph:verified_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:verified_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:verified_by_expert ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:verification_method ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:verified_by_expert ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:verification_method ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:verification_notes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:verification_notes ],
+        heritageGraph:DocumentationActivity ;
+    skos:definition "Process of cross-checking heritage claims against multiple sources" ;
+    skos:exactMatch heritageGraph:Verification ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Abhisheka a owl:Class ;
+    rdfs:label "Abhisheka" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Ritual bathing/anointing of deity" .
+
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Chaitya> a owl:Class ;
+    rdfs:label "Chaitya" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "Buddhist votive shrine style" .
+
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Dome> a owl:Class ;
+    rdfs:label "Dome" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "Dome-based style (Mughal/Neo-classical influence)" .
+
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Pagoda> a owl:Class ;
+    rdfs:label "Pagoda" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "Multi-tiered roof style indigenous to Nepal" .
+
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Shikhara> a owl:Class ;
+    rdfs:label "Shikhara" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "North Indian spire-shaped style" .
+
+<https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Stupa> a owl:Class ;
+    rdfs:label "Stupa" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "Buddhist dome-shaped reliquary" .
+
+heritageGraph:Bhajan a owl:Class ;
+    rdfs:label "Bhajan" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Devotional singing ritual" .
+
+heritageGraph:BikramSambatCalendar a owl:Class ;
+    rdfs:label "BikramSambat" ;
+    rdfs:subClassOf heritageGraph:CalendarSystemEnum ;
+    skos:definition "Official Nepali calendar (BS), epoch 57 BCE" .
+
+heritageGraph:CalendarSystem a owl:Class ;
+    rdfs:label "CalendarSystem" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:CalendarSystemEnum ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty heritageGraph:year_offset_from_gregorian ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:year_offset_from_gregorian ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:year_offset_from_gregorian ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:calendar_system ] ;
+    skos:definition "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning" ;
+    skos:exactMatch heritageGraph:CalendarSystem ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ChariotProcession a owl:Class ;
+    rdfs:label "ChariotProcession" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Ritual chariot pulling" .
+
+heritageGraph:ConditionAssessment a owl:Class ;
+    rdfs:label "ConditionAssessment" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:assessed_object ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:assessed_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:assessed_condition_state ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:assessed_condition_state ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:assessment_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assessed_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:assessment_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assessment_method ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_by_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assessed_condition_state ] ;
+    skos:definition "Event of evaluating the physical state of a heritage object or structure" ;
+    skos:exactMatch crm:E14_Condition_Assessment ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+<https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Century> a owl:Class ;
+    rdfs:label "Century" ;
+    rdfs:subClassOf heritageGraph:DatePrecisionEnum ;
+    skos:definition "Within century range" .
+
+<https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Circa> a owl:Class ;
+    rdfs:label "Circa" ;
+    rdfs:subClassOf heritageGraph:DatePrecisionEnum ;
+    skos:definition "Approximate date" .
+
+<https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Decade> a owl:Class ;
+    rdfs:label "Decade" ;
+    rdfs:subClassOf heritageGraph:DatePrecisionEnum ;
+    skos:definition "Within 10-year range" .
+
+<https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Exact> a owl:Class ;
+    rdfs:label "Exact" ;
+    rdfs:subClassOf heritageGraph:DatePrecisionEnum ;
+    skos:definition "Precise date known" .
+
+<https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Year> a owl:Class ;
+    rdfs:label "Year" ;
+    rdfs:subClassOf heritageGraph:DatePrecisionEnum ;
+    skos:definition "Year-level precision only" .
+
+heritageGraph:GregorianCalendar a owl:Class ;
+    rdfs:label "Gregorian" ;
+    rdfs:subClassOf heritageGraph:CalendarSystemEnum ;
+    skos:definition "ISO 8601 Gregorian calendar" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#JatraGuthi> a owl:Class ;
+    rdfs:label "JatraGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Festival organization trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#NashaGuthi> a owl:Class ;
+    rdfs:label "NashaGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Music and dance trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#PujaGuthi> a owl:Class ;
+    rdfs:label "PujaGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Daily worship trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#RajGuthi> a owl:Class ;
+    rdfs:label "RajGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Royal endowment trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanGuthi> a owl:Class ;
+    rdfs:label "SanGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Life-cycle ritual trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanaGuthi> a owl:Class ;
+    rdfs:label "SanaGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Agricultural cooperative trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SiGuthi> a owl:Class ;
+    rdfs:label "SiGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Funeral trust" .
+
+<https://cair-nepal.org/heritageGraph/GuthiTypeEnum#TempleGuthi> a owl:Class ;
+    rdfs:label "TempleGuthi" ;
+    rdfs:subClassOf heritageGraph:GuthiTypeEnum ;
+    skos:definition "Temple maintenance trust" .
+
+heritageGraph:Homa a owl:Class ;
+    rdfs:label "Homa" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Fire offering ritual" .
+
+heritageGraph:Jatra a owl:Class ;
+    rdfs:label "Jatra" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Festival procession ritual" .
+
+heritageGraph:KamyaPuja a owl:Class ;
+    rdfs:label "KamyaPuja" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Desire-based optional worship" .
+
+heritageGraph:LunarCalendar a owl:Class ;
+    rdfs:label "LunarTithi" ;
+    rdfs:subClassOf heritageGraph:CalendarSystemEnum ;
+    skos:definition "Hindu lunar calendar by tithi (lunar day)" .
+
+heritageGraph:MaskedPerformance a owl:Class ;
+    rdfs:label "MaskedPerformance" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Ritual masked dance" .
+
+heritageGraph:NepalSambatCalendar a owl:Class ;
+    rdfs:label "NepalSambat" ;
+    rdfs:subClassOf heritageGraph:CalendarSystemEnum ;
+    skos:definition "Newar cultural calendar (NS), epoch 879 CE" .
+
+heritageGraph:PhysicalHeritageThing a owl:Class ;
+    rdfs:label "PhysicalHeritageThing" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+<https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Appropriation> a owl:Class ;
+    rdfs:label "Appropriation" ;
+    rdfs:subClassOf heritageGraph:SyncreticTypeEnum ;
+    skos:definition "Deity borrowed from one tradition into another" .
+
+<https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Equivalence> a owl:Class ;
+    rdfs:label "Equivalence" ;
+    rdfs:subClassOf heritageGraph:SyncreticTypeEnum ;
+    skos:definition "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)" .
+
+<https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Fusion> a owl:Class ;
+    rdfs:label "Fusion" ;
+    rdfs:subClassOf heritageGraph:SyncreticTypeEnum ;
+    skos:definition "Intrinsically syncretic deity merging multiple traditions" .
+
+<https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Historical> a owl:Class ;
+    rdfs:label "Historical" ;
+    rdfs:subClassOf heritageGraph:SyncreticTypeEnum ;
+    skos:definition "Gradual syncretism over time" .
+
+heritageGraph:Technique a owl:Class ;
+    rdfs:label "Technique" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Method or craft process used in production or ritual" ;
+    skos:exactMatch crm:E29_Design_or_Procedure ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:TraditionOrPractice a owl:Class ;
+    rdfs:label "TraditionOrPractice" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ] ;
+    skos:definition "Transmitted knowledge, belief system, or ritual protocol (e.g., Tantric initiation sequences, festival choreography)" ;
+    skos:exactMatch crm:E28_Conceptual_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Vrata a owl:Class ;
+    rdfs:label "Vrata" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Vow observance ritual" .
+
+heritageGraph:Yagna a owl:Class ;
+    rdfs:label "Yagna" ;
+    rdfs:subClassOf heritageGraph:RitualTypeEnum ;
+    skos:definition "Vedic sacrifice ritual" .
+
+heritageGraph:architectural_elements a owl:ObjectProperty ;
+    rdfs:label "architectural_elements" ;
+    skos:definition "Collection of ArchitecturalElement instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:architectural_structures a owl:ObjectProperty ;
+    rdfs:label "architectural_structures" ;
+    skos:definition "Collection of ArchitecturalStructure instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:architectural_styles a owl:ObjectProperty ;
+    rdfs:label "architectural_styles" ;
+    skos:definition "Collection of ArchitecturalStyle instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:calendar_systems a owl:ObjectProperty ;
+    rdfs:label "calendar_systems" ;
+    skos:definition "Collection of CalendarSystem instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:carried_out_activity a owl:ObjectProperty ;
+    rdfs:label "carried_out_activity" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Activities performed by this actor" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:caste_groups a owl:ObjectProperty ;
+    rdfs:label "caste_groups" ;
+    skos:definition "Collection of CasteGroup instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:commissioned_by a owl:ObjectProperty ;
+    rdfs:label "commissioned_by" ;
+    rdfs:range heritageGraph:Actor ;
+    skos:definition "Person or group who commissioned production" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:consecration_events a owl:ObjectProperty ;
+    rdfs:label "consecration_events" ;
+    skos:definition "Collection of Consecration event instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:contains_structure a owl:ObjectProperty ;
+    rdfs:label "contains_structure" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Structures located in this place" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:custody_events a owl:ObjectProperty ;
+    rdfs:label "custody_events" ;
+    skos:definition "Collection of TransferOfCustody event instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:data_custodians a owl:ObjectProperty ;
+    rdfs:label "data_custodians" ;
+    skos:definition "Collection of DataCustodian instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:data_sources a owl:ObjectProperty ;
+    rdfs:label "data_sources" ;
+    skos:definition "Collection of DataSource instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:deities a owl:ObjectProperty ;
+    rdfs:label "deities" ;
+    skos:definition "Collection of Deity instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:depicts_deity a owl:ObjectProperty ;
+    rdfs:label "depicts_deity" ;
+    rdfs:range heritageGraph:Deity ;
+    skos:definition "Deity depicted iconographically (not cultic presence)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:documentation_activities a owl:ObjectProperty ;
+    rdfs:label "documentation_activities" ;
+    skos:definition "Collection of DocumentationActivity instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:documented_entity a owl:ObjectProperty ;
+    rdfs:label "documented_entity" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Heritage entity documented by this activity" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:documented_event a owl:ObjectProperty ;
+    rdfs:label "documented_event" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Event documented by this activity" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:enshrinement_events a owl:ObjectProperty ;
+    rdfs:label "enshrinement_events" ;
+    skos:definition "Collection of Enshrinement event instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:enshrines_deity_through_event a owl:ObjectProperty ;
+    rdfs:label "enshrines_deity_through_event" ;
+    rdfs:range heritageGraph:Enshrinement ;
+    skos:definition "Enshrinement event that installed deity in temple" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:festivals a owl:ObjectProperty ;
+    rdfs:label "festivals" ;
+    skos:definition "Collection of Festival instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:generated_assertion a owl:ObjectProperty ;
+    rdfs:label "generated_assertion" ;
+    rdfs:range heritageGraph:ProvenanceAssertion ;
+    skos:definition "Assertions generated by documentation activity" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:guthis a owl:ObjectProperty ;
+    rdfs:label "guthis" ;
+    skos:definition "Collection of Guthi instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_component a owl:ObjectProperty ;
+    rdfs:label "has_component" ;
+    rdfs:range heritageGraph:ArchitecturalElement ;
+    skos:definition "Architectural elements composing structure" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_condition_assessment a owl:ObjectProperty ;
+    rdfs:label "has_condition_assessment" ;
+    rdfs:range heritageGraph:ConditionAssessment ;
+    skos:definition "Condition assessment events for this structure" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_custody_event a owl:ObjectProperty ;
+    rdfs:label "has_custody_event" ;
+    rdfs:range heritageGraph:TransferOfCustody ;
+    skos:definition "Custody transfer events for this structure" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_membership a owl:ObjectProperty ;
+    rdfs:label "has_membership" ;
+    rdfs:range heritageGraph:Person ;
+    skos:definition "Members of Guthi organization" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_religious_tradition a owl:ObjectProperty ;
+    rdfs:label "has_religious_tradition" ;
+    rdfs:range heritageGraph:ReligiousTradition ;
+    skos:definition "Religious tradition(s) within which this deity is venerated" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:holds_custody_of a owl:ObjectProperty ;
+    rdfs:label "holds_custody_of" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Structures under Guthi custodianship" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:includes_ritual_event a owl:ObjectProperty ;
+    rdfs:label "includes_ritual_event" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Component rituals of festival" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:invokes_deity a owl:ObjectProperty ;
+    rdfs:label "invokes_deity" ;
+    rdfs:range heritageGraph:Deity ;
+    skos:definition "Deity invoked or made present through ritual" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:is_depicted_in a owl:ObjectProperty ;
+    rdfs:label "is_depicted_in" ;
+    rdfs:range heritageGraph:IconographicObject ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:is_enshrined_through_event a owl:ObjectProperty ;
+    rdfs:label "is_enshrined_through_event" ;
+    rdfs:range heritageGraph:Enshrinement ;
+    skos:definition "Events where this deity was enshrined" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:is_invoked_in_ritual a owl:ObjectProperty ;
+    rdfs:label "is_invoked_in_ritual" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Rituals where this deity is invoked" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:managed_by_guthi a owl:ObjectProperty ;
+    rdfs:label "managed_by_guthi" ;
+    rdfs:range heritageGraph:Guthi ;
+    skos:definition "Guthi organization managing this structure or ritual" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:manages_structure a owl:ObjectProperty ;
+    rdfs:label "manages_structure" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Structures managed by this Guthi" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:materials a owl:ObjectProperty ;
+    rdfs:label "materials" ;
+    skos:definition "Collection of Material instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:member_of_group a owl:ObjectProperty ;
+    rdfs:label "member_of_group" ;
+    rdfs:range heritageGraph:Guthi ;
+    skos:definition "Groups this person belongs to" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:occupation a owl:DatatypeProperty ;
+    rdfs:label "occupation" ;
+    rdfs:range xsd:string ;
+    skos:definition "Person's occupation or role" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:performed_by_agent a owl:ObjectProperty ;
+    rdfs:label "performed_by_agent" ;
+    rdfs:range heritageGraph:Person ;
+    skos:definition "Agent who performed documentation" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:performed_by_group a owl:ObjectProperty ;
+    rdfs:label "performed_by_group" ;
+    rdfs:range heritageGraph:Guthi ;
+    skos:definition "Group (Guthi, caste) responsible for ritual" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:performs_ritual a owl:ObjectProperty ;
+    rdfs:label "performs_ritual" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Rituals performed by this Guthi" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:persons a owl:ObjectProperty ;
+    rdfs:label "persons" ;
+    skos:definition "Collection of Person instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:places a owl:ObjectProperty ;
+    rdfs:label "places" ;
+    skos:definition "Collection of Place instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:production_events a owl:ObjectProperty ;
+    rdfs:label "production_events" ;
+    skos:definition "Collection of Production event instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:provenance_assertions a owl:ObjectProperty ;
+    rdfs:label "provenance_assertions" ;
+    skos:definition "Collection of ProvenanceAssertion instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:religious_traditions a owl:ObjectProperty ;
+    rdfs:label "religious_traditions" ;
+    skos:definition "Collection of ReligiousTradition instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ritual_events a owl:ObjectProperty ;
+    rdfs:label "ritual_events" ;
+    skos:definition "Collection of RitualEvent instances" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:used_equipment a owl:DatatypeProperty ;
+    rdfs:label "used_equipment" ;
+    rdfs:range xsd:string ;
+    skos:definition "Equipment used in documentation" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:used_materials a owl:ObjectProperty ;
+    rdfs:label "used_materials" ;
+    rdfs:range heritageGraph:Material ;
+    skos:definition "Ephemeral materials consumed during the ritual (e.g., oil, rice)." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:used_technique a owl:ObjectProperty ;
+    rdfs:label "used_technique" ;
+    rdfs:range heritageGraph:Technique ;
+    skos:definition "Craft technique used in production" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:verified_assertion a owl:ObjectProperty ;
+    rdfs:label "verified_assertion" ;
+    rdfs:range heritageGraph:ProvenanceAssertion ;
+    skos:definition "Assertions verified by this activity" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:verified_by_expert a owl:ObjectProperty ;
+    rdfs:label "verified_by_expert" ;
+    rdfs:range heritageGraph:Person ;
+    skos:definition "Expert who performed verification" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:was_attributed_to_agent a owl:ObjectProperty ;
+    rdfs:label "was_attributed_to_agent" ;
+    rdfs:range heritageGraph:Person ;
+    skos:definition "Person who made this assertion" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:was_derived_from_source a owl:ObjectProperty ;
+    rdfs:label "was_derived_from_source" ;
+    rdfs:range heritageGraph:DataSource ;
+    skos:definition "Source(s) from which this assertion was derived" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ArchitecturalElement a owl:Class ;
+    rdfs:label "ArchitecturalElement" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:element_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:is_component_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:element_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:is_component_of ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:element_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:is_component_of ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Carved or constructed component of a temple (e.g., Gajur, Torana, Tundal)" ;
+    skos:exactMatch crm:E25_Physical_Feature ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:BuddhistMonument a owl:Class ;
+    rdfs:label "BuddhistMonument" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStructure ;
+    skos:definition "Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns" ;
+    skos:exactMatch heritageGraph:BuddhistMonument ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Consecration a owl:Class ;
+    rdfs:label "Consecration" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:consecrated_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Murti ;
+            owl:onProperty heritageGraph:consecrated_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:consecrated_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:makes_deity_present ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:makes_deity_present ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:makes_deity_present ] ;
+    skos:definition "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)" ;
+    skos:exactMatch crm:E7_Activity ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Material a owl:Class ;
+    rdfs:label "Material" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Physical substance used in construction or crafting" ;
+    skos:exactMatch crm:E57_Material ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Murti a owl:Class ;
+    rdfs:label "Murti" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:consecrated_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:consecrated_by_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:houses_deity_presence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Consecration ;
+            owl:onProperty heritageGraph:consecrated_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:houses_deity_presence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:houses_deity_presence ],
+        heritageGraph:IconographicObject ;
+    skos:definition "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)" ;
+    skos:exactMatch heritageGraph:Murti ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:NaimittikaPuja a owl:Class ;
+    rdfs:label "NaimittikaPuja" ;
+    rdfs:subClassOf heritageGraph:Puja,
+        heritageGraph:RitualTypeEnum ;
+    skos:definition "Occasional worship ritual tied to festivals or life events",
+        "Occasional/Festival worship" ;
+    skos:exactMatch heritageGraph:NaimittikaPuja ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:NityaPuja a owl:Class ;
+    rdfs:label "NityaPuja" ;
+    rdfs:subClassOf heritageGraph:Puja,
+        heritageGraph:RitualTypeEnum ;
+    skos:definition "Daily mandatory worship",
+        "Daily worship ritual performed continuously" ;
+    skos:exactMatch heritageGraph:NityaPuja ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Puja a owl:Class ;
+    rdfs:label "Puja" ;
+    rdfs:subClassOf heritageGraph:RitualEvent ;
+    skos:definition "Worship ceremony directed toward a deity or sacred object" ;
+    skos:exactMatch heritageGraph:Puja ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ReligiousTradition a owl:Class ;
+    rdfs:label "ReligiousTradition" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ] ;
+    skos:definition "Religious or spiritual tradition within which a deity or sacred figure is venerated" ;
+    skos:exactMatch crm:E55_Type ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Temple a owl:Class ;
+    rdfs:label "Temple" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:enshrines_deity_through_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStyleEnum ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrines_deity_through_event ],
+        heritageGraph:ArchitecturalStructure ;
+    skos:broadMatch dbo:ReligiousBuilding ;
+    skos:definition "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation." ;
+    skos:exactMatch <http://schema.org/HinduTemple>,
+        wd:Q44539,
+        heritageGraph:Temple,
+        aat:300007595 ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:TransferOfCustody a owl:Class ;
+    rdfs:label "TransferOfCustody" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:transferred_from_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:transferred_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_from_actor ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_to_actor ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:transferred_to_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_to_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_from_actor ] ;
+    skos:definition "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship" ;
+    skos:exactMatch crm:E10_Transfer_of_Custody ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:WaterStructure a owl:Class ;
+    rdfs:label "WaterStructure" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStructure ;
+    skos:definition "Engineered water supply systems with ritual and civic significance" ;
+    skos:exactMatch heritageGraph:WaterStructure ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:activity_type a owl:DatatypeProperty ;
+    rdfs:label "activity_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of documentation activity" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:assertion_content a owl:DatatypeProperty ;
+    rdfs:label "assertion_content" ;
+    rdfs:range xsd:string ;
+    skos:definition "The factual claim being asserted" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:asserts_about_entity a owl:ObjectProperty ;
+    rdfs:label "asserts_about_entity" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:asserts_about_event a owl:ObjectProperty ;
+    rdfs:label "asserts_about_event" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:assessed_condition_state a owl:DatatypeProperty ;
+    rdfs:label "assessed_condition_state" ;
+    rdfs:range xsd:string ;
+    skos:definition "Identified condition state (good, damaged, ruined)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:assessed_object a owl:ObjectProperty ;
+    rdfs:label "assessed_object" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Object assessed for condition" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:assessment_method a owl:DatatypeProperty ;
+    rdfs:label "assessment_method" ;
+    rdfs:range xsd:string ;
+    skos:definition "Method used for condition assessment" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:begin_date a owl:DatatypeProperty ;
+    rdfs:label "begin_date" ;
+    rdfs:range xsd:string ;
+    skos:definition "Start date like ISO 8601 " ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:birth_timespan a owl:ObjectProperty ;
+    rdfs:label "birth_timespan" ;
+    rdfs:range heritageGraph:TimeSpan ;
+    skos:definition "Person's birth timespan" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:confidence_score a owl:DatatypeProperty ;
+    rdfs:label "confidence_score" ;
+    rdfs:range xsd:float ;
+    skos:definition "Reliability score for assertion (0.0-1.0)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:consecrated_by_event a owl:ObjectProperty ;
+    rdfs:label "consecrated_by_event" ;
+    rdfs:range heritageGraph:Consecration ;
+    skos:definition "Consecration event that activated this murti" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:consecrated_object a owl:ObjectProperty ;
+    rdfs:label "consecrated_object" ;
+    rdfs:range heritageGraph:Murti ;
+    skos:definition "Murti transformed by consecration" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:curator a owl:DatatypeProperty ;
+    rdfs:label "curator" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:custodian_type a owl:DatatypeProperty ;
+    rdfs:label "custodian_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of custodian (government, academic, community)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:data_quality_note a owl:DatatypeProperty ;
+    rdfs:label "data_quality_note" ;
+    rdfs:range xsd:string ;
+    skos:definition "Notes on data quality, completeness, or uncertainty" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:dataset_name a owl:DatatypeProperty ;
+    rdfs:label "dataset_name" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:dataset_version a owl:DatatypeProperty ;
+    rdfs:label "dataset_version" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:date_earliest a owl:DatatypeProperty ;
+    rdfs:label "date_earliest" ;
+    rdfs:range xsd:string ;
+    skos:definition "Earliest possible date (for uncertain dates)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:date_latest a owl:DatatypeProperty ;
+    rdfs:label "date_latest" ;
+    rdfs:range xsd:string ;
+    skos:definition "Latest possible date (for uncertain dates)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:date_precision a owl:ObjectProperty ;
+    rdfs:label "date_precision" ;
+    rdfs:range heritageGraph:DatePrecisionEnum ;
+    skos:definition "The level of precision for a recorded date." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:death_timespan a owl:ObjectProperty ;
+    rdfs:label "death_timespan" ;
+    rdfs:range heritageGraph:TimeSpan ;
+    skos:definition "Person's death timespan" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:element_type a owl:DatatypeProperty ;
+    rdfs:label "element_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of architectural element (Gajur, Torana, Tundal)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:end_date a owl:DatatypeProperty ;
+    rdfs:label "end_date" ;
+    rdfs:range xsd:string ;
+    skos:definition "End date like ISO 8601" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:enshrined_deity a owl:ObjectProperty ;
+    rdfs:label "enshrined_deity" ;
+    rdfs:range heritageGraph:Deity ;
+    skos:definition "Deity installed through enshrinement" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:enshrined_in_structure a owl:ObjectProperty ;
+    rdfs:label "enshrined_in_structure" ;
+    rdfs:range heritageGraph:Temple ;
+    skos:definition "Temple where deity was enshrined" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:epoch_date_gregorian a owl:DatatypeProperty ;
+    rdfs:label "epoch_date_gregorian" ;
+    rdfs:range xsd:string ;
+    skos:definition "The start date of this calendar era in Gregorian ISO format." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:follows_tradition a owl:ObjectProperty ;
+    rdfs:label "follows_tradition" ;
+    rdfs:range heritageGraph:TraditionOrPractice ;
+    skos:definition "Transmitted ritual protocol followed" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:founded_by_event a owl:ObjectProperty ;
+    rdfs:label "founded_by_event" ;
+    rdfs:range heritageGraph:Production ;
+    skos:definition "Event that established the Guthi" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:generated_at_time a owl:DatatypeProperty ;
+    rdfs:label "generated_at_time" ;
+    rdfs:range xsd:string ;
+    skos:definition "When this assertion was recorded (ISO 8601)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:generated_date a owl:DatatypeProperty ;
+    rdfs:label "generated_date" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:guthi_type a owl:ObjectProperty ;
+    rdfs:label "guthi_type" ;
+    rdfs:range heritageGraph:GuthiTypeEnum ;
+    skos:definition "Type of Guthi (Si, Jatra, Temple)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_current_location a owl:ObjectProperty ;
+    rdfs:label "has_current_location" ;
+    rdfs:range heritageGraph:Place ;
+    skos:definition "Current location of object or structure" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_land_endowment a owl:DatatypeProperty ;
+    rdfs:label "has_land_endowment" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of land holdings supporting Guthi" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:houses_deity_presence a owl:ObjectProperty ;
+    rdfs:label "houses_deity_presence" ;
+    rdfs:range heritageGraph:Deity ;
+    skos:definition "Deity made present through consecration (not mere depiction)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:is_component_of a owl:ObjectProperty ;
+    rdfs:label "is_component_of" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Larger structure that this element is part of" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:is_part_of_festival a owl:ObjectProperty ;
+    rdfs:label "is_part_of_festival" ;
+    rdfs:range heritageGraph:Festival ;
+    skos:definition "Larger festival this ritual is part of" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:license a owl:DatatypeProperty ;
+    rdfs:label "license" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:lunar_date_tithi a owl:DatatypeProperty ;
+    rdfs:label "lunar_date_tithi" ;
+    rdfs:range xsd:string ;
+    skos:definition "Lunar day (Tithi) for ritual timing" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:makes_deity_present a owl:ObjectProperty ;
+    rdfs:label "makes_deity_present" ;
+    rdfs:range heritageGraph:Deity ;
+    skos:definition "Deity made present through consecration" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:metadata a owl:ObjectProperty ;
+    rdfs:label "metadata" ;
+    skos:definition "Dataset metadata" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:occurs_after a owl:ObjectProperty ;
+    rdfs:label "occurs_after" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Points to the prerequisite ritual." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:occurs_before a owl:ObjectProperty ;
+    rdfs:label "occurs_before" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Points to the next ritual in the canonical sequence." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:place_coordinates a owl:DatatypeProperty ;
+    rdfs:label "place_coordinates" ;
+    rdfs:range xsd:string ;
+    skos:definition "Geographic coordinates (WGS84: lat,lon)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:place_type a owl:DatatypeProperty ;
+    rdfs:label "place_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of place (city, village, region)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:produced_object a owl:ObjectProperty ;
+    rdfs:label "produced_object" ;
+    rdfs:range heritageGraph:PhysicalHeritageThing ;
+    skos:definition "Object produced by this production event" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:publication_timespan a owl:ObjectProperty ;
+    rdfs:label "publication_timespan" ;
+    rdfs:range heritageGraph:TimeSpan ;
+    skos:definition "When source was published" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:reconciliation_status a owl:DatatypeProperty ;
+    rdfs:label "reconciliation_status" ;
+    rdfs:range xsd:string ;
+    skos:definition "Status of multi-source reconciliation (confirmed, conflicting, unverified)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:recurrence_pattern a owl:DatatypeProperty ;
+    rdfs:label "recurrence_pattern" ;
+    rdfs:range xsd:string ;
+    skos:definition "Frequency of recurring ritual (e.g., annual, monthly)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ritual_on_structure a owl:ObjectProperty ;
+    rdfs:label "ritual_on_structure" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Ritual occurs at specific temple or monument" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ritual_type a owl:ObjectProperty ;
+    rdfs:label "ritual_type" ;
+    rdfs:range heritageGraph:RitualTypeEnum ;
+    skos:definition "Classification of ritual (puja, jatra, consecration)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:schema_version a owl:DatatypeProperty ;
+    rdfs:label "schema_version" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:source_citation a owl:DatatypeProperty ;
+    rdfs:label "source_citation" ;
+    rdfs:range xsd:string ;
+    skos:definition "Formal citation of source" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:source_language a owl:DatatypeProperty ;
+    rdfs:label "source_language" ;
+    rdfs:range xsd:string ;
+    skos:definition "Language of the source material" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:source_type a owl:DatatypeProperty ;
+    rdfs:label "source_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of source (manuscript, inscription, survey, oral)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:source_url a owl:DatatypeProperty ;
+    rdfs:label "source_url" ;
+    rdfs:range xsd:string ;
+    skos:definition "URL or digital identifier for source" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:traditional_role a owl:DatatypeProperty ;
+    rdfs:label "traditional_role" ;
+    rdfs:range xsd:string ;
+    skos:definition "Hereditary occupation or ritual duty" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:transferred_from_actor a owl:ObjectProperty ;
+    rdfs:label "transferred_from_actor" ;
+    rdfs:range heritageGraph:Actor ;
+    skos:definition "Previous custodian" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:transferred_object a owl:ObjectProperty ;
+    rdfs:label "transferred_object" ;
+    rdfs:range heritageGraph:ArchitecturalStructure ;
+    skos:definition "Object transferred in custody event" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:transferred_to_actor a owl:ObjectProperty ;
+    rdfs:label "transferred_to_actor" ;
+    rdfs:range heritageGraph:Actor ;
+    skos:definition "New custodian (person)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:transferred_to_guthi a owl:ObjectProperty ;
+    rdfs:label "transferred_to_guthi" ;
+    rdfs:range heritageGraph:Guthi ;
+    skos:definition "New custodian (Guthi)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:used_method a owl:DatatypeProperty ;
+    rdfs:label "used_method" ;
+    rdfs:range xsd:string ;
+    skos:definition "Documentation method used" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:verification_method a owl:DatatypeProperty ;
+    rdfs:label "verification_method" ;
+    rdfs:range xsd:string ;
+    skos:definition "Method used for verification (cross-check, expert review, field visit)" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:verification_notes a owl:DatatypeProperty ;
+    rdfs:label "verification_notes" ;
+    rdfs:range xsd:string ;
+    skos:definition "Notes from verification process" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:year_offset_from_gregorian a owl:DatatypeProperty ;
+    rdfs:label "year_offset_from_gregorian" ;
+    rdfs:range xsd:integer ;
+    skos:definition "Mathematical offset to convert to Common Era (e.g., +57 for BS)." ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:IconographicObject a owl:Class ;
+    rdfs:label "IconographicObject" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:depicts_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:participates_in_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:participates_in_ritual ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:depicts_deity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ] ;
+    skos:definition "Sacred visual art objects that depict or embody deities through iconographic conventions" ;
+    skos:exactMatch crm:E22_Human-Made_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:RestHouse a owl:Class ;
+    rdfs:label "RestHouse" ;
+    rdfs:subClassOf heritageGraph:ArchitecturalStructure ;
+    skos:definition "Community structures for travelers and pilgrims, maintained by Guthi organizations" ;
+    skos:exactMatch heritageGraph:RestHouse ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:SyncreticTypeEnum a owl:Class ;
+    rdfs:label "SyncreticTypeEnum" ;
+    owl:unionOf ( <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Equivalence> <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Appropriation> <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Fusion> <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Historical> ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Appropriation>,
+        <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Equivalence>,
+        <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Fusion>,
+        <https://cair-nepal.org/heritageGraph/SyncreticTypeEnum#Historical> .
+
+heritageGraph:carried_out_by_actor a owl:ObjectProperty ;
+    rdfs:label "carried_out_by_actor" ;
+    rdfs:range heritageGraph:Actor ;
+    skos:definition "Actor(s) who performed this event" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_provenance_assertion a owl:ObjectProperty ;
+    rdfs:label "has_provenance_assertion" ;
+    rdfs:range heritageGraph:ProvenanceAssertion ;
+    skos:definition "Provenance assertions about this entity or event" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:participates_in_ritual a owl:ObjectProperty ;
+    rdfs:label "participates_in_ritual" ;
+    rdfs:range heritageGraph:RitualEvent ;
+    skos:definition "Rituals in which this structure participates" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Enshrinement a owl:Class ;
+    rdfs:label "Enshrinement" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrined_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:enshrined_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrined_in_structure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:enshrined_deity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:enshrined_in_structure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Temple ;
+            owl:onProperty heritageGraph:enshrined_in_structure ] ;
+    skos:definition "Event of installing a deity's murti or symbol within a temple sanctum" ;
+    skos:exactMatch crm:E7_Activity ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:DataSource a owl:Class ;
+    rdfs:label "DataSource" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:publication_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:source_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:publication_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:source_url ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_citation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:source_citation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_url ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:publication_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_citation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_type ] ;
+    skos:definition "Original source from which heritage information was derived" ;
+    skos:exactMatch crm:E73_Information_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Festival a owl:Class ;
+    rdfs:label "Festival" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:includes_ritual_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:includes_ritual_event ],
+        heritageGraph:RitualEvent ;
+    skos:definition "Large-scale community ritual event (Jatra) involving processions, music, and collective participation" ;
+    skos:exactMatch heritageGraph:Festival ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Production a owl:Class ;
+    rdfs:label "Production" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:produced_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
+            owl:onProperty heritageGraph:produced_object ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:commissioned_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_by_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Technique ;
+            owl:onProperty heritageGraph:used_technique ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_technique ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ProvenanceAssertion ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:produced_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by_actor ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:commissioned_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ] ;
+    skos:definition "Event of creating an architectural structure, murti, or paubha" ;
+    skos:exactMatch crm:E12_Production ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:calendar_system a owl:ObjectProperty ;
+    rdfs:label "calendar_system" ;
+    rdfs:range heritageGraph:CalendarSystemEnum ;
+    skos:definition "Calendar system used for date representation" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_architectural_style a owl:ObjectProperty ;
+    rdfs:label "has_architectural_style" ;
+    rdfs:range heritageGraph:ArchitecturalStyleEnum ;
+    skos:definition "Architectural style classification" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:performed_by_actor a owl:ObjectProperty ;
+    rdfs:label "performed_by_actor" ;
+    rdfs:range heritageGraph:Person ;
+    skos:definition "Individual who performed ritual" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:was_documented_by a owl:ObjectProperty ;
+    rdfs:label "was_documented_by" ;
+    rdfs:range heritageGraph:DocumentationActivity ;
+    skos:definition "Documentation event that recorded this entity or event" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:was_produced_by_event a owl:ObjectProperty ;
+    rdfs:label "was_produced_by_event" ;
+    rdfs:range heritageGraph:Production ;
+    skos:definition "Event that created this object or structure" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:CalendarSystemEnum a owl:Class ;
+    rdfs:label "CalendarSystemEnum" ;
+    owl:unionOf ( heritageGraph:GregorianCalendar heritageGraph:BikramSambatCalendar heritageGraph:NepalSambatCalendar heritageGraph:LunarCalendar ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values heritageGraph:BikramSambatCalendar,
+        heritageGraph:GregorianCalendar,
+        heritageGraph:LunarCalendar,
+        heritageGraph:NepalSambatCalendar .
+
+heritageGraph:DatePrecisionEnum a owl:Class ;
+    rdfs:label "DatePrecisionEnum" ;
+    owl:unionOf ( <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Exact> <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Year> <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Decade> <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Century> <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Circa> ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Century>,
+        <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Circa>,
+        <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Decade>,
+        <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Exact>,
+        <https://cair-nepal.org/heritageGraph/DatePrecisionEnum#Year> .
+
+heritageGraph:Place a owl:Class ;
+    rdfs:label "Place" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:contains_structure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:place_coordinates ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:place_coordinates ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:contains_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:place_coordinates ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Defined geographic location where events occur and structures exist" ;
+    skos:exactMatch crm:E53_Place ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ArchitecturalStyleEnum a owl:Class ;
+    rdfs:label "ArchitecturalStyleEnum" ;
+    owl:unionOf ( <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Pagoda> <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Shikhara> <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Dome> <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Chaitya> <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Stupa> ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Chaitya>,
+        <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Dome>,
+        <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Pagoda>,
+        <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Shikhara>,
+        <https://cair-nepal.org/heritageGraph/ArchitecturalStyleEnum#Stupa> .
+
+heritageGraph:DocumentationActivity a owl:Class ;
+    rdfs:label "DocumentationActivity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documented_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ProvenanceAssertion ;
+            owl:onProperty heritageGraph:generated_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_equipment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documented_entity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:activity_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_method ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:used_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:performed_by_agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:activity_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:used_equipment ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:activity_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:used_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:documented_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:documented_entity ] ;
+    skos:broadMatch prov1:Activity ;
+    skos:definition "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity." ;
+    skos:exactMatch crm:E13_Attribute_Assignment ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ProvenanceAssertion a owl:Class ;
+    rdfs:label "ProvenanceAssertion" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:data_quality_note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:data_quality_note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_attributed_to_agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_derived_from_source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:was_attributed_to_agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_at_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:reconciliation_status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:asserts_about_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_quality_note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:reconciliation_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:asserts_about_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:generated_at_time ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:was_derived_from_source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:asserts_about_entity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:asserts_about_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:asserts_about_entity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:asserts_about_entity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:generated_at_time ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:reconciliation_status ] ;
+    skos:definition "A single factual claim about a heritage entity, with explicit source, author, date, and confidence" ;
+    skos:exactMatch prov1:Entity ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Actor a owl:Class ;
+    rdfs:label "Actor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "General actor (person or group) responsible for events" ;
+    skos:exactMatch crm:E39_Actor ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:took_place_at a owl:ObjectProperty ;
+    rdfs:label "took_place_at" ;
+    rdfs:range heritageGraph:Place ;
+    skos:definition "Place Where event occurred" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:GuthiTypeEnum a owl:Class ;
+    rdfs:label "GuthiTypeEnum" ;
+    owl:unionOf ( <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SiGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#JatraGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#PujaGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#TempleGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#NashaGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanaGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanGuthi> <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#RajGuthi> ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#JatraGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#NashaGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#PujaGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#RajGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SanaGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#SiGuthi>,
+        <https://cair-nepal.org/heritageGraph/GuthiTypeEnum#TempleGuthi> .
+
+heritageGraph:Deity a owl:Class ;
+    rdfs:label "Deity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_depicted_in ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_enshrined_through_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:IconographicObject ;
+            owl:onProperty heritageGraph:is_depicted_in ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ReligiousTradition ;
+            owl:onProperty heritageGraph:has_religious_tradition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_invoked_in_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:is_invoked_in_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_religious_tradition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:is_enshrined_through_event ] ;
+    skos:definition "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences." ;
+    skos:exactMatch crm:E28_Conceptual_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:member_of_group ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:member_of_group ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:death_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:occupation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:death_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:death_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:carried_out_activity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:birth_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_activity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:birth_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:occupation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:birth_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "Individual person who performs, commissions, documents, or verifies heritage activities" ;
+    skos:exactMatch crm:E21_Person ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:RitualTypeEnum a owl:Class ;
+    rdfs:label "RitualTypeEnum" ;
+    owl:unionOf ( heritageGraph:NityaPuja heritageGraph:NaimittikaPuja heritageGraph:KamyaPuja heritageGraph:Abhisheka heritageGraph:Homa heritageGraph:Bhajan heritageGraph:Yagna heritageGraph:Vrata heritageGraph:Jatra heritageGraph:ChariotProcession heritageGraph:MaskedPerformance ) ;
+    skos:inScheme <CulturalHeritageOntology> ;
+    linkml:permissible_values heritageGraph:Abhisheka,
+        heritageGraph:Bhajan,
+        heritageGraph:ChariotProcession,
+        heritageGraph:Homa,
+        heritageGraph:Jatra,
+        heritageGraph:KamyaPuja,
+        heritageGraph:MaskedPerformance,
+        heritageGraph:NaimittikaPuja,
+        heritageGraph:NityaPuja,
+        heritageGraph:Vrata,
+        heritageGraph:Yagna .
+
+heritageGraph:TimeSpan a owl:Class ;
+    rdfs:label "TimeSpan" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:end_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:begin_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:date_latest ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:begin_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:date_latest ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:end_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:date_earliest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:begin_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:CalendarSystemEnum ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:end_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:date_earliest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:date_precision ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:date_precision ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:date_latest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:date_earliest ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DatePrecisionEnum ;
+            owl:onProperty heritageGraph:date_precision ] ;
+    skos:definition "Temporal extent of an event or period" ;
+    skos:exactMatch crm:E52_Time-Span ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Guthi a owl:Class ;
+    rdfs:label "Guthi" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:holds_custody_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:has_land_endowment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:manages_structure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:performs_ritual ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_land_endowment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:founded_by_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:guthi_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:guthi_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:manages_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_membership ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:has_membership ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performs_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:GuthiTypeEnum ;
+            owl:onProperty heritageGraph:guthi_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:founded_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_land_endowment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:founded_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:holds_custody_of ] ;
+    skos:definition "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership" ;
+    skos:exactMatch crm:E74_Group ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:has_timespan a owl:ObjectProperty ;
+    rdfs:label "has_timespan" ;
+    rdfs:range heritageGraph:TimeSpan ;
+    skos:definition "Links event to its temporal extent" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:RitualEvent a owl:Class ;
+    rdfs:label "RitualEvent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:managed_by_guthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_materials ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:is_part_of_festival ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:follows_tradition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:lunar_date_tithi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:occurs_before ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:invokes_deity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Festival ;
+            owl:onProperty heritageGraph:is_part_of_festival ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:invokes_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_part_of_festival ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:lunar_date_tithi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:lunar_date_tithi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:occurs_before ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ProvenanceAssertion ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:ritual_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualTypeEnum ;
+            owl:onProperty heritageGraph:ritual_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:managed_by_guthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:follows_tradition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:occurs_before ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TraditionOrPractice ;
+            owl:onProperty heritageGraph:follows_tradition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:performed_by_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Material ;
+            owl:onProperty heritageGraph:used_materials ] ;
+    skos:definition "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups" ;
+    skos:exactMatch crm:E7_Activity ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:ArchitecturalStructure a owl:Class ;
+    rdfs:label "ArchitecturalStructure" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_custody_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
+            owl:onProperty heritageGraph:has_component ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:participates_in_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStyleEnum ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:participates_in_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_component ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ConditionAssessment ;
+            owl:onProperty heritageGraph:has_condition_assessment ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:english_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TransferOfCustody ;
+            owl:onProperty heritageGraph:has_custody_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_condition_assessment ] ;
+    skos:definition "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation." ;
+    skos:exactMatch crm:E22_Human-Made_Object ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:english_description a owl:DatatypeProperty ;
+    rdfs:label "english_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Descriptive text in English" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    rdfs:range xsd:string ;
+    skos:definition "Primary name or label" ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+
