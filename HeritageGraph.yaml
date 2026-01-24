@@ -376,6 +376,7 @@ classes:
       - was_produced_by_event
       - participates_in_ritual
       - has_current_location
+      - used_by
 
   Paubha:
     is_a: IconographicObject
@@ -825,6 +826,7 @@ classes:
       - note
   
   DestructionEvent:
+    is_a: HistoricalEvent
     class_uri: crm:E6_Destruction
     description: "Event that destroyed or damaged a structure."
     slots:
@@ -991,6 +993,7 @@ classes:
       - selection_criteria_met
       - has_provenance_assertion
       - was_documented_by
+      - is_critical_for_festival
     
     slot_usage:
       name:
@@ -1210,6 +1213,11 @@ classes:
 # ============================================================================
 
 slots:
+  architectural_structures:
+    slot_uri: crm:P12_occurred_in_the_presence_of
+    range: ArchitecturalStructure
+    multivalued: true
+    description: "Heritage structures affected by or present during this historical event"
 
 
 
@@ -1463,9 +1471,15 @@ slots:
 
   performed_by_group:
     is_a: carried_out_by
-    range: Guthi
+    range: [Guthi, CasteGroup]
     multivalued: true
     description: "Group (Guthi, caste) responsible for ritual"
+
+  is_critical_for_festival:
+    slot_uri: heritageGraph:is_critical_for_festival
+    range: boolean
+    description: "Whether this ritual is essential for the festival's completion"
+    
 
   is_part_of_festival:
     slot_uri: crm:P9_consists_of
