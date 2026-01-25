@@ -90,7 +90,26 @@ enums:
         description: "Ritual masked dance"
         meaning: heritageGraph:MaskedPerformance
         exact_mappings:
-          - aat:300264391  
+          - aat:300264391 
+         
+      
+      RitualConsecration:
+        description: "Consecration/activation ritual"
+      ProcessionRitual:
+        description: "Ritual procession/movement"
+      InstallationRitual:
+        description: "Installation/enshrinement ritual"
+      DeinstallationRitual:
+        description: "De-installation/conclusion ritual"
+      ReturningRitual:
+        description: "Return to normal state ritual" 
+
+      Circumambulation:
+        description: "Ritual circular movement around sacred site"
+      RelicTour:
+        description: "Procession with sacred relics between sites"
+      ProcessionalMovement:
+        description: "General ritual movement between locations"
 
   CalendarSystemEnum:
     permissible_values:
@@ -511,6 +530,12 @@ classes:
       - occurs_before
       - occurs_after
       - used_materials
+
+      # for moving pocessions
+      - route_places          
+      - start_place         
+      - end_place            
+      - route_description 
 
   Festival:
     is_a: RitualEvent
@@ -1230,7 +1255,27 @@ slots:
     exact_mappings:
       - schema:identifier
  
-  
+  route_places:
+    slot_uri: crm:P7_took_place_at
+    range: Place
+    multivalued: true
+    ordered: true  # CRITICAL: preserves sequence
+    description: "Ordered list of places visited during movement ritual"
+
+  start_place:
+    slot_uri: heritageGraph:start_place
+    range: Place
+    description: "Starting location of movement ritual"
+
+  end_place:
+    slot_uri: heritageGraph:end_place
+    range: Place
+    description: "Ending location of movement ritual"
+
+  route_description:
+    range: string
+    description: "Text description of the procession route"
+
   name:
     slot_uri: rdfs:label 
     range: string
@@ -1435,6 +1480,11 @@ slots:
     range: Actor
     multivalued: true
     description: "Actor(s) who performed this event"
+  used_by:
+    subclass_of: carried_out_by  
+    range: [Person, CasteGroup, Guthi]
+    multivalued: true
+    description: "Actor(s) who use, handle, or are responsible for this object in ritual contexts"
 
   commissioned_by:
     slot_uri: crm:P17_was_motivated_by
