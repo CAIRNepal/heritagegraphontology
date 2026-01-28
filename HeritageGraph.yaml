@@ -7,7 +7,6 @@ license: CC-BY-4.0
 
 imports:
   - linkml:types 
-  - "https://w3id.org/linkml/skos"
 default_range: string
 
 enums:
@@ -165,28 +164,28 @@ enums:
     permissible_values:
       SiGuthi:
         description: "Funeral trust"
-        class_uri: crm:E55_Type
+        
       JatraGuthi:
         description: "Festival organization trust"
-        class_uri: crm:E55_Type
+        
       PujaGuthi:
         description: "Daily worship trust"
-        class_uri: crm:E55_Type
+      
       TempleGuthi:
         description: "Temple maintenance trust"
-        class_uri: crm:E55_Type
+        
       NashaGuthi:
         description: "Music and dance trust"
-        class_uri: crm:E55_Type
+       
       SanaGuthi:
         description: "Agricultural cooperative trust"
-        class_uri: crm:E55_Type
+       
       SanGuthi:
         description: "Life-cycle ritual trust"
-        class_uri: crm:E55_Type
+        
       RajGuthi:
         description: "Royal endowment trust"
-        class_uri: crm:E55_Type
+        
 
 
 prefixes:
@@ -239,7 +238,7 @@ classes:
       - id
       - name
       - has_current_location
-      - was_produced_by
+      - was_produced_by_event
       - has_condition_assessment
       - participates_in_ritual
       - has_custody_event
@@ -443,8 +442,15 @@ classes:
       - is_depicted_in
       - is_invoked_in_ritual
       - is_enshrined_through_event
-      - has_syncretic_equivalent
-
+      
+  ReligiousTradition:
+    class_uri: crm:E55_Type
+    description: "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)"
+    exact_mappings:
+      - aat:300073708 
+    slots:
+      - name
+      - note
   HistoricalEvent:
     class_uri: crm:E5_Event
     description: "Major event affecting heritage structures or ritual life
@@ -911,7 +917,7 @@ classes:
     
     slots:
       - name
-      - has_participant
+      - had_participant
       - embodied_deity
       - residence_structure
       - has_timespan
@@ -1112,19 +1118,13 @@ classes:
         inlined: true
         inlined_as_list: true
       
-      architectural_styles:
+      has_architectural_style:
         description: "Collection of ArchitecturalStyle instances"
-        range: ArchitecturalStyle
+        range: ArchitecturalStyleEnum
         multivalued: true
         inlined: true
         inlined_as_list: true
-      
-      architectural_structures:
-        description: "Collection of ArchitecturalStructure instances"
-        range: ArchitecturalStructure
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
+   
       
       architectural_elements:
         description: "Collection of ArchitecturalElement instances"
@@ -1284,7 +1284,7 @@ slots:
     slot_uri: crm:P7_took_place_at
     range: Place
     multivalued: true
-    ordered: true  # CRITICAL: preserves sequence
+    
     description: "Ordered list of places visited during movement ritual"
 
   start_place:
@@ -1425,7 +1425,7 @@ slots:
 
   place_coordinates:
     slot_uri: geo:asWKT  
-    range: geo:wktLiteral
+    range: string
     description: "Coordinates as WKT literal"
 
   place_type:
@@ -1457,6 +1457,12 @@ slots:
     description: "Structures located in this place"
 
   # --- EVENT-CENTRIC PRODUCTION RELATIONSHIPS ---
+  is_primary_for_tradition:
+    slot_uri: heritageGraph:is_primary_for_tradition
+    range: ReligiousTradition
+    multivalued: true
+    description: "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)"
+
   existence_status:
     range: ExistenceStatusEnum
     description: "Current physical status of the structure"
@@ -1497,8 +1503,11 @@ slots:
     multivalued: true
     description: "Actor(s) who performed this event"
   used_by:
-    subclass_of: carried_out_by  
-    range: [Person, CasteGroup, Guthi]
+    is_a : carried_out_by  
+    any_of :  
+      - range: Person
+      - range: CasteGroup
+      - range: Guthi
     multivalued: true
     description: "Actor(s) who use, handle, or are responsible for this object in ritual contexts"
 
@@ -1537,7 +1546,9 @@ slots:
 
   performed_by_group:
     is_a: carried_out_by
-    range: [Guthi, CasteGroup]
+    any_of:
+      - range: Guthi
+      - range: CasteGroup
     multivalued: true
     description: "Group (Guthi, caste) responsible for ritual"
 
@@ -1588,7 +1599,7 @@ slots:
   syncretic_type:
     slot_uri: crm:P2_has_type
     description: "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity)."
-    range: crm:E55_Type
+    range: SyncreticTypeEnum
     recommended: true
 
 
@@ -1676,19 +1687,13 @@ slots:
     range: Guthi
     multivalued: true
     description: "Guthi organization managing this structure or ritual"
-
- 
-    
-    multivalued: true
-    description: "Structures managed by this Guthi" 
+  
 
   performs_ritual:
     slot_uri: crm:P14i_performed
     range: RitualEvent
-   
     multivalued: true
     description: "Rituals performed by this Guthi"
-  
 
   holds_custody_of:
     slot_uri: crm:P50_has_current_keeper
@@ -1739,11 +1744,7 @@ slots:
     multivalued: true
     description: "Groups this person belongs to"
 
-  # has_land_endowment:
-  #   slot_uri: heritageGraph:has_land_endowment
-  #   range: string
-  #   description: "Description of land holdings supporting Guthi"
-
+ 
   traditional_role:
     slot_uri: heritageGraph:traditional_role
     range: string
@@ -1795,7 +1796,7 @@ slots:
   has_component:
     slot_uri: crm:P46_is_composed_of
     range: ArchitecturalElement
-    multivalued: true
+    
     description: "Architectural elements composing structure"
 
   has_architectural_style:
@@ -1807,7 +1808,7 @@ slots:
   source_type:
     range: string
     description: " Type of source: Manuscript, Inscription, FieldSurvey, 
-      PublishedBook, Archive, MuseumCollection, OralHistoryInterview, etc.""
+      PublishedBook, Archive, MuseumCollection, OralHistoryInterview, etc."
 
   archival_location:
     range: string
