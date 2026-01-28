@@ -810,26 +810,35 @@ classes:
       - crm:E31_Document
 
   DocumentationActivity:
-   
     class_uri: crm:E13_Attribute_Assignment 
-    
-    
     broad_mappings:
-      - prov:Activity
-    
-      
+      - prov:Activity  
     description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
     
 
     slots:
       - name
-      - documented_entity
-      - documented_event
+      - produced_information_object 
+      - subject_entity
+      - subject_event 
+   
       - performed_by_agent
       - used_method
       - used_equipment
       - generated_assertion
+      
       - has_timespan
+  InformationObject:
+    is_a: DataSource
+    class_uri: crm:E73_Information_Object
+    description: "A recorded piece of information about heritage"
+    slots:
+      - name
+      - is_about_entity
+      - created_by_documentation
+      - is_about_event
+      - was_documented_by
+      - source_language
     
 
   Verification:
@@ -1206,6 +1215,14 @@ classes:
         multivalued: true
         inlined: true
         inlined_as_list: true
+      information_objects:
+        description: "Collection of InformationObject instances"
+        range: InformationObject
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+ 
       
       materials:
         description: "Collection of Material instances"
@@ -1823,17 +1840,20 @@ slots:
     multivalued: true
     description: "Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)"
 
-  documented_entity:
+  produced_information_object:
     slot_uri: prov:generated
-    range: ArchitecturalStructure
-    multivalued: true
-    description: "Heritage entity documented by this activity"
+    range: InformationObject
+    description: "Information object (record, document) produced by documentation"
 
-  documented_event:
-    slot_uri: prov:generated
+  is_about_entity:
+    slot_uri: crm:P129_is_about
+    range: ArchitecturalStructure
+    description: "Entity that this information object describes"
+
+  is_about_event:
+    slot_uri: crm:P129_is_about
     range: RitualEvent
-    multivalued: true
-    description: "Event documented by this activity"
+    description: "Event that this information object describes"
 
   performed_by_agent:
     slot_uri: prov:wasAssociatedWith
@@ -1894,6 +1914,23 @@ slots:
     range: string
     description: "When this assertion was recorded (ISO 8601)"
 
+
+  subject_entity:
+    slot_uri: crm:P140_assigned_attribute_to
+    range: ArchitecturalStructure
+    multivalued: true
+    description: "Heritage entity that is the subject of documentation"
+
+  subject_event:
+    slot_uri: crm:P141_assigned
+    range: RitualEvent
+    multivalued: true
+    description: "Event that is the subject of documentation"
+  created_by_documentation:
+    slot_uri: prov:wasGeneratedBy
+    range: DocumentationActivity
+    description: "Documentation activity that produced this information object"
+    inverse: produced_information_object
   generated_assertion:
     slot_uri: prov:generated
     range: HeritageAssertion
