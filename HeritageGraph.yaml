@@ -111,21 +111,6 @@ enums:
       ProcessionalMovement:
         description: "General ritual movement between locations"
 
-  CalendarSystemEnum:
-    permissible_values:
-      Gregorian:
-        description: "ISO 8601 Gregorian calendar"
-        meaning: heritageGraph:GregorianCalendar
-      BikramSambat:
-        description: "Official Nepali calendar (BS), epoch 57 BCE"
-        meaning: heritageGraph:BikramSambatCalendar
-      NepalSambat:
-        description: "Newar cultural calendar (NS), epoch 879 CE"
-        meaning: heritageGraph:NepalSambatCalendar
-      LunarTithi:
-        description: "Hindu lunar calendar by tithi (lunar day)"
-        meaning: heritageGraph:LunarCalendar
-
   
   DatePrecisionEnum:
     permissible_values:
@@ -256,6 +241,9 @@ classes:
       - has_current_location
       - was_produced_by
       - has_condition_assessment
+      - participates_in_ritual
+      - has_custody_event
+      - was_documented_by
 
   ArchitecturalStructure:
     is_a: HumanMadeObject
@@ -273,9 +261,8 @@ classes:
       # Event-centric relationships (not direct attribution)
       - was_produced_by_event
       - has_current_location
-      - participates_in_ritual
-      - has_custody_event
-      - was_documented_by
+
+      
       - has_condition_assessment
       - has_component
       - has_architectural_style
@@ -479,15 +466,15 @@ classes:
     description: "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning"
     slots:
       - name
-      - calendar_system
+    
       - epoch_date_gregorian
+      - is_primary_for_tradition
       - year_offset_from_gregorian
+      - note
     slot_usage:
       name:
         required: true
-      calendar_system:
-        required: true
-        range: CalendarSystemEnum
+   
   # ========================================================================
   # EVENT CLASSES (CIDOC-CRM Event-Centric Core)
   # ========================================================================
@@ -719,8 +706,7 @@ classes:
     class_uri: crm:E52_Time-Span
     description: "Temporal extent of an event or period"
     slots:
-      - begin_date
-      - end_date
+   
       - date_earliest
       - date_latest
       - calendar_system
@@ -728,7 +714,7 @@ classes:
     slot_usage:
       calendar_system:
         
-        range: CalendarSystemEnum
+        range: CalendarSystem
       date_precision:
         range: DatePrecisionEnum
 
@@ -736,6 +722,21 @@ classes:
   # PROVENANCE CLASSES (PROV-O aligned with CIDOC)
   # ========================================================================
 
+  AssertableEntity:
+    description: "Any entity that can be the subject of a heritage assertion"
+    union_of:
+      - HumanMadeObject
+      - ArchitecturalStructure
+      - IconographicObject
+      - ArchitecturalElement
+      - Deity
+      - Person
+      - Guthi
+      - CasteGroup
+      - Place
+      - TimeSpan
+      - Material
+      - Technique
   HeritageAssertion:
 
     class_uri: crminf:I2_Belief  # ISO standard for arguments
@@ -825,6 +826,7 @@ classes:
       - performed_by_agent
       - used_method
       - used_equipment
+
       - generated_assertion
       
       - has_timespan
@@ -1090,6 +1092,12 @@ classes:
         inlined_as_list: true
 
       
+      physical_heritage_things:
+        description: "Collection of all physical heritage objects"
+        range: PhysicalHeritageThing
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
       religious_traditions:
         description: "Collection of ReligiousTradition instances"
         range: ReligiousTradition
@@ -1204,7 +1212,7 @@ classes:
       
       provenance_assertions:
         description: "Collection of Assertion instances"
-        range: Assertion
+        range: HeritageAssertion
         multivalued: true
         inlined: true
         inlined_as_list: true
@@ -1370,15 +1378,7 @@ slots:
     range: TimeSpan
     description: "Links event to its temporal extent"
 
-  begin_date:
-    slot_uri: crm:P82a_begin_of_the_begin
-    range: string
-    description: "Start date like ISO 8601 "
 
-  end_date:
-    slot_uri: crm:P82b_end_of_the_end
-    range: string
-    description: "End date like ISO 8601"
 
   date_earliest:
     slot_uri: crm:P82a_begin_of_the_begin
@@ -1392,7 +1392,7 @@ slots:
 
   calendar_system:
     slot_uri: heritageGraph:calendar_system
-    range: CalendarSystemEnum 
+    range: CalendarSystem
     description: "Calendar system used for date representation"
 
   lunar_date_tithi:
@@ -1445,7 +1445,7 @@ slots:
 
   ritual_on_structure:
     slot_uri: crm:P8_took_place_on_or_within
-    range: ArchitecturalStructure
+    range: PhysicalHeritageThing
     description: "Ritual occurs at specific temple or monument"
 
 
@@ -1704,7 +1704,7 @@ slots:
 
   transferred_object:
     slot_uri: crm:P30_transferred_custody_of
-    range: ArchitecturalStructure
+    range: PhysicalHeritageThing
     description: "Object transferred in custody event"
 
   transferred_from_actor:
@@ -1765,7 +1765,7 @@ slots:
 
   assessed_object:
     slot_uri: crm:P34_concerned
-    range: ArchitecturalStructure
+    range: PhysicalHeritageThing
     description: "Object assessed for condition"
 
   assessed_condition_state:
@@ -1825,7 +1825,7 @@ slots:
 
   supersedes_assertion:
     slot_uri: prov:invalidated
-    range: Assertion
+    range: HeritageAssertion
     description: "
       Previous version of this assertion (if this is an update).
       Creates version chain: A1 → A2 → A3
@@ -1876,7 +1876,7 @@ slots:
 
   has_provenance_assertion:
     slot_uri: heritageGraph:has_provenance_assertion
-    range: Assertion
+    range: HeritageAssertion
     multivalued: true
     description: "All factual claims about this structure with full provenance"
 
@@ -1887,7 +1887,7 @@ slots:
 
   asserts_about_entity:
     slot_uri: crm:P140_assigned_attribute_to
-    range: ArchitecturalStructure
+    range: AssertableEntity
 
   asserts_about_event:
     slot_uri: crm:P141_assigned
@@ -1917,7 +1917,7 @@ slots:
 
   subject_entity:
     slot_uri: crm:P140_assigned_attribute_to
-    range: ArchitecturalStructure
+    range: PhysicalHeritageThing
     multivalued: true
     description: "Heritage entity that is the subject of documentation"
 
@@ -1994,7 +1994,7 @@ slots:
     description: "Rituals in which this structure participates"
 
   was_documented_by:
-    slot_uri: prov:wasGeneratedBy
+    slot_uri: crm:P140i_was_attributed_by
     range: DocumentationActivity
     multivalued: true
     description: "Documentation event that recorded this entity or event"
