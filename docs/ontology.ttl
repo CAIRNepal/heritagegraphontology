@@ -681,7 +681,21 @@ heritageGraph:Abhisheka a owl:Class ;
 
 heritageGraph:AssertableEntity a owl:Class ;
     rdfs:label "AssertableEntity" ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf ( heritageGraph:HumanMadeObject
+                          heritageGraph:ArchitecturalStructure
+                          heritageGraph:IconographicObject
+                          heritageGraph:ArchitecturalElement
+                          heritageGraph:Deity
+                          heritageGraph:Person
+                          heritageGraph:Guthi
+                          heritageGraph:CasteGroup
+                          heritageGraph:Place
+                          heritageGraph:TimeSpan
+                          heritageGraph:Material
+                          heritageGraph:Technique ) ] ;
     skos:definition "Any entity that can be the subject of a heritage assertion" ;
+    skos:exactMatch crminf:E1_Entity ;
     skos:inScheme <CulturalHeritageOntology> .
 
 heritageGraph:Bhajan a owl:Class ;
@@ -2965,6 +2979,11 @@ heritageGraph:DataSource a owl:Class ;
 
 heritageGraph:PhysicalHeritageThing a owl:Class ;
     rdfs:label "PhysicalHeritageThing" ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:unionOf ( heritageGraph:ArchitecturalStructure
+                          heritageGraph:IconographicObject
+                          heritageGraph:ArchitecturalElement ) ] ;
+    skos:exactMatch heritageGraph:PhysicalHeritageThing ;
     skos:inScheme <CulturalHeritageOntology> .
 
 heritageGraph:Guthi a owl:Class ;
