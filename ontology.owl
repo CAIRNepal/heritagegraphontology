@@ -72,20 +72,6 @@
     
 
 
-    <!-- http://www.w3.org/2002/07/owl#maxCardinality -->
-
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#maxCardinality"/>
-    
-
-
-    <!-- http://www.w3.org/2002/07/owl#minCardinality -->
-
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#minCardinality"/>
-    
-
-
     <!-- http://www.w3.org/2002/07/owl#ontologyIRI -->
 
 
@@ -802,13 +788,6 @@
         <skos:definition>Members of Guthi organization</skos:definition>
         <skos:inScheme rdf:resource="file:/input/CulturalHeritageOntology"/>
     </owl:ObjectProperty>
-    
-
-
-    <!-- https://w3id.org/heritagegraph/has_participant -->
-
-
-    <owl:ObjectProperty rdf:about="https://w3id.org/heritagegraph/has_participant"/>
     
 
 
@@ -2133,20 +2112,6 @@
      -->
 
 
-    
-
-
-    <!-- http://org.semanticweb.owlapi/error#Error1 -->
-
-
-    <owl:Class rdf:about="http://org.semanticweb.owlapi/error#Error1"/>
-    
-
-
-    <!-- http://org.semanticweb.owlapi/error#Error2 -->
-
-
-    <owl:Class rdf:about="http://org.semanticweb.owlapi/error#Error2"/>
     
 
 
@@ -5475,8 +5440,6 @@
 
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/LivingGoddessTenure">
-        <rdfs:subClassOf rdf:resource="http://org.semanticweb.owlapi/error#Error1"/>
-        <rdfs:subClassOf rdf:resource="http://org.semanticweb.owlapi/error#Error2"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/heritagegraph/embodied_deity"/>
@@ -5486,12 +5449,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/heritagegraph/had_participant"/>
-                <owl:allValuesFrom rdf:resource="https://w3id.org/heritagegraph/Actor"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://w3id.org/heritagegraph/has_participant"/>
                 <owl:allValuesFrom rdf:resource="https://w3id.org/heritagegraph/Person"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5534,7 +5491,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/heritagegraph/had_participant"/>
-                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minCardinality>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7797,12 +7754,6 @@
         <rdfs:label>Historical</rdfs:label>
         <skos:definition>Gradual syncretism over time</skos:definition>
     </owl:Class>
-    <rdf:Description>
-        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:minCardinality>
-    </rdf:Description>
-    <rdf:Description>
-        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</owl:maxCardinality>
-    </rdf:Description>
     
 
 

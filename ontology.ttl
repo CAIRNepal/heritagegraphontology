@@ -42,14 +42,6 @@
 owl:imports rdf:type owl:AnnotationProperty .
 
 
-###  http://www.w3.org/2002/07/owl#maxCardinality
-owl:maxCardinality rdf:type owl:AnnotationProperty .
-
-
-###  http://www.w3.org/2002/07/owl#minCardinality
-owl:minCardinality rdf:type owl:AnnotationProperty .
-
-
 ###  http://www.w3.org/2002/07/owl#ontologyIRI
 owl:ontologyIRI rdf:type owl:AnnotationProperty .
 
@@ -508,10 +500,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "has_membership" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Members of Guthi organization" ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/CulturalHeritageOntology> .
-
-
-###  https://w3id.org/heritagegraph/has_participant
-<https://w3id.org/heritagegraph/has_participant> rdf:type owl:ObjectProperty .
 
 
 ###  https://w3id.org/heritagegraph/has_provenance_assertion
@@ -1379,14 +1367,6 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 #    Classes
 #################################################################
-
-###  http://org.semanticweb.owlapi/error#Error1
-<http://org.semanticweb.owlapi/error#Error1> rdf:type owl:Class .
-
-
-###  http://org.semanticweb.owlapi/error#Error2
-<http://org.semanticweb.owlapi/error#Error2> rdf:type owl:Class .
-
 
 ###  http://vocab.getty.edu/aat/300001285
 <http://vocab.getty.edu/aat/300001285> rdf:type owl:Class ;
@@ -3624,18 +3604,12 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/LivingGoddessTenure
 <https://w3id.org/heritagegraph/LivingGoddessTenure> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://org.semanticweb.owlapi/error#Error1> ,
-                                                                     <http://org.semanticweb.owlapi/error#Error2> ,
-                                                                     [ rdf:type owl:Restriction ;
+                                                     rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/embodied_deity> ;
                                                                        owl:allValuesFrom <https://w3id.org/heritagegraph/Deity>
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/had_participant> ;
-                                                                       owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
-                                                                     ] ,
-                                                                     [ rdf:type owl:Restriction ;
-                                                                       owl:onProperty <https://w3id.org/heritagegraph/has_participant> ;
                                                                        owl:allValuesFrom <https://w3id.org/heritagegraph/Person>
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
@@ -3664,7 +3638,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/had_participant> ;
-                                                                       owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
                                                                      ] ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/has_retirement_event> ;
@@ -5182,19 +5156,13 @@ xsd:date rdf:type rdfs:Datatype .
                                                               <http://www.w3.org/2004/02/skos/core#definition> "Gradual syncretism over time" .
 
 
-[ owl:minCardinality 1
-] .
-
-[ owl:maxCardinality 1
- ] .
-
 #################################################################
 #    Annotations
 #################################################################
 
 <https://w3id.org/heritagegraph/performed_by_group> rdfs:label "performed_by_group" ;
-                                                     <http://www.w3.org/2004/02/skos/core#definition> "Group (Guthi, caste) responsible for ritual" ;
-                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/CulturalHeritageOntology> .
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Group (Guthi, caste) responsible for ritual" ;
+                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/CulturalHeritageOntology> .
 
 
 ###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

@@ -3807,7 +3807,7 @@
   "@id" : "_:genid479",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Actor"
+    "@id" : "https://w3id.org/heritagegraph/Person"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/had_participant"
@@ -3826,22 +3826,13 @@
   "@id" : "_:genid480",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/has_participant"
-  } ]
-}, {
-  "@id" : "_:genid481",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/LivingGoddessRetirement"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/has_retirement_event"
   } ]
 }, {
-  "@id" : "_:genid482",
+  "@id" : "_:genid481",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/TimeSpan"
@@ -3850,7 +3841,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid483",
+  "@id" : "_:genid482",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
@@ -3859,7 +3850,7 @@
     "@id" : "https://w3id.org/heritagegraph/residence_structure"
   } ]
 }, {
-  "@id" : "_:genid484",
+  "@id" : "_:genid483",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Guthi"
@@ -3868,7 +3859,7 @@
     "@id" : "https://w3id.org/heritagegraph/supported_by_institution"
   } ]
 }, {
-  "@id" : "_:genid485",
+  "@id" : "_:genid484",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
@@ -3877,7 +3868,7 @@
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid486",
+  "@id" : "_:genid485",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3887,17 +3878,17 @@
     "@id" : "https://w3id.org/heritagegraph/embodied_deity"
   } ]
 }, {
-  "@id" : "_:genid487",
+  "@id" : "_:genid486",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/had_participant"
   } ]
 }, {
-  "@id" : "_:genid488",
+  "@id" : "_:genid487",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3907,7 +3898,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_retirement_event"
   } ]
 }, {
-  "@id" : "_:genid489",
+  "@id" : "_:genid488",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3915,6 +3906,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
+  } ]
+}, {
+  "@id" : "_:genid489",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/residence_structure"
   } ]
 }, {
   "@id" : "_:genid49",
@@ -3931,10 +3932,10 @@
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/residence_structure"
+    "@id" : "https://w3id.org/heritagegraph/supported_by_institution"
   } ]
 }, {
   "@id" : "_:genid491",
@@ -3944,20 +3945,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/supported_by_institution"
-  } ]
-}, {
-  "@id" : "_:genid492",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid493",
+  "@id" : "_:genid492",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3967,7 +3958,7 @@
     "@id" : "https://w3id.org/heritagegraph/embodied_deity"
   } ]
 }, {
-  "@id" : "_:genid494",
+  "@id" : "_:genid493",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3977,7 +3968,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_retirement_event"
   } ]
 }, {
-  "@id" : "_:genid495",
+  "@id" : "_:genid494",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3987,7 +3978,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid496",
+  "@id" : "_:genid495",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3997,7 +3988,7 @@
     "@id" : "https://w3id.org/heritagegraph/residence_structure"
   } ]
 }, {
-  "@id" : "_:genid497",
+  "@id" : "_:genid496",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4006,7 +3997,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid498",
+  "@id" : "_:genid497",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4016,11 +4007,20 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid499",
+  "@id" : "_:genid498",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/name"
+  } ]
+}, {
+  "@id" : "_:genid499",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/name"
@@ -4042,16 +4042,17 @@
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid501",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid502",
@@ -4061,17 +4062,17 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid503",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid504",
@@ -4081,20 +4082,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
-  } ]
-}, {
-  "@id" : "_:genid505",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid506",
+  "@id" : "_:genid505",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4103,7 +4094,7 @@
     "@id" : "https://w3id.org/heritagegraph/curator"
   } ]
 }, {
-  "@id" : "_:genid507",
+  "@id" : "_:genid506",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4112,7 +4103,7 @@
     "@id" : "https://w3id.org/heritagegraph/dataset_name"
   } ]
 }, {
-  "@id" : "_:genid508",
+  "@id" : "_:genid507",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4121,13 +4112,22 @@
     "@id" : "https://w3id.org/heritagegraph/dataset_version"
   } ]
 }, {
-  "@id" : "_:genid509",
+  "@id" : "_:genid508",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/generated_date"
+  } ]
+}, {
+  "@id" : "_:genid509",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/license"
   } ]
 }, {
   "@id" : "_:genid51",
@@ -4145,16 +4145,17 @@
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/license"
+    "@id" : "https://w3id.org/heritagegraph/schema_version"
   } ]
 }, {
   "@id" : "_:genid511",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/schema_version"
+    "@id" : "https://w3id.org/heritagegraph/curator"
   } ]
 }, {
   "@id" : "_:genid512",
@@ -4164,7 +4165,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/curator"
+    "@id" : "https://w3id.org/heritagegraph/dataset_name"
   } ]
 }, {
   "@id" : "_:genid513",
@@ -4174,7 +4175,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/dataset_name"
+    "@id" : "https://w3id.org/heritagegraph/dataset_version"
   } ]
 }, {
   "@id" : "_:genid514",
@@ -4184,7 +4185,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/dataset_version"
+    "@id" : "https://w3id.org/heritagegraph/generated_date"
   } ]
 }, {
   "@id" : "_:genid515",
@@ -4194,7 +4195,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/generated_date"
+    "@id" : "https://w3id.org/heritagegraph/license"
   } ]
 }, {
   "@id" : "_:genid516",
@@ -4204,20 +4205,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/license"
-  } ]
-}, {
-  "@id" : "_:genid517",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/schema_version"
   } ]
 }, {
-  "@id" : "_:genid518",
+  "@id" : "_:genid517",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4227,7 +4218,7 @@
     "@id" : "https://w3id.org/heritagegraph/curator"
   } ]
 }, {
-  "@id" : "_:genid519",
+  "@id" : "_:genid518",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4235,6 +4226,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/dataset_name"
+  } ]
+}, {
+  "@id" : "_:genid519",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/dataset_version"
   } ]
 }, {
   "@id" : "_:genid52",
@@ -4253,7 +4254,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/dataset_version"
+    "@id" : "https://w3id.org/heritagegraph/generated_date"
   } ]
 }, {
   "@id" : "_:genid521",
@@ -4263,7 +4264,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/generated_date"
+    "@id" : "https://w3id.org/heritagegraph/license"
   } ]
 }, {
   "@id" : "_:genid522",
@@ -4273,20 +4274,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/license"
-  } ]
-}, {
-  "@id" : "_:genid523",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/schema_version"
   } ]
 }, {
-  "@id" : "_:genid524",
+  "@id" : "_:genid523",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Consecration"
@@ -4295,13 +4286,23 @@
     "@id" : "https://w3id.org/heritagegraph/consecrated_by_event"
   } ]
 }, {
-  "@id" : "_:genid525",
+  "@id" : "_:genid524",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Deity"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/is_about_deity"
+  } ]
+}, {
+  "@id" : "_:genid525",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/consecrated_by_event"
   } ]
 }, {
   "@id" : "_:genid526",
@@ -4311,17 +4312,17 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/consecrated_by_event"
+    "@id" : "https://w3id.org/heritagegraph/is_about_deity"
   } ]
 }, {
   "@id" : "_:genid527",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_deity"
+    "@id" : "https://w3id.org/heritagegraph/consecrated_by_event"
   } ]
 }, {
   "@id" : "_:genid528",
@@ -4331,17 +4332,16 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/consecrated_by_event"
+    "@id" : "https://w3id.org/heritagegraph/is_about_deity"
   } ]
 }, {
   "@id" : "_:genid529",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_deity"
+    "@id" : "https://w3id.org/heritagegraph/birth_timespan"
   } ]
 }, {
   "@id" : "_:genid53",
@@ -4356,22 +4356,13 @@
   "@id" : "_:genid530",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/birth_timespan"
-  } ]
-}, {
-  "@id" : "_:genid531",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/RitualEvent"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/carried_out_activity"
   } ]
 }, {
-  "@id" : "_:genid532",
+  "@id" : "_:genid531",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/TimeSpan"
@@ -4380,13 +4371,23 @@
     "@id" : "https://w3id.org/heritagegraph/death_timespan"
   } ]
 }, {
-  "@id" : "_:genid533",
+  "@id" : "_:genid532",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Guthi"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/member_of_group"
+  } ]
+}, {
+  "@id" : "_:genid533",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/birth_timespan"
   } ]
 }, {
   "@id" : "_:genid534",
@@ -4396,7 +4397,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/birth_timespan"
+    "@id" : "https://w3id.org/heritagegraph/carried_out_activity"
   } ]
 }, {
   "@id" : "_:genid535",
@@ -4406,7 +4407,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/carried_out_activity"
+    "@id" : "https://w3id.org/heritagegraph/death_timespan"
   } ]
 }, {
   "@id" : "_:genid536",
@@ -4416,20 +4417,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/death_timespan"
-  } ]
-}, {
-  "@id" : "_:genid537",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/member_of_group"
   } ]
 }, {
-  "@id" : "_:genid538",
+  "@id" : "_:genid537",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4439,7 +4430,7 @@
     "@id" : "https://w3id.org/heritagegraph/birth_timespan"
   } ]
 }, {
-  "@id" : "_:genid539",
+  "@id" : "_:genid538",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4447,6 +4438,15 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/death_timespan"
+  } ]
+}, {
+  "@id" : "_:genid539",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/expertise_area"
   } ]
 }, {
   "@id" : "_:genid54",
@@ -4462,22 +4462,13 @@
   "@id" : "_:genid540",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/expertise_area"
-  } ]
-}, {
-  "@id" : "_:genid541",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#anyURI"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/id"
   } ]
 }, {
-  "@id" : "_:genid542",
+  "@id" : "_:genid541",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4486,7 +4477,7 @@
     "@id" : "https://w3id.org/heritagegraph/institutional_affiliation"
   } ]
 }, {
-  "@id" : "_:genid543",
+  "@id" : "_:genid542",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4495,7 +4486,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid544",
+  "@id" : "_:genid543",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4504,7 +4495,7 @@
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid545",
+  "@id" : "_:genid544",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4514,7 +4505,7 @@
     "@id" : "https://w3id.org/heritagegraph/expertise_area"
   } ]
 }, {
-  "@id" : "_:genid546",
+  "@id" : "_:genid545",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4524,7 +4515,7 @@
     "@id" : "https://w3id.org/heritagegraph/id"
   } ]
 }, {
-  "@id" : "_:genid547",
+  "@id" : "_:genid546",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4534,7 +4525,7 @@
     "@id" : "https://w3id.org/heritagegraph/institutional_affiliation"
   } ]
 }, {
-  "@id" : "_:genid548",
+  "@id" : "_:genid547",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4544,7 +4535,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid549",
+  "@id" : "_:genid548",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4552,6 +4543,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
+  } ]
+}, {
+  "@id" : "_:genid549",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/id"
   } ]
 }, {
   "@id" : "_:genid55",
@@ -4571,7 +4572,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/id"
+    "@id" : "https://w3id.org/heritagegraph/institutional_affiliation"
   } ]
 }, {
   "@id" : "_:genid551",
@@ -4581,7 +4582,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/institutional_affiliation"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid552",
@@ -4591,20 +4592,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
-  } ]
-}, {
-  "@id" : "_:genid553",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid554",
+  "@id" : "_:genid553",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
@@ -4613,7 +4604,7 @@
     "@id" : "https://w3id.org/heritagegraph/contains_structure"
   } ]
 }, {
-  "@id" : "_:genid555",
+  "@id" : "_:genid554",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4623,7 +4614,7 @@
     "@id" : "https://w3id.org/heritagegraph/contains_structure"
   } ]
 }, {
-  "@id" : "_:genid556",
+  "@id" : "_:genid555",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4632,7 +4623,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid557",
+  "@id" : "_:genid556",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.opengis.net/ont/geosparql#wktLiteral"
@@ -4641,13 +4632,23 @@
     "@id" : "https://w3id.org/heritagegraph/place_coordinates"
   } ]
 }, {
-  "@id" : "_:genid558",
+  "@id" : "_:genid557",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/place_type"
+  } ]
+}, {
+  "@id" : "_:genid558",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid559",
@@ -4657,7 +4658,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/place_coordinates"
   } ]
 }, {
   "@id" : "_:genid56",
@@ -4677,20 +4678,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/place_coordinates"
-  } ]
-}, {
-  "@id" : "_:genid561",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/place_type"
   } ]
 }, {
-  "@id" : "_:genid562",
+  "@id" : "_:genid561",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4700,7 +4691,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid563",
+  "@id" : "_:genid562",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4710,7 +4701,7 @@
     "@id" : "https://w3id.org/heritagegraph/place_coordinates"
   } ]
 }, {
-  "@id" : "_:genid564",
+  "@id" : "_:genid563",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4720,7 +4711,7 @@
     "@id" : "https://w3id.org/heritagegraph/place_type"
   } ]
 }, {
-  "@id" : "_:genid565",
+  "@id" : "_:genid564",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
@@ -4729,7 +4720,7 @@
     "@id" : "https://w3id.org/heritagegraph/carried_out_by"
   } ]
 }, {
-  "@id" : "_:genid566",
+  "@id" : "_:genid565",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
@@ -4738,7 +4729,7 @@
     "@id" : "https://w3id.org/heritagegraph/commissioned_by"
   } ]
 }, {
-  "@id" : "_:genid567",
+  "@id" : "_:genid566",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
@@ -4747,7 +4738,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_provenance_assertion"
   } ]
 }, {
-  "@id" : "_:genid568",
+  "@id" : "_:genid567",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/TimeSpan"
@@ -4756,13 +4747,22 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid569",
+  "@id" : "_:genid568",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/PhysicalHeritageThing"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/produced_object"
+  } ]
+}, {
+  "@id" : "_:genid569",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/Place"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
   "@id" : "_:genid57",
@@ -4778,22 +4778,13 @@
   "@id" : "_:genid570",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/took_place_at"
-  } ]
-}, {
-  "@id" : "_:genid571",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Technique"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/used_technique"
   } ]
 }, {
-  "@id" : "_:genid572",
+  "@id" : "_:genid571",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
@@ -4802,7 +4793,7 @@
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid573",
+  "@id" : "_:genid572",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4812,7 +4803,7 @@
     "@id" : "https://w3id.org/heritagegraph/carried_out_by"
   } ]
 }, {
-  "@id" : "_:genid574",
+  "@id" : "_:genid573",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4822,7 +4813,7 @@
     "@id" : "https://w3id.org/heritagegraph/commissioned_by"
   } ]
 }, {
-  "@id" : "_:genid575",
+  "@id" : "_:genid574",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4832,7 +4823,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_provenance_assertion"
   } ]
 }, {
-  "@id" : "_:genid576",
+  "@id" : "_:genid575",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4842,7 +4833,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid577",
+  "@id" : "_:genid576",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4852,7 +4843,7 @@
     "@id" : "https://w3id.org/heritagegraph/produced_object"
   } ]
 }, {
-  "@id" : "_:genid578",
+  "@id" : "_:genid577",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4862,7 +4853,7 @@
     "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
-  "@id" : "_:genid579",
+  "@id" : "_:genid578",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4870,6 +4861,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/used_technique"
+  } ]
+}, {
+  "@id" : "_:genid579",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
   "@id" : "_:genid58",
@@ -4884,12 +4885,12 @@
 }, {
   "@id" : "_:genid580",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/was_documented_by"
+    "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
   "@id" : "_:genid581",
@@ -4899,7 +4900,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/has_timespan"
+    "@id" : "https://w3id.org/heritagegraph/produced_object"
   } ]
 }, {
   "@id" : "_:genid582",
@@ -4909,20 +4910,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/produced_object"
-  } ]
-}, {
-  "@id" : "_:genid583",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
-  "@id" : "_:genid584",
+  "@id" : "_:genid583",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -4931,7 +4922,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid585",
+  "@id" : "_:genid584",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -4941,11 +4932,20 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid586",
+  "@id" : "_:genid585",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/name"
+  } ]
+}, {
+  "@id" : "_:genid586",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/name"
@@ -4957,16 +4957,17 @@
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid588",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid589",
@@ -4976,7 +4977,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid59",
@@ -4991,12 +4992,12 @@
 }, {
   "@id" : "_:genid590",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid591",
@@ -5006,20 +5007,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
-  } ]
-}, {
-  "@id" : "_:genid592",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid593",
+  "@id" : "_:genid592",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
@@ -5028,7 +5019,7 @@
     "@id" : "https://w3id.org/heritagegraph/carried_out_by"
   } ]
 }, {
-  "@id" : "_:genid594",
+  "@id" : "_:genid593",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Place"
@@ -5037,7 +5028,7 @@
     "@id" : "https://w3id.org/heritagegraph/end_place"
   } ]
 }, {
-  "@id" : "_:genid595",
+  "@id" : "_:genid594",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
@@ -5046,7 +5037,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_provenance_assertion"
   } ]
 }, {
-  "@id" : "_:genid596",
+  "@id" : "_:genid595",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/TimeSpan"
@@ -5055,7 +5046,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid597",
+  "@id" : "_:genid596",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Deity"
@@ -5064,7 +5055,7 @@
     "@id" : "https://w3id.org/heritagegraph/invokes_deity"
   } ]
 }, {
-  "@id" : "_:genid598",
+  "@id" : "_:genid597",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Festival"
@@ -5073,13 +5064,22 @@
     "@id" : "https://w3id.org/heritagegraph/is_part_of_festival"
   } ]
 }, {
-  "@id" : "_:genid599",
+  "@id" : "_:genid598",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Guthi"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/managed_by_guthi"
+  } ]
+}, {
+  "@id" : "_:genid599",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/RitualEvent"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/occurs_after"
   } ]
 }, {
   "@id" : "_:genid60",
@@ -5097,28 +5097,19 @@
     "@id" : "https://w3id.org/heritagegraph/RitualEvent"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/occurs_after"
+    "@id" : "https://w3id.org/heritagegraph/occurs_before"
   } ]
 }, {
   "@id" : "_:genid601",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/RitualEvent"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/occurs_before"
-  } ]
-}, {
-  "@id" : "_:genid602",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "_:genid603"
+    "@id" : "_:genid602"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/performed_by_group"
   } ]
 }, {
-  "@id" : "_:genid603",
+  "@id" : "_:genid602",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2002/07/owl#unionOf" : [ {
     "@list" : [ {
@@ -5128,7 +5119,7 @@
     } ]
   } ]
 }, {
-  "@id" : "_:genid606",
+  "@id" : "_:genid605",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/PhysicalHeritageThing"
@@ -5137,7 +5128,7 @@
     "@id" : "https://w3id.org/heritagegraph/ritual_on_structure"
   } ]
 }, {
-  "@id" : "_:genid607",
+  "@id" : "_:genid606",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/RitualTypeEnum"
@@ -5146,7 +5137,7 @@
     "@id" : "https://w3id.org/heritagegraph/ritual_type"
   } ]
 }, {
-  "@id" : "_:genid608",
+  "@id" : "_:genid607",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Place"
@@ -5155,13 +5146,22 @@
     "@id" : "https://w3id.org/heritagegraph/route_places"
   } ]
 }, {
-  "@id" : "_:genid609",
+  "@id" : "_:genid608",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Place"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/start_place"
+  } ]
+}, {
+  "@id" : "_:genid609",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/Material"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/used_materials"
   } ]
 }, {
   "@id" : "_:genid61",
@@ -5177,22 +5177,13 @@
   "@id" : "_:genid610",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Material"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/used_materials"
-  } ]
-}, {
-  "@id" : "_:genid611",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid612",
+  "@id" : "_:genid611",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5202,7 +5193,7 @@
     "@id" : "https://w3id.org/heritagegraph/carried_out_by"
   } ]
 }, {
-  "@id" : "_:genid613",
+  "@id" : "_:genid612",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5212,7 +5203,7 @@
     "@id" : "https://w3id.org/heritagegraph/end_place"
   } ]
 }, {
-  "@id" : "_:genid614",
+  "@id" : "_:genid613",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5222,7 +5213,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_provenance_assertion"
   } ]
 }, {
-  "@id" : "_:genid615",
+  "@id" : "_:genid614",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5232,7 +5223,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid616",
+  "@id" : "_:genid615",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5242,7 +5233,7 @@
     "@id" : "https://w3id.org/heritagegraph/invokes_deity"
   } ]
 }, {
-  "@id" : "_:genid617",
+  "@id" : "_:genid616",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5252,7 +5243,7 @@
     "@id" : "https://w3id.org/heritagegraph/is_part_of_festival"
   } ]
 }, {
-  "@id" : "_:genid618",
+  "@id" : "_:genid617",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5262,7 +5253,7 @@
     "@id" : "https://w3id.org/heritagegraph/managed_by_guthi"
   } ]
 }, {
-  "@id" : "_:genid619",
+  "@id" : "_:genid618",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5270,6 +5261,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/occurs_after"
+  } ]
+}, {
+  "@id" : "_:genid619",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/occurs_before"
   } ]
 }, {
   "@id" : "_:genid62",
@@ -5288,7 +5289,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/occurs_before"
+    "@id" : "https://w3id.org/heritagegraph/performed_by_group"
   } ]
 }, {
   "@id" : "_:genid621",
@@ -5298,7 +5299,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/performed_by_group"
+    "@id" : "https://w3id.org/heritagegraph/ritual_on_structure"
   } ]
 }, {
   "@id" : "_:genid622",
@@ -5308,7 +5309,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/ritual_on_structure"
+    "@id" : "https://w3id.org/heritagegraph/ritual_type"
   } ]
 }, {
   "@id" : "_:genid623",
@@ -5318,7 +5319,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/ritual_type"
+    "@id" : "https://w3id.org/heritagegraph/route_places"
   } ]
 }, {
   "@id" : "_:genid624",
@@ -5328,7 +5329,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/route_places"
+    "@id" : "https://w3id.org/heritagegraph/start_place"
   } ]
 }, {
   "@id" : "_:genid625",
@@ -5338,7 +5339,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/start_place"
+    "@id" : "https://w3id.org/heritagegraph/used_materials"
   } ]
 }, {
   "@id" : "_:genid626",
@@ -5348,20 +5349,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/used_materials"
-  } ]
-}, {
-  "@id" : "_:genid627",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid628",
+  "@id" : "_:genid627",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5371,7 +5362,7 @@
     "@id" : "https://w3id.org/heritagegraph/end_place"
   } ]
 }, {
-  "@id" : "_:genid629",
+  "@id" : "_:genid628",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5379,6 +5370,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
+  } ]
+}, {
+  "@id" : "_:genid629",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/is_part_of_festival"
   } ]
 }, {
   "@id" : "_:genid63",
@@ -5397,7 +5398,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_part_of_festival"
+    "@id" : "https://w3id.org/heritagegraph/occurs_after"
   } ]
 }, {
   "@id" : "_:genid631",
@@ -5407,7 +5408,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/occurs_after"
+    "@id" : "https://w3id.org/heritagegraph/occurs_before"
   } ]
 }, {
   "@id" : "_:genid632",
@@ -5417,7 +5418,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/occurs_before"
+    "@id" : "https://w3id.org/heritagegraph/ritual_on_structure"
   } ]
 }, {
   "@id" : "_:genid633",
@@ -5427,7 +5428,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/ritual_on_structure"
+    "@id" : "https://w3id.org/heritagegraph/ritual_type"
   } ]
 }, {
   "@id" : "_:genid634",
@@ -5437,20 +5438,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/ritual_type"
-  } ]
-}, {
-  "@id" : "_:genid635",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/start_place"
   } ]
 }, {
-  "@id" : "_:genid636",
+  "@id" : "_:genid635",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -5459,7 +5450,7 @@
     "@id" : "https://w3id.org/heritagegraph/lunar_date_tithi"
   } ]
 }, {
-  "@id" : "_:genid637",
+  "@id" : "_:genid636",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -5468,7 +5459,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid638",
+  "@id" : "_:genid637",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -5477,13 +5468,22 @@
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid639",
+  "@id" : "_:genid638",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/recurrence_pattern"
+  } ]
+}, {
+  "@id" : "_:genid639",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/route_description"
   } ]
 }, {
   "@id" : "_:genid64",
@@ -5497,11 +5497,12 @@
 }, {
   "@id" : "_:genid640",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/route_description"
+    "@id" : "https://w3id.org/heritagegraph/lunar_date_tithi"
   } ]
 }, {
   "@id" : "_:genid641",
@@ -5511,7 +5512,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/lunar_date_tithi"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid642",
@@ -5521,7 +5522,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid643",
@@ -5531,7 +5532,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/recurrence_pattern"
   } ]
 }, {
   "@id" : "_:genid644",
@@ -5541,20 +5542,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/recurrence_pattern"
-  } ]
-}, {
-  "@id" : "_:genid645",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/route_description"
   } ]
 }, {
-  "@id" : "_:genid646",
+  "@id" : "_:genid645",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5564,7 +5555,7 @@
     "@id" : "https://w3id.org/heritagegraph/lunar_date_tithi"
   } ]
 }, {
-  "@id" : "_:genid647",
+  "@id" : "_:genid646",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5574,7 +5565,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid648",
+  "@id" : "_:genid647",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5584,7 +5575,7 @@
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid649",
+  "@id" : "_:genid648",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5592,6 +5583,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/recurrence_pattern"
+  } ]
+}, {
+  "@id" : "_:genid649",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/route_description"
   } ]
 }, {
   "@id" : "_:genid65",
@@ -5604,16 +5605,6 @@
   } ]
 }, {
   "@id" : "_:genid650",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/route_description"
-  } ]
-}, {
-  "@id" : "_:genid651",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2002/07/owl#unionOf" : [ {
     "@list" : [ {
@@ -5677,7 +5668,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid671",
+  "@id" : "_:genid670",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Deity"
@@ -5686,7 +5677,7 @@
     "@id" : "https://w3id.org/heritagegraph/assigned_equivalent"
   } ]
 }, {
-  "@id" : "_:genid672",
+  "@id" : "_:genid671",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Deity"
@@ -5695,7 +5686,7 @@
     "@id" : "https://w3id.org/heritagegraph/assigned_to_deity"
   } ]
 }, {
-  "@id" : "_:genid673",
+  "@id" : "_:genid672",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DataSource"
@@ -5704,7 +5695,7 @@
     "@id" : "https://w3id.org/heritagegraph/documented_in_source"
   } ]
 }, {
-  "@id" : "_:genid674",
+  "@id" : "_:genid673",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/SyncreticTypeEnum"
@@ -5713,7 +5704,7 @@
     "@id" : "https://w3id.org/heritagegraph/syncretic_type"
   } ]
 }, {
-  "@id" : "_:genid675",
+  "@id" : "_:genid674",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DataSource"
@@ -5722,13 +5713,23 @@
     "@id" : "https://w3id.org/heritagegraph/was_derived_from_source"
   } ]
 }, {
-  "@id" : "_:genid676",
+  "@id" : "_:genid675",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
+  } ]
+}, {
+  "@id" : "_:genid676",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/assigned_equivalent"
   } ]
 }, {
   "@id" : "_:genid677",
@@ -5738,17 +5739,17 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/assigned_equivalent"
+    "@id" : "https://w3id.org/heritagegraph/assigned_to_deity"
   } ]
 }, {
   "@id" : "_:genid678",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/assigned_to_deity"
+    "@id" : "https://w3id.org/heritagegraph/documented_in_source"
   } ]
 }, {
   "@id" : "_:genid679",
@@ -5758,7 +5759,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/documented_in_source"
+    "@id" : "https://w3id.org/heritagegraph/syncretic_type"
   } ]
 }, {
   "@id" : "_:genid68",
@@ -5778,7 +5779,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/syncretic_type"
+    "@id" : "https://w3id.org/heritagegraph/was_derived_from_source"
   } ]
 }, {
   "@id" : "_:genid681",
@@ -5788,20 +5789,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/was_derived_from_source"
-  } ]
-}, {
-  "@id" : "_:genid682",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
-  "@id" : "_:genid683",
+  "@id" : "_:genid682",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5811,7 +5802,7 @@
     "@id" : "https://w3id.org/heritagegraph/assigned_to_deity"
   } ]
 }, {
-  "@id" : "_:genid684",
+  "@id" : "_:genid683",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5821,7 +5812,7 @@
     "@id" : "https://w3id.org/heritagegraph/syncretic_type"
   } ]
 }, {
-  "@id" : "_:genid685",
+  "@id" : "_:genid684",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -5830,13 +5821,23 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid686",
+  "@id" : "_:genid685",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
+  } ]
+}, {
+  "@id" : "_:genid686",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid687",
@@ -5846,17 +5847,17 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid688",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid689",
@@ -5866,7 +5867,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid69",
@@ -5880,16 +5881,6 @@
   } ]
 }, {
   "@id" : "_:genid690",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
-  } ]
-}, {
-  "@id" : "_:genid691",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
   "http://www.w3.org/2002/07/owl#unionOf" : [ {
     "@list" : [ {
@@ -5903,7 +5894,7 @@
     } ]
   } ]
 }, {
-  "@id" : "_:genid696",
+  "@id" : "_:genid695",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -5912,13 +5903,23 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid697",
+  "@id" : "_:genid696",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
+  } ]
+}, {
+  "@id" : "_:genid697",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid698",
@@ -5928,17 +5929,17 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid699",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
+    "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
   "@id" : "_:genid70",
@@ -5958,20 +5959,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/name"
-  } ]
-}, {
-  "@id" : "_:genid701",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid702",
+  "@id" : "_:genid701",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Enshrinement"
@@ -5980,7 +5971,7 @@
     "@id" : "https://w3id.org/heritagegraph/enshrines_deity_through_event"
   } ]
 }, {
-  "@id" : "_:genid703",
+  "@id" : "_:genid702",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E55_Type"
@@ -5989,7 +5980,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_architectural_style"
   } ]
 }, {
-  "@id" : "_:genid704",
+  "@id" : "_:genid703",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -5999,9 +5990,19 @@
     "@id" : "https://w3id.org/heritagegraph/enshrines_deity_through_event"
   } ]
 }, {
-  "@id" : "_:genid705",
+  "@id" : "_:genid704",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/has_architectural_style"
+  } ]
+}, {
+  "@id" : "_:genid705",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -6011,16 +6012,6 @@
 }, {
   "@id" : "_:genid706",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/has_architectural_style"
-  } ]
-}, {
-  "@id" : "_:genid707",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/CalendarSystem"
   } ],
@@ -6028,13 +6019,23 @@
     "@id" : "https://w3id.org/heritagegraph/calendar_system"
   } ]
 }, {
-  "@id" : "_:genid708",
+  "@id" : "_:genid707",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/DatePrecisionEnum"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/date_precision"
+  } ]
+}, {
+  "@id" : "_:genid708",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/calendar_system"
   } ]
 }, {
   "@id" : "_:genid709",
@@ -6044,7 +6045,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/calendar_system"
+    "@id" : "https://w3id.org/heritagegraph/date_precision"
   } ]
 }, {
   "@id" : "_:genid71",
@@ -6059,12 +6060,12 @@
 }, {
   "@id" : "_:genid710",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/date_precision"
+    "@id" : "https://w3id.org/heritagegraph/calendar_system"
   } ]
 }, {
   "@id" : "_:genid711",
@@ -6074,20 +6075,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/calendar_system"
-  } ]
-}, {
-  "@id" : "_:genid712",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/date_precision"
   } ]
 }, {
-  "@id" : "_:genid713",
+  "@id" : "_:genid712",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#date"
@@ -6096,13 +6087,23 @@
     "@id" : "https://w3id.org/heritagegraph/date_earliest"
   } ]
 }, {
-  "@id" : "_:genid714",
+  "@id" : "_:genid713",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#date"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/date_latest"
+  } ]
+}, {
+  "@id" : "_:genid714",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/date_earliest"
   } ]
 }, {
   "@id" : "_:genid715",
@@ -6112,17 +6113,17 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/date_earliest"
+    "@id" : "https://w3id.org/heritagegraph/date_latest"
   } ]
 }, {
   "@id" : "_:genid716",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/date_latest"
+    "@id" : "https://w3id.org/heritagegraph/date_earliest"
   } ]
 }, {
   "@id" : "_:genid717",
@@ -6132,26 +6133,25 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/date_earliest"
-  } ]
-}, {
-  "@id" : "_:genid718",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/date_latest"
   } ]
 }, {
-  "@id" : "_:genid719",
+  "@id" : "_:genid718",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/TimeSpan"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
+  } ]
+}, {
+  "@id" : "_:genid719",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/Place"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
   "@id" : "_:genid72",
@@ -6167,22 +6167,13 @@
   "@id" : "_:genid720",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/took_place_at"
-  } ]
-}, {
-  "@id" : "_:genid721",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/transferred_from_actor"
   } ]
 }, {
-  "@id" : "_:genid722",
+  "@id" : "_:genid721",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/PhysicalHeritageThing"
@@ -6191,7 +6182,7 @@
     "@id" : "https://w3id.org/heritagegraph/transferred_object"
   } ]
 }, {
-  "@id" : "_:genid723",
+  "@id" : "_:genid722",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
@@ -6200,7 +6191,7 @@
     "@id" : "https://w3id.org/heritagegraph/transferred_to_actor"
   } ]
 }, {
-  "@id" : "_:genid724",
+  "@id" : "_:genid723",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Guthi"
@@ -6209,7 +6200,7 @@
     "@id" : "https://w3id.org/heritagegraph/transferred_to_guthi"
   } ]
 }, {
-  "@id" : "_:genid725",
+  "@id" : "_:genid724",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6219,7 +6210,7 @@
     "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
-  "@id" : "_:genid726",
+  "@id" : "_:genid725",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6229,7 +6220,7 @@
     "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
-  "@id" : "_:genid727",
+  "@id" : "_:genid726",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6239,7 +6230,7 @@
     "@id" : "https://w3id.org/heritagegraph/transferred_from_actor"
   } ]
 }, {
-  "@id" : "_:genid728",
+  "@id" : "_:genid727",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6249,7 +6240,7 @@
     "@id" : "https://w3id.org/heritagegraph/transferred_object"
   } ]
 }, {
-  "@id" : "_:genid729",
+  "@id" : "_:genid728",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6257,6 +6248,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/transferred_to_actor"
+  } ]
+}, {
+  "@id" : "_:genid729",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/transferred_to_guthi"
   } ]
 }, {
   "@id" : "_:genid73",
@@ -6271,12 +6272,12 @@
 }, {
   "@id" : "_:genid730",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/transferred_to_guthi"
+    "@id" : "https://w3id.org/heritagegraph/has_timespan"
   } ]
 }, {
   "@id" : "_:genid731",
@@ -6286,7 +6287,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/has_timespan"
+    "@id" : "https://w3id.org/heritagegraph/took_place_at"
   } ]
 }, {
   "@id" : "_:genid732",
@@ -6296,7 +6297,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/took_place_at"
+    "@id" : "https://w3id.org/heritagegraph/transferred_from_actor"
   } ]
 }, {
   "@id" : "_:genid733",
@@ -6306,7 +6307,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/transferred_from_actor"
+    "@id" : "https://w3id.org/heritagegraph/transferred_object"
   } ]
 }, {
   "@id" : "_:genid734",
@@ -6316,7 +6317,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/transferred_object"
+    "@id" : "https://w3id.org/heritagegraph/transferred_to_actor"
   } ]
 }, {
   "@id" : "_:genid735",
@@ -6326,20 +6327,10 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/transferred_to_actor"
-  } ]
-}, {
-  "@id" : "_:genid736",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/transferred_to_guthi"
   } ]
 }, {
-  "@id" : "_:genid737",
+  "@id" : "_:genid736",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -6348,7 +6339,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid738",
+  "@id" : "_:genid737",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6358,7 +6349,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid739",
+  "@id" : "_:genid738",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6366,6 +6357,15 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/name"
+  } ]
+}, {
+  "@id" : "_:genid739",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/verified_assertion"
   } ]
 }, {
   "@id" : "_:genid74",
@@ -6380,19 +6380,20 @@
   "@id" : "_:genid740",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/verified_assertion"
-  } ]
-}, {
-  "@id" : "_:genid741",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "https://w3id.org/heritagegraph/Person"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/verified_by_expert"
+  } ]
+}, {
+  "@id" : "_:genid741",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/verified_assertion"
   } ]
 }, {
   "@id" : "_:genid742",
@@ -6402,20 +6403,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/verified_assertion"
-  } ]
-}, {
-  "@id" : "_:genid743",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/verified_by_expert"
   } ]
 }, {
-  "@id" : "_:genid744",
+  "@id" : "_:genid743",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -6424,13 +6415,23 @@
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid745",
+  "@id" : "_:genid744",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/verification_method"
+  } ]
+}, {
+  "@id" : "_:genid745",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
   "@id" : "_:genid746",
@@ -6440,20 +6441,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/note"
-  } ]
-}, {
-  "@id" : "_:genid747",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/verification_method"
   } ]
 }, {
-  "@id" : "_:genid748",
+  "@id" : "_:genid747",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6463,7 +6454,7 @@
     "@id" : "https://w3id.org/heritagegraph/note"
   } ]
 }, {
-  "@id" : "_:genid749",
+  "@id" : "_:genid748",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -6480,18 +6471,6 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/note"
-  } ]
-}, {
-  "@id" : "_:genid750",
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#integer",
-    "@value" : "1"
-  } ]
-}, {
-  "@id" : "_:genid751",
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#integer",
-    "@value" : "1"
   } ]
 }, {
   "@id" : "_:genid76",
@@ -6759,12 +6738,6 @@
     "@value" : "An event-centric LinkML schema for representing cultural heritage information that fully aligns with CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning."
   } ]
 }, {
-  "@id" : "http://org.semanticweb.owlapi/error#Error1",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
-}, {
-  "@id" : "http://org.semanticweb.owlapi/error#Error2",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
-}, {
   "@id" : "http://purl.org/dc/terms/creator",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
@@ -6873,12 +6846,6 @@
   "@type" : [ "http://www.w3.org/2000/01/rdf-schema#Datatype" ]
 }, {
   "@id" : "http://www.w3.org/2002/07/owl#imports",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
-}, {
-  "@id" : "http://www.w3.org/2002/07/owl#maxCardinality",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
-}, {
-  "@id" : "http://www.w3.org/2002/07/owl#minCardinality",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
   "@id" : "http://www.w3.org/2002/07/owl#ontologyIRI",
@@ -8844,10 +8811,6 @@
     "@value" : "LivingGoddessTenure"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
-    "@id" : "http://org.semanticweb.owlapi/error#Error1"
-  }, {
-    "@id" : "http://org.semanticweb.owlapi/error#Error2"
-  }, {
     "@id" : "_:genid478"
   }, {
     "@id" : "_:genid479"
@@ -8889,8 +8852,6 @@
     "@id" : "_:genid497"
   }, {
     "@id" : "_:genid498"
-  }, {
-    "@id" : "_:genid499"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families."
@@ -8941,6 +8902,8 @@
     "@value" : "Material"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid499"
+  }, {
     "@id" : "_:genid500"
   }, {
     "@id" : "_:genid501"
@@ -8950,8 +8913,6 @@
     "@id" : "_:genid503"
   }, {
     "@id" : "_:genid504"
-  }, {
-    "@id" : "_:genid505"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Physical substance used in construction or crafting"
@@ -8969,6 +8930,8 @@
     "@value" : "Metadata"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid505"
+  }, {
     "@id" : "_:genid506"
   }, {
     "@id" : "_:genid507"
@@ -9002,8 +8965,6 @@
     "@id" : "_:genid521"
   }, {
     "@id" : "_:genid522"
-  }, {
-    "@id" : "_:genid523"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Dataset metadata information"
@@ -9020,6 +8981,8 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/IconographicObject"
   }, {
+    "@id" : "_:genid523"
+  }, {
     "@id" : "_:genid524"
   }, {
     "@id" : "_:genid525"
@@ -9029,8 +8992,6 @@
     "@id" : "_:genid527"
   }, {
     "@id" : "_:genid528"
-  }, {
-    "@id" : "_:genid529"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)"
@@ -9155,6 +9116,8 @@
     "@value" : "Person"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid529"
+  }, {
     "@id" : "_:genid530"
   }, {
     "@id" : "_:genid531"
@@ -9200,8 +9163,6 @@
     "@id" : "_:genid551"
   }, {
     "@id" : "_:genid552"
-  }, {
-    "@id" : "_:genid553"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Individual person who performs, commissions, documents, or verifies heritage activities"
@@ -9228,6 +9189,8 @@
     "@value" : "Place"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid553"
+  }, {
     "@id" : "_:genid554"
   }, {
     "@id" : "_:genid555"
@@ -9247,8 +9210,6 @@
     "@id" : "_:genid562"
   }, {
     "@id" : "_:genid563"
-  }, {
-    "@id" : "_:genid564"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Defined geographic location where events occur and structures exist"
@@ -9284,6 +9245,8 @@
     "@value" : "Production"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid564"
+  }, {
     "@id" : "_:genid565"
   }, {
     "@id" : "_:genid566"
@@ -9325,8 +9288,6 @@
     "@id" : "_:genid584"
   }, {
     "@id" : "_:genid585"
-  }, {
-    "@id" : "_:genid586"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Event of creating an architectural structure, murti, or paubha"
@@ -9344,6 +9305,8 @@
     "@value" : "ReligiousTradition"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid586"
+  }, {
     "@id" : "_:genid587"
   }, {
     "@id" : "_:genid588"
@@ -9353,8 +9316,6 @@
     "@id" : "_:genid590"
   }, {
     "@id" : "_:genid591"
-  }, {
-    "@id" : "_:genid592"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)"
@@ -9392,6 +9353,8 @@
     "@value" : "RitualEvent"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid592"
+  }, {
     "@id" : "_:genid593"
   }, {
     "@id" : "_:genid594"
@@ -9410,7 +9373,7 @@
   }, {
     "@id" : "_:genid601"
   }, {
-    "@id" : "_:genid602"
+    "@id" : "_:genid605"
   }, {
     "@id" : "_:genid606"
   }, {
@@ -9499,8 +9462,6 @@
     "@id" : "_:genid648"
   }, {
     "@id" : "_:genid649"
-  }, {
-    "@id" : "_:genid650"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
@@ -9520,7 +9481,7 @@
     "@value" : "RitualTypeEnum"
   } ],
   "http://www.w3.org/2002/07/owl#equivalentClass" : [ {
-    "@id" : "_:genid651"
+    "@id" : "_:genid650"
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "file:/input/CulturalHeritageOntology"
@@ -9703,6 +9664,8 @@
     "@value" : "SyncreticRelationship"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid670"
+  }, {
     "@id" : "_:genid671"
   }, {
     "@id" : "_:genid672"
@@ -9740,8 +9703,6 @@
     "@id" : "_:genid688"
   }, {
     "@id" : "_:genid689"
-  }, {
-    "@id" : "_:genid690"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance."
@@ -9759,7 +9720,7 @@
     "@value" : "SyncreticTypeEnum"
   } ],
   "http://www.w3.org/2002/07/owl#equivalentClass" : [ {
-    "@id" : "_:genid691"
+    "@id" : "_:genid690"
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "file:/input/CulturalHeritageOntology"
@@ -9828,6 +9789,8 @@
     "@value" : "Technique"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid695"
+  }, {
     "@id" : "_:genid696"
   }, {
     "@id" : "_:genid697"
@@ -9837,8 +9800,6 @@
     "@id" : "_:genid699"
   }, {
     "@id" : "_:genid700"
-  }, {
-    "@id" : "_:genid701"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Method or craft process used in production or ritual"
@@ -9858,6 +9819,8 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
   }, {
+    "@id" : "_:genid701"
+  }, {
     "@id" : "_:genid702"
   }, {
     "@id" : "_:genid703"
@@ -9865,8 +9828,6 @@
     "@id" : "_:genid704"
   }, {
     "@id" : "_:genid705"
-  }, {
-    "@id" : "_:genid706"
   } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://schema.org/PlaceOfWorship"
@@ -9897,6 +9858,8 @@
     "@value" : "TimeSpan"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid706"
+  }, {
     "@id" : "_:genid707"
   }, {
     "@id" : "_:genid708"
@@ -9918,8 +9881,6 @@
     "@id" : "_:genid716"
   }, {
     "@id" : "_:genid717"
-  }, {
-    "@id" : "_:genid718"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Temporal extent of an event or period"
@@ -9937,6 +9898,8 @@
     "@value" : "TransferOfCustody"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid718"
+  }, {
     "@id" : "_:genid719"
   }, {
     "@id" : "_:genid720"
@@ -9976,8 +9939,6 @@
     "@id" : "_:genid737"
   }, {
     "@id" : "_:genid738"
-  }, {
-    "@id" : "_:genid739"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship"
@@ -9997,6 +9958,8 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   }, {
+    "@id" : "_:genid739"
+  }, {
     "@id" : "_:genid740"
   }, {
     "@id" : "_:genid741"
@@ -10014,8 +9977,6 @@
     "@id" : "_:genid747"
   }, {
     "@id" : "_:genid748"
-  }, {
-    "@id" : "_:genid749"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Process of cross-checking heritage claims against multiple sources"
@@ -11090,9 +11051,6 @@
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "file:/input/CulturalHeritageOntology"
   } ]
-}, {
-  "@id" : "https://w3id.org/heritagegraph/has_participant",
-  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
   "@id" : "https://w3id.org/heritagegraph/has_provenance_assertion",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
