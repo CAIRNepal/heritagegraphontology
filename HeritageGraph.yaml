@@ -439,10 +439,12 @@ classes:
   # ========================================================================
 
   PhysicalHeritageThing:
+    class_uri: heritageGraph:PhysicalHeritageThing
     union_of:
       - ArchitecturalStructure
       - IconographicObject
       - ArchitecturalElement
+
 
   Deity:
     class_uri: crm:E28_Conceptual_Object
@@ -745,6 +747,7 @@ classes:
   # ========================================================================
 
   AssertableEntity:
+    class_uri: crminf:E1_Entity
     description: "Any entity that can be the subject of a heritage assertion"
     union_of:
       - HumanMadeObject
