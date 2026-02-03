@@ -6,8 +6,13 @@ license: CC-BY-4.0
 
 
 imports:
-  - linkml:types 
+  - linkml:types
 default_range: string
+
+types:
+  wktLiteral:
+    typeof: string
+    uri: "http://www.opengis.net/ont/geosparql#wktLiteral"
 
 enums:
   ConditionTypeEnum:
@@ -189,6 +194,7 @@ enums:
 
 
 prefixes:
+  heritageGraph: "https://w3id.org/heritagegraph/"
   
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
@@ -196,6 +202,7 @@ prefixes:
   xsd: "http://www.w3.org/2001/XMLSchema#"
   skos: "http://www.w3.org/2004/02/skos/core#"
   dcterms: "http://purl.org/dc/terms/"
+  dct: "http://purl.org/dc/terms/"
   
  
   geo: "http://www.opengis.net/ont/geosparql#"
@@ -217,10 +224,19 @@ prefixes:
   crmsci: "http://www.cidoc-crm.org/crmsci/"
   crmdig: "http://www.cidoc-crm.org/crmdig/"
   crminf: "http://www.cidoc-crm.org/crminf/"
+  rico: "https://www.ica.org/standards/RiC/ontology#"
   
   datacite: http://purl.org/spar/datacite/
 
-default_prefix: heritageGraph 
+default_prefix: heritageGraph
+
+annotations:
+  owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
+  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.2"
+  dcterms:creator: "Cair Nepal"
+  dcterms:publisher: "Cair Nepal"
+  dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
+  owl:imports: "http://www.cidoc-crm.org/cidoc-crm/ http://www.w3.org/ns/prov#"
 
 classes:
   # ========================================================================
@@ -246,7 +262,7 @@ classes:
 
   ArchitecturalStructure:
     is_a: HumanMadeObject
-    class_uri: crm:E24_Physical_Human-Made_Thing
+    class_uri: crm:E22_Human-Made_Object
 
     description: "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation."
     
@@ -291,12 +307,12 @@ classes:
     
    
     exact_mappings:
-      - schema:HinduTemple     
-      - aat:300007595           
-      - wd:Q44539 
+      - schema:HinduTemple
+      - aat:300007595
+      - wikidata:Q44539
       - dbo:ReligiousBuilding
-      - dbo:Temple              
-    
+      - dbo:Temple
+
     
     close_mappings:
       - schema:PlaceOfWorship
@@ -817,7 +833,7 @@ classes:
       - crm:E31_Document
 
   DocumentationActivity:
-    class_uri: crm:E13_Attribute_Assignment 
+    class_uri: crm:E7_Activity
     broad_mappings:
       - prov:Activity  
     description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
@@ -899,7 +915,10 @@ classes:
       - note
       - assigned_to_deity       
       - assigned_equivalent     
-      - syncretic_type          
+      - syncretic_type     
+      - was_derived_from_source
+      - was_documented_by
+      - documented_in_source     
       
 
      
@@ -911,10 +930,6 @@ classes:
       residing at a specific god-house and supported by religious institutions.
       This class captures the unique Nepali tradition of living deity embodiment
       in young girls selected from Buddhist Shakya/Vajracharya families."
-    
-    exact_mappings:
-      - crm:E7_Activity
-    
     slots:
       - name
       - had_participant
@@ -1276,7 +1291,7 @@ slots:
     range: uriorcurie 
     required: true
     description: "Globally unique URI identifier"
-    slot_uri: dct:identifier
+    slot_uri: dcterms:identifier
     exact_mappings:
       - schema:identifier
  
@@ -1298,6 +1313,7 @@ slots:
     description: "Ending location of movement ritual"
 
   route_description:
+    slot_uri: heritageGraph:route_description
     range: string
     description: "Text description of the procession route"
 
@@ -1382,12 +1398,12 @@ slots:
 
   date_earliest:
     slot_uri: crm:P82a_begin_of_the_begin
-    range: string
+    range: date
     description: "Earliest possible date (for uncertain dates)"
 
   date_latest:
     slot_uri: crm:P82b_end_of_the_end
-    range: string
+    range: date
     description: "Latest possible date (for uncertain dates)"
 
   calendar_system:
@@ -1425,7 +1441,7 @@ slots:
 
   place_coordinates:
     slot_uri: geo:asWKT  
-    range: string
+    range: wktLiteral
     description: "Coordinates as WKT literal"
 
   place_type:
@@ -1451,7 +1467,7 @@ slots:
 
 
   contains_structure:
-    slot_uri: crm:P53_has_former_or_current_location
+    slot_uri: crm:P53i_is_former_or_current_location_of
     range: ArchitecturalStructure
     multivalued: true
     description: "Structures located in this place"
@@ -1464,26 +1480,32 @@ slots:
     description: "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)"
 
   existence_status:
+    slot_uri: heritageGraph:existence_status
     range: ExistenceStatusEnum
     description: "Current physical status of the structure"
 
   last_known_existence_date:
-    range: datetime
-    description: "Latest date when this structure is documented as existing (ISO 8601 date string)"
+    slot_uri: heritageGraph:last_known_existence_date
+    range: date
+    description: "Latest date when this structure is documented as existing (ISO 8601)"
 
   destruction_event:
+    slot_uri: heritageGraph:destruction_event
     range: DestructionEvent
     description: "Event that destroyed this structure (if known)"
 
   hypothesized_location:
+    slot_uri: heritageGraph:hypothesized_location
     range: Place
     multivalued: true
     description: "Possible locations if the structure is lost"
 
   documented_in_source:
+    slot_uri: prov:wasDerivedFrom
     range: DataSource
     multivalued: true
-    description: "Historical/archaeological sources describing this structure"
+    description: "Sources that mention or document this entity"
+
 
 
   was_produced_by_event:
@@ -1503,11 +1525,8 @@ slots:
     multivalued: true
     description: "Actor(s) who performed this event"
   used_by:
-    is_a : carried_out_by  
-    any_of :  
-      - range: Person
-      - range: CasteGroup
-      - range: Guthi
+    slot_uri: heritageGraph:used_by
+    range: Actor
     multivalued: true
     description: "Actor(s) who use, handle, or are responsible for this object in ritual contexts"
 
@@ -1527,7 +1546,7 @@ slots:
   # --- RITUAL EVENT RELATIONSHIPS ---
 
   invokes_deity:
-    slot_uri: crm:P140_assigned_attribute_to
+    slot_uri: crm:P12_occurred_in_the_presence_of
     range: Deity
     multivalued: true
     description: "Deity invoked or made present through ritual"
@@ -1546,6 +1565,7 @@ slots:
 
   performed_by_group:
     is_a: carried_out_by
+    slot_uri: crm:P14_carried_out_by
     any_of:
       - range: Guthi
       - range: CasteGroup
@@ -1559,7 +1579,7 @@ slots:
     
 
   is_part_of_festival:
-    slot_uri: crm:P9_consists_of
+    slot_uri: crm:P9i_forms_part_of
     range: Festival
     description: "Larger festival this ritual is part of"
 
@@ -1570,7 +1590,7 @@ slots:
     description: "Religious tradition(s) within which this deity is venerated"
 
   includes_ritual_event:
-    slot_uri: crm:P9i_forms_part_of
+    slot_uri: crm:P9_consists_of
     range: RitualEvent
     multivalued: true
     description: "Component rituals of festival"
@@ -1665,9 +1685,9 @@ slots:
     description: "Consecration event that activated this murti"
 
   consecrated_object:
-    slot_uri: crm:P31_has_modified
+    slot_uri: crm:P11_had_participant
     range: Murti
-    description: "Murti transformed by consecration"
+    description: "Murti that participated in the consecration ritual"
 
   makes_deity_present:
     slot_uri: heritageGraph:makes_deity_present
@@ -1675,7 +1695,7 @@ slots:
     description: "Deity made present through consecration"
 
   is_invoked_in_ritual:
-    slot_uri: crm:P129i_is_subject_of
+    slot_uri: crm:P12i_was_present_at
     range: RitualEvent
     multivalued: true
     description: "Rituals where this deity is invoked"
@@ -1806,20 +1826,24 @@ slots:
 
   # --- PROVENANCE (PROV-O aligned with CIDOC) ---
   source_type:
+    slot_uri: heritageGraph:source_type
     range: string
     description: " Type of source: Manuscript, Inscription, FieldSurvey, 
       PublishedBook, Archive, MuseumCollection, OralHistoryInterview, etc."
 
   archival_location:
+    slot_uri: heritageGraph:archival_location
     range: string
     description: "Where stored (e.g., National Museum Kathmandu, British Library, URL)"
 
   asserted_property:
+    slot_uri: heritageGraph:asserted_property
     range: string
     required: true
     description: "Property or attribute name (e.g., 'existence_status', 'hypothesized_location', 'construction_date')"
 
   asserted_value:
+    slot_uri: heritageGraph:asserted_value
     range: string
     required: true
     description: "The value claimed for this property (e.g., 'Lost', 'Handigaun', '598 CE')"
@@ -1833,10 +1857,12 @@ slots:
       Query pattern: latest assertion = one with no incoming prov:invalidated"
 
   institutional_affiliation:
+    slot_uri: heritageGraph:institutional_affiliation
     range: string
     description: "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)"
 
   expertise_area:
+    slot_uri: heritageGraph:expertise_area
     range: string
     multivalued: true
     description: "Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)"
@@ -1912,7 +1938,7 @@ slots:
 
   generated_at_time:
     slot_uri: prov:generatedAtTime
-    range: string
+    range: datetime
     description: "When this assertion was recorded (ISO 8601)"
 
 
@@ -1965,11 +1991,13 @@ slots:
     multivalued: true
     description: "Assertions verified by this activity"
   verified_by_expert:
+    slot_uri: heritageGraph:verified_by_expert
     is_a: carried_out_by
     range: Person
     multivalued: true
     description: "Expert who performed verification"
   source_citation:
+    slot_uri: heritageGraph:source_citation
     is_a: note
     range: string
     description: "Formal citation of source"
@@ -1995,7 +2023,7 @@ slots:
     description: "Rituals in which this structure participates"
 
   was_documented_by:
-    slot_uri: crm:P140i_was_attributed_by
+    slot_uri: prov:wasGeneratedBy
     range: DocumentationActivity
     multivalued: true
     description: "Documentation event that recorded this entity or event"
