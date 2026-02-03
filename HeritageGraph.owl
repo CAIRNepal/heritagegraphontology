@@ -37,148 +37,148 @@ heritageGraph:Container a owl:Class ;
             owl:onProperty heritageGraph:materials ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:caste_groups ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Deity ;
-            owl:onProperty heritageGraph:deities ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:CalendarSystem ;
             owl:onProperty heritageGraph:calendar_systems ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Enshrinement ;
-            owl:onProperty heritageGraph:enshrinement_events ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:documentation_activities ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:religious_traditions ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:provenance_assertions ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:HeritageAssertion ;
-            owl:onProperty heritageGraph:provenance_assertions ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
-            owl:onProperty heritageGraph:physical_heritage_things ],
+            owl:onProperty heritageGraph:persons ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:materials ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Guthi ;
-            owl:onProperty heritageGraph:guthis ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_architectural_style ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:SyncreticRelationship ;
-            owl:onProperty heritageGraph:syncretic_relationships ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Consecration ;
-            owl:onProperty heritageGraph:consecration_events ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:InformationObject ;
-            owl:onProperty heritageGraph:information_objects ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:documentation_activities ],
+            owl:onProperty heritageGraph:metadata ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TransferOfCustody ;
             owl:onProperty heritageGraph:custody_events ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:festivals ],
+            owl:onProperty heritageGraph:physical_heritage_things ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:enshrinement_events ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DataSource ;
-            owl:onProperty heritageGraph:data_sources ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Person ;
-            owl:onProperty heritageGraph:persons ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:custody_events ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Production ;
-            owl:onProperty heritageGraph:production_events ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
-            owl:onProperty heritageGraph:architectural_elements ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:data_custodians ],
+            owl:allValuesFrom heritageGraph:HeritageAssertion ;
+            owl:onProperty heritageGraph:provenance_assertions ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:syncretic_relationships ],
         [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:deities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:data_sources ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documentation_activities ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:festivals ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:metadata ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:ritual_events ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:architectural_elements ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E55_Type ;
             owl:onProperty heritageGraph:has_architectural_style ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom heritageGraph:Consecration ;
             owl:onProperty heritageGraph:consecration_events ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DataCustodian ;
-            owl:onProperty heritageGraph:data_custodians ],
+            owl:allValuesFrom heritageGraph:CalendarSystem ;
+            owl:onProperty heritageGraph:calendar_systems ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:production_events ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:persons ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:physical_heritage_things ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:religious_traditions ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:metadata ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
             owl:onProperty heritageGraph:places ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:calendar_systems ],
+            owl:allValuesFrom heritageGraph:Festival ;
+            owl:onProperty heritageGraph:festivals ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:ritual_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_sources ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrinement_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:SyncreticRelationship ;
+            owl:onProperty heritageGraph:syncretic_relationships ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:custody_events ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:enshrinement_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:materials ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:CasteGroup ;
             owl:onProperty heritageGraph:caste_groups ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:places ],
+            owl:onProperty heritageGraph:deities ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Metadata ;
-            owl:onProperty heritageGraph:metadata ],
+            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
+            owl:onProperty heritageGraph:architectural_elements ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:guthis ],
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:persons ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:information_objects ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:deities ],
+            owl:allValuesFrom heritageGraph:DataCustodian ;
+            owl:onProperty heritageGraph:data_custodians ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Festival ;
-            owl:onProperty heritageGraph:festivals ],
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:places ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:documentation_activities ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:production_events ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ReligiousTradition ;
             owl:onProperty heritageGraph:religious_traditions ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:data_sources ] ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:production_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:caste_groups ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:guthis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
+            owl:onProperty heritageGraph:physical_heritage_things ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:guthis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:InformationObject ;
+            owl:onProperty heritageGraph:information_objects ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:provenance_assertions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:architectural_elements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_events ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_custodians ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Metadata ;
+            owl:onProperty heritageGraph:metadata ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:consecration_events ] ;
     skos:definition "Root container for cultural heritage data instances" ;
     skos:inScheme <CulturalHeritageOntology> .
 
@@ -258,10 +258,13 @@ heritageGraph:DataCustodian a owl:Class ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:custodian_type ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
@@ -269,17 +272,14 @@ heritageGraph:DataCustodian a owl:Class ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:custodian_type ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:custodian_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
+            owl:onProperty heritageGraph:custodian_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ] ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:custodian_type ] ;
     skos:definition "Institution or person currently stewarding heritage data" ;
     skos:exactMatch prov:Agent ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -301,53 +301,53 @@ heritageGraph:DhungeDhara a owl:Class ;
 heritageGraph:HistoricalEvent a owl:Class ;
     rdfs:label "HistoricalEvent" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:architectural_structures ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
-            owl:onProperty heritageGraph:architectural_structures ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:includes_ritual_event ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:includes_ritual_event ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:architectural_structures ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:architectural_structures ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:took_place_at ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ] ;
     skos:definition "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood)." ;
     skos:exactMatch crm:E5_Event ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -358,50 +358,65 @@ heritageGraph:LivingGoddessSelection a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:is_critical_for_festival ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Person ;
             owl:onProperty heritageGraph:selected_person ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:unionOf ( heritageGraph:Guthi heritageGraph:CasteGroup ) ] ;
-            owl:onProperty heritageGraph:performed_by_group ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Place ;
             owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:HeritageAssertion ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:selection_criteria_met ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:selection_criteria_met ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty heritageGraph:is_critical_for_festival ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:performed_by_group ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:selected_person ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:initiated_tenure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:HeritageAssertion ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty heritageGraph:is_critical_for_festival ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_critical_for_festival ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:initiated_tenure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:unionOf ( heritageGraph:Guthi heritageGraph:CasteGroup ) ] ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:selection_criteria_met ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:selected_person ],
@@ -409,35 +424,20 @@ heritageGraph:LivingGoddessSelection a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:initiated_tenure ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:selection_criteria_met ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:initiated_tenure ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:LivingGoddessTenure ;
             owl:onProperty heritageGraph:initiated_tenure ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:selected_person ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:is_critical_for_festival ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
         heritageGraph:RitualEvent ;
     skos:definition " Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee of Vajracharya priests, royal priest (Raj Jyotish), and astrologer." ;
     skos:exactMatch crm:E7_Activity,
@@ -454,59 +454,59 @@ heritageGraph:MaskedDance a owl:Class ;
 heritageGraph:Metadata a owl:Class ;
     rdfs:label "Metadata" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:dataset_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:dataset_version ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:dataset_version ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:dataset_version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:schema_version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:license ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:dataset_name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:license ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:curator ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:schema_version ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:generated_date ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:generated_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:schema_version ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:curator ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:license ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:license ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:schema_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:schema_version ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:curator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:curator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:license ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:generated_date ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:dataset_version ],
+            owl:onProperty heritageGraph:generated_date ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:dataset_name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:dataset_name ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_date ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:curator ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:dataset_version ] ;
     skos:definition "Dataset metadata information" ;
     skos:inScheme <CulturalHeritageOntology> .
 
@@ -550,65 +550,65 @@ heritageGraph:Stupa a owl:Class ;
 heritageGraph:SyncreticRelationship a owl:Class ;
     rdfs:label "SyncreticRelationship" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:was_derived_from_source ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:syncretic_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:documented_in_source ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:SyncreticTypeEnum ;
             owl:onProperty heritageGraph:syncretic_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:assigned_to_deity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:assigned_equivalent ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Deity ;
             owl:onProperty heritageGraph:assigned_to_deity ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:assigned_equivalent ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documented_in_source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:assigned_equivalent ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:was_derived_from_source ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:assigned_to_deity ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:documented_in_source ],
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:syncretic_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DataSource ;
-            owl:onProperty heritageGraph:documented_in_source ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:syncretic_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Deity ;
-            owl:onProperty heritageGraph:assigned_equivalent ],
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:assigned_to_deity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DataSource ;
-            owl:onProperty heritageGraph:was_derived_from_source ] ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:syncretic_type ] ;
     skos:definition "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance." ;
     skos:exactMatch crm:E13_Attribute_Assignment ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -616,26 +616,20 @@ heritageGraph:SyncreticRelationship a owl:Class ;
 heritageGraph:Verification a owl:Class ;
     rdfs:label "Verification" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:verification_method ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:verified_by_expert ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
+            owl:onProperty heritageGraph:verification_method ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Person ;
             owl:onProperty heritageGraph:verified_by_expert ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:verification_method ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:verification_method ],
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:verified_assertion ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
@@ -643,8 +637,14 @@ heritageGraph:Verification a owl:Class ;
             owl:allValuesFrom heritageGraph:HeritageAssertion ;
             owl:onProperty heritageGraph:verified_assertion ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:verification_method ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:verified_assertion ],
+            owl:onProperty heritageGraph:verified_by_expert ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
         heritageGraph:DocumentationActivity ;
     skos:definition "Process of cross-checking heritage claims against multiple sources" ;
     skos:exactMatch heritageGraph:Verification ;
@@ -699,12 +699,6 @@ heritageGraph:ChariotProcession a owl:Class ;
 heritageGraph:ConditionState a owl:Class ;
     rdfs:label "ConditionState" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
@@ -715,12 +709,18 @@ heritageGraph:ConditionState a owl:Class ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_condition_type ],
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ConditionTypeEnum ;
             owl:onProperty heritageGraph:has_condition_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_condition_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
@@ -777,31 +777,31 @@ heritageGraph:ConditionState a owl:Class ;
 heritageGraph:DestructionEvent a owl:Class ;
     rdfs:label "DestructionEvent" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom heritageGraph:Place ;
             owl:onProperty heritageGraph:took_place_at ],
         heritageGraph:HistoricalEvent ;
     skos:definition "Event that destroyed or damaged a structure." ;
@@ -887,41 +887,8 @@ heritageGraph:Homa a owl:Class ;
 heritageGraph:HumanMadeObject a owl:Class ;
     rdfs:label "HumanMadeObject" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TransferOfCustody ;
-            owl:onProperty heritageGraph:has_custody_event ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty heritageGraph:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:participates_in_ritual ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Production ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ConditionAssessment ;
-            owl:onProperty heritageGraph:has_condition_assessment ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_condition_assessment ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:participates_in_ritual ],
@@ -930,22 +897,55 @@ heritageGraph:HumanMadeObject a owl:Class ;
             owl:onProperty heritageGraph:has_current_location ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:participates_in_ritual ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TransferOfCustody ;
+            owl:onProperty heritageGraph:has_custody_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_custody_event ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:id ],
+            owl:allValuesFrom heritageGraph:ConditionAssessment ;
+            owl:onProperty heritageGraph:has_condition_assessment ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty heritageGraph:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_condition_assessment ] ;
     skos:definition "Physical objects created by human activity" ;
     skos:exactMatch <http://schema.org/CreativeWork>,
         aat:300033618,
@@ -1044,23 +1044,23 @@ heritageGraph:NityaPuja a owl:Class ;
 heritageGraph:Technique a owl:Class ;
     rdfs:label "Technique" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:onProperty heritageGraph:note ] ;
     skos:definition "Method or craft process used in production or ritual" ;
     skos:exactMatch crm:E29_Design_or_Procedure ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -1416,32 +1416,32 @@ aat:300007576 a owl:Class ;
 heritageGraph:ArchitecturalElement a owl:Class ;
     rdfs:label "ArchitecturalElement" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:is_component_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
             owl:onProperty heritageGraph:is_component_of ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:is_component_of ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ] ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:is_component_of ] ;
     skos:definition "Carved or constructed component of a architectural strucuture (e.g., Gajur, Torana, Tundal)" ;
     skos:exactMatch aat:300001819,
         crm:E25_Architectural_Element ;
@@ -1459,47 +1459,47 @@ heritageGraph:BuddhistMonument a owl:Class ;
 heritageGraph:CalendarSystem a owl:Class ;
     rdfs:label "CalendarSystem" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty heritageGraph:year_offset_from_gregorian ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:year_offset_from_gregorian ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:is_primary_for_tradition ],
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:year_offset_from_gregorian ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:year_offset_from_gregorian ],
+            owl:onProperty heritageGraph:epoch_date_gregorian ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:epoch_date_gregorian ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:epoch_date_gregorian ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ReligiousTradition ;
             owl:onProperty heritageGraph:is_primary_for_tradition ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:epoch_date_gregorian ],
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_primary_for_tradition ] ;
     skos:definition "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning" ;
     skos:exactMatch crm:E29_Designated_Reference_System,
         time:Calendar ;
@@ -1509,46 +1509,46 @@ heritageGraph:ConditionAssessment a owl:Class ;
     rdfs:label "ConditionAssessment" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:assessed_condition_state ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:assessed_object ],
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:assessed_condition_state ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ConditionState ;
-            owl:onProperty heritageGraph:assessed_condition_state ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assessed_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:assessed_object ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
-            owl:onProperty heritageGraph:assessed_object ] ;
+            owl:onProperty heritageGraph:assessed_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ConditionState ;
+            owl:onProperty heritageGraph:assessed_condition_state ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assessed_condition_state ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ] ;
     skos:definition "Event of evaluating the physical state of a heritage object or structure" ;
     skos:exactMatch crm:E14_Condition_Assessment ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -1556,56 +1556,56 @@ heritageGraph:ConditionAssessment a owl:Class ;
 heritageGraph:Consecration a owl:Class ;
     rdfs:label "Consecration" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:makes_deity_present ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Deity ;
             owl:onProperty heritageGraph:makes_deity_present ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:consecrated_object ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Murti ;
-            owl:onProperty heritageGraph:consecrated_object ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:consecrated_object ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:makes_deity_present ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:took_place_at ],
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:makes_deity_present ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Murti ;
+            owl:onProperty heritageGraph:consecrated_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:consecrated_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:consecrated_object ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ] ;
     skos:definition "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)" ;
     skos:exactMatch crm:E7_Activity ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -1613,14 +1613,38 @@ heritageGraph:Consecration a owl:Class ;
 heritageGraph:InformationObject a owl:Class ;
     rdfs:label "InformationObject" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:is_about_entity ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:created_by_documentation ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:created_by_documentation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:is_about_event ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:is_about_entity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_language ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:is_about_event ],
@@ -1628,41 +1652,17 @@ heritageGraph:InformationObject a owl:Class ;
             owl:allValuesFrom heritageGraph:DocumentationActivity ;
             owl:onProperty heritageGraph:was_documented_by ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:is_about_event ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:source_language ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:created_by_documentation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:source_language ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:created_by_documentation ],
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:is_about_entity ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:is_about_event ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:created_by_documentation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:source_language ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:is_about_entity ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:created_by_documentation ],
         heritageGraph:DataSource ;
     skos:definition "A recorded piece of information about heritage" ;
     skos:exactMatch crm:E73_Information_Object ;
@@ -1671,56 +1671,65 @@ heritageGraph:InformationObject a owl:Class ;
 heritageGraph:LivingGoddessRetirement a owl:Class ;
     rdfs:label "LivingGoddessRetirement" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:LivingGoddessTenure ;
-            owl:onProperty heritageGraph:ended_tenure_of ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:ended_tenure_of ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom heritageGraph:Place ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:HeritageAssertion ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:performed_by_group ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Person ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:LivingGoddessTenure ;
+            owl:onProperty heritageGraph:ended_tenure_of ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty heritageGraph:ended_tenure_of ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:ended_tenure_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:HeritageAssertion ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:DocumentationActivity ;
             owl:onProperty heritageGraph:was_documented_by ],
@@ -1729,16 +1738,7 @@ heritageGraph:LivingGoddessRetirement a owl:Class ;
             owl:onProperty heritageGraph:performed_by_group ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
+            owl:onProperty heritageGraph:carried_out_by ],
         heritageGraph:RitualEvent ;
     skos:definition " Ritual or administrative event that formally ends a Living Goddess tenure, marking the person's return to secular status. Common triggers include first menstruation, injury causing blood loss, or serious illness. This event terminates the divine embodiment and restores the girl to ordinary status." ;
     skos:exactMatch crm:E7_Activity,
@@ -1748,23 +1748,23 @@ heritageGraph:LivingGoddessRetirement a owl:Class ;
 heritageGraph:Material a owl:Class ;
     rdfs:label "Material" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ] ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ] ;
     skos:definition "Physical substance used in construction or crafting" ;
     skos:exactMatch crm:E57_Material ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -1772,19 +1772,19 @@ heritageGraph:Material a owl:Class ;
 heritageGraph:Murti a owl:Class ;
     rdfs:label "Murti" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Consecration ;
+            owl:onProperty heritageGraph:consecrated_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:consecrated_by_event ],
+        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Deity ;
             owl:onProperty heritageGraph:is_about_deity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:is_about_deity ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:consecrated_by_event ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:consecrated_by_event ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Consecration ;
             owl:onProperty heritageGraph:consecrated_by_event ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
@@ -1799,14 +1799,14 @@ heritageGraph:Murti a owl:Class ;
 heritageGraph:Temple a owl:Class ;
     rdfs:label "Temple" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:enshrines_deity_through_event ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:has_architectural_style ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty heritageGraph:has_architectural_style ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Enshrinement ;
-            owl:onProperty heritageGraph:enshrines_deity_through_event ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:enshrines_deity_through_event ],
@@ -1830,29 +1830,26 @@ heritageGraph:TransferOfCustody a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:transferred_to_guthi ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Guthi ;
-            owl:onProperty heritageGraph:transferred_to_guthi ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:transferred_from_actor ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:transferred_object ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_from_actor ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:transferred_object ],
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:took_place_at ],
@@ -1863,14 +1860,8 @@ heritageGraph:TransferOfCustody a owl:Class ;
             owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
             owl:onProperty heritageGraph:transferred_object ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:transferred_to_actor ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:transferred_from_actor ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:transferred_to_actor ],
+            owl:onProperty heritageGraph:transferred_object ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:transferred_to_actor ],
@@ -1878,16 +1869,25 @@ heritageGraph:TransferOfCustody a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:transferred_to_guthi ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_to_actor ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:transferred_from_actor ],
         [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:transferred_to_guthi ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_object ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:transferred_to_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
             owl:onProperty heritageGraph:took_place_at ] ;
     skos:definition "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship" ;
     skos:exactMatch crm:E10_Transfer_of_Custody ;
@@ -2364,56 +2364,56 @@ heritageGraph:year_offset_from_gregorian a owl:DatatypeProperty ;
 heritageGraph:IconographicObject a owl:Class ;
     rdfs:label "IconographicObject" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:depicts_deity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_by ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:participates_in_ritual ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Production ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Deity ;
-            owl:onProperty heritageGraph:depicts_deity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:participates_in_ritual ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:used_by ],
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:depicts_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:used_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:depicts_deity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
@@ -2430,28 +2430,10 @@ heritageGraph:LivingGoddessTenure a owl:Class ;
     rdfs:label "LivingGoddessTenure" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_participant ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_retirement_event ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:embodied_deity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:had_participant ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:onProperty heritageGraph:residence_structure ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:embodied_deity ],
@@ -2459,47 +2441,56 @@ heritageGraph:LivingGoddessTenure a owl:Class ;
             owl:allValuesFrom heritageGraph:Deity ;
             owl:onProperty heritageGraph:embodied_deity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Person ;
-            owl:onProperty heritageGraph:has_participant ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Guthi ;
             owl:onProperty heritageGraph:supported_by_institution ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:supported_by_institution ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
-            owl:onProperty heritageGraph:residence_structure ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_retirement_event ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:residence_structure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:had_participant ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:LivingGoddessRetirement ;
             owl:onProperty heritageGraph:has_retirement_event ],
         [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:supported_by_institution ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_retirement_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
+            owl:onProperty heritageGraph:had_participant ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:embodied_deity ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty heritageGraph:residence_structure ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:has_participant ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
+            owl:onProperty heritageGraph:residence_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:had_participant ] ;
     skos:definition "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families." ;
     skos:exactMatch crm:E4_Period ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -2565,28 +2556,28 @@ heritageGraph:CasteGroup a owl:Class ;
     rdfs:label "CasteGroup" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:traditional_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:traditional_role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:traditional_role ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:traditional_role ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:traditional_role ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:traditional_role ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:note ] ;
@@ -2597,47 +2588,47 @@ heritageGraph:CasteGroup a owl:Class ;
 heritageGraph:Enshrinement a owl:Class ;
     rdfs:label "Enshrinement" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:enshrined_in_structure ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:enshrined_in_structure ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:enshrined_deity ],
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Temple ;
-            owl:onProperty heritageGraph:enshrined_in_structure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Deity ;
             owl:onProperty heritageGraph:enshrined_deity ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:enshrined_deity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ] ;
+            owl:onProperty heritageGraph:enshrined_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:enshrined_in_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:enshrined_in_structure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Temple ;
+            owl:onProperty heritageGraph:enshrined_in_structure ] ;
     skos:definition "Event of installing a deity's murti or symbol within a temple sanctum" ;
     skos:exactMatch crm:E7_Activity ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -2645,10 +2636,10 @@ heritageGraph:Enshrinement a owl:Class ;
 heritageGraph:Festival a owl:Class ;
     rdfs:label "Festival" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:includes_ritual_event ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:includes_ritual_event ],
         heritageGraph:RitualEvent ;
     skos:definition "Large-scale community ritual event (Jatra) involving processions, music, and collective participation" ;
@@ -2658,23 +2649,44 @@ heritageGraph:Festival a owl:Class ;
 heritageGraph:Production a owl:Class ;
     rdfs:label "Production" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:has_provenance_assertion ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
-            owl:onProperty heritageGraph:produced_object ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:HeritageAssertion ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Technique ;
+            owl:onProperty heritageGraph:used_technique ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_by ],
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:HeritageAssertion ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:took_place_at ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:commissioned_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
+            owl:onProperty heritageGraph:produced_object ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:produced_object ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:produced_object ],
@@ -2682,47 +2694,26 @@ heritageGraph:Production a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:took_place_at ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:took_place_at ],
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:DocumentationActivity ;
             owl:onProperty heritageGraph:was_documented_by ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom heritageGraph:Actor ;
             owl:onProperty heritageGraph:commissioned_by ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:produced_object ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Technique ;
-            owl:onProperty heritageGraph:used_technique ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:commissioned_by ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:used_technique ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ] ;
+            owl:onProperty heritageGraph:used_technique ] ;
     skos:definition "Event of creating an architectural structure, murti, or paubha" ;
     skos:exactMatch crm:E12_Production ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -2731,21 +2722,21 @@ heritageGraph:ReligiousTradition a owl:Class ;
     rdfs:label "ReligiousTradition" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ] ;
     skos:definition "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)" ;
     skos:exactMatch aat:300073708,
@@ -2865,97 +2856,97 @@ heritageGraph:DataSource a owl:Class ;
     rdfs:label "DataSource" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:datacite_publisher ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:datacite_identifier_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:datacite_identifier ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:publication_timespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:datacite_creator ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:source_url ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:datacite_resource_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:source_language ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:datacite_identifier ],
+            owl:onProperty heritageGraph:publication_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:datacite_publisher ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_citation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:datacite_identifier_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:datacite_creator ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:publication_timespan ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:datacite_publisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:source_url ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
+            owl:onProperty heritageGraph:datacite_identifier ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:source_url ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:source_language ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:datacite_resource_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:source_citation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:source_url ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:datacite_identifier_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:datacite_identifier ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:datacite_identifier_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:datacite_publisher ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:source_citation ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:datacite_publisher ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:datacite_creator ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:publication_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:publication_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:datacite_resource_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:datacite_resource_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:source_citation ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:source_citation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:source_language ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:datacite_identifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:datacite_resource_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ] ;
@@ -2970,32 +2961,17 @@ heritageGraph:PhysicalHeritageThing a owl:Class ;
 heritageGraph:Guthi a owl:Class ;
     rdfs:label "Guthi" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:GuthiTypeEnum ;
-            owl:onProperty heritageGraph:guthi_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:guthi_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:performs_ritual ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
             owl:onProperty heritageGraph:holds_custody_of ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_membership ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:guthi_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:guthi_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:holds_custody_of ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Person ;
             owl:onProperty heritageGraph:has_membership ],
@@ -3003,16 +2979,31 @@ heritageGraph:Guthi a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:performs_ritual ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_membership ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:holds_custody_of ],
+            owl:allValuesFrom heritageGraph:GuthiTypeEnum ;
+            owl:onProperty heritageGraph:guthi_type ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:performs_ritual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:note ] ;
     skos:definition "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership" ;
     skos:exactMatch crm:E74_Group ;
@@ -3021,107 +3012,107 @@ heritageGraph:Guthi a owl:Class ;
 heritageGraph:HeritageAssertion a owl:Class ;
     rdfs:label "HeritageAssertion" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:reconciliation_status ],
+            owl:allValuesFrom heritageGraph:HeritageAssertion ;
+            owl:onProperty heritageGraph:supersedes_assertion ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:data_quality_note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:confidence_score ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:assertion_content ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_derived_from_source ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:asserted_property ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:supersedes_assertion ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:asserts_about_entity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:data_quality_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:asserts_about_event ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:asserts_about_entity ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:generated_at_time ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:data_quality_note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_at_time ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:asserted_property ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:reconciliation_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:supersedes_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Person ;
             owl:onProperty heritageGraph:was_attributed_to_agent ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_derived_from_source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:float ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:data_quality_note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:reconciliation_status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:asserted_property ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:assertion_content ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:asserted_value ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:confidence_score ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty heritageGraph:generated_at_time ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:AssertableEntity ;
             owl:onProperty heritageGraph:asserts_about_entity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:assertion_content ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
             owl:onProperty heritageGraph:asserts_about_event ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:dateTime ;
-            owl:onProperty heritageGraph:generated_at_time ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:reconciliation_status ],
+            owl:onProperty heritageGraph:supersedes_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:asserted_value ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:asserted_property ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:reconciliation_status ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty heritageGraph:asserted_value ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:float ;
-            owl:onProperty heritageGraph:confidence_score ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Person ;
-            owl:onProperty heritageGraph:was_attributed_to_agent ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:DataSource ;
             owl:onProperty heritageGraph:was_derived_from_source ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:confidence_score ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:asserted_value ],
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:asserts_about_event ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:generated_at_time ],
+            owl:onProperty heritageGraph:reconciliation_status ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:data_quality_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:generated_at_time ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:asserted_value ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:supersedes_assertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:assertion_content ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:asserted_property ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:HeritageAssertion ;
-            owl:onProperty heritageGraph:supersedes_assertion ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:asserts_about_event ] ;
+            owl:onProperty heritageGraph:was_attributed_to_agent ] ;
     skos:definition "A single factual claim about a heritage entity, with explicit source, author, date, and confidence" ;
     skos:exactMatch <http://schema.org/Claim>,
         crminf:I2_Belief,
@@ -3131,77 +3122,77 @@ heritageGraph:HeritageAssertion a owl:Class ;
 heritageGraph:Person a owl:Class ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:expertise_area ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:institutional_affiliation ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:birth_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Guthi ;
-            owl:onProperty heritageGraph:member_of_group ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:birth_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:death_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:birth_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:death_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:expertise_area ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
-            owl:onProperty heritageGraph:carried_out_activity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty heritageGraph:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:institutional_affiliation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty heritageGraph:id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:member_of_group ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:death_timespan ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_activity ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:expertise_area ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:institutional_affiliation ],
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:birth_timespan ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ] ;
+            owl:onProperty heritageGraph:expertise_area ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:birth_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:death_timespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty heritageGraph:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:institutional_affiliation ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:member_of_group ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:birth_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:death_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:carried_out_activity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:institutional_affiliation ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:institutional_affiliation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:member_of_group ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_activity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ] ;
     skos:definition "Individual person who performs, commissions, documents, or verifies heritage activities" ;
     skos:exactMatch crm:E21_Person ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -3210,28 +3201,13 @@ heritageGraph:DocumentationActivity a owl:Class ;
     rdfs:label "DocumentationActivity" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:subject_entity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:generated_assertion ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:performed_by_agent ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:used_equipment ],
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:produced_information_object ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:produced_information_object ],
+            owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:subject_event ],
@@ -3240,40 +3216,55 @@ heritageGraph:DocumentationActivity a owl:Class ;
             owl:onProperty heritageGraph:subject_entity ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:used_method ],
+            owl:onProperty heritageGraph:subject_entity ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:used_method ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:InformationObject ;
-            owl:onProperty heritageGraph:produced_information_object ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:used_equipment ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:TimeSpan ;
             owl:onProperty heritageGraph:has_timespan ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:used_method ],
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:InformationObject ;
+            owl:onProperty heritageGraph:produced_information_object ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
+            owl:onProperty heritageGraph:produced_information_object ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
-            owl:onProperty heritageGraph:subject_event ],
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:produced_information_object ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_equipment ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:HeritageAssertion ;
             owl:onProperty heritageGraph:generated_assertion ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:used_method ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:used_equipment ],
+        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Person ;
-            owl:onProperty heritageGraph:performed_by_agent ] ;
+            owl:onProperty heritageGraph:performed_by_agent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:subject_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:generated_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_method ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ] ;
     skos:broadMatch prov:Activity ;
     skos:definition "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity." ;
     skos:exactMatch crm:E7_Activity ;
@@ -3282,110 +3273,110 @@ heritageGraph:DocumentationActivity a owl:Class ;
 heritageGraph:ArchitecturalStructure a owl:Class ;
     rdfs:label "ArchitecturalStructure" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ConditionAssessment ;
+            owl:onProperty heritageGraph:has_condition_assessment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DataSource ;
+            owl:onProperty heritageGraph:documented_in_source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:hypothesized_location ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:date ;
             owl:onProperty heritageGraph:last_known_existence_date ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:destruction_event ],
         [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
+            owl:onProperty heritageGraph:last_known_existence_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:existence_status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:hypothesized_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:documented_in_source ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_current_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:existence_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Production ;
+            owl:onProperty heritageGraph:was_produced_by_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_component ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:HeritageAssertion ;
             owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:last_known_existence_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_architectural_style ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
+            owl:onProperty heritageGraph:has_component ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_component ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ExistenceStatusEnum ;
             owl:onProperty heritageGraph:existence_status ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:existence_status ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:existence_status ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:hypothesized_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Production ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:hypothesized_location ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
             owl:onProperty heritageGraph:has_current_location ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:last_known_existence_date ],
+            owl:onProperty heritageGraph:has_condition_assessment ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:destruction_event ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_condition_assessment ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DataSource ;
-            owl:onProperty heritageGraph:documented_in_source ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_component ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ConditionAssessment ;
-            owl:onProperty heritageGraph:has_condition_assessment ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:was_produced_by_event ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_architectural_style ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:DestructionEvent ;
             owl:onProperty heritageGraph:destruction_event ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E55_Type ;
             owl:onProperty heritageGraph:has_architectural_style ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ArchitecturalElement ;
-            owl:onProperty heritageGraph:has_component ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:last_known_existence_date ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:destruction_event ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:documented_in_source ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:has_current_location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_architectural_style ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_component ],
         heritageGraph:HumanMadeObject ;
     skos:definition "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation." ;
     skos:exactMatch <http://schema.org/Place>,
@@ -3409,47 +3400,47 @@ heritageGraph:was_documented_by a owl:ObjectProperty ;
 heritageGraph:Deity a owl:Class ;
     rdfs:label "Deity" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:ReligiousTradition ;
-            owl:onProperty heritageGraph:has_religious_tradition ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_religious_tradition ],
+            owl:onProperty heritageGraph:is_depicted_in ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:is_enshrined_through_event ],
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:is_invoked_in_ritual ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Enshrinement ;
-            owl:onProperty heritageGraph:is_enshrined_through_event ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:IconographicObject ;
             owl:onProperty heritageGraph:is_depicted_in ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_religious_tradition ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:is_invoked_in_ritual ],
         [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:ReligiousTradition ;
+            owl:onProperty heritageGraph:has_religious_tradition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Enshrinement ;
+            owl:onProperty heritageGraph:is_enshrined_through_event ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:is_depicted_in ],
+            owl:onProperty heritageGraph:is_enshrined_through_event ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
-            owl:onProperty heritageGraph:is_invoked_in_ritual ] ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ] ;
     skos:definition "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences." ;
     skos:exactMatch dbo:Deity,
         <http://schema.org/Deity>,
@@ -3460,20 +3451,29 @@ heritageGraph:Deity a owl:Class ;
 heritageGraph:TimeSpan a owl:Class ;
     rdfs:label "TimeSpan" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:CalendarSystem ;
-            owl:onProperty heritageGraph:calendar_system ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:calendar_system ],
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty heritageGraph:date_latest ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:DatePrecisionEnum ;
             owl:onProperty heritageGraph:date_precision ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:date_precision ],
+            owl:allValuesFrom heritageGraph:CalendarSystem ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:date_latest ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:calendar_system ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty heritageGraph:date_earliest ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:date_latest ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:date_earliest ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:calendar_system ],
@@ -3481,59 +3481,74 @@ heritageGraph:TimeSpan a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:date_earliest ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:date ;
-            owl:onProperty heritageGraph:date_latest ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:date_latest ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:date_earliest ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty heritageGraph:date_precision ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:date ;
-            owl:onProperty heritageGraph:date_earliest ] ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:date_precision ] ;
     skos:definition "Temporal extent of an event or period" ;
     skos:exactMatch crm:E52_Time-Span ;
+    skos:inScheme <CulturalHeritageOntology> .
+
+heritageGraph:Actor a owl:Class ;
+    rdfs:label "Actor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ] ;
+    skos:definition "General actor (person or group) responsible for events" ;
+    skos:exactMatch crm:E39_Actor ;
     skos:inScheme <CulturalHeritageOntology> .
 
 heritageGraph:Place a owl:Class ;
     rdfs:label "Place" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:contains_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:place_coordinates ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom geo:wktLiteral ;
+            owl:onProperty heritageGraph:place_coordinates ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:ArchitecturalStructure ;
             owl:onProperty heritageGraph:contains_structure ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:place_coordinates ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:place_coordinates ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
             owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:place_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom geo:wktLiteral ;
-            owl:onProperty heritageGraph:place_coordinates ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:place_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:place_type ] ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:place_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:place_coordinates ] ;
     skos:definition "Defined geographic location where events occur and structures exist" ;
     skos:exactMatch crm:E53_Place ;
     skos:inScheme <CulturalHeritageOntology> .
@@ -3568,197 +3583,173 @@ heritageGraph:took_place_at a owl:ObjectProperty ;
     skos:definition "Place Where event occurred" ;
     skos:inScheme <CulturalHeritageOntology> .
 
-heritageGraph:Actor a owl:Class ;
-    rdfs:label "Actor" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ] ;
-    skos:definition "General actor (person or group) responsible for events" ;
-    skos:exactMatch crm:E39_Actor ;
-    skos:inScheme <CulturalHeritageOntology> .
-
 heritageGraph:RitualEvent a owl:Class ;
     rdfs:label "RitualEvent" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:route_description ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:end_place ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Material ;
-            owl:onProperty heritageGraph:used_materials ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:end_place ],
+            owl:onProperty heritageGraph:lunar_date_tithi ],
         [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
-            owl:onProperty heritageGraph:occurs_before ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:occurs_before ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:recurrence_pattern ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:start_place ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:managed_by_guthi ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:used_materials ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:note ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:Festival ;
             owl:onProperty heritageGraph:is_part_of_festival ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:RitualTypeEnum ;
             owl:onProperty heritageGraph:ritual_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:route_places ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Deity ;
-            owl:onProperty heritageGraph:invokes_deity ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty heritageGraph:start_place ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:invokes_deity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_provenance_assertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
-            owl:onProperty heritageGraph:ritual_on_structure ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:route_description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:route_description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:occurs_after ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:occurs_after ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Guthi ;
-            owl:onProperty heritageGraph:managed_by_guthi ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:ritual_on_structure ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:is_part_of_festival ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:recurrence_pattern ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Place ;
-            owl:onProperty heritageGraph:end_place ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:is_part_of_festival ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:RitualEvent ;
-            owl:onProperty heritageGraph:occurs_after ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:lunar_date_tithi ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:ritual_on_structure ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:occurs_before ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:TimeSpan ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:route_places ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:unionOf ( heritageGraph:Guthi heritageGraph:CasteGroup ) ] ;
-            owl:onProperty heritageGraph:performed_by_group ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:recurrence_pattern ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:lunar_date_tithi ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:performed_by_group ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:Actor ;
-            owl:onProperty heritageGraph:carried_out_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:ritual_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:has_timespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:lunar_date_tithi ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:start_place ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty heritageGraph:route_description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom heritageGraph:DocumentationActivity ;
             owl:onProperty heritageGraph:was_documented_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty heritageGraph:ritual_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom heritageGraph:HeritageAssertion ;
             owl:onProperty heritageGraph:has_provenance_assertion ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty heritageGraph:note ] ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:is_part_of_festival ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:PhysicalHeritageThing ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:route_places ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:route_places ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:note ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:occurs_before ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:end_place ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Material ;
+            owl:onProperty heritageGraph:used_materials ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:used_materials ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:route_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:occurs_after ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:lunar_date_tithi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Deity ;
+            owl:onProperty heritageGraph:invokes_deity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:has_provenance_assertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:RitualEvent ;
+            owl:onProperty heritageGraph:occurs_before ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_on_structure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:ritual_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:TimeSpan ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:invokes_deity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:unionOf ( heritageGraph:Guthi heritageGraph:CasteGroup ) ] ;
+            owl:onProperty heritageGraph:performed_by_group ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:start_place ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:DocumentationActivity ;
+            owl:onProperty heritageGraph:was_documented_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:start_place ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Place ;
+            owl:onProperty heritageGraph:end_place ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:lunar_date_tithi ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:managed_by_guthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty heritageGraph:recurrence_pattern ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:is_part_of_festival ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:has_timespan ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:route_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty heritageGraph:ritual_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Guthi ;
+            owl:onProperty heritageGraph:managed_by_guthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom heritageGraph:Actor ;
+            owl:onProperty heritageGraph:carried_out_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty heritageGraph:occurs_before ] ;
     skos:definition "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups" ;
     skos:exactMatch aat:300055603,
         crm:E7_Activity ;
