@@ -1673,8 +1673,24 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/AssertableEntity
 <https://w3id.org/heritagegraph/AssertableEntity> rdf:type owl:Class ;
+                                                  owl:equivalentClass [ rdf:type owl:Class ;
+                                                                        owl:unionOf ( <https://w3id.org/heritagegraph/ArchitecturalElement>
+                                                                                      <https://w3id.org/heritagegraph/ArchitecturalStructure>
+                                                                                      <https://w3id.org/heritagegraph/CasteGroup>
+                                                                                      <https://w3id.org/heritagegraph/Deity>
+                                                                                      <https://w3id.org/heritagegraph/Guthi>
+                                                                                      <https://w3id.org/heritagegraph/HumanMadeObject>
+                                                                                      <https://w3id.org/heritagegraph/IconographicObject>
+                                                                                      <https://w3id.org/heritagegraph/Material>
+                                                                                      <https://w3id.org/heritagegraph/Person>
+                                                                                      <https://w3id.org/heritagegraph/Place>
+                                                                                      <https://w3id.org/heritagegraph/Technique>
+                                                                                      <https://w3id.org/heritagegraph/TimeSpan>
+                                                                                    )
+                                                                      ] ;
                                                   rdfs:label "AssertableEntity" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Any entity that can be the subject of a heritage assertion" ;
+                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/crminf/E1_Entity> ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/CulturalHeritageOntology> .
 
 
@@ -4016,7 +4032,14 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/PhysicalHeritageThing
 <https://w3id.org/heritagegraph/PhysicalHeritageThing> rdf:type owl:Class ;
+                                                       owl:equivalentClass [ rdf:type owl:Class ;
+                                                                             owl:unionOf ( <https://w3id.org/heritagegraph/ArchitecturalElement>
+                                                                                           <https://w3id.org/heritagegraph/ArchitecturalStructure>
+                                                                                           <https://w3id.org/heritagegraph/IconographicObject>
+                                                                                         )
+                                                                           ] ;
                                                        rdfs:label "PhysicalHeritageThing" ;
+                                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <file:/input/CulturalHeritageOntology> .
 
 

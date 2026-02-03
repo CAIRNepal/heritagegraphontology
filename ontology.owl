@@ -2569,8 +2569,27 @@
 
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/AssertableEntity">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/ArchitecturalElement"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/ArchitecturalStructure"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/CasteGroup"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Deity"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Guthi"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/HumanMadeObject"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/IconographicObject"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Material"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Person"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Place"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/Technique"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/TimeSpan"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:label>AssertableEntity</rdfs:label>
         <skos:definition>Any entity that can be the subject of a heritage assertion</skos:definition>
+        <skos:exactMatch rdf:resource="http://www.cidoc-crm.org/crminf/E1_Entity"/>
         <skos:inScheme rdf:resource="file:/input/CulturalHeritageOntology"/>
     </owl:Class>
     
@@ -6054,7 +6073,17 @@
 
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/PhysicalHeritageThing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/ArchitecturalElement"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/ArchitecturalStructure"/>
+                    <rdf:Description rdf:about="https://w3id.org/heritagegraph/IconographicObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:label>PhysicalHeritageThing</rdfs:label>
+        <skos:exactMatch rdf:resource="https://w3id.org/heritagegraph/PhysicalHeritageThing"/>
         <skos:inScheme rdf:resource="file:/input/CulturalHeritageOntology"/>
     </owl:Class>
     
