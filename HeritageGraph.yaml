@@ -1,7 +1,7 @@
-id: CulturalHeritageOntology
-name: CulturalHeritageOntology
+id: HeritageGrap
+name: HeritageGrap
 description: "An event-centric LinkML schema for representing cultural heritage information that fully aligns with CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning."
-version: 0.1.0-alpha.2
+version: 1.0.0
 license: CC-BY-4.0
 
 
@@ -195,7 +195,6 @@ enums:
 
 prefixes:
   heritageGraph: "https://w3id.org/heritagegraph/"
-  
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
   owl: "http://www.w3.org/2002/07/owl#"
@@ -226,7 +225,7 @@ prefixes:
   crminf: "http://www.cidoc-crm.org/crminf/"
   rico: "https://www.ica.org/standards/RiC/ontology#"
   
-  datacite: http://purl.org/spar/datacite/
+  datacite: "http://purl.org/spar/datacite/"
 
 default_prefix: heritageGraph
 
