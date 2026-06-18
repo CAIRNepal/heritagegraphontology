@@ -1,0 +1,241 @@
+
+======================================================================
+  §4.4  Alignment & Interoperability
+======================================================================
+Date     : 2026-06-06T08:47:02.980437
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
+
+  Parsed 5049 triples from TTL
+  Parsed 26 class_uri and 59 slot_uri mappings from YAML
+
+
+======================================================================
+  1. Class Alignments (TTL axioms + YAML class_uri)
+======================================================================
+
+  AAT: 11 class(es) aligned
+    ArchitecturalElement                → exactMatch           → 300000885
+    ArchitecturalElement                → skos:exactMatch      → 300000885
+    ArchitecturalStructure              → broadMatch           → 300004792
+    BuddhistMonument                    → exactMatch           → 300007576
+    BuddhistMonument                    → skos:exactMatch      → 300007576
+    Deity                               → exactMatch           → 300343850
+    Deity                               → skos:exactMatch      → 300343850
+    HumanMadeObject                     → exactMatch           → 300117127
+    HumanMadeObject                     → skos:exactMatch      → 300117127
+    IconographicObject                  → broadMatch           → 300264387
+    Murti                               → exactMatch           → 300047090
+    Murti                               → skos:exactMatch      → 300047090
+    Paubha                              → broadMatch           → 300033666
+    ReligiousTradition                  → exactMatch           → 300073708
+    ReligiousTradition                  → skos:exactMatch      → 300073708
+    RitualEvent                         → broadMatch           → 300054754
+    Temple                              → exactMatch           → 300007595
+    Temple                              → skos:exactMatch      → 300007595
+
+  CIDOC-CRM: 32 class(es) aligned
+    Actor                               → class_uri(YAML)      → crm:E39_Actor
+    Actor                               → exactMatch           → E39_Actor
+    Actor                               → skos:exactMatch      → E39_Actor
+    Actor                               → subClassOf           → E39_Actor
+    ArchitecturalElement                → class_uri(YAML)      → crm:E25_Architectural_Element
+    ArchitecturalElement                → exactMatch           → E25_Architectural_Element
+    ArchitecturalElement                → skos:exactMatch      → E25_Architectural_Element
+    ArchitecturalElement                → subClassOf           → E25_Architectural_Element
+    ArchivalRecord                      → broadMatch           → E31_Document
+    CalendarSystem                      → broadMatch           → E29_Designated_Reference_System
+    CasteGroup                          → broadMatch           → E74_Group
+    ConditionAssessment                 → class_uri(YAML)      → crm:E14_Condition_Assessment
+    ConditionAssessment                 → exactMatch           → E14_Condition_Assessment
+    ConditionAssessment                 → skos:exactMatch      → E14_Condition_Assessment
+    ConditionAssessment                 → subClassOf           → E14_Condition_Assessment
+    ConditionState                      → class_uri(YAML)      → crm:E3_Condition_State
+    ConditionState                      → exactMatch           → E3_Condition_State
+    ConditionState                      → skos:exactMatch      → E3_Condition_State
+    ConditionState                      → subClassOf           → E3_Condition_State
+    DataSource                          → broadMatch           → E73_Information_Object
+    Deity                               → class_uri(YAML)      → crm:E28_Conceptual_Object
+    Deity                               → exactMatch           → E28_Conceptual_Object
+    Deity                               → skos:exactMatch      → E28_Conceptual_Object
+    Deity                               → subClassOf           → E28_Conceptual_Object
+    DestructionEvent                    → class_uri(YAML)      → crm:E6_Destruction
+
+  CRMinf: 2 class(es) aligned
+    AssertableEntity                    → class_uri(YAML)      → crminf:E1_Entity
+    AssertableEntity                    → exactMatch           → E1_Entity
+    AssertableEntity                    → skos:exactMatch      → E1_Entity
+    AssertableEntity                    → subClassOf           → E1_Entity
+    HeritageAssertion                   → class_uri(YAML)      → crminf:I2_Belief
+    HeritageAssertion                   → exactMatch           → I2_Belief
+    HeritageAssertion                   → skos:exactMatch      → I2_Belief
+    HeritageAssertion                   → subClassOf           → I2_Belief
+
+  CRMsci: 1 class(es) aligned
+    FieldSurveyActivity                 → class_uri(YAML)      → crmsci:S4_Observation
+    FieldSurveyActivity                 → exactMatch           → S4_Observation
+    FieldSurveyActivity                 → skos:exactMatch      → S4_Observation
+    FieldSurveyActivity                 → subClassOf           → S4_Observation
+
+  DBpedia: 3 class(es) aligned
+    Deity                               → exactMatch           → Deity
+    Deity                               → skos:exactMatch      → Deity
+    IconographicObject                  → exactMatch           → Artwork
+    IconographicObject                  → skos:exactMatch      → Artwork
+    Temple                              → exactMatch           → ReligiousBuilding
+    Temple                              → exactMatch           → Temple
+    Temple                              → skos:exactMatch      → ReligiousBuilding
+    Temple                              → skos:exactMatch      → Temple
+
+  EDM: 7 class(es) aligned
+    Actor                               → broadMatch           → Agent
+    DataSource                          → broadMatch           → WebResource
+    HumanMadeObject                     → broadMatch           → PhysicalThing
+    Person                              → broadMatch           → Agent
+    PhysicalHeritageThing               → broadMatch           → PhysicalThing
+    Place                               → broadMatch           → Place
+    RitualEvent                         → broadMatch           → Event
+
+  FOAF: 1 class(es) aligned
+    Person                              → broadMatch           → Person
+    Person                              → subClassOf           → Person
+
+  OWL-Time: 1 class(es) aligned
+    CalendarSystem                      → class_uri(YAML)      → time:Calendar
+    CalendarSystem                      → exactMatch           → Calendar
+    CalendarSystem                      → skos:exactMatch      → Calendar
+    CalendarSystem                      → subClassOf           → Calendar
+
+  PROV-O: 3 class(es) aligned
+    DataCustodian                       → class_uri(YAML)      → prov:Agent
+    DataCustodian                       → exactMatch           → Agent
+    DataCustodian                       → skos:exactMatch      → Agent
+    DataCustodian                       → subClassOf           → Agent
+    DocumentationActivity               → broadMatch           → Activity
+    HeritageAssertion                   → broadMatch           → Entity
+
+  RICO: 1 class(es) aligned
+    ArchivalRecord                      → exactMatch           → Record
+    ArchivalRecord                      → skos:exactMatch      → Record
+    ArchivalRecord                      → subClassOf           → Record
+
+  Wikidata: 6 class(es) aligned
+    ArchitecturalStructure              → exactMatch           → Q811979
+    ArchitecturalStructure              → skos:exactMatch      → Q811979
+    BuddhistMonument                    → exactMatch           → Q177980
+    BuddhistMonument                    → skos:exactMatch      → Q177980
+    HumanMadeObject                     → exactMatch           → Q838948
+    HumanMadeObject                     → skos:exactMatch      → Q838948
+    Murti                               → exactMatch           → Q2594295
+    Murti                               → skos:exactMatch      → Q2594295
+    Paubha                              → closeMatch           → Q130993
+    Temple                              → exactMatch           → Q44539
+    Temple                              → skos:exactMatch      → Q44539
+
+======================================================================
+  2. Property Alignments (TTL + YAML slot_uri)
+======================================================================
+
+  CIDOC-CRM: 42 propert(ies) aligned
+    architectural_structures                 → crm:P12_occurred_in_the_presence_of (ObjectProperty)
+    assessed_condition_state                 → crm:P35_has_identified         (ObjectProperty)
+    assessed_object                          → crm:P34_concerned              (ObjectProperty)
+    assigned_equivalent                      → crm:P141_assigned              (ObjectProperty)
+    assigned_to_deity                        → crm:P140_assigned_attribute_to (ObjectProperty)
+    carried_out_by                           → crm:P14_carried_out_by         (ObjectProperty)
+    commissioned_by                          → crm:P17_was_motivated_by       (ObjectProperty)
+    contains_structure                       → crm:P53i_is_former_or_current_location_of (ObjectProperty)
+    date_earliest                            → crm:P82a_begin_of_the_begin    (DatatypeProperty)
+    date_latest                              → crm:P82b_end_of_the_end        (DatatypeProperty)
+    depicts_deity                            → crm:P62_depicts                (ObjectProperty)
+    embodied_deity                           → crm:P14.1_in_the_role_of       (ObjectProperty)
+    had_participant                          → crm:P11_had_participant        (ObjectProperty)
+    has_component                            → crm:P46_is_composed_of         (ObjectProperty)
+    has_condition_assessment                 → crm:P34i_was_assessed_by       (ObjectProperty)
+    has_current_location                     → crm:P55_has_current_location   (ObjectProperty)
+    has_custody_event                        → crm:P30i_custody_transferred_through (ObjectProperty)
+    has_membership                           → crm:P107_has_current_or_former_member (ObjectProperty)
+    has_timespan                             → crm:P4_has_time-span           (ObjectProperty)
+    holds_custody_of                         → crm:P50_has_current_keeper     (ObjectProperty)
+    includes_ritual_event                    → crm:P9_consists_of             (ObjectProperty)
+    is_about_deity                           → crm:P129_is_about              (ObjectProperty)
+    is_component_of                          → crm:P46i_forms_part_of         (ObjectProperty)
+    is_depicted_in                           → crm:P62i_is_depicted_by        (ObjectProperty)
+    is_part_of_festival                      → crm:P9i_forms_part_of          (ObjectProperty)
+    member_of_group                          → crm:P107i_is_current_or_former_member_of (ObjectProperty)
+    note                                     → crm:P3_has_note                (DatatypeProperty)
+    occurs_after                             → crm:P120i_is_occurred_before_by (ObjectProperty)
+    occurs_before                            → crm:P120_occurs_before         (ObjectProperty)
+    produced_object                          → crm:P108_has_produced          (ObjectProperty)
+    residence_structure                      → crm:P74_has_current_or_former_residence (ObjectProperty)
+    ritual_on_structure                      → crm:P8_took_place_on_or_within (ObjectProperty)
+    source_language                          → crm:P72_has_language           (DatatypeProperty)
+    took_place_at                            → crm:P7_took_place_at           (ObjectProperty)
+    transferred_from_actor                   → crm:P28_custody_surrendered_by (ObjectProperty)
+    transferred_object                       → crm:P30_transferred_custody_of (ObjectProperty)
+    transferred_to_actor                     → crm:P29_custody_received_by    (ObjectProperty)
+    used_equipment                           → crm:P16_used_specific_object   (DatatypeProperty)
+    used_materials                           → crm:P125_used_object_of_type   (ObjectProperty)
+    used_method                              → crm:P33_used_specific_technique (DatatypeProperty)
+    used_technique                           → crm:P32_used_general_technique (ObjectProperty)
+    was_produced_by_event                    → crm:P108i_was_produced_by      (ObjectProperty)
+
+  DCTerms: 1 propert(ies) aligned
+    id                                       → dcterms:identifier             (DatatypeProperty)
+
+  DataCite: 5 propert(ies) aligned
+    datacite_creator                         → datacite:creator               (ObjectProperty)
+    datacite_identifier                      → datacite:identifier            (DatatypeProperty)
+    datacite_identifier_type                 → datacite:identifierType        (DatatypeProperty)
+    datacite_publisher                       → datacite:publisher             (ObjectProperty)
+    datacite_resource_type                   → datacite:resourceType          (DatatypeProperty)
+
+  GeoSPARQL: 1 propert(ies) aligned
+    place_coordinates                        → geo:asWKT                      (DatatypeProperty)
+
+  PROV-O: 9 propert(ies) aligned
+    assertion_content                        → prov:value                     (DatatypeProperty)
+    created_by_documentation                 → prov:wasGeneratedBy            (ObjectProperty)
+    documented_in_source                     → prov:wasInfluencedBy           (ObjectProperty)
+    generated_at_time                        → prov:generatedAtTime           (DatatypeProperty)
+    performed_by_agent                       → prov:wasAssociatedWith         (ObjectProperty)
+    produced_information_object              → prov:generated                 (ObjectProperty)
+    supersedes_assertion                     → prov:invalidated               (ObjectProperty)
+    was_attributed_to_agent                  → prov:wasAttributedTo           (ObjectProperty)
+    was_derived_from_source                  → prov:wasDerivedFrom            (ObjectProperty)
+
+  RDFS: 1 propert(ies) aligned
+    name                                     → rdfs:label                     (DatatypeProperty)
+
+======================================================================
+  3. Alignment Summary
+======================================================================
+
+  Namespace               Classes   Properties
+  --------------------------------------------
+  AAT                          11            0
+  CIDOC-CRM                    32           42
+  CRMinf                        2            0
+  CRMsci                        1            0
+  DBpedia                       3            0
+  DCTerms                       0            1
+  DataCite                      0            5
+  EDM                           7            0
+  FOAF                          1            0
+  GeoSPARQL                     0            1
+  OWL-Time                      1            0
+  PROV-O                        3            9
+  RDFS                          0            1
+  RICO                          1            0
+  Wikidata                      6            0
+  --------------------------------------------
+  TOTAL                        68           59
+
+  Paper §4.4 claims vs Actual:
+    Metric                                      Paper   Actual   Match
+    ----------------------------------------------------------------
+    CIDOC-CRM aligned classes (SKOS/slot)          32       32       ✅
+    External rdfs:subClassOf axioms (TTL)          31       31       ✅
+    CRM-family (CRM+CRMinf+CRMsci) classes         35       35       ✅
+    CIDOC-CRM aligned properties (slot_uri)        42       42       ✅
+    PROV-O aligned properties (slot_uri)            9        9       ✅

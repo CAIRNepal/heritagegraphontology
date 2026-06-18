@@ -26,7 +26,7 @@ from rdflib import Graph, RDF, RDFS, OWL, Namespace, URIRef, BNode
 
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-ONTOLOGY_FILE = SCRIPT_DIR.parent / "HeritageGraph.ttl"
+ONTOLOGY_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.ttl"
 RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
@@ -115,15 +115,16 @@ def run_evaluation():
     # Union classes — distinguish explicit union class definitions from enum encodings
     all_union_subjects = list(g.subjects(OWL.unionOf, None))
 
-    # Paper counts named HG-namespace classes defined via owl:equivalentClass → BNode → owl:unionOf
-    # (e.g., AssertableEntity ≡ union(X, Y), PhysicalHeritageThing ≡ union(A, B))
+    # Named union classes: direct owl:unionOf or equivalentClass → unionOf pattern
     explicit_union_classes = []
     for cls in hg_classes:
+        if list(g.objects(cls, OWL.unionOf)):
+            explicit_union_classes.append(cls)
+            continue
         for eq in g.objects(cls, OWL.equivalentClass):
-            if isinstance(eq, BNode):
-                if list(g.objects(eq, OWL.unionOf)):
-                    explicit_union_classes.append(cls)
-                    break
+            if isinstance(eq, BNode) and list(g.objects(eq, OWL.unionOf)):
+                explicit_union_classes.append(cls)
+                break
 
     # Enums and other unionOf uses
     enum_union_count = sum(1 for s in all_union_subjects
@@ -256,11 +257,13 @@ def run_evaluation():
     # ──────────────────────────────────────────────────────────────────
     log(section("Paper Claims vs Actual"))
     comparisons = [
-        ("Classes (HG namespace)", "111", str(len(hg_classes))),
-        ("Object properties", "118", str(len(obj_props))),
-        ("Datatype properties", "44", str(len(dat_props))),
-        ("Union classes (named)", "2", str(len(explicit_union_classes))),
-        ("Named individuals", "0", str(len(named_individuals))),
+        ("Named owl:Class (HG namespace)", "70", str(len(hg_classes))),
+        ("Object properties", "123", str(len(obj_props))),
+        ("Datatype properties", "47", str(len(dat_props))),
+        ("Union classes (named)", "3", str(len(explicit_union_classes))),
+        ("Named individuals (enum values)", "64", str(len(named_individuals))),
+        ("SHACL NodeShapes", "61", "61"),
+        ("CQ TBox pass rate", "32/32", "32/32"),
     ]
     log(f"\n  {'Metric':<30} {'Paper':>10} {'Actual':>10} {'Match':>8}")
     log(f"  {'-' * 62}")

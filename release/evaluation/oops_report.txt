@@ -1,0 +1,30 @@
+
+======================================================================
+  §4.2  Modeling Quality — OOPS! Pitfall Analysis
+======================================================================
+Date     : 2026-06-06T08:47:06.342489
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+
+  Parsed 5049 triples
+
+======================================================================
+  OOPS! Online Service
+======================================================================
+  ⚠️  OOPS! online service not available.
+
+======================================================================
+  Local Heuristic Pitfall Scan
+======================================================================
+
+  Total pitfalls detected: 146
+  Unique pitfall types:    2
+
+  [IMPORTANT] P10 — Missing disjointness  (12 occurrence(s))
+             → https://w3id.org/heritagegraph/HumanMadeObject: Sibling classes lack owl:disjointWith: Iconograph...
+             → https://w3id.org/heritagegraph/DataSource: Sibling classes lack owl:disjointWith: OralHistoryReco...
+             → https://w3id.org/heritagegraph/Festival: Sibling classes lack owl:disjointWith: MaskedDance, Char...
+
+  [IMPORTANT] P11 — Missing domain or range  (134 occurrence(s))
+             → https://w3id.org/heritagegraph/used_by: Missing rdfs:domain
+             → https://w3id.org/heritagegraph/performs_ritual: Missing rdfs:domain
+             → https://w3id.org/heritagegraph/consecrated_object: Missing rdfs:domain

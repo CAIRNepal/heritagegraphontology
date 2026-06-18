@@ -1,0 +1,58 @@
+TBox+ABox triples: 5128
+
+== SELECT competency queries (rows returned) ==
+[2 rows] CQ-A1 conflicting source-attributed build dates
+     -> 12th century CE | Src_Slusser | Slusser | 0.7
+     -> 7th century CE | Src_DoA | DoA | 0.5
+[1 rows] CQ-A2 event-mediated construction (temple/style/place)
+     -> Kasthamandap | hg:Pagoda | KathmanduDurbarSquare
+[1 rows] CQ-A3 Guthi custody + ritual
+     -> KasthamandapGuthi | Kasthamandap | IndraJatra
+[1 rows] CQ-A4 Living-Goddess tenure (deity + institution)
+     -> Tenure_2017 | Taleju | KasthamandapGuthi
+[1 rows] CQ-A5 syncretic equivalence + type
+     -> Avalokitesvara | Matsyendranath | hg:Equivalence
+[1 rows] CQ-A6 recurring ritual pattern
+     -> IndraJatra | annual
+
+== SHACL conformance (valid ABox): conforms=False ==
+Validation Report
+Conforms: False
+Results (51):
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: crm:E12_Production
+	Focus Node: ex:Prod_Kasthamandap
+	Value Node: ex:Kasthamandap
+	Result Path: heritageGraph:produced_object
+	Message: Node ex:Prod_Kasthamandap is closed. It cannot have value: ex:Kasthamandap
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: crm:E12_Production
+	Focus Node: ex:Prod_Kasthamandap
+	Value Node: ex:LicchaviBuilders
+	Result Path: heritageGraph:carried_out_by
+	Message: Node ex:Prod_Kasthamandap is closed. It cannot have value: ex:LicchaviBuilders
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: crm:E13_Attribute_Assignment
+	Focus Node: ex:Syn_Karunamaya
+	Value Node: ex:Avalokitesvara
+	Result Path: heritageGraph:assigned_to_deity
+	Message: Node ex:Syn_Karunamaya is closed. It cannot have value: ex:Avalokitesvara
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: crm:E13_Attribute_Assignment
+	Focus Node: ex:Syn_Karunamaya
+	Value Node: ex:Matsyendranath
+	Result Path: heritageGraph:assigned_equivalent
+	Message: Node ex:Syn_Karunamaya is closed. It cannot have value: ex:Matsyendranath
+
+== SHACL negative tests (each should be caught) ==
+  [parse-skip] Temple missing has_architectural_style: at line 1 of <>:
+Bad syntax (Prefix "dcterms:" not bound) at ^ in:
+"...b'egraph/demo/> . ex:BadTemple a hg:Temple ; rdfs:label "x" ; '^b'dcterms:identifier "u"^^xsd:anyURI ; crm:P55_has_current_loc'..."
+  [parse-skip] Guthi missing guthi_type: at line 1 of <>:
+Bad syntax (Prefix "ex:" not bound) at ^ in:
+"...b'/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . '^b'ex:BadGuthi a hg:Guthi ; rdfs:label "x" . @prefix ex:<https:'..."
+  [CAUGHT] RitualEvent missing time-span

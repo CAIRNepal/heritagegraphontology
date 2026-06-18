@@ -1,0 +1,17 @@
+# Minimal SHACL-conformant instance (verified required-field core).
+@prefix hg:<https://w3id.org/heritagegraph/> .
+@prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:<http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:<https://w3id.org/heritagegraph/demo/> .
+ex:Place a crm:E53_Place ; rdfs:label "Kathmandu Durbar Square" .
+ex:TSpan a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "0900-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end "1200-12-31"^^xsd:date .
+ex:T a hg:Temple ; rdfs:label "Kasthamandap" ;
+    dcterms:identifier "https://w3id.org/heritagegraph/demo/t"^^xsd:anyURI ;
+    hg:has_architectural_style hg:Pagoda ; crm:P55_has_current_location ex:Place .
+ex:G a hg:Guthi ; rdfs:label "Temple Guthi" ; hg:guthi_type hg:TempleGuthi .
+ex:R a hg:RitualEvent ; rdfs:label "Indra Jatra" ; crm:P4_has_time-span ex:TSpan .
+ex:S a hg:DataSource ; rdfs:label "Slusser (1982)" .

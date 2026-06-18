@@ -1,0 +1,90 @@
+INDEPENDENT EVALUATION OF HeritageGraph
+Source: /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+========================================================================
+Asserted triples: 5049
+------------------------------------------------------------------------
+A. STRUCTURAL PROFILE
+  Named classes (HG ns)        : 70
+  Object properties (HG ns)    : 123
+  Datatype properties (HG ns)  : 47
+  Named individuals (HG ns)    : 64
+  Enumerations (typed classes) : 9  -> values: 64
+  owl:unionOf (named subjects) : 3 (total unionOf: 7)
+  Internal subClassOf axioms   : 33
+  External subClassOf axioms   : 31
+  Max class-hierarchy depth    : 4
+  Inverse property pairs       : 18
+  owl:disjointWith axioms      : 0
+  min-cardinality restrictions : 273
+  max-cardinality restrictions : 176
+------------------------------------------------------------------------
+D. ANNOTATION / DOCUMENTATION COMPLETENESS
+  Classes with rdfs:label      : 70/70
+  Classes with definition      : 70/70
+  Object props with rdfs:range : 100/123
+  Datatype props with range    : 41/47
+  Object props with rdfs:domain: 18/123
+------------------------------------------------------------------------
+C. MODELLING-QUALITY HEURISTICS (pitfall-style)
+  Properties missing rdfs:domain : 152
+  Properties missing rdfs:range  : 29
+  Sibling groups w/o disjointness: 11
+  Classes missing label+definition: 0
+------------------------------------------------------------------------
+E. ALIGNMENT & INTEROPERABILITY
+  Namespace    Classes  Props
+  CIDOC-CRM         32     62
+  CRMinf             2      0
+  CRMsci             1      0
+  PROV-O             3      9
+  OWL-Time           1      0
+  AAT               11      0
+  Wikidata           6      0
+  Schema.org         5      1
+  EDM                7      0
+  FOAF               1      0
+  RICO               1      0
+  DBpedia            3      0
+  DCTerms            0      1
+  ---------------------------
+  aligned (distinct)      42     73
+  External vocabularies used   : 13
+------------------------------------------------------------------------
+B. LOGICAL CONSISTENCY & OWL-RL REASONING
+  Triples before closure       : 5049
+  Triples after closure        : 25353
+  Inferred triples             : 20304
+  Unsatisfiable HG classes     : 0
+  (any class subClassOf Nothing: 1)
+------------------------------------------------------------------------
+F1. SHACL SHAPE COVERAGE
+  sh:NodeShape                 : 61
+  distinct sh:targetClass      : 61
+  property constraints (sh:path): 722
+------------------------------------------------------------------------
+F2. COMPETENCY-QUESTION COVERAGE (independent, TBox)
+  [PASS] CQ-i1 Event-mediated construction
+  [PASS] CQ-i2 Condition history via events
+  [PASS] CQ-i3 Custody transfer to a Guthi
+  [PASS] CQ-i4 Consecration makes a deity present
+  [PASS] CQ-i5 Enshrinement of a deity in a temple
+  [PASS] CQ-i6 Living-Goddess tenure as bounded period
+  [PASS] CQ-i7 Selection initiates / Retirement ends tenure
+  [PASS] CQ-i8 Provenance-aware syncretism
+  [PASS] CQ-i9 Deity religious tradition
+  [PASS] CQ-i10 Guthi performs ritual / holds custody
+  [PASS] CQ-i11 Assertion-level provenance
+  [PASS] CQ-i12 Multi-calendar temporal model
+  [PASS] CQ-i13 Ritual sequencing
+  [PASS] CQ-i14 Procession route geography
+  [PASS] CQ-i15 Iconography depicts a deity
+  Coverage: 15/15 (100%)
+------------------------------------------------------------------------
+F3. SYNTHETIC ABOX DEMONSTRATION (real SPARQL)
+  Multi-vocal/conflicting-assertion query -> 2 row(s):
+      value=12th century  source=Src_Slusser
+      value=7th century  source=Src_DoA
+  Living-Goddess tenure query -> 1 row(s)
+  pySHACL validation of synthetic ABox: conforms=False
+========================================================================
+DONE.

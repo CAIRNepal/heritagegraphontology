@@ -32,7 +32,7 @@ from rdflib import Graph, RDF, RDFS, OWL, Namespace, URIRef, Literal, BNode
 
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-ONTOLOGY_FILE = SCRIPT_DIR.parent / "HeritageGraph.ttl"
+ONTOLOGY_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.ttl"
 RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 

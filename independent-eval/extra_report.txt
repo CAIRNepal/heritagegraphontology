@@ -1,0 +1,72 @@
+== Minimal conformant ABox: conforms = False ==
+violations: 8
+Validation Report
+Conforms: False
+Results (8):
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class crm:E21_Person ; sh:description Literal("Girl selected to become Living Goddess") ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:IRI ; sh:order Literal("1", datatype=xsd:integer) ; sh:path heritageGraph:selected_person ]
+	Focus Node: ex:Sel
+	Result Path: heritageGraph:selected_person
+	Message: Less than 1 values on ex:Sel->heritageGraph:selected_person
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class crm:E21_Person ; sh:description Literal("The girl serving as Living Goddess during this period") ; sh:maxCount
+
+== Alignment mappings total (exact/close/broad): 145 ==
+Random sample of 20 (for manual correctness audit):
+   HumanMadeObject            skos:broadMatch  http://www.europeana.eu/schemas/edm/PhysicalThing
+   Temple                     skos:closeMatch  http://schema.org/PlaceOfWorship
+   has_condition_type         skos:broadMatch  http://www.cidoc-crm.org/cidoc-crm/P2_has_type
+   Actor                      skos:exactMatch  http://www.cidoc-crm.org/cidoc-crm/E39_Actor
+   has_architectural_style    skos:broadMatch  http://www.cidoc-crm.org/cidoc-crm/P2_has_type
+   Temple                     skos:exactMatch  http://dbpedia.org/ontology/ReligiousBuilding
+   DataSource                 skos:broadMatch  http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object
+   Murti                      skos:exactMatch  https://w3id.org/heritagegraph/Murti
+   InformationObject          skos:exactMatch  https://w3id.org/heritagegraph/InformationObject
+   consecrated_object         skos:broadMatch  http://www.cidoc-crm.org/cidoc-crm/P11_had_participant
+   LivingGoddessTenure        skos:exactMatch  http://www.cidoc-crm.org/cidoc-crm/E4_Period
+   Temple                     skos:exactMatch  http://schema.org/HinduTemple
+   Paubha                     skos:broadMatch  http://vocab.getty.edu/aat/300033666
+   BuddhistMonument           skos:exactMatch  http://www.wikidata.org/entity/Q177980
+   ArchitecturalStructure     skos:closeMatch  http://schema.org/CivicStructure
+   enshrined_in_structure     skos:broadMatch  http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within
+   HumanMadeObject            skos:exactMatch  http://www.wikidata.org/entity/Q838948
+   Verification               skos:exactMatch  https://w3id.org/heritagegraph/Verification
+   Paubha                     skos:closeMatch  http://www.wikidata.org/entity/Q130993
+   generated_assertion        skos:broadMatch  http://www.w3.org/ns/prov#generated
+  [PASS] F: ontology IRI (w3id, persistent)
+  [PASS] F: owl:versionIRI
+  [PASS] F: title
+  [PASS] F: description/definition
+  [PASS] A: license declared
+  [PASS] A: standard serialisations (TTL/OWL/JSON-LD)
+  [PASS] I: imports standard vocabularies
+  [PASS] I: cross-vocabulary alignments (SKOS match)
+  [PASS] R: creator/publisher
+  [PASS] R: version info
+  [PASS] R: open license (CC-BY)
+  [PASS] R: term-level definitions (>=95%)
+  FAIR self-assessment score: 100% (12/12 checks)
+  NOTE: dereferenceability (A1) not testable offline; w3id not yet live -> A partially unmet.
+== FINAL minimal conformant ABox: conforms = False ==
+Validation Report
+Conforms: False
+Results (2):
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:datatype xsd:date ; sh:description Literal("Earliest possible date (for uncertain dates)") ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:Literal ; sh:order Literal("0", datatype=xsd:integer) ; sh:path crm:P82a_begin_of_the_begin ]
+	Focus Node: ex:TSpan
+	Result Path: crm:P82a_begin_of_the_begin
+	Message: Less than 1 values on ex:
+Self-referential SKOS mappings (HG->HG, spurious): 33
+== FINAL conformant ABox: conforms = False ==
+Validation Report
+Conforms: False
+Results (1):
+Constraint Violation in MinCountConstraintComponent (http://www.w3.org/ns/shacl#MinCountConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:datatype xsd:string ; sh:description Literal("Primary name or label") ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:Literal ; sh:order Literal("0", datatype=xsd:integer) ; sh:path rdfs:label ]
+	Focus Node: ex:Place
+	Result Path: r
+== FINAL conformant ABox: conforms = True ==

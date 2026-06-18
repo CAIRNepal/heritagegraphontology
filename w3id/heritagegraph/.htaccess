@@ -1,0 +1,27 @@
+# w3id.org/heritagegraph — configure after tagging v1.0.0
+# PR target: https://github.com/perma-id/w3id/tree/master/heritagegraph
+#
+# NOTE: the v1.0.0 rules below resolve to the *frozen* v1.0.0 tag, where the
+# ontology files live at the repository root — leave them untouched. As of the
+# 2026-06 restructure the source files moved to ontology/ on the default branch,
+# so future tags must use the new path, e.g.:
+#   .../<future-tag>/ontology/HeritageGraph.ttl
+# Add the new versioned RewriteRules when you tag the next release.
+
+RewriteEngine On
+
+# Ontology document (latest release)
+RewriteRule ^ontology$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph.ttl [R=303,L]
+RewriteRule ^ontology/$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph.ttl [R=303,L]
+
+# Versioned ontology IRI
+RewriteRule ^ontology/1\.0\.0$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph.ttl [R=303,L]
+RewriteRule ^ontology/1\.0\.0/$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph.ttl [R=303,L]
+
+# Supplementary modules
+RewriteRule ^alignment$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph-alignment.ttl [R=303,L]
+RewriteRule ^edm-profile$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/HeritageGraph-edm.ttl [R=303,L]
+RewriteRule ^dataset$ https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/v1.0.0/heritagegraph-metadata.ttl [R=303,L]
+
+# Human-readable documentation
+RewriteRule ^$ https://cairnepal.github.io/heritagegraphontology/ [R=303,L]

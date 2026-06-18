@@ -1,0 +1,18 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+<https://w3id.org/heritagegraph/ontology> a owl:Ontology ;
+    rdfs:label "HeritageGraph Ontology"@en ;
+    dcterms:title "HeritageGraph: Event-centric ontology for Nepalese living heritage"@en ;
+    dcterms:description "CIDOC-CRM and PROV-O aligned ontology for temples, rituals, Guthi institutions, syncretic deity relations, and assertion-level provenance."@en ;
+    dcterms:creator "Cair Nepal" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:issued "2026-06-05"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    owl:versionInfo "1.0.0" ;
+    vann:preferredNamespacePrefix "heritageGraph" ;
+    vann:preferredNamespaceUri "https://w3id.org/heritagegraph/" ;
+    foaf:homepage <https://github.com/CAIRNepal/heritagegraphontology> ;
+    dcterms:source <https://github.com/CAIRNepal/heritagegraphontology> .

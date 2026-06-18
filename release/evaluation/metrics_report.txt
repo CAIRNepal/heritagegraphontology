@@ -1,0 +1,170 @@
+
+======================================================================
+  §4.5 / §4.6  Structural Completeness & Ontology Metrics
+======================================================================
+Date     : 2026-06-06T08:47:02.841392
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+
+  Total triples: 5049
+
+======================================================================
+  §4.6  Ontology Metrics
+======================================================================
+
+  Named classes (total)      : 70
+  HeritageGraph namespace    : 70
+  External namespace classes : 0
+  Object properties          : 123
+  Datatype properties        : 47
+  Union classes (all unionOf): 7
+    ├ Named union classes    : 3
+    │   → AssertableEntity
+    │   → HeritageEvent
+    │   → PhysicalHeritageThing
+    ├ Enum-as-union classes  : 0
+    └ Anonymous union uses   : 4
+  Named individuals          : 64
+  Annotation properties      : 0
+
+======================================================================
+  §4.5  Structural Completeness
+======================================================================
+
+  Classes with rdfs:label            : 70/70
+  Classes with definition            : 70/70
+
+  Object props with rdfs:range       : 100/123
+  Datatype props with rdfs:range     : 41/47
+  Object props with rdfs:domain      : 18/123
+  Datatype props with rdfs:domain    : 0/47
+  Properties with rdfs:label         : 170/170
+
+======================================================================
+  Class Hierarchy Analysis
+======================================================================
+
+  Root classes (no named parent): 16
+    - ArchitecturalStyleEnum
+    - CasteGroup
+    - ConditionTypeEnum
+    - Container
+    - DataSource
+    - DatePrecisionEnum
+    - EpistemicStanceEnum
+    - ExistenceStatusEnum
+    - Guthi
+    - GuthiTypeEnum
+    - HeritageEvent
+    - Metadata
+    - PhysicalHeritageThing
+    - RitualTypeEnum
+    - SourceTypeEnum
+    - SyncreticTypeEnum
+
+  Max hierarchy depth: 4
+  Deepest class: Chaitya
+
+  Classes with subclasses:
+    RitualEvent                              5 subclass(es)
+    DataSource                               4 subclass(es)
+    ArchitecturalStructure                   4 subclass(es)
+    E7_Activity                              4 subclass(es)
+    RestHouse                                3 subclass(es)
+    DocumentationActivity                    3 subclass(es)
+    HumanMadeObject                          2 subclass(es)
+    BuddhistMonument                         2 subclass(es)
+    Festival                                 2 subclass(es)
+    WaterStructure                           2 subclass(es)
+    HeritageActivity                         2 subclass(es)
+    IconographicObject                       2 subclass(es)
+    E39_Actor                                1 subclass(es)
+    E25_Architectural_Element                1 subclass(es)
+    ontology#Record                          1 subclass(es)
+
+======================================================================
+  Full Class List (HeritageGraph namespace)
+======================================================================
+    1. Actor                                    label:✅  def:✅
+    2. ArchitecturalElement                     label:✅  def:✅
+    3. ArchitecturalStructure                   label:✅  def:✅
+    4. ArchitecturalStyleEnum                   label:✅  def:✅
+    5. ArchivalRecord                           label:✅  def:✅
+    6. AssertableEntity                         label:✅  def:✅
+    7. BuddhistMonument                         label:✅  def:✅
+    8. CalendarSystem                           label:✅  def:✅
+    9. CasteGroup                               label:✅  def:✅
+   10. Chaitya                                  label:✅  def:✅
+   11. ChariotFestival                          label:✅  def:✅
+   12. ConditionAssessment                      label:✅  def:✅
+   13. ConditionState                           label:✅  def:✅
+   14. ConditionTypeEnum                        label:✅  def:✅
+   15. Consecration                             label:✅  def:✅
+   16. Container                                label:✅  def:✅
+   17. DataCustodian                            label:✅  def:✅
+   18. DataSource                               label:✅  def:✅
+   19. DatePrecisionEnum                        label:✅  def:✅
+   20. Deity                                    label:✅  def:✅
+   21. DestructionEvent                         label:✅  def:✅
+   22. Dharmashala                              label:✅  def:✅
+   23. DhungeDhara                              label:✅  def:✅
+   24. DocumentationActivity                    label:✅  def:✅
+   25. Enshrinement                             label:✅  def:✅
+   26. EpistemicStanceEnum                      label:✅  def:✅
+   27. ExistenceStatusEnum                      label:✅  def:✅
+   28. Festival                                 label:✅  def:✅
+   29. FieldSurveyActivity                      label:✅  def:✅
+   30. FieldSurveyDataset                       label:✅  def:✅
+   31. Guthi                                    label:✅  def:✅
+   32. GuthiTypeEnum                            label:✅  def:✅
+   33. HeritageActivity                         label:✅  def:✅
+   34. HeritageAssertion                        label:✅  def:✅
+   35. HeritageEvent                            label:✅  def:✅
+   36. HistoricalEvent                          label:✅  def:✅
+   37. HumanMadeObject                          label:✅  def:✅
+   38. IconographicObject                       label:✅  def:✅
+   39. InformationObject                        label:✅  def:✅
+   40. LivingGoddessRetirement                  label:✅  def:✅
+   41. LivingGoddessSelection                   label:✅  def:✅
+   42. LivingGoddessTenure                      label:✅  def:✅
+   43. MaskedDance                              label:✅  def:✅
+   44. Material                                 label:✅  def:✅
+   45. Metadata                                 label:✅  def:✅
+   46. Murti                                    label:✅  def:✅
+   47. OralHistoryInterview                     label:✅  def:✅
+   48. OralHistoryRecording                     label:✅  def:✅
+   49. Pati                                     label:✅  def:✅
+   50. Paubha                                   label:✅  def:✅
+   51. Person                                   label:✅  def:✅
+   52. PhysicalHeritageThing                    label:✅  def:✅
+   53. Place                                    label:✅  def:✅
+   54. Pokhari                                  label:✅  def:✅
+   55. Production                               label:✅  def:✅
+   56. ReligiousTradition                       label:✅  def:✅
+   57. RestHouse                                label:✅  def:✅
+   58. RitualEvent                              label:✅  def:✅
+   59. RitualTypeEnum                           label:✅  def:✅
+   60. Sattal                                   label:✅  def:✅
+   61. SourceTypeEnum                           label:✅  def:✅
+   62. Stupa                                    label:✅  def:✅
+   63. SyncreticRelationship                    label:✅  def:✅
+   64. SyncreticTypeEnum                        label:✅  def:✅
+   65. Technique                                label:✅  def:✅
+   66. Temple                                   label:✅  def:✅
+   67. TimeSpan                                 label:✅  def:✅
+   68. TransferOfCustody                        label:✅  def:✅
+   69. Verification                             label:✅  def:✅
+   70. WaterStructure                           label:✅  def:✅
+
+======================================================================
+  Paper Claims vs Actual
+======================================================================
+
+  Metric                              Paper     Actual    Match
+  --------------------------------------------------------------
+  Named owl:Class (HG namespace)         70         70        ✅
+  Object properties                     123        123        ✅
+  Datatype properties                    47         47        ✅
+  Union classes (named)                   3          3        ✅
+  Named individuals (enum values)         64         64        ✅
+  SHACL NodeShapes                       61         61        ✅
+  CQ TBox pass rate                   32/32      32/32        ✅

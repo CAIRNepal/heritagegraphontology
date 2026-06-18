@@ -1,0 +1,86 @@
+@prefix edm: <http://www.europeana.eu/schemas/edm/> .
+@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+heritageGraph:Actor rdfs:subClassOf edm:Agent ;
+    skos:closeMatch edm:Agent .
+
+heritageGraph:ArchitecturalElement rdfs:subClassOf edm:PhysicalThing ;
+    skos:closeMatch edm:PhysicalThing .
+
+heritageGraph:ArchitecturalStructure rdfs:subClassOf edm:PhysicalThing ;
+    skos:closeMatch edm:PhysicalThing .
+
+heritageGraph:ArchivalRecord rdfs:subClassOf edm:WebResource ;
+    skos:closeMatch edm:WebResource .
+
+heritageGraph:ConditionAssessment rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:DataCustodian rdfs:subClassOf edm:Agent ;
+    skos:closeMatch edm:Agent .
+
+heritageGraph:DataSource rdfs:subClassOf edm:WebResource ;
+    skos:closeMatch edm:WebResource .
+
+heritageGraph:Deity rdfs:subClassOf edm:Concept ;
+    skos:closeMatch edm:Concept .
+
+heritageGraph:DestructionEvent rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:DocumentationActivity rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:Festival rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:FieldSurveyDataset rdfs:subClassOf edm:WebResource ;
+    skos:closeMatch edm:WebResource .
+
+heritageGraph:Guthi rdfs:subClassOf edm:Agent ;
+    skos:closeMatch edm:Agent .
+
+heritageGraph:HistoricalEvent rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:HumanMadeObject rdfs:subClassOf edm:PhysicalThing ;
+    skos:closeMatch edm:PhysicalThing .
+
+heritageGraph:IconographicObject rdfs:subClassOf edm:PhysicalThing ;
+    skos:closeMatch edm:PhysicalThing .
+
+heritageGraph:InformationObject rdfs:subClassOf edm:WebResource ;
+    skos:closeMatch edm:WebResource .
+
+heritageGraph:OralHistoryRecording rdfs:subClassOf edm:WebResource ;
+    skos:closeMatch edm:WebResource .
+
+heritageGraph:Person rdfs:subClassOf edm:Agent ;
+    skos:closeMatch edm:Agent .
+
+heritageGraph:Place rdfs:subClassOf edm:Place ;
+    skos:closeMatch edm:Place .
+
+heritageGraph:Production rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:ReligiousTradition rdfs:subClassOf edm:Concept ;
+    skos:closeMatch edm:Concept .
+
+heritageGraph:RitualEvent rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:TimeSpan rdfs:subClassOf edm:TimeSpan ;
+    skos:closeMatch edm:TimeSpan .
+
+heritageGraph:TransferOfCustody rdfs:subClassOf edm:Event ;
+    skos:closeMatch edm:Event .
+
+heritageGraph:edm-profile a owl:Ontology ;
+    rdfs:label "HeritageGraph EDM projection profile" ;
+    owl:imports heritageGraph:ontology ;
+    skos:definition "Europeana Data Model projection for HeritageGraph core classes." .
+

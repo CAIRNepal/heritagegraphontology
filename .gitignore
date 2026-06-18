@@ -1,7 +1,37 @@
-venv\
+# Python / virtualenv
 venv/
-venv
-figures
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Local / OS noise
+.DS_Store
+*.code-workspace
+
+# Manuscript / local drafts / literature (not part of the ontology release)
 figures/
 methodology.tex
-methodology.tex\
+*.tex
+*.pdf
+*.bib
+main/
+tgdk-overleaf/
+HeritageGraph_ontology.xlsx
+
+# Backup / scratch
+*.bak-prefix
+*.bak
+*.zip
+
+# Intermediate regeneration artefacts (source of truth is HeritageGraph.yaml)
+*.regen.ttl
+.webvowl-out/
+evaluation/HeritageGraph.hermit-check.*
+
+# Local-only evaluation scratch (archived reports live under release/evaluation/)
+evaluation/results/
+
+# Personal / non-repo assets
+Eval.pdf
+ontology/HeritageGraph.merged.ttl

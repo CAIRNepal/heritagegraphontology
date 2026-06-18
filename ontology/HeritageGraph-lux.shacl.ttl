@@ -1,0 +1,208 @@
+# SHACL shapes for the HeritageGraph ↔ LUX interoperability classes.
+#
+# Companion to HeritageGraph.shacl.ttl. Targets the classes introduced by
+# heritagegraph-lux-alignment.ttl (the LUX bridge module). Shapes are
+# intentionally OPEN (no sh:closed) because instances flow in from LUX /
+# Linked Art records that legitimately carry CRM properties this module does
+# not enumerate; closing them would reject valid migrated data.
+#
+# Validate with:
+#   pyshacl -s HeritageGraph-lux.shacl.ttl -df turtle -m -i rdfs \
+#           <data + heritagegraph-lux-alignment.ttl + HeritageGraph.ttl>
+
+@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+#####################################################################
+# Shared constraint component: every interoperability node should be a
+# named IRI carrying a human-readable label.
+#####################################################################
+
+heritageGraph:LuxLabelShape a sh:PropertyShape ;
+    sh:path rdfs:label ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:Literal ;
+    sh:description "Primary name or label." .
+
+#####################################################################
+# 1. Identification / linguistic content
+#####################################################################
+
+heritageGraph:NameShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Name ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property [ sh:path heritageGraph:has_language ;
+                  sh:class heritageGraph:Language ;
+                  sh:description "Language of this name." ] .
+
+heritageGraph:TitleShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Title ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:IdentifierShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Identifier ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:LinguisticObjectShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:LinguisticObject ;
+    sh:property [ sh:path heritageGraph:has_language ;
+                  sh:class heritageGraph:Language ;
+                  sh:description "Language of the text." ] .
+
+heritageGraph:InscriptionShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Inscription ;
+    sh:property [ sh:path heritageGraph:has_language ;
+                  sh:class heritageGraph:Language ] .
+
+heritageGraph:LanguageShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Language ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:PropositionalObjectShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:PropositionalObject ;
+    sh:property heritageGraph:LuxLabelShape .
+
+#####################################################################
+# 2. Visual / digital surrogates
+#####################################################################
+
+heritageGraph:VisualItemShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:VisualItem ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:DigitalObjectShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:DigitalObject ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:property heritageGraph:LuxLabelShape .
+
+#####################################################################
+# 3. Measurement / monetary
+#####################################################################
+
+heritageGraph:DimensionShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Dimension ;
+    sh:property [ sh:path heritageGraph:dimension_has_unit ;
+                  sh:class heritageGraph:MeasurementUnit ;
+                  sh:maxCount 1 ;
+                  sh:description "Unit of this dimension value." ] .
+
+heritageGraph:MeasurementUnitShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:MeasurementUnit ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:MeasurementShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Measurement ;
+    sh:property [ sh:path heritageGraph:measurement_observes ;
+                  sh:class heritageGraph:Dimension ;
+                  sh:description "Dimension observed by this measurement." ] .
+
+heritageGraph:MonetaryAmountShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:MonetaryAmount ;
+    sh:property [ sh:path heritageGraph:amount_in_currency ;
+                  sh:class heritageGraph:Currency ;
+                  sh:maxCount 1 ;
+                  sh:description "Currency of this amount." ] .
+
+heritageGraph:CurrencyShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Currency ;
+    sh:property heritageGraph:LuxLabelShape .
+
+#####################################################################
+# 4. Existence / lifecycle events
+#####################################################################
+
+heritageGraph:BirthShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Birth ;
+    sh:property [ sh:path crm:P4_has_time-span ;
+                  sh:maxCount 1 ;
+                  sh:description "Time-span of the birth." ] .
+
+heritageGraph:DeathShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Death ;
+    sh:property [ sh:path crm:P4_has_time-span ;
+                  sh:maxCount 1 ] .
+
+heritageGraph:FormationShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Formation ;
+    sh:property [ sh:path crm:P4_has_time-span ;
+                  sh:maxCount 1 ] .
+
+heritageGraph:DissolutionShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Dissolution ;
+    sh:property [ sh:path crm:P4_has_time-span ;
+                  sh:maxCount 1 ] .
+
+heritageGraph:BeginningOfExistenceShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:BeginningOfExistence .
+
+heritageGraph:EndOfExistenceShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:EndOfExistence .
+
+#####################################################################
+# 5. Object-history activities
+#####################################################################
+
+heritageGraph:ModificationShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Modification .
+
+heritageGraph:MoveShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Move .
+
+heritageGraph:AcquisitionShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Acquisition ;
+    sh:property [ sh:path heritageGraph:acquisition_amount ;
+                  sh:class heritageGraph:MonetaryAmount ;
+                  sh:description "Price/amount of the acquisition." ] .
+
+heritageGraph:EncounterShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Encounter .
+
+heritageGraph:CurationActivityShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:CurationActivity .
+
+heritageGraph:ProvenanceActivityShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:ProvenanceActivity .
+
+#####################################################################
+# 6. Concepts, groups, holdings, rights, periods
+#####################################################################
+
+heritageGraph:GroupShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Group ;
+    sh:property heritageGraph:LuxLabelShape ;
+    sh:property [ sh:path heritageGraph:was_formed_by ;
+                  sh:class heritageGraph:Formation ;
+                  sh:maxCount 1 ;
+                  sh:description "Founding event of the group." ] .
+
+heritageGraph:SetShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Set ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:CuratedHoldingShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:CuratedHolding ;
+    sh:property [ sh:path heritageGraph:holds_item ;
+                  sh:nodeKind sh:BlankNodeOrIRI ;
+                  sh:description "Items held in this curated holding." ] .
+
+heritageGraph:RightShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Right ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:LegalObjectShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:LegalObject ;
+    sh:property heritageGraph:LuxLabelShape .
+
+heritageGraph:PeriodShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:Period ;
+    sh:property heritageGraph:LuxLabelShape ;
+    sh:property [ sh:path crm:P4_has_time-span ;
+                  sh:maxCount 1 ] .
+
+heritageGraph:AttributeAssignmentShape a sh:NodeShape ;
+    sh:targetClass heritageGraph:AttributeAssignment .

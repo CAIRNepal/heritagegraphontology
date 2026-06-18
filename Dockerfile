@@ -7,7 +7,7 @@ USER 0
 WORKDIR /app
 
 # Copy your ontology file into container
-COPY HeritageGraph.ttl /input/HeritageGraph.ttl
+COPY ontology/HeritageGraph.ttl /input/HeritageGraph.ttl
 
 # Create output folder
 RUN mkdir -p /output

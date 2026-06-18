@@ -15,44 +15,26 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12"
 
-      - name: Install LinkML
+      - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install linkml linkml-runtime
+          pip install linkml rdflib owlrl pyyaml requests owlready2
+          pip install -r evaluation/requirements.txt
 
-      - name: Convert LinkML YAML to TTL
-        run: |
-          gen-owl HeritageGraph.yaml \
-            --format ttl \
-            --output HeritageGraph.ttl
+      - name: Regenerate ontology artefacts
+        run: python3 scripts/regenerate_ontology_artifacts.py
 
-      - name: Prepare docs folder
-        run: |
-          rm -rf docs
-          mkdir docs
-          chmod 777 docs
+      - name: Run ontology evaluation suite
+        run: python3 scripts/run_release_quality.py
 
-      - name: Run Widoco
-        run: |
-          docker run --rm -u 0 \
-            -v ${{ github.workspace }}/HeritageGraph.ttl:/input/HeritageGraph.ttl \
-            -v ${{ github.workspace }}/docs:/output \
-            ghcr.io/dgarijo/widoco:v1.4.23 \
-            -ontFile /input/HeritageGraph.ttl \
-            -outFolder /output \
-            -lang en \
-            -rewriteAll \
-            -webVowl
+      - name: Generate documentation (Widoco + WebVOWL) from the modular ontology
+        run: bash scripts/build.sh "${GITHUB_WORKSPACE}/docs"
 
-      - name: Rename index-en.html to index.html
-        run: |
-          if [ -f "${GITHUB_WORKSPACE}/docs/index-en.html" ]; then
-            mv "${GITHUB_WORKSPACE}/docs/index-en.html" "${GITHUB_WORKSPACE}/docs/index.html"
-          fi
+      - name: Refresh docs metadata from release TTL
+        run: python3 scripts/refresh_docs_metadata.py
 
       - name: Add .nojekyll
         run: touch docs/.nojekyll

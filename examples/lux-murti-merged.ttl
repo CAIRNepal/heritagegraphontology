@@ -1,0 +1,113 @@
+# Example: a LUX (Yale Linked Art) sculpture record expressed in the merged
+# HeritageGraph ontology (core + heritagegraph-lux-alignment.ttl bridge).
+#
+# Demonstrates the interoperability classes the bridge adds — Name, Identifier,
+# VisualItem, DigitalObject, Inscription, Dimension/MeasurementUnit,
+# Acquisition/MonetaryAmount/Currency, CuratedHolding/Set — wired to a HG
+# Murti via the bridge's HG-internal object properties. Every node also carries
+# its CRM type by entailment (e.g. hg:Murti ⊑ crm:E22_Human-Made_Object), so a
+# LUX/Linked-Art consumer sees a valid crm:E22 with no extra mapping.
+#
+# Validate (merged shapes + RDFS inference):
+#   pyshacl -s ontology/HeritageGraph.shacl.ttl -s ontology/HeritageGraph-lux.shacl.ttl \
+#           -e ontology/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
+#           -i rdfs -df turtle examples/lux-murti-merged.ttl
+
+@prefix hg:   <https://w3id.org/heritagegraph/> .
+@prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix aat:  <http://vocab.getty.edu/aat/> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:   <https://w3id.org/heritagegraph/demo/lux/> .
+
+# ---- The object: a gilt-copper Murti (cf. a LUX HumanMadeObject) -------------
+
+ex:murti a hg:Murti ;
+    rdfs:label "Standing Avalokiteshvara" ;
+    dct:identifier "https://w3id.org/heritagegraph/demo/lux/murti"^^xsd:anyURI ;
+    hg:identified_by_name      ex:name-en, ex:name-newari ;
+    hg:identified_by_identifier ex:accno ;
+    hg:carries_inscription     ex:inscription ;
+    hg:has_visual_item         ex:visual ;
+    hg:has_digital_representation ex:scan ;
+    hg:has_dimension           ex:height ;
+    hg:was_produced_by_event   ex:production ;
+    hg:was_acquired_through    ex:acquisition ;
+    hg:member_of_set           ex:set ;
+    crm:P55_has_current_location ex:place .
+
+# ---- Names (multilingual) and identifier ------------------------------------
+
+ex:name-en a hg:Name ;
+    rdfs:label "Standing Avalokiteshvara" ;
+    hg:has_language ex:lang-en .
+
+ex:name-newari a hg:Name ;
+    rdfs:label "करुणामय" ;
+    hg:has_language ex:lang-newari .
+
+ex:lang-en     a hg:Language ; rdfs:label "English" .
+ex:lang-newari a hg:Language ; rdfs:label "Newari" .
+
+ex:accno a hg:Identifier ;
+    rdfs:label "2019.42.1" .
+
+# ---- Inscription (textual content on the object) ----------------------------
+
+ex:inscription a hg:Inscription ;
+    rdfs:label "Donor inscription, Nepal Sambat 879" ;
+    hg:has_language ex:lang-newari .
+
+# ---- Iconographic content vs. physical carrier ------------------------------
+
+ex:visual a hg:VisualItem ;
+    rdfs:label "Avalokiteshvara iconography (lotus, antelope skin)" .
+
+# ---- Digital surrogate (3D scan) --------------------------------------------
+
+ex:scan a hg:DigitalObject ;
+    rdfs:label "Photogrammetry mesh, 2023 CAIR survey" .
+
+# ---- Dimension + unit -------------------------------------------------------
+
+ex:height a hg:Dimension ;
+    rdfs:label "Height" ;
+    crm:P90_has_value "61.0"^^xsd:decimal ;
+    hg:dimension_has_unit ex:cm .
+
+ex:cm a hg:MeasurementUnit ; rdfs:label "centimetre" .
+
+# ---- Production event -------------------------------------------------------
+
+ex:production a hg:Production ;
+    rdfs:label "Casting of the Murti (Malla period)" ;
+    crm:P4_has_time-span ex:tspan-prod .
+
+ex:tspan-prod a hg:TimeSpan ;
+    crm:P82a_begin_of_the_begin "1640-01-01"^^xsd:date ;
+    crm:P82b_end_of_the_end     "1680-12-31"^^xsd:date .
+
+# ---- Acquisition with a monetary amount -------------------------------------
+
+ex:acquisition a hg:Acquisition ;
+    rdfs:label "Museum acquisition, 2019" ;
+    hg:acquisition_amount ex:price .
+
+ex:price a hg:MonetaryAmount ;
+    rdfs:label "Purchase price" ;
+    crm:P90_has_value "1.0"^^xsd:decimal ;
+    hg:amount_in_currency ex:usd .
+
+ex:usd a hg:Currency ; rdfs:label "US Dollar" .
+
+# ---- Curated holding / set membership ---------------------------------------
+
+ex:set a hg:Set ;
+    rdfs:label "CAIR Nepal Sculpture Collection" ;
+    hg:holds_item ex:murti .
+
+# ---- Place ------------------------------------------------------------------
+
+ex:place a hg:Place ;
+    rdfs:label "Patan Museum" .

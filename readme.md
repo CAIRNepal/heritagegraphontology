@@ -1,34 +1,89 @@
-About Widoco output
-===================
-The purpose of Widoco is to reuse and integrate existing tools for documentation, plus the set of features listed below:
-* Separation of the sections of your html page so you can write them independently and replace only those needed.
-* Automatic annotation in RDF-a of the html produced.
-* Association of a provenance page which includes the history of your vocabulary (W3C PROV-O compliant).
-* Metadata extraction from the ontology plus the means to complete it on the fly when generating your ontology.
-* Guidelines on the main sections that your document should have and how to complete them.
+# HeritageGraph Ontology
 
-Widoco will create 3 different folders:
-|
-|-provenance (a folder including an html and RDF serialization of how the documentation page was created)
-|-resources (folder with the different resources)
-|-sections (folder with the different sections of the documentation, separated for easy editing. Just edit one and the main page will be updated)
+Event-centric LinkML schema and OWL release for Nepalese living heritage, aligned with CIDOC-CRM, CRMinf, PROV-O, and Europeana EDM.
 
-Completing ontology metadata.
-===================
-Widoco uses the ontology metadata to update a configuration file. If you complete that configuration file (ended up widoco.conf), the tool will enhance your html with additional details, such as how to cite the document, previous revisions, icons with the licence, etc.
+**Namespace:** `https://w3id.org/heritagegraph/`  
+**Version:** 1.0.0
 
-Browser issues
-==========
-The result of executing Widoco is an html file. We have tested it in Mozilla, IE and Chrome, and when the page is stored in a server all the browsers work correctly. If you view the file locally, we recommend you to use Mozilla Firefox (or Internet Explorer, if you must). Google Chrome will not show the contents correctly, as it doesn't allow  XMLHttpRequest without HTTP. If you want to view the page locally with Google Chrome you have two possibilities:
+## Repository layout
 
-a) Place the file in a server and access it via its URL (for example, put it in dropbox and access through its public url).
+All ontology files live in `ontology/`; the generated documentation site lives
+in `docs/` (never hand-edit — it is rebuilt by `scripts/build.sh`).
 
-b) Execute Chrome with the following commands :
+| Artefact | Purpose |
+|----------|---------|
+| `ontology/HeritageGraph.yaml` | LinkML source of truth |
+| `ontology/HeritageGraph.ttl` | OWL/Turtle ontology (core) |
+| `ontology/heritagegraph-lux-alignment.ttl` | LUX (Yale Linked Art / CIDOC-CRM) bridge module |
+| `ontology/HeritageGraph.shacl.ttl` | SHACL validation shapes |
+| `ontology/HeritageGraph-lux.shacl.ttl` | SHACL shapes for the LUX bridge classes |
+| `ontology/HeritageGraph-alignment.ttl` | CRM/PROV/Wikidata alignment module |
+| `ontology/HeritageGraph-edm.ttl` | Europeana Data Model projection |
+| `ontology/heritagegraph-metadata.ttl` | VoID dataset description |
+| `examples/kathmandu-mini-abox.ttl` | Sample instance data |
+| `CHANGELOG.md` | Release notes |
 
-(WIN) chrome.exe --allow-file-access-from-files,
+## Build the documentation + visualization
 
-(OSX) open /Applications/Google\ Chrome.app/ --args --allow-file-access-from-files
+Regenerate the whole documentation site (Widoco docs + WebVOWL of the **merged**
+core + LUX ontology) after any ontology change:
 
-(UNX) /usr/bin/google-chrome --allow-file-access-from-files
+```bash
+make docs            # = scripts/build.sh  → writes ./docs
+make preview         # build into /tmp/hg-preview without touching docs/
+make webvowl         # build, then serve http://localhost:8000/webvowl/
+```
 
-Do you have a problem? open an issue at https://github.com/dgarijo/Widoco
+Requires Docker (Widoco runs owl2vowl inside the container — no local Java needed).
+
+## Regenerate everything
+
+```bash
+pip install -r requirements.txt linkml owlrl
+python3 scripts/regenerate_ontology_artifacts.py
+python3 scripts/run_release_quality.py
+```
+
+## Evaluate
+
+```bash
+cd evaluation && pip install -r requirements.txt
+make -C evaluation all   # or run individual run_*.py scripts
+```
+
+Quality summary: `release/QUALITY_REPORT.md`
+
+## Manuscript (NPJ draft)
+
+Publication-quality LaTeX rewrite: `manuscript/HeritageGraph.tex`
+
+```bash
+python3 scripts/generate_manuscript_figures.py
+cd manuscript && pdflatex HeritageGraph && bibtex HeritageGraph && pdflatex HeritageGraph
+```
+
+Editorial assessment: `manuscript/EDITORIAL_ASSESSMENT.md`
+
+## Journal / release readiness
+
+| Step | Action |
+|------|--------|
+| 1 | `python3 scripts/regenerate_ontology_artifacts.py` |
+| 2 | `python3 scripts/run_release_quality.py` |
+| 3 | Tag `v1.0.0` and push to GitHub |
+| 4 | Open w3id PR using `w3id/heritagegraph/.htaccess` |
+| 5 | Submit `registry/lov-metadata.ttl` to LOV after w3id is live |
+
+HermiT DL log: `release/evaluation/hermit_consistency_log.txt` (auto-generated in CI when Java is available).
+
+## Excel export
+
+```bash
+python3 scripts/export_heritagegraph_to_excel.py
+```
+
+## Documentation
+
+`scripts/build.sh` (also `make docs`) regenerates the Widoco docs + WebVOWL into
+`docs/`. CI runs the same script via `.github/workflows/ci.yaml` and deploys
+`docs/` to GitHub Pages on every push.

@@ -27,8 +27,8 @@ from rdflib import Graph, RDF, RDFS, OWL, Namespace, URIRef
 
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-ONTOLOGY_FILE = SCRIPT_DIR.parent / "HeritageGraph.ttl"
-YAML_FILE = SCRIPT_DIR.parent / "HeritageGraph.yaml"
+ONTOLOGY_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.ttl"
+YAML_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.yaml"
 RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
@@ -52,6 +52,7 @@ NAMESPACES = {
     "DataCite": "http://purl.org/spar/datacite/",
     "DCTerms": "http://purl.org/dc/terms/",
     "FOAF": "http://xmlns.com/foaf/0.1/",
+    "EDM": "http://www.europeana.eu/schemas/edm/",
 }
 
 # Mapping from YAML CURIE prefixes to canonical namespace names
@@ -71,6 +72,7 @@ CURIE_PREFIX_MAP = {
     "datacite": "DataCite",
     "dcterms": "DCTerms",
     "foaf": "FOAF",
+    "edm": "EDM",
     "rdfs": "RDFS",
 }
 
@@ -317,11 +319,18 @@ def run_evaluation():
     log(f"\n  Paper §4.4 claims vs Actual:")
     log(f"    {'Metric':<40} {'Paper':>8} {'Actual':>8}  {'Match':>6}")
     log(f"    {'-' * 64}")
+    ext_subclass = sum(
+        1 for s, o in g.subject_objects(RDFS.subClassOf)
+        if isinstance(s, URIRef) and str(s).startswith(str(HG))
+        and isinstance(o, URIRef) and not str(o).startswith(str(HG))
+        and "owl#" not in str(o)
+    )
     rows = [
-        ("CIDOC-CRM aligned classes", 35, crm_c),
+        ("CIDOC-CRM aligned classes (SKOS/slot)", 32, crm_c),
+        ("External rdfs:subClassOf axioms (TTL)", 31, ext_subclass),
         ("CRM-family (CRM+CRMinf+CRMsci) classes", 35, crm_ext_c),
-        ("CIDOC-CRM aligned properties", 71, crm_p),
-        ("PROV-O aligned properties", 11, prov_p),
+        ("CIDOC-CRM aligned properties (slot_uri)", 42, crm_p),
+        ("PROV-O aligned properties (slot_uri)", 9, prov_p),
     ]
     for label, paper, actual in rows:
         match = "✅" if paper == actual else "❌"

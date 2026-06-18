@@ -1,0 +1,38 @@
+== SHACL conformance of demonstrator ABox (inference=none): conforms=False ==
+Validation Report
+Conforms: False
+Results (8):
+Constraint Violation in ClassConstraintComponent (http://www.w3.org/ns/shacl#ClassConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class crm:E4_Period ; sh:description Literal("Living Goddess tenure that this selection event initiated") ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:BlankNodeOrIRI ; sh:order Literal("2", datatype=xsd:integer) ; sh:path heritageGraph:initiated_tenure ]
+	Focus Node: ex:Sel_2017
+	Value Node: ex:Tenure_2017
+	Result Path: heritageGraph:initiated_tenure
+	Message: Value does not have class crm:E4_Period
+Constraint Violation in ClassConstraintComponent (http://www.w3.org/ns/shacl#ClassConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: [ sh:class crm:E4_Period ; sh:description Literal("The Living Goddess tenure that this event terminated") ; sh:maxCount Literal("1", datatype=xsd:integer) ; sh:minCount Literal("1", datatype=xsd:integer) ; sh:nodeKind sh:BlankNodeOrIRI ; sh:order Literal("1", datatype=xsd:integer) ; sh:path heritageGraph:ended_tenure_of ]
+	Focus Node: ex:Ret_2025
+	Value Node: ex:Tenure_2017
+	Result Path: heritageGraph:ended_tenure_of
+	Message: Value does not have class crm:E4_Period
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: crm:E52_Time-Span
+	Focus Node: ex:TS_Festival
+	Value Node: Literal("Indra Jatra (annual, Bhadra)")
+	Result Path: rdfs:label
+	Message: Node ex:TS_Festival is closed. It cannot have value: Literal("Indra Jatra (annual, Bhadra)")
+Constraint Violation in ClosedConstraintComponent (http://www.w3.org/ns/shacl#ClosedConstraintComponent):
+	Severity: sh:Violation
+	Source Shape: heritageGraph:Guthi
+	Focus Node: ex:KasthamandapGuthi
+	Value Node: ex:Kasthamandap
+	Result Path: heritageGraph:holds_custody_of
+	Message: Node ex:KasthamandapGuthi is closed. It cannot have value: ex:K
+
+== SHACL negative tests (well-formed; each should be CAUGHT) ==
+  [CAUGHT] Temple missing has_architectural_style
+  [CAUGHT] Guthi missing guthi_type
+  [CAUGHT] RitualEvent missing crm:P4_has_time-span
+  [CAUGHT] Temple missing dcterms:identifier
