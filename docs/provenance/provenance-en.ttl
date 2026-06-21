@@ -2,13 +2,9 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix : <> .
-<https://w3id.org/heritagegraph/alignment/lux/1.0.0> a prov:Entity;
-	 dc:title "HeritageGraph ↔ LUX Alignment Module";
+<https://w3id.org/heritagegraph/ontology/1.0.0> a prov:Entity;
+	 dc:title "HeritageGraph Ontology";
 	 prov:wasAttributedTo :agent0;
-	 prov:wasAttributedTo :agent1;
-	 prov:wasAttributedTo :agent2;
 	 prov:wasAttributedTo <https://github.com/dgarijo/Widoco/>,<http://www.essepuntato.it/lode/>;
 .
 :agent0 a prov:Agent; foaf:name "Cair Nepal".
-:agent1 a prov:Agent; foaf:name "Semih Yumuşak".
-:agent2 a prov:Agent; foaf:name "Niraj Karki (CAIR Nepal)".

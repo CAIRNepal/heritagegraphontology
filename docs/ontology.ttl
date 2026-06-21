@@ -1,53 +1,30 @@
-@prefix : <https://w3id.org/heritagegraph/alignment/lux#> .
+@prefix : <https://w3id.org/heritagegraph/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://w3id.org/heritagegraph/alignment/lux#> .
+@base <https://w3id.org/heritagegraph/ontology#> .
 
-<https://w3id.org/heritagegraph/alignment/lux> rdf:type owl:Ontology ;
-                                                owl:versionIRI <https://w3id.org/heritagegraph/alignment/lux/1.0.0> ;
-                                                <http://purl.org/dc/terms/contributor> "Niraj Karki (CAIR Nepal)" ;
-                                                <http://purl.org/dc/terms/creator> "Cair Nepal" ,
-                                                                                   "Semih Yumuşak" ;
-                                                <http://purl.org/dc/terms/description> "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. A modular companion that imports the HeritageGraph core ontology and adds (a) formal owl:equivalentClass / owl:equivalentProperty axioms to CIDOC-CRM, (b) 33 interoperability classes rooted in the URIs LUX actually emits, and (c) the HG-internal hierarchy and object properties wiring those classes into the core graph."@en ;
-                                                <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ,
-                                                                                   <https://www.apache.org/licenses/LICENSE-2.0> ,
-                                                                                   "CC-BY-4.0" ,
-                                                                                   "https://creativecommons.org/licenses/by/4.0/" ;
-                                                <http://purl.org/dc/terms/modified> "2026-06-18"^^xsd:date ,
-                                                                                    "2026-06-05" ;
-                                                <http://purl.org/dc/terms/publisher> "CAIR Nepal" ,
-                                                                                     "Cair Nepal" ;
-                                                <http://purl.org/dc/terms/source> <https://lux.collections.yale.edu/> ;
-                                                <http://purl.org/dc/terms/title> "HeritageGraph ↔ LUX Alignment Module"@en ,
-                                                                                 "HeritageGraph Ontology" ;
-                                                <http://purl.org/pav/derivedFrom> <https://github.com/CAIRNepal/heritagegraph-lux-migration> ;
-                                                <http://purl.org/pav/version> "1.0.0" ;
-                                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "heritageGraph" ;
-                                                <http://purl.org/vocab/vann/preferredNamespaceUri> "https://w3id.org/heritagegraph/" ;
-                                                rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ,
-                                                           "HeritageGraph" ;
-                                                rdfs:seeAlso <https://linked.art/ns/v1/linked-art.json> ;
-                                                owl:ontologyIRI "https://w3id.org/heritagegraph/ontology" ;
-                                                owl:versionInfo "1.0.0" ;
-                                                <http://www.w3.org/2004/02/skos/core#definition> "An event-centric LinkML schema for representing Nepal cultural heritage information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. Enables provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar date representation. DL expressivity: ALCIQ(D)." .
+<https://w3id.org/heritagegraph/ontology> rdf:type owl:Ontology ;
+                                           owl:versionIRI <https://w3id.org/heritagegraph/ontology/1.0.0> ;
+                                           <http://purl.org/dc/terms/creator> "Cair Nepal" ;
+                                           <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
+                                           <http://purl.org/dc/terms/modified> "2026-06-21" ;
+                                           <http://purl.org/dc/terms/publisher> "Cair Nepal" ;
+                                           <http://purl.org/dc/terms/title> "HeritageGraph Ontology" ;
+                                           <http://purl.org/pav/version> "1.0.0" ;
+                                           rdfs:label "HeritageGraph" ;
+                                           owl:ontologyIRI "https://w3id.org/heritagegraph/ontology" ;
+                                           owl:versionInfo "1.0.0" ;
+                                           <http://www.w3.org/2004/02/skos/core#definition> "An event-centric LinkML schema for representing Nepal cultural heritage information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. Enables provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar date representation. DL expressivity: ALCIQ(D)." .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
-###  http://purl.org/dc/terms/contributor
-<http://purl.org/dc/terms/contributor> rdf:type owl:AnnotationProperty .
-
-
 ###  http://purl.org/dc/terms/creator
 <http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/dc/terms/description
-<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/license
@@ -62,32 +39,12 @@
 <http://purl.org/dc/terms/publisher> rdf:type owl:AnnotationProperty .
 
 
-###  http://purl.org/dc/terms/source
-<http://purl.org/dc/terms/source> rdf:type owl:AnnotationProperty .
-
-
 ###  http://purl.org/dc/terms/title
 <http://purl.org/dc/terms/title> rdf:type owl:AnnotationProperty .
 
 
-###  http://purl.org/pav/derivedFrom
-<http://purl.org/pav/derivedFrom> rdf:type owl:AnnotationProperty .
-
-
 ###  http://purl.org/pav/version
 <http://purl.org/pav/version> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/vocab/vann/preferredNamespacePrefix
-<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
-
-
-###  http://purl.org/vocab/vann/preferredNamespaceUri
-<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of
-<http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of> rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.w3.org/2002/07/owl#ontologyIRI
@@ -118,11 +75,6 @@ owl:ontologyIRI rdf:type owl:AnnotationProperty .
 <http://www.w3.org/2004/02/skos/core#prefLabel> rdf:type owl:AnnotationProperty .
 
 
-###  https://w3id.org/heritagegraph/occurred_after
-<https://w3id.org/heritagegraph/occurred_after> rdf:type owl:AnnotationProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of> .
-
-
 ###  https://w3id.org/linkml/permissible_values
 <https://w3id.org/linkml/permissible_values> rdf:type owl:AnnotationProperty .
 
@@ -144,45 +96,24 @@ xsd:date rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://www.cidoc-crm.org/cidoc-crm/P100i_died_in
-<http://www.cidoc-crm.org/cidoc-crm/P100i_died_in> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P102_has_title
-<http://www.cidoc-crm.org/cidoc-crm/P102_has_title> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member
-<http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member> rdf:type owl:ObjectProperty ;
-                                                                       owl:equivalentProperty <https://w3id.org/heritagegraph/has_membership> .
+<http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of
-<http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of> rdf:type owl:ObjectProperty ;
-                                                                          owl:equivalentProperty <https://w3id.org/heritagegraph/member_of_group> .
+<http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P108_has_produced
-<http://www.cidoc-crm.org/cidoc-crm/P108_has_produced> rdf:type owl:ObjectProperty ;
-                                                       owl:equivalentProperty <https://w3id.org/heritagegraph/produced_object> .
+<http://www.cidoc-crm.org/cidoc-crm/P108_has_produced> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by
-<http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by> rdf:type owl:ObjectProperty ;
-                                                           owl:equivalentProperty <https://w3id.org/heritagegraph/was_produced_by_event> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P109_has_current_or_former_curator
-<http://www.cidoc-crm.org/cidoc-crm/P109_has_current_or_former_curator> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P10_falls_within
-<http://www.cidoc-crm.org/cidoc-crm/P10_falls_within> rdf:type owl:ObjectProperty .
+<http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P11_had_participant
-<http://www.cidoc-crm.org/cidoc-crm/P11_had_participant> rdf:type owl:ObjectProperty ;
-                                                         owl:equivalentProperty <https://w3id.org/heritagegraph/had_participant> .
+<http://www.cidoc-crm.org/cidoc-crm/P11_had_participant> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before
@@ -197,30 +128,12 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type> rdf:type owl:ObjectProperty .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/P128_carries
-<http://www.cidoc-crm.org/cidoc-crm/P128_carries> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P129_is_about
-<http://www.cidoc-crm.org/cidoc-crm/P129_is_about> rdf:type owl:ObjectProperty ;
-                                                   owl:equivalentProperty <https://w3id.org/heritagegraph/is_about_entity> ,
-                                                                          <https://w3id.org/heritagegraph/is_about_event> .
+<http://www.cidoc-crm.org/cidoc-crm/P129_is_about> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of
 <http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at
-<http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P138_represents
-<http://www.cidoc-crm.org/cidoc-crm/P138_represents> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P138i_has_representation
-<http://www.cidoc-crm.org/cidoc-crm/P138i_has_representation> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of
@@ -236,68 +149,27 @@ xsd:date rdf:type rdfs:Datatype .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by
-<http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> rdf:type owl:ObjectProperty ;
-                                                        owl:equivalentProperty <https://w3id.org/heritagegraph/carried_out_by> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P14i_performed
-<http://www.cidoc-crm.org/cidoc-crm/P14i_performed> rdf:type owl:ObjectProperty ;
-                                                    owl:equivalentProperty <https://w3id.org/heritagegraph/carried_out_activity> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P179_had_sales_price
-<http://www.cidoc-crm.org/cidoc-crm/P179_had_sales_price> rdf:type owl:ObjectProperty .
+<http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by
 <http://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by> rdf:type owl:ObjectProperty .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/P180_has_currency
-<http://www.cidoc-crm.org/cidoc-crm/P180_has_currency> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of
-<http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by
-<http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P24i_changed_ownership_through
-<http://www.cidoc-crm.org/cidoc-crm/P24i_changed_ownership_through> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P25i_moved_by
-<http://www.cidoc-crm.org/cidoc-crm/P25i_moved_by> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by
-<http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by> rdf:type owl:ObjectProperty ;
-                                                                owl:equivalentProperty <https://w3id.org/heritagegraph/transferred_from_actor> .
+<http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by
-<http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by> rdf:type owl:ObjectProperty ;
-                                                             owl:equivalentProperty <https://w3id.org/heritagegraph/transferred_to_actor> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P2_has_type
-<http://www.cidoc-crm.org/cidoc-crm/P2_has_type> rdf:type owl:ObjectProperty .
+<http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of
-<http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of> rdf:type owl:ObjectProperty ;
-                                                                owl:equivalentProperty <https://w3id.org/heritagegraph/transferred_object> .
+<http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through
 <http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by
-<http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique
@@ -316,22 +188,6 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/P35_has_identified> rdf:type owl:ObjectProperty .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/P39i_was_measured_by
-<http://www.cidoc-crm.org/cidoc-crm/P39i_was_measured_by> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P40_observed_dimension
-<http://www.cidoc-crm.org/cidoc-crm/P40_observed_dimension> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension
-<http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P45_consists_of
-<http://www.cidoc-crm.org/cidoc-crm/P45_consists_of> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of
 <http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of> rdf:type owl:ObjectProperty .
 
@@ -340,17 +196,8 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of> rdf:type owl:ObjectProperty .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/P49_has_former_or_current_keeper
-<http://www.cidoc-crm.org/cidoc-crm/P49_has_former_or_current_keeper> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P49i_is_former_or_current_keeper_of
-<http://www.cidoc-crm.org/cidoc-crm/P49i_is_former_or_current_keeper_of> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span
-<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> rdf:type owl:ObjectProperty ;
-                                                      owl:equivalentProperty <https://w3id.org/heritagegraph/has_timespan> .
+<http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P50_has_current_keeper
@@ -362,12 +209,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location
-<http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location> rdf:type owl:ObjectProperty ;
-                                                              owl:equivalentProperty <https://w3id.org/heritagegraph/has_current_location> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P59i_is_located_on_or_within
-<http://www.cidoc-crm.org/cidoc-crm/P59i_is_located_on_or_within> rdf:type owl:ObjectProperty .
+<http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P62_depicts
@@ -378,55 +220,16 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by> rdf:type owl:ObjectProperty .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/P65_shows_visual_item
-<http://www.cidoc-crm.org/cidoc-crm/P65_shows_visual_item> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by
-<http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by> rdf:type owl:ObjectProperty ;
-                                                            owl:equivalentProperty <https://w3id.org/heritagegraph/documented_in_source> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P72_has_language
-<http://www.cidoc-crm.org/cidoc-crm/P72_has_language> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/P74_has_current_or_former_residence
 <http://www.cidoc-crm.org/cidoc-crm/P74_has_current_or_former_residence> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at
-<http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at> rdf:type owl:ObjectProperty ;
-                                                      owl:equivalentProperty <https://w3id.org/heritagegraph/took_place_at> .
+<http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within
 <http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P91_has_unit
-<http://www.cidoc-crm.org/cidoc-crm/P91_has_unit> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P94_has_created
-<http://www.cidoc-crm.org/cidoc-crm/P94_has_created> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by
-<http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by> rdf:type owl:ObjectProperty ;
-                                                         owl:equivalentProperty <https://w3id.org/heritagegraph/created_by_documentation> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P95i_was_formed_by
-<http://www.cidoc-crm.org/cidoc-crm/P95i_was_formed_by> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P98i_was_born
-<http://www.cidoc-crm.org/cidoc-crm/P98i_was_born> rdf:type owl:ObjectProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P99i_dissolved_by
-<http://www.cidoc-crm.org/cidoc-crm/P99i_dissolved_by> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P9_consists_of
@@ -435,10 +238,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of
 <http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of> rdf:type owl:ObjectProperty .
-
-
-###  http://www.ics.forth.gr/isl/CRMsci/O19i_was_object_encountered_at
-<http://www.ics.forth.gr/isl/CRMsci/O19i_was_object_encountered_at> rdf:type owl:ObjectProperty .
 
 
 ###  http://www.w3.org/ns/prov#generated
@@ -469,30 +268,6 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.w3.org/ns/prov#wasInfluencedBy> rdf:type owl:ObjectProperty .
 
 
-###  https://w3id.org/heritagegraph/about_proposition
-<https://w3id.org/heritagegraph/about_proposition> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> ;
-                                                   rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                                   rdfs:range <https://w3id.org/heritagegraph/PropositionalObject> ;
-                                                   rdfs:label "is about proposition"@en .
-
-
-###  https://w3id.org/heritagegraph/acquisition_amount
-<https://w3id.org/heritagegraph/acquisition_amount> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P179_had_sales_price> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/Acquisition> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/MonetaryAmount> ;
-                                                    rdfs:label "acquisition amount"@en .
-
-
-###  https://w3id.org/heritagegraph/amount_in_currency
-<https://w3id.org/heritagegraph/amount_in_currency> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P180_has_currency> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/MonetaryAmount> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/Currency> ;
-                                                    rdfs:label "amount in currency"@en .
-
-
 ###  https://w3id.org/heritagegraph/architectural_elements
 <https://w3id.org/heritagegraph/architectural_elements> rdf:type owl:ObjectProperty ;
                                                         rdfs:label "architectural_elements" ;
@@ -511,7 +286,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/assertion_author
 <https://w3id.org/heritagegraph/assertion_author> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ;
                                                   rdfs:range <https://w3id.org/heritagegraph/Actor> ;
                                                   rdfs:label "assertion_author" ;
                                                   <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ;
@@ -573,9 +347,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/birth_timespan
 <https://w3id.org/heritagegraph/birth_timespan> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/TimeSpan> ;
-                                                rdfs:comment "Better modeled via crm:P98i_was_born (LUX alias 'born') -> crm:P4_has_time-span."@en ;
                                                 rdfs:label "birth_timespan" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Person's birth timespan" ;
@@ -616,14 +388,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "carried_out_by" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Actor(s) who performed this event" ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/carries_inscription
-<https://w3id.org/heritagegraph/carries_inscription> rdf:type owl:ObjectProperty ;
-                                                     rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P128_carries> ;
-                                                     rdfs:domain <https://w3id.org/heritagegraph/HumanMadeObject> ;
-                                                     rdfs:range <https://w3id.org/heritagegraph/Inscription> ;
-                                                     rdfs:label "carries inscription"@en .
 
 
 ###  https://w3id.org/heritagegraph/caste_groups
@@ -676,8 +440,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/contains_structure
 <https://w3id.org/heritagegraph/contains_structure> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of> ,
-                                                                       <http://www.cidoc-crm.org/cidoc-crm/P59i_is_located_on_or_within> ;
+                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of> ;
                                                     rdfs:domain <https://w3id.org/heritagegraph/Place> ;
                                                     rdfs:range <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
                                                     rdfs:label "contains_structure" ;
@@ -735,7 +498,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/date_precision
 <https://w3id.org/heritagegraph/date_precision> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/DatePrecisionEnum> ;
                                                 rdfs:label "date_precision" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "The level of precision for a recorded date." ;
@@ -744,9 +506,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/death_timespan
 <https://w3id.org/heritagegraph/death_timespan> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/TimeSpan> ;
-                                                rdfs:comment "Better modeled via crm:P100i_died_in / crm:P93i_was_taken_out_of_existence_by + timespan."@en ;
                                                 rdfs:label "death_timespan" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Person's death timespan" ;
@@ -762,8 +522,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/depicts_deity
 <https://w3id.org/heritagegraph/depicts_deity> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P138_represents> ,
-                                                                  <http://www.cidoc-crm.org/cidoc-crm/P62_depicts> ;
+                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P62_depicts> ;
                                                owl:inverseOf <https://w3id.org/heritagegraph/is_depicted_in> ;
                                                rdfs:domain <https://w3id.org/heritagegraph/IconographicObject> ;
                                                rdfs:range <https://w3id.org/heritagegraph/Deity> ;
@@ -786,30 +545,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:label "destruction_event" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Event that destroyed this structure (if known)" ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/died_in_event
-<https://w3id.org/heritagegraph/died_in_event> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P100i_died_in> ;
-                                               rdfs:domain <https://w3id.org/heritagegraph/Person> ;
-                                               rdfs:range <https://w3id.org/heritagegraph/Death> ;
-                                               rdfs:label "died in event"@en .
-
-
-###  https://w3id.org/heritagegraph/dimension_has_unit
-<https://w3id.org/heritagegraph/dimension_has_unit> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P91_has_unit> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/Dimension> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/MeasurementUnit> ;
-                                                    rdfs:label "dimension has unit"@en .
-
-
-###  https://w3id.org/heritagegraph/dissolved_by
-<https://w3id.org/heritagegraph/dissolved_by> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P99i_dissolved_by> ;
-                                              rdfs:domain <https://w3id.org/heritagegraph/Group> ;
-                                              rdfs:range <https://w3id.org/heritagegraph/Dissolution> ;
-                                              rdfs:label "dissolved by"@en .
 
 
 ###  https://w3id.org/heritagegraph/documentation_activities
@@ -897,7 +632,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/existence_status
 <https://w3id.org/heritagegraph/existence_status> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                   rdfs:range <https://w3id.org/heritagegraph/ExistenceStatusEnum> ;
                                                   rdfs:label "existence_status" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Current physical status of the structure" ;
@@ -922,7 +656,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/guthi_type
 <https://w3id.org/heritagegraph/guthi_type> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                             rdfs:range <https://w3id.org/heritagegraph/GuthiTypeEnum> ;
                                             rdfs:label "guthi_type" ;
                                             <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -948,7 +681,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/has_architectural_style
 <https://w3id.org/heritagegraph/has_architectural_style> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                          rdfs:range <https://w3id.org/heritagegraph/ArchitecturalStyleEnum> ;
                                                          rdfs:label "has_architectural_style" ;
                                                          <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -978,7 +710,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/has_condition_type
 <https://w3id.org/heritagegraph/has_condition_type> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                     rdfs:range <https://w3id.org/heritagegraph/ConditionTypeEnum> ;
                                                     rdfs:label "has_condition_type" ;
                                                     <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -1006,38 +737,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/has_data_custodian
-<https://w3id.org/heritagegraph/has_data_custodian> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P109_has_current_or_former_curator> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/DataSource> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/DataCustodian> ;
-                                                    rdfs:label "has data custodian"@en .
-
-
-###  https://w3id.org/heritagegraph/has_digital_representation
-<https://w3id.org/heritagegraph/has_digital_representation> rdf:type owl:ObjectProperty ;
-                                                            rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P138i_has_representation> ;
-                                                            rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                                            rdfs:range <https://w3id.org/heritagegraph/DigitalObject> ;
-                                                            rdfs:label "has digital representation"@en .
-
-
-###  https://w3id.org/heritagegraph/has_dimension
-<https://w3id.org/heritagegraph/has_dimension> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P43_has_dimension> ;
-                                               rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                               rdfs:range <https://w3id.org/heritagegraph/Dimension> ;
-                                               rdfs:label "has dimension"@en .
-
-
-###  https://w3id.org/heritagegraph/has_language
-<https://w3id.org/heritagegraph/has_language> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P72_has_language> ;
-                                              rdfs:domain <https://w3id.org/heritagegraph/LinguisticObject> ;
-                                              rdfs:range <https://w3id.org/heritagegraph/Language> ;
-                                              rdfs:label "has language"@en .
-
-
 ###  https://w3id.org/heritagegraph/has_membership
 <https://w3id.org/heritagegraph/has_membership> rdf:type owl:ObjectProperty ;
                                                 rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member> ;
@@ -1046,14 +745,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "has_membership" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Members of Guthi organization" ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/has_metadata
-<https://w3id.org/heritagegraph/has_metadata> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by> ;
-                                              rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                              rdfs:range <https://w3id.org/heritagegraph/Metadata> ;
-                                              rdfs:label "has metadata"@en .
 
 
 ###  https://w3id.org/heritagegraph/has_provenance_assertion
@@ -1066,7 +757,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/has_religious_tradition
 <https://w3id.org/heritagegraph/has_religious_tradition> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                          rdfs:range <https://w3id.org/heritagegraph/ReligiousTradition> ;
                                                          rdfs:label "has_religious_tradition" ;
                                                          <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -1084,13 +774,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/has_right
-<https://w3id.org/heritagegraph/has_right> rdf:type owl:ObjectProperty ;
-                                           rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                           rdfs:range <https://w3id.org/heritagegraph/Right> ;
-                                           rdfs:label "has right"@en .
-
-
 ###  https://w3id.org/heritagegraph/has_timespan
 <https://w3id.org/heritagegraph/has_timespan> rdf:type owl:ObjectProperty ;
                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
@@ -1100,63 +783,21 @@ xsd:date rdf:type rdfs:Datatype .
                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/has_visual_item
-<https://w3id.org/heritagegraph/has_visual_item> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P65_shows_visual_item> ;
-                                                 rdfs:domain <https://w3id.org/heritagegraph/HumanMadeObject> ;
-                                                 rdfs:range <https://w3id.org/heritagegraph/VisualItem> ;
-                                                 rdfs:label "shows visual item"@en .
-
-
 ###  https://w3id.org/heritagegraph/holds_custody_of
 <https://w3id.org/heritagegraph/holds_custody_of> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P49i_is_former_or_current_keeper_of> ,
-                                                                     <http://www.cidoc-crm.org/cidoc-crm/P50_has_current_keeper> ;
+                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P50_has_current_keeper> ;
                                                   rdfs:range <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
                                                   rdfs:label "holds_custody_of" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Structures under Guthi custodianship" ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/holds_item
-<https://w3id.org/heritagegraph/holds_item> rdf:type owl:ObjectProperty ;
-                                            rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of> ;
-                                            rdfs:domain <https://w3id.org/heritagegraph/CuratedHolding> ;
-                                            rdfs:range <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                            rdfs:label "holds item"@en .
-
-
 ###  https://w3id.org/heritagegraph/hypothesized_location
 <https://w3id.org/heritagegraph/hypothesized_location> rdf:type owl:ObjectProperty ;
-                                                       rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location> ;
                                                        rdfs:range <https://w3id.org/heritagegraph/Place> ;
                                                        rdfs:label "hypothesized_location" ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "Possible locations if the structure is lost" ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/identified_by_identifier
-<https://w3id.org/heritagegraph/identified_by_identifier> rdf:type owl:ObjectProperty ;
-                                                          rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ;
-                                                          rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                                          rdfs:range <https://w3id.org/heritagegraph/Identifier> ;
-                                                          rdfs:label "identified by identifier"@en .
-
-
-###  https://w3id.org/heritagegraph/identified_by_name
-<https://w3id.org/heritagegraph/identified_by_name> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/Name> ;
-                                                    rdfs:label "identified by name"@en .
-
-
-###  https://w3id.org/heritagegraph/identified_by_title
-<https://w3id.org/heritagegraph/identified_by_title> rdf:type owl:ObjectProperty ;
-                                                     rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P102_has_title> ;
-                                                     rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                                     rdfs:range <https://w3id.org/heritagegraph/Title> ;
-                                                     rdfs:label "has title"@en .
 
 
 ###  https://w3id.org/heritagegraph/includes_ritual_event
@@ -1186,7 +827,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/invokes_deity
 <https://w3id.org/heritagegraph/invokes_deity> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of> ;
                                                rdfs:range <https://w3id.org/heritagegraph/Deity> ;
                                                rdfs:label "invokes_deity" ;
                                                <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of> ;
@@ -1196,8 +836,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/is_about_deity
 <https://w3id.org/heritagegraph/is_about_deity> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> ,
-                                                                   <http://www.cidoc-crm.org/cidoc-crm/P138_represents> ;
+                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/Deity> ;
                                                 rdfs:label "is_about_deity" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Deity represented and ritually associated with the Murti" ;
@@ -1206,7 +845,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/is_about_entity
 <https://w3id.org/heritagegraph/is_about_entity> rdf:type owl:ObjectProperty ;
-                                                 rdfs:range <https://w3id.org/heritagegraph/AssertableEntity> ;
                                                  rdfs:label "is_about_entity" ;
                                                  <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Entity that this information object describes" ;
@@ -1215,7 +853,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/is_about_event
 <https://w3id.org/heritagegraph/is_about_event> rdf:type owl:ObjectProperty ;
-                                                rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
                                                 rdfs:label "is_about_event" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Event that this information object describes" ;
@@ -1235,8 +872,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/is_depicted_in
 <https://w3id.org/heritagegraph/is_depicted_in> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P138i_has_representation> ,
-                                                                   <http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by> ;
+                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by> ;
                                                 rdfs:domain <https://w3id.org/heritagegraph/Deity> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/IconographicObject> ;
                                                 rdfs:label "is_depicted_in" ;
@@ -1254,7 +890,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/is_invoked_in_ritual
 <https://w3id.org/heritagegraph/is_invoked_in_ritual> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at> ;
                                                       rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
                                                       rdfs:label "is_invoked_in_ritual" ;
                                                       <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at> ;
@@ -1291,7 +926,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/managed_by_guthi
 <https://w3id.org/heritagegraph/managed_by_guthi> rdf:type owl:ObjectProperty ;
-                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P49_has_former_or_current_keeper> ;
                                                   rdfs:range <https://w3id.org/heritagegraph/Guthi> ;
                                                   rdfs:label "managed_by_guthi" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Guthi organization managing this structure or ritual" ;
@@ -1314,14 +948,6 @@ xsd:date rdf:type rdfs:Datatype .
                                            <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/measurement_observes
-<https://w3id.org/heritagegraph/measurement_observes> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P40_observed_dimension> ;
-                                                      rdfs:domain <https://w3id.org/heritagegraph/Measurement> ;
-                                                      rdfs:range <https://w3id.org/heritagegraph/Dimension> ;
-                                                      rdfs:label "measurement observes"@en .
-
-
 ###  https://w3id.org/heritagegraph/member_of_group
 <https://w3id.org/heritagegraph/member_of_group> rdf:type owl:ObjectProperty ;
                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of> ;
@@ -1333,18 +959,20 @@ xsd:date rdf:type rdfs:Datatype .
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/member_of_set
-<https://w3id.org/heritagegraph/member_of_set> rdf:type owl:ObjectProperty ;
-                                               rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                               rdfs:range <https://w3id.org/heritagegraph/Set> ;
-                                               rdfs:label "is member of set"@en .
-
-
 ###  https://w3id.org/heritagegraph/metadata
 <https://w3id.org/heritagegraph/metadata> rdf:type owl:ObjectProperty ;
                                           rdfs:label "metadata" ;
                                           <http://www.w3.org/2004/02/skos/core#definition> "Dataset metadata" ;
                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
+
+
+###  https://w3id.org/heritagegraph/occurred_after
+<https://w3id.org/heritagegraph/occurred_after> rdf:type owl:ObjectProperty ;
+                                                rdfs:subPropertyOf <https://w3id.org/heritagegraph/occurs_after> ;
+                                                rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
+                                                rdfs:label "occurred_after" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "LUX-alignment alias of occurs_after; the LUX bridge module grounds it in crm:P183i_starts_after_the_end_of." ;
+                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/occurs_after
@@ -1358,20 +986,11 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/occurs_before
 <https://w3id.org/heritagegraph/occurs_before> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before> ,
-                                                                  <http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of> ;
+                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before> ;
                                                rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
                                                rdfs:label "occurs_before" ;
                                                <http://www.w3.org/2004/02/skos/core#definition> "Points to the next ritual in the canonical sequence." ;
                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/occurs_during_period
-<https://w3id.org/heritagegraph/occurs_during_period> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P10_falls_within> ;
-                                                      rdfs:domain <https://w3id.org/heritagegraph/RitualEvent> ;
-                                                      rdfs:range <https://w3id.org/heritagegraph/Period> ;
-                                                      rdfs:label "occurs during period"@en .
 
 
 ###  https://w3id.org/heritagegraph/participates_in_ritual
@@ -1399,12 +1018,15 @@ xsd:date rdf:type rdfs:Datatype .
                                                                  owl:unionOf ( <https://w3id.org/heritagegraph/CasteGroup>
                                                                                <https://w3id.org/heritagegraph/Guthi>
                                                                              )
-                                                               ] .
+                                                               ] ;
+                                                    rdfs:label "performed_by_group" ;
+                                                    <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ;
+                                                    <http://www.w3.org/2004/02/skos/core#definition> "Group (Guthi, caste) responsible for ritual" ;
+                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/performs_ritual
 <https://w3id.org/heritagegraph/performs_ritual> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P14i_performed> ;
                                                  rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
                                                  rdfs:label "performs_ritual" ;
                                                  <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P14i_performed> ;
@@ -1435,8 +1057,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/produced_information_object
 <https://w3id.org/heritagegraph/produced_information_object> rdf:type owl:ObjectProperty ;
-                                                             rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P94_has_created> ,
-                                                                                <http://www.w3.org/ns/prov#generated> ;
+                                                             rdfs:subPropertyOf <http://www.w3.org/ns/prov#generated> ;
                                                              rdfs:domain <https://w3id.org/heritagegraph/DocumentationActivity> ;
                                                              rdfs:range <https://w3id.org/heritagegraph/InformationObject> ;
                                                              rdfs:label "produced_information_object" ;
@@ -1470,7 +1091,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/publication_timespan
 <https://w3id.org/heritagegraph/publication_timespan> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
                                                       rdfs:range <https://w3id.org/heritagegraph/TimeSpan> ;
                                                       rdfs:label "publication_timespan" ;
                                                       <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span> ;
@@ -1512,7 +1132,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/ritual_type
 <https://w3id.org/heritagegraph/ritual_type> rdf:type owl:ObjectProperty ;
-                                             rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                              rdfs:range <https://w3id.org/heritagegraph/RitualTypeEnum> ;
                                              rdfs:label "ritual_type" ;
                                              <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -1539,7 +1158,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/source_type
 <https://w3id.org/heritagegraph/source_type> rdf:type owl:ObjectProperty ;
-                                             rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                              rdfs:range <https://w3id.org/heritagegraph/SourceTypeEnum> ;
                                              rdfs:label "source_type" ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Controlled source-type classification for provenance and epistemic filtering." ;
@@ -1556,7 +1174,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/subject_entity
 <https://w3id.org/heritagegraph/subject_entity> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
                                                 rdfs:label "subject_entity" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Heritage entity documented by this activity (documentation subject, not E13 assignment target)." ;
@@ -1565,19 +1182,10 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/subject_event
 <https://w3id.org/heritagegraph/subject_event> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P141_assigned> ;
                                                rdfs:range <https://w3id.org/heritagegraph/RitualEvent> ;
                                                rdfs:label "subject_event" ;
                                                <http://www.w3.org/2004/02/skos/core#definition> "Event documented by this activity (documentation subject, not E13 assignment target)." ;
                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/subject_to_legal_object
-<https://w3id.org/heritagegraph/subject_to_legal_object> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by> ;
-                                                         rdfs:domain <https://w3id.org/heritagegraph/AssertableEntity> ;
-                                                         rdfs:range <https://w3id.org/heritagegraph/LegalObject> ;
-                                                         rdfs:label "subject to legal status"@en .
 
 
 ###  https://w3id.org/heritagegraph/supersedes_assertion
@@ -1606,7 +1214,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/syncretic_type
 <https://w3id.org/heritagegraph/syncretic_type> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/SyncreticTypeEnum> ;
                                                 rdfs:label "syncretic_type" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
@@ -1652,7 +1259,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/transferred_to_guthi
 <https://w3id.org/heritagegraph/transferred_to_guthi> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by> ;
                                                       rdfs:range <https://w3id.org/heritagegraph/Guthi> ;
                                                       rdfs:label "transferred_to_guthi" ;
                                                       <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by> ;
@@ -1670,8 +1276,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/used_materials
 <https://w3id.org/heritagegraph/used_materials> rdf:type owl:ObjectProperty ;
-                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type> ,
-                                                                   <http://www.cidoc-crm.org/cidoc-crm/P45_consists_of> ;
+                                                rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type> ;
                                                 rdfs:range <https://w3id.org/heritagegraph/Material> ;
                                                 rdfs:label "used_materials" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Ephemeral materials consumed during the ritual (e.g., oil, rice)." ;
@@ -1704,30 +1309,13 @@ xsd:date rdf:type rdfs:Datatype .
                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/was_acquired_through
-<https://w3id.org/heritagegraph/was_acquired_through> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P24i_changed_ownership_through> ;
-                                                      rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                                      rdfs:range <https://w3id.org/heritagegraph/Acquisition> ;
-                                                      rdfs:label "was acquired through"@en .
-
-
 ###  https://w3id.org/heritagegraph/was_attributed_to_agent
 <https://w3id.org/heritagegraph/was_attributed_to_agent> rdf:type owl:ObjectProperty ;
-                                                         rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ,
-                                                                            <http://www.w3.org/ns/prov#wasAttributedTo> ;
+                                                         rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAttributedTo> ;
                                                          rdfs:range <https://w3id.org/heritagegraph/Person> ;
                                                          rdfs:label "was_attributed_to_agent" ;
                                                          <http://www.w3.org/2004/02/skos/core#definition> "Person who made this assertion" ;
                                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/was_born_by
-<https://w3id.org/heritagegraph/was_born_by> rdf:type owl:ObjectProperty ;
-                                             rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P98i_was_born> ;
-                                             rdfs:domain <https://w3id.org/heritagegraph/Person> ;
-                                             rdfs:range <https://w3id.org/heritagegraph/Birth> ;
-                                             rdfs:label "was born by"@en .
 
 
 ###  https://w3id.org/heritagegraph/was_derived_from_source
@@ -1741,52 +1329,11 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/was_documented_by
 <https://w3id.org/heritagegraph/was_documented_by> rdf:type owl:ObjectProperty ;
-                                                   rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by> ;
                                                    rdfs:range <https://w3id.org/heritagegraph/DocumentationActivity> ;
                                                    rdfs:label "was_documented_by" ;
                                                    <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.w3.org/ns/prov#wasGeneratedBy> ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Documentation event that recorded this entity or event" ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/was_encountered_in
-<https://w3id.org/heritagegraph/was_encountered_in> rdf:type owl:ObjectProperty ;
-                                                    rdfs:subPropertyOf <http://www.ics.forth.gr/isl/CRMsci/O19i_was_object_encountered_at> ;
-                                                    rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                                    rdfs:range <https://w3id.org/heritagegraph/Encounter> ;
-                                                    rdfs:label "was encountered in"@en .
-
-
-###  https://w3id.org/heritagegraph/was_formed_by
-<https://w3id.org/heritagegraph/was_formed_by> rdf:type owl:ObjectProperty ;
-                                               rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P95i_was_formed_by> ;
-                                               rdfs:domain <https://w3id.org/heritagegraph/Group> ;
-                                               rdfs:range <https://w3id.org/heritagegraph/Formation> ;
-                                               rdfs:label "was formed by"@en .
-
-
-###  https://w3id.org/heritagegraph/was_measured_by
-<https://w3id.org/heritagegraph/was_measured_by> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P39i_was_measured_by> ;
-                                                 rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                                 rdfs:range <https://w3id.org/heritagegraph/Measurement> ;
-                                                 rdfs:label "was measured by"@en .
-
-
-###  https://w3id.org/heritagegraph/was_modified_by
-<https://w3id.org/heritagegraph/was_modified_by> rdf:type owl:ObjectProperty ;
-                                                 rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P31i_was_modified_by> ;
-                                                 rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                                 rdfs:range <https://w3id.org/heritagegraph/Modification> ;
-                                                 rdfs:label "was modified by"@en .
-
-
-###  https://w3id.org/heritagegraph/was_moved_by
-<https://w3id.org/heritagegraph/was_moved_by> rdf:type owl:ObjectProperty ;
-                                              rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P25i_moved_by> ;
-                                              rdfs:domain <https://w3id.org/heritagegraph/PhysicalHeritageThing> ;
-                                              rdfs:range <https://w3id.org/heritagegraph/Move> ;
-                                              rdfs:label "was moved by"@en .
 
 
 ###  https://w3id.org/heritagegraph/was_produced_by_event
@@ -1803,14 +1350,6 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 #    Data properties
 #################################################################
-
-###  http://www.cidoc-crm.org/cidoc-crm/P168_place_is_defined_by
-<http://www.cidoc-crm.org/cidoc-crm/P168_place_is_defined_by> rdf:type owl:DatatypeProperty .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/P3_has_note
-<http://www.cidoc-crm.org/cidoc-crm/P3_has_note> rdf:type owl:DatatypeProperty .
-
 
 ###  https://w3id.org/heritagegraph/archival_location
 <https://w3id.org/heritagegraph/archival_location> rdf:type owl:DatatypeProperty ;
@@ -1870,7 +1409,6 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/custodian_type> rdf:type owl:DatatypeProperty ;
                                                 rdfs:range xsd:string ;
                                                 rdfs:label "custodian_type" ;
-                                                rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Type of custodian (government, academic, community)" ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -1970,7 +1508,6 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/id> rdf:type owl:DatatypeProperty ;
                                     rdfs:range xsd:anyURI ;
                                     rdfs:label "id" ;
-                                    rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ;
                                     <http://www.w3.org/2004/02/skos/core#definition> "Globally unique URI identifier" ;
                                     <http://www.w3.org/2004/02/skos/core#exactMatch> <http://schema.org/identifier> ;
                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2026,14 +1563,12 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/name> rdf:type owl:DatatypeProperty ;
                                       rdfs:range xsd:string ;
                                       rdfs:label "name" ;
-                                      rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by> ;
                                       <http://www.w3.org/2004/02/skos/core#definition> "Primary name or label" ;
                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/note
 <https://w3id.org/heritagegraph/note> rdf:type owl:DatatypeProperty ;
-                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P3_has_note> ;
                                       rdfs:range xsd:string ;
                                       rdfs:label "note" ;
                                       <http://www.w3.org/2004/02/skos/core#definition> "Free-text note (description, reason, verification notes)" ;
@@ -2049,13 +1584,8 @@ xsd:date rdf:type rdfs:Datatype .
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/performed_by_group
-<https://w3id.org/heritagegraph/performed_by_group> rdf:type owl:DatatypeProperty .
-
-
 ###  https://w3id.org/heritagegraph/place_coordinates
 <https://w3id.org/heritagegraph/place_coordinates> rdf:type owl:DatatypeProperty ;
-                                                   rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P168_place_is_defined_by> ;
                                                    rdfs:range <http://www.opengis.net/ont/geosparql#wktLiteral> ;
                                                    rdfs:label "place_coordinates" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Coordinates as WKT literal" ;
@@ -2066,7 +1596,6 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/place_type> rdf:type owl:DatatypeProperty ;
                                             rdfs:range xsd:string ;
                                             rdfs:label "place_type" ;
-                                            rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                             <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                             <http://www.w3.org/2004/02/skos/core#definition> "Type of place (city, village, region)" ;
                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2115,7 +1644,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                  rdfs:subPropertyOf <https://w3id.org/heritagegraph/note> ;
                                                  rdfs:range xsd:string ;
                                                  rdfs:label "source_citation" ;
-                                                 rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P67i_is_referred_to_by> ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Formal citation of source" ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
@@ -2189,17 +1717,11 @@ xsd:date rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody
-<http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> rdf:type owl:Class ;
-                                                             owl:equivalentClass <https://w3id.org/heritagegraph/TransferOfCustody> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E11_Modification
-<http://www.cidoc-crm.org/cidoc-crm/E11_Modification> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E12_Production
-<http://www.cidoc-crm.org/cidoc-crm/E12_Production> rdf:type owl:Class ;
-                                                    owl:equivalentClass <https://w3id.org/heritagegraph/Production> .
+<http://www.cidoc-crm.org/cidoc-crm/E12_Production> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment
@@ -2210,77 +1732,40 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/E16_Measurement
-<http://www.cidoc-crm.org/cidoc-crm/E16_Measurement> rdf:type owl:Class .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/E21_Person
-<http://www.cidoc-crm.org/cidoc-crm/E21_Person> rdf:type owl:Class ;
-                                                owl:equivalentClass <https://w3id.org/heritagegraph/Person> .
+<http://www.cidoc-crm.org/cidoc-crm/E21_Person> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object
-<http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> rdf:type owl:Class ;
-                                                           owl:equivalentClass <https://w3id.org/heritagegraph/HumanMadeObject> .
+<http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element
 <http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature
-<http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature> rdf:type owl:Class .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object
-<http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> rdf:type owl:Class ;
-                                                           owl:equivalentClass <https://w3id.org/heritagegraph/Deity> .
+<http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure
 <http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/E30_Right
-<http://www.cidoc-crm.org/cidoc-crm/E30_Right> rdf:type owl:Class .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/E31_Document
 <http://www.cidoc-crm.org/cidoc-crm/E31_Document> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E33_E41_Linguistic_Appellation
-<http://www.cidoc-crm.org/cidoc-crm/E33_E41_Linguistic_Appellation> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object
 <http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/E34_Inscription
-<http://www.cidoc-crm.org/cidoc-crm/E34_Inscription> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E35_Title
-<http://www.cidoc-crm.org/cidoc-crm/E35_Title> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E36_Visual_Item
-<http://www.cidoc-crm.org/cidoc-crm/E36_Visual_Item> rdf:type owl:Class .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/E39_Actor
-<http://www.cidoc-crm.org/cidoc-crm/E39_Actor> rdf:type owl:Class ;
-                                               owl:equivalentClass <https://w3id.org/heritagegraph/Actor> .
+<http://www.cidoc-crm.org/cidoc-crm/E39_Actor> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State
-<http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State> rdf:type owl:Class ;
-                                                        owl:equivalentClass <https://w3id.org/heritagegraph/ConditionState> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E42_Identifier
-<http://www.cidoc-crm.org/cidoc-crm/E42_Identifier> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E4_Period
@@ -2288,116 +1773,31 @@ xsd:date rdf:type rdfs:Datatype .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span
-<http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span> rdf:type owl:Class ;
-                                                   owl:equivalentClass <https://w3id.org/heritagegraph/TimeSpan> .
+<http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E53_Place
-<http://www.cidoc-crm.org/cidoc-crm/E53_Place> rdf:type owl:Class ;
-                                               owl:equivalentClass <https://w3id.org/heritagegraph/Place> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E54_Dimension
-<http://www.cidoc-crm.org/cidoc-crm/E54_Dimension> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E53_Place> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E55_Type
 <http://www.cidoc-crm.org/cidoc-crm/E55_Type> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/cidoc-crm/E56_Language
-<http://www.cidoc-crm.org/cidoc-crm/E56_Language> rdf:type owl:Class .
-
-
 ###  http://www.cidoc-crm.org/cidoc-crm/E57_Material
-<http://www.cidoc-crm.org/cidoc-crm/E57_Material> rdf:type owl:Class ;
-                                                  owl:equivalentClass <https://w3id.org/heritagegraph/Material> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E58_Measurement_Unit
-<http://www.cidoc-crm.org/cidoc-crm/E58_Measurement_Unit> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E57_Material> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E5_Event
-<http://www.cidoc-crm.org/cidoc-crm/E5_Event> rdf:type owl:Class ;
-                                              owl:equivalentClass <https://w3id.org/heritagegraph/HistoricalEvent> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E63_Beginning_of_Existence
-<http://www.cidoc-crm.org/cidoc-crm/E63_Beginning_of_Existence> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E64_End_of_Existence
-<http://www.cidoc-crm.org/cidoc-crm/E64_End_of_Existence> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E65_Creation
-<http://www.cidoc-crm.org/cidoc-crm/E65_Creation> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E66_Formation
-<http://www.cidoc-crm.org/cidoc-crm/E66_Formation> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E67_Birth
-<http://www.cidoc-crm.org/cidoc-crm/E67_Birth> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E68_Dissolution
-<http://www.cidoc-crm.org/cidoc-crm/E68_Dissolution> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E69_Death
-<http://www.cidoc-crm.org/cidoc-crm/E69_Death> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E5_Event> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E6_Destruction
-<http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> rdf:type owl:Class ;
-                                                    owl:equivalentClass <https://w3id.org/heritagegraph/DestructionEvent> .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E72_Legal_Object
-<http://www.cidoc-crm.org/cidoc-crm/E72_Legal_Object> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object
-<http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E74_Group
-<http://www.cidoc-crm.org/cidoc-crm/E74_Group> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E78_Curated_Holding
-<http://www.cidoc-crm.org/cidoc-crm/E78_Curated_Holding> rdf:type owl:Class .
+<http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/cidoc-crm/E7_Activity
 <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E87_Curation_Activity
-<http://www.cidoc-crm.org/cidoc-crm/E87_Curation_Activity> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object
-<http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E8_Acquisition
-<http://www.cidoc-crm.org/cidoc-crm/E8_Acquisition> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E97_Monetary_Amount
-<http://www.cidoc-crm.org/cidoc-crm/E97_Monetary_Amount> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E98_Currency
-<http://www.cidoc-crm.org/cidoc-crm/E98_Currency> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/cidoc-crm/E9_Move
-<http://www.cidoc-crm.org/cidoc-crm/E9_Move> rdf:type owl:Class .
 
 
 ###  http://www.cidoc-crm.org/crminf/E1_Entity
@@ -2410,18 +1810,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.cidoc-crm.org/crmsci/S4_Observation
 <http://www.cidoc-crm.org/crmsci/S4_Observation> rdf:type owl:Class .
-
-
-###  http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object
-<http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object> rdf:type owl:Class .
-
-
-###  http://www.ics.forth.gr/isl/CRMsci/S19_Encounter_Event
-<http://www.ics.forth.gr/isl/CRMsci/S19_Encounter_Event> rdf:type owl:Class .
-
-
-###  http://www.ics.forth.gr/isl/CRMsci/S4_Observation
-<http://www.ics.forth.gr/isl/CRMsci/S4_Observation> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
@@ -2442,18 +1830,6 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://xmlns.com/foaf/0.1/Person
 <http://xmlns.com/foaf/0.1/Person> rdf:type owl:Class .
-
-
-###  https://linked.art/ns/terms/Set
-<https://linked.art/ns/terms/Set> rdf:type owl:Class .
-
-
-###  https://w3id.org/heritagegraph/Acquisition
-<https://w3id.org/heritagegraph/Acquisition> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E8_Acquisition> ,
-                                                             <https://w3id.org/heritagegraph/ProvenanceActivity> ;
-                                             rdfs:comment "Title transfer (vs. custody only). LUX alias: 'Acquisition'."@en ;
-                                             rdfs:label "Acquisition"@en .
 
 
 ###  https://w3id.org/heritagegraph/Actor
@@ -2495,14 +1871,12 @@ xsd:date rdf:type rdfs:Datatype .
                                        rdfs:label "Actor" ;
                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "General actor (person or group) responsible for events" ;
-                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E39_Actor> ;
                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/ArchitecturalElement
 <https://w3id.org/heritagegraph/ArchitecturalElement> rdf:type owl:Class ;
                                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element> ,
-                                                                      <http://www.cidoc-crm.org/cidoc-crm/E25_Human-Made_Feature> ,
                                                                       [ rdf:type owl:Restriction ;
                                                                         owl:onProperty <https://w3id.org/heritagegraph/is_component_of> ;
                                                                         owl:allValuesFrom <https://w3id.org/heritagegraph/ArchitecturalStructure>
@@ -2544,17 +1918,14 @@ xsd:date rdf:type rdfs:Datatype .
                                                                        <https://w3id.org/heritagegraph/IconographicObject> ,
                                                                        <https://w3id.org/heritagegraph/Person> ;
                                                       rdfs:label "ArchitecturalElement" ;
-                                                      <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)" ;
-                                                      <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300000885> ,
-                                                                                                       <http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element> ;
+                                                      <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300000885> ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/ArchitecturalStructure
 <https://w3id.org/heritagegraph/ArchitecturalStructure> rdf:type owl:Class ;
-                                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                                        <https://w3id.org/heritagegraph/HumanMadeObject> ,
+                                                        rdfs:subClassOf <https://w3id.org/heritagegraph/HumanMadeObject> ,
                                                                         [ rdf:type owl:Restriction ;
                                                                           owl:onProperty <https://w3id.org/heritagegraph/destruction_event> ;
                                                                           owl:allValuesFrom <https://w3id.org/heritagegraph/DestructionEvent>
@@ -2722,15 +2093,13 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/ArchivalRecord
 <https://w3id.org/heritagegraph/ArchivalRecord> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ,
-                                                                <https://w3id.org/heritagegraph/DataSource> ,
+                                                rdfs:subClassOf <https://w3id.org/heritagegraph/DataSource> ,
                                                                 <https://www.ica.org/standards/RiC/ontology#Record> ;
                                                 owl:disjointWith <https://w3id.org/heritagegraph/FieldSurveyDataset> ,
                                                                  <https://w3id.org/heritagegraph/OralHistoryRecording> ;
                                                 rdfs:label "ArchivalRecord" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Government or institutional administrative record" ;
-                                                <http://www.w3.org/2004/02/skos/core#exactMatch> <https://www.ica.org/standards/RiC/ontology#Record> ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -2753,45 +2122,20 @@ xsd:date rdf:type rdfs:Datatype .
                                                                       ] ;
                                                   rdfs:subClassOf <http://www.cidoc-crm.org/crminf/E1_Entity> ;
                                                   rdfs:label "AssertableEntity" ;
-                                                  <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/crminf/E1_Entity> ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Any entity that can be the subject of a heritage assertion" ;
-                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/crminf/E1_Entity> ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/AttributeAssignment
-<https://w3id.org/heritagegraph/AttributeAssignment> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment> ;
-                                                     rdfs:comment "Generic super-class above HeritageAssertion / Verification / SyncreticRelationship. LUX alias: 'AttributeAssignment'."@en ;
-                                                     rdfs:label "Attribute Assignment"@en .
-
-
-###  https://w3id.org/heritagegraph/BeginningOfExistence
-<https://w3id.org/heritagegraph/BeginningOfExistence> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E63_Beginning_of_Existence> ;
-                                                      rdfs:comment "Generic existence-start event when no specific Production/Birth/Formation applies. LUX alias: 'BeginningOfExistence'."@en ;
-                                                      rdfs:label "Beginning of Existence"@en .
-
-
-###  https://w3id.org/heritagegraph/Birth
-<https://w3id.org/heritagegraph/Birth> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E67_Birth> ,
-                                                       <https://w3id.org/heritagegraph/BeginningOfExistence> ;
-                                       rdfs:comment "Birth event of a Person; carries timespan, place, and parent attributions. LUX alias: 'Birth'."@en ;
-                                       rdfs:label "Birth"@en .
 
 
 ###  https://w3id.org/heritagegraph/BuddhistMonument
 <https://w3id.org/heritagegraph/BuddhistMonument> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                                  <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
+                                                  rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
                                                   owl:disjointWith <https://w3id.org/heritagegraph/RestHouse> ,
                                                                    <https://w3id.org/heritagegraph/Temple> ,
                                                                    <https://w3id.org/heritagegraph/WaterStructure> ;
                                                   rdfs:label "BuddhistMonument" ;
+                                                  <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q177980> ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns" ;
-                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300007576> ,
-                                                                                                   <http://www.wikidata.org/entity/Q177980> ;
+                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300007576> ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -2860,15 +2204,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                 rdfs:label "CalendarSystem" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E29_Designated_Reference_System> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning" ;
-                                                <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.w3.org/2006/time#Calendar> ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/CasteGroup
 <https://w3id.org/heritagegraph/CasteGroup> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ,
-                                                            <https://w3id.org/heritagegraph/Group> ,
-                                                            [ rdf:type owl:Restriction ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                               owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                               owl:allValuesFrom xsd:string
                                                             ] ,
@@ -2916,8 +2257,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Chaitya
 <https://w3id.org/heritagegraph/Chaitya> rdf:type owl:Class ;
-                                         rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                         <https://w3id.org/heritagegraph/BuddhistMonument> ;
+                                         rdfs:subClassOf <https://w3id.org/heritagegraph/BuddhistMonument> ;
                                          owl:disjointWith <https://w3id.org/heritagegraph/Stupa> ;
                                          rdfs:label "Chaitya" ;
                                          <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine or prayer hall" ;
@@ -2926,8 +2266,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/ChariotFestival
 <https://w3id.org/heritagegraph/ChariotFestival> rdf:type owl:Class ;
-                                                 rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                                 <https://w3id.org/heritagegraph/Festival> ;
+                                                 rdfs:subClassOf <https://w3id.org/heritagegraph/Festival> ;
                                                  owl:disjointWith <https://w3id.org/heritagegraph/MaskedDance> ;
                                                  rdfs:label "ChariotFestival" ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)" ;
@@ -2937,7 +2276,6 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/ConditionAssessment
 <https://w3id.org/heritagegraph/ConditionAssessment> rdf:type owl:Class ;
                                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment> ,
-                                                                     <https://w3id.org/heritagegraph/CurationActivity> ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/assessed_condition_state> ;
                                                                        owl:allValuesFrom <https://w3id.org/heritagegraph/ConditionState>
@@ -3001,7 +2339,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                       <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                                      rdfs:label "ConditionAssessment" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "Event of evaluating the physical state of a heritage object or structure" ;
-                                                     <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment> ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -3046,7 +2383,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                 ] ;
                                                 rdfs:label "ConditionState" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "A physical condition state of a heritage object" ;
-                                                <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State> ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -3059,7 +2395,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                      <https://w3id.org/heritagegraph/Ruined>
                                                                                    )
                                                                        ] ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                    rdfs:label "ConditionTypeEnum" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for physical condition categories of heritage objects." ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -3071,8 +2406,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Consecration
 <https://w3id.org/heritagegraph/Consecration> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                              <https://w3id.org/heritagegraph/RitualEvent> ,
+                                              rdfs:subClassOf <https://w3id.org/heritagegraph/RitualEvent> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <https://w3id.org/heritagegraph/carried_out_by> ;
                                                                 owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
@@ -3151,8 +2485,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Container
 <https://w3id.org/heritagegraph/Container> rdf:type owl:Class ;
-                                           rdfs:subClassOf <https://w3id.org/heritagegraph/InformationObject> ,
-                                                           [ rdf:type owl:Restriction ;
+                                           rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                              owl:onProperty <https://w3id.org/heritagegraph/architectural_elements> ;
                                                              owl:allValuesFrom <https://w3id.org/heritagegraph/ArchitecturalElement>
                                                            ] ,
@@ -3348,38 +2681,14 @@ xsd:date rdf:type rdfs:Datatype .
                                                              owl:onProperty <https://w3id.org/heritagegraph/metadata> ;
                                                              owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                            ] ;
-                                           rdfs:comment "LinkML container construct; no LUX equivalent. Treated as a structural InformationObject for navigation."@en ;
                                            rdfs:label "Container" ;
                                            <http://www.w3.org/2004/02/skos/core#definition> "Root container for cultural heritage data instances" ;
                                            <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/CuratedHolding
-<https://w3id.org/heritagegraph/CuratedHolding> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E78_Curated_Holding> ;
-                                                rdfs:comment "Formally curated holding (museum collection, library set). LUX alias: 'CuratedHolding'."@en ;
-                                                rdfs:label "Curated Holding"@en .
-
-
-###  https://w3id.org/heritagegraph/CurationActivity
-<https://w3id.org/heritagegraph/CurationActivity> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E87_Curation_Activity> ;
-                                                  rdfs:comment "Conservation / inventory / accession activities by a museum or Guthi. LUX alias: 'CurationActivity' → crm:E87."@en ;
-                                                  rdfs:label "Curation Activity"@en .
-
-
-###  https://w3id.org/heritagegraph/Currency
-<https://w3id.org/heritagegraph/Currency> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E98_Currency> ;
-                                          rdfs:comment "Monetary unit referenced in Acquisition/Payment activities. LUX alias: 'Currency'."@en ;
-                                          rdfs:label "Currency"@en .
-
-
 ###  https://w3id.org/heritagegraph/DataCustodian
 <https://w3id.org/heritagegraph/DataCustodian> rdf:type owl:Class ;
-                                               rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E39_Actor> ,
-                                                               <http://www.w3.org/ns/prov#Agent> ,
-                                                               <https://w3id.org/heritagegraph/Actor> ,
+                                               rdfs:subClassOf <http://www.w3.org/ns/prov#Agent> ,
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty <https://w3id.org/heritagegraph/custodian_type> ;
                                                                  owl:allValuesFrom xsd:string
@@ -3418,14 +2727,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                ] ;
                                                rdfs:label "DataCustodian" ;
                                                <http://www.w3.org/2004/02/skos/core#definition> "Institution or person currently stewarding heritage data" ;
-                                               <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.w3.org/ns/prov#Agent> ;
                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/DataSource
 <https://w3id.org/heritagegraph/DataSource> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ,
-                                                            [ rdf:type owl:Restriction ;
+                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                               owl:onProperty <https://w3id.org/heritagegraph/datacite_creator> ;
                                                               owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
                                                             ] ,
@@ -3645,7 +2952,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                      <https://w3id.org/heritagegraph/Year>
                                                                                    )
                                                                        ] ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                    rdfs:label "DatePrecisionEnum" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for temporal precision of heritage dates." ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -3654,14 +2960,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                                 <https://w3id.org/heritagegraph/Decade> ,
                                                                                                 <https://w3id.org/heritagegraph/Exact> ,
                                                                                                 <https://w3id.org/heritagegraph/Year> .
-
-
-###  https://w3id.org/heritagegraph/Death
-<https://w3id.org/heritagegraph/Death> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E69_Death> ,
-                                                       <https://w3id.org/heritagegraph/EndOfExistence> ;
-                                       rdfs:comment "Death event of a Person. LUX alias: 'Death'."@en ;
-                                       rdfs:label "Death"@en .
 
 
 ###  https://w3id.org/heritagegraph/Deity
@@ -3730,18 +3028,16 @@ xsd:date rdf:type rdfs:Datatype .
                                                         <https://w3id.org/heritagegraph/Place> ,
                                                         <https://w3id.org/heritagegraph/TimeSpan> ;
                                        rdfs:label "Deity" ;
+                                       <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/Deity> ,
+                                                                                        <http://schema.org/Deity> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences." ;
-                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://dbpedia.org/ontology/Deity> ,
-                                                                                        <http://schema.org/Deity> ,
-                                                                                        <http://vocab.getty.edu/aat/300343850> ,
-                                                                                        <http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> ;
+                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300343850> ;
                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/DestructionEvent
 <https://w3id.org/heritagegraph/DestructionEvent> rdf:type owl:Class ;
                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> ,
-                                                                  <https://w3id.org/heritagegraph/EndOfExistence> ,
                                                                   <https://w3id.org/heritagegraph/HistoricalEvent> ,
                                                                   [ rdf:type owl:Restriction ;
                                                                     owl:onProperty <https://w3id.org/heritagegraph/has_timespan> ;
@@ -3781,14 +3077,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                   ] ;
                                                   rdfs:label "DestructionEvent" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Event that destroyed or damaged a structure." ;
-                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/Dharmashala
 <https://w3id.org/heritagegraph/Dharmashala> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                             <https://w3id.org/heritagegraph/RestHouse> ;
+                                             rdfs:subClassOf <https://w3id.org/heritagegraph/RestHouse> ;
                                              owl:disjointWith <https://w3id.org/heritagegraph/Pati> ,
                                                               <https://w3id.org/heritagegraph/Sattal> ;
                                              rdfs:label "Dharmashala" ;
@@ -3798,35 +3092,11 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/DhungeDhara
 <https://w3id.org/heritagegraph/DhungeDhara> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                             <https://w3id.org/heritagegraph/WaterStructure> ;
+                                             rdfs:subClassOf <https://w3id.org/heritagegraph/WaterStructure> ;
                                              owl:disjointWith <https://w3id.org/heritagegraph/Pokhari> ;
                                              rdfs:label "DhungeDhara" ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply" ;
                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/DigitalObject
-<https://w3id.org/heritagegraph/DigitalObject> rdf:type owl:Class ;
-                                               rdfs:subClassOf <http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object> ,
-                                                               <https://w3id.org/heritagegraph/InformationObject> ;
-                                               rdfs:comment "Photographs, 3D scans, audio recordings. LUX alias: 'DigitalObject' (note: LUX uses CRMdig dig:D1, not crmdig:)."@en ;
-                                               rdfs:label "Digital Object"@en .
-
-
-###  https://w3id.org/heritagegraph/Dimension
-<https://w3id.org/heritagegraph/Dimension> rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E54_Dimension> ;
-                                           rdfs:comment "Height/width/depth/weight values. LUX alias: 'Dimension'."@en ;
-                                           rdfs:label "Dimension"@en .
-
-
-###  https://w3id.org/heritagegraph/Dissolution
-<https://w3id.org/heritagegraph/Dissolution> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E68_Dissolution> ,
-                                                             <https://w3id.org/heritagegraph/EndOfExistence> ;
-                                             rdfs:comment "Termination event of a Guthi/Group. LUX alias: 'Dissolution'."@en ;
-                                             rdfs:label "Dissolution"@en .
 
 
 ###  https://w3id.org/heritagegraph/DocumentationActivity
@@ -3926,28 +3196,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                        rdfs:label "DocumentationActivity" ;
                                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.w3.org/ns/prov#Activity> ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "The intellectual or technical process of recording information about a heritage entity, aligned with CIDOC E7 Activity and PROV-O Activity." ;
-                                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Encounter
-<https://w3id.org/heritagegraph/Encounter> rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://www.ics.forth.gr/isl/CRMsci/S19_Encounter_Event> ;
-                                           rdfs:comment "Field encounter / rediscovery of a heritage object. LUX alias: 'Encounter' → CRMsci sci:S19_Encounter_Event (NOT crm:E87 Curation Activity)."@en ;
-                                           rdfs:label "Encounter Event"@en .
-
-
-###  https://w3id.org/heritagegraph/EndOfExistence
-<https://w3id.org/heritagegraph/EndOfExistence> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E64_End_of_Existence> ;
-                                                rdfs:comment "Generic existence-end event (mirror). LUX alias: 'EndOfExistence'."@en ;
-                                                rdfs:label "End of Existence"@en .
 
 
 ###  https://w3id.org/heritagegraph/Enshrinement
 <https://w3id.org/heritagegraph/Enshrinement> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                              <https://w3id.org/heritagegraph/RitualEvent> ,
+                                              rdfs:subClassOf <https://w3id.org/heritagegraph/RitualEvent> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <https://w3id.org/heritagegraph/carried_out_by> ;
                                                                 owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
@@ -4045,7 +3299,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                        <https://w3id.org/heritagegraph/Unknown>
                                                                                      )
                                                                          ] ;
-                                                     rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                      rdfs:label "ExistenceStatusEnum" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for whether a heritage object or structure still exists." ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -4059,8 +3312,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Festival
 <https://w3id.org/heritagegraph/Festival> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                          <https://w3id.org/heritagegraph/RitualEvent> ,
+                                          rdfs:subClassOf <https://w3id.org/heritagegraph/RitualEvent> ,
                                                           [ rdf:type owl:Restriction ;
                                                             owl:onProperty <https://w3id.org/heritagegraph/includes_ritual_event> ;
                                                             owl:allValuesFrom <https://w3id.org/heritagegraph/RitualEvent>
@@ -4077,13 +3329,11 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/FieldSurveyActivity
 <https://w3id.org/heritagegraph/FieldSurveyActivity> rdf:type owl:Class ;
                                                      rdfs:subClassOf <http://www.cidoc-crm.org/crmsci/S4_Observation> ,
-                                                                     <http://www.ics.forth.gr/isl/CRMsci/S4_Observation> ,
                                                                      <https://w3id.org/heritagegraph/DocumentationActivity> ;
                                                      owl:disjointWith <https://w3id.org/heritagegraph/OralHistoryInterview> ,
                                                                       <https://w3id.org/heritagegraph/Verification> ;
                                                      rdfs:label "FieldSurveyActivity" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "The activity of measuring, photographing, or assessing a site in person." ;
-                                                     <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/crmsci/S4_Observation> ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -4094,30 +3344,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                     owl:disjointWith <https://w3id.org/heritagegraph/OralHistoryRecording> ;
                                                     rdfs:label "FieldSurveyDataset" ;
                                                     <http://www.w3.org/2004/02/skos/core#definition> "The structured data or report resulting from a field survey." ;
-                                                    <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ;
                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Formation
-<https://w3id.org/heritagegraph/Formation> rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E66_Formation> ,
-                                                           <https://w3id.org/heritagegraph/BeginningOfExistence> ;
-                                           rdfs:comment "Founding event of a Guthi/Group. LUX alias: 'Formation'."@en ;
-                                           rdfs:label "Formation"@en .
-
-
-###  https://w3id.org/heritagegraph/Group
-<https://w3id.org/heritagegraph/Group> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
-                                       rdfs:comment "Generic group of actors. Super-class of Guthi and CasteGroup."@en ;
-                                       rdfs:label "Group"@en .
 
 
 ###  https://w3id.org/heritagegraph/Guthi
 <https://w3id.org/heritagegraph/Guthi> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ,
-                                                       <https://w3id.org/heritagegraph/Group> ,
-                                                       [ rdf:type owl:Restriction ;
+                                       rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                          owl:onProperty <https://w3id.org/heritagegraph/guthi_type> ;
                                                          owl:allValuesFrom <https://w3id.org/heritagegraph/GuthiTypeEnum>
                                                        ] ,
@@ -4198,7 +3430,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                  <https://w3id.org/heritagegraph/TempleGuthi>
                                                                                )
                                                                    ] ;
-                                               rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                rdfs:label "GuthiTypeEnum" ;
                                                <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary of Guthi functional types (CRM E55_Type)" ;
                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -4220,15 +3451,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                    <https://w3id.org/heritagegraph/Place> ;
                                                   rdfs:label "HeritageActivity" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Abstract superclass for intentional heritage-related activities, aligned with CIDOC CRM E7 Activity." ;
-                                                  <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/HeritageAssertion
 <https://w3id.org/heritagegraph/HeritageAssertion> rdf:type owl:Class ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment> ,
-                                                                   <http://www.cidoc-crm.org/crminf/I2_Belief> ,
-                                                                   <https://w3id.org/heritagegraph/AttributeAssignment> ,
+                                                   rdfs:subClassOf <http://www.cidoc-crm.org/crminf/I2_Belief> ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/heritagegraph/asserts_about_entity> ;
                                                                      owl:allValuesFrom <https://w3id.org/heritagegraph/AssertableEntity>
@@ -4388,8 +3616,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                    rdfs:label "HeritageAssertion" ;
                                                    <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.w3.org/ns/prov#Entity> ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "A single factual claim about a heritage entity, with explicit source, author, date, and confidence" ;
-                                                   <http://www.w3.org/2004/02/skos/core#exactMatch> <http://schema.org/Claim> ,
-                                                                                                    <http://www.cidoc-crm.org/crminf/I2_Belief> ;
+                                                   <http://www.w3.org/2004/02/skos/core#exactMatch> <http://schema.org/Claim> ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -4479,7 +3706,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                  ] ;
                                                  rdfs:label "HistoricalEvent" ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood)." ;
-                                                 <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E5_Event> ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -4571,18 +3797,16 @@ xsd:date rdf:type rdfs:Datatype .
                                                                   <https://w3id.org/heritagegraph/TimeSpan> ;
                                                  rdfs:label "HumanMadeObject" ;
                                                  <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/PhysicalThing> ;
-                                                 <http://www.w3.org/2004/02/skos/core#definition> "Physical objects created by human activity" ;
-                                                 <http://www.w3.org/2004/02/skos/core#exactMatch> <http://schema.org/CreativeWork> ,
-                                                                                                  <http://vocab.getty.edu/aat/300117127> ,
-                                                                                                  <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
+                                                 <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/CreativeWork> ,
                                                                                                   <http://www.wikidata.org/entity/Q838948> ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Physical objects created by human activity" ;
+                                                 <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300117127> ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/IconographicObject
 <https://w3id.org/heritagegraph/IconographicObject> rdf:type owl:Class ;
-                                                    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                                    <https://w3id.org/heritagegraph/HumanMadeObject> ,
+                                                    rdfs:subClassOf <https://w3id.org/heritagegraph/HumanMadeObject> ,
                                                                     [ rdf:type owl:Restriction ;
                                                                       owl:onProperty <https://w3id.org/heritagegraph/depicts_deity> ;
                                                                       owl:allValuesFrom <https://w3id.org/heritagegraph/Deity>
@@ -4663,17 +3887,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/Identifier
-<https://w3id.org/heritagegraph/Identifier> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E42_Identifier> ;
-                                            rdfs:comment "Catalogue numbers, DANAM IDs, DOIs. LUX alias: 'Identifier'."@en ;
-                                            rdfs:label "Identifier"@en .
-
-
 ###  https://w3id.org/heritagegraph/InformationObject
 <https://w3id.org/heritagegraph/InformationObject> rdf:type owl:Class ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ,
-                                                                   <https://w3id.org/heritagegraph/DataSource> ,
+                                                   rdfs:subClassOf <https://w3id.org/heritagegraph/DataSource> ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/heritagegraph/created_by_documentation> ;
                                                                      owl:allValuesFrom <https://w3id.org/heritagegraph/DocumentationActivity>
@@ -4747,38 +3963,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/Inscription
-<https://w3id.org/heritagegraph/Inscription> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E34_Inscription> ,
-                                                             <https://w3id.org/heritagegraph/LinguisticObject> .
-
-
-###  https://w3id.org/heritagegraph/Language
-<https://w3id.org/heritagegraph/Language> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E56_Language> ;
-                                          rdfs:comment "Language of a Name or LinguisticObject (Devanagari, Nepali, Newari, Sanskrit, English). LUX alias: 'Language'."@en ;
-                                          rdfs:label "Language"@en .
-
-
-###  https://w3id.org/heritagegraph/LegalObject
-<https://w3id.org/heritagegraph/LegalObject> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E72_Legal_Object> ;
-                                             rdfs:comment "Things subject to legal frameworks — e.g. 'Ancient Monument' under Nepal heritage law. LUX alias: 'LegalObject'. (HG previously called this 'LegalConcept' which is not a Linked Art class; renamed for compatibility.)"@en ;
-                                             rdfs:label "Legal Object"@en .
-
-
-###  https://w3id.org/heritagegraph/LinguisticObject
-<https://w3id.org/heritagegraph/LinguisticObject> rdf:type owl:Class ;
-                                                  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object> ,
-                                                                  <https://w3id.org/heritagegraph/InformationObject> ;
-                                                  rdfs:comment "Textual content — inscriptions, manuscripts, transcribed oral history. LUX alias: 'LinguisticObject'."@en ;
-                                                  rdfs:label "Linguistic Object"@en .
-
-
 ###  https://w3id.org/heritagegraph/LivingGoddessRetirement
 <https://w3id.org/heritagegraph/LivingGoddessRetirement> rdf:type owl:Class ;
-                                                         rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                                         <https://w3id.org/heritagegraph/RitualEvent> ,
+                                                         rdfs:subClassOf <https://w3id.org/heritagegraph/RitualEvent> ,
                                                                          [ rdf:type owl:Restriction ;
                                                                            owl:onProperty <https://w3id.org/heritagegraph/carried_out_by> ;
                                                                            owl:allValuesFrom <https://w3id.org/heritagegraph/Person>
@@ -4884,8 +4071,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/LivingGoddessSelection
 <https://w3id.org/heritagegraph/LivingGoddessSelection> rdf:type owl:Class ;
-                                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                                        <https://w3id.org/heritagegraph/RitualEvent> ,
+                                                        rdfs:subClassOf <https://w3id.org/heritagegraph/RitualEvent> ,
                                                                         [ rdf:type owl:Restriction ;
                                                                           owl:onProperty <https://w3id.org/heritagegraph/carried_out_by> ;
                                                                           owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
@@ -5011,7 +4197,6 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/LivingGoddessTenure
 <https://w3id.org/heritagegraph/LivingGoddessTenure> rdf:type owl:Class ;
                                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E4_Period> ,
-                                                                     <https://w3id.org/heritagegraph/Period> ,
                                                                      [ rdf:type owl:Restriction ;
                                                                        owl:onProperty <https://w3id.org/heritagegraph/embodied_deity> ;
                                                                        owl:allValuesFrom <https://w3id.org/heritagegraph/Deity>
@@ -5098,14 +4283,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                      ] ;
                                                      rdfs:label "LivingGoddessTenure" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families." ;
-                                                     <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E4_Period> ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/MaskedDance
 <https://w3id.org/heritagegraph/MaskedDance> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
-                                                             <https://w3id.org/heritagegraph/Festival> ;
+                                             rdfs:subClassOf <https://w3id.org/heritagegraph/Festival> ;
                                              rdfs:label "MaskedDance" ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)" ;
                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -5141,28 +4324,12 @@ xsd:date rdf:type rdfs:Datatype .
                                           owl:disjointWith <https://w3id.org/heritagegraph/Technique> ;
                                           rdfs:label "Material" ;
                                           <http://www.w3.org/2004/02/skos/core#definition> "Physical substance used in construction or crafting" ;
-                                          <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E57_Material> ;
                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Measurement
-<https://w3id.org/heritagegraph/Measurement> rdf:type owl:Class ;
-                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E16_Measurement> ;
-                                             rdfs:comment "Act of measuring an object's dimension. LUX alias: 'Measurement'."@en ;
-                                             rdfs:label "Measurement"@en .
-
-
-###  https://w3id.org/heritagegraph/MeasurementUnit
-<https://w3id.org/heritagegraph/MeasurementUnit> rdf:type owl:Class ;
-                                                 rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E58_Measurement_Unit> ;
-                                                 rdfs:label "Measurement Unit"@en .
 
 
 ###  https://w3id.org/heritagegraph/Metadata
 <https://w3id.org/heritagegraph/Metadata> rdf:type owl:Class ;
-                                          rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ,
-                                                          <https://w3id.org/heritagegraph/InformationObject> ,
-                                                          [ rdf:type owl:Restriction ;
+                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
                                                             owl:onProperty <https://w3id.org/heritagegraph/curator> ;
                                                             owl:allValuesFrom xsd:string
                                                           ] ,
@@ -5239,33 +4406,9 @@ xsd:date rdf:type rdfs:Datatype .
                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/Modification
-<https://w3id.org/heritagegraph/Modification> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E11_Modification> ,
-                                                              <https://w3id.org/heritagegraph/CurationActivity> ;
-                                              rdfs:comment "Restoration or alteration of a Murti/Temple/artifact. LUX alias: 'Modification'."@en ;
-                                              rdfs:label "Modification"@en .
-
-
-###  https://w3id.org/heritagegraph/MonetaryAmount
-<https://w3id.org/heritagegraph/MonetaryAmount> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E97_Monetary_Amount> ;
-                                                rdfs:comment "Amount of money. LUX alias: 'MonetaryAmount'."@en ;
-                                                rdfs:label "Monetary Amount"@en .
-
-
-###  https://w3id.org/heritagegraph/Move
-<https://w3id.org/heritagegraph/Move> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E9_Move> ,
-                                                      <https://w3id.org/heritagegraph/ProvenanceActivity> ;
-                                      rdfs:comment "Physical movement of an object — distinct from custody change. LUX alias: 'Move'."@en ;
-                                      rdfs:label "Move"@en .
-
-
 ###  https://w3id.org/heritagegraph/Murti
 <https://w3id.org/heritagegraph/Murti> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                       <https://w3id.org/heritagegraph/IconographicObject> ,
+                                       rdfs:subClassOf <https://w3id.org/heritagegraph/IconographicObject> ,
                                                        [ rdf:type owl:Restriction ;
                                                          owl:onProperty <https://w3id.org/heritagegraph/consecrated_by_event> ;
                                                          owl:allValuesFrom <https://w3id.org/heritagegraph/Consecration>
@@ -5292,28 +4435,19 @@ xsd:date rdf:type rdfs:Datatype .
                                                        ] ;
                                        owl:disjointWith <https://w3id.org/heritagegraph/Paubha> ;
                                        rdfs:label "Murti" ;
+                                       <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q2594295> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)" ;
-                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300047090> ,
-                                                                                        <http://www.wikidata.org/entity/Q2594295> ;
+                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300047090> ;
                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Name
-<https://w3id.org/heritagegraph/Name> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E33_E41_Linguistic_Appellation> ;
-                                      rdfs:comment "Multilingual name. LUX alias: 'Name' → crm:E33_E41_Linguistic_Appellation (multi-instantiated)."@en ;
-                                      rdfs:label "Name"@en .
 
 
 ###  https://w3id.org/heritagegraph/OralHistoryInterview
 <https://w3id.org/heritagegraph/OralHistoryInterview> rdf:type owl:Class ;
-                                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E65_Creation> ,
-                                                                      <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
+                                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
                                                                       <https://w3id.org/heritagegraph/DocumentationActivity> ;
                                                       owl:disjointWith <https://w3id.org/heritagegraph/Verification> ;
                                                       rdfs:label "OralHistoryInterview" ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "The interaction event between a researcher and a knowledge holder (oral history fieldwork)." ;
-                                                      <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -5335,14 +4469,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                       ] ;
                                                       rdfs:label "OralHistoryRecording" ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "The recording or transcript of an oral history interview." ;
-                                                      <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object> ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/Pati
 <https://w3id.org/heritagegraph/Pati> rdf:type owl:Class ;
-                                      rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                      <https://w3id.org/heritagegraph/RestHouse> ;
+                                      rdfs:subClassOf <https://w3id.org/heritagegraph/RestHouse> ;
                                       owl:disjointWith <https://w3id.org/heritagegraph/Sattal> ;
                                       rdfs:label "Pati" ;
                                       <http://www.w3.org/2004/02/skos/core#definition> "Open-air pavilion for resting travelers" ;
@@ -5351,20 +4483,12 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Paubha
 <https://w3id.org/heritagegraph/Paubha> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                        <https://w3id.org/heritagegraph/IconographicObject> ;
+                                        rdfs:subClassOf <https://w3id.org/heritagegraph/IconographicObject> ;
                                         rdfs:label "Paubha" ;
                                         <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300033666> ;
                                         <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q130993> ;
                                         <http://www.w3.org/2004/02/skos/core#definition> "Traditional Newari scroll painting (thangka) with mandala and deity iconography" ;
                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Period
-<https://w3id.org/heritagegraph/Period> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E4_Period> ;
-                                        rdfs:comment "Generic historical period (Lichhavi, Malla, Shah, Rana). LUX alias: 'Period'."@en ;
-                                        rdfs:label "Period"@en .
 
 
 ###  https://w3id.org/heritagegraph/Person
@@ -5486,7 +4610,6 @@ xsd:date rdf:type rdfs:Datatype .
                                         <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> ,
                                                                                          <http://xmlns.com/foaf/0.1/Person> ;
                                         <http://www.w3.org/2004/02/skos/core#definition> "Individual person who performs, commissions, documents, or verifies heritage activities" ;
-                                        <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E21_Person> ;
                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -5500,7 +4623,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                            ] ;
                                                        rdfs:label "PhysicalHeritageThing" ;
                                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/PhysicalThing> ;
-                                                       <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "Union of tangible heritage object classes: structures, iconographic objects, and architectural elements." ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
@@ -5556,14 +4678,12 @@ xsd:date rdf:type rdfs:Datatype .
                                        rdfs:label "Place" ;
                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Place> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Defined geographic location where events occur and structures exist" ;
-                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E53_Place> ;
                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/Pokhari
 <https://w3id.org/heritagegraph/Pokhari> rdf:type owl:Class ;
-                                         rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                         <https://w3id.org/heritagegraph/WaterStructure> ;
+                                         rdfs:subClassOf <https://w3id.org/heritagegraph/WaterStructure> ;
                                          rdfs:label "Pokhari" ;
                                          <http://www.w3.org/2004/02/skos/core#definition> "Pond or tank for water storage, ritual bathing, and ecological management" ;
                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -5572,7 +4692,6 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/Production
 <https://w3id.org/heritagegraph/Production> rdf:type owl:Class ;
                                             rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E12_Production> ,
-                                                            <https://w3id.org/heritagegraph/BeginningOfExistence> ,
                                                             [ rdf:type owl:Restriction ;
                                                               owl:onProperty <https://w3id.org/heritagegraph/carried_out_by> ;
                                                               owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
@@ -5664,25 +4783,8 @@ xsd:date rdf:type rdfs:Datatype .
                                             owl:disjointWith <https://w3id.org/heritagegraph/RitualEvent> ,
                                                              <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                             rdfs:label "Production" ;
-                                            <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.cidoc-crm.org/cidoc-crm/E12_Production> ;
                                             <http://www.w3.org/2004/02/skos/core#definition> "Event of creating an architectural structure, murti, or paubha" ;
-                                            <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E12_Production> ;
                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/PropositionalObject
-<https://w3id.org/heritagegraph/PropositionalObject> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object> ,
-                                                                     <https://w3id.org/heritagegraph/InformationObject> ;
-                                                     rdfs:comment "Abstract works, doctrines, beliefs — separate from any physical carrier. LUX alias: 'PropositionalObject'."@en ;
-                                                     rdfs:label "Propositional Object"@en .
-
-
-###  https://w3id.org/heritagegraph/ProvenanceActivity
-<https://w3id.org/heritagegraph/ProvenanceActivity> rdf:type owl:Class ;
-                                                    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
-                                                    rdfs:comment "Wrapper for chains of custody / ownership / movement events. LUX models this as crm:E7_Activity classified_as a 'provenance' Type — NOT a separate la: class. Migration: LUX provenance activities land here as crm:E7_Activity instances."@en ;
-                                                    rdfs:label "Provenance Activity"@en .
 
 
 ###  https://w3id.org/heritagegraph/ReligiousTradition
@@ -5714,27 +4816,18 @@ xsd:date rdf:type rdfs:Datatype .
                                                                     ] ;
                                                     rdfs:label "ReligiousTradition" ;
                                                     <http://www.w3.org/2004/02/skos/core#definition> "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)" ;
-                                                    <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300073708> ,
-                                                                                                     <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
+                                                    <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300073708> ;
                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/RestHouse
 <https://w3id.org/heritagegraph/RestHouse> rdf:type owl:Class ;
-                                           rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                           <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
+                                           rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
                                            owl:disjointWith <https://w3id.org/heritagegraph/Temple> ,
                                                             <https://w3id.org/heritagegraph/WaterStructure> ;
                                            rdfs:label "RestHouse" ;
                                            <http://www.w3.org/2004/02/skos/core#definition> "Community structures for travelers and pilgrims, maintained by Guthi organizations" ;
                                            <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Right
-<https://w3id.org/heritagegraph/Right> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E30_Right> ;
-                                       rdfs:comment "Access/IP rights on photographs and datasets. LUX alias: 'Right'."@en ;
-                                       rdfs:label "Right"@en .
 
 
 ###  https://w3id.org/heritagegraph/RitualEvent
@@ -5978,7 +5071,6 @@ xsd:date rdf:type rdfs:Datatype .
                                              <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300054754> ,
                                                                                               <http://www.europeana.eu/schemas/edm/Event> ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups" ;
-                                             <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -6006,7 +5098,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                   <https://w3id.org/heritagegraph/Yagna>
                                                                                 )
                                                                     ] ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                 rdfs:label "RitualTypeEnum" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for ritual and festival activity types in Nepalese living heritage." ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -6033,21 +5124,10 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Sattal
 <https://w3id.org/heritagegraph/Sattal> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                        <https://w3id.org/heritagegraph/RestHouse> ;
+                                        rdfs:subClassOf <https://w3id.org/heritagegraph/RestHouse> ;
                                         rdfs:label "Sattal" ;
                                         <http://www.w3.org/2004/02/skos/core#definition> "Multi-story rest house (3-5 floors) with ritual and social functions" ;
                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Set
-<https://w3id.org/heritagegraph/Set> rdf:type owl:Class ;
-                                     rdfs:subClassOf <https://linked.art/ns/terms/Set> ,
-                                                     <https://w3id.org/heritagegraph/CuratedHolding> ;
-                                     rdfs:comment "Curated grouping. LUX alias: 'Set' — this is one of the genuine la: classes (la:Set), not a CRM class. Linked Art deliberately mints la:Set distinct from crm:E78_Curated_Holding to allow ad-hoc groupings."@en ,
-                                                  "Linked Art mints la:Set distinct from crm:E78 to allow ad-hoc groupings. Within HG we additionally treat Set as a CuratedHolding for navigation; no semantic collapse — both parents remain."@en ;
-                                     rdfs:label "Set"@en ;
-                                     <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.cidoc-crm.org/cidoc-crm/E78_Curated_Holding> .
 
 
 ###  https://w3id.org/heritagegraph/SourceTypeEnum
@@ -6076,8 +5156,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/Stupa
 <https://w3id.org/heritagegraph/Stupa> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                       <https://w3id.org/heritagegraph/BuddhistMonument> ;
+                                       rdfs:subClassOf <https://w3id.org/heritagegraph/BuddhistMonument> ;
                                        rdfs:label "Stupa" ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Buddhist dome-shaped reliquary shrine (e.g., Boudhanath, Swayambhunath)" ;
                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -6086,7 +5165,6 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/SyncreticRelationship
 <https://w3id.org/heritagegraph/SyncreticRelationship> rdf:type owl:Class ;
                                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment> ,
-                                                                       <https://w3id.org/heritagegraph/AttributeAssignment> ,
                                                                        [ rdf:type owl:Restriction ;
                                                                          owl:onProperty <https://w3id.org/heritagegraph/assertion_author> ;
                                                                          owl:allValuesFrom <https://w3id.org/heritagegraph/Actor>
@@ -6217,7 +5295,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                        ] ;
                                                        rdfs:label "SyncreticRelationship" ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance." ;
-                                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment> ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -6230,7 +5307,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                      <https://w3id.org/heritagegraph/Historical>
                                                                                    )
                                                                        ] ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E55_Type> ;
                                                    rdfs:label "SyncreticTypeEnum" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for types of syncretic theological relationships between deities." ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> ;
@@ -6269,14 +5345,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                            ] ;
                                            rdfs:label "Technique" ;
                                            <http://www.w3.org/2004/02/skos/core#definition> "Method or craft process used in production or ritual" ;
-                                           <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure> ;
                                            <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/Temple
 <https://w3id.org/heritagegraph/Temple> rdf:type owl:Class ;
-                                        rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                        <https://w3id.org/heritagegraph/ArchitecturalStructure> ,
+                                        rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ,
                                                         [ rdf:type owl:Restriction ;
                                                           owl:onProperty <https://w3id.org/heritagegraph/enshrines_deity_through_event> ;
                                                           owl:allValuesFrom <https://w3id.org/heritagegraph/Enshrinement>
@@ -6299,13 +5373,13 @@ xsd:date rdf:type rdfs:Datatype .
                                                         ] ;
                                         owl:disjointWith <https://w3id.org/heritagegraph/WaterStructure> ;
                                         rdfs:label "Temple" ;
-                                        <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/PlaceOfWorship> ;
-                                        <http://www.w3.org/2004/02/skos/core#definition> "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation." ;
-                                        <http://www.w3.org/2004/02/skos/core#exactMatch> <http://dbpedia.org/ontology/ReligiousBuilding> ,
+                                        <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/ReligiousBuilding> ,
                                                                                          <http://dbpedia.org/ontology/Temple> ,
                                                                                          <http://schema.org/HinduTemple> ,
-                                                                                         <http://vocab.getty.edu/aat/300007595> ,
+                                                                                         <http://schema.org/PlaceOfWorship> ,
                                                                                          <http://www.wikidata.org/entity/Q44539> ;
+                                        <http://www.w3.org/2004/02/skos/core#definition> "Sacred architectural structure legally classified as an 'Ancient Monument' under Nepal's preservation laws, characterized by deity enshrinement and ritual activation." ;
+                                        <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300007595> ;
                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -6362,22 +5436,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                           ] ;
                                           rdfs:label "TimeSpan" ;
                                           <http://www.w3.org/2004/02/skos/core#definition> "Temporal extent of an event or period" ;
-                                          <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span> ;
                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-###  https://w3id.org/heritagegraph/Title
-<https://w3id.org/heritagegraph/Title> rdf:type owl:Class ;
-                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E35_Title> ,
-                                                       <https://w3id.org/heritagegraph/Name> ;
-                                       rdfs:comment "Titled name of a work or object. LUX alias: 'Title'."@en ;
-                                       rdfs:label "Title"@en .
 
 
 ###  https://w3id.org/heritagegraph/TransferOfCustody
 <https://w3id.org/heritagegraph/TransferOfCustody> rdf:type owl:Class ;
                                                    rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> ,
-                                                                   <https://w3id.org/heritagegraph/CurationActivity> ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/heritagegraph/has_timespan> ;
                                                                      owl:allValuesFrom <https://w3id.org/heritagegraph/TimeSpan>
@@ -6464,15 +5528,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                                    ] ;
                                                    rdfs:label "TransferOfCustody" ;
                                                    <http://www.w3.org/2004/02/skos/core#definition> "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship" ;
-                                                   <http://www.w3.org/2004/02/skos/core#exactMatch> <http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody> ;
                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/Verification
 <https://w3id.org/heritagegraph/Verification> rdf:type owl:Class ;
-                                              rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment> ,
-                                                              <https://w3id.org/heritagegraph/AttributeAssignment> ,
-                                                              <https://w3id.org/heritagegraph/DocumentationActivity> ,
+                                              rdfs:subClassOf <https://w3id.org/heritagegraph/DocumentationActivity> ,
                                                               [ rdf:type owl:Restriction ;
                                                                 owl:onProperty <https://w3id.org/heritagegraph/verified_assertion> ;
                                                                 owl:allValuesFrom <https://w3id.org/heritagegraph/HeritageAssertion>
@@ -6518,17 +5579,9 @@ xsd:date rdf:type rdfs:Datatype .
                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
-###  https://w3id.org/heritagegraph/VisualItem
-<https://w3id.org/heritagegraph/VisualItem> rdf:type owl:Class ;
-                                            rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E36_Visual_Item> ;
-                                            rdfs:comment "Iconographic content separate from the physical Murti/Paubha. LUX alias: 'VisualItem'."@en ;
-                                            rdfs:label "Visual Item"@en .
-
-
 ###  https://w3id.org/heritagegraph/WaterStructure
 <https://w3id.org/heritagegraph/WaterStructure> rdf:type owl:Class ;
-                                                rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> ,
-                                                                <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
+                                                rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
                                                 rdfs:label "WaterStructure" ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Engineered water supply systems with ritual and civic significance" ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -6798,7 +5851,11 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/Inscription
 <https://w3id.org/heritagegraph/Inscription> rdf:type owl:NamedIndividual ,
                                                       <http://www.w3.org/2004/02/skos/core#Concept> ,
-                                                      <https://w3id.org/heritagegraph/SourceTypeEnum> .
+                                                      <https://w3id.org/heritagegraph/SourceTypeEnum> ;
+                                             rdfs:label "Inscription" ;
+                                             <http://www.w3.org/2004/02/skos/core#definition> "Epigraphic or carved textual source" ;
+                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+                                             <http://www.w3.org/2004/02/skos/core#prefLabel> "Inscription" .
 
 
 ###  https://w3id.org/heritagegraph/InstallationRitual
@@ -7255,25 +6312,6 @@ xsd:date rdf:type rdfs:Datatype .
                                                           <http://purl.org/dc/terms/title> "SyncreticTypeEnum" ;
                                                           <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for types of syncretic theological relationships between deities." ;
                                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-
-
-#################################################################
-#    Annotations
-#################################################################
-
-<https://w3id.org/heritagegraph/Inscription> rdfs:comment "Inscriptions on stone/metal/manuscripts. LUX alias: 'Inscription'."@en ;
-                                             rdfs:label "Inscription"@en ,
-                                                        "Inscription" ;
-                                             <http://www.w3.org/2004/02/skos/core#definition> "Epigraphic or carved textual source" ;
-                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
-                                             <http://www.w3.org/2004/02/skos/core#prefLabel> "Inscription" .
-
-
-<https://w3id.org/heritagegraph/performed_by_group> rdfs:label "performed_by_group" ;
-                                                    rdfs:seeAlso <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ;
-                                                    <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by> ;
-                                                    <http://www.w3.org/2004/02/skos/core#definition> "Group (Guthi, caste) responsible for ritual" ;
-                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
