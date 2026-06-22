@@ -4,6 +4,8 @@
 
 An event-centric OWL ontology for representing (Nepalese) cultural heritage, including tangible and intangible heritage assets, sacred places, rituals, festivals, institutions, communities, and the relationships that connect them.
 
+This work is part of [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/) project.
+
 ---
 
 ## Overview
