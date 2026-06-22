@@ -1,34 +1,106 @@
 # HeritageGraph Ontology
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
+
+An event-centric OWL ontology for representing (Nepalese) cultural heritage, including tangible and intangible heritage assets, sacred places, rituals, festivals, institutions, communities, and the relationships that connect them.
+
+---
 
 ## Overview
 
-The purpose of Widoco is to reuse and integrate existing tools for documentation, plus the set of features listed below:
-* Separation of the sections of your html page so you can write them independently and replace only those needed.
-* Automatic annotation in RDF-a of the html produced.
-* Association of a provenance page which includes the history of your vocabulary (W3C PROV-O compliant).
-* Metadata extraction from the ontology plus the means to complete it on the fly when generating your ontology.
-* Guidelines on the main sections that your document should have and how to complete them.
+HeritageGraph provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data.
+ 
+The ontology supports the representation of:
 
-Widoco will create 3 different folders:
-|
-|-provenance (a folder including an html and RDF serialization of how the documentation page was created)
-|-resources (folder with the different resources)
-|-sections (folder with the different sections of the documentation, separated for easy editing. Just edit one and the main page will be updated)
-
-Completing ontology metadata.
-===================
-Widoco uses the ontology metadata to update a configuration file. If you complete that configuration file (ended up widoco.conf), the tool will enhance your html with additional details, such as how to cite the document, previous revisions, icons with the licence, etc.
+* Cultural heritage sites and monuments
+* Religious and sacred places
+* Festivals and rituals
+* Cultural events and activities
+* Heritage objects and artifacts
+* Communities and institutions
+* Guthi and traditional organizations
+* Historical and cultural relationships
+* Provenance and documentation metadata
 
 
+## Repository Structure
+
+```text
+.
+├── docs/              # Documentation resources
+├── evaluation/        # Ontology evaluation artifacts
+├── provenance/        # Provenance metadata
+├── resources/         # Supporting resources
+├── webvowl/           # WebVOWL visualization
+├── HeritageGraph.owl  # OWL ontology
+├── HeritageGraph.ttl  # Turtle serialization
+└── README.md
+```
+
+## Documentation
+
+Complete ontology documentation is available at:
+
+**https://cairnepal.github.io/heritagegraphontology/**
+
+The documentation includes:
+
+* Class hierarchy
+* Object properties
+* Data properties
+* Ontology metadata
+* Provenance information
+* WebVOWL visualization
+* Downloadable ontology serializations
+
+
+## Downloads
+
+The ontology is available in multiple RDF serializations:
+
+* OWL
+* Turtle (TTL)
+* RDF/XML
+* N-Triples
+* JSON-LD 
+
+## Example
+
+```turtle
+@prefix hg: <https://cairnepal.github.io/heritagegraphontology#> .
+
+:IndraJatra
+    a hg:Festival ;
+    hg:locatedIn :Kathmandu ;
+    hg:organizedBy :Guthi ;
+    hg:hasCulturalSignificance "Major annual festival of Kathmandu Valley" .
+```
+
+
+## Citation
+
+If you use HeritageGraph in research, publications, software, or datasets, please cite:
+
+```text
+Niraj Karki, Nabin Oli, Anu Sapkota, Semih Yumusak and Tek Raj Chhetri. (2026).
+HeritageGraph Ontology (Version 1.0.0).
+https://cairnepal.github.io/heritagegraphontology/
+```
+ 
+## Contributing
+
+Contributions, bug reports, and enhancement proposals are welcome.
+
+Please open an issue or submit a pull request through GitHub.
+ 
 ## License
 
 © 2026 CAIR-Nepal
 
 This ontology is licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
 You are free to use, share, adapt, and redistribute this ontology for any purpose, including commercial use, provided that appropriate attribution is given and any modifications are clearly indicated.
 
 For full license terms, see the [LICENSE](LICENSE.md) file.
+
+
