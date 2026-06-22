@@ -1,6 +1,7 @@
 # HeritageGraph Ontology
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
+## Overview
 
 The purpose of Widoco is to reuse and integrate existing tools for documentation, plus the set of features listed below:
 * Separation of the sections of your html page so you can write them independently and replace only those needed.
@@ -19,18 +20,15 @@ Completing ontology metadata.
 ===================
 Widoco uses the ontology metadata to update a configuration file. If you complete that configuration file (ended up widoco.conf), the tool will enhance your html with additional details, such as how to cite the document, previous revisions, icons with the licence, etc.
 
-Browser issues
-==========
-The result of executing Widoco is an html file. We have tested it in Mozilla, IE and Chrome, and when the page is stored in a server all the browsers work correctly. If you view the file locally, we recommend you to use Mozilla Firefox (or Internet Explorer, if you must). Google Chrome will not show the contents correctly, as it doesn't allow  XMLHttpRequest without HTTP. If you want to view the page locally with Google Chrome you have two possibilities:
 
-a) Place the file in a server and access it via its URL (for example, put it in dropbox and access through its public url).
+## License
 
-b) Execute Chrome with the following commands :
+© 2026 CAIR-Nepal
 
-(WIN) chrome.exe --allow-file-access-from-files,
+This ontology is licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-(OSX) open /Applications/Google\ Chrome.app/ --args --allow-file-access-from-files
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-(UNX) /usr/bin/google-chrome --allow-file-access-from-files
+You are free to use, share, adapt, and redistribute this ontology for any purpose, including commercial use, provided that appropriate attribution is given and any modifications are clearly indicated.
 
-Do you have a problem? open an issue at https://github.com/dgarijo/Widoco
+For full license terms, see the [LICENSE](LICENSE.md) file.
