@@ -8,7 +8,7 @@ An event-centric OWL ontology for representing (Nepalese) cultural heritage, inc
 
 ## Overview
 
-HeritageGraph provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data.
+HeritageGraph ontology provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data.
  
 The ontology supports the representation of:
 
