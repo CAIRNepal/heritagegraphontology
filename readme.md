@@ -1,5 +1,7 @@
-About Widoco output
-===================
+# HeritageGraph Ontology
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+
 The purpose of Widoco is to reuse and integrate existing tools for documentation, plus the set of features listed below:
 * Separation of the sections of your html page so you can write them independently and replace only those needed.
 * Automatic annotation in RDF-a of the html produced.
