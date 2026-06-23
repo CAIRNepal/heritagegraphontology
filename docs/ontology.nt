@@ -1,9 +1,9 @@
 <https://w3id.org/heritagegraph/ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <https://w3id.org/heritagegraph/ontology> <http://www.w3.org/2002/07/owl#versionIRI> <https://w3id.org/heritagegraph/ontology/1.0.0> .
-<https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/creator> "Cair Nepal" .
+<https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/creator> "CAIR-Nepal" .
 <https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
 <https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/modified> "2026-06-21" .
-<https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/publisher> "Cair Nepal" .
+<https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/publisher> "CAIR-Nepal" .
 <https://w3id.org/heritagegraph/ontology> <http://purl.org/dc/terms/title> "HeritageGraph Ontology" .
 <https://w3id.org/heritagegraph/ontology> <http://purl.org/pav/version> "1.0.0" .
 <https://w3id.org/heritagegraph/ontology> <http://www.w3.org/2000/01/rdf-schema#label> "HeritageGraph" .
@@ -85,6 +85,12 @@
 # #
 # #################################################################
 # 
+# 
+# http://purl.org/spar/datacite/creator
+<http://purl.org/spar/datacite/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+# 
+# http://purl.org/spar/datacite/publisher
+<http://purl.org/spar/datacite/publisher> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 # 
 # http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member
 <http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
@@ -404,6 +410,7 @@
 # 
 # https://w3id.org/heritagegraph/datacite_creator
 <https://w3id.org/heritagegraph/datacite_creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/heritagegraph/datacite_creator> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/spar/datacite/creator> .
 <https://w3id.org/heritagegraph/datacite_creator> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/heritagegraph/Actor> .
 <https://w3id.org/heritagegraph/datacite_creator> <http://www.w3.org/2000/01/rdf-schema#label> "datacite_creator" .
 <https://w3id.org/heritagegraph/datacite_creator> <http://www.w3.org/2004/02/skos/core#definition> "Person or organization primarily responsible for creating the source" .
@@ -411,6 +418,7 @@
 # 
 # https://w3id.org/heritagegraph/datacite_publisher
 <https://w3id.org/heritagegraph/datacite_publisher> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://w3id.org/heritagegraph/datacite_publisher> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/spar/datacite/publisher> .
 <https://w3id.org/heritagegraph/datacite_publisher> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/heritagegraph/Actor> .
 <https://w3id.org/heritagegraph/datacite_publisher> <http://www.w3.org/2000/01/rdf-schema#label> "datacite_publisher" .
 <https://w3id.org/heritagegraph/datacite_publisher> <http://www.w3.org/2004/02/skos/core#definition> "Entity responsible for making the source available" .
@@ -723,20 +731,6 @@
 <https://w3id.org/heritagegraph/is_about_deity> <http://www.w3.org/2004/02/skos/core#definition> "Deity represented and ritually associated with the Murti" .
 <https://w3id.org/heritagegraph/is_about_deity> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 # 
-# https://w3id.org/heritagegraph/is_about_entity
-<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2000/01/rdf-schema#label> "is_about_entity" .
-<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> .
-<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#definition> "Entity that this information object describes" .
-<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-# 
-# https://w3id.org/heritagegraph/is_about_event
-<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
-<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2000/01/rdf-schema#label> "is_about_event" .
-<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> .
-<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#definition> "Event that this information object describes" .
-<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
-# 
 # https://w3id.org/heritagegraph/is_component_of
 <https://w3id.org/heritagegraph/is_component_of> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://w3id.org/heritagegraph/is_component_of> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of> .
@@ -837,7 +831,7 @@
 <https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <https://w3id.org/heritagegraph/occurs_after> .
 <https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2000/01/rdf-schema#range> <https://w3id.org/heritagegraph/RitualEvent> .
 <https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2000/01/rdf-schema#label> "occurred_after" .
-<https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2004/02/skos/core#definition> "LUX-alignment alias of occurs_after; the LUX bridge module grounds it in crm:P183i_starts_after_the_end_of." .
+<https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2004/02/skos/core#definition> "LUX-alignment alias of occurs_after (the LUX bridge module grounds occurred_after in crm:P183i_starts_after_the_end_of). Declared in the core so that bridge reference resolves; sub-property of occurs_after." .
 <https://w3id.org/heritagegraph/occurred_after> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 # 
 # https://w3id.org/heritagegraph/occurs_after
@@ -1182,6 +1176,39 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # #################################################################
 # 
 # 
+# http://purl.org/dc/terms/identifier
+<http://purl.org/dc/terms/identifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/spar/datacite/identifier
+<http://purl.org/spar/datacite/identifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/spar/datacite/identifierType
+<http://purl.org/spar/datacite/identifierType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://purl.org/spar/datacite/resourceType
+<http://purl.org/spar/datacite/resourceType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.cidoc-crm.org/cidoc-crm/P3_has_note
+<http://www.cidoc-crm.org/cidoc-crm/P3_has_note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.cidoc-crm.org/cidoc-crm/P72_has_language
+<http://www.cidoc-crm.org/cidoc-crm/P72_has_language> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin
+<http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end
+<http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.opengis.net/ont/geosparql#asWKT
+<http://www.opengis.net/ont/geosparql#asWKT> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.w3.org/ns/prov#generatedAtTime
+<http://www.w3.org/ns/prov#generatedAtTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
+# http://www.w3.org/ns/prov#value
+<http://www.w3.org/ns/prov#value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+# 
 # https://w3id.org/heritagegraph/archival_location
 <https://w3id.org/heritagegraph/archival_location> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://w3id.org/heritagegraph/archival_location> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
@@ -1205,6 +1232,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/assertion_content
 <https://w3id.org/heritagegraph/assertion_content> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/assertion_content> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/prov#value> .
 <https://w3id.org/heritagegraph/assertion_content> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/assertion_content> <http://www.w3.org/2000/01/rdf-schema#label> "assertion_content" .
 <https://w3id.org/heritagegraph/assertion_content> <http://www.w3.org/2004/02/skos/core#definition> "The factual claim being asserted" .
@@ -1246,6 +1274,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/datacite_identifier
 <https://w3id.org/heritagegraph/datacite_identifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/datacite_identifier> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/spar/datacite/identifier> .
 <https://w3id.org/heritagegraph/datacite_identifier> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/datacite_identifier> <http://www.w3.org/2000/01/rdf-schema#label> "datacite_identifier" .
 <https://w3id.org/heritagegraph/datacite_identifier> <http://www.w3.org/2004/02/skos/core#definition> "Persistent identifier for the source (DOI, archive ID, catalog number)" .
@@ -1253,6 +1282,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/datacite_identifier_type
 <https://w3id.org/heritagegraph/datacite_identifier_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/datacite_identifier_type> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/spar/datacite/identifierType> .
 <https://w3id.org/heritagegraph/datacite_identifier_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/datacite_identifier_type> <http://www.w3.org/2000/01/rdf-schema#label> "datacite_identifier_type" .
 <https://w3id.org/heritagegraph/datacite_identifier_type> <http://www.w3.org/2004/02/skos/core#definition> "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)" .
@@ -1260,6 +1290,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/datacite_resource_type
 <https://w3id.org/heritagegraph/datacite_resource_type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/datacite_resource_type> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/spar/datacite/resourceType> .
 <https://w3id.org/heritagegraph/datacite_resource_type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/datacite_resource_type> <http://www.w3.org/2000/01/rdf-schema#label> "datacite_resource_type" .
 <https://w3id.org/heritagegraph/datacite_resource_type> <http://www.w3.org/2004/02/skos/core#definition> "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)" .
@@ -1277,6 +1308,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/date_earliest
 <https://w3id.org/heritagegraph/date_earliest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/date_earliest> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin> .
 <https://w3id.org/heritagegraph/date_earliest> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
 <https://w3id.org/heritagegraph/date_earliest> <http://www.w3.org/2000/01/rdf-schema#label> "date_earliest" .
 <https://w3id.org/heritagegraph/date_earliest> <http://www.w3.org/2004/02/skos/core#definition> "Earliest possible date (for uncertain dates)" .
@@ -1284,6 +1316,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/date_latest
 <https://w3id.org/heritagegraph/date_latest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/date_latest> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end> .
 <https://w3id.org/heritagegraph/date_latest> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
 <https://w3id.org/heritagegraph/date_latest> <http://www.w3.org/2000/01/rdf-schema#label> "date_latest" .
 <https://w3id.org/heritagegraph/date_latest> <http://www.w3.org/2004/02/skos/core#definition> "Latest possible date (for uncertain dates)" .
@@ -1305,6 +1338,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/generated_at_time
 <https://w3id.org/heritagegraph/generated_at_time> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/generated_at_time> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.w3.org/ns/prov#generatedAtTime> .
 <https://w3id.org/heritagegraph/generated_at_time> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
 <https://w3id.org/heritagegraph/generated_at_time> <http://www.w3.org/2000/01/rdf-schema#label> "generated_at_time" .
 <https://w3id.org/heritagegraph/generated_at_time> <http://www.w3.org/2004/02/skos/core#definition> "When this assertion was recorded (ISO 8601)" .
@@ -1317,6 +1351,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/id
 <https://w3id.org/heritagegraph/id> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/id> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://purl.org/dc/terms/identifier> .
 <https://w3id.org/heritagegraph/id> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#anyURI> .
 <https://w3id.org/heritagegraph/id> <http://www.w3.org/2000/01/rdf-schema#label> "id" .
 <https://w3id.org/heritagegraph/id> <http://www.w3.org/2004/02/skos/core#definition> "Globally unique URI identifier" .
@@ -1329,6 +1364,20 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 <https://w3id.org/heritagegraph/institutional_affiliation> <http://www.w3.org/2000/01/rdf-schema#label> "institutional_affiliation" .
 <https://w3id.org/heritagegraph/institutional_affiliation> <http://www.w3.org/2004/02/skos/core#definition> "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)" .
 <https://w3id.org/heritagegraph/institutional_affiliation> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
+# 
+# https://w3id.org/heritagegraph/is_about_entity
+<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2000/01/rdf-schema#label> "is_about_entity" .
+<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> .
+<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#definition> "Entity that this information object describes. Range intentionally left open: the LUX alignment module asserts owl:equivalentProperty with the generic crm:P129_is_about, so a narrow rdfs:range would over-constrain P129 and make sibling is_about_* sub-properties unsatisfiable under merged reasoning." .
+<https://w3id.org/heritagegraph/is_about_entity> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
+# 
+# https://w3id.org/heritagegraph/is_about_event
+<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2000/01/rdf-schema#label> "is_about_event" .
+<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/P129_is_about> .
+<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#definition> "Event that this information object describes. Range intentionally left open (see is_about_entity): owl:equivalentProperty crm:P129_is_about in the LUX module precludes a narrow rdfs:range here." .
+<https://w3id.org/heritagegraph/is_about_event> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 # 
 # https://w3id.org/heritagegraph/is_critical_for_festival
 <https://w3id.org/heritagegraph/is_critical_for_festival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
@@ -1372,6 +1421,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/note
 <https://w3id.org/heritagegraph/note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/note> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P3_has_note> .
 <https://w3id.org/heritagegraph/note> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/note> <http://www.w3.org/2000/01/rdf-schema#label> "note" .
 <https://w3id.org/heritagegraph/note> <http://www.w3.org/2004/02/skos/core#definition> "Free-text note (description, reason, verification notes)" .
@@ -1387,6 +1437,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/place_coordinates
 <https://w3id.org/heritagegraph/place_coordinates> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/place_coordinates> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.opengis.net/ont/geosparql#asWKT> .
 <https://w3id.org/heritagegraph/place_coordinates> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.opengis.net/ont/geosparql#wktLiteral> .
 <https://w3id.org/heritagegraph/place_coordinates> <http://www.w3.org/2000/01/rdf-schema#label> "place_coordinates" .
 <https://w3id.org/heritagegraph/place_coordinates> <http://www.w3.org/2004/02/skos/core#definition> "Coordinates as WKT literal" .
@@ -1443,6 +1494,7 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # 
 # https://w3id.org/heritagegraph/source_language
 <https://w3id.org/heritagegraph/source_language> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://w3id.org/heritagegraph/source_language> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P72_has_language> .
 <https://w3id.org/heritagegraph/source_language> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/source_language> <http://www.w3.org/2000/01/rdf-schema#label> "source_language" .
 <https://w3id.org/heritagegraph/source_language> <http://www.w3.org/2004/02/skos/core#definition> "Language of the source material" .
@@ -1473,14 +1525,14 @@ _:genid1 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 <https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/2000/01/rdf-schema#label> "used_equipment" .
-<https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/2004/02/skos/core#definition> "Equipment used in documentation" .
+<https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/2004/02/skos/core#definition> "Equipment used in documentation (free-text). Not mapped to crm:P16_used_specific_object, which is an object property requiring an crm:E70 thing resource." .
 <https://w3id.org/heritagegraph/used_equipment> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 # 
 # https://w3id.org/heritagegraph/used_method
 <https://w3id.org/heritagegraph/used_method> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://w3id.org/heritagegraph/used_method> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
 <https://w3id.org/heritagegraph/used_method> <http://www.w3.org/2000/01/rdf-schema#label> "used_method" .
-<https://w3id.org/heritagegraph/used_method> <http://www.w3.org/2004/02/skos/core#definition> "Documentation method used" .
+<https://w3id.org/heritagegraph/used_method> <http://www.w3.org/2004/02/skos/core#definition> "Documentation method used (free-text). Not mapped to crm:P33_used_specific_technique, which is an object property requiring an crm:E29 technique resource." .
 <https://w3id.org/heritagegraph/used_method> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 # 
 # https://w3id.org/heritagegraph/verification_method
@@ -1628,7 +1680,6 @@ _:genid10 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 _:genid11 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid11 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Actor> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HumanMadeObject> .
 <https://w3id.org/heritagegraph/Actor> <http://www.w3.org/2000/01/rdf-schema#label> "Actor" .
 <https://w3id.org/heritagegraph/Actor> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> .
 <https://w3id.org/heritagegraph/Actor> <http://www.w3.org/2004/02/skos/core#definition> "General actor (person or group) responsible for events" .
@@ -1673,10 +1724,6 @@ _:genid19 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 _:genid20 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid20 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid20 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/ArchitecturalStructure> .
-<https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Deity> .
-<https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/IconographicObject> .
-<https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
 <https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2000/01/rdf-schema#label> "ArchitecturalElement" .
 <https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#definition> "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)" .
 <https://w3id.org/heritagegraph/ArchitecturalElement> <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300000885> .
@@ -1821,7 +1868,6 @@ _:genid53 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 _:genid54 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid54 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid54 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/ArchitecturalStructure> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/IconographicObject> .
 <https://w3id.org/heritagegraph/ArchitecturalStructure> <http://www.w3.org/2000/01/rdf-schema#label> "ArchitecturalStructure" .
 <https://w3id.org/heritagegraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300004792> .
 <https://w3id.org/heritagegraph/ArchitecturalStructure> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/CivicStructure> .
@@ -1863,8 +1909,6 @@ _:genid55 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 <https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/DataSource> .
 <https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://www.ica.org/standards/RiC/ontology#Record> .
 <https://www.ica.org/standards/RiC/ontology#Record> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
-<https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/FieldSurveyDataset> .
-<https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/OralHistoryRecording> .
 <https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2000/01/rdf-schema#label> "ArchivalRecord" .
 <https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E31_Document> .
 <https://w3id.org/heritagegraph/ArchivalRecord> <http://www.w3.org/2004/02/skos/core#definition> "Government or institutional administrative record" .
@@ -1919,9 +1963,6 @@ _:genid61 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 # https://w3id.org/heritagegraph/BuddhistMonument
 <https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/ArchitecturalStructure> .
-<https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/RestHouse> .
-<https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Temple> .
-<https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/WaterStructure> .
 <https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2000/01/rdf-schema#label> "BuddhistMonument" .
 <https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q177980> .
 <https://w3id.org/heritagegraph/BuddhistMonument> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns" .
@@ -1987,9 +2028,6 @@ _:genid86 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 _:genid87 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid87 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/year_offset_from_gregorian> .
 _:genid87 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Deity> .
-<https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
-<https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
 <https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2000/01/rdf-schema#label> "CalendarSystem" .
 <https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E29_Designated_Reference_System> .
 <https://w3id.org/heritagegraph/CalendarSystem> <http://www.w3.org/2004/02/skos/core#definition> "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning" .
@@ -2033,10 +2071,6 @@ _:genid95 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 _:genid96 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid96 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/traditional_role> .
 _:genid96 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Deity> .
-<https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Guthi> .
-<https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
-<https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
 <https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2000/01/rdf-schema#label> "CasteGroup" .
 <https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
 <https://w3id.org/heritagegraph/CasteGroup> <http://www.w3.org/2004/02/skos/core#definition> "Hereditary social group (Jati) with specific ritual roles and occupational duties" .
@@ -2045,7 +2079,6 @@ _:genid96 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 # https://w3id.org/heritagegraph/Chaitya
 <https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/BuddhistMonument> .
-<https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Stupa> .
 <https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/2000/01/rdf-schema#label> "Chaitya" .
 <https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine or prayer hall" .
 <https://w3id.org/heritagegraph/Chaitya> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2053,7 +2086,6 @@ _:genid96 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2
 # https://w3id.org/heritagegraph/ChariotFestival
 <https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/Festival> .
-<https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/MaskedDance> .
 <https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/2000/01/rdf-schema#label> "ChariotFestival" .
 <https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#definition> "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)" .
 <https://w3id.org/heritagegraph/ChariotFestival> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2117,11 +2149,6 @@ _:genid109 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid110 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid110 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid110 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Consecration> .
-<https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Enshrinement> .
-<https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Production> .
-<https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/RitualEvent> .
-<https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TransferOfCustody> .
 <https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2000/01/rdf-schema#label> "ConditionAssessment" .
 <https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#definition> "Event of evaluating the physical state of a heritage object or structure" .
 <https://w3id.org/heritagegraph/ConditionAssessment> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2265,9 +2292,6 @@ _:genid140 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid141 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid141 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid141 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Festival> .
-<https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Production> .
-<https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TransferOfCustody> .
 <https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2000/01/rdf-schema#label> "Consecration" .
 <https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2004/02/skos/core#definition> "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)" .
 <https://w3id.org/heritagegraph/Consecration> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2719,9 +2743,6 @@ _:genid248 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid249 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid249 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/traditional_knowledge_notice> .
 _:genid249 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/DocumentationActivity> .
-<https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HeritageActivity> .
-<https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HeritageAssertion> .
 <https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2000/01/rdf-schema#label> "DataSource" .
 <https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> .
 <https://w3id.org/heritagegraph/DataSource> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/WebResource> .
@@ -2816,12 +2837,6 @@ _:genid268 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid269 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid269 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid269 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Guthi> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HeritageActivity> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HumanMadeObject> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
-<https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TimeSpan> .
 <https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2000/01/rdf-schema#label> "Deity" .
 <https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/Deity> .
 <https://w3id.org/heritagegraph/Deity> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/Deity> .
@@ -2876,8 +2891,6 @@ _:genid278 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # https://w3id.org/heritagegraph/Dharmashala
 <https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/RestHouse> .
-<https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Pati> .
-<https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Sattal> .
 <https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2000/01/rdf-schema#label> "Dharmashala" .
 <https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#definition> "Pilgrim lodge operated by a Guthi organization" .
 <https://w3id.org/heritagegraph/Dharmashala> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2885,7 +2898,6 @@ _:genid278 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # https://w3id.org/heritagegraph/DhungeDhara
 <https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/WaterStructure> .
-<https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Pokhari> .
 <https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/2000/01/rdf-schema#label> "DhungeDhara" .
 <https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#definition> "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply" .
 <https://w3id.org/heritagegraph/DhungeDhara> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2982,8 +2994,6 @@ _:genid299 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid300 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid300 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/used_method> .
 _:genid300 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/DocumentationActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HeritageAssertion> .
-<https://w3id.org/heritagegraph/DocumentationActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Production> .
 <https://w3id.org/heritagegraph/DocumentationActivity> <http://www.w3.org/2000/01/rdf-schema#label> "DocumentationActivity" .
 <https://w3id.org/heritagegraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.w3.org/ns/prov#Activity> .
 <https://w3id.org/heritagegraph/DocumentationActivity> <http://www.w3.org/2004/02/skos/core#definition> "The intellectual or technical process of recording information about a heritage entity, aligned with CIDOC E7 Activity and PROV-O Activity." .
@@ -3048,9 +3058,6 @@ _:genid313 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid314 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid314 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid314 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Festival> .
-<https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Production> .
-<https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TransferOfCustody> .
 <https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2000/01/rdf-schema#label> "Enshrinement" .
 <https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#definition> "Event of installing a deity's murti or symbol within a temple sanctum" .
 <https://w3id.org/heritagegraph/Enshrinement> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3140,8 +3147,6 @@ _:genid330 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.cidoc-crm.org/crmsci/S4_Observation> .
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/DocumentationActivity> .
-<https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/OralHistoryInterview> .
-<https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Verification> .
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2000/01/rdf-schema#label> "FieldSurveyActivity" .
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2004/02/skos/core#definition> "The activity of measuring, photographing, or assessing a site in person." .
 <https://w3id.org/heritagegraph/FieldSurveyActivity> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3150,7 +3155,6 @@ _:genid330 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.cidoc-crm.org/cidoc-crm/E31_Document> .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/DataSource> .
-<https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/OralHistoryRecording> .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2000/01/rdf-schema#label> "FieldSurveyDataset" .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2004/02/skos/core#definition> "The structured data or report resulting from a field survey." .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3217,8 +3221,6 @@ _:genid344 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid345 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid345 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid345 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Guthi> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
-<https://w3id.org/heritagegraph/Guthi> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
 <https://w3id.org/heritagegraph/Guthi> <http://www.w3.org/2000/01/rdf-schema#label> "Guthi" .
 <https://w3id.org/heritagegraph/Guthi> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> .
 <https://w3id.org/heritagegraph/Guthi> <http://www.w3.org/2004/02/skos/core#definition> "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership" .
@@ -3268,9 +3270,6 @@ _:genid346 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # https://w3id.org/heritagegraph/HeritageActivity
 <https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
-<https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HeritageAssertion> .
-<https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/HumanMadeObject> .
-<https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
 <https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2000/01/rdf-schema#label> "HeritageActivity" .
 <https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2004/02/skos/core#definition> "Abstract superclass for intentional heritage-related activities, aligned with CIDOC CRM E7 Activity." .
 <https://w3id.org/heritagegraph/HeritageActivity> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3624,9 +3623,6 @@ _:genid436 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid437 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid437 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid437 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Person> .
-<https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
-<https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TimeSpan> .
 <https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2000/01/rdf-schema#label> "HumanMadeObject" .
 <https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/PhysicalThing> .
 <https://w3id.org/heritagegraph/HumanMadeObject> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/CreativeWork> .
@@ -3725,60 +3721,60 @@ _:genid456 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/herit
 _:genid456 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/created_by_documentation> .
 _:genid456 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid457 .
-_:genid457 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/heritagegraph/AssertableEntity> .
-_:genid457 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_entity> .
+_:genid457 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/heritagegraph/DocumentationActivity> .
+_:genid457 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/was_documented_by> .
 _:genid457 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid458 .
-_:genid458 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/heritagegraph/RitualEvent> .
-_:genid458 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_event> .
+_:genid458 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid458 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/created_by_documentation> .
 _:genid458 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid459 .
-_:genid459 <http://www.w3.org/2002/07/owl#allValuesFrom> <https://w3id.org/heritagegraph/DocumentationActivity> .
+_:genid459 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid459 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/was_documented_by> .
 _:genid459 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid460 .
-_:genid460 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid460 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid460 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/created_by_documentation> .
 _:genid460 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid461 .
-_:genid461 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid461 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
 _:genid461 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_entity> .
 _:genid461 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid462 .
-_:genid462 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid462 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
 _:genid462 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_event> .
 _:genid462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid463 .
-_:genid463 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid463 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/was_documented_by> .
+_:genid463 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid463 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid463 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid464 .
-_:genid464 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid464 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/created_by_documentation> .
+_:genid464 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid464 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/source_language> .
 _:genid464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid465 .
-_:genid465 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid465 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid465 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_entity> .
 _:genid465 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid466 .
-_:genid466 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid466 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid466 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_event> .
 _:genid466 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid467 .
-_:genid467 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid467 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid467 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid467 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid468 .
-_:genid468 <http://www.w3.org/2002/07/owl#allValuesFrom> <http://www.w3.org/2001/XMLSchema#string> .
+_:genid468 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid468 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/source_language> .
 _:genid468 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid469 .
-_:genid469 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid469 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
+_:genid469 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid469 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_entity> .
 _:genid469 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid470 .
-_:genid470 <http://www.w3.org/2002/07/owl#minCardinality> "0"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
-_:genid470 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/source_language> .
+_:genid470 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
+_:genid470 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_event> .
 _:genid470 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
 <https://w3id.org/heritagegraph/InformationObject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> _:genid471 .
 _:genid471 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
@@ -3895,7 +3891,6 @@ _:genid497 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid498 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid498 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid498 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/LivingGoddessRetirement> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/LivingGoddessSelection> .
 <https://w3id.org/heritagegraph/LivingGoddessRetirement> <http://www.w3.org/2000/01/rdf-schema#label> "LivingGoddessRetirement" .
 <https://w3id.org/heritagegraph/LivingGoddessRetirement> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
 <https://w3id.org/heritagegraph/LivingGoddessRetirement> <http://www.w3.org/2004/02/skos/core#definition> "Ritual or administrative event that formally ends a Living Goddess tenure, marking the person's return to secular status. Common triggers include first menstruation, injury causing blood loss, or serious illness. This event terminates the divine embodiment and restores the girl to ordinary status." .
@@ -4154,7 +4149,6 @@ _:genid555 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid556 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid556 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/note> .
 _:genid556 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Material> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Technique> .
 <https://w3id.org/heritagegraph/Material> <http://www.w3.org/2000/01/rdf-schema#label> "Material" .
 <https://w3id.org/heritagegraph/Material> <http://www.w3.org/2004/02/skos/core#definition> "Physical substance used in construction or crafting" .
 <https://w3id.org/heritagegraph/Material> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4264,7 +4258,6 @@ _:genid579 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid580 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid580 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/is_about_deity> .
 _:genid580 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Murti> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Paubha> .
 <https://w3id.org/heritagegraph/Murti> <http://www.w3.org/2000/01/rdf-schema#label> "Murti" .
 <https://w3id.org/heritagegraph/Murti> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q2594295> .
 <https://w3id.org/heritagegraph/Murti> <http://www.w3.org/2004/02/skos/core#definition> "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)" .
@@ -4275,7 +4268,6 @@ _:genid580 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> .
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/DocumentationActivity> .
-<https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Verification> .
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2000/01/rdf-schema#label> "OralHistoryInterview" .
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2004/02/skos/core#definition> "The interaction event between a researcher and a knowledge holder (oral history fieldwork)." .
 <https://w3id.org/heritagegraph/OralHistoryInterview> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4303,7 +4295,6 @@ _:genid583 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # https://w3id.org/heritagegraph/Pati
 <https://w3id.org/heritagegraph/Pati> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/Pati> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/RestHouse> .
-<https://w3id.org/heritagegraph/Pati> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Sattal> .
 <https://w3id.org/heritagegraph/Pati> <http://www.w3.org/2000/01/rdf-schema#label> "Pati" .
 <https://w3id.org/heritagegraph/Pati> <http://www.w3.org/2004/02/skos/core#definition> "Open-air pavilion for resting travelers" .
 <https://w3id.org/heritagegraph/Pati> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4430,8 +4421,6 @@ _:genid609 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid610 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid610 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/orcid_identifier> .
 _:genid610 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Person> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Place> .
-<https://w3id.org/heritagegraph/Person> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TimeSpan> .
 <https://w3id.org/heritagegraph/Person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
 <https://w3id.org/heritagegraph/Person> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> .
 <https://w3id.org/heritagegraph/Person> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://xmlns.com/foaf/0.1/Person> .
@@ -4504,7 +4493,6 @@ _:genid624 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid625 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid625 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/place_type> .
 _:genid625 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Place> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TimeSpan> .
 <https://w3id.org/heritagegraph/Place> <http://www.w3.org/2000/01/rdf-schema#label> "Place" .
 <https://w3id.org/heritagegraph/Place> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Place> .
 <https://w3id.org/heritagegraph/Place> <http://www.w3.org/2004/02/skos/core#definition> "Defined geographic location where events occur and structures exist" .
@@ -4608,8 +4596,6 @@ _:genid646 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid647 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid647 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/name> .
 _:genid647 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Production> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/RitualEvent> .
-<https://w3id.org/heritagegraph/Production> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TransferOfCustody> .
 <https://w3id.org/heritagegraph/Production> <http://www.w3.org/2000/01/rdf-schema#label> "Production" .
 <https://w3id.org/heritagegraph/Production> <http://www.w3.org/2004/02/skos/core#definition> "Event of creating an architectural structure, murti, or paubha" .
 <https://w3id.org/heritagegraph/Production> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4649,8 +4635,6 @@ _:genid653 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # https://w3id.org/heritagegraph/RestHouse
 <https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://w3id.org/heritagegraph/ArchitecturalStructure> .
-<https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/Temple> .
-<https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/WaterStructure> .
 <https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2000/01/rdf-schema#label> "RestHouse" .
 <https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2004/02/skos/core#definition> "Community structures for travelers and pilgrims, maintained by Guthi organizations" .
 <https://w3id.org/heritagegraph/RestHouse> <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4895,7 +4879,6 @@ _:genid712 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid713 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid713 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/route_description> .
 _:genid713 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/RitualEvent> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/TransferOfCustody> .
 <https://w3id.org/heritagegraph/RitualEvent> <http://www.w3.org/2000/01/rdf-schema#label> "RitualEvent" .
 <https://w3id.org/heritagegraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300054754> .
 <https://w3id.org/heritagegraph/RitualEvent> <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Event> .
@@ -5252,7 +5235,6 @@ _:genid788 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 _:genid789 <http://www.w3.org/2002/07/owl#maxCardinality> "1"^^<http://www.w3.org/2001/XMLSchema#nonNegativeInteger> .
 _:genid789 <http://www.w3.org/2002/07/owl#onProperty> <https://w3id.org/heritagegraph/has_architectural_style> .
 _:genid789 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Restriction> .
-<https://w3id.org/heritagegraph/Temple> <http://www.w3.org/2002/07/owl#disjointWith> <https://w3id.org/heritagegraph/WaterStructure> .
 <https://w3id.org/heritagegraph/Temple> <http://www.w3.org/2000/01/rdf-schema#label> "Temple" .
 <https://w3id.org/heritagegraph/Temple> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/ReligiousBuilding> .
 <https://w3id.org/heritagegraph/Temple> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/Temple> .

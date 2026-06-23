@@ -3505,25 +3505,27 @@
   "@id" : "_:genid457",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/AssertableEntity"
+    "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_entity"
+    "@id" : "https://w3id.org/heritagegraph/was_documented_by"
   } ]
 }, {
   "@id" : "_:genid458",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/RitualEvent"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_event"
+    "@id" : "https://w3id.org/heritagegraph/created_by_documentation"
   } ]
 }, {
   "@id" : "_:genid459",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
-    "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/was_documented_by"
@@ -3540,9 +3542,9 @@
 }, {
   "@id" : "_:genid460",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/created_by_documentation"
@@ -3550,9 +3552,8 @@
 }, {
   "@id" : "_:genid461",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/is_about_entity"
@@ -3560,55 +3561,14 @@
 }, {
   "@id" : "_:genid462",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+  "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
+    "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/is_about_event"
   } ]
 }, {
   "@id" : "_:genid463",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/was_documented_by"
-  } ]
-}, {
-  "@id" : "_:genid464",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/created_by_documentation"
-  } ]
-}, {
-  "@id" : "_:genid465",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_entity"
-  } ]
-}, {
-  "@id" : "_:genid466",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/is_about_event"
-  } ]
-}, {
-  "@id" : "_:genid467",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -3617,7 +3577,7 @@
     "@id" : "https://w3id.org/heritagegraph/name"
   } ]
 }, {
-  "@id" : "_:genid468",
+  "@id" : "_:genid464",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#allValuesFrom" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -3626,7 +3586,27 @@
     "@id" : "https://w3id.org/heritagegraph/source_language"
   } ]
 }, {
-  "@id" : "_:genid469",
+  "@id" : "_:genid465",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/is_about_entity"
+  } ]
+}, {
+  "@id" : "_:genid466",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/is_about_event"
+  } ]
+}, {
+  "@id" : "_:genid467",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -3634,6 +3614,26 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://w3id.org/heritagegraph/name"
+  } ]
+}, {
+  "@id" : "_:genid468",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/source_language"
+  } ]
+}, {
+  "@id" : "_:genid469",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://w3id.org/heritagegraph/is_about_entity"
   } ]
 }, {
   "@id" : "_:genid47",
@@ -3647,12 +3647,12 @@
 }, {
   "@id" : "_:genid470",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://w3id.org/heritagegraph/source_language"
+    "@id" : "https://w3id.org/heritagegraph/is_about_event"
   } ]
 }, {
   "@id" : "_:genid471",
@@ -7233,6 +7233,9 @@
   "@id" : "http://purl.org/dc/terms/creator",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
+  "@id" : "http://purl.org/dc/terms/identifier",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
   "@id" : "http://purl.org/dc/terms/license",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
@@ -7247,6 +7250,21 @@
 }, {
   "@id" : "http://purl.org/pav/version",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
+  "@id" : "http://purl.org/spar/datacite/creator",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
+}, {
+  "@id" : "http://purl.org/spar/datacite/identifier",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
+  "@id" : "http://purl.org/spar/datacite/identifierType",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
+  "@id" : "http://purl.org/spar/datacite/publisher",
+  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
+}, {
+  "@id" : "http://purl.org/spar/datacite/resourceType",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
 }, {
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
@@ -7380,6 +7398,9 @@
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P35_has_identified",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
+  "@id" : "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
@@ -7404,11 +7425,20 @@
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
+  "@id" : "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P74_has_current_or_former_residence",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
+}, {
+  "@id" : "http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
+  "@id" : "http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
 }, {
   "@id" : "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
@@ -7427,6 +7457,9 @@
 }, {
   "@id" : "http://www.cidoc-crm.org/crmsci/S4_Observation",
   "@type" : [ "http://www.w3.org/2002/07/owl#Class" ]
+}, {
+  "@id" : "http://www.opengis.net/ont/geosparql#asWKT",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
 }, {
   "@id" : "http://www.opengis.net/ont/geosparql#wktLiteral",
   "@type" : [ "http://www.w3.org/2000/01/rdf-schema#Datatype" ],
@@ -7473,8 +7506,14 @@
   "@id" : "http://www.w3.org/ns/prov#generated",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
 }, {
+  "@id" : "http://www.w3.org/ns/prov#generatedAtTime",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
+}, {
   "@id" : "http://www.w3.org/ns/prov#invalidated",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
+}, {
+  "@id" : "http://www.w3.org/ns/prov#value",
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ]
 }, {
   "@id" : "http://www.w3.org/ns/prov#wasAssociatedWith",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ]
@@ -7538,9 +7577,6 @@
   }, {
     "@id" : "_:genid11"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/HumanMadeObject"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.europeana.eu/schemas/edm/Agent"
   } ],
@@ -7596,15 +7632,6 @@
     "@id" : "_:genid19"
   }, {
     "@id" : "_:genid20"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Deity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/IconographicObject"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Person"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)"
@@ -7692,9 +7719,6 @@
   }, {
     "@id" : "_:genid54"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/IconographicObject"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300004792"
   } ],
@@ -7746,11 +7770,6 @@
     "@id" : "https://w3id.org/heritagegraph/DataSource"
   }, {
     "@id" : "https://www.ica.org/standards/RiC/ontology#Record"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/FieldSurveyDataset"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/OralHistoryRecording"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E31_Document"
@@ -7828,13 +7847,6 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/RestHouse"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Temple"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/WaterStructure"
-  } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://www.wikidata.org/entity/Q177980"
   } ],
@@ -7884,13 +7896,6 @@
   }, {
     "@id" : "_:genid87"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Deity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E29_Designated_Reference_System"
   } ],
@@ -7924,15 +7929,6 @@
     "@id" : "_:genid95"
   }, {
     "@id" : "_:genid96"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Deity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Guthi"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E74_Group"
@@ -7972,9 +7968,6 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/BuddhistMonument"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Stupa"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Buddhist votive shrine or prayer hall"
   } ],
@@ -8012,9 +8005,6 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/Festival"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/MaskedDance"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)"
@@ -8162,17 +8152,6 @@
   }, {
     "@id" : "_:genid110"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Consecration"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Enshrinement"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Production"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/RitualEvent"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TransferOfCustody"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Event of evaluating the physical state of a heritage object or structure"
   } ],
@@ -8278,13 +8257,6 @@
     "@id" : "_:genid140"
   }, {
     "@id" : "_:genid141"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Festival"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Production"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TransferOfCustody"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"
@@ -8563,13 +8535,6 @@
   }, {
     "@id" : "_:genid249"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/HeritageActivity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object"
   }, {
@@ -8684,19 +8649,6 @@
   }, {
     "@id" : "_:genid269"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Guthi"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/HeritageActivity"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/HumanMadeObject"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
-  } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://dbpedia.org/ontology/Deity"
   }, {
@@ -8775,11 +8727,6 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/RestHouse"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Pati"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Sattal"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Pilgrim lodge operated by a Guthi organization"
   } ],
@@ -8794,9 +8741,6 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/WaterStructure"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Pokhari"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply"
@@ -8858,11 +8802,6 @@
     "@id" : "_:genid299"
   }, {
     "@id" : "_:genid300"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Production"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.w3.org/ns/prov#Activity"
@@ -8932,13 +8871,6 @@
     "@id" : "_:genid313"
   }, {
     "@id" : "_:genid314"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Festival"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Production"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TransferOfCustody"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Event of installing a deity's murti or symbol within a temple sanctum"
@@ -9112,11 +9044,6 @@
   }, {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/OralHistoryInterview"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Verification"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "The activity of measuring, photographing, or assessing a site in person."
   } ],
@@ -9133,9 +9060,6 @@
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E31_Document"
   }, {
     "@id" : "https://w3id.org/heritagegraph/DataSource"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/OralHistoryRecording"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "The structured data or report resulting from a field survey."
@@ -9220,11 +9144,6 @@
   }, {
     "@id" : "_:genid345"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E74_Group"
   } ],
@@ -9274,13 +9193,6 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E7_Activity"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/HeritageAssertion"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/HumanMadeObject"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Abstract superclass for intentional heritage-related activities, aligned with CIDOC CRM E7 Activity."
@@ -9537,13 +9449,6 @@
     "@id" : "_:genid436"
   }, {
     "@id" : "_:genid437"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Person"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.europeana.eu/schemas/edm/PhysicalThing"
@@ -9849,9 +9754,6 @@
   }, {
     "@id" : "_:genid498"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/LivingGoddessSelection"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E7_Activity"
   } ],
@@ -10068,9 +9970,6 @@
   }, {
     "@id" : "_:genid556"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Technique"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Physical substance used in construction or crafting"
   } ],
@@ -10146,9 +10045,6 @@
     "@id" : "_:genid579"
   }, {
     "@id" : "_:genid580"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Paubha"
   } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://www.wikidata.org/entity/Q2594295"
@@ -10253,9 +10149,6 @@
   }, {
     "@id" : "https://w3id.org/heritagegraph/DocumentationActivity"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Verification"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "The interaction event between a researcher and a knowledge holder (oral history fieldwork)."
   } ],
@@ -10336,9 +10229,6 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/RestHouse"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Sattal"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Open-air pavilion for resting travelers"
@@ -10434,11 +10324,6 @@
   }, {
     "@id" : "_:genid610"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Place"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
-  } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.europeana.eu/schemas/edm/Agent"
   }, {
@@ -10498,9 +10383,6 @@
     "@id" : "_:genid624"
   }, {
     "@id" : "_:genid625"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/TimeSpan"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://www.europeana.eu/schemas/edm/Place"
@@ -10639,11 +10521,6 @@
   }, {
     "@id" : "_:genid647"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/RitualEvent"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/TransferOfCustody"
-  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Event of creating an architectural structure, murti, or paubha"
   } ],
@@ -10768,11 +10645,6 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://w3id.org/heritagegraph/ArchitecturalStructure"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/Temple"
-  }, {
-    "@id" : "https://w3id.org/heritagegraph/WaterStructure"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Community structures for travelers and pilgrims, maintained by Guthi organizations"
@@ -10964,9 +10836,6 @@
     "@id" : "_:genid712"
   }, {
     "@id" : "_:genid713"
-  } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/TransferOfCustody"
   } ],
   "http://www.w3.org/2004/02/skos/core#broadMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300054754"
@@ -11448,9 +11317,6 @@
   }, {
     "@id" : "_:genid789"
   } ],
-  "http://www.w3.org/2002/07/owl#disjointWith" : [ {
-    "@id" : "https://w3id.org/heritagegraph/WaterStructure"
-  } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://dbpedia.org/ontology/ReligiousBuilding"
   }, {
@@ -11838,6 +11704,9 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.w3.org/ns/prov#value"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "The factual claim being asserted"
@@ -12289,6 +12158,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/spar/datacite/creator"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Person or organization primarily responsible for creating the source"
   } ],
@@ -12303,6 +12175,9 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/spar/datacite/identifier"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Persistent identifier for the source (DOI, archive ID, catalog number)"
@@ -12319,6 +12194,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/spar/datacite/identifierType"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)"
   } ],
@@ -12334,6 +12212,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://w3id.org/heritagegraph/Actor"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/spar/datacite/publisher"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Entity responsible for making the source available"
   } ],
@@ -12348,6 +12229,9 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/spar/datacite/resourceType"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)"
@@ -12382,6 +12266,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#date"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Earliest possible date (for uncertain dates)"
   } ],
@@ -12396,6 +12283,9 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#date"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Latest possible date (for uncertain dates)"
@@ -12745,6 +12635,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#dateTime"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.w3.org/ns/prov#generatedAtTime"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "When this assertion was recorded (ISO 8601)"
   } ],
@@ -13062,6 +12955,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#anyURI"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://purl.org/dc/terms/identifier"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Globally unique URI identifier"
   } ],
@@ -13172,7 +13068,7 @@
   } ]
 }, {
   "@id" : "https://w3id.org/heritagegraph/is_about_entity",
-  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@value" : "is_about_entity"
   } ],
@@ -13180,14 +13076,14 @@
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/P129_is_about"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
-    "@value" : "Entity that this information object describes"
+    "@value" : "Entity that this information object describes. Range intentionally left open: the LUX alignment module asserts owl:equivalentProperty with the generic crm:P129_is_about, so a narrow rdfs:range would over-constrain P129 and make sibling is_about_* sub-properties unsatisfiable under merged reasoning."
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "https://w3id.org/heritagegraph/ontology"
   } ]
 }, {
   "@id" : "https://w3id.org/heritagegraph/is_about_event",
-  "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@value" : "is_about_event"
   } ],
@@ -13195,7 +13091,7 @@
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/P129_is_about"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
-    "@value" : "Event that this information object describes"
+    "@value" : "Event that this information object describes. Range intentionally left open (see is_about_entity): owl:equivalentProperty crm:P129_is_about in the LUX module precludes a narrow rdfs:range here."
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "https://w3id.org/heritagegraph/ontology"
@@ -13506,6 +13402,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Free-text note (description, reason, verification notes)"
   } ],
@@ -13525,7 +13424,7 @@
     "@id" : "https://w3id.org/heritagegraph/occurs_after"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
-    "@value" : "LUX-alignment alias of occurs_after; the LUX bridge module grounds it in crm:P183i_starts_after_the_end_of."
+    "@value" : "LUX-alignment alias of occurs_after (the LUX bridge module grounds occurred_after in crm:P183i_starts_after_the_end_of). Declared in the core so that bridge reference resolves; sub-property of occurs_after."
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "https://w3id.org/heritagegraph/ontology"
@@ -13570,7 +13469,7 @@
   "@id" : "https://w3id.org/heritagegraph/ontology",
   "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
   "http://purl.org/dc/terms/creator" : [ {
-    "@value" : "Cair Nepal"
+    "@value" : "CAIR-Nepal"
   } ],
   "http://purl.org/dc/terms/license" : [ {
     "@id" : "https://creativecommons.org/licenses/by/4.0/"
@@ -13579,7 +13478,7 @@
     "@value" : "2026-06-21"
   } ],
   "http://purl.org/dc/terms/publisher" : [ {
-    "@value" : "Cair Nepal"
+    "@value" : "CAIR-Nepal"
   } ],
   "http://purl.org/dc/terms/title" : [ {
     "@value" : "HeritageGraph Ontology"
@@ -13727,6 +13626,9 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.opengis.net/ont/geosparql#wktLiteral"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.opengis.net/ont/geosparql#asWKT"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Coordinates as WKT literal"
@@ -14190,6 +14092,9 @@
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
+  "http://www.w3.org/2000/01/rdf-schema#subPropertyOf" : [ {
+    "@id" : "http://www.cidoc-crm.org/cidoc-crm/P72_has_language"
+  } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@value" : "Language of the source material"
   } ],
@@ -14479,7 +14384,7 @@
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
-    "@value" : "Equipment used in documentation"
+    "@value" : "Equipment used in documentation (free-text). Not mapped to crm:P16_used_specific_object, which is an object property requiring an crm:E70 thing resource."
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "https://w3id.org/heritagegraph/ontology"
@@ -14512,7 +14417,7 @@
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
-    "@value" : "Documentation method used"
+    "@value" : "Documentation method used (free-text). Not mapped to crm:P33_used_specific_technique, which is an object property requiring an crm:E29 technique resource."
   } ],
   "http://www.w3.org/2004/02/skos/core#inScheme" : [ {
     "@id" : "https://w3id.org/heritagegraph/ontology"

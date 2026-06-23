@@ -104,6 +104,21 @@ else
   rm -rf "$OUT"/* && cp -R "$GEN"/. "$OUT"/
 fi
 
+# Overwrite the bundled WebVOWL MIT license with the ontology's CC BY 4.0 license.
+# WIDOCO copies webvowl_1.1.7_patched (which ships the MIT text) on every run;
+# this step runs after rsync so the correct license always ends up in the published site.
+cat > "$OUT/webvowl/license.txt" <<'LICENSE'
+# License
+
+This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+Copyright (c) 2026 CAIR-Nepal
+
+To view a copy of this license, visit:
+
+https://creativecommons.org/licenses/by/4.0/
+LICENSE
+
 # Linked-Art-style JSON-LD term context for compact HeritageGraph JSON-LD.
 echo "   generating JSON-LD @context → $OUT/context.jsonld"
 "$PY" "$ROOT/scripts/gen_jsonld_context.py" "$OUT/context.jsonld"

@@ -4,14 +4,14 @@
 
 An event-centric OWL ontology for representing (Nepalese) cultural heritage, including tangible and intangible heritage assets, sacred places, rituals, festivals, institutions, communities, and the relationships that connect them.
 
-This work is part of [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/) project.
+This work is part of the [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/) project at CAIR-Nepal.
 
 ---
 
 ## Overview
 
-HeritageGraph ontology provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data.
- 
+HeritageGraph provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data. It is generated from a [LinkML](https://linkml.io/) source of truth, is logically consistent (DL expressivity *ALCIQ(D)*), and is aligned with CIDOC-CRM 7.2.1, CRMinf, PROV-O, and the Europeana Data Model (EDM).
+
 The ontology supports the representation of:
 
 * Cultural heritage sites and monuments
@@ -24,20 +24,63 @@ The ontology supports the representation of:
 * Historical and cultural relationships
 * Provenance and documentation metadata
 
+---
 
 ## Repository Structure
 
 ```text
 .
-├── docs/              # Documentation resources
-├── evaluation/        # Ontology evaluation artifacts
-├── provenance/        # Provenance metadata
-├── resources/         # Supporting resources
-├── webvowl/           # WebVOWL visualization
-├── HeritageGraph.owl  # OWL ontology
-├── HeritageGraph.ttl  # Turtle serialization
-└── README.md
+├── ontology/                        # Source ontology files
+│   ├── HeritageGraph.yaml           #   LinkML source of truth
+│   ├── HeritageGraph.ttl            #   OWL/Turtle release (core)
+│   ├── HeritageGraph.shacl.ttl      #   SHACL validation shapes
+│   ├── HeritageGraph-alignment.ttl  #   CIDOC-CRM / PROV-O / Wikidata alignment
+│   ├── HeritageGraph-edm.ttl        #   Europeana EDM projection
+│   ├── heritagegraph-metadata.ttl   #   VoID dataset description
+│   └── lux/                         #   LUX / Linked Art bridge module
+│       ├── heritagegraph-lux-alignment.ttl
+│       └── HeritageGraph-lux.shacl.ttl
+├── docs/                            # Generated documentation site (do not edit)
+│   ├── index.html                   #   WIDOCO HTML documentation
+│   ├── ontology.{owl,ttl,nt,jsonld} #   RDF serializations
+│   ├── context.jsonld               #   JSON-LD @context
+│   ├── sections/                    #   Generated HTML sections
+│   ├── webvowl/                     #   Interactive visualization
+│   └── provenance/                  #   Provenance metadata
+├── docs-src/sections/               # Authored HTML sections (survive WIDOCO rebuilds)
+│   ├── abstract-en.html
+│   ├── introduction-en.html
+│   ├── description-en.html
+│   └── references-en.html
+├── evaluation/                      # Evaluation scripts and results
+│   ├── run_alignment.py
+│   ├── run_consistency.py
+│   ├── run_cq_validation.py
+│   ├── run_metrics.py
+│   ├── run_oops.py
+│   ├── results/                     #   Generated evaluation reports
+│   └── lux/                         #   LUX coverage evaluation
+├── examples/                        # Sample instance data
+│   ├── kathmandu-mini-abox.ttl
+│   ├── kathmandu-conformant.ttl
+│   ├── lux-murti-merged.ttl
+│   └── queries/abox-cq-samples.rq
+├── scripts/                         # Build and tooling scripts
+│   ├── build.sh                     #   Generate docs + WebVOWL (= make docs)
+│   ├── regenerate_ontology_artifacts.py
+│   └── run_release_quality.py
+├── release/                         # Release quality reports
+│   └── evaluation/
+├── registry/
+│   └── lov-metadata.ttl             # LOV registry submission metadata
+├── w3id/
+│   └── heritagegraph/.htaccess      # w3id.org redirect rules
+├── CHANGELOG.md
+├── CITATION.cff
+└── LICENSE.md
 ```
+
+---
 
 ## Documentation
 
@@ -47,29 +90,52 @@ Complete ontology documentation is available at:
 
 The documentation includes:
 
-* Class hierarchy
-* Object properties
-* Data properties
-* Ontology metadata
-* Provenance information
-* WebVOWL visualization
-* Downloadable ontology serializations
+* Class hierarchy and object/datatype properties
+* Ontology metadata and provenance
+* WebVOWL interactive visualization
+* Downloadable RDF serializations (OWL, Turtle, N-Triples, JSON-LD)
 
+---
 
-## Downloads
+## Rebuilding the Documentation
 
-The ontology is available in multiple RDF serializations:
+After any change to the core ontology, regenerate the docs:
 
-* OWL
-* Turtle (TTL)
-* RDF/XML
-* N-Triples
-* JSON-LD 
+```bash
+make docs        # runs scripts/build.sh → writes ./docs
+make preview     # build into /tmp without touching docs/
+make webvowl     # build, then serve http://localhost:8000/webvowl/
+```
+
+Requires Docker (WIDOCO runs inside the container — no local Java needed).
+
+---
+
+## Regenerate All Artifacts
+
+```bash
+pip install -r requirements.txt linkml owlrl
+python3 scripts/regenerate_ontology_artifacts.py
+python3 scripts/run_release_quality.py
+```
+
+---
+
+## Evaluation
+
+```bash
+cd evaluation && pip install -r requirements.txt
+make -C evaluation all   # or run individual run_*.py scripts
+```
+
+Results are written to `evaluation/results/`. A summary is in `release/QUALITY_REPORT.md`.
+
+---
 
 ## Example
 
 ```turtle
-@prefix hg: <https://cairnepal.github.io/heritagegraphontology#> .
+@prefix hg: <https://w3id.org/heritagegraph/> .
 
 :IndraJatra
     a hg:Festival ;
@@ -78,6 +144,7 @@ The ontology is available in multiple RDF serializations:
     hg:hasCulturalSignificance "Major annual festival of Kathmandu Valley" .
 ```
 
+---
 
 ## Citation
 
@@ -88,13 +155,19 @@ Niraj Karki, Nabin Oli, Anu Sapkota, Semih Yumusak and Tek Raj Chhetri. (2026).
 HeritageGraph Ontology (Version 1.0.0).
 https://cairnepal.github.io/heritagegraphontology/
 ```
- 
+
+A `CITATION.cff` file is included for automated citation tools (Zenodo, GitHub, etc.).
+
+---
+
 ## Contributing
 
 Contributions, bug reports, and enhancement proposals are welcome.
 
 Please open an issue or submit a pull request through GitHub.
- 
+
+---
+
 ## License
 
 © 2026 CAIR-Nepal
