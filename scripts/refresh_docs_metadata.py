@@ -88,15 +88,6 @@ def patch_index_html(meta: dict[str, str]) -> None:
     print(f"Patched {path}")
 
 
-def write_section(path: Path, heading: str, body: str) -> None:
-    html = (
-        f'<h2>{heading}</h2><span class="markdown">\n'
-        f"{body}</span>\n"
-    )
-    path.write_text(html, encoding="utf-8")
-    print(f"Wrote {path}")
-
-
 def patch_webvowl_header(meta: dict[str, str]) -> None:
     for rel in ("docs/webvowl/data/ontology.json", "webvowl/data/ontology.json"):
         path = ROOT / rel
@@ -121,25 +112,6 @@ def main() -> int:
         return 1
     meta = load_meta()
     patch_index_html(meta)
-    write_section(
-        DOCS / "sections" / "abstract-en.html",
-        "Abstract",
-        meta["description"],
-    )
-    intro = (
-        f"<em>{meta['label']}</em> ({meta['iri']}) is an event-centric ontology for Nepalese living heritage, "
-        "aligned with CIDOC-CRM, CRMinf, PROV-O, GeoSPARQL, OWL-Time, and Europeana EDM. "
-        "It models temples, rituals, Guthi institutions, syncretic deity relations, and assertion-level provenance "
-        "for multi-vocal heritage knowledge graphs. "
-        f"Release version {meta['version']}. Source and evaluation artefacts: {meta['repo']}."
-    )
-    intro_path = DOCS / "sections" / "introduction-en.html"
-    intro_path.write_text(
-        '<h2 id="intro" class="list">Introduction <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>\n'
-        f'<span class="markdown">\n{intro}</span>\n',
-        encoding="utf-8",
-    )
-    print(f"Wrote {intro_path}")
     patch_webvowl_header(meta)
     return 0
 

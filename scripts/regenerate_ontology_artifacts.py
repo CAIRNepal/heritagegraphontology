@@ -405,8 +405,8 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
         for o in list(g.objects(ONTOLOGY_IRI, pred)):
             g.remove((ONTOLOGY_IRI, pred, o))
     g.add((ONTOLOGY_IRI, DCTERMS.title, Literal("HeritageGraph Ontology")))
-    g.add((ONTOLOGY_IRI, DCTERMS.creator, Literal("Cair Nepal")))
-    g.add((ONTOLOGY_IRI, DCTERMS.publisher, Literal("Cair Nepal")))
+    g.add((ONTOLOGY_IRI, DCTERMS.creator, Literal("CAIR-Nepal")))
+    g.add((ONTOLOGY_IRI, DCTERMS.publisher, Literal("CAIR-Nepal")))
     g.add((ONTOLOGY_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
     g.add((ONTOLOGY_IRI, DCTERMS.modified, Literal(date.today().isoformat())))
 
@@ -507,7 +507,7 @@ def write_metadata_ttl(g_main: Graph) -> None:
     mg.bind("heritageGraph", HG)
     mg.add((DATASET_IRI, RDF.type, VOID.Dataset))
     mg.add((DATASET_IRI, DCTERMS.title, Literal("HeritageGraph Ontology Dataset")))
-    mg.add((DATASET_IRI, DCTERMS.creator, Literal("Cair Nepal")))
+    mg.add((DATASET_IRI, DCTERMS.creator, Literal("CAIR-Nepal")))
     mg.add((DATASET_IRI, VOID.vocabulary, ONTOLOGY_IRI))
     mg.add((DATASET_IRI, VOID.vocabulary, ALIGNMENT_IRI))
     mg.add((DATASET_IRI, VOID.vocabulary, EDM_IRI))
