@@ -10,7 +10,7 @@
                                            owl:versionIRI <https://w3id.org/heritagegraph/ontology/1.0.0> ;
                                            <http://purl.org/dc/terms/creator> "CAIR-Nepal" ;
                                            <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
-                                           <http://purl.org/dc/terms/modified> "2026-06-21" ;
+                                           <http://purl.org/dc/terms/modified> "2026-06-23" ;
                                            <http://purl.org/dc/terms/publisher> "CAIR-Nepal" ;
                                            <http://purl.org/dc/terms/title> "HeritageGraph Ontology" ;
                                            <http://purl.org/pav/version> "1.0.0" ;
@@ -252,10 +252,6 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.w3.org/ns/prov#generated> rdf:type owl:ObjectProperty .
 
 
-###  http://www.w3.org/ns/prov#invalidated
-<http://www.w3.org/ns/prov#invalidated> rdf:type owl:ObjectProperty .
-
-
 ###  http://www.w3.org/ns/prov#wasAssociatedWith
 <http://www.w3.org/ns/prov#wasAssociatedWith> rdf:type owl:ObjectProperty .
 
@@ -274,6 +270,10 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  http://www.w3.org/ns/prov#wasInfluencedBy
 <http://www.w3.org/ns/prov#wasInfluencedBy> rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasRevisionOf
+<http://www.w3.org/ns/prov#wasRevisionOf> rdf:type owl:ObjectProperty .
 
 
 ###  https://w3id.org/heritagegraph/architectural_elements
@@ -1184,10 +1184,10 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/supersedes_assertion
 <https://w3id.org/heritagegraph/supersedes_assertion> rdf:type owl:ObjectProperty ;
-                                                      rdfs:subPropertyOf <http://www.w3.org/ns/prov#invalidated> ;
+                                                      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasRevisionOf> ;
                                                       rdfs:range <https://w3id.org/heritagegraph/HeritageAssertion> ;
                                                       rdfs:label "supersedes_assertion" ;
-                                                      <http://www.w3.org/2004/02/skos/core#definition> "Previous version of this assertion (if this is an update). Creates version chain: A1 → A2 → A3. Query pattern: latest assertion = one with no incoming prov:invalidated" ;
+                                                      <http://www.w3.org/2004/02/skos/core#definition> "Previous version of this assertion (if this is an update). Creates version chain: A1 → A2 → A3. Query pattern: latest assertion = one with no incoming prov:wasRevisionOf" ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1441,6 +1441,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/curator
 <https://w3id.org/heritagegraph/curator> rdf:type owl:DatatypeProperty ;
                                          rdfs:label "curator" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "Person or institution responsible for curating the dataset." ;
                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1491,12 +1492,14 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/dataset_name
 <https://w3id.org/heritagegraph/dataset_name> rdf:type owl:DatatypeProperty ;
                                               rdfs:label "dataset_name" ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "Human-readable name of the heritage dataset." ;
                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
 ###  https://w3id.org/heritagegraph/dataset_version
 <https://w3id.org/heritagegraph/dataset_version> rdf:type owl:DatatypeProperty ;
                                                  rdfs:label "dataset_version" ;
+                                                 <http://www.w3.org/2004/02/skos/core#definition> "Version identifier of the dataset instance (e.g. semantic version or release date)." ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1546,6 +1549,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/generated_date
 <https://w3id.org/heritagegraph/generated_date> rdf:type owl:DatatypeProperty ;
                                                 rdfs:label "generated_date" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Date the dataset was generated or last exported (ISO 8601)." ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1602,6 +1606,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/license
 <https://w3id.org/heritagegraph/license> rdf:type owl:DatatypeProperty ;
                                          rdfs:label "license" ;
+                                         <http://www.w3.org/2004/02/skos/core#definition> "License under which the dataset is published (e.g. CC BY 4.0)." ;
                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1692,6 +1697,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/schema_version
 <https://w3id.org/heritagegraph/schema_version> rdf:type owl:DatatypeProperty ;
                                                 rdfs:label "schema_version" ;
+                                                <http://www.w3.org/2004/02/skos/core#definition> "Version of the HeritageGraph schema the dataset conforms to." ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
 
 
@@ -1797,6 +1803,10 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment> rdf:type owl:Class .
 
 
+###  http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity
+<http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity> rdf:type owl:Class .
+
+
 ###  http://www.cidoc-crm.org/cidoc-crm/E21_Person
 <http://www.cidoc-crm.org/cidoc-crm/E21_Person> rdf:type owl:Class .
 
@@ -1865,16 +1875,12 @@ xsd:date rdf:type rdfs:Datatype .
 <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/crminf/E1_Entity
-<http://www.cidoc-crm.org/crminf/E1_Entity> rdf:type owl:Class .
+###  http://www.cidoc-crm.org/extensions/crminf/I2_Belief
+<http://www.cidoc-crm.org/extensions/crminf/I2_Belief> rdf:type owl:Class .
 
 
-###  http://www.cidoc-crm.org/crminf/I2_Belief
-<http://www.cidoc-crm.org/crminf/I2_Belief> rdf:type owl:Class .
-
-
-###  http://www.cidoc-crm.org/crmsci/S4_Observation
-<http://www.cidoc-crm.org/crmsci/S4_Observation> rdf:type owl:Class .
+###  http://www.cidoc-crm.org/extensions/crmsci/S4_Observation
+<http://www.cidoc-crm.org/extensions/crmsci/S4_Observation> rdf:type owl:Class .
 
 
 ###  http://www.w3.org/2004/02/skos/core#Concept
@@ -1932,6 +1938,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                          owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                        ] ;
+                                       owl:disjointWith <https://w3id.org/heritagegraph/HumanMadeObject> ;
                                        rdfs:label "Actor" ;
                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "General actor (person or group) responsible for events" ;
@@ -1977,6 +1984,10 @@ xsd:date rdf:type rdfs:Datatype .
                                                                         owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                       ] ;
+                                                      owl:disjointWith <https://w3id.org/heritagegraph/ArchitecturalStructure> ,
+                                                                       <https://w3id.org/heritagegraph/Deity> ,
+                                                                       <https://w3id.org/heritagegraph/IconographicObject> ,
+                                                                       <https://w3id.org/heritagegraph/Person> ;
                                                       rdfs:label "ArchitecturalElement" ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)" ;
                                                       <http://www.w3.org/2004/02/skos/core#exactMatch> <http://vocab.getty.edu/aat/300000885> ;
@@ -2122,6 +2133,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                           owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                         ] ;
+                                                        owl:disjointWith <https://w3id.org/heritagegraph/IconographicObject> ;
                                                         rdfs:label "ArchitecturalStructure" ;
                                                         <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300004792> ;
                                                         <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/CivicStructure> ;
@@ -2154,6 +2166,8 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/ArchivalRecord> rdf:type owl:Class ;
                                                 rdfs:subClassOf <https://w3id.org/heritagegraph/DataSource> ,
                                                                 <https://www.ica.org/standards/RiC/ontology#Record> ;
+                                                owl:disjointWith <https://w3id.org/heritagegraph/FieldSurveyDataset> ,
+                                                                 <https://w3id.org/heritagegraph/OralHistoryRecording> ;
                                                 rdfs:label "ArchivalRecord" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Government or institutional administrative record" ;
@@ -2177,7 +2191,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                                       <https://w3id.org/heritagegraph/TimeSpan>
                                                                                     )
                                                                       ] ;
-                                                  rdfs:subClassOf <http://www.cidoc-crm.org/crminf/E1_Entity> ;
+                                                  rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity> ;
                                                   rdfs:label "AssertableEntity" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Any entity that can be the subject of a heritage assertion" ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2186,6 +2200,9 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/BuddhistMonument
 <https://w3id.org/heritagegraph/BuddhistMonument> rdf:type owl:Class ;
                                                   rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
+                                                  owl:disjointWith <https://w3id.org/heritagegraph/RestHouse> ,
+                                                                   <https://w3id.org/heritagegraph/Temple> ,
+                                                                   <https://w3id.org/heritagegraph/WaterStructure> ;
                                                   rdfs:label "BuddhistMonument" ;
                                                   <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q177980> ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns" ;
@@ -2252,6 +2269,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                                   owl:onProperty <https://w3id.org/heritagegraph/year_offset_from_gregorian> ;
                                                                   owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                 ] ;
+                                                owl:disjointWith <https://w3id.org/heritagegraph/Deity> ,
+                                                                 <https://w3id.org/heritagegraph/Person> ,
+                                                                 <https://w3id.org/heritagegraph/Place> ;
                                                 rdfs:label "CalendarSystem" ;
                                                 <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E29_Designated_Reference_System> ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning" ;
@@ -2296,6 +2316,10 @@ xsd:date rdf:type rdfs:Datatype .
                                                               owl:onProperty <https://w3id.org/heritagegraph/traditional_role> ;
                                                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                             ] ;
+                                            owl:disjointWith <https://w3id.org/heritagegraph/Deity> ,
+                                                             <https://w3id.org/heritagegraph/Guthi> ,
+                                                             <https://w3id.org/heritagegraph/Person> ,
+                                                             <https://w3id.org/heritagegraph/Place> ;
                                             rdfs:label "CasteGroup" ;
                                             <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                             <http://www.w3.org/2004/02/skos/core#definition> "Hereditary social group (Jati) with specific ritual roles and occupational duties" ;
@@ -2305,6 +2329,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/Chaitya
 <https://w3id.org/heritagegraph/Chaitya> rdf:type owl:Class ;
                                          rdfs:subClassOf <https://w3id.org/heritagegraph/BuddhistMonument> ;
+                                         owl:disjointWith <https://w3id.org/heritagegraph/Stupa> ;
                                          rdfs:label "Chaitya" ;
                                          <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine or prayer hall" ;
                                          <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2313,6 +2338,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/ChariotFestival
 <https://w3id.org/heritagegraph/ChariotFestival> rdf:type owl:Class ;
                                                  rdfs:subClassOf <https://w3id.org/heritagegraph/Festival> ;
+                                                 owl:disjointWith <https://w3id.org/heritagegraph/MaskedDance> ;
                                                  rdfs:label "ChariotFestival" ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)" ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2377,6 +2403,11 @@ xsd:date rdf:type rdfs:Datatype .
                                                                        owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                      ] ;
+                                                     owl:disjointWith <https://w3id.org/heritagegraph/Consecration> ,
+                                                                      <https://w3id.org/heritagegraph/Enshrinement> ,
+                                                                      <https://w3id.org/heritagegraph/Production> ,
+                                                                      <https://w3id.org/heritagegraph/RitualEvent> ,
+                                                                      <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                                      rdfs:label "ConditionAssessment" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "Event of evaluating the physical state of a heritage object or structure" ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2515,6 +2546,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                                 owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                               ] ;
+                                              owl:disjointWith <https://w3id.org/heritagegraph/Festival> ,
+                                                               <https://w3id.org/heritagegraph/Production> ,
+                                                               <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                               rdfs:label "Consecration" ;
                                               <http://www.w3.org/2004/02/skos/core#definition> "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)" ;
                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -2969,6 +3003,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                               owl:onProperty <https://w3id.org/heritagegraph/traditional_knowledge_notice> ;
                                                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                             ] ;
+                                            owl:disjointWith <https://w3id.org/heritagegraph/DocumentationActivity> ,
+                                                             <https://w3id.org/heritagegraph/HeritageActivity> ,
+                                                             <https://w3id.org/heritagegraph/HeritageAssertion> ;
                                             rdfs:label "DataSource" ;
                                             <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object> ,
                                                                                              <http://www.europeana.eu/schemas/edm/WebResource> ;
@@ -3055,6 +3092,12 @@ xsd:date rdf:type rdfs:Datatype .
                                                          owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                        ] ;
+                                       owl:disjointWith <https://w3id.org/heritagegraph/Guthi> ,
+                                                        <https://w3id.org/heritagegraph/HeritageActivity> ,
+                                                        <https://w3id.org/heritagegraph/HumanMadeObject> ,
+                                                        <https://w3id.org/heritagegraph/Person> ,
+                                                        <https://w3id.org/heritagegraph/Place> ,
+                                                        <https://w3id.org/heritagegraph/TimeSpan> ;
                                        rdfs:label "Deity" ;
                                        <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/Deity> ,
                                                                                         <http://schema.org/Deity> ;
@@ -3111,6 +3154,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/Dharmashala
 <https://w3id.org/heritagegraph/Dharmashala> rdf:type owl:Class ;
                                              rdfs:subClassOf <https://w3id.org/heritagegraph/RestHouse> ;
+                                             owl:disjointWith <https://w3id.org/heritagegraph/Pati> ,
+                                                              <https://w3id.org/heritagegraph/Sattal> ;
                                              rdfs:label "Dharmashala" ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Pilgrim lodge operated by a Guthi organization" ;
                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3119,6 +3164,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/DhungeDhara
 <https://w3id.org/heritagegraph/DhungeDhara> rdf:type owl:Class ;
                                              rdfs:subClassOf <https://w3id.org/heritagegraph/WaterStructure> ;
+                                             owl:disjointWith <https://w3id.org/heritagegraph/Pokhari> ;
                                              rdfs:label "DhungeDhara" ;
                                              <http://www.w3.org/2004/02/skos/core#definition> "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply" ;
                                              <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3216,6 +3262,8 @@ xsd:date rdf:type rdfs:Datatype .
                                                                          owl:onProperty <https://w3id.org/heritagegraph/used_method> ;
                                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                        ] ;
+                                                       owl:disjointWith <https://w3id.org/heritagegraph/HeritageAssertion> ,
+                                                                        <https://w3id.org/heritagegraph/Production> ;
                                                        rdfs:label "DocumentationActivity" ;
                                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.w3.org/ns/prov#Activity> ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "The intellectual or technical process of recording information about a heritage entity, aligned with CIDOC E7 Activity and PROV-O Activity." ;
@@ -3281,6 +3329,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                                 owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                               ] ;
+                                              owl:disjointWith <https://w3id.org/heritagegraph/Festival> ,
+                                                               <https://w3id.org/heritagegraph/Production> ,
+                                                               <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                               rdfs:label "Enshrinement" ;
                                               <http://www.w3.org/2004/02/skos/core#definition> "Event of installing a deity's murti or symbol within a temple sanctum" ;
                                               <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3348,8 +3399,10 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/FieldSurveyActivity
 <https://w3id.org/heritagegraph/FieldSurveyActivity> rdf:type owl:Class ;
-                                                     rdfs:subClassOf <http://www.cidoc-crm.org/crmsci/S4_Observation> ,
+                                                     rdfs:subClassOf <http://www.cidoc-crm.org/extensions/crmsci/S4_Observation> ,
                                                                      <https://w3id.org/heritagegraph/DocumentationActivity> ;
+                                                     owl:disjointWith <https://w3id.org/heritagegraph/OralHistoryInterview> ,
+                                                                      <https://w3id.org/heritagegraph/Verification> ;
                                                      rdfs:label "FieldSurveyActivity" ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "The activity of measuring, photographing, or assessing a site in person." ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3359,6 +3412,7 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/FieldSurveyDataset> rdf:type owl:Class ;
                                                     rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E31_Document> ,
                                                                     <https://w3id.org/heritagegraph/DataSource> ;
+                                                    owl:disjointWith <https://w3id.org/heritagegraph/OralHistoryRecording> ;
                                                     rdfs:label "FieldSurveyDataset" ;
                                                     <http://www.w3.org/2004/02/skos/core#definition> "The structured data or report resulting from a field survey." ;
                                                     <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3426,6 +3480,8 @@ xsd:date rdf:type rdfs:Datatype .
                                                          owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                        ] ;
+                                       owl:disjointWith <https://w3id.org/heritagegraph/Person> ,
+                                                        <https://w3id.org/heritagegraph/Place> ;
                                        rdfs:label "Guthi" ;
                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E74_Group> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership" ;
@@ -3461,6 +3517,9 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/HeritageActivity
 <https://w3id.org/heritagegraph/HeritageActivity> rdf:type owl:Class ;
                                                   rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
+                                                  owl:disjointWith <https://w3id.org/heritagegraph/HeritageAssertion> ,
+                                                                   <https://w3id.org/heritagegraph/HumanMadeObject> ,
+                                                                   <https://w3id.org/heritagegraph/Place> ;
                                                   rdfs:label "HeritageActivity" ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Abstract superclass for intentional heritage-related activities, aligned with CIDOC CRM E7 Activity." ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -3468,7 +3527,7 @@ xsd:date rdf:type rdfs:Datatype .
 
 ###  https://w3id.org/heritagegraph/HeritageAssertion
 <https://w3id.org/heritagegraph/HeritageAssertion> rdf:type owl:Class ;
-                                                   rdfs:subClassOf <http://www.cidoc-crm.org/crminf/I2_Belief> ,
+                                                   rdfs:subClassOf <http://www.cidoc-crm.org/extensions/crminf/I2_Belief> ,
                                                                    [ rdf:type owl:Restriction ;
                                                                      owl:onProperty <https://w3id.org/heritagegraph/asserts_about_entity> ;
                                                                      owl:allValuesFrom <https://w3id.org/heritagegraph/AssertableEntity>
@@ -3804,6 +3863,9 @@ xsd:date rdf:type rdfs:Datatype .
                                                                    owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                  ] ;
+                                                 owl:disjointWith <https://w3id.org/heritagegraph/Person> ,
+                                                                  <https://w3id.org/heritagegraph/Place> ,
+                                                                  <https://w3id.org/heritagegraph/TimeSpan> ;
                                                  rdfs:label "HumanMadeObject" ;
                                                  <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/PhysicalThing> ;
                                                  <http://www.w3.org/2004/02/skos/core#closeMatch> <http://schema.org/CreativeWork> ,
@@ -4071,6 +4133,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                            owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                                          ] ;
+                                                         owl:disjointWith <https://w3id.org/heritagegraph/LivingGoddessSelection> ;
                                                          rdfs:label "LivingGoddessRetirement" ;
                                                          <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ;
                                                          <http://www.w3.org/2004/02/skos/core#definition> "Ritual or administrative event that formally ends a Living Goddess tenure, marking the person's return to secular status. Common triggers include first menstruation, injury causing blood loss, or serious illness. This event terminates the divine embodiment and restores the girl to ordinary status." ;
@@ -4329,6 +4392,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                             owl:onProperty <https://w3id.org/heritagegraph/note> ;
                                                             owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                           ] ;
+                                          owl:disjointWith <https://w3id.org/heritagegraph/Technique> ;
                                           rdfs:label "Material" ;
                                           <http://www.w3.org/2004/02/skos/core#definition> "Physical substance used in construction or crafting" ;
                                           <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4440,6 +4504,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                          owl:onProperty <https://w3id.org/heritagegraph/is_about_deity> ;
                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                        ] ;
+                                       owl:disjointWith <https://w3id.org/heritagegraph/Paubha> ;
                                        rdfs:label "Murti" ;
                                        <http://www.w3.org/2004/02/skos/core#closeMatch> <http://www.wikidata.org/entity/Q2594295> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)" ;
@@ -4451,6 +4516,7 @@ xsd:date rdf:type rdfs:Datatype .
 <https://w3id.org/heritagegraph/OralHistoryInterview> rdf:type owl:Class ;
                                                       rdfs:subClassOf <http://www.cidoc-crm.org/cidoc-crm/E7_Activity> ,
                                                                       <https://w3id.org/heritagegraph/DocumentationActivity> ;
+                                                      owl:disjointWith <https://w3id.org/heritagegraph/Verification> ;
                                                       rdfs:label "OralHistoryInterview" ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "The interaction event between a researcher and a knowledge holder (oral history fieldwork)." ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4480,6 +4546,7 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/Pati
 <https://w3id.org/heritagegraph/Pati> rdf:type owl:Class ;
                                       rdfs:subClassOf <https://w3id.org/heritagegraph/RestHouse> ;
+                                      owl:disjointWith <https://w3id.org/heritagegraph/Sattal> ;
                                       rdfs:label "Pati" ;
                                       <http://www.w3.org/2004/02/skos/core#definition> "Open-air pavilion for resting travelers" ;
                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4608,6 +4675,8 @@ xsd:date rdf:type rdfs:Datatype .
                                                           owl:onProperty <https://w3id.org/heritagegraph/orcid_identifier> ;
                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                         ] ;
+                                        owl:disjointWith <https://w3id.org/heritagegraph/Place> ,
+                                                         <https://w3id.org/heritagegraph/TimeSpan> ;
                                         rdfs:label "Person" ;
                                         <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Agent> ,
                                                                                          <http://xmlns.com/foaf/0.1/Person> ;
@@ -4676,6 +4745,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                          owl:onProperty <https://w3id.org/heritagegraph/place_type> ;
                                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                        ] ;
+                                       owl:disjointWith <https://w3id.org/heritagegraph/TimeSpan> ;
                                        rdfs:label "Place" ;
                                        <http://www.w3.org/2004/02/skos/core#broadMatch> <http://www.europeana.eu/schemas/edm/Place> ;
                                        <http://www.w3.org/2004/02/skos/core#definition> "Defined geographic location where events occur and structures exist" ;
@@ -4781,6 +4851,8 @@ xsd:date rdf:type rdfs:Datatype .
                                                               owl:onProperty <https://w3id.org/heritagegraph/name> ;
                                                               owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                             ] ;
+                                            owl:disjointWith <https://w3id.org/heritagegraph/RitualEvent> ,
+                                                             <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                             rdfs:label "Production" ;
                                             <http://www.w3.org/2004/02/skos/core#definition> "Event of creating an architectural structure, murti, or paubha" ;
                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -4822,6 +4894,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://w3id.org/heritagegraph/RestHouse
 <https://w3id.org/heritagegraph/RestHouse> rdf:type owl:Class ;
                                            rdfs:subClassOf <https://w3id.org/heritagegraph/ArchitecturalStructure> ;
+                                           owl:disjointWith <https://w3id.org/heritagegraph/Temple> ,
+                                                            <https://w3id.org/heritagegraph/WaterStructure> ;
                                            rdfs:label "RestHouse" ;
                                            <http://www.w3.org/2004/02/skos/core#definition> "Community structures for travelers and pilgrims, maintained by Guthi organizations" ;
                                            <http://www.w3.org/2004/02/skos/core#inScheme> <https://w3id.org/heritagegraph/ontology> .
@@ -5063,6 +5137,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                owl:onProperty <https://w3id.org/heritagegraph/route_description> ;
                                                                owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                              ] ;
+                                             owl:disjointWith <https://w3id.org/heritagegraph/TransferOfCustody> ;
                                              rdfs:label "RitualEvent" ;
                                              <http://www.w3.org/2004/02/skos/core#broadMatch> <http://vocab.getty.edu/aat/300054754> ,
                                                                                               <http://www.europeana.eu/schemas/edm/Event> ;
@@ -5367,6 +5442,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                           owl:onProperty <https://w3id.org/heritagegraph/has_architectural_style> ;
                                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                                         ] ;
+                                        owl:disjointWith <https://w3id.org/heritagegraph/WaterStructure> ;
                                         rdfs:label "Temple" ;
                                         <http://www.w3.org/2004/02/skos/core#closeMatch> <http://dbpedia.org/ontology/ReligiousBuilding> ,
                                                                                          <http://dbpedia.org/ontology/Temple> ,

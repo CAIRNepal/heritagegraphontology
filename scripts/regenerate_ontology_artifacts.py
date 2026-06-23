@@ -38,14 +38,14 @@ EDM_IRI = URIRef("https://w3id.org/heritagegraph/edm-profile")
 DATASET_IRI = URIRef("https://w3id.org/heritagegraph/dataset")
 
 CRM = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
-CRMINF = Namespace("http://www.cidoc-crm.org/crminf/")
+CRMINF = Namespace("http://www.cidoc-crm.org/extensions/crminf/")
 EDM = Namespace("http://www.europeana.eu/schemas/edm/")
 FOAF = Namespace("http://xmlns.com/foaf/0.1/")
 LOCALCONTEXTS = Namespace("https://voc.localcontexts.org/")
 
 IMPORTS = [
     URIRef("http://www.cidoc-crm.org/cidoc-crm/"),
-    URIRef("http://www.cidoc-crm.org/crminf/"),
+    URIRef("http://www.cidoc-crm.org/extensions/crminf/"),
     URIRef("http://www.w3.org/ns/prov#"),
     URIRef("http://www.w3.org/2006/time#"),
     URIRef("http://www.opengis.net/ont/geosparql#"),
@@ -197,6 +197,35 @@ def apply_union_axioms(g: Graph, schema: dict) -> int:
         Collection(g, list_head, member_nodes)
         g.add((hg, OWL.unionOf, list_head))
         count += 1
+    return count
+
+
+def apply_disjoint_axioms(g: Graph, schema: dict) -> int:
+    """Emit owl:disjointWith from LinkML `disjoint_with` (the LinkML OWL generator
+    does not emit these). Only emitted between two declared owl:Class nodes; added
+    symmetrically and de-duplicated so each unordered pair appears once."""
+    classes = schema.get("classes", {})
+    seen: set[frozenset[URIRef]] = set()
+    count = 0
+    for name, spec in classes.items():
+        if not isinstance(spec, dict):
+            continue
+        targets = spec.get("disjoint_with")
+        if not targets:
+            continue
+        hg = hg_class_uri(name)
+        if (hg, RDF.type, OWL.Class) not in g:
+            continue
+        for target_name in targets:
+            other = hg_class_uri(target_name)
+            if (other, RDF.type, OWL.Class) not in g:
+                continue
+            pair = frozenset((hg, other))
+            if hg == other or pair in seen:
+                continue
+            seen.add(pair)
+            g.add((hg, OWL.disjointWith, other))
+            count += 1
     return count
 
 
@@ -424,6 +453,7 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
     apply_class_uri_subclass_axioms(g, schema)
     apply_exact_mapping_subclass_axioms(g, schema)
     apply_union_axioms(g, schema)
+    apply_disjoint_axioms(g, schema)
     apply_enum_concept_schemes(g, schema)
     apply_property_alignments(g, schema)
     apply_vocab_mappings_from_yaml(g, schema)
@@ -435,6 +465,14 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
     if (person, RDF.type, OWL.Class) in g:
         g.add((person, RDFS.subClassOf, FOAF.Person))
 
+    missing = verify_declared_axioms(g, schema)
+    if missing:
+        raise SystemExit(
+            "Declared axioms missing from generated OWL (the LinkML OWL generator "
+            "dropped them and no postprocess restored them):\n  - "
+            + "\n  - ".join(missing)
+        )
+
     bind_release_prefixes(g, schema)
     ttl = normalize_serialized_ttl(g.serialize(format="turtle"))
     dest.write_text(ttl, encoding="utf-8")
@@ -442,6 +480,64 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
     for warning in validate_prefix_coverage(g, schema):
         print(f"  ⚠️  {warning}")
     return g
+
+
+def verify_declared_axioms(g: Graph, schema: dict) -> list[str]:
+    """Guard against the LinkML OWL generator silently dropping declared axioms.
+
+    Cross-checks every disjoint_with / union_of / inverse / *_mapping declared in
+    the YAML against the post-processed graph and returns a list of any that are
+    absent. The release build aborts if this list is non-empty."""
+    prefixes = schema.get("prefixes", {})
+
+    def expand(curie: str) -> URIRef | None:
+        if ":" not in curie:
+            return hg_class_uri(curie)
+        p, local = curie.split(":", 1)
+        return URIRef(prefixes[p] + local) if p in prefixes else None
+
+    def slot_uri(name: str) -> URIRef:
+        return URIRef(f"https://w3id.org/heritagegraph/{name}")
+
+    missing: list[str] = []
+    classes = schema.get("classes", {})
+    slots = schema.get("slots", {})
+
+    for name, spec in classes.items():
+        if not isinstance(spec, dict):
+            continue
+        a = hg_class_uri(name)
+        for target in spec.get("disjoint_with", []) or []:
+            b = hg_class_uri(target)
+            if (a, OWL.disjointWith, b) not in g and (b, OWL.disjointWith, a) not in g:
+                missing.append(f"disjointWith: {name} <-> {target}")
+        if spec.get("union_of") and (a, OWL.unionOf, None) not in g:
+            missing.append(f"unionOf: {name}")
+
+    for name, spec in slots.items():
+        if not isinstance(spec, dict):
+            continue
+        inv = spec.get("inverse")
+        if inv:
+            a, b = slot_uri(name), slot_uri(inv)
+            if (a, OWL.inverseOf, b) not in g and (b, OWL.inverseOf, a) not in g:
+                missing.append(f"inverseOf: {name} <-> {inv}")
+
+    mapping_preds = (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
+                     RDFS.subClassOf, RDFS.subPropertyOf, OWL.equivalentClass)
+    for section, uri_fn in (("classes", hg_class_uri), ("slots", slot_uri)):
+        for name, spec in (schema.get(section) or {}).items():
+            if not isinstance(spec, dict):
+                continue
+            subj = uri_fn(name)
+            for key in ("exact_mappings", "close_mappings", "broad_mappings"):
+                for curie in spec.get(key, []) or []:
+                    tgt = expand(curie)
+                    if tgt is None:
+                        continue
+                    if not any((subj, p, tgt) in g for p in mapping_preds):
+                        missing.append(f"{key}: {section}:{name} -> {curie}")
+    return missing
 
 
 def write_alignment_ttl(g_main: Graph) -> None:
@@ -521,9 +617,10 @@ def write_metadata_ttl(g_main: Graph) -> None:
 def write_abox_example() -> None:
     ABOX.parent.mkdir(parents=True, exist_ok=True)
     content = """@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf: <http://www.cidoc-crm.org/crminf/> .
+@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix heritageGraph: <https://w3id.org/heritagegraph/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Example ABox: conflicting assertions about syncretic deity identity.

@@ -7,7 +7,6 @@
 @prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dig:           <http://www.ics.forth.gr/isl/CRMdig/> .
 @prefix sci:           <http://www.ics.forth.gr/isl/CRMsci/> .
-@prefix crminf:        <http://www.cidoc-crm.org/crminf/> .
 @prefix aat:           <http://vocab.getty.edu/aat/> .
 @prefix wikidata:      <http://www.wikidata.org/entity/> .
 @prefix prov:          <http://www.w3.org/ns/prov#> .
@@ -163,7 +162,7 @@ heritageGraph:ArchivalRecord         rdfs:subClassOf crm:E31_Document .
 
 heritageGraph:HeritageAssertion      rdfs:subClassOf crm:E13_Attribute_Assignment .
 heritageGraph:SyncreticRelationship  rdfs:subClassOf crm:E13_Attribute_Assignment .
-heritageGraph:AssertableEntity       skos:broadMatch crminf:E1_Entity .
+heritageGraph:AssertableEntity       skos:broadMatch crm:E1_CRM_Entity .
 
 # ---- Concepts / types -------------------------------------------------------
 

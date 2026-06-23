@@ -2,11 +2,11 @@
 ======================================================================
   §4.4  Alignment & Interoperability
 ======================================================================
-Date     : 2026-06-21T12:32:56.147369
+Date     : 2026-06-23T23:30:38.321799
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.yaml
 
-  Parsed 5058 triples from TTL
+  Parsed 5007 triples from TTL
   Parsed 26 class_uri and 57 slot_uri mappings from YAML
 
 
@@ -34,12 +34,14 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     Temple                              → exactMatch           → 300007595
     Temple                              → skos:exactMatch      → 300007595
 
-  CIDOC-CRM: 32 class(es) aligned
+  CIDOC-CRM: 33 class(es) aligned
     Actor                               → class_uri(YAML)      → crm:E39_Actor
     Actor                               → subClassOf           → E39_Actor
     ArchitecturalElement                → class_uri(YAML)      → crm:E25_Architectural_Element
     ArchitecturalElement                → subClassOf           → E25_Architectural_Element
     ArchivalRecord                      → broadMatch           → E31_Document
+    AssertableEntity                    → class_uri(YAML)      → crm:E1_CRM_Entity
+    AssertableEntity                    → subClassOf           → E1_CRM_Entity
     CalendarSystem                      → broadMatch           → E29_Designated_Reference_System
     CasteGroup                          → broadMatch           → E74_Group
     ConditionAssessment                 → class_uri(YAML)      → crm:E14_Condition_Assessment
@@ -58,12 +60,8 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     HeritageActivity                    → subClassOf           → E7_Activity
     HistoricalEvent                     → class_uri(YAML)      → crm:E5_Event
     HistoricalEvent                     → subClassOf           → E5_Event
-    HumanMadeObject                     → class_uri(YAML)      → crm:E22_Human-Made_Object
-    HumanMadeObject                     → subClassOf           → E22_Human-Made_Object
 
-  CRMinf: 2 class(es) aligned
-    AssertableEntity                    → class_uri(YAML)      → crminf:E1_Entity
-    AssertableEntity                    → subClassOf           → E1_Entity
+  CRMinf: 1 class(es) aligned
     HeritageAssertion                   → class_uri(YAML)      → crminf:I2_Belief
     HeritageAssertion                   → subClassOf           → I2_Belief
 
@@ -179,7 +177,7 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     generated_at_time                        → prov:generatedAtTime           (DatatypeProperty)
     performed_by_agent                       → prov:wasAssociatedWith         (ObjectProperty)
     produced_information_object              → prov:generated                 (ObjectProperty)
-    supersedes_assertion                     → prov:invalidated               (ObjectProperty)
+    supersedes_assertion                     → prov:wasRevisionOf             (ObjectProperty)
     was_attributed_to_agent                  → prov:wasAttributedTo           (ObjectProperty)
     was_derived_from_source                  → prov:wasDerivedFrom            (ObjectProperty)
 
@@ -193,8 +191,8 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
   Namespace               Classes   Properties
   --------------------------------------------
   AAT                          11            0
-  CIDOC-CRM                    32           40
-  CRMinf                        2            0
+  CIDOC-CRM                    33           40
+  CRMinf                        1            0
   CRMsci                        1            0
   DBpedia                       3            0
   DCTerms                       0            1
@@ -213,7 +211,7 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
   Paper §4.4 claims vs Actual:
     Metric                                      Paper   Actual   Match
     ----------------------------------------------------------------
-    CIDOC-CRM aligned classes (SKOS/slot)          32       32       ✅
+    CIDOC-CRM aligned classes (SKOS/slot)          32       33       ❌
     External rdfs:subClassOf axioms (TTL)          31       31       ✅
     CRM-family (CRM+CRMinf+CRMsci) classes         35       35       ✅
     CIDOC-CRM aligned properties (slot_uri)        40       40       ✅

@@ -2,10 +2,10 @@
 ======================================================================
   §4.2  Modeling Quality — OOPS! Pitfall Analysis
 ======================================================================
-Date     : 2026-06-21T12:32:59.042550
+Date     : 2026-06-23T23:30:41.210938
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
-  Parsed 5058 triples
+  Parsed 5007 triples
 
 ======================================================================
   OOPS! Online Service
@@ -18,10 +18,15 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
   Local Heuristic Pitfall Scan
 ======================================================================
 
-  Total pitfalls detected: 138
-  Unique pitfall types:    1
+  Total pitfalls detected: 148
+  Unique pitfall types:    2
 
-  [IMPORTANT] P11 — Missing domain or range  (138 occurrence(s))
-             → https://w3id.org/heritagegraph/custody_events: Missing rdfs:domain
-             → https://w3id.org/heritagegraph/custody_events: Missing rdfs:range
-             → https://w3id.org/heritagegraph/was_attributed_to_agent: Missing rdfs:domain
+  [IMPORTANT] P10 — Missing disjointness  (12 occurrence(s))
+             → https://w3id.org/heritagegraph/HumanMadeObject: Sibling classes lack owl:disjointWith: Iconograph...
+             → https://w3id.org/heritagegraph/DataSource: Sibling classes lack owl:disjointWith: ArchivalRecord,...
+             → https://w3id.org/heritagegraph/RitualEvent: Sibling classes lack owl:disjointWith: Enshrinement, ...
+
+  [IMPORTANT] P11 — Missing domain or range  (136 occurrence(s))
+             → https://w3id.org/heritagegraph/had_participant: Missing rdfs:domain
+             → https://w3id.org/heritagegraph/has_condition_assessment: Missing rdfs:domain
+             → https://w3id.org/heritagegraph/hypothesized_location: Missing rdfs:domain

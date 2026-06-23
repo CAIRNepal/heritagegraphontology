@@ -15,6 +15,7 @@ default_range: string
 
 types:
   wktLiteral:
+    description: "OGC GeoSPARQL Well-Known Text literal encoding a geometry (e.g. POINT, POLYGON)."
     typeof: string
     uri: "http://www.opengis.net/ont/geosparql#wktLiteral"
 
@@ -301,9 +302,9 @@ prefixes:
   # CRM family & PROV
   prov: "http://www.w3.org/ns/prov#"
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
-  crmsci: "http://www.cidoc-crm.org/crmsci/"
-  crmdig: "http://www.cidoc-crm.org/crmdig/"
-  crminf: "http://www.cidoc-crm.org/crminf/"
+  # Official CIDOC-CRM extension namespaces (per cidoc-crm.org/extensions/*)
+  crmsci: "http://www.cidoc-crm.org/extensions/crmsci/"
+  crminf: "http://www.cidoc-crm.org/extensions/crminf/"
   rico: "https://www.ica.org/standards/RiC/ontology#"
 
 default_prefix: heritageGraph
@@ -993,7 +994,7 @@ classes:
   # ========================================================================
 
   AssertableEntity:
-    class_uri: crminf:E1_Entity
+    class_uri: crm:E1_CRM_Entity
     description: "Any entity that can be the subject of a heritage assertion"
     union_of:
       - HumanMadeObject
@@ -1517,16 +1518,22 @@ classes:
     description: "Dataset metadata information"
     attributes:
       dataset_name:
+        description: "Human-readable name of the heritage dataset."
         range: string
       dataset_version:
+        description: "Version identifier of the dataset instance (e.g. semantic version or release date)."
         range: string
       schema_version:
+        description: "Version of the HeritageGraph schema the dataset conforms to."
         range: string
       generated_date:
+        description: "Date the dataset was generated or last exported (ISO 8601)."
         range: string
       license:
+        description: "License under which the dataset is published (e.g. CC BY 4.0)."
         range: string
       curator:
+        description: "Person or institution responsible for curating the dataset."
         range: string
 
 # ============================================================================
@@ -2152,11 +2159,11 @@ slots:
     description: "Optional value claimed for asserted_property when using structured property-value assertions."
 
   supersedes_assertion:
-    slot_uri: prov:invalidated
+    slot_uri: prov:wasRevisionOf
     range: HeritageAssertion
     description: "Previous version of this assertion (if this is an update).
       Creates version chain: A1 → A2 → A3.
-      Query pattern: latest assertion = one with no incoming prov:invalidated"
+      Query pattern: latest assertion = one with no incoming prov:wasRevisionOf"
 
   institutional_affiliation:
     slot_uri: heritageGraph:institutional_affiliation

@@ -26,8 +26,8 @@ HG = "https://w3id.org/heritagegraph/"
 PREFIXES = OrderedDict([
     ("heritageGraph", HG),
     ("crm", "http://www.cidoc-crm.org/cidoc-crm/"),
-    ("crminf", "http://www.cidoc-crm.org/crminf/"),
-    ("crmsci", "http://www.cidoc-crm.org/crmsci/"),
+    ("crminf", "http://www.cidoc-crm.org/extensions/crminf/"),
+    ("crmsci", "http://www.cidoc-crm.org/extensions/crmsci/"),
     ("prov", "http://www.w3.org/ns/prov#"),
     ("time", "http://www.w3.org/2006/time#"),
     ("geo", "http://www.opengis.net/ont/geosparql#"),

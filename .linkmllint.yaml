@@ -1,0 +1,33 @@
+# LinkML linter configuration for HeritageGraph.
+#
+# Naming policy (follows W3C / OBO Foundry conventions for the *generated OWL*,
+# not LinkML's Python-dataclass defaults):
+#
+#   * Classes              -> UpperCamelCase   (e.g. RitualEvent, Guthi)
+#   * Slots / properties   -> snake_case       (LinkML source convention; the
+#                                               native style for LinkML-authored
+#                                               ontologies such as Biolink Model)
+#   * Permissible values   -> UpperCamelCase, each anchored to a `meaning:` IRI.
+#                             These become owl:NamedIndividual controlled-vocabulary
+#                             terms, where W3C OWL convention is capitalised names
+#                             (e.g. heritageGraph:NityaPuja, heritageGraph:RajGuthi).
+#                             They are therefore excluded from the snake_case check
+#                             below — the `meaning:` CURIE is the real semantic
+#                             anchor, the text is the term label.
+#
+# All declared prefix namespaces are valid; a few prefix *strings* (wikidata, time,
+# wgs84, datacite, dct) are kept in their widely-used human-readable form rather
+# than the prefixmaps "canonical" abbreviations, for readability. CIDOC-CRM
+# extension namespaces were verified against the official cidoc-crm.org specs.
+
+extends: recommended
+
+rules:
+  standard_naming:
+    level: error
+    class_pattern: uppercamel
+    slot_pattern: snake
+    exclude_type:
+      - permissible_value
+  canonical_prefixes:
+    level: warning

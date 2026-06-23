@@ -14,7 +14,7 @@
         <owl:versionIRI rdf:resource="https://w3id.org/heritagegraph/ontology/1.0.0"/>
         <terms:creator>CAIR-Nepal</terms:creator>
         <terms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <terms:modified>2026-06-21</terms:modified>
+        <terms:modified>2026-06-23</terms:modified>
         <terms:publisher>CAIR-Nepal</terms:publisher>
         <terms:title>HeritageGraph Ontology</terms:title>
         <pav:version>1.0.0</pav:version>
@@ -449,13 +449,6 @@
     
 
 
-    <!-- http://www.w3.org/ns/prov#invalidated -->
-
-
-    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#invalidated"/>
-    
-
-
     <!-- http://www.w3.org/ns/prov#wasAssociatedWith -->
 
 
@@ -488,6 +481,13 @@
 
 
     <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasInfluencedBy"/>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#wasRevisionOf -->
+
+
+    <owl:ObjectProperty rdf:about="http://www.w3.org/ns/prov#wasRevisionOf"/>
     
 
 
@@ -1824,10 +1824,10 @@
 
 
     <owl:ObjectProperty rdf:about="https://w3id.org/heritagegraph/supersedes_assertion">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/prov#invalidated"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/ns/prov#wasRevisionOf"/>
         <rdfs:range rdf:resource="https://w3id.org/heritagegraph/HeritageAssertion"/>
         <rdfs:label>supersedes_assertion</rdfs:label>
-        <skos:definition>Previous version of this assertion (if this is an update). Creates version chain: A1 → A2 → A3. Query pattern: latest assertion = one with no incoming prov:invalidated</skos:definition>
+        <skos:definition>Previous version of this assertion (if this is an update). Creates version chain: A1 → A2 → A3. Query pattern: latest assertion = one with no incoming prov:wasRevisionOf</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:ObjectProperty>
     
@@ -2218,6 +2218,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/curator">
         <rdfs:label>curator</rdfs:label>
+        <skos:definition>Person or institution responsible for curating the dataset.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2292,6 +2293,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/dataset_name">
         <rdfs:label>dataset_name</rdfs:label>
+        <skos:definition>Human-readable name of the heritage dataset.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2302,6 +2304,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/dataset_version">
         <rdfs:label>dataset_version</rdfs:label>
+        <skos:definition>Version identifier of the dataset instance (e.g. semantic version or release date).</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2375,6 +2378,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/generated_date">
         <rdfs:label>generated_date</rdfs:label>
+        <skos:definition>Date the dataset was generated or last exported (ISO 8601).</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2459,6 +2463,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/license">
         <rdfs:label>license</rdfs:label>
+        <skos:definition>License under which the dataset is published (e.g. CC BY 4.0).</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2593,6 +2598,7 @@
 
     <owl:DatatypeProperty rdf:about="https://w3id.org/heritagegraph/schema_version">
         <rdfs:label>schema_version</rdfs:label>
+        <skos:definition>Version of the HeritageGraph schema the dataset conforms to.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
     </owl:DatatypeProperty>
     
@@ -2760,6 +2766,13 @@
     
 
 
+    <!-- http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity -->
+
+
+    <owl:Class rdf:about="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
+    
+
+
     <!-- http://www.cidoc-crm.org/cidoc-crm/E21_Person -->
 
 
@@ -2879,24 +2892,17 @@
     
 
 
-    <!-- http://www.cidoc-crm.org/crminf/E1_Entity -->
+    <!-- http://www.cidoc-crm.org/extensions/crminf/I2_Belief -->
 
 
-    <owl:Class rdf:about="http://www.cidoc-crm.org/crminf/E1_Entity"/>
+    <owl:Class rdf:about="http://www.cidoc-crm.org/extensions/crminf/I2_Belief"/>
     
 
 
-    <!-- http://www.cidoc-crm.org/crminf/I2_Belief -->
+    <!-- http://www.cidoc-crm.org/extensions/crmsci/S4_Observation -->
 
 
-    <owl:Class rdf:about="http://www.cidoc-crm.org/crminf/I2_Belief"/>
-    
-
-
-    <!-- http://www.cidoc-crm.org/crmsci/S4_Observation -->
-
-
-    <owl:Class rdf:about="http://www.cidoc-crm.org/crmsci/S4_Observation"/>
+    <owl:Class rdf:about="http://www.cidoc-crm.org/extensions/crmsci/S4_Observation"/>
     
 
 
@@ -2988,6 +2994,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HumanMadeObject"/>
         <rdfs:label>Actor</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/Agent"/>
         <skos:definition>General actor (person or group) responsible for events</skos:definition>
@@ -3055,6 +3062,10 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/ArchitecturalStructure"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Deity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/IconographicObject"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
         <rdfs:label>ArchitecturalElement</rdfs:label>
         <skos:definition>Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)</skos:definition>
         <skos:exactMatch rdf:resource="http://vocab.getty.edu/aat/300000885"/>
@@ -3272,6 +3283,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/IconographicObject"/>
         <rdfs:label>ArchitecturalStructure</rdfs:label>
         <skos:broadMatch rdf:resource="http://vocab.getty.edu/aat/300004792"/>
         <skos:closeMatch rdf:resource="http://schema.org/CivicStructure"/>
@@ -3315,6 +3327,8 @@
     <owl:Class rdf:about="https://w3id.org/heritagegraph/ArchivalRecord">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/DataSource"/>
         <rdfs:subClassOf rdf:resource="https://www.ica.org/standards/RiC/ontology#Record"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/FieldSurveyDataset"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/OralHistoryRecording"/>
         <rdfs:label>ArchivalRecord</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E31_Document"/>
         <skos:definition>Government or institutional administrative record</skos:definition>
@@ -3345,7 +3359,7 @@
                 </owl:unionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/crminf/E1_Entity"/>
+        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"/>
         <rdfs:label>AssertableEntity</rdfs:label>
         <skos:definition>Any entity that can be the subject of a heritage assertion</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -3358,6 +3372,9 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/BuddhistMonument">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/ArchitecturalStructure"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/RestHouse"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Temple"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/WaterStructure"/>
         <rdfs:label>BuddhistMonument</rdfs:label>
         <skos:closeMatch rdf:resource="http://www.wikidata.org/entity/Q177980"/>
         <skos:definition>Buddhist sacred structure (Stupa, Chaitya) with circumambulation and ritual activation patterns</skos:definition>
@@ -3456,6 +3473,9 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Deity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
         <rdfs:label>CalendarSystem</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E29_Designated_Reference_System"/>
         <skos:definition>Calendar reckoning system with conversion rules for multi-calendar temporal reasoning</skos:definition>
@@ -3522,6 +3542,10 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Deity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Guthi"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
         <rdfs:label>CasteGroup</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <skos:definition>Hereditary social group (Jati) with specific ritual roles and occupational duties</skos:definition>
@@ -3535,6 +3559,7 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/Chaitya">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/BuddhistMonument"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Stupa"/>
         <rdfs:label>Chaitya</rdfs:label>
         <skos:definition>Buddhist votive shrine or prayer hall</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -3547,6 +3572,7 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/ChariotFestival">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/Festival"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/MaskedDance"/>
         <rdfs:label>ChariotFestival</rdfs:label>
         <skos:definition>Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -3643,6 +3669,11 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Consecration"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Enshrinement"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Production"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/RitualEvent"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TransferOfCustody"/>
         <rdfs:label>ConditionAssessment</rdfs:label>
         <skos:definition>Event of evaluating the physical state of a heritage object or structure</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -3848,6 +3879,9 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Festival"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Production"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TransferOfCustody"/>
         <rdfs:label>Consecration</rdfs:label>
         <skos:definition>Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -4530,6 +4564,9 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/DocumentationActivity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HeritageActivity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HeritageAssertion"/>
         <rdfs:label>DataSource</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object"/>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/WebResource"/>
@@ -4655,6 +4692,12 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Guthi"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HeritageActivity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HumanMadeObject"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TimeSpan"/>
         <rdfs:label>Deity</rdfs:label>
         <skos:closeMatch rdf:resource="http://dbpedia.org/ontology/Deity"/>
         <skos:closeMatch rdf:resource="http://schema.org/Deity"/>
@@ -4737,6 +4780,8 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/Dharmashala">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/RestHouse"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Pati"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Sattal"/>
         <rdfs:label>Dharmashala</rdfs:label>
         <skos:definition>Pilgrim lodge operated by a Guthi organization</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -4749,6 +4794,7 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/DhungeDhara">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/WaterStructure"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Pokhari"/>
         <rdfs:label>DhungeDhara</rdfs:label>
         <skos:definition>Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -4894,6 +4940,8 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HeritageAssertion"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Production"/>
         <rdfs:label>DocumentationActivity</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.w3.org/ns/prov#Activity"/>
         <skos:definition>The intellectual or technical process of recording information about a heritage entity, aligned with CIDOC E7 Activity and PROV-O Activity.</skos:definition>
@@ -4991,6 +5039,9 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Festival"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Production"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TransferOfCustody"/>
         <rdfs:label>Enshrinement</rdfs:label>
         <skos:definition>Event of installing a deity&apos;s murti or symbol within a temple sanctum</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -5084,8 +5135,10 @@
 
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/FieldSurveyActivity">
-        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/crmsci/S4_Observation"/>
+        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/extensions/crmsci/S4_Observation"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/DocumentationActivity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/OralHistoryInterview"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Verification"/>
         <rdfs:label>FieldSurveyActivity</rdfs:label>
         <skos:definition>The activity of measuring, photographing, or assessing a site in person.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -5099,6 +5152,7 @@
     <owl:Class rdf:about="https://w3id.org/heritagegraph/FieldSurveyDataset">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E31_Document"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/DataSource"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/OralHistoryRecording"/>
         <rdfs:label>FieldSurveyDataset</rdfs:label>
         <skos:definition>The structured data or report resulting from a field survey.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -5200,6 +5254,8 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
         <rdfs:label>Guthi</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E74_Group"/>
         <skos:definition>Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership</skos:definition>
@@ -5246,6 +5302,9 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/HeritageActivity">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HeritageAssertion"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/HumanMadeObject"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
         <rdfs:label>HeritageActivity</rdfs:label>
         <skos:definition>Abstract superclass for intentional heritage-related activities, aligned with CIDOC CRM E7 Activity.</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -5257,7 +5316,7 @@
 
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/HeritageAssertion">
-        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/crminf/I2_Belief"/>
+        <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/extensions/crminf/I2_Belief"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="https://w3id.org/heritagegraph/asserts_about_entity"/>
@@ -5758,6 +5817,9 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Person"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TimeSpan"/>
         <rdfs:label>HumanMadeObject</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/PhysicalThing"/>
         <skos:closeMatch rdf:resource="http://schema.org/CreativeWork"/>
@@ -6156,6 +6218,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/LivingGoddessSelection"/>
         <rdfs:label>LivingGoddessRetirement</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
         <skos:definition>Ritual or administrative event that formally ends a Living Goddess tenure, marking the person&apos;s return to secular status. Common triggers include first menstruation, injury causing blood loss, or serious illness. This event terminates the divine embodiment and restores the girl to ordinary status.</skos:definition>
@@ -6543,6 +6606,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Technique"/>
         <rdfs:label>Material</rdfs:label>
         <skos:definition>Physical substance used in construction or crafting</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -6710,6 +6774,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Paubha"/>
         <rdfs:label>Murti</rdfs:label>
         <skos:closeMatch rdf:resource="http://www.wikidata.org/entity/Q2594295"/>
         <skos:definition>Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)</skos:definition>
@@ -6725,6 +6790,7 @@
     <owl:Class rdf:about="https://w3id.org/heritagegraph/OralHistoryInterview">
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E7_Activity"/>
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/DocumentationActivity"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Verification"/>
         <rdfs:label>OralHistoryInterview</rdfs:label>
         <skos:definition>The interaction event between a researcher and a knowledge holder (oral history fieldwork).</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -6768,6 +6834,7 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/Pati">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/RestHouse"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Sattal"/>
         <rdfs:label>Pati</rdfs:label>
         <skos:definition>Open-air pavilion for resting travelers</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -6958,6 +7025,8 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Place"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TimeSpan"/>
         <rdfs:label>Person</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/Agent"/>
         <skos:broadMatch rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
@@ -7059,6 +7128,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TimeSpan"/>
         <rdfs:label>Place</rdfs:label>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/Place"/>
         <skos:definition>Defined geographic location where events occur and structures exist</skos:definition>
@@ -7216,6 +7286,8 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/RitualEvent"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TransferOfCustody"/>
         <rdfs:label>Production</rdfs:label>
         <skos:definition>Event of creating an architectural structure, murti, or paubha</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -7277,6 +7349,8 @@
 
     <owl:Class rdf:about="https://w3id.org/heritagegraph/RestHouse">
         <rdfs:subClassOf rdf:resource="https://w3id.org/heritagegraph/ArchitecturalStructure"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/Temple"/>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/WaterStructure"/>
         <rdfs:label>RestHouse</rdfs:label>
         <skos:definition>Community structures for travelers and pilgrims, maintained by Guthi organizations</skos:definition>
         <skos:inScheme rdf:resource="https://w3id.org/heritagegraph/ontology"/>
@@ -7639,6 +7713,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/TransferOfCustody"/>
         <rdfs:label>RitualEvent</rdfs:label>
         <skos:broadMatch rdf:resource="http://vocab.getty.edu/aat/300054754"/>
         <skos:broadMatch rdf:resource="http://www.europeana.eu/schemas/edm/Event"/>
@@ -8070,6 +8145,7 @@
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="https://w3id.org/heritagegraph/WaterStructure"/>
         <rdfs:label>Temple</rdfs:label>
         <skos:closeMatch rdf:resource="http://dbpedia.org/ontology/ReligiousBuilding"/>
         <skos:closeMatch rdf:resource="http://dbpedia.org/ontology/Temple"/>

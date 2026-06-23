@@ -38,9 +38,9 @@ HG = Namespace("https://w3id.org/heritagegraph/")
 # External namespace prefixes to check (in generated TTL)
 NAMESPACES = {
     "CIDOC-CRM": "http://www.cidoc-crm.org/cidoc-crm/",
-    "CRMsci": "http://www.cidoc-crm.org/crmsci/",
+    "CRMsci": "http://www.cidoc-crm.org/extensions/crmsci/",
     "CRMdig": "http://www.cidoc-crm.org/crmdig/",
-    "CRMinf": "http://www.cidoc-crm.org/crminf/",
+    "CRMinf": "http://www.cidoc-crm.org/extensions/crminf/",
     "PROV-O": "http://www.w3.org/ns/prov#",
     "schema.org": "https://schema.org/",
     "AAT": "http://vocab.getty.edu/aat/",

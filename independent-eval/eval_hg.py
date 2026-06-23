@@ -29,8 +29,8 @@ ONT = URIRef(HG + "ontology")
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
-CRMINF = "http://www.cidoc-crm.org/crminf/"
-CRMSCI = "http://www.cidoc-crm.org/crmsci/"
+CRMINF = "http://www.cidoc-crm.org/extensions/crminf/"
+CRMSCI = "http://www.cidoc-crm.org/extensions/crmsci/"
 PROV = "http://www.w3.org/ns/prov#"
 GEO = "http://www.opengis.net/ont/geosparql#"
 TIME = "http://www.w3.org/2006/time#"

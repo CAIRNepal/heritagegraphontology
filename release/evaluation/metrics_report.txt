@@ -2,10 +2,10 @@
 ======================================================================
   §4.5 / §4.6  Structural Completeness & Ontology Metrics
 ======================================================================
-Date     : 2026-06-21T12:32:56.027993
+Date     : 2026-06-23T23:30:38.195098
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
-  Total triples: 5058
+  Total triples: 5007
 
 ======================================================================
   §4.6  Ontology Metrics
@@ -14,8 +14,8 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
   Named classes (total)      : 70
   HeritageGraph namespace    : 70
   External namespace classes : 0
-  Object properties          : 125
-  Datatype properties        : 46
+  Object properties          : 123
+  Datatype properties        : 48
   Union classes (all unionOf): 7
     ├ Named union classes    : 3
     │   → AssertableEntity
@@ -33,10 +33,10 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
   Classes with rdfs:label            : 70/70
   Classes with definition            : 70/70
 
-  Object props with rdfs:range       : 100/125
-  Datatype props with rdfs:range     : 40/46
-  Object props with rdfs:domain      : 18/125
-  Datatype props with rdfs:domain    : 0/46
+  Object props with rdfs:range       : 100/123
+  Datatype props with rdfs:range     : 40/48
+  Object props with rdfs:domain      : 18/123
+  Datatype props with rdfs:domain    : 0/48
   Properties with rdfs:label         : 171/171
 
 ======================================================================
@@ -162,8 +162,8 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
   Metric                              Paper     Actual    Match
   --------------------------------------------------------------
   Named owl:Class (HG namespace)         70         70        ✅
-  Object properties                     125        125        ✅
-  Datatype properties                    46         46        ✅
+  Object properties                     125        123        ❌
+  Datatype properties                    46         48        ❌
   Union classes (named)                   3          3        ✅
   Named individuals (enum values)         64         64        ✅
   SHACL NodeShapes                       61         61        ✅
