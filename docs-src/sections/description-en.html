@@ -1,0 +1,72 @@
+<h2 id="desc" class="list">HeritageGraph: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+
+<span class="markdown">
+HeritageGraph follows an **event-centric** modelling pattern inherited from
+CIDOC-CRM: instead of linking attributes directly to a heritage object, the
+ontology connects objects, places, agents, and time-spans *through events*. This
+makes provenance, sequence, and participation explicit and queryable. The schema
+contains **70 classes**, **125 object properties**, **46 datatype properties**, and
+**64 named individuals** (controlled-vocabulary values), and is generated from a
+LinkML source of truth (`HeritageGraph.yaml`).
+
+### Core building blocks
+
+- **Physical heritage things** — `PhysicalHeritageThing` (a union of
+  `ArchitecturalStructure`, `IconographicObject`, and `ArchitecturalElement`)
+  covers temples, stupas, chaityas, *murti*/*paubha* icons, water structures
+  (`DhungeDhara`, `Pokhari`), and rest houses (`Pati`, `Sattal`, `Dharmashala`).
+- **Events** — `HeritageEvent` generalises `Production`, `Consecration`,
+  `Enshrinement`, `TransferOfCustody`, `RitualEvent` (e.g. `ChariotFestival`,
+  `MaskedDance`), and the living-goddess lifecycle
+  (`LivingGoddessSelection`, `LivingGoddessTenure`, `LivingGoddessRetirement`).
+- **Actors & institutions** — `Actor`, `Person`, `CasteGroup`, `DataCustodian`,
+  and the institution central to Nepalese heritage, `Guthi`.
+- **Places & time** — `Place`, `TimeSpan`, and `CalendarSystem` support
+  multi-calendar (e.g. Bikram Sambat, Nepal Sambat, Gregorian) dating with
+  explicit `DatePrecisionEnum` precision.
+- **Knowledge & provenance** — `HeritageAssertion`, `DataSource`
+  (`ArchivalRecord`, `OralHistoryRecording`, `FieldSurveyDataset`),
+  `DocumentationActivity`, and `Verification` capture *who asserted what, from
+  which source, with what epistemic stance* (`EpistemicStanceEnum`).
+- **Syncretism** — `SyncreticRelationship` links deities (`Deity`,
+  `BuddhistDeity`) that bridge Hindu and Buddhist traditions
+  (`ReligiousTradition`), typed by `SyncreticTypeEnum`.
+
+### How the pieces relate
+
+A typical pattern looks like this: an `ArchitecturalStructure` *was produced by* a
+`Production` event that *took place at* a `Place`, *occurred during* a `TimeSpan`,
+and *had participant* a `Person` or `Guthi`. A `RitualEvent` *activates* the same
+structure during a `Festival`, following a canonical sequence (`occurs_before` /
+`occurs_after`). Each of these facts is a `HeritageAssertion` that
+*was derived from* a `DataSource` and *was verified by* a `Verification`,
+so contradictory claims (e.g. two construction dates) can coexist with their
+evidence.
+
+### Interoperability modules
+
+The core vocabulary is aligned with external standards and shipped with companion
+artefacts (in `ontology/`):
+
+- `HeritageGraph-alignment.ttl` — CIDOC-CRM / CRMinf / PROV-O / Wikidata mappings
+  (classes via `skos:exactMatch`/`subClassOf`, properties via `rdfs:subPropertyOf`).
+- `HeritageGraph-edm.ttl` — a Europeana EDM projection for aggregation/publishing.
+- `lux/heritagegraph-lux-alignment.ttl` — a bridge to Yale's LUX / Linked Art.
+- `HeritageGraph.shacl.ttl` and `lux/HeritageGraph-lux.shacl.ttl` — SHACL validation
+  shapes (61 core + 33 LUX node shapes).
+- `examples/kathmandu-mini-abox.ttl` — a small worked instance dataset.
+
+### Quality at a glance
+
+The ontology is logically consistent under OWL-RL closure (**0** unsatisfiable
+classes, **70** `owl:disjointWith` pairs), passes **32/32** competency-question
+checks, and is interoperable with CIDOC-CRM (32 classes / 40 properties) and
+PROV-O (3 classes / 9 properties). See the
+[evaluation suite](https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation)
+for reproducible reports.
+
+The diagram below (open the **Visualize with WebVowl** badge at the top of this
+page) shows the connected class graph. Note that the upper-ontology *super-property*
+links (CIDOC-CRM `P…`, PROV-O `was…`) are recorded on each property but are not
+drawn as separate nodes, to keep the visualization focused on HeritageGraph's own
+classes and relations.</span>

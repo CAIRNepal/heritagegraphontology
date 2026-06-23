@@ -7,7 +7,7 @@ help:                ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 	  awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-docs:                ## regenerate the whole documentation + WebVOWL into docs/
+docs:                ## regenerate the WIDOCO docs + WebVOWL for the core ontology into docs/
 	scripts/build.sh
 
 preview:             ## same, but into /tmp/hg-preview (leaves docs/ untouched)
@@ -20,4 +20,4 @@ artefacts:           ## regenerate RDF artefacts from the LinkML source (ontolog
 	python3 scripts/regenerate_ontology_artifacts.py
 
 clean:               ## remove build artefacts
-	rm -f ontology/HeritageGraph.merged.ttl
+	rm -f ontology/HeritageGraph.merged.ttl ontology/HeritageGraph.build.ttl

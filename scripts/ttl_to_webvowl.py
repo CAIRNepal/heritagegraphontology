@@ -8,7 +8,7 @@ WebVOWL. Anonymous restriction superclasses (owl:Restriction blank nodes) are
 intentionally skipped to keep the graph readable.
 
 Usage:
-    python scripts/ttl_to_webvowl.py ontology/HeritageGraph.ttl ontology/heritagegraph-lux-alignment.ttl \
+    python scripts/ttl_to_webvowl.py ontology/HeritageGraph.ttl ontology/lux/heritagegraph-lux-alignment.ttl \
            -o docs/webvowl/data/ontology.json
 """
 from __future__ import annotations

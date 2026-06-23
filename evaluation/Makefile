@@ -47,7 +47,7 @@ abox: setup ## ABox CQ sample queries
 
 quality: all abox ## Run evaluations + copy to release/
 	@echo "Building release quality report..."
-	cd .. && $(PYTHON) scripts/run_release_quality.py
+	cd .. && $(CURDIR)/$(PYTHON) scripts/run_release_quality.py
 	@echo ""
 
 all: setup consistency oops cq alignment metrics ## Run ALL automated evaluations

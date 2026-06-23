@@ -269,18 +269,25 @@ enums:
 
 
 prefixes:
+  # Core namespace
   heritageGraph: "https://w3id.org/heritagegraph/"
   linkml: "https://w3id.org/linkml/"
+  # W3C / OWL stack (LinkML generator)
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
   owl: "http://www.w3.org/2002/07/owl#"
   xsd: "http://www.w3.org/2001/XMLSchema#"
   skos: "http://www.w3.org/2004/02/skos/core#"
+  # Dublin Core & provenance metadata
   dcterms: "http://purl.org/dc/terms/"
-  dct: "http://purl.org/dc/terms/"
+  dct: "http://purl.org/dc/terms/"        # Turtle alias used in release TTL
+  pav: "http://purl.org/pav/"
+  void: "http://rdfs.org/ns/void#"
+  # Spatial / temporal
   geo: "http://www.opengis.net/ont/geosparql#"
   time: "http://www.w3.org/2006/time#"
   wgs84: "http://www.w3.org/2003/01/geo/wgs84_pos#"
+  # Cultural-heritage authorities & federation targets
   aat: "http://vocab.getty.edu/aat/"
   tgn: "http://vocab.getty.edu/tgn/"
   wikidata: "http://www.wikidata.org/entity/"
@@ -290,21 +297,23 @@ prefixes:
   edm: "http://www.europeana.eu/schemas/edm/"
   orcid: "https://orcid.org/"
   localcontexts: "https://voc.localcontexts.org/"
+  datacite: "http://purl.org/spar/datacite/"
+  # CRM family & PROV
   prov: "http://www.w3.org/ns/prov#"
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
   crmsci: "http://www.cidoc-crm.org/crmsci/"
   crmdig: "http://www.cidoc-crm.org/crmdig/"
   crminf: "http://www.cidoc-crm.org/crminf/"
   rico: "https://www.ica.org/standards/RiC/ontology#"
-  datacite: "http://purl.org/spar/datacite/"
 
 default_prefix: heritageGraph
 
 annotations:
   owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
   owl:versionIRI: "https://w3id.org/heritagegraph/ontology/1.0.0"
-  dcterms:creator: "Cair Nepal"
-  dcterms:publisher: "Cair Nepal"
+  pav:version: "1.0.0"
+  dcterms:creator: "CAIR-Nepal"
+  dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
   # NOTE: LinkML's OWL generator does not currently accept list-valued
   # annotations for owl:imports. We add imports in the release artifact
@@ -1824,6 +1833,14 @@ slots:
     range: RitualEvent
     description: "Points to the prerequisite ritual."
 
+  occurred_after:
+    is_a: occurs_after
+    slot_uri: heritageGraph:occurred_after
+    range: RitualEvent
+    description: "LUX-alignment alias of occurs_after (the LUX bridge module grounds
+      occurred_after in crm:P183i_starts_after_the_end_of). Declared in the core so
+      that bridge reference resolves; sub-property of occurs_after."
+
   performed_by_group:
     is_a: carried_out_by
     slot_uri: heritageGraph:performed_by_group
@@ -2161,15 +2178,18 @@ slots:
 
   is_about_entity:
     slot_uri: heritageGraph:is_about_entity
-    range: AssertableEntity
-    description: "Entity that this information object describes"
+    description: "Entity that this information object describes. Range intentionally
+      left open: the LUX alignment module asserts owl:equivalentProperty with the
+      generic crm:P129_is_about, so a narrow rdfs:range would over-constrain P129
+      and make sibling is_about_* sub-properties unsatisfiable under merged reasoning."
     broad_mappings:
       - crm:P129_is_about
 
   is_about_event:
     slot_uri: heritageGraph:is_about_event
-    range: RitualEvent
-    description: "Event that this information object describes"
+    description: "Event that this information object describes. Range intentionally
+      left open (see is_about_entity): owl:equivalentProperty crm:P129_is_about in
+      the LUX module precludes a narrow rdfs:range here."
     broad_mappings:
       - crm:P129_is_about
 
@@ -2180,15 +2200,15 @@ slots:
     description: "Agent who performed documentation"
 
   used_method:
-    slot_uri: crm:P33_used_specific_technique
+    slot_uri: heritageGraph:used_method
     range: string
-    description: "Documentation method used"
+    description: "Documentation method used (free-text). Not mapped to crm:P33_used_specific_technique, which is an object property requiring an crm:E29 technique resource."
 
   used_equipment:
-    slot_uri: crm:P16_used_specific_object
+    slot_uri: heritageGraph:used_equipment
     range: string
     multivalued: true
-    description: "Equipment used in documentation"
+    description: "Equipment used in documentation (free-text). Not mapped to crm:P16_used_specific_object, which is an object property requiring an crm:E70 thing resource."
 
   # --- ASSERTION-LEVEL PROVENANCE ---
 

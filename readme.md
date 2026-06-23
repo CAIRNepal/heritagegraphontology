@@ -1,89 +1,106 @@
 # HeritageGraph Ontology
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Documentation](https://img.shields.io/badge/Documentation-Online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
 
-Event-centric LinkML schema and OWL release for Nepalese living heritage, aligned with CIDOC-CRM, CRMinf, PROV-O, and Europeana EDM.
+An event-centric OWL ontology for representing (Nepalese) cultural heritage, including tangible and intangible heritage assets, sacred places, rituals, festivals, institutions, communities, and the relationships that connect them.
 
-**Namespace:** `https://w3id.org/heritagegraph/`  
-**Version:** 1.0.0
+This work is part of [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/) project.
 
-## Repository layout
+---
 
-All ontology files live in `ontology/`; the generated documentation site lives
-in `docs/` (never hand-edit — it is rebuilt by `scripts/build.sh`).
+## Overview
 
-| Artefact | Purpose |
-|----------|---------|
-| `ontology/HeritageGraph.yaml` | LinkML source of truth |
-| `ontology/HeritageGraph.ttl` | OWL/Turtle ontology (core) |
-| `ontology/heritagegraph-lux-alignment.ttl` | LUX (Yale Linked Art / CIDOC-CRM) bridge module |
-| `ontology/HeritageGraph.shacl.ttl` | SHACL validation shapes |
-| `ontology/HeritageGraph-lux.shacl.ttl` | SHACL shapes for the LUX bridge classes |
-| `ontology/HeritageGraph-alignment.ttl` | CRM/PROV/Wikidata alignment module |
-| `ontology/HeritageGraph-edm.ttl` | Europeana Data Model projection |
-| `ontology/heritagegraph-metadata.ttl` | VoID dataset description |
-| `examples/kathmandu-mini-abox.ttl` | Sample instance data |
-| `CHANGELOG.md` | Release notes |
+HeritageGraph ontology provides a semantic framework for documenting, integrating, and publishing cultural heritage knowledge as Linked Open Data.
+ 
+The ontology supports the representation of:
 
-## Build the documentation + visualization
+* Cultural heritage sites and monuments
+* Religious and sacred places
+* Festivals and rituals
+* Cultural events and activities
+* Heritage objects and artifacts
+* Communities and institutions
+* Guthi and traditional organizations
+* Historical and cultural relationships
+* Provenance and documentation metadata
 
-Regenerate the whole documentation site (Widoco docs + WebVOWL of the **merged**
-core + LUX ontology) after any ontology change:
 
-```bash
-make docs            # = scripts/build.sh  → writes ./docs
-make preview         # build into /tmp/hg-preview without touching docs/
-make webvowl         # build, then serve http://localhost:8000/webvowl/
-```
+## Repository Structure
 
-Requires Docker (Widoco runs owl2vowl inside the container — no local Java needed).
-
-## Regenerate everything
-
-```bash
-pip install -r requirements.txt linkml owlrl
-python3 scripts/regenerate_ontology_artifacts.py
-python3 scripts/run_release_quality.py
-```
-
-## Evaluate
-
-```bash
-cd evaluation && pip install -r requirements.txt
-make -C evaluation all   # or run individual run_*.py scripts
-```
-
-Quality summary: `release/QUALITY_REPORT.md`
-
-## Manuscript (NPJ draft)
-
-Publication-quality LaTeX rewrite: `manuscript/HeritageGraph.tex`
-
-```bash
-python3 scripts/generate_manuscript_figures.py
-cd manuscript && pdflatex HeritageGraph && bibtex HeritageGraph && pdflatex HeritageGraph
-```
-
-Editorial assessment: `manuscript/EDITORIAL_ASSESSMENT.md`
-
-## Journal / release readiness
-
-| Step | Action |
-|------|--------|
-| 1 | `python3 scripts/regenerate_ontology_artifacts.py` |
-| 2 | `python3 scripts/run_release_quality.py` |
-| 3 | Tag `v1.0.0` and push to GitHub |
-| 4 | Open w3id PR using `w3id/heritagegraph/.htaccess` |
-| 5 | Submit `registry/lov-metadata.ttl` to LOV after w3id is live |
-
-HermiT DL log: `release/evaluation/hermit_consistency_log.txt` (auto-generated in CI when Java is available).
-
-## Excel export
-
-```bash
-python3 scripts/export_heritagegraph_to_excel.py
+```text
+.
+├── docs/              # Documentation resources
+├── evaluation/        # Ontology evaluation artifacts
+├── provenance/        # Provenance metadata
+├── resources/         # Supporting resources
+├── webvowl/           # WebVOWL visualization
+├── HeritageGraph.owl  # OWL ontology
+├── HeritageGraph.ttl  # Turtle serialization
+└── README.md
 ```
 
 ## Documentation
 
-`scripts/build.sh` (also `make docs`) regenerates the Widoco docs + WebVOWL into
-`docs/`. CI runs the same script via `.github/workflows/ci.yaml` and deploys
-`docs/` to GitHub Pages on every push.
+Complete ontology documentation is available at:
+
+**https://cairnepal.github.io/heritagegraphontology/**
+
+The documentation includes:
+
+* Class hierarchy
+* Object properties
+* Data properties
+* Ontology metadata
+* Provenance information
+* WebVOWL visualization
+* Downloadable ontology serializations
+
+
+## Downloads
+
+The ontology is available in multiple RDF serializations:
+
+* OWL
+* Turtle (TTL)
+* RDF/XML
+* N-Triples
+* JSON-LD 
+
+## Example
+
+```turtle
+@prefix hg: <https://cairnepal.github.io/heritagegraphontology#> .
+
+:IndraJatra
+    a hg:Festival ;
+    hg:locatedIn :Kathmandu ;
+    hg:organizedBy :Guthi ;
+    hg:hasCulturalSignificance "Major annual festival of Kathmandu Valley" .
+```
+
+
+## Citation
+
+If you use HeritageGraph in research, publications, software, or datasets, please cite:
+
+```text
+Niraj Karki, Nabin Oli, Anu Sapkota, Semih Yumusak and Tek Raj Chhetri. (2026).
+HeritageGraph Ontology (Version 1.0.0).
+https://cairnepal.github.io/heritagegraphontology/
+```
+ 
+## Contributing
+
+Contributions, bug reports, and enhancement proposals are welcome.
+
+Please open an issue or submit a pull request through GitHub.
+ 
+## License
+
+© 2026 CAIR-Nepal
+
+This ontology is licensed under the **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
+You are free to use, share, adapt, and redistribute this ontology for any purpose, including commercial use, provided that appropriate attribution is given and any modifications are clearly indicated.
+
+For full license terms, see the [LICENSE](LICENSE.md) file.

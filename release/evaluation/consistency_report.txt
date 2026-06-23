@@ -2,22 +2,22 @@
 ======================================================================
   §4.1  Logical Consistency & OWL-RL Reasoning
 ======================================================================
-Date      : 2026-06-06T08:47:03.349659
-Ontology  : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+Date      : 2026-06-21T12:32:56.485437
+Ontology  : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
 
 ======================================================================
   Step 1 — RDF Parse
 ======================================================================
-  ✅  Parsed successfully in 0.044s
-  Triples (original): 5049
+  ✅  Parsed successfully in 0.043s
+  Triples (original): 5058
 
 ======================================================================
   Step 2 — OWL-RL Deductive Closure
 ======================================================================
-  ✅  OWL-RL closure computed in 2.69s
-  Triples after closure : 25353
-  Inferred triples      : 20304
+  ✅  OWL-RL closure computed in 2.383s
+  Triples after closure : 25365
+  Inferred triples      : 20307
 
 ======================================================================
   Step 3 — Unsatisfiable Class Heuristic
@@ -36,17 +36,17 @@ Ontology  : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
 ======================================================================
   Step 5 — Quick Consistency Indicators
 ======================================================================
-  owl:disjointWith pairs declared: 0
-  Object properties without explicit rdfs:range: 23/123
-  Datatype properties without explicit rdfs:range: 6/47
+  owl:disjointWith pairs declared: 70
+  Object properties without explicit rdfs:range: 25/125
+  Datatype properties without explicit rdfs:range: 6/46
 
 ======================================================================
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 20304 inferred triples
+  OWL-RL closure      : 20307 inferred triples
   Unsatisfiable       : 0 classes
-  Disjointness axioms : 0
+  Disjointness axioms : 70
 
   ⚠️  For full OWL DL consistency, load HeritageGraph.ttl in Protégé
      and run the HermiT reasoner (Reasoner → HermiT → Start Reasoner).

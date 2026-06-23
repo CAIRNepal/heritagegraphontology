@@ -2,12 +2,12 @@
 ======================================================================
   §4.4  Alignment & Interoperability
 ======================================================================
-Date     : 2026-06-06T08:47:02.980437
-Ontology : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
-YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
+Date     : 2026-06-21T12:32:56.147369
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
+YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.yaml
 
-  Parsed 5049 triples from TTL
-  Parsed 26 class_uri and 59 slot_uri mappings from YAML
+  Parsed 5058 triples from TTL
+  Parsed 26 class_uri and 57 slot_uri mappings from YAML
 
 
 ======================================================================
@@ -36,56 +36,47 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
 
   CIDOC-CRM: 32 class(es) aligned
     Actor                               → class_uri(YAML)      → crm:E39_Actor
-    Actor                               → exactMatch           → E39_Actor
-    Actor                               → skos:exactMatch      → E39_Actor
     Actor                               → subClassOf           → E39_Actor
     ArchitecturalElement                → class_uri(YAML)      → crm:E25_Architectural_Element
-    ArchitecturalElement                → exactMatch           → E25_Architectural_Element
-    ArchitecturalElement                → skos:exactMatch      → E25_Architectural_Element
     ArchitecturalElement                → subClassOf           → E25_Architectural_Element
     ArchivalRecord                      → broadMatch           → E31_Document
     CalendarSystem                      → broadMatch           → E29_Designated_Reference_System
     CasteGroup                          → broadMatch           → E74_Group
     ConditionAssessment                 → class_uri(YAML)      → crm:E14_Condition_Assessment
-    ConditionAssessment                 → exactMatch           → E14_Condition_Assessment
-    ConditionAssessment                 → skos:exactMatch      → E14_Condition_Assessment
     ConditionAssessment                 → subClassOf           → E14_Condition_Assessment
     ConditionState                      → class_uri(YAML)      → crm:E3_Condition_State
-    ConditionState                      → exactMatch           → E3_Condition_State
-    ConditionState                      → skos:exactMatch      → E3_Condition_State
     ConditionState                      → subClassOf           → E3_Condition_State
     DataSource                          → broadMatch           → E73_Information_Object
     Deity                               → class_uri(YAML)      → crm:E28_Conceptual_Object
-    Deity                               → exactMatch           → E28_Conceptual_Object
-    Deity                               → skos:exactMatch      → E28_Conceptual_Object
     Deity                               → subClassOf           → E28_Conceptual_Object
     DestructionEvent                    → class_uri(YAML)      → crm:E6_Destruction
+    DestructionEvent                    → subClassOf           → E6_Destruction
+    DocumentationActivity               → subClassOf           → E7_Activity
+    FieldSurveyDataset                  → class_uri(YAML)      → crm:E31_Document
+    FieldSurveyDataset                  → subClassOf           → E31_Document
+    Guthi                               → broadMatch           → E74_Group
+    HeritageActivity                    → subClassOf           → E7_Activity
+    HistoricalEvent                     → class_uri(YAML)      → crm:E5_Event
+    HistoricalEvent                     → subClassOf           → E5_Event
+    HumanMadeObject                     → class_uri(YAML)      → crm:E22_Human-Made_Object
+    HumanMadeObject                     → subClassOf           → E22_Human-Made_Object
 
   CRMinf: 2 class(es) aligned
     AssertableEntity                    → class_uri(YAML)      → crminf:E1_Entity
-    AssertableEntity                    → exactMatch           → E1_Entity
-    AssertableEntity                    → skos:exactMatch      → E1_Entity
     AssertableEntity                    → subClassOf           → E1_Entity
     HeritageAssertion                   → class_uri(YAML)      → crminf:I2_Belief
-    HeritageAssertion                   → exactMatch           → I2_Belief
-    HeritageAssertion                   → skos:exactMatch      → I2_Belief
     HeritageAssertion                   → subClassOf           → I2_Belief
 
   CRMsci: 1 class(es) aligned
     FieldSurveyActivity                 → class_uri(YAML)      → crmsci:S4_Observation
-    FieldSurveyActivity                 → exactMatch           → S4_Observation
-    FieldSurveyActivity                 → skos:exactMatch      → S4_Observation
     FieldSurveyActivity                 → subClassOf           → S4_Observation
 
   DBpedia: 3 class(es) aligned
-    Deity                               → exactMatch           → Deity
-    Deity                               → skos:exactMatch      → Deity
+    Deity                               → closeMatch           → Deity
     IconographicObject                  → exactMatch           → Artwork
     IconographicObject                  → skos:exactMatch      → Artwork
-    Temple                              → exactMatch           → ReligiousBuilding
-    Temple                              → exactMatch           → Temple
-    Temple                              → skos:exactMatch      → ReligiousBuilding
-    Temple                              → skos:exactMatch      → Temple
+    Temple                              → closeMatch           → ReligiousBuilding
+    Temple                              → closeMatch           → Temple
 
   EDM: 7 class(es) aligned
     Actor                               → broadMatch           → Agent
@@ -102,41 +93,31 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
 
   OWL-Time: 1 class(es) aligned
     CalendarSystem                      → class_uri(YAML)      → time:Calendar
-    CalendarSystem                      → exactMatch           → Calendar
-    CalendarSystem                      → skos:exactMatch      → Calendar
     CalendarSystem                      → subClassOf           → Calendar
 
   PROV-O: 3 class(es) aligned
     DataCustodian                       → class_uri(YAML)      → prov:Agent
-    DataCustodian                       → exactMatch           → Agent
-    DataCustodian                       → skos:exactMatch      → Agent
     DataCustodian                       → subClassOf           → Agent
     DocumentationActivity               → broadMatch           → Activity
     HeritageAssertion                   → broadMatch           → Entity
 
   RICO: 1 class(es) aligned
-    ArchivalRecord                      → exactMatch           → Record
-    ArchivalRecord                      → skos:exactMatch      → Record
     ArchivalRecord                      → subClassOf           → Record
 
   Wikidata: 6 class(es) aligned
     ArchitecturalStructure              → exactMatch           → Q811979
     ArchitecturalStructure              → skos:exactMatch      → Q811979
-    BuddhistMonument                    → exactMatch           → Q177980
-    BuddhistMonument                    → skos:exactMatch      → Q177980
-    HumanMadeObject                     → exactMatch           → Q838948
-    HumanMadeObject                     → skos:exactMatch      → Q838948
-    Murti                               → exactMatch           → Q2594295
-    Murti                               → skos:exactMatch      → Q2594295
+    BuddhistMonument                    → closeMatch           → Q177980
+    HumanMadeObject                     → closeMatch           → Q838948
+    Murti                               → closeMatch           → Q2594295
     Paubha                              → closeMatch           → Q130993
-    Temple                              → exactMatch           → Q44539
-    Temple                              → skos:exactMatch      → Q44539
+    Temple                              → closeMatch           → Q44539
 
 ======================================================================
   2. Property Alignments (TTL + YAML slot_uri)
 ======================================================================
 
-  CIDOC-CRM: 42 propert(ies) aligned
+  CIDOC-CRM: 40 propert(ies) aligned
     architectural_structures                 → crm:P12_occurred_in_the_presence_of (ObjectProperty)
     assessed_condition_state                 → crm:P35_has_identified         (ObjectProperty)
     assessed_object                          → crm:P34_concerned              (ObjectProperty)
@@ -174,9 +155,7 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
     transferred_from_actor                   → crm:P28_custody_surrendered_by (ObjectProperty)
     transferred_object                       → crm:P30_transferred_custody_of (ObjectProperty)
     transferred_to_actor                     → crm:P29_custody_received_by    (ObjectProperty)
-    used_equipment                           → crm:P16_used_specific_object   (DatatypeProperty)
     used_materials                           → crm:P125_used_object_of_type   (ObjectProperty)
-    used_method                              → crm:P33_used_specific_technique (DatatypeProperty)
     used_technique                           → crm:P32_used_general_technique (ObjectProperty)
     was_produced_by_event                    → crm:P108i_was_produced_by      (ObjectProperty)
 
@@ -214,7 +193,7 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
   Namespace               Classes   Properties
   --------------------------------------------
   AAT                          11            0
-  CIDOC-CRM                    32           42
+  CIDOC-CRM                    32           40
   CRMinf                        2            0
   CRMsci                        1            0
   DBpedia                       3            0
@@ -229,7 +208,7 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
   RICO                          1            0
   Wikidata                      6            0
   --------------------------------------------
-  TOTAL                        68           59
+  TOTAL                        68           57
 
   Paper §4.4 claims vs Actual:
     Metric                                      Paper   Actual   Match
@@ -237,5 +216,5 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.yaml
     CIDOC-CRM aligned classes (SKOS/slot)          32       32       ✅
     External rdfs:subClassOf axioms (TTL)          31       31       ✅
     CRM-family (CRM+CRMinf+CRMsci) classes         35       35       ✅
-    CIDOC-CRM aligned properties (slot_uri)        42       42       ✅
+    CIDOC-CRM aligned properties (slot_uri)        40       40       ✅
     PROV-O aligned properties (slot_uri)            9        9       ✅

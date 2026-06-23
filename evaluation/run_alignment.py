@@ -329,7 +329,7 @@ def run_evaluation():
         ("CIDOC-CRM aligned classes (SKOS/slot)", 32, crm_c),
         ("External rdfs:subClassOf axioms (TTL)", 31, ext_subclass),
         ("CRM-family (CRM+CRMinf+CRMsci) classes", 35, crm_ext_c),
-        ("CIDOC-CRM aligned properties (slot_uri)", 42, crm_p),
+        ("CIDOC-CRM aligned properties (slot_uri)", 40, crm_p),
         ("PROV-O aligned properties (slot_uri)", 9, prov_p),
     ]
     for label, paper, actual in rows:

@@ -9,8 +9,8 @@
 # LUX/Linked-Art consumer sees a valid crm:E22 with no extra mapping.
 #
 # Validate (merged shapes + RDFS inference):
-#   pyshacl -s ontology/HeritageGraph.shacl.ttl -s ontology/HeritageGraph-lux.shacl.ttl \
-#           -e ontology/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
+#   pyshacl -s ontology/HeritageGraph.shacl.ttl -s ontology/lux/HeritageGraph-lux.shacl.ttl \
+#           -e ontology/lux/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
 #           -i rdfs -df turtle examples/lux-murti-merged.ttl
 
 @prefix hg:   <https://w3id.org/heritagegraph/> .

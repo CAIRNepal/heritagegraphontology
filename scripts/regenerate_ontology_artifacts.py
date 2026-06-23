@@ -15,6 +15,8 @@ from rdflib import BNode, Graph, Literal, Namespace, RDF, RDFS, OWL, URIRef
 from rdflib.collection import Collection
 from rdflib.namespace import DCTERMS, PROV, SKOS, VOID
 
+from interop_fixes import fix_object_property_types, fix_skos_mappings
+
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
@@ -228,6 +230,17 @@ def apply_enum_concept_schemes(g: Graph, schema: dict) -> int:
     return count
 
 
+# External slot_uri prefixes emitted as rdfs:subPropertyOf in the release TTL.
+PROPERTY_ALIGNMENT_PREFIXES = (
+    "prov:",
+    "crm:",
+    "crminf:",
+    "datacite:",
+    "dcterms:",
+    "geo:",
+)
+
+
 def apply_property_alignments(g: Graph, schema: dict) -> int:
     prefixes = schema.get("prefixes", {})
     slots = schema.get("slots", {})
@@ -236,14 +249,117 @@ def apply_property_alignments(g: Graph, schema: dict) -> int:
         if not isinstance(spec, dict):
             continue
         curie = spec.get("slot_uri")
-        if not curie or not any(curie.startswith(p) for p in ("prov:", "crm:", "crminf:")):
+        if not curie or curie.startswith(("heritageGraph:", "rdfs:")):
+            continue
+        if not any(curie.startswith(p) for p in PROPERTY_ALIGNMENT_PREFIXES):
             continue
         target = expand_curie(curie, prefixes)
         prop = URIRef(f"https://w3id.org/heritagegraph/{name}")
-        if target and (prop, RDF.type, OWL.ObjectProperty) in g:
+        if not target:
+            continue
+        if (prop, RDF.type, OWL.ObjectProperty) in g or (
+            prop, RDF.type, OWL.DatatypeProperty
+        ) in g:
             g.add((prop, RDFS.subPropertyOf, target))
             count += 1
     return count
+
+
+def bind_release_prefixes(g: Graph, schema: dict) -> None:
+    """Ensure commonly referenced external namespaces serialize with stable prefixes."""
+    skip = {
+        "heritageGraph", "linkml", "schema", "wgs84", "orcid",
+        "localcontexts", "tgn", "crmdig", "rdf", "rdfs", "owl", "xsd",
+    }
+    preferred = {
+        "dcterms": "http://purl.org/dc/terms/",
+        "dct": "http://purl.org/dc/terms/",
+        "schema": "http://schema.org/",
+        "pav": "http://purl.org/pav/",
+        "void": "http://rdfs.org/ns/void#",
+        "datacite": "http://purl.org/spar/datacite/",
+    }
+    for prefix, uri in preferred.items():
+        g.bind(prefix, Namespace(uri))
+    for prefix, uri in schema.get("prefixes", {}).items():
+        if prefix in skip or prefix in preferred:
+            continue
+        g.bind(prefix, Namespace(uri))
+
+
+def normalize_serialized_ttl(ttl: str) -> str:
+    """Normalise LinkML-specific prefix aliases to paper-facing names."""
+    ttl = ttl.replace("@prefix schema1:", "@prefix schema:")
+    ttl = re.sub(r"\bschema1:", "schema:", ttl)
+    return ttl
+
+
+def apply_vocab_mappings_from_yaml(g: Graph, schema: dict) -> int:
+    """Emit SKOS mapping triples declared in YAML but missing from LinkML output."""
+    prefixes = schema.get("prefixes", {})
+    skos_preds = {
+        "exact_mappings": SKOS.exactMatch,
+        "close_mappings": SKOS.closeMatch,
+        "broad_mappings": SKOS.broadMatch,
+    }
+    count = 0
+    for section, uri_fn in (
+        ("classes", hg_class_uri),
+        ("slots", lambda name: URIRef(f"https://w3id.org/heritagegraph/{name}")),
+    ):
+        for name, spec in (schema.get(section) or {}).items():
+            if not isinstance(spec, dict):
+                continue
+            subject = uri_fn(name)
+            for key, pred in skos_preds.items():
+                for curie in spec.get(key, []) or []:
+                    target = expand_curie(curie, prefixes)
+                    if not target:
+                        continue
+                    if any(
+                        (subject, sk, target) in g
+                        for sk in (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch)
+                    ):
+                        continue
+                    g.add((subject, pred, target))
+                    count += 1
+    return count
+
+
+def validate_prefix_coverage(g: Graph, schema: dict) -> list[str]:
+    """Return warnings when TTL uses namespaces absent from YAML prefix declarations."""
+
+    def norm(uri: str) -> str:
+        return uri.rstrip("#/")
+
+    declared = {norm(str(v)) for v in schema.get("prefixes", {}).values()}
+    warnings: list[str] = []
+    seen: set[str] = set()
+    for _s, _p, o in g:
+        if not isinstance(o, URIRef):
+            continue
+        uri = str(o)
+        if uri.startswith("https://w3id.org/heritagegraph/"):
+            continue
+        base = norm(uri.rsplit("#", 1)[0] if "#" in uri else uri.rsplit("/", 1)[0])
+        if base in seen:
+            continue
+        seen.add(base)
+        if any(base == norm(d) or base.startswith(norm(d)) or norm(d).startswith(base) for d in declared):
+            continue
+        if base.startswith(
+            (
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+                "http://www.w3.org/2000/01/rdf-schema",
+                "http://www.w3.org/2002/07/owl",
+                "http://www.w3.org/2001/XMLSchema",
+                "https://w3id.org/linkml",
+                "https://creativecommons.org/licenses",
+            )
+        ):
+            continue
+        warnings.append(f"namespace used in TTL but not declared in YAML prefixes: {base}")
+    return warnings
 
 
 def apply_missing_definitions(g: Graph, schema: dict) -> None:
@@ -281,8 +397,16 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
         g.remove((ONTOLOGY_IRI, OWL.versionIRI, o))
     g.add((ONTOLOGY_IRI, OWL.versionIRI, VERSION_IRI))
     g.add((ONTOLOGY_IRI, OWL.versionInfo, Literal("1.0.0")))
+    # Normalise descriptive metadata to a single canonical value each: LinkML
+    # (license literal) + YAML annotations can otherwise leave duplicate/string
+    # variants (e.g. several dcterms:license triples) that surface in the docs.
+    for pred in (DCTERMS.title, DCTERMS.creator, DCTERMS.publisher,
+                 DCTERMS.license, DCTERMS.modified):
+        for o in list(g.objects(ONTOLOGY_IRI, pred)):
+            g.remove((ONTOLOGY_IRI, pred, o))
     g.add((ONTOLOGY_IRI, DCTERMS.title, Literal("HeritageGraph Ontology")))
     g.add((ONTOLOGY_IRI, DCTERMS.creator, Literal("Cair Nepal")))
+    g.add((ONTOLOGY_IRI, DCTERMS.publisher, Literal("Cair Nepal")))
     g.add((ONTOLOGY_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
     g.add((ONTOLOGY_IRI, DCTERMS.modified, Literal(date.today().isoformat())))
 
@@ -302,14 +426,21 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
     apply_union_axioms(g, schema)
     apply_enum_concept_schemes(g, schema)
     apply_property_alignments(g, schema)
+    apply_vocab_mappings_from_yaml(g, schema)
     apply_missing_definitions(g, schema)
+    fix_object_property_types(g, schema)
+    fix_skos_mappings(g)
 
     person = HG.Person
     if (person, RDF.type, OWL.Class) in g:
         g.add((person, RDFS.subClassOf, FOAF.Person))
 
-    g.serialize(destination=dest, format="turtle")
+    bind_release_prefixes(g, schema)
+    ttl = normalize_serialized_ttl(g.serialize(format="turtle"))
+    dest.write_text(ttl, encoding="utf-8")
     print(f"Wrote {dest} ({len(g)} triples)")
+    for warning in validate_prefix_coverage(g, schema):
+        print(f"  ⚠️  {warning}")
     return g
 
 
@@ -521,9 +652,7 @@ def main() -> int:
 
     schema = load_schema()
     generate_ttl()
-    postprocess_ttl(REGEN, TTL, schema)
-    g = Graph()
-    g.parse(TTL, format="turtle")
+    g = postprocess_ttl(REGEN, TTL, schema)
     write_alignment_ttl(g)
     write_edm_profile()
     write_metadata_ttl(g)

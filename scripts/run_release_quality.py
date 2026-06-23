@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from datetime import datetime
@@ -67,6 +68,12 @@ def main() -> int:
     abox = (RELEASE_EVAL / "abox_cq_report.txt").read_text(encoding="utf-8") if (RELEASE_EVAL / "abox_cq_report.txt").exists() else ""
     hermit_note, hermit_score = hermit_status()
 
+    # Pull live figures from the consistency report so the summary never drifts.
+    m = re.search(r"Inferred triples\s*:\s*(\d+)", consistency)
+    inferred = f"{int(m.group(1)):,}" if m else "n/a"
+    m = re.search(r"disjointWith pairs declared:\s*(\d+)", consistency)
+    disjoint_pairs = m.group(1) if m else "0"
+
     abox_pass = abox.count("[PASS]")
     registry_score = 7.5  # w3id rules + LOV metadata prepared; deploy after tag
     composite = round(
@@ -84,7 +91,7 @@ Generated: {datetime.now().isoformat()}
 | Dimension | Score (/10) | Status |
 |-----------|-------------|--------|
 | Artefact packaging | 8.5 | Release bundle complete (TTL, SHACL, alignment, EDM, VoID, examples) |
-| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 20,304 inferred triples |
+| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; {inferred} inferred triples |
 | Logical consistency (HermiT DL) | {hermit_score} | {hermit_note} |
 | Schema adequacy (CQ TBox) | 9.5 | 32/32 ASK queries pass |
 | ABox demonstrability | 8.5 | Mini Kathmandu ABox + {abox_pass} sample SELECT queries |
@@ -115,7 +122,7 @@ Generated: {datetime.now().isoformat()}
 
 ## Known intentional limitations
 
-- OOPS P10/P11: sparse global `rdfs:domain` and partial sibling disjointness (LinkML restriction pattern)
+- OOPS P11: global `rdfs:domain` is intentionally sparse for reusable slots (LinkML pattern); {disjoint_pairs} sibling disjointness pairs are declared
 - HermiT run uses imports-stripped OWL for reproducible CI classification
 - Full import closure (CRM+PROV+…) should be confirmed in Protégé for integrators
 

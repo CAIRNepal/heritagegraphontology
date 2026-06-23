@@ -1,16 +1,16 @@
 # HeritageGraph Release Quality Report
 
-Generated: 2026-06-06T08:47:06.775119
+Generated: 2026-06-21T12:33:00.983459
 
 ## Executive summary
 
 | Dimension | Score (/10) | Status |
 |-----------|-------------|--------|
 | Artefact packaging | 8.5 | Release bundle complete (TTL, SHACL, alignment, EDM, VoID, examples) |
-| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 20,304 inferred triples |
+| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 20,307 inferred triples |
 | Logical consistency (HermiT DL) | 6.5 | pending — Java not available locally; CI will archive log |
 | Schema adequacy (CQ TBox) | 9.5 | 32/32 ASK queries pass |
-| ABox demonstrability | 8.5 | Mini Kathmandu ABox + 9 sample SELECT queries |
+| ABox demonstrability | 8.5 | Mini Kathmandu ABox + 0 sample SELECT queries |
 | Interoperability | 7.5 | CRM/PROV/EDM/FOAF alignment modules present |
 | Documentation fidelity | 8.5 | Manuscript metrics reconciled; docs metadata refreshed |
 | Registry readiness | 7.5 | VoID + LOV metadata; w3id `.htaccess` prepared |
@@ -22,7 +22,7 @@ Generated: 2026-06-06T08:47:06.775119
 - Alignment claims: 5/5 match
 - CQ TBox: 32/32 pass
 - SHACL: clean generation (no inverse warnings)
-- ABox samples: 9 passing SELECT queries
+- ABox samples: 0 passing SELECT queries
 
 ## Pre-submission checklist
 
@@ -38,7 +38,7 @@ Generated: 2026-06-06T08:47:06.775119
 
 ## Known intentional limitations
 
-- OOPS P10/P11: sparse global `rdfs:domain` and partial sibling disjointness (LinkML restriction pattern)
+- OOPS P11: global `rdfs:domain` is intentionally sparse for reusable slots (LinkML pattern); 70 sibling disjointness pairs are declared
 - HermiT run uses imports-stripped OWL for reproducible CI classification
 - Full import closure (CRM+PROV+…) should be confirmed in Protégé for integrators
 
@@ -50,26 +50,17 @@ https://github.com/CAIRNepal/heritagegraphontology
 
 ```
 ABox CQ Sample Execution
-Date: 2026-06-06T08:47:06.572379
-TBox: /Users/nirajkarki/cair/heritagegraphontology/HeritageGraph.ttl
+Date: 2026-06-21T12:33:00.888381
+TBox: /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 ABox: /Users/nirajkarki/cair/heritagegraphontology/examples/kathmandu-mini-abox.ttl
-Triples loaded: 5155
+Triples loaded: 5137
 
-[PASS] CQ1-style: structures with production timespan: 1 row(s)
-[PASS] CQ11-style: rituals on structures at places: 2 row(s)
-[PASS] CQ25-style: syncretic deity links with sources: 1 row(s)
-[PASS] Multi-vocal: conflicting assertions: 2 row(s)
-[PASS] CQ26-style: Living Goddess tenure: 1 row(s)
-[PASS] CQ7-style: sacred structures in a place with associated rituals: 3 row(s)
-[PASS] CQ12-style: canonical ritual sequence within a festival: 1 row(s)
-[PASS] CQ19-style: institutions managing heritage and performing rituals: 1 row(s)
-[PASS] CQ27-style: Kumari person linked to embodied deity: 1 row(s)
 ```
 
 ## Consistency excerpt
 
 ```
-============
+==========
   ✅  No classes found subClassOf owl:Nothing
 
 ======================================================================
@@ -84,17 +75,17 @@ Triples loaded: 5155
 ======================================================================
   Step 5 — Quick Consistency Indicators
 ======================================================================
-  owl:disjointWith pairs declared: 0
-  Object properties without explicit rdfs:range: 23/123
-  Datatype properties without explicit rdfs:range: 6/47
+  owl:disjointWith pairs declared: 70
+  Object properties without explicit rdfs:range: 25/125
+  Datatype properties without explicit rdfs:range: 6/46
 
 ======================================================================
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 20304 inferred triples
+  OWL-RL closure      : 20307 inferred triples
   Unsatisfiable       : 0 classes
-  Disjointness axioms : 0
+  Disjointness axioms : 70
 
   ⚠️  For full OWL DL consistency, load HeritageGraph.ttl in Protégé
      and run the HermiT reasoner (Reasoner → HermiT → Start Reasoner).
@@ -115,8 +106,8 @@ Triples loaded: 5155
   Metric                              Paper     Actual    Match
   --------------------------------------------------------------
   Named owl:Class (HG namespace)         70         70        ✅
-  Object properties                     123        123        ✅
-  Datatype properties                    47         47        ✅
+  Object properties                     125        125        ✅
+  Datatype properties                    46         46        ✅
   Union classes (named)                   3          3        ✅
   Named individuals (enum values)         64         64        ✅
   SHACL NodeShapes                       61         61        ✅

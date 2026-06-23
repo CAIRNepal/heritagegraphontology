@@ -169,7 +169,7 @@ ASK WHERE {
 ASK WHERE {
   heritageGraph:CasteGroup a owl:Class .
   heritageGraph:RitualEvent a owl:Class .
-  heritageGraph:performed_by_group a owl:DatatypeProperty .
+  heritageGraph:performed_by_group a owl:ObjectProperty .
   heritageGraph:is_critical_for_festival a owl:DatatypeProperty .
   heritageGraph:traditional_role a owl:DatatypeProperty .
 }"""
@@ -214,7 +214,7 @@ ASK WHERE {
   heritageGraph:occurs_before a owl:ObjectProperty .
   heritageGraph:occurs_after a owl:ObjectProperty .
   heritageGraph:carried_out_by a owl:ObjectProperty .
-  heritageGraph:performed_by_group a owl:DatatypeProperty .
+  heritageGraph:performed_by_group a owl:ObjectProperty .
 }"""
     },
     {
@@ -268,7 +268,7 @@ ASK WHERE {
         "sparql": PREFIXES + """
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
-  heritageGraph:performed_by_group a owl:DatatypeProperty .
+  heritageGraph:performed_by_group a owl:ObjectProperty .
   heritageGraph:traditional_role a owl:DatatypeProperty .
 }"""
     },
@@ -353,7 +353,7 @@ ASK WHERE {
   heritageGraph:SyncreticRelationship a owl:Class .
   heritageGraph:assigned_to_deity a owl:ObjectProperty .
   heritageGraph:assigned_equivalent a owl:ObjectProperty .
-  heritageGraph:performed_by_group a owl:DatatypeProperty .
+  heritageGraph:performed_by_group a owl:ObjectProperty .
   heritageGraph:has_religious_tradition a owl:ObjectProperty .
 }"""
     },
@@ -380,7 +380,7 @@ ASK WHERE {
   heritageGraph:Temple a owl:Class .
   heritageGraph:BuddhistMonument a owl:Class .
   heritageGraph:invokes_deity a owl:ObjectProperty .
-  heritageGraph:performed_by_group a owl:DatatypeProperty .
+  heritageGraph:performed_by_group a owl:ObjectProperty .
 }"""
     },
     {
