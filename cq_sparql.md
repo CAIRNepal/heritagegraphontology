@@ -25,7 +25,7 @@ ASK WHERE {
   heritageGraph:Production a owl:Class .
   heritageGraph:TimeSpan a owl:Class .
   heritageGraph:has_architectural_style a owl:ObjectProperty .
-  heritageGraph:has_architectural_style rdfs:range crm:E55_Type .
+  heritageGraph:has_architectural_style rdfs:range heritageGraph:ArchitecturalStyleEnum .
   heritageGraph:was_produced_by_event a owl:ObjectProperty .
   heritageGraph:has_timespan a owl:ObjectProperty .
   heritageGraph:date_earliest a owl:DatatypeProperty .
@@ -89,11 +89,12 @@ CQ6. Which heritage shares a common architectural style?
 ```sparql
 PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 ASK WHERE {
   heritageGraph:ArchitecturalStructure a owl:Class .
   heritageGraph:has_architectural_style a owl:ObjectProperty .
-  heritageGraph:has_architectural_style rdfs:range crm:E55_Type .
+  heritageGraph:has_architectural_style rdfs:range heritageGraph:ArchitecturalStyleEnum .
 }
 ```
 
