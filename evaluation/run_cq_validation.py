@@ -29,7 +29,7 @@ RESULTS_DIR.mkdir(exist_ok=True)
 # Common SPARQL prefixes
 # ---------------------------------------------------------------------------
 PREFIXES = """
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>

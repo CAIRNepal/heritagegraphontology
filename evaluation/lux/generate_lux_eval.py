@@ -28,7 +28,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 BRIDGE = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
 ENDPOINT = "https://semihyumusak.com.tr/oxigraph/query"
-HG = "https://w3id.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 
 
@@ -55,8 +55,8 @@ def e1_coverage() -> list[tuple]:
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 SELECT ?c (COUNT(?x) AS ?n)
-  (IF(EXISTS{?h rdfs:subClassOf+ ?c. FILTER(STRSTARTS(STR(?h),"https://w3id.org/heritagegraph/"))}
-     || EXISTS{?h2 owl:equivalentClass ?c. FILTER(STRSTARTS(STR(?h2),"https://w3id.org/heritagegraph/"))},
+  (IF(EXISTS{?h rdfs:subClassOf+ ?c. FILTER(STRSTARTS(STR(?h),"https://cair-nepal.org/heritagegraph/"))}
+     || EXISTS{?h2 owl:equivalentClass ?c. FILTER(STRSTARTS(STR(?h2),"https://cair-nepal.org/heritagegraph/"))},
      "YES","NO") AS ?cov)
 WHERE { ?x a ?c .
   FILTER(STRSTARTS(STR(?c),"http://www.cidoc-crm.org/cidoc-crm/")
@@ -69,7 +69,7 @@ GROUP BY ?c ORDER BY DESC(?n)""")
 
 def e3_counts() -> list[tuple]:
     rows = sparql("""SELECT ?t (COUNT(?s) AS ?n) WHERE {
-      GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?s a ?t } }
+      GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?s a ?t } }
       GROUP BY ?t ORDER BY DESC(?n)""")
     return [(short(b["t"]["value"]), int(b["n"]["value"])) for b in rows]
 

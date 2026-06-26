@@ -31,7 +31,7 @@ RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
 SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
-HG = Namespace("https://w3id.org/heritagegraph/")
+HG = Namespace("https://cair-nepal.org/heritagegraph/")
 LINKML = Namespace("https://w3id.org/linkml/")
 
 

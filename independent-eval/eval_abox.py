@@ -3,7 +3,7 @@
 from rdflib import Graph
 from pyshacl import validate
 ROOT="/Users/nirajkarki/cair/heritagegraphontology/"
-PFX="""PREFIX hg:<https://w3id.org/heritagegraph/>
+PFX="""PREFIX hg:<https://cair-nepal.org/heritagegraph/>
 PREFIX crm:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>"""
 
@@ -38,7 +38,7 @@ for name,q in CQ.items():
     rows=list(g.query(q))
     print(f"[{len(rows)} rows] {name}")
     for r in rows[:2]:
-        print("     -> " + " | ".join(str(x).replace('https://w3id.org/heritagegraph/demo/','').replace('https://w3id.org/heritagegraph/','hg:') for x in r))
+        print("     -> " + " | ".join(str(x).replace('https://cair-nepal.org/heritagegraph/demo/','').replace('https://cair-nepal.org/heritagegraph/','hg:') for x in r))
 
 # SHACL conformance on the valid ABox
 shapes=Graph(); shapes.parse(ROOT+"HeritageGraph.shacl.ttl",format="turtle")
@@ -51,11 +51,11 @@ if not conforms:
 print("\n== SHACL negative tests (each should be caught) ==")
 tests={
  "Temple missing has_architectural_style":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix xsd:<http://www.w3.org/2001/XMLSchema#> . @prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> . @prefix ex:<https://w3id.org/heritagegraph/demo/> . ex:BadTemple a hg:Temple ; rdfs:label "x" ; dcterms:identifier "u"^^xsd:anyURI ; crm:P55_has_current_location ex:KathmanduDurbarSquare . ex:KathmanduDurbarSquare a crm:E53_Place .',
+  '@prefix hg:<https://cair-nepal.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix xsd:<http://www.w3.org/2001/XMLSchema#> . @prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> . @prefix ex:<https://cair-nepal.org/heritagegraph/demo/> . ex:BadTemple a hg:Temple ; rdfs:label "x" ; dcterms:identifier "u"^^xsd:anyURI ; crm:P55_has_current_location ex:KathmanduDurbarSquare . ex:KathmanduDurbarSquare a crm:E53_Place .',
  "Guthi missing guthi_type":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . ex:BadGuthi a hg:Guthi ; rdfs:label "x" . @prefix ex:<https://w3id.org/heritagegraph/demo/> .',
+  '@prefix hg:<https://cair-nepal.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . ex:BadGuthi a hg:Guthi ; rdfs:label "x" . @prefix ex:<https://cair-nepal.org/heritagegraph/demo/> .',
  "RitualEvent missing time-span":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix ex:<https://w3id.org/heritagegraph/demo/> . ex:BadRitual a hg:RitualEvent ; rdfs:label "x" .',
+  '@prefix hg:<https://cair-nepal.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix ex:<https://cair-nepal.org/heritagegraph/demo/> . ex:BadRitual a hg:RitualEvent ; rdfs:label "x" .',
 }
 import re
 for name,ttl in tests.items():

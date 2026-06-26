@@ -135,7 +135,7 @@ Results are written to `evaluation/results/`. A summary is in `release/QUALITY_R
 ## Example
 
 ```turtle
-@prefix hg: <https://w3id.org/heritagegraph/> .
+@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 
 :IndraJatra
     a hg:Festival ;

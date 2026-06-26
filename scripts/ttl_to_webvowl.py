@@ -20,7 +20,7 @@ from datetime import date
 from rdflib import Graph, RDF, RDFS, OWL, URIRef, BNode
 from rdflib.namespace import SKOS
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 THING = OWL.Thing
 LITERAL = RDFS.Literal
 _REST_FILLERS = (OWL.someValuesFrom, OWL.allValuesFrom, OWL.onClass)

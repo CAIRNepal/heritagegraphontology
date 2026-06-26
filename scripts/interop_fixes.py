@@ -25,7 +25,7 @@ from __future__ import annotations
 from rdflib import Graph, RDF, RDFS, OWL, URIRef
 from rdflib.namespace import SKOS
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 
 # Authority priority for picking the single 1:1 exactMatch target (lower = better).
 _EXACT_PRIORITY = [

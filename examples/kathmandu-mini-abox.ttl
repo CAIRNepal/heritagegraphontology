@@ -1,12 +1,12 @@
 # HeritageGraph demonstrator ABox — Kathmandu Valley exemplar.
 # Hand-authored to exercise all four modelling patterns + the provenance and
 # multi-calendar layers, and to conform to HeritageGraph.shacl.ttl.
-@prefix hg:   <https://w3id.org/heritagegraph/> .
+@prefix hg:   <https://cair-nepal.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex:   <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:   <https://cair-nepal.org/heritagegraph/demo/> .
 
 # --- places & time-spans ---
 ex:KathmanduDurbarSquare a crm:E53_Place ; rdfs:label "Kathmandu Durbar Square" .
@@ -15,7 +15,7 @@ ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra (annual, Bhadra)" .
 # --- tangible heritage: a temple + its construction (event-mediated) ---
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
-    dcterms:identifier "https://w3id.org/heritagegraph/demo/site/kasthamandap"^^xsd:anyURI ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/demo/site/kasthamandap"^^xsd:anyURI ;
     hg:has_architectural_style hg:Pagoda ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 

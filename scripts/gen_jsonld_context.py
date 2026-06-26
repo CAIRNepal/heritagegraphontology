@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
 OUT = ROOT / "docs" / "context.jsonld"
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 
 PREFIXES = OrderedDict([
     ("heritageGraph", HG),

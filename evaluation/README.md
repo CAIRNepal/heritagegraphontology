@@ -242,7 +242,7 @@ gen-owl HeritageGraph.yaml -o HeritageGraph.ttl
 ## Expected Results Summary
 
 When run against the current HeritageGraph ontology (v1.0.0,
-`https://w3id.org/heritagegraph/ontology`), the evaluation suite produces:
+`https://cair-nepal.org/heritagegraph/ontology`), the evaluation suite produces:
 
 ### §4.1 Consistency
 - **5,086** base triples parsed
@@ -255,7 +255,7 @@ When run against the current HeritageGraph ontology (v1.0.0,
 - **P10** (Important): 0 — 70 sibling disjointness pairs are now declared
 - **P11** (Important): 134 missing domain/range declarations (intentional LinkML pattern — see notes)
 - **P13** (Minor): 0 inverse pairs flagged
-- **P22** (Critical): 0 — the ontology IRI is the canonical `https://w3id.org/heritagegraph/ontology`
+- **P22** (Critical): 0 — the ontology IRI is the canonical `https://cair-nepal.org/heritagegraph/ontology`
 
 > The OOPS! online service is also queried (`results/oops_response.xml`); when the
 > remote service cannot dereference the submitted ontology it returns a generic

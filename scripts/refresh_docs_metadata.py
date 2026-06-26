@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
-ONTOLOGY_IRI = "https://w3id.org/heritagegraph/ontology"
+ONTOLOGY_IRI = "https://cair-nepal.org/heritagegraph/ontology"
 LICENSE = "https://creativecommons.org/licenses/by/4.0/"
 REPO = "https://github.com/CAIRNepal/heritagegraphontology"
 
@@ -96,7 +96,7 @@ def patch_webvowl_header(meta: dict[str, str]) -> None:
         data = json.loads(path.read_text(encoding="utf-8"))
         data.setdefault("header", {})
         data["header"]["iri"] = meta["iri"]
-        data["header"]["baseIris"] = ["https://w3id.org/heritagegraph", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2001/XMLSchema"]
+        data["header"]["baseIris"] = ["https://cair-nepal.org/heritagegraph", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2001/XMLSchema"]
         data["header"].setdefault("labels", {})["undefined"] = meta["label"]
         other = data["header"].setdefault("other", {})
         other["definition"] = [{"identifier": "definition", "language": "undefined", "value": meta["description"], "type": "label"}]

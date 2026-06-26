@@ -13,19 +13,19 @@
 #           -e ontology/lux/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
 #           -i rdfs -df turtle examples/lux-murti-merged.ttl
 
-@prefix hg:   <https://w3id.org/heritagegraph/> .
+@prefix hg:   <https://cair-nepal.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix aat:  <http://vocab.getty.edu/aat/> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex:   <https://w3id.org/heritagegraph/demo/lux/> .
+@prefix ex:   <https://cair-nepal.org/heritagegraph/demo/lux/> .
 
 # ---- The object: a gilt-copper Murti (cf. a LUX HumanMadeObject) -------------
 
 ex:murti a hg:Murti ;
     rdfs:label "Standing Avalokiteshvara" ;
-    dct:identifier "https://w3id.org/heritagegraph/demo/lux/murti"^^xsd:anyURI ;
+    dct:identifier "https://cair-nepal.org/heritagegraph/demo/lux/murti"^^xsd:anyURI ;
     hg:identified_by_name      ex:name-en, ex:name-newari ;
     hg:identified_by_identifier ex:accno ;
     hg:carries_inscription     ex:inscription ;

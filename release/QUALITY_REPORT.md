@@ -67,10 +67,10 @@ Triples loaded: 5086
   Step 4 — Ontology Metadata
 ======================================================================
   owl:Ontology declarations: 1
-    IRI: https://w3id.org/heritagegraph/ontology
+    IRI: https://cair-nepal.org/heritagegraph/ontology
       rdfs:label = HeritageGraph
       pav:version = 1.0.0
-      owl:versionIRI = https://w3id.org/heritagegraph/ontology/1.0.0
+      owl:versionIRI = https://cair-nepal.org/heritagegraph/ontology/1.0.0
 
 ======================================================================
   Step 5 — Quick Consistency Indicators
