@@ -13,7 +13,7 @@ heritagegraph/
 ├── README.md            ← this file
 ├── LICENSE.txt          ← per-source licensing (CC0 / ODbL / CC BY)
 ├── ontology/            ← schema (TBox)
-│   ├── HeritageGraph.ttl         OWL ontology  (https://cairnepal.github.io/heritagegraphontology/)
+│   ├── HeritageGraph.ttl         OWL ontology  (namespace https://cair-nepal.org/heritagegraph/)
 │   ├── HeritageGraph.shacl.ttl   SHACL shapes (validation)
 │   └── HeritageGraph.yaml        LinkML source
 ├── kg/                  ← data (ABox), one file per source / named graph

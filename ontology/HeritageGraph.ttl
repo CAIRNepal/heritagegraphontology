@@ -8,7 +8,7 @@
 @prefix edm: <http://www.europeana.eu/schemas/edm/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix heritageGraph: <https://cair-nepal.org/heritagegraph/> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix pav: <http://purl.org/pav/> .
@@ -572,7 +572,7 @@ heritageGraph:Abhisheka a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Abhisheka" ;
     skos:definition "Ritual bathing/anointing of deity" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Abhisheka" .
 
 heritageGraph:Appropriation a owl:NamedIndividual,
@@ -580,7 +580,7 @@ heritageGraph:Appropriation a owl:NamedIndividual,
         heritageGraph:SyncreticTypeEnum ;
     rdfs:label "Appropriation" ;
     skos:definition "Deity borrowed from one tradition into another" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SyncreticTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SyncreticTypeEnum> ;
     skos:prefLabel "Appropriation" .
 
 heritageGraph:ArchivalRecord a owl:Class ;
@@ -596,7 +596,7 @@ heritageGraph:ArchivalRecordSource a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "ArchivalRecord" ;
     skos:definition "Administrative or archival document" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "ArchivalRecord" .
 
 heritageGraph:AssertableEntity a owl:Class ;
@@ -611,7 +611,7 @@ heritageGraph:Bhajan a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Bhajan" ;
     skos:definition "Devotional singing ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Bhajan" .
 
 heritageGraph:Century a owl:NamedIndividual,
@@ -619,7 +619,7 @@ heritageGraph:Century a owl:NamedIndividual,
         heritageGraph:DatePrecisionEnum ;
     rdfs:label "Century" ;
     skos:definition "Within century range" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> ;
     skos:prefLabel "Century" .
 
 heritageGraph:ChaityaStyle a owl:NamedIndividual,
@@ -628,7 +628,7 @@ heritageGraph:ChaityaStyle a owl:NamedIndividual,
     rdfs:label "Chaitya" ;
     skos:definition "Buddhist votive shrine style" ;
     skos:exactMatch aat:300007562 ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
     skos:prefLabel "Chaitya" .
 
 heritageGraph:ChariotProcession a owl:NamedIndividual,
@@ -637,7 +637,7 @@ heritageGraph:ChariotProcession a owl:NamedIndividual,
     rdfs:label "ChariotProcession" ;
     skos:broadMatch aat:300069290 ;
     skos:definition "Ritual chariot pulling" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "ChariotProcession" .
 
 heritageGraph:Circa a owl:NamedIndividual,
@@ -645,7 +645,7 @@ heritageGraph:Circa a owl:NamedIndividual,
         heritageGraph:DatePrecisionEnum ;
     rdfs:label "Circa" ;
     skos:definition "Approximate date" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> ;
     skos:prefLabel "Circa" .
 
 heritageGraph:Circumambulation a owl:NamedIndividual,
@@ -653,7 +653,7 @@ heritageGraph:Circumambulation a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Circumambulation" ;
     skos:definition "Ritual circular movement around sacred site" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Circumambulation" .
 
 heritageGraph:Community a owl:NamedIndividual,
@@ -661,7 +661,7 @@ heritageGraph:Community a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "Community" ;
     skos:definition "Community or custodial tradition-bearer account" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "Community" .
 
 heritageGraph:CommunityNarrative a owl:NamedIndividual,
@@ -669,7 +669,7 @@ heritageGraph:CommunityNarrative a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "CommunityNarrative" ;
     skos:definition "Community-held narrative not yet fully documented in writing" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "CommunityNarrative" .
 
 heritageGraph:ConditionState a owl:Class ;
@@ -710,7 +710,7 @@ heritageGraph:Damaged a owl:NamedIndividual,
         heritageGraph:ConditionTypeEnum ;
     rdfs:label "Damaged" ;
     skos:definition "Partially damaged" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ConditionTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ConditionTypeEnum> ;
     skos:prefLabel "Damaged" .
 
 heritageGraph:Decade a owl:NamedIndividual,
@@ -718,7 +718,7 @@ heritageGraph:Decade a owl:NamedIndividual,
         heritageGraph:DatePrecisionEnum ;
     rdfs:label "Decade" ;
     skos:definition "Within 10-year range" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> ;
     skos:prefLabel "Decade" .
 
 heritageGraph:DeinstallationRitual a owl:NamedIndividual,
@@ -726,7 +726,7 @@ heritageGraph:DeinstallationRitual a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "DeinstallationRitual" ;
     skos:definition "De-installation/conclusion ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "DeinstallationRitual" .
 
 heritageGraph:Destroyed a owl:NamedIndividual,
@@ -734,7 +734,7 @@ heritageGraph:Destroyed a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "Destroyed" ;
     skos:definition "Known to have been destroyed; no physical remains" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "Destroyed" .
 
 heritageGraph:Dharmashala a owl:Class ;
@@ -749,7 +749,7 @@ heritageGraph:Dome a owl:NamedIndividual,
     rdfs:label "Dome" ;
     skos:definition "Dome-based style (Mughal/Neo-classical influence)" ;
     skos:exactMatch aat:300001285 ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
     skos:prefLabel "Dome" .
 
 heritageGraph:Equivalence a owl:NamedIndividual,
@@ -757,7 +757,7 @@ heritageGraph:Equivalence a owl:NamedIndividual,
         heritageGraph:SyncreticTypeEnum ;
     rdfs:label "Equivalence" ;
     skos:definition "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SyncreticTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SyncreticTypeEnum> ;
     skos:prefLabel "Equivalence" .
 
 heritageGraph:Exact a owl:NamedIndividual,
@@ -765,7 +765,7 @@ heritageGraph:Exact a owl:NamedIndividual,
         heritageGraph:DatePrecisionEnum ;
     rdfs:label "Exact" ;
     skos:definition "Precise date known" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> ;
     skos:prefLabel "Exact" .
 
 heritageGraph:Extant a owl:NamedIndividual,
@@ -773,7 +773,7 @@ heritageGraph:Extant a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "Extant" ;
     skos:definition "Currently exists in physical form" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "Extant" .
 
 heritageGraph:FieldSurvey a owl:NamedIndividual,
@@ -781,7 +781,7 @@ heritageGraph:FieldSurvey a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "FieldSurvey" ;
     skos:definition "Field survey, measurement, or conservation assessment" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "FieldSurvey" .
 
 heritageGraph:Fusion a owl:NamedIndividual,
@@ -789,7 +789,7 @@ heritageGraph:Fusion a owl:NamedIndividual,
         heritageGraph:SyncreticTypeEnum ;
     rdfs:label "Fusion" ;
     skos:definition "Intrinsically syncretic deity merging multiple traditions" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SyncreticTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SyncreticTypeEnum> ;
     skos:prefLabel "Fusion" .
 
 heritageGraph:Good a owl:NamedIndividual,
@@ -797,7 +797,7 @@ heritageGraph:Good a owl:NamedIndividual,
         heritageGraph:ConditionTypeEnum ;
     rdfs:label "Good" ;
     skos:definition "No significant damage" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ConditionTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ConditionTypeEnum> ;
     skos:prefLabel "Good" .
 
 heritageGraph:HeritageActivity a owl:Class ;
@@ -816,7 +816,7 @@ heritageGraph:Historical a owl:NamedIndividual,
         heritageGraph:SyncreticTypeEnum ;
     rdfs:label "Historical" ;
     skos:definition "Gradual syncretism over time" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SyncreticTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SyncreticTypeEnum> ;
     skos:prefLabel "Historical" .
 
 heritageGraph:HistoricalEvent a owl:Class ;
@@ -878,7 +878,7 @@ heritageGraph:Homa a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Homa" ;
     skos:definition "Fire offering ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Homa" .
 
 heritageGraph:Hypothetical a owl:NamedIndividual,
@@ -886,7 +886,7 @@ heritageGraph:Hypothetical a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "Hypothetical" ;
     skos:definition "Reconstructed or theorized; never physically realized" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "Hypothetical" .
 
 heritageGraph:Inscription a owl:NamedIndividual,
@@ -894,7 +894,7 @@ heritageGraph:Inscription a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "Inscription" ;
     skos:definition "Epigraphic or carved textual source" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "Inscription" .
 
 heritageGraph:InstallationRitual a owl:NamedIndividual,
@@ -902,7 +902,7 @@ heritageGraph:InstallationRitual a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "InstallationRitual" ;
     skos:definition "Installation/enshrinement ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "InstallationRitual" .
 
 heritageGraph:Jatra a owl:NamedIndividual,
@@ -911,7 +911,7 @@ heritageGraph:Jatra a owl:NamedIndividual,
     rdfs:label "Jatra" ;
     skos:broadMatch aat:300069290 ;
     skos:definition "Festival procession ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Jatra" .
 
 heritageGraph:JatraGuthi a owl:NamedIndividual,
@@ -919,7 +919,7 @@ heritageGraph:JatraGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "JatraGuthi" ;
     skos:definition "Festival organization trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "JatraGuthi" .
 
 heritageGraph:KamyaPuja a owl:NamedIndividual,
@@ -927,7 +927,7 @@ heritageGraph:KamyaPuja a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "KamyaPuja" ;
     skos:definition "Desire-based optional worship" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "KamyaPuja" .
 
 heritageGraph:Lost a owl:NamedIndividual,
@@ -935,7 +935,7 @@ heritageGraph:Lost a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "Lost" ;
     skos:definition "Existence documented but location/remains unknown" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "Lost" .
 
 heritageGraph:MaskedPerformance a owl:NamedIndividual,
@@ -943,7 +943,7 @@ heritageGraph:MaskedPerformance a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "MaskedPerformance" ;
     skos:definition "Ritual masked dance" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "MaskedPerformance" .
 
 heritageGraph:NaimittikaPuja a owl:NamedIndividual,
@@ -951,7 +951,7 @@ heritageGraph:NaimittikaPuja a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "NaimittikaPuja" ;
     skos:definition "Occasional/Festival worship" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "NaimittikaPuja" .
 
 heritageGraph:NashaGuthi a owl:NamedIndividual,
@@ -959,7 +959,7 @@ heritageGraph:NashaGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "NashaGuthi" ;
     skos:definition "Music and dance trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "NashaGuthi" .
 
 heritageGraph:NityaPuja a owl:NamedIndividual,
@@ -967,7 +967,7 @@ heritageGraph:NityaPuja a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "NityaPuja" ;
     skos:definition "Daily mandatory worship" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "NityaPuja" .
 
 heritageGraph:OralHistory a owl:NamedIndividual,
@@ -975,7 +975,7 @@ heritageGraph:OralHistory a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "OralHistory" ;
     skos:definition "Oral history interview or community narrative" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "OralHistory" .
 
 heritageGraph:Pagoda a owl:NamedIndividual,
@@ -984,7 +984,7 @@ heritageGraph:Pagoda a owl:NamedIndividual,
     rdfs:label "Pagoda" ;
     skos:definition "Multi-tiered roof style indigenous to Nepal" ;
     skos:exactMatch aat:300004829 ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
     skos:prefLabel "Pagoda" .
 
 heritageGraph:PartiallyExtant a owl:NamedIndividual,
@@ -992,7 +992,7 @@ heritageGraph:PartiallyExtant a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "PartiallyExtant" ;
     skos:definition "Fragments or ruins remain" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "PartiallyExtant" .
 
 heritageGraph:Priestly a owl:NamedIndividual,
@@ -1000,7 +1000,7 @@ heritageGraph:Priestly a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "Priestly" ;
     skos:definition "Priestly or ritual-specialist account" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "Priestly" .
 
 heritageGraph:ProcessionRitual a owl:NamedIndividual,
@@ -1008,7 +1008,7 @@ heritageGraph:ProcessionRitual a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "ProcessionRitual" ;
     skos:definition "Ritual procession/movement" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "ProcessionRitual" .
 
 heritageGraph:ProcessionalMovement a owl:NamedIndividual,
@@ -1016,7 +1016,7 @@ heritageGraph:ProcessionalMovement a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "ProcessionalMovement" ;
     skos:definition "General ritual movement between locations" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "ProcessionalMovement" .
 
 heritageGraph:PublishedScholarship a owl:NamedIndividual,
@@ -1024,7 +1024,7 @@ heritageGraph:PublishedScholarship a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "PublishedScholarship" ;
     skos:definition "Published scholarly work" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "PublishedScholarship" .
 
 heritageGraph:PujaGuthi a owl:NamedIndividual,
@@ -1032,7 +1032,7 @@ heritageGraph:PujaGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "PujaGuthi" ;
     skos:definition "Daily worship trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "PujaGuthi" .
 
 heritageGraph:RajGuthi a owl:NamedIndividual,
@@ -1040,7 +1040,7 @@ heritageGraph:RajGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "RajGuthi" ;
     skos:definition "Royal endowment trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "RajGuthi" .
 
 heritageGraph:RelicTour a owl:NamedIndividual,
@@ -1048,7 +1048,7 @@ heritageGraph:RelicTour a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "RelicTour" ;
     skos:definition "Procession with sacred relics between sites" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "RelicTour" .
 
 heritageGraph:Restored a owl:NamedIndividual,
@@ -1056,7 +1056,7 @@ heritageGraph:Restored a owl:NamedIndividual,
         heritageGraph:ConditionTypeEnum ;
     rdfs:label "Restored" ;
     skos:definition "Repaired and stabilized" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ConditionTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ConditionTypeEnum> ;
     skos:prefLabel "Restored" .
 
 heritageGraph:ReturningRitual a owl:NamedIndividual,
@@ -1064,7 +1064,7 @@ heritageGraph:ReturningRitual a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "ReturningRitual" ;
     skos:definition "Return to normal state ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "ReturningRitual" .
 
 heritageGraph:RitualConsecration a owl:NamedIndividual,
@@ -1072,7 +1072,7 @@ heritageGraph:RitualConsecration a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "RitualConsecration" ;
     skos:definition "Consecration/activation ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "RitualConsecration" .
 
 heritageGraph:RitualProtocol a owl:NamedIndividual,
@@ -1080,7 +1080,7 @@ heritageGraph:RitualProtocol a owl:NamedIndividual,
         heritageGraph:SourceTypeEnum ;
     rdfs:label "RitualProtocol" ;
     skos:definition "Ritual manual, priestly instruction, or liturgical protocol" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/SourceTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> ;
     skos:prefLabel "RitualProtocol" .
 
 heritageGraph:Ruined a owl:NamedIndividual,
@@ -1088,7 +1088,7 @@ heritageGraph:Ruined a owl:NamedIndividual,
         heritageGraph:ConditionTypeEnum ;
     rdfs:label "Ruined" ;
     skos:definition "Severely damaged or collapsed" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ConditionTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ConditionTypeEnum> ;
     skos:prefLabel "Ruined" .
 
 heritageGraph:SanGuthi a owl:NamedIndividual,
@@ -1096,7 +1096,7 @@ heritageGraph:SanGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "SanGuthi" ;
     skos:definition "Life-cycle ritual trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "SanGuthi" .
 
 heritageGraph:SanaGuthi a owl:NamedIndividual,
@@ -1104,7 +1104,7 @@ heritageGraph:SanaGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "SanaGuthi" ;
     skos:definition "Agricultural cooperative trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "SanaGuthi" .
 
 heritageGraph:Scholarly a owl:NamedIndividual,
@@ -1112,7 +1112,7 @@ heritageGraph:Scholarly a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "Scholarly" ;
     skos:definition "Academic or philological interpretation" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "Scholarly" .
 
 heritageGraph:Shikhara a owl:NamedIndividual,
@@ -1121,7 +1121,7 @@ heritageGraph:Shikhara a owl:NamedIndividual,
     rdfs:label "Shikhara" ;
     skos:definition "North Indian spire-shaped style" ;
     skos:exactMatch aat:300446671 ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
     skos:prefLabel "Shikhara" .
 
 heritageGraph:SiGuthi a owl:NamedIndividual,
@@ -1129,7 +1129,7 @@ heritageGraph:SiGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "SiGuthi" ;
     skos:definition "Funeral trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "SiGuthi" .
 
 heritageGraph:State a owl:NamedIndividual,
@@ -1137,7 +1137,7 @@ heritageGraph:State a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "State" ;
     skos:definition "Government or institutional administrative account" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "State" .
 
 heritageGraph:StupaStyle a owl:NamedIndividual,
@@ -1146,7 +1146,7 @@ heritageGraph:StupaStyle a owl:NamedIndividual,
     rdfs:label "Stupa" ;
     skos:definition "Buddhist dome-shaped reliquary" ;
     skos:exactMatch aat:300007576 ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> ;
     skos:prefLabel "Stupa" .
 
 heritageGraph:SyncreticTradition a owl:NamedIndividual,
@@ -1154,7 +1154,7 @@ heritageGraph:SyncreticTradition a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "SyncreticTradition" ;
     skos:definition "Account grounded in multi-tradition ritual practice" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "SyncreticTradition" .
 
 heritageGraph:Temple a owl:Class ;
@@ -1192,7 +1192,7 @@ heritageGraph:TempleGuthi a owl:NamedIndividual,
         heritageGraph:GuthiTypeEnum ;
     rdfs:label "TempleGuthi" ;
     skos:definition "Temple maintenance trust" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> ;
     skos:prefLabel "TempleGuthi" .
 
 heritageGraph:Uncertain a owl:NamedIndividual,
@@ -1200,7 +1200,7 @@ heritageGraph:Uncertain a owl:NamedIndividual,
         heritageGraph:EpistemicStanceEnum ;
     rdfs:label "Uncertain" ;
     skos:definition "Deliberately uncertain, provisional, or contested" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> ;
     skos:prefLabel "Uncertain" .
 
 heritageGraph:Unknown a owl:NamedIndividual,
@@ -1208,7 +1208,7 @@ heritageGraph:Unknown a owl:NamedIndividual,
         heritageGraph:ExistenceStatusEnum ;
     rdfs:label "Unknown" ;
     skos:definition "Existence status uncertain" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> ;
     skos:prefLabel "Unknown" .
 
 heritageGraph:Verification a owl:Class ;
@@ -1252,7 +1252,7 @@ heritageGraph:Vrata a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Vrata" ;
     skos:definition "Vow observance ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Vrata" .
 
 heritageGraph:Yagna a owl:NamedIndividual,
@@ -1260,7 +1260,7 @@ heritageGraph:Yagna a owl:NamedIndividual,
         heritageGraph:RitualTypeEnum ;
     rdfs:label "Yagna" ;
     skos:definition "Vedic sacrifice ritual" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/RitualTypeEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> ;
     skos:prefLabel "Yagna" .
 
 heritageGraph:Year a owl:NamedIndividual,
@@ -1268,7 +1268,7 @@ heritageGraph:Year a owl:NamedIndividual,
         heritageGraph:DatePrecisionEnum ;
     rdfs:label "Year" ;
     skos:definition "Year-level precision only" ;
-    skos:inScheme <https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> ;
+    skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> ;
     skos:prefLabel "Year" .
 
 heritageGraph:architectural_elements a owl:ObjectProperty ;
@@ -2540,12 +2540,12 @@ heritageGraph:produced_object a owl:ObjectProperty ;
     skos:definition "Object produced by this production event" ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/ConditionTypeEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/ConditionTypeEnum> a skos:ConceptScheme ;
     dct:title "ConditionTypeEnum" ;
     skos:definition "Controlled vocabulary for physical condition categories of heritage objects." ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/SyncreticTypeEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/SyncreticTypeEnum> a skos:ConceptScheme ;
     dct:title "SyncreticTypeEnum" ;
     skos:definition "Controlled vocabulary for types of syncretic theological relationships between deities." ;
     skos:inScheme heritageGraph:ontology .
@@ -2780,12 +2780,12 @@ heritageGraph:includes_ritual_event a owl:ObjectProperty ;
     skos:definition "Component rituals of festival" ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/ArchitecturalStyleEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyleEnum> a skos:ConceptScheme ;
     dct:title "ArchitecturalStyleEnum" ;
     skos:definition "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type." ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/DatePrecisionEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/DatePrecisionEnum> a skos:ConceptScheme ;
     dct:title "DatePrecisionEnum" ;
     skos:definition "Controlled vocabulary for temporal precision of heritage dates." ;
     skos:inScheme heritageGraph:ontology .
@@ -2930,12 +2930,12 @@ heritageGraph:reconciliation_status a owl:DatatypeProperty ;
     skos:definition "Status of multi-source reconciliation (confirmed, conflicting, unverified)" ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/EpistemicStanceEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/EpistemicStanceEnum> a skos:ConceptScheme ;
     dct:title "EpistemicStanceEnum" ;
     skos:definition "Epistemic standing of a source or assertion" ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/ExistenceStatusEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/ExistenceStatusEnum> a skos:ConceptScheme ;
     dct:title "ExistenceStatusEnum" ;
     skos:definition "Controlled vocabulary for whether a heritage object or structure still exists." ;
     skos:inScheme heritageGraph:ontology .
@@ -3065,7 +3065,7 @@ heritageGraph:DatePrecisionEnum a owl:Class ;
         heritageGraph:Exact,
         heritageGraph:Year .
 
-<https://w3id.org/heritagegraph/scheme/SourceTypeEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/SourceTypeEnum> a skos:ConceptScheme ;
     dct:title "SourceTypeEnum" ;
     skos:definition "Controlled vocabulary for heritage data source types" ;
     skos:inScheme heritageGraph:ontology .
@@ -3225,7 +3225,7 @@ heritageGraph:has_architectural_style a owl:ObjectProperty ;
         "Collection of ArchitecturalStyle instances" ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/GuthiTypeEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/GuthiTypeEnum> a skos:ConceptScheme ;
     dct:title "GuthiTypeEnum" ;
     skos:definition "Controlled vocabulary of Guthi functional types (CRM E55_Type)" ;
     skos:inScheme heritageGraph:ontology .
@@ -3978,7 +3978,7 @@ heritageGraph:DocumentationActivity a owl:Class ;
     skos:definition "The intellectual or technical process of recording information about a heritage entity, aligned with CIDOC E7 Activity and PROV-O Activity." ;
     skos:inScheme heritageGraph:ontology .
 
-<https://w3id.org/heritagegraph/scheme/RitualTypeEnum> a skos:ConceptScheme ;
+<https://cair-nepal.org/heritagegraph/scheme/RitualTypeEnum> a skos:ConceptScheme ;
     dct:title "RitualTypeEnum" ;
     skos:definition "Controlled vocabulary for ritual and festival activity types in Nepalese living heritage." ;
     skos:inScheme heritageGraph:ontology .
@@ -4496,8 +4496,8 @@ heritageGraph:ontology a owl:Ontology ;
         geo:,
         time:,
         prov: ;
-    owl:ontologyIRI "https://w3id.org/heritagegraph/ontology" ;
-    owl:versionIRI <https://w3id.org/heritagegraph/ontology/1.0.0> ;
+    owl:ontologyIRI "https://cair-nepal.org/heritagegraph/ontology" ;
+    owl:versionIRI <https://cair-nepal.org/heritagegraph/ontology/1.0.0> ;
     owl:versionInfo "1.0.0" ;
     skos:definition "An event-centric LinkML schema for representing Nepal cultural heritage information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. Enables provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar date representation. DL expressivity: ALCIQ(D)." .
 

@@ -4,7 +4,7 @@ These ASK queries validate that the ontology schema contains the required classe
 
 **Prefixes used in all queries**
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
@@ -16,7 +16,7 @@ PREFIX prov: <http://www.w3.org/ns/prov#>
 
 CQ1. Which architectural structures were built during [time period] using [architectural style]?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -35,7 +35,7 @@ ASK WHERE {
 
 CQ2. Which architectural elements (e.g., Pinnacle) are components of structures used in a given ritual?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:ArchitecturalElement a owl:Class .
@@ -48,7 +48,7 @@ ASK WHERE {
 
 CQ3. Which iconographic objects depict [deity], and where are they currently located?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:IconographicObject a owl:Class .
@@ -61,7 +61,7 @@ ASK WHERE {
 
 CQ4. Which heritage structures are associated with historical events such as earthquakes, restoration activities, or political transitions, and what are the types and time-spans of those events?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:ArchitecturalStructure a owl:Class .
@@ -74,7 +74,7 @@ ASK WHERE {
 
 CQ5. Which architectural structures within a given geographical area belong to a particular architectural typology (temple, palace, monastery, shrine, etc.)?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 ASK WHERE {
@@ -87,7 +87,7 @@ ASK WHERE {
 
 CQ6. Which heritage shares a common architectural style?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -102,7 +102,7 @@ ASK WHERE {
 
 CQ7. Which religious or sacred structures in [place] are associated with which deities or spiritual figures?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Temple a owl:Class .
@@ -117,7 +117,7 @@ ASK WHERE {
 
 CQ8. Among the active temples that conduct daily Nitya Puja, which ones are currently assessed as being in “Poor” or “Endangered” condition?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Temple a owl:Class .
@@ -133,7 +133,7 @@ ASK WHERE {
 
 CQ9. Which social/caste groups have hereditary roles in specific rituals that are critical for the festival's completion?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:CasteGroup a owl:Class .
@@ -146,7 +146,7 @@ ASK WHERE {
 
 CQ10. Which ritual objects (iconographic objects, ritual chariots) are associated with rituals, and which individuals or groups are responsible for their use?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:IconographicObject a owl:Class .
@@ -158,7 +158,7 @@ ASK WHERE {
 
 CQ11. Which rituals or festivals are associated with specific heritage sites or places, which sacred figures they invoke, and what are their recurrence patterns?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -172,7 +172,7 @@ ASK WHERE {
 
 CQ12. What is the canonical sequence of ritual events within a festival cycle, and which actors are responsible for each step?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -186,7 +186,7 @@ ASK WHERE {
 
 CQ13. Which rituals involve moving sacred presences or icons between sites, and what routes and places are traversed?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -199,7 +199,7 @@ ASK WHERE {
 
 CQ14. How do major crises trigger extraordinary or temporary rituals, and how do these relate to the normal ritual calendar?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:HistoricalEvent a owl:Class .
@@ -211,7 +211,7 @@ ASK WHERE {
 
 CQ15. What materials, techniques, and sensory elements are used in key ritual events, and how do these vary across traditions and sites?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -226,7 +226,7 @@ ASK WHERE {
 
 CQ16. How do ritual obligations differ for participant groups, and how are roles recorded or enforced?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -237,7 +237,7 @@ ASK WHERE {
 
 CQ17. Which rituals or festivals have documented transformations, and which events, policies, or actors drove those changes?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -251,7 +251,7 @@ ASK WHERE {
 
 CQ18. How do changes in object location, ritual practice, and structure modification reflect broader historical or political transitions?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:ArchitecturalStructure a owl:Class .
@@ -267,7 +267,7 @@ ASK WHERE {
 
 CQ19. Which organizations manage which heritage, perform which rituals, and hold custody of heritage assets?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Guthi a owl:Class .
@@ -279,7 +279,7 @@ ASK WHERE {
 
 CQ20. Which structures or objects were commissioned by a specific patron, ruler, monastic order, or community group?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Production a owl:Class .
@@ -290,7 +290,7 @@ ASK WHERE {
 
 CQ21. Which institutions or endowments provide economic and ritual support for specific sites, rituals, or living sacred figures?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Guthi a owl:Class .
@@ -303,7 +303,7 @@ ASK WHERE {
 
 CQ22. Which festivals bring together practitioners from multiple traditions around a shared syncretic deity, and what roles do different groups play?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Festival a owl:Class .
@@ -317,7 +317,7 @@ ASK WHERE {
 
 CQ23. Which places or structures function as shared or contested sites for multiple traditions?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Place a owl:Class .
@@ -328,7 +328,7 @@ ASK WHERE {
 
 CQ24. Which rituals at Hindu temples and Buddhist monuments invoke the same syncretic deity, and how do their ritual roles differ?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -341,7 +341,7 @@ ASK WHERE {
 
 CQ25. How do syncretic sacred figures or deities link Hindu, Buddhist, and local practices across places and periods, and what evidence supports these links?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:SyncreticRelationship a owl:Class .
@@ -358,7 +358,7 @@ ASK WHERE {
 
 CQ26. Which girl was serving as Living Goddess (Kumari) for which period, at which Kumari Ghar?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:LivingGoddessTenure a owl:Class .
@@ -372,7 +372,7 @@ ASK WHERE {
 
 CQ27. For a given Kumari-person, which deity is believed to be present, and in which religious traditions?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:LivingGoddessTenure a owl:Class .
@@ -384,7 +384,7 @@ ASK WHERE {
 
 CQ28. How does the Kumari institution embody Hindu–Buddhist syncretism in a specific place and period?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:LivingGoddessTenure a owl:Class .
@@ -398,7 +398,7 @@ ASK WHERE {
 
 CQ29. What daily rituals does a specific Kumari perform at Kumari Ghar, and what is their temporal pattern?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:RitualEvent a owl:Class .
@@ -411,7 +411,7 @@ ASK WHERE {
 
 CQ30. In which festivals and processions does a given Kumari participate, and what is the ritual sequence?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:Festival a owl:Class .
@@ -424,7 +424,7 @@ ASK WHERE {
 
 CQ31. Which institution bears economic/ritual responsibility for a given Kumari during her tenure?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:LivingGoddessTenure a owl:Class .
@@ -435,7 +435,7 @@ ASK WHERE {
 
 CQ32. When and why did an individual stop being Kumari, and what event terminated her divine status?
 ```sparql
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 ASK WHERE {
   heritageGraph:LivingGoddessRetirement a owl:Class .

@@ -24,7 +24,7 @@ import owlrl
 ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "HeritageGraph.ttl"
 SHACL = ROOT / "HeritageGraph.shacl.ttl"
-HG = "https://w3id.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 ONT = URIRef(HG + "ontology")
 
 SH = Namespace("http://www.w3.org/ns/shacl#")

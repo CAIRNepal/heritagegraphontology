@@ -11,7 +11,7 @@ PW="${ADMIN_PASSWORD:-admin}"
 IMG="stain/jena-fuseki:latest"
 NAME="hg-fuseki"
 BASE="http://localhost:${PORT}/${DS}"
-HG="https://w3id.org/heritagegraph"
+HG="https://cair-nepal.org/heritagegraph"
 DATA="https://data.cair-nepal.org/heritagegraph"
 
 echo ">> (re)creating Fuseki container"

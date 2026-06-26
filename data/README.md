@@ -39,7 +39,7 @@ Traditional/uncertain dates carry `date_precision = Circa/Century`.
 
 | Class | Count |
 |-------|------:|
-| `heritageGraph:ArchitecturalStructure` | 6,769 |
+| `heritageGraph:ArchitecturalStructure` | 6,771 |
 | `heritageGraph:BuddhistMonument`       | 798 |
 | `heritageGraph:WaterStructure`         | 141 |
 | `heritageGraph:DhungeDhara`            | 115 |
@@ -72,12 +72,12 @@ https://data.cair-nepal.org/heritagegraph/graph/wikidata
 https://data.cair-nepal.org/heritagegraph/graph/openstreetmap
 https://data.cair-nepal.org/heritagegraph/graph/unesco
 https://data.cair-nepal.org/heritagegraph/graph/crosswalk
-https://w3id.org/heritagegraph/ontology               (TBox)
+https://cair-nepal.org/heritagegraph/ontology               (TBox)
 ```
 
 ## Namespaces
 
-- **Schema / TBox** — `https://w3id.org/heritagegraph/` (unchanged, published).
+- **Schema / TBox** — `https://cair-nepal.org/heritagegraph/`.
 - **Instances / ABox** — `https://data.cair-nepal.org/heritagegraph/id/`
   (entities), `…/place/…`, `…/assertion/…`, `…/source/…`.
 

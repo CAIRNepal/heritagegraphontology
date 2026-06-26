@@ -5,7 +5,7 @@ from config import ROOT, USER_AGENT
 
 EP = "http://localhost:3030/heritagegraph/sparql"
 GRAPHS = [
-    "https://w3id.org/heritagegraph/ontology",
+    "https://cair-nepal.org/heritagegraph/ontology",
     "https://data.cair-nepal.org/heritagegraph/graph/wikidata",
     "https://data.cair-nepal.org/heritagegraph/graph/openstreetmap",
     "https://data.cair-nepal.org/heritagegraph/graph/unesco",

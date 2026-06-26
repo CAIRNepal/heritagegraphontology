@@ -10,7 +10,7 @@ from rdflib import Graph, OWL, URIRef
 from rdflib.namespace import SKOS
 ROOT=Path(__file__).resolve().parents[1]
 TTL=ROOT/"ontology"/"HeritageGraph.ttl"; YAML=ROOT/"ontology"/"HeritageGraph.yaml"
-HG="https://w3id.org/heritagegraph/"
+HG="https://cair-nepal.org/heritagegraph/"
 d=yaml.safe_load(open(YAML)); classes=d.get("classes",{})
 g=Graph(); g.parse(TTL,format="turtle")
 

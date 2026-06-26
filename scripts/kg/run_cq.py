@@ -8,7 +8,7 @@ DATA = "https://data.cair-nepal.org/heritagegraph/graph/"
 DEFAULT_GRAPHS = [DATA + g for g in ("wikidata", "openstreetmap", "unesco",
                                      "intangible", "crosswalk")]
 PREFIX = """
-PREFIX hg:   <https://w3id.org/heritagegraph/>
+PREFIX hg:   <https://cair-nepal.org/heritagegraph/>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX crminf:<http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX geo:  <http://www.opengis.net/ont/geosparql#>

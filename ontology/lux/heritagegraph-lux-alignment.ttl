@@ -15,7 +15,7 @@
 @prefix foaf:          <http://xmlns.com/foaf/0.1/> .
 @prefix time:          <http://www.w3.org/2006/time#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix heritageGraph: <https://cair-nepal.org/heritagegraph/> .
 
 #####################################################################
 # HeritageGraph  ↔  LUX (Linked Art / CIDOC-CRM)  alignment ontology
@@ -37,7 +37,7 @@
 # Apply with:  owl:imports  or  cat alignment.ttl >> HeritageGraph.ttl
 #####################################################################
 
-<https://w3id.org/heritagegraph/alignment/lux> a owl:Ontology ;
+<https://cair-nepal.org/heritagegraph/alignment/lux> a owl:Ontology ;
     rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ;
     dct:title "HeritageGraph ↔ LUX Alignment Module"@en ;
     dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. A modular companion that imports the HeritageGraph core ontology and adds (a) formal owl:equivalentClass / owl:equivalentProperty axioms to CIDOC-CRM, (b) 33 interoperability classes rooted in the URIs LUX actually emits, and (c) the HG-internal hierarchy and object properties wiring those classes into the core graph."@en ;
@@ -48,12 +48,12 @@
     dct:source <https://lux.collections.yale.edu/> ;
     dct:modified "2026-06-18"^^xsd:date ;
     owl:versionInfo "1.0.0" ;
-    owl:versionIRI <https://w3id.org/heritagegraph/alignment/lux/1.0.0> ;
+    owl:versionIRI <https://cair-nepal.org/heritagegraph/alignment/lux/1.0.0> ;
     pav:derivedFrom <https://github.com/CAIRNepal/heritagegraph-lux-migration> ;
     vann:preferredNamespacePrefix "heritageGraph" ;
-    vann:preferredNamespaceUri "https://w3id.org/heritagegraph/" ;
+    vann:preferredNamespaceUri "https://cair-nepal.org/heritagegraph/" ;
     rdfs:seeAlso <https://linked.art/ns/v1/linked-art.json> ;
-    owl:imports <https://w3id.org/heritagegraph/> .
+    owl:imports <https://cair-nepal.org/heritagegraph/> .
 
 
 #####################################################################

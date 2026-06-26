@@ -30,12 +30,12 @@ DOCS_TTL = ROOT / "docs" / "ontology.ttl"
 REVIEW_OWL = ROOT / "ontology" / "review.owl"
 CHANGELOG = ROOT / "CHANGELOG.md"
 
-HG = Namespace("https://w3id.org/heritagegraph/")
-ONTOLOGY_IRI = URIRef("https://w3id.org/heritagegraph/ontology")
-VERSION_IRI = URIRef("https://w3id.org/heritagegraph/ontology/1.0.0")
-ALIGNMENT_IRI = URIRef("https://w3id.org/heritagegraph/alignment")
-EDM_IRI = URIRef("https://w3id.org/heritagegraph/edm-profile")
-DATASET_IRI = URIRef("https://w3id.org/heritagegraph/dataset")
+HG = Namespace("https://cair-nepal.org/heritagegraph/")
+ONTOLOGY_IRI = URIRef("https://cair-nepal.org/heritagegraph/ontology")
+VERSION_IRI = URIRef("https://cair-nepal.org/heritagegraph/ontology/1.0.0")
+ALIGNMENT_IRI = URIRef("https://cair-nepal.org/heritagegraph/alignment")
+EDM_IRI = URIRef("https://cair-nepal.org/heritagegraph/edm-profile")
+DATASET_IRI = URIRef("https://cair-nepal.org/heritagegraph/dataset")
 
 CRM = Namespace("http://www.cidoc-crm.org/cidoc-crm/")
 CRMINF = Namespace("http://www.cidoc-crm.org/extensions/crminf/")
@@ -119,7 +119,7 @@ def expand_curie(curie: str, prefixes: dict[str, str]) -> URIRef | None:
 
 
 def hg_class_uri(name: str) -> URIRef:
-    return URIRef(f"https://w3id.org/heritagegraph/{name}")
+    return URIRef(f"https://cair-nepal.org/heritagegraph/{name}")
 
 
 def generate_ttl() -> None:
@@ -235,7 +235,7 @@ def apply_enum_concept_schemes(g: Graph, schema: dict) -> int:
     for enum_name, enum_spec in enums.items():
         if not isinstance(enum_spec, dict):
             continue
-        scheme = URIRef(f"https://w3id.org/heritagegraph/scheme/{enum_name}")
+        scheme = URIRef(f"https://cair-nepal.org/heritagegraph/scheme/{enum_name}")
         g.add((scheme, RDF.type, SKOS.ConceptScheme))
         g.add((scheme, DCTERMS.title, Literal(enum_name)))
         g.add((scheme, SKOS.inScheme, ONTOLOGY_IRI))
@@ -283,7 +283,7 @@ def apply_property_alignments(g: Graph, schema: dict) -> int:
         if not any(curie.startswith(p) for p in PROPERTY_ALIGNMENT_PREFIXES):
             continue
         target = expand_curie(curie, prefixes)
-        prop = URIRef(f"https://w3id.org/heritagegraph/{name}")
+        prop = URIRef(f"https://cair-nepal.org/heritagegraph/{name}")
         if not target:
             continue
         if (prop, RDF.type, OWL.ObjectProperty) in g or (
@@ -334,7 +334,7 @@ def apply_vocab_mappings_from_yaml(g: Graph, schema: dict) -> int:
     count = 0
     for section, uri_fn in (
         ("classes", hg_class_uri),
-        ("slots", lambda name: URIRef(f"https://w3id.org/heritagegraph/{name}")),
+        ("slots", lambda name: URIRef(f"https://cair-nepal.org/heritagegraph/{name}")),
     ):
         for name, spec in (schema.get(section) or {}).items():
             if not isinstance(spec, dict):
@@ -368,7 +368,7 @@ def validate_prefix_coverage(g: Graph, schema: dict) -> list[str]:
         if not isinstance(o, URIRef):
             continue
         uri = str(o)
-        if uri.startswith("https://w3id.org/heritagegraph/"):
+        if uri.startswith("https://cair-nepal.org/heritagegraph/"):
             continue
         base = norm(uri.rsplit("#", 1)[0] if "#" in uri else uri.rsplit("/", 1)[0])
         if base in seen:
@@ -497,7 +497,7 @@ def verify_declared_axioms(g: Graph, schema: dict) -> list[str]:
         return URIRef(prefixes[p] + local) if p in prefixes else None
 
     def slot_uri(name: str) -> URIRef:
-        return URIRef(f"https://w3id.org/heritagegraph/{name}")
+        return URIRef(f"https://cair-nepal.org/heritagegraph/{name}")
 
     missing: list[str] = []
     classes = schema.get("classes", {})
@@ -566,7 +566,7 @@ def write_alignment_ttl(g_main: Graph) -> None:
         if not curie or not curie.startswith("prov:"):
             continue
         target = expand_curie(curie, prefixes)
-        prop = URIRef(f"https://w3id.org/heritagegraph/{name}")
+        prop = URIRef(f"https://cair-nepal.org/heritagegraph/{name}")
         if target and (prop, RDF.type, OWL.ObjectProperty) in ag:
             ag.add((prop, OWL.equivalentProperty, target))
 
@@ -618,7 +618,7 @@ def write_abox_example() -> None:
     ABOX.parent.mkdir(parents=True, exist_ok=True)
     content = """@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix heritageGraph: <https://cair-nepal.org/heritagegraph/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

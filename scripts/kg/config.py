@@ -6,7 +6,7 @@ Instance/ABox IRIs are minted under a CAIR-Nepal domain the project controls.
 from pathlib import Path
 
 # --- namespaces -----------------------------------------------------------
-HG     = "https://w3id.org/heritagegraph/"            # schema (classes/props)
+HG     = "https://cair-nepal.org/heritagegraph/"            # schema (classes/props)
 BASE   = "https://data.cair-nepal.org/heritagegraph/" # instance base
 IDNS   = BASE + "id/"                                  # minted entity IRIs
 SRCNS  = BASE + "source/"                              # DataSource IRIs
@@ -40,7 +40,7 @@ RAW.mkdir(parents=True, exist_ok=True)
 KG.mkdir(parents=True, exist_ok=True)
 
 # --- HTTP -----------------------------------------------------------------
-USER_AGENT = "HeritageGraphKG/1.0 (https://cair-nepal.org; cairnepalcursor@cair-nepal.org)"
+USER_AGENT = "HeritageGraphKG/1.0 (https://cair-nepal.org; info@cair-nepal.org)"
 WDQS    = "https://query.wikidata.org/sparql"
 OVERPASS= "https://overpass-api.de/api/interpreter"
 
