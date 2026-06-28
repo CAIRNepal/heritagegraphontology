@@ -22,8 +22,8 @@ from rdflib.namespace import SKOS, XSD
 import owlrl
 
 ROOT = Path(__file__).resolve().parents[1]
-TTL = ROOT / "HeritageGraph.ttl"
-SHACL = ROOT / "HeritageGraph.shacl.ttl"
+TTL = ROOT / "ontology" / "HeritageGraph.ttl"
+SHACL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 HG = "https://w3id.org/heritagegraph/"
 ONT = URIRef(HG + "ontology")
 

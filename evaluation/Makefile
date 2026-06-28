@@ -20,7 +20,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 RESULTS := results
 
-.PHONY: all setup consistency oops cq alignment metrics abox quality protege clean cleanall help
+.PHONY: all setup consistency oops cq alignment metrics abox independent quality protege clean cleanall help
 
 help: ## Show this help
 	@echo ""
@@ -39,6 +39,12 @@ $(VENV)/bin/activate: requirements.txt
 	$(PIP) install -r requirements.txt -q
 	touch $(VENV)/bin/activate
 	@echo "✅ Virtual environment ready. Run: source $(VENV)/bin/activate"
+
+independent: setup ## Independent from-scratch re-evaluation + SHACL negative tests
+	@echo "Running independent cross-check..."
+	$(PYTHON) independent_eval.py
+	$(PYTHON) independent_abox.py
+	@echo ""
 
 abox: setup ## ABox CQ sample queries
 	@echo "Running ABox CQ samples..."

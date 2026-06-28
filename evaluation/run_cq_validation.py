@@ -2,7 +2,7 @@
 """
 §4.3 & §4.7 — Competency-Question Validation & Traceability Matrix
 ====================================================================
-Loads all CQ SPARQL ASK queries from queries/cq_queries.py,
+Defines all CQ SPARQL ASK queries inline (CQ_QUERIES),
 runs each against HeritageGraph.ttl (TBox-only), and produces:
 
   results/cq_validation_report.txt   — human-readable pass/fail

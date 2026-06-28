@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Execute demonstrator SELECT CQs over TBox+ABox; run SHACL conformance + negative tests."""
+from pathlib import Path
 from rdflib import Graph
 from pyshacl import validate
-ROOT="/Users/nirajkarki/cair/heritagegraphontology/"
+ROOT=str(Path(__file__).resolve().parents[1])+"/"
 PFX="""PREFIX hg:<https://w3id.org/heritagegraph/>
 PREFIX crm:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>"""
 
-g=Graph(); g.parse(ROOT+"HeritageGraph.ttl",format="turtle"); g.parse(ROOT+"examples/kathmandu-mini-abox.ttl",format="turtle")
+g=Graph(); g.parse(ROOT+"ontology/HeritageGraph.ttl",format="turtle"); g.parse(ROOT+"examples/kathmandu-mini-abox.ttl",format="turtle")
 print("TBox+ABox triples:", len(g))
 CQ={
 "CQ-A1 conflicting source-attributed build dates":
@@ -41,7 +42,7 @@ for name,q in CQ.items():
         print("     -> " + " | ".join(str(x).replace('https://w3id.org/heritagegraph/demo/','').replace('https://w3id.org/heritagegraph/','hg:') for x in r))
 
 # SHACL conformance on the valid ABox
-shapes=Graph(); shapes.parse(ROOT+"HeritageGraph.shacl.ttl",format="turtle")
+shapes=Graph(); shapes.parse(ROOT+"ontology/HeritageGraph.shacl.ttl",format="turtle")
 conforms,_,txt=validate(g, shacl_graph=shapes, inference="rdfs", abort_on_first=False)
 print(f"\n== SHACL conformance (valid ABox): conforms={conforms} ==")
 if not conforms:

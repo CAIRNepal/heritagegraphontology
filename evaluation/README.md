@@ -12,29 +12,22 @@ evaluation/
 ├── setup.sh                     ← Environment setup script
 │
 ├── run_consistency.py           ← §4.1  Logical consistency & OWL-RL reasoning
+├── run_hermit.py                ← §4.1  OWL 2 DL consistency (HermiT)
 ├── run_oops.py                  ← §4.2  OOPS! pitfall analysis
 ├── run_cq_validation.py         ← §4.3 + §4.7  CQ validation & traceability
+├── run_abox_cq.py               ← §4.3  ABox CQ sample queries
 ├── run_alignment.py             ← §4.4  Alignment & interoperability
 ├── run_metrics.py               ← §4.5 + §4.6  Structural completeness & metrics
 │
+├── independent_eval.py          ← Independent, from-scratch re-evaluation
+├── independent_abox.py          ← Independent ABox SHACL conformance + negative tests
+│
 ├── setup_protege.sh             ← §4.1  Protégé download & configuration
-├── protege/
-│   ├── launch_protege.sh        ← One-click Protégé launcher
-│   └── PROTEGE_EVALUATION_CHECKLIST.md
+├── protege/                     ← Protégé install target (downloaded by setup_protege.sh)
 │
-├── queries/                     ← (Optional) Individual .rq SPARQL files
+├── lux/                         ← Yale LUX interoperability case study
 │
-└── results/                     ← All generated reports land here
-    ├── consistency_report.txt
-    ├── consistency_report.csv
-    ├── oops_report.txt
-    ├── oops_response.xml
-    ├── cq_validation_report.txt
-    ├── cq_traceability_matrix.csv
-    ├── alignment_report.txt
-    ├── alignment_report.csv
-    ├── metrics_report.txt
-    └── metrics_report.csv
+└── results/                     ← All generated reports land here (git-ignored)
 ```
 
 ## Quick Start
