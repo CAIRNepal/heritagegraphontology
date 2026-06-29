@@ -1,5 +1,100 @@
-ABox CQ Sample Execution
-Date: 2026-06-23T23:30:43.823005
-TBox: /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
-ABox: /Users/nirajkarki/cair/heritagegraphontology/examples/kathmandu-mini-abox.ttl
-Triples loaded: 5086
+ABox Competency-Question Execution (populated KG)
+Date: 2026-06-29T01:06:49
+TBox: ontology/HeritageGraph.ttl
+Sources: wikidata, osm, unesco, intangible, danam, crosswalk, intangible_crosswalk, danam_crosswalk
+Triples loaded: 160854
+Queries: 32 (from scripts/kg/queries/abox)
+
+[ANSWERED] CQ01: Architectural structures with a known style and a documented date  -> 3 row(s)
+             • label=Boudhanath; style=StupaStyle; date=1979
+             • label=Swayambhunath; style=StupaStyle; date=1979
+             • label=Shanti Stupa; style=StupaStyle; date=1999-01-01T00:00:00Z
+[DATA-GAP] CQ02: Architectural elements that are components of structures used in a ritual  -> 0 row(s)
+             DATA-GAP: No ArchitecturalElement instances / is_component_of links in the current open sources.
+[DATA-GAP] CQ03: Iconographic objects that depict a deity, and where they are located  -> 0 row(s)
+             DATA-GAP: depicts_deity is not exposed by any current source (the DANAM search API omits it).
+[DATA-GAP] CQ04: Heritage structures associated with historical events (earthquake, restoration, ...)  -> 0 row(s)
+             DATA-GAP: HistoricalEvent instances are not yet modelled (earthquake mentions exist only as free-text notes).
+[ANSWERED] CQ05: Heritage typologies within the Kathmandu Valley (geographic bounding box)  -> 7 row(s)
+             • type=ArchitecturalStructure; n=1593
+             • type=BuddhistMonument; n=487
+             • type=Chaitya; n=172
+[ANSWERED] CQ06: Heritage sharing a common architectural style  -> 2 row(s)
+             • style=ChaityaStyle; n=186; example=temple
+             • style=StupaStyle; n=22; example=World Peace Pagoda, Lumbini
+[ANSWERED] CQ07: Places/structures associated with deities (through the rituals performed there)  -> 10 row(s)
+             • placeLabel=Bhaktapur Durbar Square; deityLabel=Navadurga
+             • placeLabel=Bhaktapur Durbar Square; deityLabel=Bhairava
+             • placeLabel=Patan Durbar Square; deityLabel=Avalokiteshvara (Karunamaya)
+[DATA-GAP] CQ08: Active temples with daily Nitya Puja assessed as Poor/Endangered  -> 0 row(s)
+             DATA-GAP: No ConditionAssessment / ConditionState data in the current open sources.
+[ANSWERED] CQ09: Caste/social groups with hereditary roles in rituals critical for a festival  -> 5 row(s)
+             • festivalLabel=Lakhe dance (Majipa Lakhe); group=Manandhar (Saymi); role=Newar oil-presser caste with ritual roles in festival lamp lighting.
+             • festivalLabel=Navadurga masked dance (Bhaktapur); group=Gathu (Banmala); role=Newar gardener caste of Bhaktapur; hereditary performers of the Navadurga masked dance.
+             • festivalLabel=Rato Machhindranath Jatra (Bunga Dyah Jatra); group=Jyapu (Maharjan); role=Newar farming caste; hereditary chariot-pullers and ritual performers in jatras such as Rato Machhindranath.
+[DATA-GAP] CQ10: Ritual objects (icons, chariots) tied to rituals and the groups responsible  -> 0 row(s)
+             DATA-GAP: Ritual-object (chariot) instances and used_by links are not modelled in the current sources.
+[ANSWERED] CQ11: Rituals/festivals, the deities they invoke, and their recurrence patterns  -> 12 row(s)
+             • festival=Navadurga masked dance (Bhaktapur); deityLabel=Navadurga; recurrence=annual (Ashwin-Bhadra cycle)
+             • festival=Bisket Jatra (Biska Jatra); deityLabel=Bhairava; recurrence=annual (Baisakh, Nepali New Year)
+             • festival=Rato Machhindranath Jatra (Bunga Dyah Jatra); deityLabel=Avalokiteshvara (Karunamaya); recurrence=annual (Baisakh-Jestha); every 12 years from Bungamati
+[DATA-GAP] CQ12: Canonical ordered sequence of ritual events within a festival cycle  -> 0 row(s)
+             DATA-GAP: occurs_before / occurs_after ordering is not asserted yet (only P9_consists_of part-hood).
+[ANSWERED] CQ13: Rituals that move sacred icons between sites, and the routes traversed  -> 6 row(s)
+             • festival=Bisket Jatra (Biska Jatra); routeLabel=Bhaktapur Durbar Square
+             • festival=Rato Machhindranath Jatra (Bunga Dyah Jatra); routeLabel=Bungamati
+             • festival=Rato Machhindranath Jatra (Bunga Dyah Jatra); routeLabel=Patan Durbar Square
+[DATA-GAP] CQ14: Crises that trigger extraordinary/temporary rituals  -> 0 row(s)
+             DATA-GAP: HistoricalEvent -> includes_ritual_event is not modelled in the current sources.
+[DATA-GAP] CQ15: Materials, techniques and sensory elements used in key ritual events  -> 0 row(s)
+             DATA-GAP: used_materials / used_technique are not populated by the current sources.
+[ANSWERED] CQ16: How ritual obligations differ across participant groups (roles recorded)  -> 4 row(s)
+             • group=Vajracharya (Gubhaju); role=Newar Vajrayana Buddhist priests; perform tantric ritual and temple priesthood, including consecration (pratistha) rites.; festivals=2
+             • group=Manandhar (Saymi); role=Newar oil-presser caste with ritual roles in festival lamp lighting.; festivals=1
+             • group=Gathu (Banmala); role=Newar gardener caste of Bhaktapur; hereditary performers of the Navadurga masked dance.; festivals=1
+[DATA-GAP] CQ17: Rituals/festivals with documented transformations and their drivers  -> 0 row(s)
+             DATA-GAP: Transformation/change events are not modelled (provenance records the source, not change history).
+[DATA-GAP] CQ18: Changes in object location / ritual practice reflecting historical transitions  -> 0 row(s)
+             DATA-GAP: Object-location and practice-change events are not modelled in the current sources.
+[ANSWERED] CQ19: Organisations (Guthi) that manage heritage and perform rituals  -> 5 row(s)
+             • guthiLabel=Bunga Dyah (Rato Machhindranath) Jatra Guthi; managedLabel=Rato Machhindranath Jatra (Bunga Dyah Jatra)
+             • guthiLabel=Guthi Sansthan; managedLabel=Daily puja of the Royal Kumari
+             • guthiLabel=Guthi Sansthan; managedLabel=Nitya Puja at Pashupatinath
+[DATA-GAP] CQ20: Structures/objects commissioned by a specific patron or ruler  -> 0 row(s)
+             DATA-GAP: Production / commissioned_by is not modelled in the current open sources.
+[ANSWERED] CQ21: Institutions/endowments supporting sites, rituals or living sacred figures  -> 1 row(s)
+             • supportedLabel=Royal Kumari tenure (office); institutionLabel=Guthi Sansthan
+[ANSWERED] CQ22: Syncretic deities shared by multiple traditions (festival context)  -> 2 row(s)
+             • syncretic=Avalokiteshvara identified with Matsyendranath (Karunamaya); deityLabel=Avalokiteshvara (Karunamaya)
+             • syncretic=Hindu goddess Taleju embodied in a Buddhist Shakya Kumari; deityLabel=Taleju Bhawani
+[ANSWERED] CQ23: Deities venerated across more than one religious tradition (shared/contested)  -> 3 row(s)
+             • deityLabel=Matsyendranath (Bungadyo); traditions=2
+             • deityLabel=Avalokiteshvara (Karunamaya); traditions=2
+             • deityLabel=Taleju Bhawani; traditions=2
+[ANSWERED] CQ24: Festivals invoking a deity recognised by two or more traditions  -> 9 row(s)
+             • festival=Rato Machhindranath Jatra (Bunga Dyah Jatra); deityLabel=Avalokiteshvara (Karunamaya)
+             • festival=Ritual bathing of Bungadyo; deityLabel=Avalokiteshvara (Karunamaya)
+             • festival=Rato Machhindranath Jatra (Bunga Dyah Jatra); deityLabel=Matsyendranath (Bungadyo)
+[ANSWERED] CQ25: Syncretic links between traditions, with the evidence (source) supporting them  -> 2 row(s)
+             • syncretic=Avalokiteshvara identified with Matsyendranath (Karunamaya); source=cair-curated-intangible
+             • syncretic=Hindu goddess Taleju embodied in a Buddhist Shakya Kumari; source=cair-curated-intangible
+[ANSWERED] CQ26: Living Goddess (Kumari) office: participant, residence and tenure period  -> 1 row(s)
+             • person=Royal Kumari of Kathmandu (office); residence=Kumari Ghar (Kumari Bahal), Kathmandu; begin=1757-01-01
+[ANSWERED] CQ27: The deity present in the Kumari and the traditions that recognise it  -> 10 row(s)
+             • deityLabel=Bhairava; traditionLabel=Hindu tradition
+             • deityLabel=Indra; traditionLabel=Hindu tradition
+             • deityLabel=Navadurga; traditionLabel=Hindu tradition
+[ANSWERED] CQ28: How the Kumari institution embodies Hindu-Buddhist syncretism  -> 1 row(s)
+             • syncretic=Hindu goddess Taleju embodied in a Buddhist Shakya Kumari; deityLabel=Taleju Bhawani
+[ANSWERED] CQ29: Daily rituals of the Kumari and their temporal pattern  -> 2 row(s)
+             • ritual=Daily puja of the Royal Kumari; recurrence=daily
+             • ritual=Nitya Puja at Pashupatinath; recurrence=daily
+[ANSWERED] CQ30: Festivals/processions and the rituals that compose them (Kumari participation)  -> 2 row(s)
+             • festivalLabel=Rato Machhindranath Jatra (Bunga Dyah Jatra); ritualLabel=Ritual bathing of Bungadyo
+             • festivalLabel=Indra Jatra (Yenya); ritualLabel=Royal Kumari chariot procession (Indra Jatra)
+[ANSWERED] CQ31: Institution bearing economic/ritual responsibility for the Kumari  -> 1 row(s)
+             • tenureLabel=Royal Kumari tenure (office); institutionLabel=Guthi Sansthan
+[ANSWERED] CQ32: When/why an individual stops being Kumari, and the terminating event  -> 1 row(s)
+             • retirement=Retirement of the Royal Kumari; note=Tenure ends at first menstruation or serious illness/blood loss, when the deity is believed to depart.
+
+SUMMARY: 21/32 CQs answered (non-empty) over the populated KG; 11 DATA-GAP; 0 unexpected-empty; 0 failed.

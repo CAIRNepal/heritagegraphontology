@@ -46,4 +46,8 @@ ontology/HeritageGraph.build.ttl
 # KG build: binary triplestore + introspection cache (regenerable)
 data/fuseki/
 data/raw/shapes_spec.json
+# DANAM raw cache (non-commercial/academic source; regenerate with
+# `python scripts/kg/extract_danam.py`, optionally DANAM_MAX_PAGES=N).
+data/raw/danam/
+data/raw/danam.json
 /tmp/

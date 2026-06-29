@@ -1,0 +1,17 @@
+# CQ07: Places/structures associated with deities (through the rituals performed there)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?placeLabel ?deityLabel WHERE {
+  ?r hg:start_place ?place ; hg:invokes_deity ?deity .
+  ?place rdfs:label ?placeLabel .
+  ?deity rdfs:label ?deityLabel .
+} LIMIT 25

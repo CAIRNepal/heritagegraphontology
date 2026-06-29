@@ -48,12 +48,12 @@ def sample_osm(n):
 
 def main():
     data = Graph()
-    for f in ["wikidata.ttl", "unesco.ttl", "intangible.ttl"]:
+    for f in ["wikidata.ttl", "unesco.ttl", "intangible.ttl", "danam.ttl"]:
         data.parse(KG / f, format="turtle")
     osm_g, osm_total = sample_osm(OSM_SAMPLE)
     data += osm_g
-    print(f"Validating: full Wikidata + UNESCO + {OSM_SAMPLE}/{osm_total} OSM "
-          f"sample = {len(data)} triples", file=sys.stderr)
+    print(f"Validating: full Wikidata + UNESCO + intangible + DANAM + "
+          f"{OSM_SAMPLE}/{osm_total} OSM sample = {len(data)} triples", file=sys.stderr)
     shapes = Graph().parse(ROOT / "ontology" / "HeritageGraph.shacl.ttl", format="turtle")
     conforms, report_graph, report_text = validate(
         data, shacl_graph=shapes,

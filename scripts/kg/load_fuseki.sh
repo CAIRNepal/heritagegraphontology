@@ -56,8 +56,12 @@ load "wikidata.ttl"   "${DATA}/graph/wikidata"
 load "osm.ttl"        "${DATA}/graph/openstreetmap"
 load "unesco.ttl"     "${DATA}/graph/unesco"
 load "intangible.ttl" "${DATA}/graph/intangible"
+# DANAM: non-commercial/academic named graph (cite Brosius & Michaels). Kept
+# separate so it is never relicensed into the CC BY open-data release.
+load "danam.ttl"      "${DATA}/graph/danam"
 load "crosswalk.ttl"            "${DATA}/graph/crosswalk"
 load "intangible_crosswalk.ttl" "${DATA}/graph/crosswalk"
+load "danam_crosswalk.ttl"      "${DATA}/graph/crosswalk"
 
 echo ">> triple counts per graph"
 curl -sf -u "admin:${PW}" "${BASE}/sparql" \

@@ -10,11 +10,13 @@ Only real, sourced values are emitted — nothing is invented. Where a required
 enum value (e.g. Temple's architectural style) is unknown, the entity is typed
 to the nearest super-class whose shape can be satisfied (ArchitecturalStructure).
 """
-import json, re, sys
+import csv, json, re, sys
+from pathlib import Path
+import yaml
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, OWL, XSD, SKOS
 from config import (HG, IDNS, CRM, CRMINF, DCT, GEO, PROV, PREFIXES, KG, RAW,
-                    SOURCES)
+                    SOURCES, DANAM_CITATION)
 
 HGN  = Namespace(HG)
 CRMN = Namespace(CRM)
@@ -27,8 +29,9 @@ WD   = Namespace("http://www.wikidata.org/entity/")
 GEN_TIME = Literal("2026-06-24T00:00:00Z", datatype=XSD.dateTime)
 WKT = URIRef(GEO + "wktLiteral")
 
-CONF = {"wikidata": 0.9, "osm": 0.6, "unesco": 0.95}
-STANCE = {"wikidata": HGN.Scholarly, "osm": HGN.Community, "unesco": HGN.State}
+CONF = {"wikidata": 0.9, "osm": 0.6, "unesco": 0.95, "danam": 0.9}
+STANCE = {"wikidata": HGN.Scholarly, "osm": HGN.Community, "unesco": HGN.State,
+          "danam": HGN.Scholarly}
 
 # Per-class allowed property paths (from the closed SHACL shapes) so emission
 # stays conformant for every target class (e.g. Murti forbids existence_status).
@@ -36,6 +39,14 @@ _SPEC = json.load(open(RAW / "shapes_spec.json"))
 def allowed_for(cls):
     rec = _SPEC.get(HG + cls, {})
     return {p["path"] for p in rec.get("props", [])}
+
+def requires_style(cls):
+    """True if cls's closed shape REQUIRES has_architectural_style (an enum we
+    cannot source from DANAM) -- triggers the nearest-super-class fallback."""
+    rec = _SPEC.get(HG + cls, {})
+    return any(p.get("path", "").endswith("has_architectural_style")
+               and p.get("minCount") and int(p["minCount"]) >= 1
+               for p in rec.get("props", []))
 
 # ---- Wikidata type buckets (QID -> handling) -----------------------------
 WD_STUPA = {"Q180987", "Q1456873"}                       # stupa, peace pagoda
@@ -247,19 +258,156 @@ def build_unesco(xg, stats):
     print(f"unesco.ttl: {stats['unesco']} entities", file=sys.stderr)
 
 
+# ---- DANAM (declarative, YAML-driven mapping) ----------------------------
+MAPPINGS = Path(__file__).resolve().parent / "mappings"
+
+
+def load_danam_mapping():
+    return yaml.safe_load(open(MAPPINGS / "danam.yaml"))
+
+
+def classify_danam(rec, mapping):
+    """Apply the declarative type_rules. The label (the monument's name) is the
+    authoritative type signal, so it is matched first; the description is a noisy
+    fallback used only for rules not marked label_only. First match wins.
+    Returns (target_class, style_or_None, rule_id_or_None)."""
+    def hit(rule, text):
+        return any(kw.lower() in text for kw in rule["match_any"])
+    def result(rule):
+        style = rule.get("architectural_style")
+        return rule["target_class"], (HGN[style] if style else None), rule["id"]
+    label = (rec.get("label") or "").lower()
+    for rule in mapping["type_rules"]:            # pass 1: label
+        if hit(rule, label):
+            return result(rule)
+    desc = (rec.get("description") or "").lower()
+    for rule in mapping["type_rules"]:            # pass 2: description (skip label_only)
+        if not rule.get("label_only") and hit(rule, desc):
+            return result(rule)
+    return mapping["default_class"], None, None
+
+
+def build_danam(stats):
+    """Emit data/kg/danam.ttl + data/kg/danam_crosswalk.ttl from the cached
+    DANAM extract, driven entirely by mappings/danam.yaml."""
+    mapping = load_danam_mapping()
+    fallback = mapping.get("fallback_class", "ArchitecturalStructure")
+    g = new_graph(); dxg = new_graph()
+    add_source_node(g, "danam")
+    # The required DANAM citation is embedded human-readably in the DataSource
+    # P3_has_note (via SOURCES["danam"]["license"]). A structured copy goes to the
+    # crosswalk graph -- the core DataSource shape is sh:closed and forbids it.
+    dxg.add((URIRef(SOURCES["danam"]["iri"]), DCTN.bibliographicCitation,
+             Literal(DANAM_CITATION)))
+    data = json.load(open(RAW / "danam.json"))
+    examples = {}                       # rule_id / field -> first example value
+    for rec in data:
+        if not rec.get("label") or rec.get("lat") is None:
+            stats["danam_skipped"] += 1; continue
+        cls, style, rule_id = classify_danam(rec, mapping)
+        # nearest-satisfiable-super-class fallback for required enums (Temple)
+        if requires_style(cls) and style is None:
+            stats["danam_demoted"] += 1
+            stats["demoted_from"][cls] = stats["demoted_from"].get(cls, 0) + 1
+            cls = fallback
+        local = rec.get("code") or rec["rid"]
+        wkt = f"POINT({rec['lon']} {rec['lat']})"
+        ent = emit(g, dxg, "danam", local, cls, rec["label"], rec.get("description"),
+                   HGN.Extant, style, wkt, CONF["danam"], None,
+                   seealso=[rec["resource_url"]] if rec.get("resource_url") else None,
+                   altlabels=[("ne", rec["label_ne"])] if rec.get("label_ne") else None)
+        if rec.get("code"):
+            dxg.add((ent, SKOS.notation, Literal(rec["code"])))
+        stats["danam"] += 1
+        stats["cls"][cls] = stats["cls"].get(cls, 0) + 1
+        examples.setdefault(rule_id or "_default", rec["label"])
+        examples.setdefault("label", rec["label"])
+        examples.setdefault("desc", (rec.get("description") or "")[:60])
+    g.serialize(KG / "danam.ttl", format="turtle")
+    dxg.serialize(KG / "danam_crosswalk.ttl", format="turtle")
+    print(f"danam.ttl: {stats['danam']} entities "
+          f"({stats['danam_demoted']} demoted to {fallback}; "
+          f"{stats['danam_skipped']} skipped)", file=sys.stderr)
+    write_danam_audit(mapping, examples, stats)
+
+
+def write_danam_audit(mapping, examples, stats):
+    """Generate the mapping audit table FROM danam.yaml so code and table cannot
+    drift. Columns: danam field/predicate -> target class -> target property ->
+    transformation rule -> shacl shape satisfied -> example value."""
+    out = Path(__file__).resolve().parents[2] / "release" / "evaluation"
+    out.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for rule in mapping["type_rules"]:
+        tc = rule["target_class"]
+        demoted = requires_style(tc)
+        eff = mapping.get("fallback_class") if demoted else tc
+        rows.append({
+            "danam_field": "label/description ~ " + ", ".join(rule["match_any"][:4]) + " …",
+            "target_class": f"{tc} -> {eff} (enum fallback)" if demoted else tc,
+            "target_property": "rdf:type"
+                + (f" + has_architectural_style {rule['architectural_style']}"
+                   if rule.get("architectural_style") else ""),
+            "transformation_rule": "keyword match, first-match-wins"
+                + ("; demoted (Temple needs architectural-style enum DANAM lacks)" if demoted else ""),
+            "shacl_shape_satisfied": "yes",
+            "example_value": examples.get(rule["id"], ""),
+        })
+    for p in mapping["properties"]:
+        fld = p["field"] if isinstance(p["field"], str) else "+".join(p["field"])
+        rows.append({
+            "danam_field": fld,
+            "target_class": "(all DANAM entities)",
+            "target_property": p["predicate"] + (f" via {p['via']}" if p.get("via") else ""),
+            "transformation_rule": p.get("rule", ""),
+            "shacl_shape_satisfied": "yes (gated by allowed_for)",
+            "example_value": (p.get("value") or examples.get("label", "")
+                              if p["field"] == "label" else p.get("value", "")) ,
+        })
+    for c in mapping["crosswalk"]:
+        rows.append({
+            "danam_field": c["field"],
+            "target_class": "(crosswalk graph)",
+            "target_property": c["predicate"] + (f" @{c['lang']}" if c.get("lang") else ""),
+            "transformation_rule": "link/label only; not SHACL-validated (preserves closed shapes)",
+            "shacl_shape_satisfied": "n/a (crosswalk)",
+            "example_value": "",
+        })
+    cols = ["danam_field", "target_class", "target_property",
+            "transformation_rule", "shacl_shape_satisfied", "example_value"]
+    with open(out / "danam_mapping_audit.csv", "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=cols); w.writeheader(); w.writerows(rows)
+    md = ["# DANAM → HeritageGraph mapping audit",
+          "",
+          f"Generated from `scripts/kg/mappings/danam.yaml`. "
+          f"DANAM entities: {stats['danam']}; demoted by enum fallback: "
+          f"{stats['danam_demoted']}.",
+          "",
+          "| " + " | ".join(cols) + " |",
+          "|" + "|".join(["---"] * len(cols)) + "|"]
+    for r in rows:
+        md.append("| " + " | ".join(str(r[c]).replace("|", "\\|") for c in cols) + " |")
+    (out / "danam_mapping_audit.md").write_text("\n".join(md) + "\n")
+    print(f"danam_mapping_audit.csv/.md: {len(rows)} rows", file=sys.stderr)
+
+
 def main():
-    stats = {"wd": 0, "osm": 0, "unesco": 0, "wd_skipped": 0,
-             "osm_skipped": 0, "cls": {}}
+    stats = {"wd": 0, "osm": 0, "unesco": 0, "danam": 0, "wd_skipped": 0,
+             "osm_skipped": 0, "danam_skipped": 0, "danam_demoted": 0,
+             "demoted_from": {}, "cls": {}}
     xg = new_graph()
     build_wikidata(xg, stats)
     build_osm(xg, stats)
     build_unesco(xg, stats)
     xg.serialize(KG / "crosswalk.ttl", format="turtle")
-    total = stats["wd"] + stats["osm"] + stats["unesco"]
+    build_danam(stats)
+    total = stats["wd"] + stats["osm"] + stats["unesco"] + stats["danam"]
     print(f"\nTOTAL entities: {total}", file=sys.stderr)
     print(f"  Wikidata {stats['wd']} (skipped {stats['wd_skipped']})", file=sys.stderr)
     print(f"  OSM      {stats['osm']} (skipped {stats['osm_skipped']})", file=sys.stderr)
     print(f"  UNESCO   {stats['unesco']}", file=sys.stderr)
+    print(f"  DANAM    {stats['danam']} (demoted {stats['danam_demoted']}, "
+          f"skipped {stats['danam_skipped']})", file=sys.stderr)
     print("By class:", file=sys.stderr)
     for c, n in sorted(stats["cls"].items(), key=lambda x: -x[1]):
         print(f"  {c:24s} {n}", file=sys.stderr)

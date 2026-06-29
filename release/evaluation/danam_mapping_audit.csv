@@ -1,0 +1,15 @@
+danam_field,target_class,target_property,transformation_rule,shacl_shape_satisfied,example_value
+"label/description ~ stūpa, stupa, mahācaitya, mahacaitya …",Stupa,rdf:type + has_architectural_style StupaStyle,"keyword match, first-match-wins",yes,"LAL1480_I_003 A stone-slab inscription at Aśoka Stūpa North, Ī Bahī Ṭola, Lalitpur re the construction of Priukhā temple by guṭhī members (NS 810)"
+"label/description ~ caitya, chaitya, cibhāḥ, cibhah …",Chaitya,rdf:type + has_architectural_style ChaityaStyle,"keyword match, first-match-wins",yes,Dharmadhātujinālaya Caitya (1962 CE)
+"label/description ~ bāhāḥ, bāhā, bahāḥ, bahī …",BuddhistMonument,rdf:type,"keyword match, first-match-wins",yes,Umāmaheśvara Mandira at Cāka Bāhāḥ
+"label/description ~ hiti, dhārā, dhāra, dhara …",DhungeDhara,rdf:type,"keyword match, first-match-wins",yes,Tāpā Hiti Sataḥ
+"label/description ~ maṇḍala, mandala, liṅga, linga …",Murti,rdf:type,"keyword match, first-match-wins",yes,"LAL1780_I_002 A stone inscription at Khapiṃchẽ Bhairava Mandira in Khapiṃchẽ Ṭola, Patan re the installation of a pair of lion statues (NS 802)"
+"label/description ~ mandira, māndira, temple, devala …",Temple -> ArchitecturalStructure (enum fallback),rdf:type,"keyword match, first-match-wins; demoted (Temple needs architectural-style enum DANAM lacks)",yes,Mahākāla Shrine (ca. early 20th cent. CE)
+label,(all DANAM entities),rdfs:label,verbatim,yes (gated by allowed_for),Umāmaheśvara Mandira at Cāka Bāhāḥ
+rid,(all DANAM entities),dct:identifier,"minted IRI .../id/danam/<DANAM code or rid>, typed xsd:anyURI",yes (gated by allowed_for),
+description,(all DANAM entities),crm:P3_has_note,HTML stripped; emitted only if class shape allows P3_has_note,yes (gated by allowed_for),
+lon+lat,(all DANAM entities),geo:asWKT via crm:E53_Place,"POINT(lon lat), datatype geo:wktLiteral, on the entity's E53_Place",yes (gated by allowed_for),
+(constant),(all DANAM entities),hg:existence_status,DANAM documents extant monuments; emitted if class shape allows it,yes (gated by allowed_for),Extant
+label_ne,(crosswalk graph),skos:altLabel @ne,link/label only; not SHACL-validated (preserves closed shapes),n/a (crosswalk),
+resource_url,(crosswalk graph),rdfs:seeAlso,link/label only; not SHACL-validated (preserves closed shapes),n/a (crosswalk),
+code,(crosswalk graph),skos:notation,link/label only; not SHACL-validated (preserves closed shapes),n/a (crosswalk),

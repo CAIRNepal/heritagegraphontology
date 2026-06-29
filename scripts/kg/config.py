@@ -30,6 +30,7 @@ PREFIXES = {
     "time": TIME, "owl": OWL, "rdfs": RDFS, "xsd": XSD,
     "wd": "http://www.wikidata.org/entity/",
     "osm": "https://www.openstreetmap.org/",
+    "danam": "https://danam.cats.uni-heidelberg.de/report/",
 }
 
 # --- paths ----------------------------------------------------------------
@@ -73,4 +74,23 @@ SOURCES = {
         "source_type": "PublishedScholarship",
         "graph": GRAPH + "unesco",
     },
+    # DANAM is NON-COMMERCIAL / academic, citation-required (Brosius & Michaels,
+    # eds.). Its named graph is kept separate and must NOT be relicensed into the
+    # CC BY AWS Open Data release. See DISCOVERY_DANAM.md (Phase 0, option B).
+    "danam": {
+        "iri": SRCNS + "danam",
+        "label": "DANAM — Nepal Heritage Documentation Project (Heidelberg)",
+        "url": "https://danam.cats.uni-heidelberg.de/",
+        "license": ("Non-commercial academic/educational use only. Cite: "
+                    "Christiane Brosius and Axel Michaels (eds.), Nepal Heritage "
+                    "Documentation Project (https://danam.cats.uni-heidelberg.de)."),
+        "epistemic_stance": "Scholarly",
+        "source_type": "PublishedScholarship",
+        "graph": GRAPH + "danam",
+    },
 }
+
+# DANAM required attribution string (embedded in the provenance note).
+DANAM_CITATION = ("Christiane Brosius and Axel Michaels (eds.), Nepal Heritage "
+                  "Documentation Project (DANAM), "
+                  "https://danam.cats.uni-heidelberg.de")

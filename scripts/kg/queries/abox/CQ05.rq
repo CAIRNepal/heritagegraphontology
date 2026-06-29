@@ -1,0 +1,19 @@
+# CQ05: Heritage typologies within the Kathmandu Valley (geographic bounding box)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?type (COUNT(?s) AS ?n) WHERE {
+  ?s a ?type ; crm:P55_has_current_location ?p . ?p geo:asWKT ?wkt .
+  BIND(xsd:double(REPLACE(STR(?wkt),"POINT\\(([0-9.]+) ([0-9.]+)\\)","$1")) AS ?lon)
+  BIND(xsd:double(REPLACE(STR(?wkt),"POINT\\(([0-9.]+) ([0-9.]+)\\)","$2")) AS ?lat)
+  FILTER(?lon > 85.2 && ?lon < 85.55 && ?lat > 27.6 && ?lat < 27.78)
+  FILTER(STRSTARTS(STR(?type), STR(hg:)))
+} GROUP BY ?type ORDER BY DESC(?n)

@@ -11,18 +11,14 @@ link back to its source. No synthetic data is used.
 ```
 heritagegraph/
 ├── README.md            ← this file
-├── LICENSE.txt          ← per-source licensing (CC0 / ODbL / CC BY)
+├── LICENSE.txt          ← licensing (our CC BY 4.0; OSM layer is ODbL)
 ├── ontology/            ← schema (TBox)
 │   ├── HeritageGraph.ttl         OWL ontology  (namespace https://cair-nepal.org/heritagegraph/)
 │   ├── HeritageGraph.shacl.ttl   SHACL shapes (validation)
 │   └── HeritageGraph.yaml        LinkML source
-├── kg/                  ← data (ABox), one file per source / named graph
-│   ├── wikidata.ttl     CC0     ~254 richly-described entities
-│   ├── osm.ttl          ODbL    ~7,589 geolocated physical features
-│   ├── unesco.ttl       —       8 World Heritage cultural components
-│   ├── intangible.ttl   CC BY   festivals, Guthi, Kumari, deities, castes, rituals
-│   ├── crosswalk.ttl    mixed   owl:sameAs / provenance back-links (not SHACL-validated)
-│   └── intangible_crosswalk.ttl  mixed  intangible-layer owl:sameAs / typing links
+├── kg/                  ← data (ABox), two files split by license
+│   ├── heritagegraph-core.ttl  CC BY 4.0  Wikidata + UNESCO + intangible + crosswalks (no OSM)
+│   └── heritagegraph-osm.ttl   ODbL       ~7,589 OpenStreetMap features + their crosswalk links
 └── examples/
     ├── competency-questions.md             32 SPARQL competency questions
     ├── competency-questions-data-results.txt  sample results over this data
@@ -51,9 +47,10 @@ Data is **RDF 1.1 Turtle** (`.ttl`). Query it with [`rdflib`](https://rdflib.rea
 [Apache Jena Fuseki](https://jena.apache.org/), or [GraphDB](https://graphdb.ontotext.com/) —
 and query with **SPARQL**. Validate extensions against `ontology/HeritageGraph.shacl.ttl`.
 
-The sources are kept in **separate named graphs** so a pure-CC0 core
-(Wikidata + UNESCO) can be used independently of the share-alike OSM (ODbL)
-layer. See `LICENSE.txt`.
+HeritageGraph is released under **CC BY 4.0**. The OpenStreetMap layer is split
+into its own file (`heritagegraph-osm.ttl`) because it carries OpenStreetMap's
+share-alike **ODbL** terms, so the CC BY core (`heritagegraph-core.ttl`) can be
+used on its own. See `LICENSE.txt`.
 
 ## Namespaces
 
@@ -65,8 +62,8 @@ layer. See `LICENSE.txt`.
 ```python
 from rdflib import Graph
 g = Graph()
-for f in ["wikidata", "osm", "unesco", "intangible", "crosswalk", "intangible_crosswalk"]:
-    g.parse(f"kg/{f}.ttl", format="turtle")
+g.parse("kg/heritagegraph-core.ttl", format="turtle")   # CC BY core
+g.parse("kg/heritagegraph-osm.ttl", format="turtle")    # + OSM layer (ODbL)
 print(len(g), "triples")
 ```
 

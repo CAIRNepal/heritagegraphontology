@@ -1,0 +1,105 @@
+# Declarative DANAM -> HeritageGraph mapping (read by transform.py).
+#
+# This file is the auditable artifact: a reviewer reads it to verify how DANAM
+# (Nepal Heritage Documentation Project, Heidelberg; Arches v7, CIDOC-CRM) is
+# mapped onto the HeritageGraph ABox. transform.py classifies each DANAM record
+# by these rules and emits SHACL-conformant entities; release/evaluation/
+# danam_mapping_audit.csv is generated FROM this file so table and code cannot
+# drift.
+#
+# DANAM terms: non-commercial academic use, citation required
+# (Brosius & Michaels, eds.). See config.SOURCES["danam"] and DISCOVERY_DANAM.md.
+
+source: danam
+
+# DANAM resource models (Arches graphs) seen via the public search API.
+resource_models:
+  f35cc1ca-9322-11e9-a5cc-0242ac120006:
+    label: "Monument"
+    root_ontology_class: "crm:E71_Man-Made_Thing"
+
+# Base class if no type_rule matches.
+default_class: ArchitecturalStructure
+# When a type_rule's target class has a REQUIRED enum we cannot source from DANAM
+# (e.g. Temple requires has_architectural_style), the entity is re-typed to this
+# nearest satisfiable super-class and the demotion is counted.
+fallback_class: ArchitecturalStructure
+
+# Classification. First matching rule wins; match_any is tested
+# case-insensitively against the record label + description (IAST + English).
+type_rules:
+  - id: stupa
+    match_any: ["stūpa", "stupa", "mahācaitya", "mahacaitya"]
+    target_class: Stupa
+    architectural_style: StupaStyle
+  - id: chaitya
+    match_any: ["caitya", "chaitya", "cibhāḥ", "cibhah", "cwāsā"]
+    target_class: Chaitya
+    architectural_style: ChaityaStyle
+  - id: vihara
+    match_any: ["bāhāḥ", "bāhā", "bahāḥ", "bahī", "bahi", "vihāra", "vihara",
+                "mahāvihāra", "gumbā", "gumba", "monastery"]
+    target_class: BuddhistMonument
+  - id: waterspout
+    match_any: ["hiti", "dhārā", "dhāra", "dhara", "dhunge", "jaru", "ṭuṭi",
+                "praṇālī", "stone spout", "water spout", "water conduit", "waterspout"]
+    target_class: DhungeDhara
+  - id: image
+    # label_only: "image"/"statue"/etc. appear in prose about many monuments,
+    # so this rule matches the name only, not the description.
+    label_only: true
+    match_any: ["maṇḍala", "mandala", "liṅga", "linga", "mūrti", "murti",
+                "image", "statue", "idol", "icon"]
+    target_class: Murti
+  - id: temple
+    # Temple's closed shape REQUIRES has_architectural_style, which the DANAM
+    # search API does not expose -> demotes to fallback_class (counted).
+    # label_only: temple-words are common in descriptions of non-temples.
+    label_only: true
+    match_any: ["mandira", "māndira", "temple", "devala", "degaḥ", "dega",
+                "dyaḥchẽ", "pāgoda", "pagoda", "pīṭha", "pitha", "shrine"]
+    target_class: Temple
+
+# Per-entity property emission (transform gates each through allowed_for(cls)).
+properties:
+  - field: label                # record.label (IAST display name, code stripped)
+    predicate: "rdfs:label"
+    target: core
+    rule: "verbatim"
+  - field: rid                  # Arches resourceinstanceid -> minted entity IRI
+    predicate: "dct:identifier"
+    target: core
+    rule: "minted IRI .../id/danam/<DANAM code or rid>, typed xsd:anyURI"
+  - field: description          # HTML-stripped displaydescription
+    predicate: "crm:P3_has_note"
+    target: core
+    rule: "HTML stripped; emitted only if class shape allows P3_has_note"
+  - field: [lon, lat]           # points[0].point
+    predicate: "geo:asWKT"
+    via: "crm:E53_Place"
+    target: core
+    rule: "POINT(lon lat), datatype geo:wktLiteral, on the entity's E53_Place"
+  - field: "(constant)"
+    predicate: "hg:existence_status"
+    value: "Extant"
+    target: core
+    rule: "DANAM documents extant monuments; emitted if class shape allows it"
+
+# Provenance (crminf:I2_Belief), identical in shape to other sources.
+provenance:
+  confidence_score: 0.9         # expert/scholarly documentation (Heidelberg NHDP)
+  epistemic_stance: Scholarly
+  source_type: PublishedScholarship
+
+# Links written to danam_crosswalk.ttl (NOT SHACL-validated, preserves closed shapes).
+crosswalk:
+  - field: label_ne             # Devanagari name
+    predicate: "skos:altLabel"
+    lang: ne
+  - field: resource_url         # DANAM resource/report page
+    predicate: "rdfs:seeAlso"
+  - field: code                 # stable DANAM monument code, e.g. LAL2750
+    predicate: "skos:notation"
+# owl:sameAs to Wikidata/OSM is intentionally NOT fabricated: the public DANAM
+# search API exposes no external identifiers, and inventing equivalences would
+# violate the "only sourced data" rule. Cross-links remain a documented gap.

@@ -1,0 +1,15 @@
+# CQ23: Deities venerated across more than one religious tradition (shared/contested)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?deityLabel (COUNT(DISTINCT ?t) AS ?traditions) WHERE {
+  ?d rdfs:label ?deityLabel ; hg:has_religious_tradition ?t .
+} GROUP BY ?deityLabel HAVING (COUNT(DISTINCT ?t) > 1)

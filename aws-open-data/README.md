@@ -51,14 +51,14 @@ s3://<bucket>/heritagegraph/
 ├── LICENSE.txt
 ├── README.md
 ├── ontology/          HeritageGraph OWL, SHACL shapes, LinkML source
-├── kg/                RDF Turtle, one file per source / license
+├── kg/                RDF Turtle — CC BY core + separate ODbL OSM layer
 └── examples/          SPARQL competency questions and sample results
 ```
 
 Download a single file with the AWS CLI:
 
 ```bash
-aws s3 cp s3://<bucket>/heritagegraph/kg/wikidata.ttl ./wikidata.ttl --no-sign-request
+aws s3 cp s3://<bucket>/heritagegraph/kg/heritagegraph-core.ttl ./heritagegraph-core.ttl --no-sign-request
 ```
 
 Sync the full dataset:
@@ -76,21 +76,19 @@ the S3 layout exactly.
 
 ## What's in `heritagegraph/kg/`
 
-Each file is a **named graph** governed by its source license. You can load
-them individually or in combination.
+The KG ships as **two files**. The split is purely about licensing: the OSM layer
+carries OpenStreetMap's share-alike (ODbL) terms, so it is kept on its own and the
+rest is released as one graph under our CC BY 4.0.
 
 | File | License | Contents |
 |------|---------|----------|
-| `wikidata.ttl` | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | ~253 richly-described entities from Wikidata |
-| `osm.ttl` | [ODbL](https://opendatacommons.org/licenses/odbl/1-0/) | ~7,589 geolocated physical features (© OpenStreetMap contributors) |
-| `unesco.ttl` | Attribution | 8 UNESCO World Heritage cultural components |
-| `intangible.ttl` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | Curated festivals, Guthi, Kumari, deities, castes, rituals |
-| `crosswalk.ttl` | Mixed | `owl:sameAs` and provenance links (tangible layer) |
-| `intangible_crosswalk.ttl` | Mixed | `owl:sameAs` / typing links (intangible layer) |
+| `heritagegraph-core.ttl` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | The HeritageGraph core: Wikidata-sourced facts (originally CC0), UNESCO World Heritage components, the curated intangible layer (festivals, Guthi, Kumari, deities, castes, rituals), and the crosswalk links between them. No OSM data. |
+| `heritagegraph-osm.ttl` | [ODbL](https://opendatacommons.org/licenses/odbl/1-0/) | ~7,589 geolocated physical features from OpenStreetMap (© OpenStreetMap contributors) plus the crosswalk links that reference them. |
 
-**Tip:** To avoid ODbL share-alike obligations, use only `wikidata.ttl` +
-`unesco.ttl` (and optionally `intangible.ttl`). See `heritagegraph/LICENSE.txt`
-for full terms.
+**Tip:** To avoid ODbL share-alike obligations, use only `heritagegraph-core.ttl`.
+Load `heritagegraph-osm.ttl` as well for full geographic coverage, but note any
+database that incorporates it must then be shared under ODbL. See
+`heritagegraph/LICENSE.txt` for full terms.
 
 **Scale:** ~7,850 tangible entities + a curated intangible layer (~138k triples
 in total). See `heritagegraph/examples/build_stats.json` for per-class counts.
@@ -103,11 +101,10 @@ in total). See `heritagegraph/examples/build_stats.json` for per-class counts.
 from rdflib import Graph
 
 g = Graph()
-for name in [
-    "wikidata", "osm", "unesco", "intangible",
-    "crosswalk", "intangible_crosswalk",
-]:
-    g.parse(f"heritagegraph/kg/{name}.ttl", format="turtle")
+# CC BY core only:
+g.parse("heritagegraph/kg/heritagegraph-core.ttl", format="turtle")
+# Add the OSM layer for full geographic coverage (adds ODbL share-alike terms):
+g.parse("heritagegraph/kg/heritagegraph-osm.ttl", format="turtle")
 
 print(f"{len(g):,} triples loaded")
 ```
@@ -165,16 +162,20 @@ Alternatives: [Apache Jena Fuseki](https://jena.apache.org/),
 
 ## Licensing
 
-This dataset combines multiple open sources under **different licenses**, kept
-in separate files so you can choose what to include:
+HeritageGraph (ontology, SHACL shapes, and the `heritagegraph-core.ttl` graph)
+is released by CAIR-Nepal under **CC BY 4.0**.
 
-- **CC0** — `wikidata.ttl` (public domain)
-- **ODbL** — `osm.ttl` (share-alike; attribute OpenStreetMap)
-- **CC BY 4.0** — `intangible.ttl` and the ontology schema
-- **Attribution** — `unesco.ttl` (UNESCO World Heritage Centre)
+> Attribution: *"HeritageGraph © CAIR-Nepal, CC BY 4.0
+> (https://cair-nepal.org/heritagegraph/)"*
 
-Any combined database that includes the OSM layer must comply with ODbL. Full
-terms: [`heritagegraph/LICENSE.txt`](heritagegraph/LICENSE.txt).
+Some underlying facts are **sourced from** third parties — Wikidata (originally
+CC0), the UNESCO World Heritage Centre, and OpenStreetMap. The OpenStreetMap layer
+is the only one carrying onward obligations: it is governed by the share-alike
+**ODbL** license and is therefore published as a separate file,
+`heritagegraph-osm.ttl` (© OpenStreetMap contributors). Any combined database that
+includes the OSM layer must comply with ODbL; `heritagegraph-core.ttl` can be used
+under CC BY 4.0 on its own. Full terms:
+[`heritagegraph/LICENSE.txt`](heritagegraph/LICENSE.txt).
 
 ---
 

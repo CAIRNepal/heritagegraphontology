@@ -6,7 +6,7 @@ ENDPOINT = "http://localhost:3030/heritagegraph/sparql"
 DATA = "https://data.cair-nepal.org/heritagegraph/graph/"
 # Merge the data named graphs into the default graph for these queries
 DEFAULT_GRAPHS = [DATA + g for g in ("wikidata", "openstreetmap", "unesco",
-                                     "intangible", "crosswalk")]
+                                     "intangible", "danam", "crosswalk")]
 PREFIX = """
 PREFIX hg:   <https://cair-nepal.org/heritagegraph/>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
