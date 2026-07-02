@@ -13,7 +13,7 @@ from pathlib import Path
 import yaml
 from rdflib import BNode, Graph, Literal, Namespace, RDF, RDFS, OWL, URIRef
 from rdflib.collection import Collection
-from rdflib.namespace import DCTERMS, PROV, SKOS, VOID
+from rdflib.namespace import DCTERMS, PROV, SKOS, VOID, XSD
 
 from interop_fixes import fix_object_property_types, fix_skos_mappings
 
@@ -42,6 +42,30 @@ CRMINF = Namespace("http://www.cidoc-crm.org/extensions/crminf/")
 EDM = Namespace("http://www.europeana.eu/schemas/edm/")
 FOAF = Namespace("http://xmlns.com/foaf/0.1/")
 LOCALCONTEXTS = Namespace("https://voc.localcontexts.org/")
+BIBO = Namespace("http://purl.org/ontology/bibo/")
+VANN = Namespace("http://purl.org/vocab/vann/")
+
+# Canonical FAIR / FOOPS ontology metadata, re-asserted with stable values and
+# datatypes so they survive every regeneration regardless of how the LinkML OWL
+# generator chooses to emit the YAML `annotations:` block.
+ONTOLOGY_DESCRIPTION = (
+    "An event-centric ontology for representing Nepal cultural heritage "
+    "information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. It enables "
+    "provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar "
+    "date representation, covering tangible and intangible heritage such as "
+    "monuments, deities, festivals, rituals, guthis, and caste groups of the "
+    "Kathmandu Valley. DL expressivity: ALCIQ(D)."
+)
+ONTOLOGY_CREATED = "2025-11-23"
+ONTOLOGY_ISSUED = "2026-06-23"
+ONTOLOGY_SOURCE = "https://github.com/CAIRNepal/heritagegraphontology"
+ONTOLOGY_CITATION = (
+    "CAIR-Nepal (2026). HeritageGraph Ontology (Version 1.0.0). "
+    "https://w3id.org/heritagegraph/ontology"
+)
+ONTOLOGY_STATUS = "Specification Draft"
+ONTOLOGY_NS_PREFIX = "heritageGraph"
+ONTOLOGY_NS_URI = "https://w3id.org/heritagegraph/"
 
 IMPORTS = [
     URIRef("http://www.cidoc-crm.org/cidoc-crm/"),
@@ -320,6 +344,10 @@ def normalize_serialized_ttl(ttl: str) -> str:
     """Normalise LinkML-specific prefix aliases to paper-facing names."""
     ttl = ttl.replace("@prefix schema1:", "@prefix schema:")
     ttl = re.sub(r"\bschema1:", "schema:", ttl)
+    # rdflib bumps vann to vann1 because LinkML pre-binds the `vann` prefix to a
+    # different URI; the IRIs are correct, so normalise the cosmetic label back.
+    ttl = ttl.replace("@prefix vann1:", "@prefix vann:")
+    ttl = re.sub(r"\bvann1:", "vann:", ttl)
     return ttl
 
 
@@ -429,15 +457,28 @@ def postprocess_ttl(src: Path, dest: Path, schema: dict) -> Graph:
     # Normalise descriptive metadata to a single canonical value each: LinkML
     # (license literal) + YAML annotations can otherwise leave duplicate/string
     # variants (e.g. several dcterms:license triples) that surface in the docs.
-    for pred in (DCTERMS.title, DCTERMS.creator, DCTERMS.publisher,
-                 DCTERMS.license, DCTERMS.modified):
+    for pred in (DCTERMS.title, DCTERMS.creator, DCTERMS.contributor,
+                 DCTERMS.publisher, DCTERMS.license, DCTERMS.modified,
+                 DCTERMS.description, DCTERMS.created, DCTERMS.issued,
+                 DCTERMS.source, DCTERMS.bibliographicCitation,
+                 BIBO.status, VANN.preferredNamespacePrefix,
+                 VANN.preferredNamespaceUri):
         for o in list(g.objects(ONTOLOGY_IRI, pred)):
             g.remove((ONTOLOGY_IRI, pred, o))
     g.add((ONTOLOGY_IRI, DCTERMS.title, Literal("HeritageGraph Ontology")))
+    g.add((ONTOLOGY_IRI, DCTERMS.description, Literal(ONTOLOGY_DESCRIPTION)))
     g.add((ONTOLOGY_IRI, DCTERMS.creator, Literal("CAIR-Nepal")))
+    g.add((ONTOLOGY_IRI, DCTERMS.contributor, Literal("CAIR-Nepal")))
     g.add((ONTOLOGY_IRI, DCTERMS.publisher, Literal("CAIR-Nepal")))
     g.add((ONTOLOGY_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
-    g.add((ONTOLOGY_IRI, DCTERMS.modified, Literal(date.today().isoformat())))
+    g.add((ONTOLOGY_IRI, DCTERMS.created, Literal(ONTOLOGY_CREATED, datatype=XSD.date)))
+    g.add((ONTOLOGY_IRI, DCTERMS.issued, Literal(ONTOLOGY_ISSUED, datatype=XSD.date)))
+    g.add((ONTOLOGY_IRI, DCTERMS.modified, Literal(date.today().isoformat(), datatype=XSD.date)))
+    g.add((ONTOLOGY_IRI, DCTERMS.source, URIRef(ONTOLOGY_SOURCE)))
+    g.add((ONTOLOGY_IRI, DCTERMS.bibliographicCitation, Literal(ONTOLOGY_CITATION)))
+    g.add((ONTOLOGY_IRI, BIBO.status, Literal(ONTOLOGY_STATUS)))
+    g.add((ONTOLOGY_IRI, VANN.preferredNamespacePrefix, Literal(ONTOLOGY_NS_PREFIX)))
+    g.add((ONTOLOGY_IRI, VANN.preferredNamespaceUri, Literal(ONTOLOGY_NS_URI)))
 
     for o in list(g.objects(ONTOLOGY_IRI, OWL.imports)):
         g.remove((ONTOLOGY_IRI, OWL.imports, o))

@@ -284,6 +284,8 @@ prefixes:
   dct: "http://purl.org/dc/terms/"        # Turtle alias used in release TTL
   pav: "http://purl.org/pav/"
   void: "http://rdfs.org/ns/void#"
+  vann: "http://purl.org/vocab/vann/"     # canonical VANN ns (FOOPS-recognised)
+  bibo: "http://purl.org/ontology/bibo/"  # bibo:status detailed metadata
   # Spatial / temporal
   geo: "http://www.opengis.net/ont/geosparql#"
   time: "http://www.w3.org/2006/time#"
@@ -314,8 +316,26 @@ annotations:
   owl:versionIRI: "https://w3id.org/heritagegraph/ontology/1.0.0"
   pav:version: "1.0.0"
   dcterms:creator: "CAIR-Nepal"
+  dcterms:contributor: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
+  # FAIR / FOOPS metadata. The canonical (typed) values are re-asserted in
+  # scripts/regenerate_ontology_artifacts.py:postprocess_ttl so they survive
+  # regeneration; they are declared here so the YAML stays the source of truth.
+  dcterms:description: >-
+    An event-centric ontology for representing Nepal cultural heritage
+    information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. It enables
+    provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar
+    date representation, covering tangible and intangible heritage such as
+    monuments, deities, festivals, rituals, guthis, and caste groups of the
+    Kathmandu Valley. DL expressivity: ALCIQ(D).
+  dcterms:created: "2025-11-23"
+  dcterms:issued: "2026-06-23"
+  dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (Version 1.0.0). https://w3id.org/heritagegraph/ontology"
+  bibo:status: "Specification Draft"
+  vann:preferredNamespacePrefix: "heritageGraph"
+  vann:preferredNamespaceUri: "https://w3id.org/heritagegraph/"
   # NOTE: LinkML's OWL generator does not currently accept list-valued
   # annotations for owl:imports. We add imports in the release artifact
   # post-processing step instead (as real IRI objects, not a string literal).
