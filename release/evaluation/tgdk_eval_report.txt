@@ -1,0 +1,62 @@
+TGDK ontology-evaluation battery — HeritageGraph 0.1.0-alpha.5 — 2026-07-16
+Inputs: HeritageGraph.yaml, HeritageGraph.ttl, HeritageGraph.shacl.ttl, kathmandu-mini-abox-alpha5.ttl
+========================================================================
+1. STRUCTURAL & SCHEMA METRICS (OntoQA / OQuaRE style)
+========================================================================
+Classes: 75 total (69 concrete, 6 abstract, 3 mixins)
+Slots: 192   Enums: 7   Enum values: 51
+OWL export: 5534 triples, 147 object properties, 45 datatype properties
+Inheritance: max depth 3, mean depth 0.95; subclass edges H=42; mean branching 2.80; tangledness (is_a + >=1 mixin): 0 classes
+Relationship richness RR = P/(P+H) = 140/(140+42) = 0.77
+Inheritance richness IR = H/C = 0.56
+Attribute richness AR = attributes/C = 52/75 = 0.69
+Documentation coverage: classes with definition 75/75 (100%), slots with definition 192/192 (100%), classes with altLabels 8
+External mapping coverage (classes): 42/75 (56%)
+Minted vs reused class IRIs: 59 minted / 16 external-identity
+Axiom inventory (OWL export): subClassOf=928, subPropertyOf=27, inverseOf=16, disjointWith=1, equivalentClass(union defs)=3, deprecated=1
+
+========================================================================
+2. OOPS!-STYLE PITFALL SCAN (local implementation; web service was
+   unreachable on scan dates — rerun at oops.linkeddata.es when up)
+========================================================================
+  [Important] P10 missing disjointness: only 1 disjointness axiom(s) (Stupa/Chaitya); sibling sets (Temple/Stupa/Chaitya, RestHouse kinds, Person/Guthi) undeclared — deliberate minimal-commitment stance; must be argued in the paper
+  [Minor    ] P13 missing inverses: 123 object slots without declared inverse (PROV/CRM one-directional idiom for most; reviewed)
+  [PASS     ] P22 naming convention: snake_case slots / UpperCamelCase classes uniform
+  [PASS     ] P04 unconnected elements: orphans: none
+  [PASS     ] P41/P38 license: dcterms:license = https://creativecommons.org/licenses/by/4.0/
+
+========================================================================
+3. COMPETENCY-QUESTION COVERAGE (Grüninger & Fox)
+========================================================================
+  Institutional/Syncretic  PASS: 7
+  Living Goddess           PASS: 7
+  Ritual/Festival          PASS: 12
+  Structural               PASS: 6
+  Total: 32/32 CQs return at least one binding.
+
+========================================================================
+4. SHACL CONFORMANCE + 5. LOGICAL CONSISTENCY
+========================================================================
+  SHACL (demonstrator ABox vs finalized shapes): CONFORMS
+  OWL 2 RL consistency (TBox+ABox closure 41271 triples): CONSISTENT
+  NOTE: full OWL 2 DL classification (HermiT/Pellet) pending Java runtime;
+  with a single disjointness axiom the DL check is near-vacuous — state this.
+
+========================================================================
+6. FAIR / FOOPS!-STYLE METADATA CHECKLIST
+========================================================================
+  [PASS] Ontology IRI is w3id (persistent)
+  [PASS] owl:versionIRI
+  [PASS] dcterms:license (as IRI)
+  [PASS] dcterms:creator/publisher
+  [PASS] dcterms:created & modified
+  [PASS] dcterms:bibliographicCitation
+  [PASS] bibo:status
+  [PASS] vann:preferredNamespacePrefix/Uri
+  [PASS] CITATION.cff in repo
+  [PASS] Multiple serializations published (ttl/owl/nt/jsonld)
+  [PASS] Machine-readable changelog/docs in repo
+  Local FAIR checklist: 11/11
+  OPEN (network/deployment): w3id term-level dereferencing + content
+  negotiation; LOV registry deposit; FOOPS! web score (run once the
+  updated docs/ artifacts are deployed, else it grades the old content).

@@ -1,24 +1,26 @@
 cff-version: 1.2.0
+message: "If you use the HeritageGraph ontology, please cite it as below."
 title: "HeritageGraph Ontology"
-message: "If you use this ontology, please cite it using the metadata below."
-type: dataset
+version: 0.1.0-alpha.5
+date-released: "2026-07-16"
 authors:
-- family-names: "Karki"
-  given-names: "Niraj"
-  orcid: "https://orcid.org/0009-0000-7679-0107"
-- family-names: "Oli"
-  given-names: "Nabin"
-  orcid: "https://orcid.org/0009-0007-3770-4668"
-- family-names: "Sapkota"
-  given-names: "Anu"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
-- family-names: "Yumusak"
-  given-names: "Semih"
-  orcid: "https://orcid.org/0000-0002-8878-4991"
-- family-names: "Chhetri"
-  given-names: "Tek Raj"
-  orcid: "https://orcid.org/0000-0002-3905-7878"
-
-version: 1.0.0
-publisher: "CAIR-Nepal"
-url: "https://github.com/CAIRNepal/heritagegraphontology"
+  - name: "CAIR-Nepal"
+    website: "https://cair-nepal.org"
+license: CC-BY-4.0
+repository-code: "https://github.com/CAIRNepal/heritagegraphontology"
+url: "https://w3id.org/heritagegraph/ontology"
+abstract: >-
+  An event-centric LinkML schema for representing cultural heritage
+  information of the Kathmandu Valley, aligned with CIDOC-CRM and PROV-O
+  through exact/broad mappings and subproperty bridges. Covers tangible and
+  living heritage including temples, stupas, water architecture, rituals,
+  festivals, Guthi institutions, and the Kumari (living goddess) lifecycle,
+  with a CRMinf-based layer for contested, source-attributed assertions.
+keywords:
+  - ontology
+  - cultural heritage
+  - CIDOC-CRM
+  - PROV-O
+  - LinkML
+  - Nepal
+  - living heritage

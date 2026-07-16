@@ -769,6 +769,13 @@ def generate_shacl() -> None:
     result = subprocess.run(cmd, cwd=ROOT, check=True, capture_output=True, text=True)
     SHACL.write_text(result.stdout, encoding="utf-8")
     print(f"Wrote {SHACL}")
+    # extend sh:ignoredProperties so closedness rejects only unknown
+    # predicates (keeps the non-disjoint sibling separation; see the script)
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "postprocess_shacl.py")],
+        cwd=ROOT,
+        check=True,
+    )
 
 
 def sync_docs() -> None:

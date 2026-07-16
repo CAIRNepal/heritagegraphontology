@@ -1,32 +1,72 @@
+OOPS! Pitfall Scan — HeritageGraph 0.1.0-alpha.5 (FINAL)
+Date: 2026-07-16
+Tool: OOPS! v2, official docker image mpovedavillalon/oops:v2 run locally
+     (public web service timed out repeatedly; local image required two
+     repairs documented below).
+Input: ontology/HeritageGraph.ttl (5,534 triples), submitted as RDF/XML via
+     the container REST endpoint /OOPS/rest.
 
-======================================================================
-  §4.2  Modeling Quality — OOPS! Pitfall Analysis
-======================================================================
-Date     : 2026-06-23T23:30:41.210938
-Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
+EXECUTION NOTES (reproducibility)
+- The docker image ships WITHOUT the WordNet 3.0 dictionary its P07/P22
+  checks require -> installed WordNet-3.0/dict into the container
+  (image committed as oops-wordnet:v2).
+- The P12 check (equivalent properties) exhausts a 6 GB JVM heap on this
+  ontology -> P12 excluded from the scan request; assessed manually: the
+  ontology declares NO owl:equivalentProperty axioms and every slot_uri is
+  now unique, so P12 (equivalent properties not explicitly declared) has no
+  candidates by construction.
+- The engine's partial-execution response serializer throws an NPE; results
+  were therefore harvested from the engine log (which prints the full
+  per-pitfall element lists).
 
-  Parsed 5007 triples
+RESULTS — two scans
+Scan 1 (before final fixes): 6 pitfall types
+  P08-C (missing class comments): 5 enum classes  -> FIXED (descriptions
+        added to ConditionType, ExistenceStatus, RitualType, DatePrecision,
+        SyncreticType)
+  P19 (multiple domains/ranges): 4 CRM properties (P12, P29, P8, P14)
+        shared by several slots -> FIXED (predicate de-collapse: canonical
+        holders occurred_in_presence_of / was_present_at / carried_out_by /
+        transferred_to_actor / ritual_on_structure keep the CRM URIs; 8
+        specialized slots now use minted heritageGraph subproperties).
+        Slot_uri uniqueness is now TOTAL (192/192).
+  + P11, P13-bis, P07, P22 (see below)
 
-======================================================================
-  OOPS! Online Service
-======================================================================
-  ✅ OOPS! response saved to: /Users/nirajkarki/cair/heritagegraphontology/evaluation/results/oops_response.xml
-  Response size: 874 chars
-  → Open the XML file to review detected pitfalls.
+Scan 2 (final): 4 pitfall types remain, all dismissed with rationale:
+  P11 (missing domain/range) — Important
+      LinkML attaches domains via per-class owl:Restriction axioms (806 in
+      the export) rather than global rdfs:domain; global domains on the
+      REUSED CRM/PROV properties would redefine external terms (ontology
+      hijacking), which this project explicitly forbids. Design stance,
+      documented here and in the paper.
+  P13-bis (inverse relationships not declared) — Minor
+      One-directional CRM/PROV idiom; all load-bearing pairs (assertion
+      layer, Kumari lifecycle, enshrinement/consecration shortcuts) DO
+      declare inverses (16 owl:inverseOf axioms).
+  P07 (merging different concepts) — flags only the external class name
+      crm:E29_Design_or_Procedure (CIDOC's own naming); not ours.
+  P22 (naming conventions) — flags the same external CRM name and one
+      generator-internal enum-individual URI (GuthiType#SiGuthi); no
+      HeritageGraph-authored term flagged.
+  P10 (missing disjointness) did NOT fire (the Stupa/Chaitya axiom
+      satisfies the check); the broader minimal-disjointness stance is
+      still argued separately in the paper.
 
-======================================================================
-  Local Heuristic Pitfall Scan
-======================================================================
+VERDICT: no OOPS! pitfall attributable to HeritageGraph-authored terms
+remains unaddressed or unargued.
 
-  Total pitfalls detected: 148
-  Unique pitfall types:    2
 
-  [IMPORTANT] P10 — Missing disjointness  (12 occurrence(s))
-             → https://w3id.org/heritagegraph/HumanMadeObject: Sibling classes lack owl:disjointWith: Iconograph...
-             → https://w3id.org/heritagegraph/DataSource: Sibling classes lack owl:disjointWith: ArchivalRecord,...
-             → https://w3id.org/heritagegraph/RitualEvent: Sibling classes lack owl:disjointWith: Enshrinement, ...
-
-  [IMPORTANT] P11 — Missing domain or range  (136 occurrence(s))
-             → https://w3id.org/heritagegraph/had_participant: Missing rdfs:domain
-             → https://w3id.org/heritagegraph/has_condition_assessment: Missing rdfs:domain
-             → https://w3id.org/heritagegraph/hypothesized_location: Missing rdfs:domain
+ADDENDUM — official docker setup (v1, volume-mounted WordNet), 2026-07-16
+Re-ran per the OOPS! project's official instructions:
+    docker pull mpovedavillalon/oops:v1
+    docker run -d --name oops-v1 \
+      -v $(pwd)/data/oops/WordNet:/usr/local/tomcat/WordNet \
+      -p 80:8080 mpovedavillalon/oops:v1
+    # web UI: http://localhost/OOPS/   REST: http://localhost/OOPS/rest
+(WordNet-3.0/dict placed under data/oops/WordNet/ — gitignored; the mount
+replaces the ad-hoc docker-cp used with the v2 image.)
+Result on the CURRENT ontology (post punning fix, 5,553 triples): identical
+final state — 4 pitfall types (P11, P13-bis, P07, P22), each dismissed with
+the rationale above; P12 still excluded (same engine OOM); the partial-
+response serializer NPE also exists in v1, so results remain harvested from
+the engine log. No pitfall on HeritageGraph-authored terms.

@@ -1,9 +1,8 @@
 id: https://w3id.org/heritagegraph/schema
 name: HeritageGraph
-description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
-  CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
-  and ritual-spatial-temporal reasoning."
-version: 0.1.0-alpha.5
+description: "An event-centric LinkML schema for representing cultural heritage information that fully aligns with
+  CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning."
+version: 0.1.0-alpha.4
 license: CC-BY-4.0
 
 
@@ -18,7 +17,6 @@ types:
 
 enums:
   ConditionType:
-    description: "Controlled vocabulary for the physical condition of heritage objects and structures."
     permissible_values:
       Good:
         description: "No significant damage"
@@ -31,7 +29,6 @@ enums:
 
 
   ExistenceStatus:
-    description: "Controlled vocabulary for whether a heritage structure still exists physically."
     permissible_values:
       Extant:
         description: "Currently exists in physical form"
@@ -47,51 +44,47 @@ enums:
         description: "Existence status uncertain"
 
   RitualType:
-    description: "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."
     permissible_values:
       NityaPuja:
         description: "Daily mandatory worship"
-        # MAPPING AUDIT (alpha.5): aat:300055603 = 'ownership' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300055603
       NaimittikaPuja:
         description: "Occasional/Festival worship"
       KamyaPuja:
         description: "Desire-based optional worship"
       Abhisheka:
         description: "Ritual bathing/anointing of deity"
-        # MAPPING AUDIT (alpha.5): aat:300264383 = 'sculpting' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264383
       Homa:
         description: "Fire offering ritual"
-        # MAPPING AUDIT (alpha.5): aat:300264387 = 'images (object genre)' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264387
       Bhajan:
         description: "Devotional singing ritual"
-        # MAPPING AUDIT (alpha.5): aat:300264388 = 'pictures (object genre)' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264388
       Yagna:
         description: "Vedic sacrifice ritual"
-        # MAPPING AUDIT (alpha.5): aat:300264386 = 'trimurti' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264386
       Vrata:
         description: "Vow observance ritual"
-        # MAPPING AUDIT (alpha.5): aat:300264389 = 'caliphates' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264389
       Jatra:
         description: "Festival procession ritual"
-        # MAPPING AUDIT (alpha.5): aat:300264390 = 'Capuchin (Christian order)' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264390
       ChariotProcession:
         description: "Ritual chariot pulling"
-        # MAPPING AUDIT (alpha.5): aat:300254776 does not exist (HTTP 404);
-        # replaced with the verified broader concept aat:300069290 =
-        # 'processions'.
-        broad_mappings:
-          - aat:300069290
+        exact_mappings:
+          - aat:300254776
       MaskedPerformance:
         description: "Ritual masked dance"
-        # MAPPING AUDIT (alpha.5): aat:300264391 = 'Egyptology' (verified) --
-        # wrong concept; removed.
+        exact_mappings:
+          - aat:300264391
 
 
       RitualConsecration:
@@ -120,7 +113,6 @@ enums:
         overlap with RitualEvent.route_places/start_place/end_place/route_description -- pick one canonical mechanism
         for moving rituals.'
   DatePrecision:
-    description: "Controlled vocabulary for the temporal precision of recorded heritage dates."
     permissible_values:
       Exact:
         description: "Precise date known"
@@ -135,7 +127,6 @@ enums:
 
   #Syncretic relationship types
   SyncreticType:
-    description: "Controlled vocabulary for kinds of syncretic theological relationships between deities."
     permissible_values:
       Equivalence:
         description: "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)"
@@ -156,17 +147,10 @@ enums:
         meaning: aat:300004829
       Shikhara:
         description: "North Indian spire-shaped style"
-        # MAPPING AUDIT (alpha.5): aat:300446671 = 'grīvā-śikhara' (verified)
-        # names a specific sikhara variant, not the general style; no general
-        # 'shikharas' AAT concept found -- meaning removed pending domain-
-        # expert confirmation.
-        # meaning: aat:300446671
+        meaning: aat:300446671
       Dome:
         description: "Dome-based style (Mughal/Neo-classical influence)"
-        # MAPPING AUDIT (alpha.5): aat:300001285 = 'onion domes' (verified)
-        # is narrower than this generic value; replaced with the verified
-        # aat:300001280 = 'domes (architectural elements)'.
-        meaning: aat:300001280
+        meaning: aat:300001285
       Chaitya:
         description: "Buddhist votive shrine style"
         meaning: aat:300007562
@@ -198,10 +182,6 @@ enums:
 
 
 prefixes:
-  # SERIALIZATION FIX (alpha.5): the schema imports linkml:types but never
-  # declared the linkml: prefix; strict loaders (e.g. PythonGenerator) fail
-  # on the unresolvable CURIE.
-  linkml: "https://w3id.org/linkml/"
   heritageGraph: "https://w3id.org/heritagegraph/"
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
@@ -209,51 +189,33 @@ prefixes:
   xsd: "http://www.w3.org/2001/XMLSchema#"
   skos: "http://www.w3.org/2004/02/skos/core#"
   dcterms: "http://purl.org/dc/terms/"
+  dct: "http://purl.org/dc/terms/"
   geo: "http://www.opengis.net/ont/geosparql#"
   time: "http://www.w3.org/2006/time#"
+  wgs84: "http://www.w3.org/2003/01/geo/wgs84_pos#"
   aat: "http://vocab.getty.edu/aat/"
+  tgn: "http://vocab.getty.edu/tgn/"
   wikidata: "http://www.wikidata.org/entity/"
-  # SERIALIZATION FIX (alpha.5): canonical schema.org RDF term URIs use
-  # http:// (also what linkml:types declares); the https:// binding clashed
-  # with the imported module and emitted non-canonical term URIs.
-  schema: "http://schema.org/"
+  schema: "https://schema.org/"
   dbo: "http://dbpedia.org/ontology/"
+  foaf: "http://xmlns.com/foaf/0.1/"
   prov: "http://www.w3.org/ns/prov#"
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
-  # URI FIX (alpha.5): current CRMsci releases on cidoc-crm.org are PDF/DOCX
-  # only and http://www.cidoc-crm.org/crmsci/ term URIs do not dereference.
-  # The namespace of the official CRMsci RDFS encodings, used by existing
-  # CRMsci data, is the FORTH namespace below.
-  crmsci: "http://www.ics.forth.gr/isl/CRMsci/"
-  # URI FIX (alpha.5): CRMinf has no current official RDF release (cidoc-crm.org
-  # publishes v1.2.1 as PDF/DOCX only) and http://www.cidoc-crm.org/crminf/ term
-  # URIs do not dereference. The de-facto RDF namespace used by existing CRMinf
-  # data and implementations (e.g. ResearchSpace) is the FORTH namespace below.
-  crminf: "http://www.ics.forth.gr/isl/CRMinf/"
+  crmsci: "http://www.cidoc-crm.org/crmsci/"
+  crmdig: "http://www.cidoc-crm.org/crmdig/"
+  crminf: "http://www.cidoc-crm.org/crminf/"
   rico: "https://www.ica.org/standards/RiC/ontology#"
-  bibo: "http://purl.org/ontology/bibo/"
-  vann: "http://purl.org/vocab/vann/"
+  datacite: "http://purl.org/spar/datacite/"
 
 default_prefix: heritageGraph
 
 annotations:
   owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
-  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.5"
+  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.4"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
-  # FAIR metadata (alpha.5-final)
-  dcterms:created: "2025-11-23"
-  dcterms:modified: "2026-07-16"
-  dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0-alpha.5). https://w3id.org/heritagegraph/ontology"
-  bibo:status: "Pre-release specification draft (alpha)"
-  vann:preferredNamespacePrefix: "heritageGraph"
-  vann:preferredNamespaceUri: "https://w3id.org/heritagegraph/"
-  # CLEANUP (alpha.5): removed the owl:imports annotation -- it serialized as
-  # one malformed space-separated literal, and alignment to CIDOC-CRM/PROV-O
-  # is carried by mappings and subproperty bridges, not by importing the full
-  # external ontologies.
+  owl:imports: "http://www.cidoc-crm.org/cidoc-crm/ http://www.w3.org/ns/prov#"
 
 classes:
   # ========================================================================
@@ -263,16 +225,8 @@ classes:
     abstract: true
     mixin: true
     class_uri: prov:Entity
-    description: "Direct LinkML representation of prov:Entity. Applied to physical, digital, conceptual, and
-      assertion-bearing things that participate in provenance relations. PROVENANCE SCOPE (alpha.5 design
-      decision): for classes whose instances are real-world referents (structures, deities, places, actors),
-      the provenance slots (was_derived_from, was_attributed_to, was_generated_by, generated_at_time) describe
-      the DATA RECORD about the referent, not the referent itself -- a stupa is not generated by the survey
-      that records it. Referent-level history is modelled through events (Production, DestructionEvent, etc.).
-      RDF deployments SHOULD carry record-level provenance in named graphs or on InformationObject/Assertion
-      nodes."
-    annotations:
-      provenance_scope: record
+    description: Direct LinkML representation of prov:Entity. Applied to physical, digital, conceptual, and 
+      assertion-bearing things that participate in provenance relations.
     slots:
       - id
       - was_derived_from
@@ -310,14 +264,9 @@ classes:
   HumanMadeObject:
     class_uri: crm:E22_Human-Made_Object
     description: "Physical objects created by human activity"
-    # MAPPING AUDIT (alpha.5, verified against live endpoints 2026-07-16):
-    # schema:CreativeWork overlaps but is not equivalent (covers intangible
-    # works) -> close. aat:300033618 = 'paintings (visual works)' -- wrong
-    # concept here -> removed. wikidata:Q838948 = 'work of art' is narrower
-    # than HumanMadeObject -> narrow_mappings.
-    close_mappings:
+    exact_mappings:
       - schema:CreativeWork
-    narrow_mappings:
+      - aat:300033618
       - wikidata:Q838948
 
     slots:
@@ -337,16 +286,10 @@ classes:
 
     description: "Physical structures built for religious, social, or civic purposes. Links to events of production,
       use, custody, and documentation."
-    # MAPPING AUDIT (alpha.5): aat:300006888 = 'fortifications' (verified) --
-    # wrong concept -> removed. schema:Place is categorially disjoint from a
-    # physical structure -> close. wikidata:Q811979 = 'architectural
-    # structure' verified equivalent -> kept exact.
     exact_mappings:
-      - wikidata:Q811979
-    close_mappings:
+      - aat:300006888
       - schema:Place
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than crm:E22; moved from exact_mappings.
+      - wikidata:Q811979
       - crm:E22_Human-Made_Object
     slots:
       - name
@@ -365,51 +308,30 @@ classes:
     slot_usage:
       name:
         required: true
-      # CONSTRAINT FIX (alpha.5): has_current_location was unconditionally
-      # required, contradicting ExistenceStatus Destroyed/Lost/Hypothetical
-      # (and hypothesized_location, which exists for exactly that case). It is
-      # now required only for (partially) extant structures via the rule below.
       has_current_location:
+        required: true
+        minimum_cardinality: 1
         maximum_cardinality: 1
-    rules:
-      - description: Extant or partially extant structures must record a current location.
-        preconditions:
-          slot_conditions:
-            existence_status:
-              any_of:
-                - equals_string: Extant
-                - equals_string: PartiallyExtant
-        postconditions:
-          slot_conditions:
-            has_current_location:
-              required: true
 
   ReligiousStructure:
     is_a: ArchitecturalStructure
     class_uri: heritageGraph:ReligiousStructure
     description: 'Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus
       of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).'
-    # MAPPING AUDIT (alpha.5): aat:300007596 is the guide term '<temples by
-    # form>' (verified) -- AAT guide terms are not mappable concepts -> removed.
+    exact_mappings:
+      - aat:300007596
   Temple:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Mandir"
     is_a: ReligiousStructure
     class_uri: heritageGraph:Temple
 
     description: "Religious structure characterized by deity enshrinement and ritual activation. Legal designation
       (e.g. 'Ancient Monument' under Nepal law) is recorded per-instance via a governance assertion, not as a class
       criterion."
-    # MAPPING AUDIT (alpha.5): aat:300007595 = 'temples (buildings)' and
-    # wikidata:Q44539 = 'temple' verified -> kept exact.
-    # dbo:ReligiousBuilding is broader than Temple -> broad_mappings.
     exact_mappings:
       - aat:300007595
       - wikidata:Q44539
-      - dbo:Temple
-    broad_mappings:
       - dbo:ReligiousBuilding
+      - dbo:Temple
     close_mappings:
       - schema:PlaceOfWorship
       - schema:HinduTemple
@@ -429,12 +351,9 @@ classes:
     description: "Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath,
       Swayambhunath)."
 
-    # MAPPING AUDIT (alpha.5): aat:300007576 = 'stupas' verified -> kept.
-    # wikidata:Q177980 = 'Aemilian, Roman emperor' (verified) -- wrong entity;
-    # replaced with the verified Q180987 = 'stupa'.
     exact_mappings:
       - aat:300007576
-      - wikidata:Q180987
+      - wikidata:Q177980
     disjoint_with:
       - Chaitya
   Chaitya:
@@ -448,9 +367,6 @@ classes:
     description: "Community structures for travelers and pilgrims, maintained by Guthi organizations"
 
   Pati:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Phalcha"
     is_a: RestHouse
     class_uri: heritageGraph:Pati
     description: "Open-air pavilion for resting travelers"
@@ -471,9 +387,6 @@ classes:
     description: "Engineered water supply systems with ritual and civic significance"
 
   DhungeDhara:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Hiti"
     is_a: WaterStructure
     class_uri: heritageGraph:DhungeDhara
     description: "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply"
@@ -487,13 +400,10 @@ classes:
     is_a: HumanMadeObject
     class_uri: heritageGraph:IconographicObject
     description: "Sacred visual art objects that depict or embody deities through iconographic conventions"
-    # MAPPING AUDIT (alpha.5): aat:300033618 = 'paintings (visual works)' and
-    # aat:300041273 = 'prints (visual works)' (verified) are wrong for a class
-    # that includes statues -> removed. dbo:Artwork is broader -> moved to
-    # broad_mappings.
-    broad_mappings:
+    exact_mappings:
+      - aat:300033618
+      - aat:300041273
       - dbo:Artwork
-      # URI POLICY (alpha.5): narrower than crm:E22; moved from exact_mappings.
       - crm:E22_Human-Made_Object
     close_mappings:
       - crm:E36_Visual_Item
@@ -509,47 +419,26 @@ classes:
   Paubha:
     is_a: IconographicObject
     class_uri: heritageGraph:Paubha
-    # MAPPING AUDIT (alpha.5): aat:300033618 = 'paintings (visual works)' is
-    # broader than Paubha -> broad_mappings. wikidata:Q130993 was
-    # unresolvable; replaced with the verified exact concept Q7148832 =
-    # 'Paubha' (traditional religious painting of the Newar people).
-    # Q916651 = 'thangka' (verified) added as close.
     exact_mappings:
-      - wikidata:Q7148832
-    broad_mappings:
       - aat:300033618
-    close_mappings:
-      - wikidata:Q916651
+      - wikidata:Q130993
     description: "Traditional Newari scroll painting (thangka) with mandala and deity iconography"
 
   Murti:
     is_a: IconographicObject
     class_uri: heritageGraph:Murti
     description: "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)"
-    # MAPPING AUDIT (alpha.5): aat:300264383 = 'sculpting' (verified) -- an
-    # activity, wrong for a statue -> removed. wikidata:Q2594295 is an insect
-    # species (verified) -- wrong entity; replaced with the verified
-    # Q1781039 = 'murti'.
     exact_mappings:
-      - wikidata:Q1781039
+      - aat:300264383
+      - wikidata:Q2594295
     slots:
       - consecrated_by_event
       - is_about_deity
   ArchitecturalElement:
-    # URI FIX (alpha.5): crm:E25_Architectural_Element does not exist in CIDOC-CRM.
-    # The official E25 class is crm:E25_Human-Made_Feature (human-made features
-    # attached to physical things, e.g. carvings), which matches this class's intent.
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:ArchitecturalElement
-    broad_mappings:
-      - crm:E25_Human-Made_Feature
-    description: "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)"
-    # MAPPING AUDIT (alpha.5): aat:300001819 does not exist (HTTP 404);
-    # replaced with the verified concept aat:300000885 = 'architectural
-    # elements'.
+    class_uri: crm:E25_Architectural_Element
+    description: "Carved or constructed component of a architectural strucuture (e.g., Gajur, Torana, Tundal)"
     exact_mappings:
-      - aat:300000885
+      - aat:300001819
     slots:
       - name
       - note
@@ -568,9 +457,6 @@ classes:
       - Entity
   PhysicalHeritageThing:
     class_uri: heritageGraph:PhysicalHeritageThing
-    description: "Union of the tangible heritage classes: architectural structures, iconographic
-      objects, and standalone architectural elements. Used as the range of slots that apply to any
-      physical heritage thing (production, custody, condition assessment)."
     union_of:
       - ArchitecturalStructure
       - IconographicObject
@@ -580,21 +466,13 @@ classes:
     mixins:
       - Entity
   Deity:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:Deity
-    broad_mappings:
-      - crm:E28_Conceptual_Object
+    class_uri: crm:E28_Conceptual_Object
     description: "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations
       (Murti) and ritual presences."
     exact_mappings:
-      # MAPPING AUDIT (alpha.5): aat:300343156 does not exist (HTTP 404);
-      # replaced with the verified concept aat:300343850 = 'deities'.
-      - aat:300343850
+      - aat:300343156
       - dbo:Deity
-      # URI FIX (alpha.5): schema:Deity does not exist (schema.org defines no
-      # Deity type); replaced with the Wikidata concept 'deity' (Q178885).
-      - wikidata:Q178885
+      - schema:Deity
     slots:
       - name
       - note
@@ -605,11 +483,7 @@ classes:
     mixins:
       - Entity
   ReligiousTradition:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:ReligiousTradition
-    broad_mappings:
-      - crm:E55_Type
+    class_uri: crm:E55_Type
     description: "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)"
     exact_mappings:
       - aat:300073708
@@ -619,11 +493,7 @@ classes:
     mixins:
       - Entity
   HistoricalEvent:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:HistoricalEvent
-    broad_mappings:
-      - crm:E5_Event
+    class_uri: crm:E5_Event
     description: "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition,
       fire, flood)."
     slots:
@@ -641,17 +511,10 @@ classes:
       - Activity
   CalendarSystem:
 
-    # URI FIX (alpha.5): time:Calendar does not exist in OWL-Time, and
-    # crm:E29_Designated_Reference_System does not exist in CIDOC-CRM (E29 is
-    # Design or Procedure). A calendar is a temporal reference system, which
-    # OWL-Time models as time:TRS. The class IRI is now minted under
-    # heritageGraph; the official OWL-Time term is retained as the mapping.
-    class_uri: heritageGraph:CalendarSystem
-    # MAPPING AUDIT (alpha.5): a calendar is one kind of temporal reference
-    # system (time:TRS also covers clocks and coordinate systems) -> demoted
-    # from exact to broad.
-    broad_mappings:
-      - time:TRS
+    class_uri: time:Calendar
+    exact_mappings:
+      - time:Calendar
+      - crm:E29_Designated_Reference_System
     description: "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning"
     slots:
       - name
@@ -689,14 +552,10 @@ classes:
     mixins:
       - Activity
   RitualEvent:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:RitualEvent
-    broad_mappings:
-      - crm:E7_Activity
+    class_uri: crm:E7_Activity
     description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
-    # MAPPING AUDIT (alpha.5): aat:300055603 = 'ownership' (verified) --
-    # wrong concept -> removed.
+    exact_mappings:
+      - aat:300055603
     slots:
       - name
       - note
@@ -726,17 +585,14 @@ classes:
     mixins:
       - Activity
   Festival:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Jatra"
     is_a: RitualEvent
     class_uri: heritageGraph:Festival
     description: "Large-scale community ritual event (Jatra) involving processions, music, and collective participation"
     slots:
       - includes_ritual_event
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
+    broad_mappings:
       - prov:Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
@@ -763,8 +619,7 @@ classes:
       - took_place_at
       - has_timespan
       - makes_deity_present
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
@@ -781,8 +636,7 @@ classes:
       - enshrined_in_structure
       - carried_out_by
       - has_timespan
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
@@ -832,9 +686,7 @@ classes:
     mixins:
       - Entity
   Guthi:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:Guthi
+    class_uri: crm:E74_Group
     description: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary
       or voluntary membership"
     slots:
@@ -849,11 +701,46 @@ classes:
         range: GuthiType
     broad_mappings:
       - prov:Organization
-      # URI POLICY (alpha.5): Guthi is narrower than crm:E74_Group.
-      - crm:E74_Group
 
-  # CLEANUP (alpha.5): removed 40 lines of commented-out Guthi subclasses
-  # (SiGuthi..RajGuthi) -- the GuthiType enum covers this typology.
+  # SiGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SiGuthi
+  #   description: "Funeral trust responsible for death rituals and cremation ceremonies"
+
+  # JatraGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:JatraGuthi
+  #   description: "Festival trust responsible for organizing and funding annual Jatra events"
+
+  # PujaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:PujaGuthi
+  #   description: "Worship trust responsible for daily puja rituals. Distinct from JatraGuthi."
+
+  # TempleGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:TempleGuthi
+  #   description: "Trust managing temple maintenance, daily puja, and priest salaries"
+
+  # NashaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:NashaGuthi
+  #   description: "Music and dance trust (nāsaḥdyaḥ) preserving ritual performance traditions"
+
+  # SanaGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SanaGuthi
+  #   description: "Agricultural cooperative managing communal farmland"
+
+  # SanGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:SanGuthi
+  #   description: "Life-cycle ritual trust managing rites of passage"
+
+  # RajGuthi:
+  #   is_a: Guthi
+  #   class_uri: heritageGraph:RajGuthi
+  #   description: "Royal Guthi established by Malla or Shah monarchy (pre-1964)"
 
     is_a: Actor
   CasteGroup:
@@ -863,10 +750,9 @@ classes:
       - name
       - note
       - traditional_role
-    broad_mappings:
-      # URI POLICY (alpha.5): CasteGroup is narrower than crm:E74_Group;
-      # moved from exact_mappings.
+    exact_mappings:
       - crm:E74_Group
+    broad_mappings:
       - prov:Organization
     is_a: Actor
   Person:
@@ -924,11 +810,7 @@ classes:
     mixins:
       - Entity
   AssertionSubject:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:AssertionSubject
-    broad_mappings:
-      - crm:E1_CRM_Entity
+    class_uri: crm:E1_CRM_Entity
     description: "Any HeritageGraph entity or event that may be the subject of an assertion."
     union_of:
       - HumanMadeObject
@@ -937,14 +819,6 @@ classes:
       - ReligiousTradition
       - HistoricalEvent
       - RitualEvent
-      # WIRING (alpha.5): standalone event classes added -- they carry
-      # has_assertion / was_documented_by but were not union members, so
-      # assertions could not legally target them.
-      - Production
-      - Consecration
-      - Enshrinement
-      - TransferOfCustody
-      - ConditionAssessment
       - ConditionState
       - Actor
       - Place
@@ -957,25 +831,18 @@ classes:
       - Material
       - KumariRole
       - SelectionCriterion
-      # CRMINF FIX (alpha.5): Assertion included so beliefs about beliefs
-      # (CRMinf I7 Belief Adoption -- e.g. an expert re-endorsing or disputing
-      # a prior claim) are expressible; CalendarSystem included so calendar-
-      # conversion claims can be provenanced like any other statement.
-      - Assertion
-      - CalendarSystem
     mixins:
       - Entity
     abstract: true
   Assertion:
 
-    class_uri: crminf:I2_Belief  # CRMinf I2 Belief (CRM-SIG argumentation extension; CRMinf itself is not an ISO standard)
+    class_uri: crminf:I2_Belief  # ISO standard for arguments
     exact_mappings: []
     description: "A provenance-bearing belief or claim about a heritage entity or event. The assertion is represented
       as CRMinf I2 Belief and as a prov:Entity, allowing source, attribution, generation time, revision, confidence,
       and reconciliation status to be recorded explicitly."
     slots:
       - assertion_content
-      - asserts_proposition
       - asserts_about
       - confidence_score
       - data_quality_note
@@ -1004,37 +871,6 @@ classes:
       was_generated_by:
         range: DocumentationActivity
         description: Documentation activity that generated the assertion.
-  Proposition:
-    # CRMINF FIX (alpha.5): assertion_content alone was an opaque string --
-    # nothing queryable, and no CRMinf I4 realization despite the annotation
-    # advertising one. Proposition gives each Assertion an optional
-    # machine-readable subject-predicate-object statement (a singleton
-    # proposition set in CRMinf terms), linked via asserts_proposition
-    # (crminf:J4_that). assertion_content remains for prose.
-    class_uri: heritageGraph:Proposition
-    description: "A single machine-readable proposition (subject - predicate -
-      object) held true by an Assertion. Modelled as a singleton proposition
-      set (CRMinf I4); the predicate is a URI/CURIE, the object either a
-      heritage entity or a literal."
-    broad_mappings:
-      - crminf:I4_Proposition_Set
-    # NOTE (alpha.5-final): rdf:subject/predicate/object have rdfs:domain
-    # rdf:Statement, so Propositions are RDF statements under RDFS entailment;
-    # declared explicitly rather than left implicit.
-    close_mappings:
-      - rdf:Statement
-    mixins:
-      - Entity
-    slots:
-      - proposition_subject
-      - proposition_predicate
-      - proposition_object_entity
-      - proposition_object_literal
-    slot_usage:
-      proposition_subject:
-        required: true
-      proposition_predicate:
-        required: true
   DataSource:
     class_uri: heritageGraph:DataSource
     description: "Original source from which heritage information was derived"
@@ -1050,48 +886,29 @@ classes:
       - source_url
       - source_language
       - note
-    broad_mappings:
-      # URI POLICY (alpha.5): DataSource is narrower than crm:E73; moved from
-      # exact_mappings (also removes the parent/child equivalence collapse
-      # with InformationObject).
+    exact_mappings:
       - crm:E73_Information_Object
     mixins:
       - Entity
   FieldSurveyActivity:
     is_a: DocumentationActivity
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:FieldSurveyActivity
-    broad_mappings:
-      - crmsci:S4_Observation
+    class_uri: crmsci:S4_Observation
     description: "The activity of measuring, photographing, or assessing a site in person."
 
 
   OralHistoryInterview:
     is_a: DocumentationActivity
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:OralHistoryInterview
-    broad_mappings:
-      - crm:E65_Creation  # the event of creating the interview
+    class_uri: crm:E65_Creation    # The event of creating the interview
     description: "The interaction event between a researcher and a knowledge holder."
 
   FieldSurveyDataset:
     is_a: DataSource
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:FieldSurveyDataset
-    broad_mappings:
-      - crm:E31_Document
+    class_uri: crm:E31_Document
     description: "The structured data or report resulting from a field survey."
 
   OralHistoryRecording:
     is_a: DataSource
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:OralHistoryRecording
-    broad_mappings:
-      - crm:E33_Linguistic_Object
+    class_uri: crm:E33_Linguistic_Object
     description: "The recording or transcript of an oral history interview."
 
 
@@ -1118,8 +935,7 @@ classes:
       - used_equipment
       - generated
       - has_timespan
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
@@ -1129,11 +945,7 @@ classes:
       - Activity
   InformationObject:
     is_a: DataSource
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:InformationObject
-    broad_mappings:
-      - crm:E73_Information_Object
+    class_uri: crm:E73_Information_Object
     description: "A recorded piece of information about heritage"
     slots:
       - name
@@ -1175,11 +987,7 @@ classes:
       - has_timespan
       - took_place_at
   SyncreticRelationship:
-    # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
-    # CRM identity moved to broad_mappings.
-    class_uri: heritageGraph:SyncreticRelationship
-    broad_mappings:
-      - crm:E13_Attribute_Assignment
+    class_uri: crm:E13_Attribute_Assignment
     description: "Formalizes the syncretic equivalence between divine entities across different theological frameworks.
       Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority
       and provenance."
@@ -1195,14 +1003,7 @@ classes:
     mixins:
       - Activity
   KumariTenure:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Living Goddess Tenure"
     class_uri: heritageGraph:KumariTenure
-    # MAPPING (alpha.5): the documentation describes the tenure as an E4
-    # Period; grounded here as a broad mapping (KumariTenure is narrower).
-    broad_mappings:
-      - crm:E4_Period
     description: "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific
       god-house and supported by religious institutions. This class captures the unique Nepali tradition of living
       deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families."
@@ -1213,6 +1014,7 @@ classes:
       - residence_structure
       - has_timespan
       - supported_by_institution
+      - has_retirement_event
       - was_documented_by
       - assumes_role
       - selected_through
@@ -1253,23 +1055,24 @@ classes:
     class_uri: heritageGraph:KumariLifecycleEvent
     broad_mappings:
       - prov:Activity
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
-    description: 'Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Each
-      concrete subclass requires exactly one tenure edge via slot_usage: initiated_tenure (selection),
-      ended_tenure_of (retirement), or bounds_tenure itself (enthronement).'
+    description: 'Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Shared axiom:
+      every instance references some KumariTenure via bounds_tenure.'
     slots:
       - bounds_tenure
   KumariSelectionEvent:
     is_a: KumariLifecycleEvent
     class_uri: heritageGraph:KumariSelectionEvent
-    description: "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination
+    description: " Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination
       of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests
       of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee
       of Vajracharya priests, royal priest (Raj Jyotish), and astrologer."
 
 
     
+    exact_mappings:
+      - crm:E7_Activity
 
     slots:
       - name
@@ -1284,7 +1087,7 @@ classes:
       - was_documented_by
       - is_critical_for_festival
       - has_criterion
-      - confers_role
+      - results_in_role
     slot_usage:
       name:
         required: true
@@ -1305,8 +1108,6 @@ classes:
   
     broad_mappings:
       - prov:Activity
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
-      - crm:E7_Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -1329,9 +1130,7 @@ classes:
       - Entity
   Container:
     tree_root: true
-    description: "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in
-      the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in
-      persons, not actors); broader collections exist for instances of the general classes only."
+    description: "Root container for cultural heritage data instances"
     broad_mappings:
       - prov:Collection
     mixins:
@@ -1379,9 +1178,12 @@ classes:
         inlined: true
         inlined_as_list: true
 
-      # CONTAINER FIX (alpha.5): removed the 'has_architectural_style'
-      # attribute -- it shadowed the global slot of the same name and declared
-      # an inlined instance collection over an enum (enums have no instances).
+      has_architectural_style:
+        description: "Collection of ArchitecturalStyle instances"
+        range: ArchitecturalStyle
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
 
 
       architectural_elements:
@@ -1490,114 +1292,6 @@ classes:
 
 
 
-      human_made_objects:
-        description: "Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)"
-        range: HumanMadeObject
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      structures:
-        description: "Collection of ArchitecturalStructure instances (incl. subclasses)"
-        range: ArchitecturalStructure
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      iconographic_objects:
-        description: "Collection of IconographicObject instances (incl. Murti, Paubha)"
-        range: IconographicObject
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      # CONTAINER FIX (alpha.5): collections added so every top-level class
-      # (incl. the Kumari module, historical events, condition data, time
-      # spans and techniques) can be instantiated under the tree root.
-      actors:
-        description: "Collection of generic Actor instances"
-        range: Actor
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      historical_events:
-        description: "Collection of HistoricalEvent (incl. DestructionEvent) instances"
-        range: HistoricalEvent
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      condition_assessments:
-        description: "Collection of ConditionAssessment instances"
-        range: ConditionAssessment
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      condition_states:
-        description: "Collection of ConditionState instances"
-        range: ConditionState
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      time_spans:
-        description: "Collection of TimeSpan instances"
-        range: TimeSpan
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      techniques:
-        description: "Collection of Technique instances"
-        range: Technique
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      kumari_tenures:
-        description: "Collection of KumariTenure instances"
-        range: KumariTenure
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      kumari_roles:
-        description: "Collection of KumariRole instances"
-        range: KumariRole
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      kumari_lifecycle_events:
-        description: "Collection of Kumari lifecycle events (selection, enthronement, retirement)"
-        range: KumariLifecycleEvent
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      selection_criteria:
-        description: "Collection of SelectionCriterion instances"
-        range: SelectionCriterion
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      ritual_assessments:
-        description: "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances"
-        range: RitualAssessment
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
-      propositions:
-        description: "Collection of Proposition instances referenced by assertions"
-        range: Proposition
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-
       materials:
         description: "Collection of Material instances"
         range: Material
@@ -1608,10 +1302,6 @@ classes:
       metadata:
         description: "Dataset metadata"
         range: Metadata
-        # CONTAINER FIX (alpha.5): Metadata carries an identifier (Entity
-        # mixin), so without inlined:true serializers expect a string
-        # reference here; the intent is an embedded object.
-        inlined: true
 
   Metadata:
     description: "Dataset metadata information"
@@ -1620,22 +1310,16 @@ classes:
     attributes:
       dataset_name:
         range: string
-        description: "Human-readable name of the dataset."
       dataset_version:
         range: string
-        description: "Version identifier of the dataset instance."
       schema_version:
         range: string
-        description: "HeritageGraph schema version the dataset conforms to."
       generated_date:
         range: string
-        description: "Date the dataset serialization was generated (ISO 8601)."
       license:
         range: string
-        description: "License under which the dataset is released."
       curator:
         range: string
-        description: "Person or organization curating the dataset."
 # ============================================================================
 # SLOTS (PROPERTIES)
 # ============================================================================
@@ -1643,6 +1327,8 @@ classes:
   KumariRetirementEvent:
     is_a: KumariLifecycleEvent
     class_uri: heritageGraph:KumariRetirementEvent
+    exact_mappings:
+      - crm:E7_Activity
     description: 'Ritual or administrative event that formally ends a Living Goddess tenure, returning the person
       to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.'
     slots:
@@ -1681,22 +1367,13 @@ classes:
 
     broad_mappings:
       - prov:Activity
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
-      - crm:E7_Activity
     annotations:
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
         globally.
   KumariRole:
-    # ALIASES (alpha.5): English/romanized altLabels per reviewer request.
-    # Script-specific (Nepali/Newar) labels are deferred to a localization
-    # layer; the ontology itself stays language-generic.
-    aliases:
-      - "Living Goddess"
-      - "Royal Kumari"
     class_uri: heritageGraph:KumariRole
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than crm:E55_Type; moved from exact_mappings.
+    exact_mappings:
       - crm:E55_Type
     description: The role/office of Kumari (living-goddess embodiment) that a person assumes for the duration 
       of a KumariTenure. The role is the type; the tenure is the time-bounded holding of it; the person is the
@@ -1706,14 +1383,10 @@ classes:
     mixins:
       - Entity
   KumariHouse:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Kumari Ghar"
     is_a: ReligiousStructure
     class_uri: heritageGraph:KumariHouse
-    # MAPPING AUDIT (alpha.5): wikidata:Q2708161 is a spider species
-    # (verified) -- wrong entity, and no class-level Wikidata concept for
-    # 'Kumari house' was found -> removed.
+    exact_mappings:
+      - wikidata:Q2708161
     description: God-house residence of a Kumari during tenure (e.g., Kumari Ghar, Kathmandu). Specialised 
       ReligiousStructure.
   KumariEnthronementEvent:
@@ -1721,7 +1394,7 @@ classes:
     class_uri: heritageGraph:KumariEnthronementEvent
     broad_mappings:
       - prov:Activity
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
     description: Ritual installing a selected girl into the Kumari role and residence, activating the tenure 
       (distinct from selection, which chooses her, and retirement, which ends it).
@@ -1736,9 +1409,6 @@ classes:
       - has_assertion
       - was_documented_by
     slot_usage:
-      bounds_tenure:
-        required: true
-        description: The tenure this enthronement activates (required tenure edge for this event type).
       enthroned_person:
         range: Person
         required: true
@@ -1751,8 +1421,7 @@ classes:
         description: KumariRole conferred by this enthronement.
   SelectionCriterion:
     class_uri: heritageGraph:SelectionCriterion
-    broad_mappings:
-      # URI POLICY (alpha.5): narrower than crm:E55_Type; moved from exact_mappings.
+    exact_mappings:
       - crm:E55_Type
     description: An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as 
       explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.
@@ -1767,9 +1436,6 @@ classes:
     class_uri: heritageGraph:LineageCriterion
     description: Candidate must belong to an eligible lineage (Shakya / Vajracharya Newar Buddhist family).
   ThirtyTwoPerfectionsCriterion:
-    # ALIASES (alpha.5): romanized alternate term.
-    aliases:
-      - "Battis Lakshana"
     is_a: SelectionCriterion
     class_uri: heritageGraph:ThirtyTwoPerfectionsCriterion
     description: Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).
@@ -1787,7 +1453,7 @@ classes:
     class_uri: heritageGraph:RitualAssessment
     broad_mappings:
       - prov:Activity
-      # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
+    exact_mappings:
       - crm:E7_Activity
     description: A performed assessment carried out during Kumari selection. Modelled as an event (not a hard 
       criterion) so that source-specific, possibly conflicting accounts of whether/how it was conducted attach
@@ -1811,9 +1477,7 @@ classes:
         Attach each account as a Assertion (CRMinf I2 Belief) with its own source and confidence.'
 slots:
   architectural_structures:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of occurred_in_presence_of.
-    slot_uri: heritageGraph:architecturalStructures
-    is_a: occurred_in_presence_of
+    slot_uri: crm:P12_occurred_in_the_presence_of
     range: ArchitecturalStructure
     multivalued: true
     description: "Heritage structures affected by or present during this historical event"
@@ -1830,11 +1494,7 @@ slots:
       - schema:identifier
 
   route_places:
-    # PREDICATE FIX (alpha.5): previously reused crm:P7_took_place_at, making a
-    # procession route indistinguishable from an event venue. Minted subproperty
-    # of took_place_at (rdfs:subPropertyOf crm:P7 via is_a).
-    slot_uri: heritageGraph:routePlaces
-    is_a: took_place_at
+    slot_uri: crm:P7_took_place_at
     range: Place
     multivalued: true
 
@@ -1869,36 +1529,24 @@ slots:
   note:
     slot_uri: crm:P3_has_note
     range: string
-    description: "Free-text note (description, reason, verification notes)"
+    description: "Free-text note (description, reason, verification notes"
 
     # ============================================================================
   # LIVING GODDESS (KUMARI) SLOTS
   # ============================================================================
 
   had_participant:
-    # CRM D/R FIX (alpha.5): P11_had_participant has domain E5 Event, but this
-    # slot's owner (KumariTenure) is a period, not an event; CRM defines no
-    # participation property for E4 Period. Minted.
-    slot_uri: heritageGraph:hadParticipant
+    slot_uri: crm:P11_had_participant
     range: Actor
     multivalued: true
-    description: "Actor(s) participating in this period or situation (e.g. the girl holding a Kumari tenure)."
 
   embodied_deity:
-    # CRM D/R FIX (alpha.5): P14.1_in_the_role_of is not a first-class property
-    # -- in CRM RDF it exists only on the reified PC14_carried_out_by node and
-    # its range is E55 Type. No CRM property links a tenure directly to an
-    # embodied deity; minted. (A qualified-role pattern via PC14 or
-    # prov:qualifiedAssociation is the candidate future refactor.)
-    slot_uri: heritageGraph:embodiedDeity
+    slot_uri: crm:P14.1_in_the_role_of  # ✅ Use CRM role mechanism
     range: Deity
     description: "Deity role embodied by participant"
 
   residence_structure:
-    # CRM D/R FIX (alpha.5): P74's range is E53 Place; CRM strictly separates
-    # physical things from places, so targeting a structure (E22) violated the
-    # range. Minted; alternatively assert P74 to the structure's Place.
-    slot_uri: heritageGraph:residenceStructure
+    slot_uri: crm:P74_has_current_or_former_residence
     range: ArchitecturalStructure
     description: "Structure where a person resides during a specific period. For Living Goddess, this is typically
       a Kumari Ghar (god-house)."
@@ -1915,19 +1563,16 @@ slots:
 
   ended_tenure_of:
     slot_uri: heritageGraph:endedTenureOf
-    # KUMARI WIRING (alpha.5): now a specialization of bounds_tenure (one
-    # canonical event->tenure edge family) and the declared inverse of
-    # retired_through.
-    is_a: bounds_tenure
     range: KumariTenure
-    description: "Points from a KumariRetirementEvent to the tenure that it terminated. Enables reconstruction
-      of the complete Kumari lifecycle."
-    inverse: retired_through
+    description: "Points from a LivingGoddessRetirement event to the tenure that it terminated. Enables reconstruction
+      of complete Living Goddess lifecycle."
+    inverse: has_retirement_event
 
-  # KUMARI WIRING (alpha.5): has_retirement_event deleted -- it duplicated
-  # retired_through as a second tenure->retirement edge, and its IRI still
-  # carried the pre-rename name hasTenureEndEvent. retired_through is now the
-  # declared inverse of ended_tenure_of.
+  has_retirement_event:
+    slot_uri: heritageGraph:hasTenureEndEvent
+    range: KumariRetirementEvent
+    description: "Tenure-end event that terminated this Living Goddess tenure."
+    inverse: ended_tenure_of
 
   selected_person:
     slot_uri: heritageGraph:selectedPerson
@@ -1936,12 +1581,8 @@ slots:
 
   initiated_tenure:
     slot_uri: heritageGraph:initiatedTenure
-    # KUMARI WIRING (alpha.5): specialization of bounds_tenure; declared
-    # inverse of selected_through.
-    is_a: bounds_tenure
     range: KumariTenure
-    description: "Kumari tenure that was initiated by this selection event"
-    inverse: selected_through
+    description: "Living Goddess tenure that was initiated by this selection event"
 
   selection_criteria_met:
     slot_uri: heritageGraph:selectionCriteriaMet
@@ -1950,9 +1591,8 @@ slots:
     description: "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained
       for backward compatibility."
 
-    # CONSTRAINT FIX (alpha.5): machine-readable LinkML deprecated metaslot
-    # instead of a free-text annotation that generators ignore.
-    deprecated: "Deprecated free-text criteria list; use has_criterion -> SelectionCriterion subclasses."
+    annotations:
+      deprecated: 'true'
   has_timespan:
     slot_uri: crm:P4_has_time-span
     range: TimeSpan
@@ -1986,27 +1626,17 @@ slots:
     description: "Frequency of recurring ritual (e.g., annual, monthly)"
 
   birth_timespan:
-    # PREDICATE FIX (alpha.5): previously reused crm:P4_has_time-span, colliding
-    # with death_timespan/has_timespan (identical predicates in RDF, so birth and
-    # death dates were indistinguishable). Minted subproperty; is_a has_timespan
-    # emits rdfs:subPropertyOf crm:P4_has_time-span, preserving CRM compatibility.
-    slot_uri: heritageGraph:birthTimespan
-    is_a: has_timespan
+    slot_uri: crm:P4_has_time-span
     range: TimeSpan
     description: "Person's birth timespan"
 
   death_timespan:
-    # PREDICATE FIX (alpha.5): see birth_timespan.
-    slot_uri: heritageGraph:deathTimespan
-    is_a: has_timespan
+    slot_uri: crm:P4_has_time-span
     range: TimeSpan
     description: "Person's death timespan"
 
   publication_timespan:
-    # PREDICATE FIX (alpha.5): previously reused crm:P4_has_time-span. Minted
-    # subproperty of has_timespan (rdfs:subPropertyOf crm:P4 via is_a).
-    slot_uri: heritageGraph:publicationTimespan
-    is_a: has_timespan
+    slot_uri: crm:P4_has_time-span
     range: TimeSpan
     description: "When source was published"
 
@@ -2019,8 +1649,7 @@ slots:
     description: "Coordinates as WKT literal"
 
   place_type:
-    slot_uri: heritageGraph:placeType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: string
     description: "Type of place (city, village, region)"
 
@@ -2032,7 +1661,7 @@ slots:
   took_place_at:
     slot_uri: crm:P7_took_place_at
     range: Place
-    description: "Place where the event occurred"
+    description: "Place Where event occurred"
 
   ritual_on_structure:
     slot_uri: crm:P8_took_place_on_or_within
@@ -2110,40 +1739,22 @@ slots:
     description: "Actor(s) who use, handle, or are responsible for this object in ritual contexts"
 
   commissioned_by:
-    # CRM D/R FIX (alpha.5): P17_was_motivated_by points to the motivating
-    # thing, not the commissioning agent -- semantically wrong here. CRM's
-    # idiom is a role-qualified P14 (PC14), a larger refactor; minted direct
-    # property in the interim.
-    slot_uri: heritageGraph:commissionedBy
+    slot_uri: crm:P17_was_motivated_by
     range: Actor
     multivalued: true
     description: "Person or group who commissioned production"
 
 
   used_technique:
-    # CRM D/R FIX (alpha.5): P32_used_general_technique has range E55 Type, but
-    # this slot's range is Technique (= E29 Design or Procedure). The official
-    # property with range E29 is P33_used_specific_technique (P32/P33 were
-    # swapped).
-    slot_uri: crm:P33_used_specific_technique
+    slot_uri: crm:P32_used_general_technique
     range: Technique
     multivalued: true
     description: "Craft technique used in production"
 
   # --- RITUAL EVENT RELATIONSHIPS ---
 
-  occurred_in_presence_of:
-    slot_uri: crm:P12_occurred_in_the_presence_of
-    range: Entity
-    multivalued: true
-    description: "Generic CRM presence relation (P12): entity present at an event. Canonical holder of
-      the CRM predicate; use the specific presence slots in data."
-
   invokes_deity:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of the canonical
-    # crm:P12 holder occurred_in_presence_of.
-    slot_uri: heritageGraph:invokesDeity
-    is_a: occurred_in_presence_of
+    slot_uri: crm:P12_occurred_in_the_presence_of
     range: Deity
     multivalued: true
     description: "Deity invoked or made present through ritual"
@@ -2154,9 +1765,7 @@ slots:
     description: "Points to the next ritual in the canonical sequence."
 
   occurs_after:
-    # URI FIX (alpha.5): crm:P120i_is_occurred_before_by does not exist; the
-    # official CIDOC-CRM RDF inverse of P120_occurs_before is P120i_occurs_after.
-    slot_uri: crm:P120i_occurs_after
+    slot_uri: crm:P120i_is_occurred_before_by
     range: RitualEvent
     description: "Points to the prerequisite ritual."
 
@@ -2164,14 +1773,7 @@ slots:
 
   performed_by_group:
     is_a: carried_out_by
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty; carried_out_by
-    # keeps crm:P14 as the canonical holder.
-    slot_uri: heritageGraph:performedByGroup
-    # DL FIX (alpha.5): without a base range, gen-owl defaulted this slot to a
-    # datatype property, illegally punning crm:P14 as both ObjectProperty and
-    # DatatypeProperty (flagged by Protege/HermiT). Actor is the sound base
-    # range (Guthi and CasteGroup are both Actors); any_of refines it.
-    range: Actor
+    slot_uri: crm:P14_carried_out_by
     any_of:
       - range: Guthi
       - range: CasteGroup
@@ -2190,8 +1792,7 @@ slots:
     description: "Larger festival this ritual is part of"
 
   has_religious_tradition:
-    slot_uri: heritageGraph:hasReligiousTradition
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: ReligiousTradition
     multivalued: true
     description: "Religious tradition(s) within which this deity is venerated"
@@ -2202,20 +1803,8 @@ slots:
     multivalued: true
     description: "Component rituals of festival"
 
-  # PREDICATE FIX (alpha.5-final): eight semantically distinct typing slots
-  # shared bare crm:P2_has_type; SHACL validation of the demonstrator proved
-  # this collides inside single nodes (a Temple's style, and its religious
-  # traditions, became indistinguishable P2 triples violating each other's
-  # value constraints). Same repair pattern as P4/P7/P14i: one canonical P2
-  # holder (has_type), minted subproperties for each typing axis.
-  has_type:
-    slot_uri: crm:P2_has_type
-    description: "Generic CRM typing property (P2 has type). Canonical holder of the CRM predicate;
-      use the specific typing slots below in data."
-
   ritual_type:
-    slot_uri: heritageGraph:ritualType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: RitualType
     description: "Classification of ritual (puja, jatra, consecration)"
 
@@ -2235,8 +1824,7 @@ slots:
     multivalued: true
 
   syncretic_type:
-    slot_uri: heritageGraph:syncreticType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     description: "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic
       Similarity)."
     range: SyncreticType
@@ -2249,7 +1837,6 @@ slots:
     range: Enshrinement
     multivalued: true
     description: "Enshrinement event that installed deity in temple"
-    inverse: enshrined_in_structure
 
   used_materials:
     slot_uri: crm:P125_used_object_of_type
@@ -2258,29 +1845,20 @@ slots:
     description: "Ephemeral materials consumed during the ritual (e.g., oil, rice)."
 
   enshrined_deity:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of occurred_in_presence_of.
-    slot_uri: heritageGraph:enshrinedDeity
-    is_a: occurred_in_presence_of
+    slot_uri: crm:P12_occurred_in_the_presence_of
     range: Deity
     description: "Deity installed through enshrinement"
-    inverse: is_enshrined_through_event
 
   enshrined_in_structure:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of
-    # ritual_on_structure (canonical crm:P8 holder; Temple is a
-    # PhysicalHeritageThing member).
-    slot_uri: heritageGraph:enshrinedInStructure
-    is_a: ritual_on_structure
+    slot_uri: crm:P8_took_place_on_or_within
     range: Temple
     description: "Temple where deity was enshrined"
-    inverse: enshrines_deity_through_event
 
   is_enshrined_through_event:
     slot_uri: heritageGraph:isEnshrinedThroughEvent
     range: Enshrinement
     multivalued: true
     description: "Events where this deity was enshrined"
-    inverse: enshrined_deity
 
   depicts_deity:
     slot_uri: crm:P62_depicts
@@ -2293,16 +1871,9 @@ slots:
     slot_uri: crm:P62i_is_depicted_by
     range: IconographicObject
     multivalued: true
-    description: "Iconographic objects (murti, paubha) in which this deity is depicted."
 
   is_about_deity:
-    # CRM D/R FIX (alpha.5): P129_is_about has domain E89 Propositional Object;
-    # a Murti is physical, so this was a domain violation. Now a minted
-    # specialization of depicts_deity (rdfs:subPropertyOf crm:P62_depicts,
-    # whose E24 domain and E1 range fit; P62 is CRM's official depiction
-    # shortcut of P65+P138).
-    slot_uri: heritageGraph:isAboutDeity
-    is_a: depicts_deity
+    slot_uri: crm:P129_is_about
     range: Deity
     description: "Deity represented and ritually associated with the Murti"
 
@@ -2310,16 +1881,11 @@ slots:
     slot_uri: heritageGraph:consecratedByEvent
     range: Consecration
     description: "Consecration event that activated this murti"
-    inverse: consecrated_object
 
   consecrated_object:
-    # CRM D/R FIX (alpha.5): P11_had_participant has range E39 Actor; a Murti
-    # is not an actor. P16_used_specific_object (E7 -> E70 Thing) is the
-    # official CRM property for an object employed in an activity.
-    slot_uri: crm:P16_used_specific_object
+    slot_uri: crm:P11_had_participant
     range: Murti
-    description: "Murti employed in (and transformed by) the consecration ritual"
-    inverse: consecrated_by_event
+    description: "Murti that participated in the consecration ritual"
 
   makes_deity_present:
     slot_uri: heritageGraph:makesDeityPresent
@@ -2327,9 +1893,7 @@ slots:
     description: "Deity made present through consecration"
 
   is_invoked_in_ritual:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of was_present_at.
-    slot_uri: heritageGraph:isInvokedInRitual
-    is_a: was_present_at
+    slot_uri: crm:P12i_was_present_at
     range: RitualEvent
     multivalued: true
     description: "Rituals where this deity is invoked"
@@ -2344,20 +1908,13 @@ slots:
 
 
   performs_ritual:
-    # PREDICATE FIX (alpha.5): previously duplicated crm:P14i_performed with
-    # carried_out_activity. carried_out_activity keeps the CRM predicate as the
-    # canonical general form; this is now its minted subproperty
-    # (rdfs:subPropertyOf crm:P14i_performed via is_a).
-    slot_uri: heritageGraph:performsRitual
-    is_a: carried_out_activity
+    slot_uri: crm:P14i_performed
     range: RitualEvent
     multivalued: true
     description: "Rituals performed by this Guthi"
 
   holds_custody_of:
-    # CRM D/R FIX (alpha.5): P50_has_current_keeper points thing -> keeper;
-    # this slot points keeper -> thing. Corrected to the official inverse.
-    slot_uri: crm:P50i_is_current_keeper_of
+    slot_uri: crm:P50_has_current_keeper
     range: ArchitecturalStructure
     multivalued: true
     description: "Structures under Guthi custodianship"
@@ -2384,16 +1941,12 @@ slots:
     description: "New custodian (person or group)"
 
   transferred_to_guthi:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of
-    # transferred_to_actor (canonical crm:P29 holder).
-    slot_uri: heritageGraph:transferredToGuthi
-    is_a: transferred_to_actor
+    slot_uri: crm:P29_custody_received_by
     range: Guthi
     description: "New custodian (Guthi)"
 
   guthi_type:
-    slot_uri: heritageGraph:guthiType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: GuthiType
     description: "Type of Guthi (Si, Jatra, Temple)"
 
@@ -2423,8 +1976,7 @@ slots:
     multivalued: true
     description: "Condition assessment events for this structure"
   has_condition_type:
-    slot_uri: heritageGraph:hasConditionType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: ConditionType
     description: "Categorization of the condition state"
 
@@ -2461,15 +2013,11 @@ slots:
   has_component:
     slot_uri: crm:P46_is_composed_of
     range: ArchitecturalElement
-    # CONSTRAINT FIX (alpha.5): a structure has many components; the slot was
-    # accidentally single-valued.
-    multivalued: true
 
     description: "Architectural elements composing structure"
 
   has_architectural_style:
-    slot_uri: heritageGraph:hasArchitecturalStyle
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: ArchitecturalStyle
     description: "Architectural style classification"
 
@@ -2556,18 +2104,12 @@ slots:
     description: "Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)"
 
   used_method:
-    # CRM D/R FIX (alpha.5): P33's range is E29 Design or Procedure (an
-    # object), but this slot is a free-text note; CRM has no literal-valued
-    # technique property. Minted. (P33 now belongs to used_technique.)
-    slot_uri: heritageGraph:usedMethod
+    slot_uri: crm:P33_used_specific_technique
     range: string
     description: "Documentation method used"
 
   used_equipment:
-    # CRM D/R FIX (alpha.5): P16_used_specific_object is an object property
-    # (range E70 Thing); using it with literal values is invalid OWL. Minted
-    # literal-valued property instead.
-    slot_uri: heritageGraph:usedEquipment
+    slot_uri: crm:P16_used_specific_object
     range: string
     multivalued: true
     description: "Equipment used in documentation"
@@ -2579,48 +2121,14 @@ slots:
     range: string
     description: "The factual claim being asserted"
 
-  asserts_proposition:
-    slot_uri: crminf:J4_that
-    range: Proposition
-    multivalued: true
-    description: "Machine-readable proposition(s) this assertion holds to be
-      true (CRMinf J4 that). Complements the free-text assertion_content."
-
-  proposition_subject:
-    slot_uri: rdf:subject
-    range: AssertionSubject
-    description: "Entity the proposition is about."
-
-  proposition_predicate:
-    slot_uri: rdf:predicate
-    range: uriorcurie
-    description: "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by."
-
-  proposition_object_entity:
-    slot_uri: rdf:object
-    range: AssertionSubject
-    description: "Object of the proposition when it is a heritage entity."
-
-  proposition_object_literal:
-    slot_uri: heritageGraph:propositionLiteralValue
-    range: string
-    description: "Object of the proposition when it is a literal value (e.g. a date)."
-
   source_language:
-    # CRM D/R FIX (alpha.5): P72_has_language has domain E33 Linguistic Object
-    # and object range E56 Language; used here on DataSource with a literal.
-    # schema:inLanguage officially admits Text values on any resource.
-    slot_uri: schema:inLanguage
+    slot_uri: crm:P72_has_language
     range: string
     description: "Language of the source material"
 
   confidence_score:
     slot_uri: heritageGraph:confidenceScore
     range: float
-    # CONSTRAINT FIX (alpha.5): the 0.0-1.0 range promised in prose is now
-    # machine-enforced.
-    minimum_value: 0
-    maximum_value: 1
     description: "Reliability score for assertion (0.0-1.0)"
 
   data_quality_note:
@@ -2660,8 +2168,7 @@ slots:
     range: string
     description: "URL or digital identifier for source"
   custodian_type:
-    slot_uri: heritageGraph:custodianType
-    is_a: has_type
+    slot_uri: crm:P2_has_type
     range: string
     description: "Type of custodian (government, academic, community)"
 
@@ -2671,18 +2178,8 @@ slots:
     multivalued: true
     description: "Activities performed by this actor"
 
-  was_present_at:
-    slot_uri: crm:P12i_was_present_at
-    range: RitualEvent
-    multivalued: true
-    description: "Generic CRM presence relation (P12i): event this entity was present at. Canonical
-      holder of the CRM predicate; use the specific slots in data."
-
   participates_in_ritual:
-    # PREDICATE FIX (alpha.5/OOPS P19): minted subproperty of the canonical
-    # crm:P12i holder was_present_at.
-    slot_uri: heritageGraph:participatesInRitual
-    is_a: was_present_at
+    slot_uri: crm:P12i_was_present_at
     range: RitualEvent
     multivalued: true
     description: "Rituals in which this structure participates"
@@ -2704,50 +2201,28 @@ slots:
       prov_alignment: prov:wasInfluencedBy
     inverse: documents
   datacite_identifier:
-    # URI FIX (alpha.5): datacite:identifier does not exist in the SPAR DataCite
-    # ontology (its identifier property, datacite:hasIdentifier, is object-valued
-    # via a datacite:Identifier node, not literal-valued). dcterms:identifier is
-    # already the URI of the 'id' slot and reusing it would merge the two
-    # predicates in RDF. A heritageGraph IRI is minted instead.
-    slot_uri: heritageGraph:persistentIdentifier
+    slot_uri: datacite:identifier
     range: string
     description: "Persistent identifier for the source (DOI, archive ID, catalog number)"
 
   datacite_identifier_type:
-    # URI FIX (alpha.5): datacite:identifierType does not exist in SPAR DataCite;
-    # the official pattern is object-valued datacite:usesIdentifierScheme. No
-    # literal-valued official term exists, so a heritageGraph IRI is minted.
-    slot_uri: heritageGraph:identifierScheme
+    slot_uri: datacite:identifierType
     range: string
     description: "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)"
 
   datacite_creator:
-    # URI FIX (alpha.5, revised): dcterms:creator is ALSO used as ontology-header
-    # metadata; declaring it both ObjectProperty (slot) and AnnotationProperty
-    # (header) is illegal punning in OWL 2 DL (flagged by Protege/HermiT).
-    # Minted IRI with dcterms:creator kept as an exact mapping.
-    slot_uri: heritageGraph:sourceCreator
-    exact_mappings:
-      - dcterms:creator
+    slot_uri: datacite:creator
     range: Actor
     multivalued: true
     description: "Person or organization primarily responsible for creating the source"
 
   datacite_publisher:
-    # URI FIX (alpha.5, revised): same punning issue as datacite_creator;
-    # minted IRI with dcterms:publisher as an exact mapping.
-    slot_uri: heritageGraph:sourcePublisher
-    exact_mappings:
-      - dcterms:publisher
+    slot_uri: datacite:publisher
     range: Actor
     description: "Entity responsible for making the source available"
 
   datacite_resource_type:
-    # URI FIX (alpha.5): datacite:resourceType does not exist in SPAR DataCite
-    # ('resourceTypeGeneral' is a DataCite kernel XML field with no RDF form).
-    # A heritageGraph IRI is minted; consider dcterms:type with a controlled
-    # class value in a future revision.
-    slot_uri: heritageGraph:resourceType
+    slot_uri: datacite:resourceType
     range: string
     description: "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)"
   documents:
@@ -2760,12 +2235,8 @@ slots:
   bounds_tenure:
     slot_uri: heritageGraph:boundsTenure
     range: KumariTenure
-    # KUMARI WIRING (alpha.5): no longer globally required -- it double-
-    # mandated the same fact next to initiated_tenure/ended_tenure_of, which
-    # are now its specializations. Each concrete lifecycle event requires
-    # exactly one tenure edge via slot_usage.
-    description: The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized
-      by initiated_tenure (selection) and ended_tenure_of (retirement).
+    required: true
+    description: The LivingGoddessTenure period that this lifecycle event bounds (initiates or terminates).
   role_deity:
     slot_uri: heritageGraph:roleDeity
     range: Deity
@@ -2773,11 +2244,9 @@ slots:
   enthroned_person:
     slot_uri: heritageGraph:enthronedPerson
     range: Person
-    description: "Girl enthroned as Kumari by this enthronement event."
   confers_role:
     slot_uri: heritageGraph:confersRole
     range: KumariRole
-    description: "KumariRole conferred by this selection or enthronement event."
   assesses_candidate:
     slot_uri: heritageGraph:assessesCandidate
     range: Person
@@ -2791,8 +2260,10 @@ slots:
     range: SelectionCriterion
     description: Eligibility criterion applied in this selection.
     multivalued: true
-  # KUMARI WIRING (alpha.5): results_in_role deleted -- two names existed for
-  # "yields this role" on sibling events; unified on confers_role.
+  results_in_role:
+    slot_uri: heritageGraph:resultsInRole
+    range: KumariRole
+    description: KumariRole that a successful selection yields.
   assumes_role:
     slot_uri: heritageGraph:assumesRole
     range: KumariRole
@@ -2801,7 +2272,6 @@ slots:
     slot_uri: heritageGraph:selectedThrough
     range: KumariSelectionEvent
     description: Selection event that initiated this tenure.
-    inverse: initiated_tenure
   enthroned_through:
     slot_uri: heritageGraph:enthronedThrough
     range: KumariEnthronementEvent
@@ -2810,7 +2280,6 @@ slots:
     slot_uri: heritageGraph:retiredThrough
     range: KumariRetirementEvent
     description: Retirement/desanctification event that ended this tenure.
-    inverse: ended_tenure_of
   has_assertion:
     slot_uri: heritageGraph:hasAssertion
     range: Assertion

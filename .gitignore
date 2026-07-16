@@ -44,3 +44,12 @@ Eval.pdf
 # WIDOCO build artifacts (source of truth is ontology/HeritageGraph.ttl)
 ontology/HeritageGraph.merged.ttl
 ontology/HeritageGraph.build.ttl
+
+# Fuseki runtime state (config.ttl / configuration / templates stay tracked)
+data/fuseki/databases/
+data/fuseki/system/
+data/fuseki/system_files/
+data/fuseki/logs/
+data/fuseki/backups/
+.venv/
+data/oops/

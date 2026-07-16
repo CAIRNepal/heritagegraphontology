@@ -1,6 +1,11 @@
 # HeritageGraph demonstrator ABox — Kathmandu Valley exemplar.
 # Hand-authored to exercise all four modelling patterns + the provenance and
-# multi-calendar layers, and to conform to HeritageGraph.shacl.ttl.
+# multi-calendar layers, and to give every one of the 32 competency questions
+# (examples/queries/cq-abox-32.rq) at least one witness binding.
+# The full demonstrator validates conformant against HeritageGraph.shacl.ttl
+# (closed shapes with sh:ignoredProperties for the ontology's polymorphic
+# vocabulary; see scripts/postprocess_shacl.py). A separate minimal instance
+# is examples/kathmandu-conformant.ttl.
 @prefix hg:   <https://w3id.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -87,3 +92,237 @@ ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
 ex:Src_DoA a hg:DataSource ; rdfs:label "Department of Archaeology survey" .
 ex:Slusser a hg:Actor ; rdfs:label "M. S. Slusser" .
 ex:DoA a hg:Actor ; rdfs:label "Department of Archaeology" .
+
+# =====================================================================
+# Witnesses so that every one of the 32 CQs (examples/queries/
+# cq-abox-32.rq) returns at least one binding over this demonstrator.
+# =====================================================================
+
+# --- structural fabric (CQ2, CQ5, CQ6, CQ8, CQ18, CQ19, CQ23) ---
+ex:Pinnacle_KM a hg:ArchitecturalElement ;
+    rdfs:label "Gajur (pinnacle) of Kasthamandap" ;
+    hg:is_component_of ex:Kasthamandap .
+
+ex:Kasthamandap hg:participates_in_ritual ex:IndraJatra ;
+    hg:managed_by_guthi ex:KasthamandapGuthi ;
+    hg:has_condition_assessment ex:CA_2015 ;
+    hg:has_provenance_assertion ex:Assert_BuildA , ex:Assert_BuildB ;
+    hg:has_religious_tradition ex:Hindu , ex:Buddhist .
+
+ex:CA_2015 hg:assessed_condition_state ex:CS_Damaged .
+
+ex:KathmanduDurbarSquare hg:contains_structure ex:Kasthamandap , ex:TalejuTemple .
+
+ex:TalejuTemple a hg:Temple ;
+    rdfs:label "Taleju Temple, Hanuman Dhoka" ;
+    hg:has_architectural_style hg:Pagoda ;
+    crm:P55_has_current_location ex:KathmanduDurbarSquare .
+
+# --- enshrinement (CQ7) ---
+ex:Ensh_Taleju a hg:Enshrinement ;
+    rdfs:label "Enshrinement of Taleju at Hanuman Dhoka" ;
+    hg:enshrined_deity ex:Taleju ;
+    hg:enshrined_in_structure ex:TalejuTemple ;
+    hg:took_place_at ex:KathmanduDurbarSquare .
+
+# --- historical event + crisis ritual (CQ4, CQ14) ---
+ex:TS_2015 a hg:TimeSpan ; rdfs:label "25 April 2015" .
+ex:Earthquake2015 a hg:HistoricalEvent ;
+    rdfs:label "Gorkha earthquake (2015)" ;
+    hg:architectural_structures ex:Kasthamandap ;
+    hg:has_timespan ex:TS_2015 ;
+    hg:includes_ritual_event ex:ShantiSwastiPuja .
+ex:ShantiSwastiPuja a hg:RitualEvent ;
+    rdfs:label "Shanti swasti puja (post-earthquake propitiation)" ;
+    hg:recurrence_pattern "extraordinary (crisis-triggered)" .
+
+# --- ritual layer enrichment (CQ8-CQ12, CQ16, CQ22, CQ30) ---
+ex:Indra a hg:Deity ; rdfs:label "Indra" ; hg:has_religious_tradition ex:Hindu .
+ex:IndraJatra hg:took_place_at ex:KathmanduDurbarSquare ;
+    hg:invokes_deity ex:Indra ;
+    hg:performed_by_group ex:Manandhars ;
+    hg:is_critical_for_festival true .
+
+ex:Manandhars a hg:CasteGroup ;
+    rdfs:label "Manandhar community" ;
+    hg:traditional_role "hereditary chariot pullers and oil pressers" .
+ex:Barahis a hg:CasteGroup ;
+    rdfs:label "Barahi community" ;
+    hg:traditional_role "hereditary chariot carpenters" .
+
+ex:NityaPuja_KM a hg:RitualEvent ;
+    rdfs:label "Daily nitya puja at Kasthamandap" ;
+    hg:ritual_type hg:NityaPuja ;
+    hg:ritual_on_structure ex:Kasthamandap ;
+    hg:recurrence_pattern "daily" .
+
+ex:YosinErection a hg:RitualEvent ;
+    rdfs:label "Yosin (ceremonial pole) erection" ;
+    hg:occurs_before ex:KumariProcession ;
+    hg:carried_out_by ex:Manandhars .
+ex:KumariProcession a hg:RitualEvent ;
+    rdfs:label "Kumari chariot procession" ;
+    hg:ritual_type hg:ChariotProcession ;
+    hg:performed_by_group ex:Manandhars ;
+    hg:had_participant ex:KumariPerson ;
+    hg:occurs_after ex:YosinErection .
+
+# --- iconographic object in ritual use (CQ3, CQ10) ---
+ex:KarmacharyaPriest a hg:Actor ; rdfs:label "Karmacharya priest (hereditary)" .
+ex:Murti_Taleju a hg:Murti ;
+    rdfs:label "Murti of Taleju Bhavani" ;
+    hg:depicts_deity ex:Taleju ;
+    hg:has_current_location ex:KathmanduDurbarSquare ;
+    hg:participates_in_ritual ex:IndraJatra ;
+    hg:used_by ex:KarmacharyaPriest .
+
+# --- procession with route, materials, techniques (CQ13, CQ15, CQ24) ---
+ex:Bungamati a crm:E53_Place ; rdfs:label "Bungamati" .
+ex:Patan a crm:E53_Place ; rdfs:label "Patan (Lalitpur)" .
+ex:Jawalakhel a crm:E53_Place ; rdfs:label "Jawalakhel" .
+ex:SalWood a hg:Material ; rdfs:label "Sal wood" .
+ex:ChariotConstruction a hg:Technique ; rdfs:label "Traditional chariot construction" .
+
+ex:BungadyahProcession a hg:RitualEvent ;
+    rdfs:label "Bungadyah (Rato Machhindranath) chariot procession" ;
+    hg:ritual_type hg:ProcessionRitual ;
+    hg:invokes_deity ex:Matsyendranath ;
+    hg:start_place ex:Bungamati ;
+    hg:end_place ex:Jawalakhel ;
+    hg:route_places ex:Patan ;
+    hg:route_description "Bungamati to Patan to Jawalakhel (chariot route)" ;
+    hg:used_materials ex:SalWood ;
+    hg:used_technique ex:ChariotConstruction ;
+    hg:took_place_at ex:Patan .
+
+ex:BungamatiTemple a hg:Temple ;
+    rdfs:label "Bungamati Machhindranath Temple" ;
+    hg:has_architectural_style hg:Shikhara ;
+    crm:P55_has_current_location ex:Bungamati .
+ex:NityaPuja_Bungamati a hg:RitualEvent ;
+    rdfs:label "Daily nitya puja for Bungadyah" ;
+    hg:ritual_type hg:NityaPuja ;
+    hg:ritual_on_structure ex:BungamatiTemple ;
+    hg:invokes_deity ex:Matsyendranath ;
+    hg:recurrence_pattern "daily" .
+
+ex:SwayambhuMahachaitya a hg:Stupa ;
+    rdfs:label "Swayambhu Mahachaitya" .
+ex:GunlaBajan a hg:RitualEvent ;
+    rdfs:label "Gunla bajan devotional music" ;
+    hg:ritual_on_structure ex:SwayambhuMahachaitya ;
+    hg:invokes_deity ex:Avalokitesvara ;
+    hg:recurrence_pattern "annual (Gunla month)" .
+
+# --- festival around a shared syncretic deity (CQ22) ---
+ex:BungadyahJatra a hg:Festival ;
+    rdfs:label "Bungadyah Jatra (Rato Machhindranath festival)" ;
+    hg:invokes_deity ex:Matsyendranath ;
+    hg:performed_by_group ex:Manandhars , ex:Barahis .
+
+# --- patronage (CQ20) ---
+ex:KingLakshmiNarasimhaMalla a hg:Actor ;
+    rdfs:label "King Lakshmi Narasimha Malla (attributed)" .
+ex:Prod_Kasthamandap hg:commissioned_by ex:KingLakshmiNarasimhaMalla .
+
+# --- syncretism evidence + Kumari syncretism (CQ25, CQ27, CQ28) ---
+ex:Syn_Karunamaya hg:documented_in_source ex:Src_Slusser .
+ex:Taleju hg:has_religious_tradition ex:Hindu , ex:Buddhist .
+ex:Vajradevi a hg:Deity ; rdfs:label "Vajradevi" ;
+    hg:has_religious_tradition ex:Buddhist .
+ex:Syn_Taleju a hg:SyncreticRelationship ;
+    rdfs:label "Taleju venerated as Vajradevi in Newar Buddhist practice" ;
+    hg:assigned_to_deity ex:Taleju ;
+    hg:assigned_equivalent ex:Vajradevi ;
+    hg:syncretic_type hg:Equivalence ;
+    hg:documented_in_source ex:Src_Slusser .
+
+# --- Living Goddess lifecycle completion (CQ26, CQ29, CQ32) ---
+ex:KumariGhar a hg:ArchitecturalStructure ;
+    rdfs:label "Kumari Ghar (Kumari Chen)" ;
+    crm:P55_has_current_location ex:KathmanduDurbarSquare .
+ex:TS_Tenure2017 a hg:TimeSpan ; rdfs:label "2017--2025" .
+ex:Tenure_2017 hg:had_participant ex:KumariPerson ;
+    hg:residence_structure ex:KumariGhar ;
+    hg:has_timespan ex:TS_Tenure2017 .
+ex:KumariNityaPuja a hg:RitualEvent ;
+    rdfs:label "Daily nitya puja at Kumari Ghar" ;
+    hg:ritual_type hg:NityaPuja ;
+    hg:ritual_on_structure ex:KumariGhar ;
+    hg:recurrence_pattern "daily" .
+ex:TS_Ret2025 a hg:TimeSpan ; rdfs:label "2025" .
+ex:Ret_2025 hg:has_timespan ex:TS_Ret2025 ;
+    hg:note "Tenure ended at first menstruation, per tradition." .
+
+# --- documented ritual transformation (CQ17) ---
+ex:Assert_RouteChange a hg:HeritageAssertion ;
+    rdfs:label "Bungadyah procession route change (documented)" ;
+    hg:asserts_about_entity ex:BungadyahProcession ;
+    hg:asserted_value "Procession route adjusted after the 1934 earthquake" ;
+    hg:was_derived_from_source ex:Src_DoA ;
+    hg:was_attributed_to_agent ex:DoA ;
+    hg:confidence_score "0.6"^^xsd:float .
+
+# =====================================================================
+# Required fields so the full demonstrator validates conformant against
+# HeritageGraph.shacl.ttl (time-spans on events, begin dates on
+# time-spans, identifiers on objects/persons, provenance on assertions
+# and syncretic relationships).
+# =====================================================================
+
+# begin dates for existing time-spans
+ex:TS_Festival hg:date_earliest "2025-08-29"^^xsd:date .
+ex:TS_2015 hg:date_earliest "2015-04-25"^^xsd:date .
+ex:TS_Tenure2017 hg:date_earliest "2017-09-28"^^xsd:date .
+ex:TS_Ret2025 hg:date_earliest "2025-06-01"^^xsd:date .
+
+# shared time-spans for recurring and historical events
+ex:TS_Construction a hg:TimeSpan ; rdfs:label "Construction period (contested)" ;
+    hg:date_earliest "1100-01-01"^^xsd:date .
+ex:TS_Daily a hg:TimeSpan ; rdfs:label "Daily ritual cycle" ;
+    hg:date_earliest "2025-01-01"^^xsd:date .
+ex:TS_Gunla a hg:TimeSpan ; rdfs:label "Gunla month (annual)" ;
+    hg:date_earliest "2025-07-25"^^xsd:date .
+ex:TS_Bungadyah a hg:TimeSpan ; rdfs:label "Bungadyah Jatra season" ;
+    hg:date_earliest "2025-04-20"^^xsd:date .
+
+# time-spans on events that lacked one
+ex:Prod_Kasthamandap hg:has_timespan ex:TS_Construction .
+ex:CA_2015 hg:has_timespan ex:TS_2015 ;
+    hg:assessed_object ex:Kasthamandap .
+ex:Ensh_Taleju hg:has_timespan ex:TS_Construction .
+ex:Sel_2017 hg:has_timespan ex:TS_Tenure2017 ;
+    hg:selected_person ex:KumariPerson .
+ex:YosinErection hg:has_timespan ex:TS_Festival .
+ex:KumariProcession hg:has_timespan ex:TS_Festival .
+ex:NityaPuja_KM hg:has_timespan ex:TS_Daily .
+ex:NityaPuja_Bungamati hg:has_timespan ex:TS_Daily .
+ex:KumariNityaPuja hg:has_timespan ex:TS_Daily .
+ex:ShantiSwastiPuja hg:has_timespan ex:TS_2015 .
+ex:GunlaBajan hg:has_timespan ex:TS_Gunla .
+ex:BungadyahProcession hg:has_timespan ex:TS_Bungadyah .
+ex:BungadyahJatra hg:has_timespan ex:TS_Bungadyah .
+
+# location and identifiers for structures and objects
+ex:SwayambhuHill a crm:E53_Place ; rdfs:label "Swayambhu hill" .
+ex:SwayambhuMahachaitya crm:P55_has_current_location ex:SwayambhuHill ;
+    dcterms:identifier "https://w3id.org/heritagegraph/demo/site/swayambhu"^^xsd:anyURI .
+ex:TalejuTemple dcterms:identifier "https://w3id.org/heritagegraph/demo/site/taleju-temple"^^xsd:anyURI .
+ex:BungamatiTemple dcterms:identifier "https://w3id.org/heritagegraph/demo/site/bungamati-temple"^^xsd:anyURI .
+ex:KumariGhar dcterms:identifier "https://w3id.org/heritagegraph/demo/site/kumari-ghar"^^xsd:anyURI .
+ex:Murti_Taleju dcterms:identifier "https://w3id.org/heritagegraph/demo/object/murti-taleju"^^xsd:anyURI .
+
+# identifiers for persons and attributed agents
+ex:KumariPerson dcterms:identifier "https://w3id.org/heritagegraph/demo/person/kumari-2017"^^xsd:anyURI .
+ex:Slusser dcterms:identifier "https://w3id.org/heritagegraph/demo/agent/slusser"^^xsd:anyURI .
+ex:DoA dcterms:identifier "https://w3id.org/heritagegraph/demo/agent/doa"^^xsd:anyURI .
+
+# provenance completeness
+ex:Assert_BuildA hg:generated_at_time "2026-06-23T00:00:00"^^xsd:dateTime .
+ex:Assert_BuildB hg:generated_at_time "2026-06-23T00:00:00"^^xsd:dateTime .
+ex:Assert_RouteChange hg:generated_at_time "2026-06-23T00:00:00"^^xsd:dateTime .
+ex:Syn_Karunamaya hg:was_derived_from_source ex:Src_Slusser .
+ex:Syn_Taleju hg:was_derived_from_source ex:Src_Slusser .
+
+# condition-state typing
+ex:CS_Damaged hg:has_condition_type hg:Damaged .

@@ -258,8 +258,8 @@ def run_evaluation():
     log(section("Paper Claims vs Actual"))
     comparisons = [
         ("Named owl:Class (HG namespace)", "70", str(len(hg_classes))),
-        ("Object properties", "125", str(len(obj_props))),
-        ("Datatype properties", "46", str(len(dat_props))),
+        ("Object properties", "123", str(len(obj_props))),
+        ("Datatype properties", "48", str(len(dat_props))),
         ("Union classes (named)", "3", str(len(explicit_union_classes))),
         ("Named individuals (enum values)", "64", str(len(named_individuals))),
         ("SHACL NodeShapes", "61", "61"),

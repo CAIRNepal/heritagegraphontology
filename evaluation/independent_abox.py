@@ -48,22 +48,43 @@ print(f"\n== SHACL conformance (valid ABox): conforms={conforms} ==")
 if not conforms:
     print(txt[:1500])
 
-# Negative tests: inject violations, expect non-conformance
+# Negative tests: inject violations, expect non-conformance.
+# One test per modelling pattern (event-mediated tangible, institutional,
+# ritual, syncretic, provenance, Living Goddess lifecycle) plus metadata.
+# Bad instances are typed with both the HG class and its mapped external
+# class so shape targeting works without a reasoner.
 print("\n== SHACL negative tests (each should be caught) ==")
+NEG_PFX = """@prefix hg: <https://w3id.org/heritagegraph/> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://w3id.org/heritagegraph/demo/> .
+"""
 tests={
- "Temple missing has_architectural_style":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix xsd:<http://www.w3.org/2001/XMLSchema#> . @prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> . @prefix ex:<https://w3id.org/heritagegraph/demo/> . ex:BadTemple a hg:Temple ; rdfs:label "x" ; dcterms:identifier "u"^^xsd:anyURI ; crm:P55_has_current_location ex:KathmanduDurbarSquare . ex:KathmanduDurbarSquare a crm:E53_Place .',
- "Guthi missing guthi_type":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . ex:BadGuthi a hg:Guthi ; rdfs:label "x" . @prefix ex:<https://w3id.org/heritagegraph/demo/> .',
- "RitualEvent missing time-span":
-  '@prefix hg:<https://w3id.org/heritagegraph/> . @prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> . @prefix ex:<https://w3id.org/heritagegraph/demo/> . ex:BadRitual a hg:RitualEvent ; rdfs:label "x" .',
+ "Event-mediated: Temple missing has_architectural_style":
+  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; dcterms:identifier "https://example.org/t"^^xsd:anyURI .',
+ "Metadata: Temple missing dcterms:identifier":
+  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:has_architectural_style hg:Pagoda .',
+ "Institutional: Guthi missing guthi_type":
+  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" .',
+ "Ritual: RitualEvent missing crm:P4_has_time-span":
+  'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" .',
+ "Syncretic: SyncreticRelationship missing syncretic_type":
+  'ex:BadSyn a hg:SyncreticRelationship , crm:E13_Attribute_Assignment ; rdfs:label "x" ; hg:assigned_to_deity ex:D1 ; hg:assigned_equivalent ex:D2 .',
+ "Provenance: HeritageAssertion missing derivation source":
+  'ex:BadAssert a hg:HeritageAssertion , crminf:I2_Belief ; rdfs:label "x" ; hg:generated_at_time "2026-06-23T00:00:00"^^xsd:dateTime .',
+ "Living Goddess: tenure missing crm:P4_has_time-span":
+  'ex:BadTenure a hg:LivingGoddessTenure , crm:E4_Period ; rdfs:label "x" ; hg:embodied_deity ex:D1 .',
+ "Sibling separation: DocumentationActivity with ritual-only property":
+  'ex:BadDoc a hg:DocumentationActivity ; rdfs:label "x" ; crm:P4_has_time-span ex:TS ; hg:ritual_type hg:NityaPuja .',
 }
-import re
+caught=0
 for name,ttl in tests.items():
     dg=Graph()
-    try:
-        dg.parse(data=ttl, format="turtle")
-        c,_,_=validate(dg, shacl_graph=shapes, inference="none", abort_on_first=False)
-        print(f"  [{'CAUGHT' if not c else 'MISSED'}] {name}")
-    except Exception as e:
-        print(f"  [parse-skip] {name}: {e}")
+    dg.parse(data=NEG_PFX+ttl, format="turtle")
+    c,_,_=validate(dg, shacl_graph=shapes, inference="none", abort_on_first=False)
+    caught+=(not c)
+    print(f"  [{'CAUGHT' if not c else 'MISSED'}] {name}")
+print(f"Negative tests caught: {caught}/{len(tests)}")
