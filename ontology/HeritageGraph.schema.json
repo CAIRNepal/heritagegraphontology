@@ -1627,7 +1627,7 @@
             "type": "object"
         },
         "ConditionType": {
-            "description": "",
+            "description": "Controlled vocabulary for the physical condition of heritage objects and structures.",
             "enum": [
                 "Good",
                 "Damaged",
@@ -2241,7 +2241,7 @@
                     ]
                 },
                 "custodian_type": {
-                    "description": "Type of custodian (government, academic, community)",
+                    "description": "Type of custodian (government, academic, community), free text",
                     "type": [
                         "string",
                         "null"
@@ -2445,7 +2445,7 @@
             "type": "object"
         },
         "DatePrecision": {
-            "description": "",
+            "description": "Controlled vocabulary for the temporal precision of recorded heritage dates.",
             "enum": [
                 "Exact",
                 "Year",
@@ -3328,8 +3328,11 @@
                 },
                 "enshrined_deity": {
                     "description": "Deity installed through enshrinement",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -3435,7 +3438,7 @@
             "type": "object"
         },
         "ExistenceStatus": {
-            "description": "",
+            "description": "Controlled vocabulary for whether a heritage structure still exists physically.",
             "enum": [
                 "Extant",
                 "PartiallyExtant",
@@ -6160,16 +6163,6 @@
                     "description": "Girl selected to become Living Goddess",
                     "type": "string"
                 },
-                "selection_criteria_met": {
-                    "description": "List of selection criteria verified",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "start_place": {
                     "description": "Starting location of movement ritual",
                     "type": [
@@ -8105,7 +8098,7 @@
                     ]
                 },
                 "place_type": {
-                    "description": "Type of place (city, village, region)",
+                    "description": "Type of place (city, village, region), free text",
                     "type": [
                         "string",
                         "null"
@@ -8578,7 +8571,7 @@
                     "type": "string"
                 },
                 "proposition_object_entity": {
-                    "description": "Object of the proposition when it is a heritage entity.",
+                    "description": "Object of the proposition when it is a heritage entity (plays the role of rdf:object).",
                     "type": [
                         "string",
                         "null"
@@ -8592,11 +8585,11 @@
                     ]
                 },
                 "proposition_predicate": {
-                    "description": "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by.",
+                    "description": "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by (plays the role of rdf:predicate).",
                     "type": "string"
                 },
                 "proposition_subject": {
-                    "description": "Entity the proposition is about.",
+                    "description": "Entity the proposition is about (plays the role of rdf:subject).",
                     "type": "string"
                 },
                 "was_attributed_to": {
@@ -9460,7 +9453,7 @@
             "type": "object"
         },
         "RitualType": {
-            "description": "",
+            "description": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.",
             "enum": [
                 "NityaPuja",
                 "NaimittikaPuja",
@@ -10150,7 +10143,7 @@
             "type": "object"
         },
         "SyncreticType": {
-            "description": "",
+            "description": "Controlled vocabulary for kinds of syncretic theological relationships between deities.",
             "enum": [
                 "Equivalence",
                 "Appropriation",

@@ -1,0 +1,53 @@
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/guthiType belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/ritualType belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/hasArchitecturalStyle belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/documentedBy belongs to more than one entity types: [owl.ObjectProperty, prov.wasInfluencedBy]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/hasConditionType belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/syncreticType belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * WARNING: ObjectProperty https://w3id.org/heritagegraph/hasReligiousTradition belongs to more than one entity types: [owl.ObjectProperty, cidoc-crm.P2_has_type]; I'm trying to fix it...
+* Owlready2 * Running HermiT...
+    /private/tmp/claude-501/-Users-nirajkarki-cair-heritagegraphontology/46caf980-8a8d-4ad3-9a4a-bd47acf27644/scratchpad/tools/jdk-21.0.11+10-jre/Contents/Home/bin/java -Xmx2000M -cp /Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/hermit:/Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/hermit/HermiT.jar org.semanticweb.HermiT.cli.CommandLine -c -O -D -I file:////var/folders/l6/18hkcypx601_spb15xn_ptr40000gn/T/tmpvr66sf0u
+owlready2 0.50, JAVA_EXE=/private/tmp/claude-501/-Users-nirajkarki-cair-heritagegraphontology/46caf980-8a8d-4ad3-9a4a-bd47acf27644/scratchpad/tools/jdk-21.0.11+10-jre/Contents/Home/bin/java
+Loaded: https://w3id.org/heritagegraph/schema.owl.ttl#
+Traceback (most recent call last):
+  File "/Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/reasoning.py", line 192, in sync_reasoner_hermit
+    output = subprocess.check_output(command, stderr = subprocess.STDOUT, **_subprocess_kargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/private/tmp/claude-501/-Users-nirajkarki-cair-heritagegraphontology/46caf980-8a8d-4ad3-9a4a-bd47acf27644/scratchpad/tools/jdk-21.0.11+10-jre/Contents/Home/bin/java', '-Xmx2000M', '-cp', '/Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/hermit:/Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/hermit/HermiT.jar', 'org.semanticweb.HermiT.cli.CommandLine', '-c', '-O', '-D', '-I', 'file:////var/folders/l6/18hkcypx601_spb15xn_ptr40000gn/T/tmpvr66sf0u']' returned non-zero exit status 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-nirajkarki-cair-heritagegraphontology/46caf980-8a8d-4ad3-9a4a-bd47acf27644/scratchpad/05_run.py", line 19, in <module>
+    sync_reasoner(debug=2)  # HermiT is owlready2's default reasoner
+    ~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/nirajkarki/cair/heritagegraphontology/venv/lib/python3.14/site-packages/owlready2/reasoning.py", line 197, in sync_reasoner_hermit
+    raise OwlReadyJavaError("Java error message is:\n%s" % _decode(e.stderr or e.output or b""))
+owlready2.base.OwlReadyJavaError: Java error message is:
+Exception in thread "main" org.semanticweb.HermiT.datatypes.UnsupportedDatatypeException: HermiT supports all and only the datatypes of the OWL 2 datatype map, see 
+http://www.w3.org/TR/owl2-syntax/#Datatype_Maps. 
+The datatype 'http://www.w3.org/2001/XMLSchema#date' is not part of the OWL 2 datatype map and 
+no custom datatype definition is given; 
+therefore, HermiT cannot handle this datatype.
+	at org.semanticweb.HermiT.datatypes.DatatypeRegistry.getDatatypeHandlerFor(Unknown Source)
+	at org.semanticweb.HermiT.datatypes.DatatypeRegistry.getDatatypeHandlerFor(Unknown Source)
+	at org.semanticweb.HermiT.datatypes.DatatypeRegistry.validateDatatypeRestriction(Unknown Source)
+	at org.semanticweb.HermiT.structural.OWLClausification$DataRangeConverter.visit(Unknown Source)
+	at uk.ac.manchester.cs.owl.owlapi.OWLDatatypeImpl.accept(OWLDatatypeImpl.java:343)
+	at org.semanticweb.HermiT.structural.OWLClausification$DataRangeConverter.convertDataRange(Unknown Source)
+	at org.semanticweb.HermiT.structural.OWLClausification$NormalizedAxiomClausifier.visit(Unknown Source)
+	at uk.ac.manchester.cs.owl.owlapi.OWLDataAllValuesFromImpl.accept(OWLDataAllValuesFromImpl.java:99)
+	at org.semanticweb.HermiT.structural.OWLClausification.clausify(Unknown Source)
+	at org.semanticweb.HermiT.structural.OWLClausification.preprocessAndClausify(Unknown Source)
+	at org.semanticweb.HermiT.Reasoner.loadOntology(Reasoner.java:117)
+	at org.semanticweb.HermiT.Reasoner.<init>(Reasoner.java:108)
+	at org.semanticweb.HermiT.Reasoner.<init>(Reasoner.java:86)
+	at org.semanticweb.HermiT.cli.CommandLine.main(CommandLine.java:830)
+

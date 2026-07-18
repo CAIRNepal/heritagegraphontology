@@ -1279,7 +1279,10 @@ classes:
       - carried_out_by
       - performed_by_group
       - took_place_at
-      - selection_criteria_met
+      # DL FIX (alpha.6): deprecated selection_criteria_met detached from this
+      # class so no live axiom references a deprecated property (ROBOT report
+      # deprecated_property_reference ERROR). The slot itself stays declared
+      # (and owl:deprecated) for backward compatibility.
       - has_assertion
       - was_documented_by
       - is_critical_for_festival
@@ -1297,10 +1300,6 @@ classes:
         required: true
         range: KumariTenure
         description: "Living Goddess tenure that this selection event initiated"
-      selection_criteria_met:
-        range: string
-        multivalued: true
-        description: "List of selection criteria verified"
 
   
     broad_mappings:
@@ -2019,10 +2018,14 @@ slots:
     description: "Coordinates as WKT literal"
 
   place_type:
+    # DL FIX (alpha.6): dropped is_a has_type. A string-valued slot cannot
+    # specialize crm:P2_has_type (an object property ranging over E55 Type):
+    # the generated SubObjectPropertyOf over a datatype property is an
+    # OWL Full pun. Free-text typing stays; CRM alignment would require an
+    # E55-backed vocabulary first.
     slot_uri: heritageGraph:placeType
-    is_a: has_type
     range: string
-    description: "Type of place (city, village, region)"
+    description: "Type of place (city, village, region), free text"
 
   has_current_location:
     slot_uri: crm:P55_has_current_location
@@ -2587,19 +2590,26 @@ slots:
       true (CRMinf J4 that). Complements the free-text assertion_content."
 
   proposition_subject:
-    slot_uri: rdf:subject
+    # DL FIX (alpha.6): rdf:subject/predicate/object are RDF reserved
+    # vocabulary; OWL 2 DL forbids (re)declaring them as properties, which
+    # made every generated artifact OWL Full. Minted heritageGraph IRIs
+    # instead; the reification intent (rdf:Statement) stays documented via
+    # the Proposition class close_mappings. No instance data used the old
+    # IRIs (checked examples/*.ttl before the rename).
+    slot_uri: heritageGraph:propositionSubject
     range: AssertionSubject
-    description: "Entity the proposition is about."
+    description: "Entity the proposition is about (plays the role of rdf:subject)."
 
   proposition_predicate:
-    slot_uri: rdf:predicate
+    slot_uri: heritageGraph:propositionPredicate
     range: uriorcurie
-    description: "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by."
+    description: "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by
+      (plays the role of rdf:predicate)."
 
   proposition_object_entity:
-    slot_uri: rdf:object
+    slot_uri: heritageGraph:propositionObjectEntity
     range: AssertionSubject
-    description: "Object of the proposition when it is a heritage entity."
+    description: "Object of the proposition when it is a heritage entity (plays the role of rdf:object)."
 
   proposition_object_literal:
     slot_uri: heritageGraph:propositionLiteralValue
@@ -2660,10 +2670,11 @@ slots:
     range: string
     description: "URL or digital identifier for source"
   custodian_type:
+    # DL FIX (alpha.6): dropped is_a has_type (same rationale as place_type:
+    # a string slot cannot be a subproperty of object property crm:P2).
     slot_uri: heritageGraph:custodianType
-    is_a: has_type
     range: string
-    description: "Type of custodian (government, academic, community)"
+    description: "Type of custodian (government, academic, community), free text"
 
   carried_out_activity:
     slot_uri: crm:P14i_performed

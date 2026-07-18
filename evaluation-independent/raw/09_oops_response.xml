@@ -1,0 +1,11 @@
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:oops="http://oops.linkeddata.es/def#" > 
+<rdf:Description rdf:about="http://oops.linkeddata.es/data/wrong_execution">
+    <oops:hasTitle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OOPS! something went wrong.</oops:hasTitle>
+    <oops:hasMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">If you have entered a URI make sure that it is available on-line using, for example, Vapour or Hyperthing.</oops:hasMessage>
+    <oops:hasMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Also make sure that your ontology RDF or OWL code is correct using an RDF validator as http://www.w3.org/RDF/Validator/ or an OWL validator as http://www.mygrid.org.uk/OWL/Validator.</oops:hasMessage>
+    <oops:hasMessage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">If the URI and the ontology are correct but OOPS! is not able to analyze it, please, let us know by email (oops(at)delicias.dia.fi.upm.es) attaching the file or indicating the ontology URI and we will find out what was wrong within OOPS!.</oops:hasMessage>
+    <rdf:type rdf:resource="http://oops.linkeddata.es/def#response"/>
+</rdf:Description>
+</rdf:RDF>

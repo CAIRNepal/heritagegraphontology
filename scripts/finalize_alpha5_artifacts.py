@@ -140,6 +140,9 @@ def finalize_owl(sv: SchemaView) -> Graph:
         scheme = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}")
         g.add((scheme, RDF.type, SKOS.ConceptScheme))
         g.add((scheme, SKOS.prefLabel, Literal(en)))
+        # rdfs:label alongside prefLabel: generic tools (ROBOT report,
+        # Protege) look for rdfs:label and flagged these as missing_label
+        g.add((scheme, RDFS.label, Literal(en)))
         if e.description:
             g.add((scheme, SKOS.definition, Literal(str(e.description))))
         n_scheme += 1
@@ -154,6 +157,10 @@ def finalize_owl(sv: SchemaView) -> Graph:
             g.add((c, RDF.type, SKOS.Concept))
             g.add((c, SKOS.inScheme, scheme))
             g.add((c, SKOS.prefLabel, Literal(vn)))
+            if not pv.meaning:
+                # label minted concepts only; external meaning IRIs (aat:,
+                # wikidata:) keep their owners' labels to avoid duplicate_label
+                g.add((c, RDFS.label, Literal(vn)))
             if pv.description:
                 g.add((c, SKOS.definition, Literal(str(pv.description))))
             n_concept += 1
@@ -164,6 +171,13 @@ def finalize_owl(sv: SchemaView) -> Graph:
     for sn, s in sv.all_slots().items():
         if s.deprecated and s.slot_uri:
             prop = uri_for(sv, str(s.slot_uri))
+            if (prop, RDF.type, None) not in g:
+                # slot no longer attached to any class: gen-owl emits nothing,
+                # so declare it here to keep it findable (and DL-legal)
+                g.add((prop, RDF.type, OWL.DatatypeProperty))
+                g.add((prop, RDFS.label, Literal(sn)))
+                if s.description:
+                    g.add((prop, SKOS.definition, Literal(str(s.description))))
             g.add((prop, OWL.deprecated, Literal(True)))
             n_dep += 1
     print(f"marked {n_dep} property(ies) owl:deprecated")
@@ -190,6 +204,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
             g.remove((ont, p, old))
         g.add((ont, p, o))
     g.bind("bibo", BIBO); g.bind("vann", VANN)
+
+    repair_dl_profile(g, sv)
 
     # --- axiom-survival guard ---
     missing: list[str] = []
@@ -263,6 +279,174 @@ def finalize_owl(sv: SchemaView) -> Graph:
     g.serialize(destination=OWL_OUT, format="turtle")
     print(f"finalized {OWL_OUT.name} ({len(g)} triples)")
     return g
+
+
+GEO = Namespace("http://www.opengis.net/ont/geosparql#")
+
+
+def _purge_node(g: Graph, node) -> None:
+    """Remove every triple whose subject is `node`, recursing into blank-node
+    objects (restriction bodies, RDF lists), plus links pointing at it."""
+    for s, p in list(g.subject_predicates(node)):
+        g.remove((s, p, node))
+    for p, o in list(g.predicate_objects(node)):
+        g.remove((node, p, o))
+        if isinstance(o, BNode):
+            _purge_node(g, o)
+
+
+def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
+    """OWL 2 DL compliance repair (alpha.6).
+
+    gen-owl output is OWL Full (robot validate-profile: IllegalPunning,
+    reserved-vocabulary property IRIs, undeclared entities, non-OWL2
+    datatypes in logical axioms), so strict reasoners reject the file and
+    OWLAPI-based ones silently repair it before reasoning. Every step below
+    removes or declares an OWL-Full construct; none touches the predicates
+    used by instance data or the SHACL layer, which keeps the constraints
+    that OWL cannot legally carry (xsd:date/geo:wktLiteral datatypes, the
+    conditional current-location rule, name cardinalities on rdfs:label).
+    """
+    # (a) gen-owl --no-use-native-uris emits skos:exactMatch <class_uri> on
+    # every element whose IRI *is* its class_uri/slot_uri -> self-loops that
+    # overstate the ontology's external alignment ~3x. Drop them.
+    n = 0
+    for p in (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
+              SKOS.narrowMatch, SKOS.relatedMatch):
+        for s, o in list(g.subject_objects(p)):
+            if s == o:
+                g.remove((s, p, o)); n += 1
+    print(f"DL: removed {n} self-referential mapping triple(s)")
+
+    # (b) rdfs:label is built-in annotation vocabulary; the `name` slot
+    # (slot_uri rdfs:label) makes gen-owl redeclare it as a datatype property,
+    # punning every labelled entity into an individual. Remove the
+    # redeclaration and the class restrictions on it; instance data keeps
+    # rdfs:label and SHACL keeps the name constraints.
+    n = 0
+    for r in list(g.subjects(OWL.onProperty, RDFS.label)):
+        _purge_node(g, r); n += 1
+    for p, o in list(g.predicate_objects(RDFS.label)):
+        g.remove((RDFS.label, p, o))
+    print(f"DL: reverted rdfs:label to built-in annotation ({n} restriction(s) dropped)")
+
+    # (c) xsd:date and geo:wktLiteral are outside the OWL 2 datatype map, so
+    # any logical axiom using them is illegal (HermiT CLI:
+    # UnsupportedDatatypeException). Drop those axioms - including gen-owl's
+    # wrong DatatypeDefinition(geo:wktLiteral := xsd:string) - and leave the
+    # exact datatype checks to SHACL (sh:datatype), where they are legal.
+    n_rng, n_res = 0, 0
+    for dt in (XSD.date, GEO.wktLiteral):
+        for prop in list(g.subjects(RDFS.range, dt)):
+            g.remove((prop, RDFS.range, dt)); n_rng += 1
+        for pred in (OWL.allValuesFrom, OWL.someValuesFrom, OWL.onDataRange):
+            for r in list(g.subjects(pred, dt)):
+                _purge_node(g, r); n_res += 1
+    for p, o in list(g.predicate_objects(GEO.wktLiteral)):
+        g.remove((GEO.wktLiteral, p, o))
+    print(f"DL: removed {n_rng} range(s) + {n_res} restriction(s) on non-OWL2 "
+          f"datatypes (SHACL keeps the checks)")
+
+    # (d) declare used-but-undeclared vocabulary: SKOS classes for the
+    # published concept schemes, and every SKOS/DCTERMS predicate used purely
+    # as annotation.
+    g.add((SKOS.Concept, RDF.type, OWL.Class))
+    g.add((SKOS.ConceptScheme, RDF.type, OWL.Class))
+    n = 0
+    for pred in {p for _, p, _ in g}:
+        if (str(pred).startswith(str(SKOS)) or pred in (DCTERMS.title, DCTERMS.description)) \
+                and (pred, RDF.type, None) not in g:
+            g.add((pred, RDF.type, OWL.AnnotationProperty)); n += 1
+    print(f"DL: declared skos:Concept/ConceptScheme + {n} annotation propert(ies)")
+
+    # (e) property axioms referencing undeclared externals (e.g.
+    # SubObjectPropertyOf bridges to crm:P2_has_type): declare the undeclared
+    # side with the declared side's type (default owl:ObjectProperty).
+    n = 0
+    prop_types = (OWL.ObjectProperty, OWL.DatatypeProperty)
+    for pred in (RDFS.subPropertyOf, OWL.inverseOf):
+        for s, o in list(g.subject_objects(pred)):
+            if not isinstance(o, URIRef):
+                continue
+            if (s, RDF.type, OWL.AnnotationProperty) in g \
+                    or (o, RDF.type, OWL.AnnotationProperty) in g:
+                continue
+            stypes = {t for t in g.objects(s, RDF.type) if t in prop_types}
+            otypes = {t for t in g.objects(o, RDF.type) if t in prop_types}
+            if stypes and not otypes:
+                g.add((o, RDF.type, next(iter(stypes)))); n += 1
+            elif otypes and not stypes:
+                g.add((s, RDF.type, next(iter(otypes)))); n += 1
+            elif not stypes and not otypes:
+                g.add((s, RDF.type, OWL.ObjectProperty))
+                g.add((o, RDF.type, OWL.ObjectProperty)); n += 2
+    print(f"DL: declared {n} propert(ies) referenced by property axioms")
+
+    # (e2) LinkML default_range: string declares rangeless slots as datatype
+    # properties even when every logical axiom uses them as object properties
+    # (has_type -> crm:P2_has_type, which only exists as the parent of the
+    # object-property typing slots; was_influenced_by -> prov:wasInfluencedBy,
+    # whose range is a PROV class union). Retype them and drop the spurious
+    # xsd:string range so the declaration matches the axioms (and CIDOC-CRM/
+    # PROV-O, where both are object properties).
+    classes = set(g.subjects(RDF.type, OWL.Class))
+    n = 0
+    for p in list(g.subjects(RDF.type, OWL.DatatypeProperty)):
+        obj_evidence = any(
+            o in classes or (o, OWL.unionOf, None) in g
+            for o in g.objects(p, RDFS.range)
+        ) or any(
+            (s, RDF.type, OWL.ObjectProperty) in g
+            for s in g.subjects(RDFS.subPropertyOf, p)
+        )
+        data_evidence = any(
+            isinstance(o, URIRef) and str(o).startswith(str(XSD))
+            for r in g.subjects(OWL.onProperty, p)
+            for o in g.objects(r, OWL.allValuesFrom)
+        )
+        if obj_evidence and not data_evidence:
+            g.remove((p, RDF.type, OWL.DatatypeProperty))
+            g.add((p, RDF.type, OWL.ObjectProperty))
+            for o in list(g.objects(p, RDFS.range)):
+                if isinstance(o, URIRef) and str(o).startswith(str(XSD)):
+                    g.remove((p, RDFS.range, o))
+            n += 1
+    print(f"DL: retyped {n} propert(ies) with object-only usage to owl:ObjectProperty")
+
+    # (f) gen-owl translates the ArchitecturalStructure location rule into a
+    # GCI over IRIs that exist nowhere else (heritageGraph:has_current_location,
+    # heritageGraph:existence_status instead of the slot_uris) AND weakens the
+    # precondition from 'status is Extant/PartiallyExtant' to 'any status' -
+    # an axiom the schema does not assert. Remove it; the SHACL shapes carry
+    # the actual conditional rule.
+    n = 0
+    for s in list(g.subjects(OWL.intersectionOf, None)):
+        if isinstance(s, BNode) and (s, RDFS.subClassOf, None) in g:
+            _purge_node(g, s); n += 1
+    print(f"DL: removed {n} mistranslated anonymous GCI(s)")
+
+    # (g) one resolvable identity: gen-owl names the ontology node after the
+    # file (<.../schema.owl.ttl>) and asserts owl:ontologyIRI/owl:versionIRI
+    # as string literals (owl:ontologyIRI is not even OWL vocabulary).
+    # Re-seat everything on the canonical IRI with a real owl:versionIRI.
+    version = str(sv.schema.version)
+    for ont in list(g.subjects(RDF.type, OWL.Ontology)):
+        g.remove((ont, URIRef(str(OWL) + "ontologyIRI"), None))
+        g.remove((ont, OWL.versionIRI, None))
+        if ont != ONTOLOGY_IRI:
+            for p, o in list(g.predicate_objects(ont)):
+                g.remove((ont, p, o))
+                g.add((ONTOLOGY_IRI, p, o))
+    g.add((ONTOLOGY_IRI, RDF.type, OWL.Ontology))
+    g.add((ONTOLOGY_IRI, OWL.versionIRI,
+           URIRef(f"https://w3id.org/heritagegraph/ontology/{version}")))
+    for pred in (DCTERMS.title, DCTERMS.description):
+        if (pred, RDF.type, None) not in g:
+            g.add((pred, RDF.type, OWL.AnnotationProperty))
+    g.add((ONTOLOGY_IRI, DCTERMS.title, Literal("HeritageGraph Ontology")))
+    if sv.schema.description:
+        g.add((ONTOLOGY_IRI, DCTERMS.description, Literal(str(sv.schema.description))))
+    print(f"DL: ontology IRI -> {ONTOLOGY_IRI} (versionIRI .../{version})")
 
 
 def finalize_shacl(sv: SchemaView) -> None:
