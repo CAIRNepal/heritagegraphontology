@@ -33,6 +33,9 @@ from rdflib import Graph, RDF, RDFS, OWL, Namespace, URIRef, Literal, BNode
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
 ONTOLOGY_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.ttl"
+# The OOPS! REST endpoint rejects Turtle payloads (and no longer accepts
+# submission by URI), so the online scan submits the RDF/XML serialisation.
+RDFXML_FILE = SCRIPT_DIR.parent / "docs" / "ontology.owl"
 RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
@@ -64,10 +67,13 @@ def try_oops_online(ttl_content: str) -> str | None:
         print("  Submitting to OOPS! web service (may take 30-60 s)...")
         resp = requests.post(OOPS_URL, data=xml_payload.encode("utf-8"),
                              headers=headers, timeout=120)
-        if resp.status_code == 200 and len(resp.text) > 100:
+        if (resp.status_code == 200 and "<oops:Pitfall>" in resp.text
+                and "unexpected_error" not in resp.text
+                and "invalid_parameters" not in resp.text):
             return resp.text
         else:
-            print(f"  OOPS! returned status {resp.status_code}, falling back to local scan.")
+            print(f"  OOPS! returned status {resp.status_code} without a pitfall "
+                  "report (error response), falling back to local scan.")
             return None
     except Exception as e:
         print(f"  OOPS! service unreachable ({e}), falling back to local scan.")
@@ -213,8 +219,7 @@ def run_evaluation():
 
     # --- Try OOPS! online ---
     log(section("OOPS! Online Service"))
-    ttl_content = ONTOLOGY_FILE.read_text(encoding="utf-8")
-    xml_response = try_oops_online(ttl_content)
+    xml_response = try_oops_online(RDFXML_FILE.read_text(encoding="utf-8"))
 
     if xml_response:
         xml_path = RESULTS_DIR / "oops_response.xml"

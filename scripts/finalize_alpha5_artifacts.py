@@ -13,7 +13,7 @@ Addresses the committee-review validation blockers for the alpha.5 lineage:
      script repairs the shapes: drops identifier min-counts, rewrites
      sh:class <union class> as sh:or over the union members, and opens the
      closed shapes (documented relaxation).
-  3. Runs pyshacl over examples/kathmandu-mini-abox-alpha5.ttl and aborts
+  3. Runs pyshacl over examples/kathmandu-mini-abox.ttl and aborts
      unless CONFORMANT; writes the report to evaluation/results/.
 """
 from __future__ import annotations
@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
 OWL_OUT = ROOT / "ontology" / "HeritageGraph.ttl"
 SHACL_OUT = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
-ABOX = ROOT / "examples" / "kathmandu-mini-abox-alpha5.ttl"
+ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
 RESULTS = ROOT / "evaluation" / "results"
 
 HG = Namespace("https://w3id.org/heritagegraph/")
@@ -58,6 +58,79 @@ def uri_for(sv: SchemaView, curie: str) -> URIRef | None:
         return URIRef(sv.expand_curie(str(curie)))
     except Exception:
         return None
+
+
+def humanize_name(name: str) -> str:
+    """Mechanically derive a human-readable label from a LinkML element name.
+
+    AgeCriterion -> 'Age Criterion'; assesses_candidate -> 'Assesses candidate';
+    PartiallyExtant -> 'Partially Extant'; id -> 'ID'. Purely derived from the
+    single-source-of-truth name, so it never drifts from the YAML."""
+    import re as _re
+    if name == "id":
+        return "ID"
+    if "_" in name:
+        words = name.split("_")
+        return " ".join([words[0].capitalize()] + [w.lower() for w in words[1:]])
+    return _re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", name)
+
+
+def humanize_and_tag_labels(g: Graph) -> None:
+    """Humanize machine-style labels and add @en tags (gen-owl emits element
+    names as bare literals). Ontology-node labels (proper names) are tagged
+    but never re-worded; literals already carrying a language tag or datatype
+    are left untouched."""
+    label_preds = (RDFS.label, SKOS.prefLabel, DCTERMS.title)
+    text_preds = (SKOS.definition, SKOS.scopeNote, SKOS.altLabel,
+                  SKOS.changeNote, DCTERMS.description, SKOS.editorialNote)
+    ontology_nodes = set(g.subjects(RDF.type, OWL.Ontology))
+    n_hum, n_tag = 0, 0
+    for pred in label_preds + text_preds:
+        for s, o in list(g.subject_objects(pred)):
+            if not isinstance(o, Literal) or o.language is not None:
+                continue
+            if o.datatype is not None:
+                continue
+            text = str(o)
+            if (pred in label_preds and s not in ontology_nodes
+                    and " " not in text and text.replace("_", "").isalnum()):
+                new_text = humanize_name(text)
+                if new_text != text:
+                    n_hum += 1
+            else:
+                new_text = text
+            g.remove((s, pred, o))
+            g.add((s, pred, Literal(new_text, lang="en")))
+            n_tag += 1
+    print(f"labels: humanized {n_hum} machine-style label(s); tagged {n_tag} literal(s) @en")
+
+
+def apply_attribute_ranges(g: Graph, sv: SchemaView) -> None:
+    """LinkML class-scoped attributes (Container/Metadata collections) get no
+    global rdfs:range from gen-owl (only per-class restrictions). Each attribute
+    property is used by exactly one class, so its declared range is globally
+    valid; assert it. Skips datatypes outside the OWL 2 map (handled by SHACL)."""
+    XSD_MAP = {"string": XSD.string, "integer": XSD.integer, "float": XSD.float,
+               "boolean": XSD.boolean, "datetime": XSD.dateTime,
+               "uriorcurie": XSD.anyURI}
+    n = 0
+    for cn, c in sv.all_classes().items():
+        for attr in (c.attributes or {}).values():
+            prop = URIRef(f"https://w3id.org/heritagegraph/{attr.name}")
+            if (prop, RDF.type, None) not in g or (prop, RDFS.range, None) in g:
+                continue
+            rng = attr.range or "string"
+            if rng in sv.all_classes():
+                rc = sv.get_class(rng)
+                target = uri_for(sv, str(rc.class_uri or f"heritageGraph:{rng}"))
+            elif rng in XSD_MAP:
+                target = XSD_MAP[rng]
+            else:
+                continue
+            if target:
+                g.add((prop, RDFS.range, target))
+                n += 1
+    print(f"asserted rdfs:range on {n} attribute propert(ies)")
 
 
 def finalize_owl(sv: SchemaView) -> Graph:
@@ -135,25 +208,50 @@ def finalize_owl(sv: SchemaView) -> Graph:
     print(f"declared {n_ann} owl:AnnotationProperty(ies)")
 
     # --- SKOS publication of enumerations (gen-owl emits nothing for them) ---
+    # DUAL-REPRESENTATION RATIONALE (alpha.6): each enum is published both as
+    # an OWL enumeration class (owl:oneOf over owl:NamedIndividual values, for
+    # DL reasoning over enum-ranged properties) and as a SKOS concept scheme
+    # (for vocabulary tooling and mapping). To avoid two IRIs (and duplicate
+    # labels) per value, the SKOS concept IS the OWL individual: the same IRI
+    # is typed owl:NamedIndividual and skos:Concept (DL-legal: skos:Concept is
+    # declared owl:Class, so this is just an individual with two types).
     n_scheme, n_concept = 0, 0
+    skos_enum_preds = {"exact_mappings": SKOS.exactMatch,
+                       "close_mappings": SKOS.closeMatch,
+                       "broad_mappings": SKOS.broadMatch,
+                       "narrow_mappings": SKOS.narrowMatch,
+                       "related_mappings": SKOS.relatedMatch}
     for en, e in sv.all_enums().items():
+        enum_cls = URIRef(f"https://w3id.org/heritagegraph/{en}")
         scheme = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}")
         g.add((scheme, RDF.type, SKOS.ConceptScheme))
         g.add((scheme, SKOS.prefLabel, Literal(en)))
         # rdfs:label alongside prefLabel: generic tools (ROBOT report,
-        # Protege) look for rdfs:label and flagged these as missing_label
-        g.add((scheme, RDFS.label, Literal(en)))
+        # Protege) look for rdfs:label and flagged these as missing_label.
+        # The '(concept scheme)' suffix keeps the scheme's label distinct from
+        # the enum class of the same name (ROBOT duplicate_label).
+        g.add((scheme, RDFS.label, Literal(f"{humanize_name(en)} (concept scheme)", lang="en")))
         if e.description:
             g.add((scheme, SKOS.definition, Literal(str(e.description))))
+        # enum-level mappings (e.g. ArchitecturalStyle broadMatch crm:E55_Type)
+        for key, pred in skos_enum_preds.items():
+            for curie in getattr(e, key, None) or []:
+                tgt = uri_for(sv, str(curie))
+                if tgt is not None and (enum_cls, RDF.type, None) in g:
+                    g.add((enum_cls, pred, tgt))
         n_scheme += 1
         for vn, pv in (e.permissible_values or {}).items():
             # concept IRI: the declared meaning where present (matches data
-            # serialization); otherwise minted under scheme/<Enum>/<value> so it
-            # cannot collide with class IRIs (data serializes these as literals)
+            # serialization); otherwise the IRI gen-owl minted for the
+            # permissible value (<enum-class-IRI>#<value>), so OWL individual
+            # and SKOS concept are one resource. scheme/<Enum>/<value> remains
+            # only as a fallback if gen-owl emitted nothing for the value.
             if pv.meaning:
                 c = uri_for(sv, str(pv.meaning))
             else:
-                c = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}/{vn}")
+                c = URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}")
+                if (c, None, None) not in g:
+                    c = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}/{vn}")
             g.add((c, RDF.type, SKOS.Concept))
             g.add((c, SKOS.inScheme, scheme))
             g.add((c, SKOS.prefLabel, Literal(vn)))
@@ -185,12 +283,13 @@ def finalize_owl(sv: SchemaView) -> Graph:
     # --- FAIR metadata as typed triples on the ontology node ---
     onts = list(g.subjects(RDF.type, OWL.Ontology))
     ont = onts[0] if onts else ONTOLOGY_IRI
+    schema_version = str(sv.schema.version)
     meta = [
         (DCTERMS.created, Literal("2025-11-23", datatype=XSD.date)),
         (DCTERMS.modified, Literal(date.today().isoformat(), datatype=XSD.date)),
         (DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")),
         (DCTERMS.bibliographicCitation, Literal(
-            "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0-alpha.5). "
+            f"CAIR-Nepal (2026). HeritageGraph Ontology ({schema_version}). "
             "https://w3id.org/heritagegraph/ontology")),
         (DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")),
         (DCTERMS.creator, Literal("CAIR-Nepal")),
@@ -205,7 +304,9 @@ def finalize_owl(sv: SchemaView) -> Graph:
         g.add((ont, p, o))
     g.bind("bibo", BIBO); g.bind("vann", VANN)
 
+    apply_attribute_ranges(g, sv)
     repair_dl_profile(g, sv)
+    humanize_and_tag_labels(g)
 
     # --- axiom-survival guard ---
     missing: list[str] = []
@@ -250,10 +351,22 @@ def finalize_owl(sv: SchemaView) -> Graph:
         if (scheme, RDF.type, SKOS.ConceptScheme) not in g:
             missing.append(f"conceptScheme: {en}")
         for vn, pv in (e.permissible_values or {}).items():
-            c = uri_for(sv, str(pv.meaning)) if pv.meaning else URIRef(
-                f"https://w3id.org/heritagegraph/scheme/{en}/{vn}")
-            if (c, SKOS.inScheme, scheme) not in g:
+            if pv.meaning:
+                candidates = [uri_for(sv, str(pv.meaning))]
+            else:
+                candidates = [
+                    URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}"),
+                    URIRef(f"https://w3id.org/heritagegraph/scheme/{en}/{vn}"),
+                ]
+            if not any((c, SKOS.inScheme, scheme) in g for c in candidates):
                 missing.append(f"enumConcept: {en}.{vn}")
+        for key in ("exact_mappings", "close_mappings", "broad_mappings",
+                    "narrow_mappings", "related_mappings"):
+            for curie in getattr(e, key, None) or []:
+                tgt = uri_for(sv, str(curie))
+                subj = URIRef(f"https://w3id.org/heritagegraph/{en}")
+                if tgt is not None and not any((subj, p, tgt) in g for p in mapping_preds):
+                    missing.append(f"{key}: enum {en} -> {curie}")
     for sn, s in sv.all_slots().items():
         if s.inverse and s.slot_uri:
             a = uri_for(sv, str(s.slot_uri))
@@ -496,9 +609,19 @@ def finalize_shacl(sv: SchemaView) -> None:
 
 def run_pyshacl() -> None:
     from pyshacl import validate
+    # TOOL WORKAROUND: pyshacl (<=0.31) degrades pathologically (minutes ->
+    # hours) when the mixed-in ont_graph contains owl:NamedIndividual
+    # declarations. The declarations are correct OWL 2 DL (individuals used in
+    # owl:oneOf must be declared) and stay in the release artifact; they are
+    # stripped only from this in-memory validation copy. The PV individuals
+    # keep their enum-class typing, so validation semantics are unchanged.
+    ont = Graph()
+    ont.parse(OWL_OUT, format="turtle")
+    for s in list(ont.subjects(RDF.type, OWL.NamedIndividual)):
+        ont.remove((s, RDF.type, OWL.NamedIndividual))
     conforms, _, text = validate(
         data_graph=str(ABOX), shacl_graph=str(SHACL_OUT),
-        ont_graph=str(OWL_OUT), inference="none")
+        ont_graph=ont, inference="none")
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "shacl_alpha5_report.txt").write_text(
         f"pyshacl {date.today().isoformat()}\nconforms: {conforms}\n\n{text}\n",
@@ -536,10 +659,29 @@ def sync_published() -> None:
     print("synced docs/ontology.{ttl,owl,nt,jsonld}")
 
 
+def gen_json_schema() -> None:
+    out = ROOT / "ontology" / "HeritageGraph.schema.json"
+    res = subprocess.run(
+        ["linkml", "generate", "json-schema", str(SCHEMA)],
+        cwd=ROOT, check=True, capture_output=True, text=True)
+    out.write_text(res.stdout, encoding="utf-8")
+    print(f"generated {out.name}")
+
+
 def main() -> int:
     sv = SchemaView(str(SCHEMA))
-    gen("owl", OWL_OUT, ["--no-use-native-uris"])
+    # PV FIX (alpha.6): without --default-permissible-value-type, gen-owl types
+    # every permissible value as owl:Class (values became subclasses of their
+    # enum). Enum values are individuals, not classes; owl:NamedIndividual
+    # matches the documented modelling (enumeration classes over named
+    # individuals) and yields owl:oneOf enumeration classes.
+    gen("owl", OWL_OUT, [
+        "--no-use-native-uris",
+        "--default-permissible-value-type",
+        "http://www.w3.org/2002/07/owl#NamedIndividual",
+    ])
     gen("shacl", SHACL_OUT)
+    gen_json_schema()
     finalize_owl(sv)
     finalize_shacl(sv)
     run_pyshacl()

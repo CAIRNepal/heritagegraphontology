@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Run all 32 competency questions as instance-level SELECT queries against
-TBox + examples/kathmandu-mini-abox.ttl. A CQ passes when its query returns
-at least one binding. Writes a per-CQ report (txt + csv) and a LaTeX table
-body for the paper appendix."""
+"""Run all 32 competency questions as instance-level SELECT queries against the
+released ontology (ontology/HeritageGraph.ttl) loaded together with the
+demonstrator ABox (examples/kathmandu-mini-abox.ttl). Every predicate/class IRI
+in the queries is declared in the released ontology, and the ABox validates
+against the published SHACL shapes. A CQ passes when its query returns at least
+one binding. Writes a per-CQ report (txt + csv) and a LaTeX table body for the
+paper appendix. This is the single canonical CQ runner for the paper."""
 
 from __future__ import annotations
 

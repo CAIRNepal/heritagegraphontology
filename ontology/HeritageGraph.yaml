@@ -3,7 +3,7 @@ name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
   CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
   and ritual-spatial-temporal reasoning."
-version: 0.1.0-alpha.5
+version: 0.1.0-alpha.7
 license: CC-BY-4.0
 
 
@@ -149,7 +149,16 @@ enums:
   
   ArchitecturalStyle:
     description: "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."
-    enum_uri: crm:E55_Type
+    # ENUM URI FIX (alpha.6): `enum_uri: crm:E55_Type` made gen-owl emit the
+    # enumeration class ON the external CIDOC-CRM IRI, redefining crm:E55_Type
+    # as a local class labelled 'ArchitecturalStyle' with a closed member list
+    # (ontology hijacking; asserting axioms on an external term constrains it
+    # for every ontology that imports CRM). The enum now mints its own IRI
+    # like every other HeritageGraph enum; the CRM relation is carried as a
+    # broad mapping (an architectural style IS a kind of E55 Type, but this
+    # closed five-value list is narrower than E55_Type itself).
+    broad_mappings:
+      - crm:E55_Type
     permissible_values:
       Pagoda:
         description: "Multi-tiered roof style indigenous to Nepal"
@@ -238,15 +247,15 @@ default_prefix: heritageGraph
 
 annotations:
   owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
-  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.5"
+  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.7"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
-  # FAIR metadata (alpha.5-final)
+  # FAIR metadata (alpha.6)
   dcterms:created: "2025-11-23"
-  dcterms:modified: "2026-07-16"
+  dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0-alpha.5). https://w3id.org/heritagegraph/ontology"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0-alpha.7). https://w3id.org/heritagegraph/ontology"
   bibo:status: "Pre-release specification draft (alpha)"
   vann:preferredNamespacePrefix: "heritageGraph"
   vann:preferredNamespaceUri: "https://w3id.org/heritagegraph/"
@@ -963,8 +972,14 @@ classes:
       # conversion claims can be provenanced like any other statement.
       - Assertion
       - CalendarSystem
-    mixins:
-      - Entity
+    # DL FIX (alpha.7): dropped the Entity mixin. It asserted
+    # AssertionSubject rdfs:subClassOf prov:Entity, and because the union
+    # contains activity classes (RitualEvent, Production, Consecration, ...)
+    # every one of them was entailed both prov:Entity and prov:Activity --
+    # unsatisfiable under PROV-O's own Entity/Activity disjointness. Found
+    # by merged-vocabulary HermiT classification
+    # (evaluation/merged_import_classification.py): 22 unsatisfiable classes.
+    # A subject of an assertion is not intrinsically a PROV entity.
     abstract: true
   Assertion:
 
@@ -1331,6 +1346,17 @@ classes:
     description: "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in
       the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in
       persons, not actors); broader collections exist for instances of the general classes only."
+    # CONTAINER STATUS (alpha.6): retained in the published ontology because
+    # the LinkML tree_root is what makes JSON/YAML data files loadable and the
+    # JSON Schema/Python artifacts depend on it; it carries no domain
+    # semantics. The design_note below travels into the OWL release as an
+    # explicit machine-readable marker so consumers know to ignore it for
+    # reasoning/domain modelling.
+    annotations:
+      design_note: 'Serialization construct, not a domain class: this is the LinkML tree_root
+        that anchors JSON/YAML dataset serializations (its collection properties exist for
+        data exchange only). Reasoners and domain queries should ignore it; RDF instance
+        data does not need a Container node.'
     broad_mappings:
       - prov:Collection
     mixins:

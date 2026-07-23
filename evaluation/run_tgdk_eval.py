@@ -31,7 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
 OWL_TTL = ROOT / "ontology" / "HeritageGraph.ttl"
 SHACL_TTL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
-ABOX = ROOT / "examples" / "kathmandu-mini-abox-alpha5.ttl"
+ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
 OUT = ROOT / "evaluation" / "results" / "tgdk_eval_report.txt"
 
 HG = "https://w3id.org/heritagegraph/"
@@ -163,7 +163,7 @@ def section_cq() -> None:
     w("=" * 72)
     w("3. COMPETENCY-QUESTION COVERAGE (Grüninger & Fox)")
     w("=" * 72)
-    r = subprocess.run([sys.executable, str(ROOT / "evaluation" / "run_abox_cq32_alpha5.py")],
+    r = subprocess.run([sys.executable, str(ROOT / "evaluation" / "run_abox_cq32.py")],
                        capture_output=True, text=True)
     tail = [l for l in r.stdout.splitlines() if l.startswith("Total")]
     per_dim = Counter()

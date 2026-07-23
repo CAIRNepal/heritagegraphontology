@@ -1,33 +1,53 @@
 # HeritageGraph Ontology — Evaluation Suite
 
-Reproducible evaluation of the HeritageGraph ontology across the seven dimensions described in the SWJ paper submission (§4.1–§4.7).
+Reproducible evaluation of the HeritageGraph ontology, backing the evaluation
+section (§7.1–§7.8) of the TGDK paper submission. Every script targets the
+released ontology `../ontology/HeritageGraph.ttl` and the demonstrator
+`../examples/kathmandu-mini-abox.ttl`; authoritative figures are reported in the
+paper and regenerated into `results/`.
 
 ## Directory Structure
 
 ```
 evaluation/
-├── README.md                    ← You are here
-├── Makefile                     ← One-command reproducibility
-├── requirements.txt             ← Python dependencies
-├── setup.sh                     ← Environment setup script
+├── README.md                        ← You are here
+├── Makefile                         ← One-command reproducibility
+├── requirements.txt                 ← Python dependencies
+├── setup.sh                         ← Environment setup script
 │
-├── run_consistency.py           ← §4.1  Logical consistency & OWL-RL reasoning
-├── run_hermit.py                ← §4.1  OWL 2 DL consistency (HermiT)
-├── run_oops.py                  ← §4.2  OOPS! pitfall analysis
-├── run_cq_validation.py         ← §4.3 + §4.7  CQ validation & traceability
-├── run_abox_cq.py               ← §4.3  ABox CQ sample queries
-├── run_alignment.py             ← §4.4  Alignment & interoperability
-├── run_metrics.py               ← §4.5 + §4.6  Structural completeness & metrics
+│   Core dimensions
+├── run_consistency.py               ← §7.1  OWL-RL closure & parse check
+├── run_hermit.py                    ← §7.1  OWL 2 DL consistency (HermiT/ROBOT)
+├── merged_import_classification.py  ← §7.1  Merged-vocabulary classification
+├── inconsistency_injection.py       ← §7.1  Deliberate-inconsistency probes
+├── run_oops.py                      ← §7.2  OOPS! pitfall analysis
+├── run_abox_cq32.py                 ← §7.3  32 competency questions over the ABox
+├── cq_entailment.py                 ← §7.3  CQ answers under OWL-RL entailment
+├── run_metrics.py                   ← §7.3  Structural metrics
+├── run_alignment.py                 ← §7.6  Alignment counts
+├── run_mapping_audit.py             ← §7.6  External mapping audit
+├── mapping_audit_negative_control.py← §7.6  Mapping negative control
+├── shacl_census.py                  ← §7.4  SHACL constraint-component census
+├── supersession_chain.py            ← §7.5  Provenance supersession chain
+├── provo_consumer.py                ← §7.5  PROV-O generic-consumer interop
 │
-├── independent_eval.py          ← Independent, from-scratch re-evaluation
-├── independent_abox.py          ← Independent ABox SHACL conformance + negative tests
+│   Pattern ablations (§7.3)
+├── ablation_event_vs_static.py      ← Event-mediation vs static attachment
+├── tenure_vs_actor_role.py          ← Tenure node vs plain actor-role
+├── sameas_vs_reified.py             ← owl:sameAs vs reified syncretism
+├── custodianship_depth.py           ← Institutional custodianship depth
+├── multicalendar_resolution.py      ← Multi-calendar date resolution
+├── artifact_lockstep.py             ← LinkML↔generated-artifact lockstep
 │
-├── setup_protege.sh             ← §4.1  Protégé download & configuration
-├── protege/                     ← Protégé install target (downloaded by setup_protege.sh)
+│   Independent cross-checks
+├── independent_eval.py              ← Independent, from-scratch re-evaluation
+├── independent_abox.py              ← Independent ABox SHACL conformance + negatives
+├── run_tgdk_eval.py                 ← Aggregate TGDK evaluation driver
 │
-├── lux/                         ← Yale LUX interoperability case study
-│
-└── results/                     ← All generated reports land here (git-ignored)
+├── setup_protege.sh                 ← §7.1  Protégé download & configuration
+├── protege/                         ← Protégé install target
+├── lux/                             ← §7.7  Yale LUX interoperability case study
+└── results/                         ← All generated reports land here (git-ignored)
 ```
 
 ## Quick Start
@@ -119,11 +139,11 @@ Then follow `protege/PROTEGE_EVALUATION_CHECKLIST.md`.
 
 | Tool | What it checks | Script |
 |------|---------------|--------|
-| **rdflib SPARQL** | 32 TBox-only ASK queries against schema | `run_cq_validation.py` |
+| **rdflib SPARQL 1.1** | 32 instance-level SELECT queries over the demonstrator ABox (`../examples/queries/cq-abox-32.rq`) | `run_abox_cq32.py` |
+| **rdflib + OWL-RL** | how CQ answer sets change under deductive closure | `cq_entailment.py` |
 
 **Output:**
-- `results/cq_validation_report.txt` — Pass/fail for each CQ
-- `results/cq_traceability_matrix.csv` — Full CQ → ontology element mapping
+- `results/abox_cq32_report.txt` / `.csv` — rows returned per CQ (a CQ passes when it returns ≥1 binding)
 
 **CQ Dimensions:**
 - **Structural** (CQ1–CQ6): Architecture, typology, location
@@ -163,19 +183,6 @@ Computed by `run_metrics.py`:
 - Hierarchy depth
 - Comparison against paper claims (70 classes, 123 obj props, 47 datatype props, 64 individuals, etc.)
 
-### §4.7 — CQ Traceability
-
-Generated by `run_cq_validation.py` as `results/cq_traceability_matrix.csv`:
-
-| Column | Description |
-|--------|-------------|
-| `cq_id` | CQ identifier (CQ1–CQ32) |
-| `dimension` | Thematic dimension |
-| `question` | Full competency question text |
-| `ontology_elements` | Classes and properties needed |
-| `ask_result` | Boolean pass/fail |
-| `time_ms` | Query execution time |
-
 ---
 
 ## Prerequisites
@@ -211,7 +218,7 @@ make all
 # 4. Check results
 ls -la results/
 cat results/metrics_report.txt
-cat results/cq_validation_report.txt
+cat results/abox_cq32_report.txt
 cat results/alignment_report.txt
 cat results/consistency_report.txt
 cat results/oops_report.txt
@@ -219,86 +226,60 @@ cat results/oops_report.txt
 
 ## Ontology File
 
-The evaluation targets `../HeritageGraph.ttl` (generated from `../HeritageGraph.yaml` via LinkML).
+The evaluation targets `../ontology/HeritageGraph.ttl`, generated from
+`../ontology/HeritageGraph.yaml` by `../scripts/finalize_alpha5_artifacts.py`
+(which repairs the known gen-owl omissions and guards axiom survival).
 
-The alignment script (`run_alignment.py`) also reads `../HeritageGraph.yaml` directly to extract `slot_uri` / `class_uri` mappings that are not emitted as OWL triples in the generated TTL.
+The alignment script (`run_alignment.py`) also reads the YAML directly to extract
+`slot_uri` / `class_uri` mappings.
 
 If the TTL is out of date, regenerate it:
 ```bash
-pip install linkml
-cd ..
-gen-owl HeritageGraph.yaml -o HeritageGraph.ttl
+python3 scripts/finalize_alpha5_artifacts.py
 ```
 
 ---
 
 ## Expected Results Summary
 
-When run against the current HeritageGraph ontology (v1.0.0,
-`https://w3id.org/heritagegraph/ontology`), the evaluation suite produces:
+When run against the released ontology (`../ontology/HeritageGraph.ttl`,
+v0.1.0-alpha.7), the suite reproduces the figures reported in §7 of the paper.
+The paper is the authoritative source; the numbers below are a quick reference.
 
-### §4.1 Consistency
-- **5,086** base triples parsed
-- **20,305** inferred triples via OWL-RL closure (25,391 total)
-- **0** unsatisfiable classes detected
-- **70** `owl:disjointWith` pairs declared
+### §7.1 Consistency
+- **5,095** base triples; **26,414** after OWL-RL closure (**21,319** inferred)
+- **0** unsatisfiable classes under HermiT (standalone and merged with CRM/CRMinf/PROV-O)
+- **1** `owl:disjointWith` axiom (`Stupa`⊓`Chaitya`); separation is otherwise enforced by SHACL
 
-### §4.2 OOPS! Pitfalls (local heuristic scan)
-- **P08** (Minor): 0 — all 70 classes carry both `rdfs:label` and `skos:definition`
-- **P10** (Important): 0 — 70 sibling disjointness pairs are now declared
-- **P11** (Important): 134 missing domain/range declarations (intentional LinkML pattern — see notes)
-- **P13** (Minor): 0 inverse pairs flagged
-- **P22** (Critical): 0 — the ontology IRI is the canonical `https://w3id.org/heritagegraph/ontology`
+### §7.2 OOPS! Pitfalls
+- No critical pitfall; only the deliberate, documented design decisions are reported
+  (see `run_oops.py` and the paper §7.2).
 
-> The OOPS! online service is also queried (`results/oops_response.xml`); when the
-> remote service cannot dereference the submitted ontology it returns a generic
-> error, in which case the local heuristic scan above is authoritative.
+### §7.3 Competency Questions
+- **32/32** CQs return ≥1 binding over the demonstrator ABox
+- Dimensions: Structural 6/6, Ritual/Festival 12/12, Institutional/Syncretic 7/7, Living Goddess 7/7
+- Three pattern ablations (`ablation_event_vs_static.py`, `tenure_vs_actor_role.py`,
+  `sameas_vs_reified.py`) show each pattern is load-bearing
 
-### §4.3 Competency Questions
-- **32/32** CQs pass (100%)
-- All 4 dimensions: Structural 6/6, Ritual/Festival 12/12, Institutional/Syncretic 7/7, Living Goddess 7/7
+### §7.4 Constraint Validation
+- **75** `sh:NodeShape`s with **1,204** property shapes; released open (closedness relaxed)
+- Demonstrator ABox conforms; 8 single-violation negative tests are all caught
 
-### §4.4 Alignment
-| Namespace | Classes | Properties |
-|-----------|---------|------------|
-| CIDOC-CRM | 32 | 40 ✅ |
-| PROV-O | 3 | 9 ✅ |
-| AAT | 11 | 0 |
-| EDM | 7 | 0 |
-| Wikidata | 6 | 0 |
-| DBpedia | 3 | 0 |
-| CRMinf | 2 | 0 |
-| CRMsci | 1 | 0 |
-| OWL-Time / FOAF / RICO | 1 each | 0 |
-| DataCite | 0 | 5 |
-| DCTerms / GeoSPARQL / RDFS | 0 | 1 each |
-| **TOTAL** | **68** | **57** |
+### §7.6 Alignment
+- **42** classes and **25** minted properties map to **12** external vocabularies via
+  **116** mapping triples (48 `skos:broadMatch`, 23 `rdfs:subClassOf`, 23 `rdfs:subPropertyOf`,
+  16 `skos:exactMatch`, 6 `skos:closeMatch`)
+- Led by CIDOC-CRM (31 classes, 22 properties), PROV-O (28 classes), Getty AAT (6 classes)
 
-CRM-family classes (CRM + CRMinf + CRMsci) = **35**.
+### Metrics
+| Metric | Value |
+|--------|-------|
+| Classes (named) | 84 (66 HG-minted + 18 reused) |
+| Object properties | 149 |
+| Datatype properties | 42 |
+| SKOS concepts (enumerations) | 51 |
+| SHACL NodeShapes | 75 |
+| CQ pass rate (ABox) | 32/32 |
 
-### §4.5/§4.6 Metrics — Paper vs Actual
-| Metric | Paper | Actual | Match |
-|--------|-------|--------|-------|
-| Classes (HG namespace) | 70 | 70 | ✅ |
-| Object properties | 124 | 124 | ✅ |
-| Datatype properties | 46 | 46 | ✅ |
-| Union classes (named) | 3 | 3 | ✅ |
-| Named individuals (enum values) | 64 | 64 | ✅ |
-| SHACL NodeShapes | 61 | 61 | ✅ |
-| CQ TBox pass rate | 32/32 | 32/32 | ✅ |
-
-Structural completeness: labels 70/70, definitions 70/70; object-property `rdfs:range`
-101/124, datatype-property `rdfs:range` 40/46; max hierarchy depth 4 (deepest class `Chaitya`).
-
-### Known Notes
-- **P11 (missing domain/range)** is the expected LinkML modelling pattern: most slots
-  declare an `rdfs:range` (101/124 object, 40/46 datatype) but `rdfs:domain` is left
-  sparse because slots are reused across multiple classes via `slot_usage` rather than
-  being globally domain-constrained. This does not affect consistency.
-- **Property alignment source**: the 40 CRM and 9 PROV-O property alignments come from
-  `HeritageGraph.yaml` `slot_uri` values; `scripts/regenerate_ontology_artifacts.py`
-  also emits these as `rdfs:subPropertyOf` axioms in the generated TTL. (`used_method` and
-  `used_equipment` are free-text datatype fields and are intentionally *not* mapped to the
-  object properties `crm:P33`/`crm:P16`.)
-- All reports are regenerated against `../ontology/HeritageGraph.ttl`; re-run with
-  `make all` (from this directory) to refresh `results/`.
+All reports are regenerated against `../ontology/HeritageGraph.ttl`; re-run with
+`make all` (from this directory) to refresh `results/`.

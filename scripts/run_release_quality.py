@@ -46,26 +46,24 @@ def hermit_status() -> tuple[str, float]:
 def main() -> int:
     run("run_metrics.py")
     run("run_alignment.py")
-    run("run_cq_validation.py")
     run("run_consistency.py")
     run("run_oops.py")
-    run("run_abox_cq.py")
+    run("run_abox_cq32.py")
     run("run_hermit.py")
 
     for fname in [
         "metrics_report.txt",
         "alignment_report.txt",
-        "cq_validation_report.txt",
         "consistency_report.txt",
         "oops_report.txt",
-        "abox_cq_report.txt",
+        "abox_cq32_report.txt",
         "hermit_consistency_log.txt",
     ]:
         copy_if_exists(fname)
 
     metrics = (RELEASE_EVAL / "metrics_report.txt").read_text(encoding="utf-8") if (RELEASE_EVAL / "metrics_report.txt").exists() else ""
     consistency = (RELEASE_EVAL / "consistency_report.txt").read_text(encoding="utf-8") if (RELEASE_EVAL / "consistency_report.txt").exists() else ""
-    abox = (RELEASE_EVAL / "abox_cq_report.txt").read_text(encoding="utf-8") if (RELEASE_EVAL / "abox_cq_report.txt").exists() else ""
+    abox = (RELEASE_EVAL / "abox_cq32_report.txt").read_text(encoding="utf-8") if (RELEASE_EVAL / "abox_cq32_report.txt").exists() else ""
     hermit_note, hermit_score = hermit_status()
 
     # Pull live figures from the consistency report so the summary never drifts.

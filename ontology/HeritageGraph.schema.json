@@ -619,8 +619,8 @@
                     ]
                 },
                 "asserts_about": {
-                    "description": "Heritage entity or event that is the subject of this assertion.",
-                    "type": "string"
+                    "$ref": "#/$defs/AssertionSubject",
+                    "description": "Heritage entity or event that is the subject of this assertion."
                 },
                 "asserts_proposition": {
                     "description": "Machine-readable proposition(s) this assertion holds to be true (CRMinf J4 that). Complements the free-text assertion_content.",
@@ -3178,7 +3178,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AssertionSubject"
                     },
                     "type": [
                         "array",
@@ -4017,7 +4017,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AssertionSubject"
                     },
                     "type": [
                         "array",
@@ -4962,7 +4962,7 @@
                 "is_about": {
                     "description": "Heritage entity or event described by this information object.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AssertionSubject"
                     },
                     "type": [
                         "array",
@@ -7143,7 +7143,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AssertionSubject"
                     },
                     "type": [
                         "array",
@@ -8571,11 +8571,15 @@
                     "type": "string"
                 },
                 "proposition_object_entity": {
-                    "description": "Object of the proposition when it is a heritage entity (plays the role of rdf:object).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AssertionSubject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Object of the proposition when it is a heritage entity (plays the role of rdf:object)."
                 },
                 "proposition_object_literal": {
                     "description": "Object of the proposition when it is a literal value (e.g. a date).",
@@ -8589,8 +8593,8 @@
                     "type": "string"
                 },
                 "proposition_subject": {
-                    "description": "Entity the proposition is about (plays the role of rdf:subject).",
-                    "type": "string"
+                    "$ref": "#/$defs/AssertionSubject",
+                    "description": "Entity the proposition is about (plays the role of rdf:subject)."
                 },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
@@ -10791,7 +10795,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AssertionSubject"
                     },
                     "type": [
                         "array",
@@ -11630,6 +11634,6 @@
     ],
     "title": "HeritageGraph",
     "type": "object",
-    "version": "0.1.0-alpha.5"
+    "version": "0.1.0-alpha.7"
 }
 

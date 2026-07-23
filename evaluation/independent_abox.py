@@ -1,90 +1,129 @@
 #!/usr/bin/env python3
-"""Execute demonstrator SELECT CQs over TBox+ABox; run SHACL conformance + negative tests."""
+"""Execute demonstrator SELECT CQs over TBox+ABox; run SHACL conformance + negative tests.
+
+Updated for the 0.1.0-alpha.6 artifact lineage: class/property IRIs follow the
+released TTL (KumariTenure, crminf:I2_Belief, camelCase slot IRIs, native CRM
+property reuse), the demonstrator is examples/kathmandu-mini-abox.ttl,
+and validation mirrors the pipeline gate (ont_graph mixed in, inference="none";
+owl:NamedIndividual declarations stripped from the in-memory copy only, to
+avoid the known pySHACL slowdown -- see scripts/finalize_alpha5_artifacts.py).
+"""
 from pathlib import Path
-from rdflib import Graph
+from rdflib import Graph, RDF, OWL
 from pyshacl import validate
-ROOT=str(Path(__file__).resolve().parents[1])+"/"
-PFX="""PREFIX hg:<https://w3id.org/heritagegraph/>
+ROOT = str(Path(__file__).resolve().parents[1]) + "/"
+PFX = """PREFIX hg:<https://w3id.org/heritagegraph/>
 PREFIX crm:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX crminf:<http://www.ics.forth.gr/isl/CRMinf/>
+PREFIX prov:<http://www.w3.org/ns/prov#>
 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>"""
 
-g=Graph(); g.parse(ROOT+"ontology/HeritageGraph.ttl",format="turtle"); g.parse(ROOT+"examples/kathmandu-mini-abox.ttl",format="turtle")
+g = Graph()
+g.parse(ROOT + "ontology/HeritageGraph.ttl", format="turtle")
+g.parse(ROOT + "examples/kathmandu-mini-abox.ttl", format="turtle")
 print("TBox+ABox triples:", len(g))
-CQ={
+CQ = {
 "CQ-A1 conflicting source-attributed build dates":
- PFX+"""SELECT ?value ?source ?agent ?conf WHERE {
-  ?a a hg:HeritageAssertion ; hg:asserts_about_entity ?e ;
-     hg:asserted_value ?value ; hg:was_derived_from_source ?source ;
-     hg:was_attributed_to_agent ?agent ; hg:confidence_score ?conf . }""",
+ PFX + """SELECT ?value ?source ?agent ?conf WHERE {
+  ?a a crminf:I2_Belief ; hg:assertsAbout ?e ;
+     prov:value ?value ; prov:wasDerivedFrom ?source ;
+     prov:wasAttributedTo ?agent ; hg:confidenceScore ?conf . }""",
 "CQ-A2 event-mediated construction (temple/style/place)":
- PFX+"""SELECT ?temple ?style ?place WHERE {
-  ?p a hg:Production ; hg:produced_object ?temple .
-  ?temple hg:has_architectural_style ?style ; crm:P55_has_current_location ?place . }""",
+ PFX + """SELECT ?temple ?style ?place WHERE {
+  ?p a crm:E12_Production ; crm:P108_has_produced ?temple .
+  ?temple hg:hasArchitecturalStyle ?style ; crm:P55_has_current_location ?place . }""",
 "CQ-A3 Guthi custody + ritual":
- PFX+"""SELECT ?guthi ?asset ?ritual WHERE {
-  ?guthi a hg:Guthi ; hg:holds_custody_of ?asset ; hg:performs_ritual ?ritual . }""",
-"CQ-A4 Living-Goddess tenure (deity + institution)":
- PFX+"""SELECT ?tenure ?deity ?inst WHERE {
-  ?tenure a hg:LivingGoddessTenure ; hg:embodied_deity ?deity ;
-          hg:supported_by_institution ?inst . }""",
+ PFX + """SELECT ?guthi ?asset ?ritual WHERE {
+  ?guthi a hg:Guthi ; crm:P50i_is_current_keeper_of ?asset ; hg:performsRitual ?ritual . }""",
+"CQ-A4 Kumari (Living-Goddess) tenure (deity + institution)":
+ PFX + """SELECT ?tenure ?deity ?inst WHERE {
+  ?tenure a hg:KumariTenure ; hg:embodiedDeity ?deity ;
+          hg:supportedByInstitution ?inst . }""",
 "CQ-A5 syncretic equivalence + type":
- PFX+"""SELECT ?primary ?equiv ?type WHERE {
-  ?s a hg:SyncreticRelationship ; hg:assigned_to_deity ?primary ;
-     hg:assigned_equivalent ?equiv ; hg:syncretic_type ?type . }""",
+ PFX + """SELECT ?primary ?equiv ?type WHERE {
+  ?s a hg:SyncreticRelationship ; crm:P140_assigned_attribute_to ?primary ;
+     crm:P141_assigned ?equiv ; hg:syncreticType ?type . }""",
 "CQ-A6 recurring ritual pattern":
- PFX+"""SELECT ?ritual ?pat WHERE { ?ritual a hg:RitualEvent ; hg:recurrence_pattern ?pat . }""",
+ PFX + """SELECT ?ritual ?pat WHERE { ?ritual a hg:RitualEvent ; hg:recurrencePattern ?pat . }""",
 }
 print("\n== SELECT competency queries (rows returned) ==")
-for name,q in CQ.items():
-    rows=list(g.query(q))
+for name, q in CQ.items():
+    rows = list(g.query(q))
     print(f"[{len(rows)} rows] {name}")
     for r in rows[:2]:
-        print("     -> " + " | ".join(str(x).replace('https://w3id.org/heritagegraph/demo/','').replace('https://w3id.org/heritagegraph/','hg:') for x in r))
+        print("     -> " + " | ".join(str(x).replace('https://w3id.org/heritagegraph/demo/', '').replace('https://w3id.org/heritagegraph/', 'hg:').replace('http://vocab.getty.edu/aat/', 'aat:') for x in r))
 
-# SHACL conformance on the valid ABox
-shapes=Graph(); shapes.parse(ROOT+"ontology/HeritageGraph.shacl.ttl",format="turtle")
-conforms,_,txt=validate(g, shacl_graph=shapes, inference="rdfs", abort_on_first=False)
-print(f"\n== SHACL conformance (valid ABox): conforms={conforms} ==")
+# SHACL validation setup: shapes + ontology graph (pipeline-gate configuration).
+shapes = Graph(); shapes.parse(ROOT + "ontology/HeritageGraph.shacl.ttl", format="turtle")
+ont = Graph(); ont.parse(ROOT + "ontology/HeritageGraph.ttl", format="turtle")
+for s in list(ont.subjects(RDF.type, OWL.NamedIndividual)):
+    ont.remove((s, RDF.type, OWL.NamedIndividual))
+
+# Conformance 1: full demonstrator ABox.
+abox = Graph(); abox.parse(ROOT + "examples/kathmandu-mini-abox.ttl", format="turtle")
+conforms, _, txt = validate(abox, shacl_graph=shapes, ont_graph=ont,
+                            inference="none", abort_on_first=False)
+print(f"\n== SHACL conformance (full demonstrator ABox): conforms={conforms} ==")
+if not conforms:
+    print(txt[:1500])
+
+# Conformance 2: minimal valid instance quartet.
+MINIMAL = """@prefix hg: <https://w3id.org/heritagegraph/> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex: <https://w3id.org/heritagegraph/demo/> .
+ex:T a hg:Temple ; rdfs:label "T" ; hg:hasArchitecturalStyle aat:300004829 .
+ex:G a hg:Guthi ; rdfs:label "G" .
+ex:R a hg:RitualEvent ; rdfs:label "R" .
+ex:D a hg:DataSource ; rdfs:label "D" .
+"""
+mg = Graph(); mg.parse(data=MINIMAL, format="turtle")
+conforms, _, txt = validate(mg, shacl_graph=shapes, ont_graph=ont,
+                            inference="none", abort_on_first=False)
+print(f"== SHACL conformance (minimal valid instance): conforms={conforms} ==")
 if not conforms:
     print(txt[:1500])
 
 # Negative tests: inject violations, expect non-conformance.
-# One test per modelling pattern (event-mediated tangible, institutional,
-# ritual, syncretic, provenance, Living Goddess lifecycle) plus metadata.
-# Bad instances are typed with both the HG class and its mapped external
-# class so shape targeting works without a reasoner.
+# One test per modelling concern. The alpha lineage publishes OPEN shapes
+# (closedness is deliberately dropped by the pipeline), so the tests exercise
+# the constraint types the shapes actually carry: minCount, sh:in, sh:datatype
+# and sh:class value-typing.
 print("\n== SHACL negative tests (each should be caught) ==")
 NEG_PFX = """@prefix hg: <https://w3id.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
+@prefix crminf: <http://www.ics.forth.gr/isl/CRMinf/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix ex: <https://w3id.org/heritagegraph/demo/> .
 """
-tests={
- "Event-mediated: Temple missing has_architectural_style":
-  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; dcterms:identifier "https://example.org/t"^^xsd:anyURI .',
- "Metadata: Temple missing dcterms:identifier":
-  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:has_architectural_style hg:Pagoda .',
- "Institutional: Guthi missing guthi_type":
-  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" .',
- "Ritual: RitualEvent missing crm:P4_has_time-span":
-  'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" .',
- "Syncretic: SyncreticRelationship missing syncretic_type":
-  'ex:BadSyn a hg:SyncreticRelationship , crm:E13_Attribute_Assignment ; rdfs:label "x" ; hg:assigned_to_deity ex:D1 ; hg:assigned_equivalent ex:D2 .',
- "Provenance: HeritageAssertion missing derivation source":
-  'ex:BadAssert a hg:HeritageAssertion , crminf:I2_Belief ; rdfs:label "x" ; hg:generated_at_time "2026-06-23T00:00:00"^^xsd:dateTime .',
- "Living Goddess: tenure missing crm:P4_has_time-span":
-  'ex:BadTenure a hg:LivingGoddessTenure , crm:E4_Period ; rdfs:label "x" ; hg:embodied_deity ex:D1 .',
- "Sibling separation: DocumentationActivity with ritual-only property":
-  'ex:BadDoc a hg:DocumentationActivity ; rdfs:label "x" ; crm:P4_has_time-span ex:TS ; hg:ritual_type hg:NityaPuja .',
+tests = {
+ "Event-mediated: Temple missing hasArchitecturalStyle (minCount)":
+  'ex:BadTemple a hg:Temple ; rdfs:label "x" .',
+ "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
+  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle aat:300004829 ; dcterms:identifier "plain string" .',
+ "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":
+  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType hg:NotAGuthiType .',
+ "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)":
+  'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P4_has_time-span ex:NotATimeSpan . ex:NotATimeSpan a hg:DataSource .',
+ "Syncretic: SyncreticRelationship missing assigned deity (minCount)":
+  'ex:BadSyn a hg:SyncreticRelationship ; rdfs:label "x" ; crm:P141_assigned ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .',
+ "Provenance: Belief (HeritageAssertion) missing assertsAbout (minCount)":
+  'ex:BadAssert a crminf:I2_Belief ; rdfs:label "x" .',
+ "Living Goddess: KumariTenure missing crm:P4_has_time-span (minCount)":
+  '''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:embodiedDeity ex:D1 ; hg:residenceStructure ex:H ; crm:P11_had_participant ex:P .
+ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .''',
+ "Sibling separation: DocumentationActivity in a ritual-valued slot (sh:class)":
+  'ex:G a hg:Guthi ; rdfs:label "g" ; hg:performsRitual ex:Doc . ex:Doc a hg:DocumentationActivity ; rdfs:label "doc" .',
 }
-caught=0
-for name,ttl in tests.items():
-    dg=Graph()
-    dg.parse(data=NEG_PFX+ttl, format="turtle")
-    c,_,_=validate(dg, shacl_graph=shapes, inference="none", abort_on_first=False)
-    caught+=(not c)
+caught = 0
+for name, ttl in tests.items():
+    dg = Graph()
+    dg.parse(data=NEG_PFX + ttl, format="turtle")
+    c, _, _ = validate(dg, shacl_graph=shapes, ont_graph=ont,
+                       inference="none", abort_on_first=False)
+    caught += (not c)
     print(f"  [{'CAUGHT' if not c else 'MISSED'}] {name}")
 print(f"Negative tests caught: {caught}/{len(tests)}")

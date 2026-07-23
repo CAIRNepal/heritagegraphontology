@@ -52,10 +52,10 @@ The ontology supports the representation of:
 │   ├── introduction-en.html
 │   ├── description-en.html
 │   └── references-en.html
-├── evaluation/                      # Evaluation scripts and results
+├── evaluation/                      # Evaluation scripts and results (see evaluation/README.md)
+│   ├── run_abox_cq32.py             #   §7.3 competency questions over the ABox
 │   ├── run_alignment.py
 │   ├── run_consistency.py
-│   ├── run_cq_validation.py
 │   ├── run_metrics.py
 │   ├── run_oops.py
 │   ├── results/                     #   Generated evaluation reports
@@ -64,7 +64,7 @@ The ontology supports the representation of:
 │   ├── kathmandu-mini-abox.ttl
 │   ├── kathmandu-conformant.ttl
 │   ├── lux-murti-merged.ttl
-│   └── queries/abox-cq-samples.rq
+│   └── queries/cq-abox-32.rq
 ├── scripts/                         # Build and tooling scripts
 │   ├── build.sh                     #   Generate docs + WebVOWL (= make docs)
 │   ├── regenerate_ontology_artifacts.py

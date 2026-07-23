@@ -20,3 +20,12 @@ Content negotiation: `text/turtle`, `application/rdf+xml`, `application/n-triple
 - Contacts: [@nirajkark](https://github.com/nirajkark) (Niraj Karki),
   [CAIRNepal](https://github.com/CAIRNepal) organization
 - License of the ontology: CC BY 4.0
+
+## Deployment status
+
+**Not yet deployed.** The `heritagegraph` namespace is not registered at
+w3id.org yet; the IRIs above currently return 404. To activate them, submit
+this directory (`.htaccess` + `README.md`) as a pull request adding
+`heritagegraph/` to <https://github.com/perma-id/w3id.org>. The redirect
+targets (GitHub Pages documentation and RDF serializations) are already
+live and were verified to return HTTP 200.

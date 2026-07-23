@@ -6,7 +6,7 @@
 #   make all         — Run all automated evaluations
 #   make consistency — §4.1 OWL-RL reasoning
 #   make oops        — §4.2 Pitfall analysis
-#   make cq          — §4.3 + §4.7 CQ validation & traceability
+#   make cq          — §7.3 Competency-question execution over the ABox
 #   make alignment   — §4.4 Interoperability
 #   make metrics     — §4.5 + §4.6 Completeness & metrics
 #   make protege     — Download & configure Protégé
@@ -20,7 +20,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 RESULTS := results
 
-.PHONY: all setup consistency oops cq alignment metrics abox independent quality protege clean cleanall help
+.PHONY: all setup consistency oops cq alignment metrics independent quality protege clean cleanall help
 
 help: ## Show this help
 	@echo ""
@@ -46,12 +46,7 @@ independent: setup ## Independent from-scratch re-evaluation + SHACL negative te
 	$(PYTHON) independent_abox.py
 	@echo ""
 
-abox: setup ## ABox CQ sample queries
-	@echo "Running ABox CQ samples..."
-	$(PYTHON) run_abox_cq.py
-	@echo ""
-
-quality: all abox ## Run evaluations + copy to release/
+quality: all ## Run evaluations + copy to release/
 	@echo "Building release quality report..."
 	cd .. && $(CURDIR)/$(PYTHON) scripts/run_release_quality.py
 	@echo ""
@@ -74,9 +69,9 @@ oops: setup ## §4.2 — OOPS! pitfall analysis
 	$(PYTHON) run_oops.py
 	@echo ""
 
-cq: setup ## §4.3 + §4.7 — CQ validation & traceability matrix
-	@echo "Running §4.3/§4.7 — CQ Validation..."
-	$(PYTHON) run_cq_validation.py
+cq: setup ## §7.3 — Competency-question execution over the demonstrator ABox
+	@echo "Running §7.3 — Competency-Question Execution..."
+	$(PYTHON) run_abox_cq32.py
 	@echo ""
 
 alignment: setup ## §4.4 — Alignment & interoperability
