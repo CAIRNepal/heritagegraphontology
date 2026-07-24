@@ -5,63 +5,74 @@ HeritageGraph follows an **event-centric** modelling pattern inherited from
 CIDOC-CRM: instead of linking attributes directly to a heritage object, the
 ontology connects objects, places, agents, and time-spans *through events*. This
 makes provenance, sequence, and participation explicit and queryable. The schema
-contains **70 classes**, **125 object properties**, **46 datatype properties**, and
-**64 named individuals** (controlled-vocabulary values), and is generated from a
-LinkML source of truth (`HeritageGraph.yaml`).
+contains **84 classes** (66 newly minted plus 18 reused from CIDOC-CRM, CRMinf,
+PROV-O, and SKOS that carry local axioms), **149 object properties**, **42
+datatype properties**, and **7 enumerations** published as SKOS concept schemes
+(**51** controlled-vocabulary concepts). It is generated from a LinkML source of
+truth (`HeritageGraph.yaml`).
 
 ### Core building blocks
 
 - **Physical heritage things** — `PhysicalHeritageThing` (a union of
   `ArchitecturalStructure`, `IconographicObject`, and `ArchitecturalElement`)
-  covers temples, stupas, chaityas, *murti*/*paubha* icons, water structures
-  (`DhungeDhara`, `Pokhari`), and rest houses (`Pati`, `Sattal`, `Dharmashala`).
-- **Events** — `HeritageEvent` generalises `Production`, `Consecration`,
-  `Enshrinement`, `TransferOfCustody`, `RitualEvent` (e.g. `ChariotFestival`,
-  `MaskedDance`), and the living-goddess lifecycle
-  (`LivingGoddessSelection`, `LivingGoddessTenure`, `LivingGoddessRetirement`).
-- **Actors & institutions** — `Actor`, `Person`, `CasteGroup`, `DataCustodian`,
-  and the institution central to Nepalese heritage, `Guthi`.
-- **Places & time** — `Place`, `TimeSpan`, and `CalendarSystem` support
-  multi-calendar (e.g. Bikram Sambat, Nepal Sambat, Gregorian) dating with
-  explicit `DatePrecisionEnum` precision.
-- **Knowledge & provenance** — `HeritageAssertion`, `DataSource`
-  (`ArchivalRecord`, `OralHistoryRecording`, `FieldSurveyDataset`),
-  `DocumentationActivity`, and `Verification` capture *who asserted what, from
-  which source, with what epistemic stance* (`EpistemicStanceEnum`).
-- **Syncretism** — `SyncreticRelationship` links deities (`Deity`,
-  `BuddhistDeity`) that bridge Hindu and Buddhist traditions
-  (`ReligiousTradition`), typed by `SyncreticTypeEnum`.
+  covers temples (`Temple`, `Stupa`, `Chaitya`, `ReligiousStructure`),
+  *murti*/*paubha* icons (`Murti`, `Paubha`), water structures (`WaterStructure`,
+  `DhungeDhara`, `Pokhari`), and rest houses (`RestHouse`, `Pati`, `Sattal`,
+  `Dharmashala`).
+- **Events** — heritage change is represented through typed events:
+  production (via CIDOC-CRM `crm:E12_Production`), `Consecration`, `Enshrinement`,
+  custody transfer, `RitualEvent` (e.g. `ChariotFestival`, `MaskedDance`) grouped
+  by `Festival`, `HistoricalEvent`, and the living-goddess lifecycle
+  (`KumariSelectionEvent`, `KumariEnthronementEvent`, `KumariTenure`,
+  `KumariRetirementEvent`, generalised by `KumariLifecycleEvent`).
+- **Actors & institutions** — actors and persons (via CIDOC-CRM `crm:E39_Actor` /
+  `crm:E21_Person`), `CasteGroup`, `DataCustodian`, and the institution central to
+  Nepalese heritage, `Guthi` (typed by the `GuthiType` enumeration).
+- **Places & time** — places and time-spans (via `crm:E53_Place` /
+  `crm:E52_Time-Span`) and `CalendarSystem` support multi-calendar dating
+  (e.g. Bikram Sambat, Nepal Sambat, Gregorian) with explicit `DatePrecision`.
+- **Knowledge & provenance** — assertions and beliefs (aligned with CRMinf
+  `I2_Belief` / `Proposition` and PROV-O), `DataSource` (`ArchivalRecord`,
+  `OralHistoryRecording`, `FieldSurveyDataset`), `DocumentationActivity`,
+  `FieldSurveyActivity`, and `Verification` capture *who asserted what, from which
+  source, and with what confidence*, so competing sources can coexist.
+- **Syncretism** — `SyncreticRelationship` links `Deity` instances that bridge
+  Hindu and Buddhist traditions (`ReligiousTradition`), typed by the
+  `SyncreticType` enumeration — as a provenance-qualified interpretive assertion
+  rather than semantic identity (`owl:sameAs`).
 
 ### How the pieces relate
 
-A typical pattern looks like this: an `ArchitecturalStructure` *was produced by* a
-`Production` event that *took place at* a `Place`, *occurred during* a `TimeSpan`,
-and *had participant* a `Person` or `Guthi`. A `RitualEvent` *activates* the same
-structure during a `Festival`, following a canonical sequence (`occurs_before` /
-`occurs_after`). Each of these facts is a `HeritageAssertion` that
-*was derived from* a `DataSource` and *was verified by* a `Verification`,
-so contradictory claims (e.g. two construction dates) can coexist with their
-evidence.
+A typical pattern looks like this: an `ArchitecturalStructure` was produced by a
+production event (`crm:E12_Production`) that took place at a place
+(`crm:E53_Place`), occurred during a time-span (`crm:E52_Time-Span`), and had a
+`Person` or `Guthi` as participant. A `RitualEvent` activates the same structure
+during a `Festival`, following a canonical sequence. Each fact can be recorded as
+a source-attributed belief (CRMinf `I2_Belief`) that was derived from a
+`DataSource` and checked by a `Verification`, so contradictory claims (e.g. two
+construction dates) coexist with their evidence and epistemic standing.
 
 ### Interoperability modules
 
-The core vocabulary is aligned with external standards and shipped with companion
-artefacts (in `ontology/`):
+The core vocabulary carries its external alignments **inline** (SKOS
+`exactMatch` / `closeMatch` / `broadMatch`, `rdfs:subClassOf`, and
+`rdfs:subPropertyOf`) to CIDOC-CRM, CRMinf, PROV-O, Getty AAT, schema.org,
+Wikidata, and a Europeana EDM projection. Companion artefacts (in `ontology/`):
 
-- `HeritageGraph-alignment.ttl` — CIDOC-CRM / CRMinf / PROV-O / Wikidata mappings
-  (classes via `skos:exactMatch`/`subClassOf`, properties via `rdfs:subPropertyOf`).
-- `HeritageGraph-edm.ttl` — a Europeana EDM projection for aggregation/publishing.
-- `lux/heritagegraph-lux-alignment.ttl` — a bridge to Yale's LUX / Linked Art.
-- `HeritageGraph.shacl.ttl` and `lux/HeritageGraph-lux.shacl.ttl` — SHACL validation
-  shapes (61 core + 33 LUX node shapes).
-- `examples/kathmandu-mini-abox.ttl` — a small worked instance dataset.
+- `HeritageGraph.shacl.ttl` — SHACL validation shapes for the core vocabulary
+  (75 node shapes).
+- `lux/heritagegraph-lux-alignment.ttl` — a bridge to Yale's LUX / Linked Art,
+  with its shapes in `lux/HeritageGraph-lux.shacl.ttl` (33 node shapes).
+- `examples/kathmandu-mini-abox.ttl` — a small worked instance dataset (the
+  demonstrator ABox) that exercises every modelling pattern.
 
 ### Quality at a glance
 
-The ontology is logically consistent under OWL-RL closure (**0** unsatisfiable
-classes, **70** `owl:disjointWith` pairs), passes **32/32** competency-question
-checks, and is interoperable with CIDOC-CRM (32 classes / 40 properties) and
-PROV-O (3 classes / 9 properties). See the
+The ontology is logically consistent under the HermiT reasoner — **0**
+unsatisfiable classes, both standalone and when merged with CIDOC-CRM, CRMinf,
+and PROV-O — and answers all **32/32** competency questions as SPARQL queries
+over the demonstrator ABox (expected-versus-actual exact match). Its external
+alignment spans SKOS mappings to **12** vocabularies plus the EDM profile. See the
 [evaluation suite](https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation)
 for reproducible reports.
 
