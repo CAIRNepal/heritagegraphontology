@@ -1,0 +1,544 @@
+{
+  "CQ1": {
+    "question": "Which architectural structures were built during a time period using an architectural style?",
+    "vars": [
+      "structure",
+      "style",
+      "place"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "300004829",
+        "KathmanduDurbarSquare"
+      ]
+    ]
+  },
+  "CQ2": {
+    "question": "Which architectural elements are components of structures used in a given ritual?",
+    "vars": [
+      "element",
+      "structure",
+      "ritual"
+    ],
+    "expected": [
+      [
+        "Pinnacle_KM",
+        "Kasthamandap",
+        "IndraJatra"
+      ]
+    ]
+  },
+  "CQ3": {
+    "question": "Which iconographic objects depict a deity, and where are they currently located?",
+    "vars": [
+      "object",
+      "deity",
+      "place"
+    ],
+    "expected": [
+      [
+        "Murti_Taleju",
+        "Taleju",
+        "KathmanduDurbarSquare"
+      ]
+    ]
+  },
+  "CQ4": {
+    "question": "Which heritage structures are associated with historical events, and over what time-spans?",
+    "vars": [
+      "event",
+      "structure",
+      "timespan"
+    ],
+    "expected": [
+      [
+        "Earthquake2015",
+        "Kasthamandap",
+        "TS_2015"
+      ]
+    ]
+  },
+  "CQ5": {
+    "question": "Which architectural structures within a geographical area belong to a particular typology?",
+    "vars": [
+      "area",
+      "typology",
+      "structure"
+    ],
+    "expected": [
+      [
+        "KathmanduDurbarSquare",
+        "Temple",
+        "Kasthamandap"
+      ],
+      [
+        "KathmanduDurbarSquare",
+        "Temple",
+        "TalejuTemple"
+      ]
+    ]
+  },
+  "CQ6": {
+    "question": "Which heritage shares a common architectural style?",
+    "vars": [
+      "a",
+      "b",
+      "style"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "TalejuTemple",
+        "300004829"
+      ]
+    ]
+  },
+  "CQ7": {
+    "question": "Which sacred structures in a place are associated with which deities?",
+    "vars": [
+      "enshrinement",
+      "deity",
+      "structure",
+      "place"
+    ],
+    "expected": [
+      [
+        "Ensh_Taleju",
+        "Taleju",
+        "TalejuTemple",
+        "KathmanduDurbarSquare"
+      ]
+    ]
+  },
+  "CQ8": {
+    "question": "Among temples that conduct daily Nitya Puja, which are assessed as damaged/endangered?",
+    "vars": [
+      "temple",
+      "state",
+      "conditionType"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "CS_Damaged",
+        "Damaged"
+      ]
+    ]
+  },
+  "CQ9": {
+    "question": "Which caste groups have hereditary roles in rituals critical for a festival?",
+    "vars": [
+      "group",
+      "role",
+      "ritual"
+    ],
+    "expected": [
+      [
+        "Manandhars",
+        "hereditary chariot pullers and oil pressers",
+        "IndraJatra"
+      ]
+    ]
+  },
+  "CQ10": {
+    "question": "Which ritual objects are associated with rituals, and who is responsible for their use?",
+    "vars": [
+      "object",
+      "ritual",
+      "actor"
+    ],
+    "expected": [
+      [
+        "Murti_Taleju",
+        "IndraJatra",
+        "KarmacharyaPriest"
+      ]
+    ]
+  },
+  "CQ11": {
+    "question": "Which rituals are associated with which sites, invoke which deities, with what recurrence?",
+    "vars": [
+      "ritual",
+      "place",
+      "deity",
+      "pattern"
+    ],
+    "expected": [
+      [
+        "IndraJatra",
+        "KathmanduDurbarSquare",
+        "Indra",
+        "annual"
+      ]
+    ]
+  },
+  "CQ12": {
+    "question": "What is the sequence of ritual events, and which actors are responsible for each step?",
+    "vars": [
+      "first",
+      "second",
+      "actor"
+    ],
+    "expected": [
+      [
+        "YosinErection",
+        "KumariProcession",
+        "Manandhars"
+      ]
+    ]
+  },
+  "CQ13": {
+    "question": "Which rituals move sacred presences between sites, and what routes are traversed?",
+    "vars": [
+      "ritual",
+      "start",
+      "end",
+      "route"
+    ],
+    "expected": [
+      [
+        "BungadyahProcession",
+        "Bungamati",
+        "Jawalakhel",
+        "Bungamati to Patan to Jawalakhel (chariot route)"
+      ]
+    ]
+  },
+  "CQ14": {
+    "question": "How do crises trigger extraordinary rituals outside the normal calendar?",
+    "vars": [
+      "crisis",
+      "ritual",
+      "pattern"
+    ],
+    "expected": [
+      [
+        "Earthquake2015",
+        "ShantiSwastiPuja",
+        "extraordinary (crisis-triggered)"
+      ]
+    ]
+  },
+  "CQ15": {
+    "question": "What materials and techniques are used in key ritual events?",
+    "vars": [
+      "ritual",
+      "material",
+      "technique"
+    ],
+    "expected": [
+      [
+        "BungadyahProcession",
+        "SalWood",
+        "ChariotConstruction"
+      ]
+    ]
+  },
+  "CQ16": {
+    "question": "What are the ritual obligations of participant groups, and how are their roles recorded?",
+    "vars": [
+      "ritual",
+      "group",
+      "role"
+    ],
+    "expected": [
+      [
+        "BungadyahJatra",
+        "Barahis",
+        "hereditary chariot carpenters"
+      ],
+      [
+        "BungadyahJatra",
+        "Manandhars",
+        "hereditary chariot pullers and oil pressers"
+      ],
+      [
+        "IndraJatra",
+        "Manandhars",
+        "hereditary chariot pullers and oil pressers"
+      ],
+      [
+        "KumariProcession",
+        "Manandhars",
+        "hereditary chariot pullers and oil pressers"
+      ]
+    ]
+  },
+  "CQ17": {
+    "question": "Which rituals have documented transformations, and which sources attest them?",
+    "vars": [
+      "assertion",
+      "ritual",
+      "value",
+      "source"
+    ],
+    "expected": [
+      [
+        "Assert_RouteChange",
+        "BungadyahProcession",
+        "Procession route adjusted after the 1934 earthquake",
+        "Src_DoA"
+      ]
+    ]
+  },
+  "CQ18": {
+    "question": "How do changes in structures reflect broader transitions (via provenance assertions)?",
+    "vars": [
+      "structure",
+      "assertion",
+      "source"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "Assert_BuildA",
+        "Src_Slusser"
+      ],
+      [
+        "Kasthamandap",
+        "Assert_BuildB",
+        "Src_DoA"
+      ]
+    ]
+  },
+  "CQ19": {
+    "question": "Which organisations manage which heritage, perform which rituals, and hold custody?",
+    "vars": [
+      "heritage",
+      "guthi",
+      "ritual",
+      "custody"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "KasthamandapGuthi",
+        "IndraJatra",
+        "Kasthamandap"
+      ]
+    ]
+  },
+  "CQ20": {
+    "question": "Which structures were commissioned by a specific patron?",
+    "vars": [
+      "production",
+      "patron",
+      "structure"
+    ],
+    "expected": [
+      [
+        "Prod_Kasthamandap",
+        "KingLakshmiNarasimhaMalla",
+        "Kasthamandap"
+      ]
+    ]
+  },
+  "CQ21": {
+    "question": "Which institutions provide economic and ritual support for sites, rituals, or sacred figures?",
+    "vars": [
+      "supported",
+      "institution"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "KasthamandapGuthi"
+      ]
+    ]
+  },
+  "CQ22": {
+    "question": "Which festivals bring together multiple groups around a shared syncretic deity?",
+    "vars": [
+      "festival",
+      "deity",
+      "group1",
+      "group2"
+    ],
+    "expected": [
+      [
+        "BungadyahJatra",
+        "Matsyendranath",
+        "Barahis",
+        "Manandhars"
+      ]
+    ]
+  },
+  "CQ23": {
+    "question": "Which places or structures function as shared or contested sites for multiple traditions?",
+    "vars": [
+      "structure",
+      "tradition1",
+      "tradition2"
+    ],
+    "expected": [
+      [
+        "Kasthamandap",
+        "Buddhist",
+        "Hindu"
+      ]
+    ]
+  },
+  "CQ24": {
+    "question": "Which rituals at Hindu temples and Buddhist monuments invoke the same syncretic deity?",
+    "vars": [
+      "ritualAtTemple",
+      "ritualAtStupa",
+      "deityA",
+      "deityB"
+    ],
+    "expected": [
+      [
+        "NityaPuja_Bungamati",
+        "GunlaBajan",
+        "Matsyendranath",
+        "Avalokitesvara"
+      ]
+    ]
+  },
+  "CQ25": {
+    "question": "How do syncretic deities link traditions, and what evidence supports these links?",
+    "vars": [
+      "syn",
+      "deityA",
+      "deityB",
+      "source"
+    ],
+    "expected": [
+      [
+        "Syn_Karunamaya",
+        "Avalokitesvara",
+        "Matsyendranath",
+        "Src_Slusser"
+      ],
+      [
+        "Syn_Taleju",
+        "Taleju",
+        "Vajradevi",
+        "Src_Slusser"
+      ]
+    ]
+  },
+  "CQ26": {
+    "question": "Which person served as Kumari, for which period, at which residence?",
+    "vars": [
+      "tenure",
+      "person",
+      "residence",
+      "timespan"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "KumariPerson",
+        "KumariGhar",
+        "TS_Tenure2017"
+      ]
+    ]
+  },
+  "CQ27": {
+    "question": "For a given Kumari, which deity is believed present, in which religious traditions?",
+    "vars": [
+      "tenure",
+      "deity",
+      "tradition"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "Taleju",
+        "Buddhist"
+      ],
+      [
+        "Tenure_2017",
+        "Taleju",
+        "Hindu"
+      ]
+    ]
+  },
+  "CQ28": {
+    "question": "How does the Kumari institution embody Hindu-Buddhist syncretism in a place and period?",
+    "vars": [
+      "tenure",
+      "deity",
+      "syn",
+      "residence",
+      "timespan"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "Taleju",
+        "Syn_Taleju",
+        "KumariGhar",
+        "TS_Tenure2017"
+      ]
+    ]
+  },
+  "CQ29": {
+    "question": "What daily rituals does a Kumari perform at her residence, with what temporal pattern?",
+    "vars": [
+      "tenure",
+      "ritual",
+      "type",
+      "residence",
+      "pattern"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "KumariNityaPuja",
+        "NityaPuja",
+        "KumariGhar",
+        "daily"
+      ]
+    ]
+  },
+  "CQ30": {
+    "question": "In which processions does a given Kumari participate, and in what sequence?",
+    "vars": [
+      "tenure",
+      "person",
+      "ritual",
+      "neighbour"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "KumariPerson",
+        "KumariProcession",
+        "YosinErection"
+      ]
+    ]
+  },
+  "CQ31": {
+    "question": "Which institution bears responsibility for a given Kumari during her tenure?",
+    "vars": [
+      "tenure",
+      "institution"
+    ],
+    "expected": [
+      [
+        "Tenure_2017",
+        "KasthamandapGuthi"
+      ]
+    ]
+  },
+  "CQ32": {
+    "question": "When and why did an individual stop being Kumari, and what event terminated the status?",
+    "vars": [
+      "retirement",
+      "tenure",
+      "timespan",
+      "reason"
+    ],
+    "expected": [
+      [
+        "Ret_2025",
+        "Tenure_2017",
+        "TS_Ret2025",
+        "Tenure ended at first menstruation, per tradition."
+      ]
+    ]
+  }
+}

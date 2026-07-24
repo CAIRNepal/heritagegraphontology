@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Execute demonstrator SELECT CQs over TBox+ABox; run SHACL conformance + negative tests.
 
-Updated for the 0.1.0-alpha.6 artifact lineage: class/property IRIs follow the
+Updated for the 0.1.0 artifact lineage: class/property IRIs follow the
 released TTL (KumariTenure, crminf:I2_Belief, camelCase slot IRIs, native CRM
 property reuse), the demonstrator is examples/kathmandu-mini-abox.ttl,
 and validation mirrors the pipeline gate (ont_graph mixed in, inference="none";

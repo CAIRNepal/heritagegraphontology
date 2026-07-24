@@ -1,0 +1,25 @@
+# Automatic HTTPS reverse proxy in front of Fuseki.
+# {$DOMAIN} is taken from the environment (see .env). Point an A/AAAA DNS record
+# for this domain at the server before starting, so Caddy can obtain a
+# Let's Encrypt certificate.
+
+{$DOMAIN} {
+    encode zstd gzip
+
+    # Block the Fuseki admin API/UI (dataset management, backups, etc.).
+    @admin path /$/*
+    handle @admin {
+        respond "Admin interface disabled on the public endpoint." 403
+    }
+
+    # Everything else proxies to Fuseki. Because the assembler exposes only
+    # query + read-only GSP endpoints, no write path is reachable even here.
+    reverse_proxy fuseki:3030
+
+    header {
+        # Allow browser-based SPARQL clients (e.g. YASGUI) to query the endpoint.
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        Access-Control-Allow-Headers "Content-Type, Accept"
+    }
+}

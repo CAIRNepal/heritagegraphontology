@@ -83,7 +83,20 @@ def main() -> int:
     props = set(tbox.subjects(RDF.type, OWL.ObjectProperty)) | set(
         tbox.subjects(RDF.type, OWL.DatatypeProperty)
     )
-    vocabulary = superproperty_closure(tbox, props) | {RDFS.label}
+    # Annotation / provenance predicates are orthogonal to the *content*
+    # closedness of a NodeShape: an instance may always carry a link to its
+    # Wikidata equivalent (owl:sameAs), a see-also reference, or a bibliographic
+    # citation of the source it was transcribed from, without that being part of
+    # the class's modelled content. Closed shapes therefore ignore them so the
+    # demonstrator can be published as a source-attributed ("cited gold") graph.
+    DCTERMS = Namespace("http://purl.org/dc/terms/")
+    annotation = {
+        OWL.sameAs, RDFS.seeAlso, RDFS.comment,
+        DCTERMS.source, DCTERMS.references, DCTERMS.bibliographicCitation,
+        DCTERMS.creator, DCTERMS.date, DCTERMS.publisher,
+        URIRef("http://www.cidoc-crm.org/cidoc-crm/P70i_is_documented_in"),
+    }
+    vocabulary = superproperty_closure(tbox, props) | {RDFS.label} | annotation
 
     shapes = Graph()
     shapes.parse(SHACL, format="turtle")

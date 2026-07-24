@@ -3,7 +3,7 @@ name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
   CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
   and ritual-spatial-temporal reasoning."
-version: 0.1.0-alpha.7
+version: 0.1.0
 license: CC-BY-4.0
 
 
@@ -247,7 +247,7 @@ default_prefix: heritageGraph
 
 annotations:
   owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
-  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0-alpha.7"
+  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/0.1.0"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
@@ -255,8 +255,8 @@ annotations:
   dcterms:created: "2025-11-23"
   dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0-alpha.7). https://w3id.org/heritagegraph/ontology"
-  bibo:status: "Pre-release specification draft (alpha)"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (0.1.0). https://w3id.org/heritagegraph/ontology"
+  bibo:status: "Pre-release specification draft"
   vann:preferredNamespacePrefix: "heritageGraph"
   vann:preferredNamespaceUri: "https://w3id.org/heritagegraph/"
   # CLEANUP (alpha.5): removed the owl:imports annotation -- it serialized as
@@ -978,7 +978,7 @@ classes:
     # every one of them was entailed both prov:Entity and prov:Activity --
     # unsatisfiable under PROV-O's own Entity/Activity disjointness. Found
     # by merged-vocabulary HermiT classification
-    # (evaluation/merged_import_classification.py): 22 unsatisfiable classes.
+    # (evaluation/reasoning_extras.py merged-import): 22 unsatisfiable classes.
     # A subject of an assertion is not intrinsically a PROV entity.
     abstract: true
   Assertion:

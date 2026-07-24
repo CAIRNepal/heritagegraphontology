@@ -18,25 +18,33 @@ evaluation/
 │   Core dimensions
 ├── run_consistency.py               ← §7.1  OWL-RL closure & parse check
 ├── run_hermit.py                    ← §7.1  OWL 2 DL consistency (HermiT/ROBOT)
-├── merged_import_classification.py  ← §7.1  Merged-vocabulary classification
-├── inconsistency_injection.py       ← §7.1  Deliberate-inconsistency probes
+├── reasoning_extras.py              ← §7.1  merged-vocabulary classification +
+│                                       inconsistency injection (subcommands:
+│                                       injection | merged-import | all)
 ├── run_oops.py                      ← §7.2  OOPS! pitfall analysis
-├── run_abox_cq32.py                 ← §7.3  32 competency questions over the ABox
-├── cq_entailment.py                 ← §7.3  CQ answers under OWL-RL entailment
+├── run_abox_cq32.py                 ← §7.3  32 competency questions (expected-vs-actual);
+│                                       --entailment runs the OWL-RL entailment +
+│                                       structural-census analysis
+├── cq_expected.json                 ← §7.3  frozen, domain-grounded expected answer sets
+├── run_danam_scale_cq.py            ← §7 Threats  32 CQs at scale over the independent
+│                                       DANAM + Wikidata graph (../data/reconciled/)
 ├── run_metrics.py                   ← §7.3  Structural metrics
 ├── run_alignment.py                 ← §7.6  Alignment counts
-├── run_mapping_audit.py             ← §7.6  External mapping audit
-├── mapping_audit_negative_control.py← §7.6  Mapping negative control
+├── mapping_audit.py                 ← §7.6  External mapping audit + negative
+│                                       control (subcommands: audit |
+│                                       negative-control)
 ├── shacl_census.py                  ← §7.4  SHACL constraint-component census
-├── supersession_chain.py            ← §7.5  Provenance supersession chain
 ├── provo_consumer.py                ← §7.5  PROV-O generic-consumer interop
 │
-│   Pattern ablations (§7.3)
-├── ablation_event_vs_static.py      ← Event-mediation vs static attachment
-├── tenure_vs_actor_role.py          ← Tenure node vs plain actor-role
-├── sameas_vs_reified.py             ← owl:sameAs vs reified syncretism
-├── custodianship_depth.py           ← Institutional custodianship depth
-├── multicalendar_resolution.py      ← Multi-calendar date resolution
+│   Pattern experiments (§7.3, §7.5) — one CLI, run:
+│   pattern_experiments.py [ablation|tenure|sameas|custodianship|
+│                           supersession|multicalendar|all]
+├── pattern_experiments.py           ← ablation      event-mediation vs static
+│                                       tenure        tenure node vs actor-role
+│                                       sameas        owl:sameAs vs reified
+│                                       custodianship institutional depth
+│                                       supersession  belief supersession chain
+│                                       multicalendar multi-calendar resolution
 ├── artifact_lockstep.py             ← LinkML↔generated-artifact lockstep
 │
 │   Independent cross-checks
@@ -139,11 +147,12 @@ Then follow `protege/PROTEGE_EVALUATION_CHECKLIST.md`.
 
 | Tool | What it checks | Script |
 |------|---------------|--------|
-| **rdflib SPARQL 1.1** | 32 instance-level SELECT queries over the demonstrator ABox (`../examples/queries/cq-abox-32.rq`) | `run_abox_cq32.py` |
-| **rdflib + OWL-RL** | how CQ answer sets change under deductive closure | `cq_entailment.py` |
+| **rdflib SPARQL 1.1** | 32 instance-level SELECT queries over the demonstrator ABox (`../examples/queries/cq-abox-32.rq`), each compared against its frozen expected answer set (`cq_expected.json`) | `run_abox_cq32.py` |
+| **rdflib + OWL-RL** | how CQ answer sets change under deductive closure | `run_abox_cq32.py --entailment` |
 
 **Output:**
-- `results/abox_cq32_report.txt` / `.csv` — rows returned per CQ (a CQ passes when it returns ≥1 binding)
+- `results/abox_cq32_report.txt` / `.csv` — expected vs actual rows per CQ (a CQ passes only when its returned bindings equal the expected answer set exactly; the runner also prints a negative-control check proving the oracle discriminates)
+- `results/abox_cq32_table.tex` — LaTeX table body for the paper appendix
 
 **CQ Dimensions:**
 - **Structural** (CQ1–CQ6): Architecture, typology, location
@@ -243,7 +252,7 @@ python3 scripts/finalize_alpha5_artifacts.py
 ## Expected Results Summary
 
 When run against the released ontology (`../ontology/HeritageGraph.ttl`,
-v0.1.0-alpha.7), the suite reproduces the figures reported in §7 of the paper.
+v0.1.0), the suite reproduces the figures reported in §7 of the paper.
 The paper is the authoritative source; the numbers below are a quick reference.
 
 ### §7.1 Consistency
@@ -256,10 +265,22 @@ The paper is the authoritative source; the numbers below are a quick reference.
   (see `run_oops.py` and the paper §7.2).
 
 ### §7.3 Competency Questions
-- **32/32** CQs return ≥1 binding over the demonstrator ABox
+- **32/32** CQs match their frozen expected answer set exactly (39 expected rows) over the demonstrator ABox — expected-vs-actual, not a non-empty check
+- A negative control (a query with a broken predicate) is reported as a mismatch, showing the oracle discriminates
 - Dimensions: Structural 6/6, Ritual/Festival 12/12, Institutional/Syncretic 7/7, Living Goddess 7/7
-- Three pattern ablations (`ablation_event_vs_static.py`, `tenure_vs_actor_role.py`,
-  `sameas_vs_reified.py`) show each pattern is load-bearing
+- Three pattern ablations (`pattern_experiments.py ablation`, `... tenure`,
+  `... sameas`) show each pattern is load-bearing
+
+### At-scale answerability over independent data (§7 Threats)
+- `run_danam_scale_cq.py` runs the same 32 CQs over two independent third-party
+  sources mapped to the released vocabulary — the reconciled DANAM/OpenStreetMap
+  graph (`../data/reconciled/danam-heritagegraph.nq`, 130,286 quads) and a live
+  Wikidata enrichment (`../data/reconciled/wikidata-kv.nq`, built by
+  `../data/enrich_wikidata.py`)
+- **8/32** CQs return bindings over the combined 138,466-triple graph; the
+  provenance query alone returns **7,859** source-attributed assertions. The
+  remaining CQs concern fine-grained ethnographic facts no structured dataset
+  records, and stay evidenced by the cited demonstrator
 
 ### §7.4 Constraint Validation
 - **75** `sh:NodeShape`s with **1,204** property shapes; released open (closedness relaxed)
@@ -279,7 +300,7 @@ The paper is the authoritative source; the numbers below are a quick reference.
 | Datatype properties | 42 |
 | SKOS concepts (enumerations) | 51 |
 | SHACL NodeShapes | 75 |
-| CQ pass rate (ABox) | 32/32 |
+| CQ pass rate (ABox, expected-vs-actual) | 32/32 |
 
 All reports are regenerated against `../ontology/HeritageGraph.ttl`; re-run with
 `make all` (from this directory) to refresh `results/`.

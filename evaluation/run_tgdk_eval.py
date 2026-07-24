@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""TGDK-style ontology evaluation battery for HeritageGraph 0.1.0-alpha.5.
+"""TGDK-style ontology evaluation battery for HeritageGraph 0.1.0.
 
 Executes the standard ontology-evaluation practices expected by venues such
 as TGDK / SWJ for ontology (resource) papers, and writes a consolidated
@@ -235,7 +235,7 @@ def section_fair(g: rdflib.Graph) -> None:
 def main() -> int:
     sv = SchemaView(str(SCHEMA))
     g = rdflib.Graph(); g.parse(OWL_TTL, format="turtle")
-    w(f"TGDK ontology-evaluation battery — HeritageGraph 0.1.0-alpha.5 — {date.today().isoformat()}")
+    w(f"TGDK ontology-evaluation battery — HeritageGraph 0.1.0 — {date.today().isoformat()}")
     w(f"Inputs: {SCHEMA.name}, {OWL_TTL.name}, {SHACL_TTL.name}, {ABOX.name}")
     section_metrics(sv, g)
     section_pitfalls(sv, g)
