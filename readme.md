@@ -2,7 +2,7 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Documentation](https://img.shields.io/badge/Documentation-Online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
 
 An **event-centric OWL 2 DL ontology for living-heritage systems**, demonstrated
 through the cultural heritage of Nepal's Kathmandu Valley: tangible and
@@ -24,7 +24,7 @@ a single [LinkML](https://linkml.io/) source of truth
 reasoner, and reuses and aligns with CIDOC-CRM, CRMinf, PROV-O, SKOS, and the
 Europeana Data Model (EDM).
 
-**At a glance (v0.1.0):**
+**At a glance (v1.0.0):**
 
 | | |
 |---|---|
@@ -299,7 +299,7 @@ cite:
 
 ```text
 Niraj Karki, Nabin Oli, Anu Sapkota, Semih Yumusak, and Tek Raj Chhetri (2026).
-HeritageGraph Ontology (Version 0.1.0).
+HeritageGraph Ontology (Version 1.0.0).
 https://cairnepal.github.io/heritagegraphontology/
 ```
 

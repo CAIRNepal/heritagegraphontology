@@ -252,7 +252,7 @@ python3 scripts/finalize_alpha5_artifacts.py
 ## Expected Results Summary
 
 When run against the released ontology (`../ontology/HeritageGraph.ttl`,
-v0.1.0), the suite reproduces the figures reported in §7 of the paper.
+v1.0.0), the suite reproduces the figures reported in §7 of the paper.
 The paper is the authoritative source; the numbers below are a quick reference.
 
 ### §7.1 Consistency

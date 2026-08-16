@@ -5,10 +5,10 @@ HeritageGraph follows an **event-centric** modelling pattern inherited from
 CIDOC-CRM: instead of linking attributes directly to a heritage object, the
 ontology connects objects, places, agents, and time-spans *through events*. This
 makes provenance, sequence, and participation explicit and queryable. The schema
-contains **84 classes** (66 newly minted plus 18 reused from CIDOC-CRM, CRMinf,
-PROV-O, and SKOS that carry local axioms), **149 object properties**, **42
-datatype properties**, and **7 enumerations** published as SKOS concept schemes
-(**51** controlled-vocabulary concepts). It is generated from a LinkML source of
+defines **66 classes** and **134 properties** (**102 object**, **32 datatype**),
+publishes **7 enumerations** as SKOS concept schemes (**51** controlled-vocabulary
+concepts), and reuses a further **18 classes** from CIDOC-CRM, CRMinf, PROV-O, and
+SKOS with local axioms. It is generated from a LinkML source of
 truth (`HeritageGraph.yaml`).
 
 ### Core building blocks
@@ -72,7 +72,7 @@ The ontology is logically consistent under the HermiT reasoner — **0**
 unsatisfiable classes, both standalone and when merged with CIDOC-CRM, CRMinf,
 and PROV-O — and answers all **32/32** competency questions as SPARQL queries
 over the demonstrator ABox (expected-versus-actual exact match). Its external
-alignment spans SKOS mappings to **12** vocabularies plus the EDM profile. See the
+alignment spans SKOS mappings to **11** vocabularies plus the EDM profile. See the
 [evaluation suite](https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation)
 for reproducible reports.
 

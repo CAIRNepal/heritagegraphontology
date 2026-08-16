@@ -1,63 +1,83 @@
-@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix crm:     <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crminf:  <http://www.ics.forth.gr/isl/CRMinf/> .
+@prefix hg:      <https://w3id.org/heritagegraph/> .
+@prefix ex:      <https://w3id.org/heritagegraph/example/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-# Example ABox: conflicting assertions about syncretic deity identity.
-# Demonstrates multi-vocal heritage representation (Part 6 pattern).
+# ---------------------------------------------------------------------------
+# Example ABox: the epistemic-provenance pattern under contradiction.
+#
+# Two mutually conflicting, separately attributed beliefs about the identity of
+# Matsyendranath are retained side by side rather than reconciled. Each belief
+# (crminf:I2_Belief) carries its own source, agent, confidence, and a
+# machine-readable proposition (crminf:J4_that -> hg:Proposition); theological
+# equivalence is additionally reified as a SyncreticRelationship rather than
+# collapsed with owl:sameAs. Illustrates the pattern of the paper's
+# "Epistemic Provenance" section. All individuals are fictional exemplars.
+# ---------------------------------------------------------------------------
 
-heritageGraph:example_Pashupatinath a heritageGraph:Temple ;
-    rdfs:label "Pashupatinath Temple (example)"@en .
+# --- Referents (the deities the claims are about) ---
+ex:Matsyendranath   a hg:Deity ; rdfs:label "Matsyendranath (example)"@en .
+ex:Avalokiteshvara  a hg:Deity ; rdfs:label "Avalokiteshvara (example)"@en .
 
-heritageGraph:example_Matsyendranath a heritageGraph:Deity ;
-    rdfs:label "Matsyendranath (example)"@en .
-
-heritageGraph:example_Avalokiteshvara a heritageGraph:Deity ;
-    rdfs:label "Avalokiteshvara (example)"@en .
-
-heritageGraph:example_oral_source a heritageGraph:OralHistoryRecording ;
+# --- Typed evidential sources ---
+ex:oral_source a hg:OralHistoryRecording ;
     rdfs:label "Guthi elder interview (example)"@en ;
-    heritageGraph:source_type heritageGraph:OralHistory ;
-    heritageGraph:epistemic_stance heritageGraph:Community ;
-    heritageGraph:community_attribution "Jyapu Mahaguthi tradition-bearers (fictional example)" ;
-    heritageGraph:traditional_knowledge_notice "TK Notice — community attribution required for ritual narratives." .
+    dcterms:creator "Jyapu Mahaguthi tradition-bearers (fictional example)" ;
+    rdfs:comment "TK Notice (CARE): community attribution required for ritual narratives; authority over this knowledge rests with the tradition-bearers." .
 
-heritageGraph:example_scholarly_source a heritageGraph:ArchivalRecord ;
+ex:scholarly_source a hg:ArchivalRecord ;
     rdfs:label "Published syncretism study (example)"@en ;
-    heritageGraph:source_type heritageGraph:PublishedScholarship ;
-    heritageGraph:epistemic_stance heritageGraph:Scholarly .
+    dcterms:bibliographicCitation "Fictional example citation, Journal of Newar Studies (n.d.)." .
 
-heritageGraph:assertion_community_001 a heritageGraph:HeritageAssertion ;
+# --- Responsible agents ---
+ex:guthi_elder a hg:Person ; rdfs:label "Guthi elder (example)"@en .
+ex:scholar     a hg:Person ; rdfs:label "Heritage scholar (example)"@en .
+
+# --- Belief 1: community claim (identity) ---
+ex:assertion_community a crminf:I2_Belief ;
     rdfs:label "Community claim: Matsyendranath embodies Avalokiteshvara"@en ;
-    heritageGraph:assertion_content "Matsyendranath is understood as Avalokiteshvara in Newar Buddhist practice." ;
-    heritageGraph:asserts_about_entity heritageGraph:example_Matsyendranath ;
-    heritageGraph:was_derived_from_source heritageGraph:example_oral_source ;
-    heritageGraph:was_attributed_to_agent heritageGraph:example_guthi_elder ;
-    heritageGraph:generated_at_time "2024-03-15T10:00:00"^^xsd:dateTime ;
-    heritageGraph:confidence_score "0.85"^^xsd:float ;
-    heritageGraph:epistemic_stance heritageGraph:Community ;
-    heritageGraph:conflicts_with_assertion heritageGraph:assertion_scholarly_001 .
+    prov:value "Matsyendranath is understood as Avalokiteshvara in Newar Buddhist practice." ;
+    hg:assertsAbout       ex:Matsyendranath ;
+    crminf:J4_that        ex:prop_identity_community ;
+    prov:wasDerivedFrom   ex:oral_source ;
+    prov:wasAttributedTo  ex:guthi_elder ;
+    prov:generatedAtTime  "2024-03-15T10:00:00"^^xsd:dateTime ;
+    hg:confidenceScore    "0.85"^^xsd:float ;
+    hg:reconciliationStatus "conflicting" .
 
-heritageGraph:assertion_scholarly_001 a heritageGraph:HeritageAssertion ;
+ex:prop_identity_community a hg:Proposition ;
+    hg:propositionSubject      ex:Matsyendranath ;
+    hg:propositionPredicate    skos:exactMatch ;
+    hg:propositionObjectEntity ex:Avalokiteshvara .
+
+# --- Belief 2: scholarly claim (ritual conflation, not identity) ---
+ex:assertion_scholarly a crminf:I2_Belief ;
     rdfs:label "Scholarly claim: distinct figures with ritual conflation"@en ;
-    heritageGraph:assertion_content "Matsyendranath and Avalokiteshvara are historically distinct; equivalence is ritual-not ontological." ;
-    heritageGraph:asserts_about_entity heritageGraph:example_Matsyendranath ;
-    heritageGraph:was_derived_from_source heritageGraph:example_scholarly_source ;
-    heritageGraph:generated_at_time "2023-11-02T09:30:00"^^xsd:dateTime ;
-    heritageGraph:confidence_score "0.70"^^xsd:float ;
-    heritageGraph:epistemic_stance heritageGraph:Scholarly ;
-    heritageGraph:conflicts_with_assertion heritageGraph:assertion_community_001 .
+    prov:value "Matsyendranath and Avalokiteshvara are historically distinct; the equivalence is ritual, not ontological." ;
+    hg:assertsAbout       ex:Matsyendranath ;
+    crminf:J4_that        ex:prop_identity_scholarly ;
+    prov:wasDerivedFrom   ex:scholarly_source ;
+    prov:wasAttributedTo  ex:scholar ;
+    prov:generatedAtTime  "2023-11-02T09:30:00"^^xsd:dateTime ;
+    hg:confidenceScore    "0.70"^^xsd:float ;
+    hg:reconciliationStatus "conflicting" .
 
-heritageGraph:example_guthi_elder a heritageGraph:Person ;
-    rdfs:label "Guthi elder (example)"@en .
+ex:prop_identity_scholarly a hg:Proposition ;
+    hg:propositionSubject      ex:Matsyendranath ;
+    hg:propositionPredicate    skos:relatedMatch ;
+    hg:propositionObjectEntity ex:Avalokiteshvara .
 
-heritageGraph:example_syncretic_link a heritageGraph:SyncreticRelationship ;
+# --- Reified syncretic equivalence (attributed, not asserted as identity) ---
+ex:syncretic_link a hg:SyncreticRelationship ;
     rdfs:label "Syncretic equivalence claim (example)"@en ;
-    heritageGraph:assigned_to_deity heritageGraph:example_Matsyendranath ;
-    heritageGraph:assigned_equivalent heritageGraph:example_Avalokiteshvara ;
-    heritageGraph:syncretic_type heritageGraph:Equivalence ;
-    heritageGraph:was_derived_from_source heritageGraph:example_oral_source ;
-    heritageGraph:confidence_score "0.80"^^xsd:float ;
-    heritageGraph:reconciliation_status "contested" .
+    crm:P140_assigned_attribute_to ex:Matsyendranath ;
+    crm:P141_assigned              ex:Avalokiteshvara ;
+    hg:syncreticType               hg:Equivalence ;
+    prov:wasDerivedFrom            ex:oral_source ;
+    hg:confidenceScore             "0.80"^^xsd:float ;
+    hg:reconciliationStatus        "conflicting" .
