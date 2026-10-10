@@ -29,15 +29,28 @@ The ontology supports the representation of:
 
 ```text
 .
-├── docs/              # Documentation resources
-├── evaluation/        # Ontology evaluation artifacts
-├── provenance/        # Provenance metadata
-├── resources/         # Supporting resources
-├── webvowl/           # WebVOWL visualization
-├── HeritageGraph.owl  # OWL ontology
-├── HeritageGraph.ttl  # Turtle serialization
-└── README.md
+├── docs/                # Generated documentation & HTML resources
+├── evaluation/          # Ontology evaluation artifacts
+├── provenance/          # Provenance metadata
+├── resources/           # Supporting resources
+├── webvowl/             # WebVOWL visualization
+├── HeritageGraph.yaml   # Primary LinkML source schema
+├── HeritageGraph.owl    # Generated OWL ontology
+├── HeritageGraph.ttl    # Generated Turtle serialization
+└── readme.md
 ```
+
+## Ontology Source & Build Workflow
+
+The primary source definition for the ontology is authored using [LinkML](https://linkml.io/):
+
+* **Source Schema:** `HeritageGraph.yaml` — Defines classes, properties (slots), enums, and ontological mappings (e.g., CIDOC-CRM, PROV-O).
+* **Compilation to OWL/TTL:** Automated in the CI workflow (`.github/workflows/ci.yaml`) via LinkML's `gen-owl`:
+  ```bash
+  gen-owl HeritageGraph.yaml --format ttl --output HeritageGraph.ttl
+  ```
+* **Documentation:** The HTML documentation and WebVOWL visualizer in `docs/` are generated from `HeritageGraph.ttl` using [Widoco](https://github.com/dgarijo/Widoco) and deployed via GitHub Pages.
+
 
 ## Documentation
 

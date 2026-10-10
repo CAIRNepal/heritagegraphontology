@@ -99,21 +99,45 @@ enums:
       
       RitualConsecration:
         description: "Consecration/activation ritual"
+        meaning: heritageGraph:RitualConsecration
+        exact_mappings:
+          - aat:300069634
+          - wikidata:Q175027
       ProcessionRitual:
         description: "Ritual procession/movement"
+        meaning: heritageGraph:ProcessionRitual
+        exact_mappings:
+          - aat:300069223
+          - wikidata:Q538421
       InstallationRitual:
         description: "Installation/enshrinement ritual"
+        meaning: heritageGraph:InstallationRitual
+        exact_mappings:
+          - aat:300069634
+          - wikidata:Q7336785
       DeinstallationRitual:
         description: "De-installation/conclusion ritual"
+        meaning: heritageGraph:DeinstallationRitual
       ReturningRitual:
-        description: "Return to normal state ritual" 
+        description: "Return to normal state ritual"
+        meaning: heritageGraph:ReturningRitual
 
       Circumambulation:
         description: "Ritual circular movement around sacred site"
+        meaning: heritageGraph:Circumambulation
+        exact_mappings:
+          - aat:300404455
+          - wikidata:Q1188371
       RelicTour:
         description: "Procession with sacred relics between sites"
+        meaning: heritageGraph:RelicTour
+        exact_mappings:
+          - aat:300069223
       ProcessionalMovement:
         description: "General ritual movement between locations"
+        meaning: heritageGraph:ProcessionalMovement
+        exact_mappings:
+          - aat:300069223
 
   
   DatePrecisionEnum:
@@ -737,6 +761,24 @@ classes:
         range: DatePrecisionEnum
 
   # ========================================================================
+  # MATERIALS AND TECHNIQUES (Referenced by AssertableEntity and Events)
+  # ========================================================================
+
+  Technique:
+    class_uri: crm:E29_Design_or_Procedure
+    description: "Method or craft process used in production or ritual"
+    slots:
+      - name
+      - note
+
+  Material:
+    class_uri: crm:E57_Material
+    description: "Physical substance used in construction or crafting"
+    slots:
+      - name
+      - note
+
+  # ========================================================================
   # PROVENANCE CLASSES (PROV-O aligned with CIDOC)
   # ========================================================================
 
@@ -798,6 +840,28 @@ classes:
 
  
 
+  DocumentationActivity:
+    is_a: Activity
+    class_uri: crm:E7_Activity
+    broad_mappings:
+      - prov:Activity  
+    description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
+    
+
+    slots:
+      - name
+      - produced_information_object 
+      - subject_entity
+      - subject_event 
+   
+      - performed_by_agent
+      - used_method
+      - used_equipment
+
+      - generated_assertion
+      
+      - has_timespan
+
   FieldSurveyActivity:
     is_a: DocumentationActivity
     class_uri: crmsci:S4_Observation 
@@ -828,28 +892,6 @@ classes:
       - rico:Record  
     broad_mappings:
       - crm:E31_Document
-
-  DocumentationActivity:
-    is_a: Activity
-    class_uri: crm:E7_Activity
-    broad_mappings:
-      - prov:Activity  
-    description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
-    
-
-    slots:
-      - name
-      - produced_information_object 
-      - subject_entity
-      - subject_event 
-   
-      - performed_by_agent
-      - used_method
-      - used_equipment
-
-      - generated_assertion
-      
-      - has_timespan
   InformationObject:
     is_a: DataSource
     class_uri: crm:E73_Information_Object
@@ -1071,20 +1113,6 @@ classes:
         description: "List of selection criteria verified"
 
   
-  Technique:
-    class_uri: crm:E29_Design_or_Procedure
-    description: "Method or craft process used in production or ritual"
-    slots:
-      - name
-      - note
-
-  Material:
-    class_uri: crm:E57_Material
-    description: "Physical substance used in construction or crafting"
-    slots:
-      - name
-      - note
-
   Container:
     tree_root: true
     description: "Root container for cultural heritage data instances"
@@ -1798,8 +1826,8 @@ slots:
 
   epoch_date_gregorian:
     slot_uri: heritageGraph:epoch_date_gregorian
-    range: string
-    description: "The start date of this calendar era in Gregorian ISO format."
+    range: date
+    description: "The start date of this calendar era in Gregorian ISO format (ISO 8601 YYYY-MM-DD)."
 
   year_offset_from_gregorian:
     slot_uri: heritageGraph:year_offset_from_gregorian
@@ -1922,7 +1950,8 @@ slots:
   source_language:
     slot_uri: crm:P72_has_language
     range: string
-    description: "Language of the source material"
+    pattern: "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$"
+    description: "Language of the source material formatted according to IETF BCP 47 (e.g., 'ne', 'sa', 'new', 'en')."
 
   was_derived_from_source:
     slot_uri: prov:wasDerivedFrom
