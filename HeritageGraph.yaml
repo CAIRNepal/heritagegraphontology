@@ -1,7 +1,7 @@
-id: HeritageGrap
-name: HeritageGrap
+id: HeritageGraph
+name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information that fully aligns with CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning."
-version: 1.0.0
+version: 0.1.0-alpha.2
 license: CC-BY-4.0
 
 
@@ -235,7 +235,9 @@ annotations:
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
-  owl:imports: "http://www.cidoc-crm.org/cidoc-crm/ http://www.w3.org/ns/prov#"
+  owl:imports:
+    - "http://www.cidoc-crm.org/cidoc-crm/"
+    - "http://www.w3.org/ns/prov#"
 
 classes:
   # ========================================================================
@@ -1131,13 +1133,6 @@ classes:
       deities:
         description: "Collection of Deity instances"
         range: Deity
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-      
-      has_architectural_style:
-        description: "Collection of ArchitecturalStyle instances"
-        range: ArchitecturalStyleEnum
         multivalued: true
         inlined: true
         inlined_as_list: true
