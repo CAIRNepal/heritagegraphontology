@@ -1,7 +1,7 @@
-id: HeritageGrap
-name: HeritageGrap
+id: HeritageGraph
+name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information that fully aligns with CIDOC-CRM and PROV-O, enabling provenance tracking and ritual-spatial-temporal reasoning."
-version: 1.0.0
+version: 0.1.0-alpha.2
 license: CC-BY-4.0
 
 
@@ -99,21 +99,45 @@ enums:
       
       RitualConsecration:
         description: "Consecration/activation ritual"
+        meaning: heritageGraph:RitualConsecration
+        exact_mappings:
+          - aat:300069634
+          - wikidata:Q175027
       ProcessionRitual:
         description: "Ritual procession/movement"
+        meaning: heritageGraph:ProcessionRitual
+        exact_mappings:
+          - aat:300069223
+          - wikidata:Q538421
       InstallationRitual:
         description: "Installation/enshrinement ritual"
+        meaning: heritageGraph:InstallationRitual
+        exact_mappings:
+          - aat:300069634
+          - wikidata:Q7336785
       DeinstallationRitual:
         description: "De-installation/conclusion ritual"
+        meaning: heritageGraph:DeinstallationRitual
       ReturningRitual:
-        description: "Return to normal state ritual" 
+        description: "Return to normal state ritual"
+        meaning: heritageGraph:ReturningRitual
 
       Circumambulation:
         description: "Ritual circular movement around sacred site"
+        meaning: heritageGraph:Circumambulation
+        exact_mappings:
+          - aat:300404455
+          - wikidata:Q1188371
       RelicTour:
         description: "Procession with sacred relics between sites"
+        meaning: heritageGraph:RelicTour
+        exact_mappings:
+          - aat:300069223
       ProcessionalMovement:
         description: "General ritual movement between locations"
+        meaning: heritageGraph:ProcessionalMovement
+        exact_mappings:
+          - aat:300069223
 
   
   DatePrecisionEnum:
@@ -235,7 +259,9 @@ annotations:
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
-  owl:imports: "http://www.cidoc-crm.org/cidoc-crm/ http://www.w3.org/ns/prov#"
+  owl:imports:
+    - "http://www.cidoc-crm.org/cidoc-crm/"
+    - "http://www.w3.org/ns/prov#"
 
 classes:
   # ========================================================================
@@ -469,6 +495,7 @@ classes:
       - name
       - note
   HistoricalEvent:
+    is_a: Event
     class_uri: crm:E5_Event
     description: "Major event affecting heritage structures or ritual life
       (earthquake, epidemic, political transition, fire, flood)."
@@ -502,7 +529,24 @@ classes:
   # EVENT CLASSES (CIDOC-CRM Event-Centric Core)
   # ========================================================================
 
+  Event:
+    class_uri: crm:E5_Event
+    description: "An event or change of state affecting cultural heritage (CIDOC-CRM E5 Event)."
+    slots:
+      - name
+      - note
+      - has_timespan
+      - took_place_at
+
+  Activity:
+    is_a: Event
+    class_uri: crm:E7_Activity
+    description: "An intentional activity carried out by one or more actors (CIDOC-CRM E7 Activity)."
+    slots:
+      - carried_out_by
+
   Production:
+    is_a: Activity
     class_uri: crm:E12_Production
     description: "Event of creating an architectural structure, murti, or paubha"
     slots:
@@ -517,6 +561,7 @@ classes:
       - has_provenance_assertion
 
   RitualEvent:
+    is_a: Activity
     class_uri: crm:E7_Activity
     description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
     exact_mappings:
@@ -541,11 +586,18 @@ classes:
       - occurs_after
       - used_materials
 
-      # for moving pocessions
-      - route_places          
-      - start_place         
-      - end_place            
-      - route_description 
+  ProcessionEvent:
+    is_a: RitualEvent
+    class_uri: heritageGraph:ProcessionEvent
+    description: "Ritual event involving movement of sacred presences, icons, or participants along a prescribed route"
+    exact_mappings:
+      - aat:300069223
+      - wikidata:Q538421
+    slots:
+      - route_places
+      - start_place
+      - end_place
+      - route_description
 
   Festival:
     is_a: RitualEvent
@@ -566,6 +618,7 @@ classes:
    
 
   Consecration:
+    is_a: Activity
     class_uri: crm:E7_Activity
     description: "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"
     slots:
@@ -577,6 +630,7 @@ classes:
       - makes_deity_present
 
   Enshrinement:
+    is_a: Activity
     class_uri: crm:E7_Activity
     description: "Event of installing a deity's murti or symbol within a temple sanctum"
     slots:
@@ -587,6 +641,7 @@ classes:
       - has_timespan
 
   TransferOfCustody:
+    is_a: Activity
     class_uri: crm:E10_Transfer_of_Custody
     description: "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship"
     slots:
@@ -599,6 +654,7 @@ classes:
       - has_timespan
 
   ConditionAssessment:
+    is_a: Activity
     class_uri: crm:E14_Condition_Assessment
     description: "Event of evaluating the physical state of a heritage object or structure"
     slots:
@@ -624,7 +680,9 @@ classes:
 
   Guthi:
     class_uri: crm:E74_Group
-    description: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership"
+    description: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership. Per CIDOC-CRM best practices, functional subtypes of Guthi are modeled as E55 Type values via GuthiTypeEnum, rather than as ontological subclasses."
+    comments:
+      - "Per CIDOC-CRM best practices, functional subtypes of Guthi are modeled as E55 Type values via GuthiTypeEnum, rather than as ontological subclasses."
     slots:
       - name
       - note
@@ -638,46 +696,6 @@ classes:
       guthi_type:
         range: GuthiTypeEnum
 
-  # SiGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:SiGuthi
-  #   description: "Funeral trust responsible for death rituals and cremation ceremonies"
-
-  # JatraGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:JatraGuthi
-  #   description: "Festival trust responsible for organizing and funding annual Jatra events"
-
-  # PujaGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:PujaGuthi
-  #   description: "Worship trust responsible for daily puja rituals. Distinct from JatraGuthi."
-
-  # TempleGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:TempleGuthi
-  #   description: "Trust managing temple maintenance, daily puja, and priest salaries"
-
-  # NashaGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:NashaGuthi
-  #   description: "Music and dance trust (nāsaḥdyaḥ) preserving ritual performance traditions"
-
-  # SanaGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:SanaGuthi
-  #   description: "Agricultural cooperative managing communal farmland"
-
-  # SanGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:SanGuthi
-  #   description: "Life-cycle ritual trust managing rites of passage"
-
-  # RajGuthi:
-  #   is_a: Guthi
-  #   class_uri: heritageGraph:RajGuthi
-  #   description: "Royal Guthi established by Malla or Shah monarchy (pre-1964)"
-
   CasteGroup:
     class_uri: crm:E74_Group
     description: "Hereditary social group (Jati) with specific ritual roles and occupational duties"
@@ -690,7 +708,15 @@ classes:
   # ACTORS (CIDOC E39 Actor / E21 Person)
   # ========================================================================
 
+  Actor:
+    class_uri: crm:E39_Actor
+    description: "General actor (person or group) responsible for events"
+    slots:
+      - name
+      - note
+
   Person:
+    is_a: Actor
     class_uri: crm:E21_Person
     description: "Individual person who performs, commissions, documents, or verifies heritage activities"
     slots:
@@ -703,13 +729,6 @@ classes:
       - carried_out_activity
       - institutional_affiliation
       - expertise_area
-
-  Actor:
-    class_uri: crm:E39_Actor
-    description: "General actor (person or group) responsible for events"
-    slots:
-      - name
-      - note
 
   # ========================================================================
   # SPATIOTEMPORAL CLASSES
@@ -740,6 +759,24 @@ classes:
         range: CalendarSystem
       date_precision:
         range: DatePrecisionEnum
+
+  # ========================================================================
+  # MATERIALS AND TECHNIQUES (Referenced by AssertableEntity and Events)
+  # ========================================================================
+
+  Technique:
+    class_uri: crm:E29_Design_or_Procedure
+    description: "Method or craft process used in production or ritual"
+    slots:
+      - name
+      - note
+
+  Material:
+    class_uri: crm:E57_Material
+    description: "Physical substance used in construction or crafting"
+    slots:
+      - name
+      - note
 
   # ========================================================================
   # PROVENANCE CLASSES (PROV-O aligned with CIDOC)
@@ -803,6 +840,28 @@ classes:
 
  
 
+  DocumentationActivity:
+    is_a: Activity
+    class_uri: crm:E7_Activity
+    broad_mappings:
+      - prov:Activity  
+    description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
+    
+
+    slots:
+      - name
+      - produced_information_object 
+      - subject_entity
+      - subject_event 
+   
+      - performed_by_agent
+      - used_method
+      - used_equipment
+
+      - generated_assertion
+      
+      - has_timespan
+
   FieldSurveyActivity:
     is_a: DocumentationActivity
     class_uri: crmsci:S4_Observation 
@@ -833,27 +892,6 @@ classes:
       - rico:Record  
     broad_mappings:
       - crm:E31_Document
-
-  DocumentationActivity:
-    class_uri: crm:E7_Activity
-    broad_mappings:
-      - prov:Activity  
-    description: "The intellectual or technical process of recording information about a heritage entity, aligning CIDOC E13 (Attribute Assignment) with PROV-O Activity."
-    
-
-    slots:
-      - name
-      - produced_information_object 
-      - subject_entity
-      - subject_event 
-   
-      - performed_by_agent
-      - used_method
-      - used_equipment
-
-      - generated_assertion
-      
-      - has_timespan
   InformationObject:
     is_a: DataSource
     class_uri: crm:E73_Information_Object
@@ -1075,20 +1113,6 @@ classes:
         description: "List of selection criteria verified"
 
   
-  Technique:
-    class_uri: crm:E29_Design_or_Procedure
-    description: "Method or craft process used in production or ritual"
-    slots:
-      - name
-      - note
-
-  Material:
-    class_uri: crm:E57_Material
-    description: "Physical substance used in construction or crafting"
-    slots:
-      - name
-      - note
-
   Container:
     tree_root: true
     description: "Root container for cultural heritage data instances"
@@ -1131,13 +1155,6 @@ classes:
       deities:
         description: "Collection of Deity instances"
         range: Deity
-        multivalued: true
-        inlined: true
-        inlined_as_list: true
-      
-      has_architectural_style:
-        description: "Collection of ArchitecturalStyle instances"
-        range: ArchitecturalStyleEnum
         multivalued: true
         inlined: true
         inlined_as_list: true
@@ -1195,6 +1212,13 @@ classes:
       ritual_events:
         description: "Collection of RitualEvent instances"
         range: RitualEvent
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      
+      procession_events:
+        description: "Collection of ProcessionEvent instances"
+        range: ProcessionEvent
         multivalued: true
         inlined: true
         inlined_as_list: true
@@ -1345,9 +1369,11 @@ slots:
     multivalued: true
 
   embodied_deity:
-    slot_uri: crm:P14.1_in_the_role_of  # ✅ Use CRM role mechanism
+    slot_uri: crm:P14.1_in_the_role_of  # Use CRM role mechanism
     range: Deity
     description: "Deity role embodied by participant"
+    comments:
+      - "Note on qualified property serialization: crm:P14.1_in_the_role_of is a CIDOC-CRM 7.x property of property. Target serialization profiles (e.g., JSON-LD context, SHACL engines) should verify support for dotted subproperties (.1); if unsupported in a downstream pipeline, fall back to crm:P14_carried_out_by with domain/range constraints."
 
   residence_structure:
     slot_uri: crm:P74_has_current_or_former_residence
@@ -1800,8 +1826,8 @@ slots:
 
   epoch_date_gregorian:
     slot_uri: heritageGraph:epoch_date_gregorian
-    range: string
-    description: "The start date of this calendar era in Gregorian ISO format."
+    range: date
+    description: "The start date of this calendar era in Gregorian ISO format (ISO 8601 YYYY-MM-DD)."
 
   year_offset_from_gregorian:
     slot_uri: heritageGraph:year_offset_from_gregorian
@@ -1876,12 +1902,12 @@ slots:
 
   is_about_entity:
     slot_uri: crm:P129_is_about
-    range: ArchitecturalStructure
+    range: AssertableEntity
     description: "Entity that this information object describes"
 
   is_about_event:
     slot_uri: crm:P129_is_about
-    range: RitualEvent
+    range: Event
     description: "Event that this information object describes"
 
   performed_by_agent:
@@ -1920,11 +1946,12 @@ slots:
 
   asserts_about_event:
     slot_uri: crm:P141_assigned
-    range: RitualEvent
+    range: Event
   source_language:
     slot_uri: crm:P72_has_language
     range: string
-    description: "Language of the source material"
+    pattern: "^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$"
+    description: "Language of the source material formatted according to IETF BCP 47 (e.g., 'ne', 'sa', 'new', 'en')."
 
   was_derived_from_source:
     slot_uri: prov:wasDerivedFrom
@@ -1946,13 +1973,13 @@ slots:
 
   subject_entity:
     slot_uri: crm:P140_assigned_attribute_to
-    range: PhysicalHeritageThing
+    range: AssertableEntity
     multivalued: true
     description: "Heritage entity that is the subject of documentation"
 
   subject_event:
     slot_uri: crm:P141_assigned
-    range: RitualEvent
+    range: Event
     multivalued: true
     description: "Event that is the subject of documentation"
   created_by_documentation:
@@ -2014,7 +2041,7 @@ slots:
 
   carried_out_activity:
     slot_uri: crm:P14i_performed
-    range: RitualEvent
+    range: Activity
     multivalued: true
     description: "Activities performed by this actor"
 
