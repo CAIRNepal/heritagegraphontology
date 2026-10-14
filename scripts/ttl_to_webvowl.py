@@ -89,21 +89,48 @@ def convert(sources: list[str]) -> dict:
             if isinstance(r, URIRef) and r not in classes:
                 datatypes.add(r)
 
-    # Domain/range inferred from owl:Restriction usage (LinkML emits restrictions
-    # on classes rather than global rdfs:domain). prop -> set(restricting classes).
-    restr_domain: dict[URIRef, set] = {}
-    restr_range: dict[URIRef, set] = {}
-    for c in classes:
+    # LinkML expresses domain/range as owl:Restriction axioms on classes rather
+    # than a global rdfs:domain, so a property reused across many classes has no
+    # single domain and would otherwise collapse onto owl:Thing. We therefore
+    # render each restriction as one class -> filler edge; a property used between
+    # N class pairs becomes N edges that share an IRI and label, exactly as
+    # owl2vowl draws a reused property. The LinkML tree_root `Container` is a
+    # serialization construct (not a domain class), so its collection slots are
+    # excluded from the graph.
+    CONTAINER = URIRef(HG + "Container")
+    classes.discard(CONTAINER)
+    _FILLERS = _REST_FILLERS + (OWL.hasValue,)
+    edges: list[tuple] = []           # (domain, prop, filler, kind)
+    _seen_edges: set = set()
+    for c in list(classes):
         for restr in g.objects(c, RDFS.subClassOf):
-            if isinstance(restr, BNode) and (restr, RDF.type, OWL.Restriction) in g:
-                p = g.value(restr, OWL.onProperty)
-                if not isinstance(p, URIRef):
-                    continue
-                restr_domain.setdefault(p, set()).add(c)
-                for fill_pred in _REST_FILLERS:
-                    f = g.value(restr, fill_pred)
-                    if isinstance(f, URIRef):
-                        restr_range.setdefault(p, set()).add(f)
+            if not (isinstance(restr, BNode) and (restr, RDF.type, OWL.Restriction) in g):
+                continue
+            p = g.value(restr, OWL.onProperty)
+            if not isinstance(p, URIRef):
+                continue
+            filler = next((f for fp in _FILLERS
+                           for f in [g.value(restr, fp)] if isinstance(f, URIRef)), None)
+            if filler is None:        # cardinality-only restriction -> declared range
+                filler = next((r for r in g.objects(p, RDFS.range) if isinstance(r, URIRef)), None)
+            if filler is None:
+                continue
+            key = (c, p, filler)
+            if key in _seen_edges:
+                continue
+            _seen_edges.add(key)
+            if p in dat_props:
+                kind = "datatype"
+            elif p in obj_props:
+                kind = "object"
+            else:
+                kind = "datatype" if str(filler).startswith(
+                    ("http://www.w3.org/2001/XMLSchema#",
+                     "http://www.w3.org/2000/01/rdf-schema#Literal")) else "object"
+            edges.append((c, p, filler, kind))
+    # register edge endpoints as nodes
+    for _dom, _p, _fill, _kind in edges:
+        (datatypes if _kind == "datatype" else classes).add(_fill)
 
     # ---- assign ids ----------------------------------------------------------
     node_id: dict[URIRef, str] = {}
@@ -111,11 +138,6 @@ def convert(sources: list[str]) -> dict:
     for c in sorted(classes) + sorted(datatypes):
         node_id[c] = str(nid)
         nid += 1
-    prop_id: dict[URIRef, str] = {}
-    pid = 0
-    for p in sorted(obj_props) + sorted(dat_props):
-        prop_id[p] = str(pid)
-        pid += 1
 
     def is_external(iri: URIRef) -> bool:
         return not str(iri).startswith(HG)
@@ -157,31 +179,25 @@ def convert(sources: list[str]) -> dict:
             "label": label_block(g, d), "id": node_id[d], "attributes": ["datatype", "external"],
         })
 
-    # ---- build property + propertyAttribute arrays ---------------------------
+    # ---- build property + propertyAttribute arrays (one entry per edge) ------
+    # Each restriction-derived edge is its own property occurrence, so a reused
+    # property renders as several labelled edges between the class pairs that
+    # actually use it, rather than a single node pinned to owl:Thing.
     prop_arr, propattr_arr = [], []
-
-    def pick(uris: set) -> URIRef | None:
-        """A single representative domain/range; None when ambiguous (-> Thing)."""
-        cands = sorted(u for u in uris if u in node_id)
-        return cands[0] if len(cands) == 1 else None
-
-    def prop_entry(p: URIRef, ptype: str, kind: str):
-        prop_arr.append({"id": prop_id[p], "type": ptype})
+    obj_edges = dat_edges = 0
+    for eid, (dom, p, fill, kind) in enumerate(edges):
+        if dom not in node_id or fill not in node_id:
+            continue
+        # WebVOWL uses a single id space for nodes and edges; offset edge ids past
+        # the class/datatype node ids so they never collide.
+        edge_id = str(nid + eid)
+        ptype = "owl:datatypeProperty" if kind == "datatype" else "owl:objectProperty"
+        prop_arr.append({"id": edge_id, "type": ptype})
         attr = {
             "iri": str(p), "baseIri": base_iri(str(p)),
-            "label": label_block(g, p), "id": prop_id[p],
+            "label": label_block(g, p), "id": edge_id,
+            "domain": node_id[dom], "range": node_id[fill],
         }
-        dom = next((o for o in g.objects(p, RDFS.domain) if isinstance(o, URIRef) and o in node_id), None)
-        rng = next((o for o in g.objects(p, RDFS.range) if isinstance(o, URIRef) and o in node_id), None)
-        if dom is None:
-            dom = pick(restr_domain.get(p, set())) or THING
-        if rng is None:
-            rng = pick(restr_range.get(p, set())) or (LITERAL if kind == "datatype" else THING)
-        attr["domain"] = node_id[dom]
-        attr["range"] = node_id[rng]
-        sub = [prop_id[o] for o in g.objects(p, RDFS.subPropertyOf) if o in prop_id]
-        if sub:
-            attr["subproperty"] = sub
         attrs = [kind]
         if is_external(p):
             attrs.append("external")
@@ -190,20 +206,34 @@ def convert(sources: list[str]) -> dict:
         if ann:
             attr["annotations"] = ann
         propattr_arr.append(attr)
+        if kind == "datatype":
+            dat_edges += 1
+        else:
+            obj_edges += 1
 
-    for p in sorted(obj_props):
-        prop_entry(p, "owl:objectProperty", "object")
-    for p in sorted(dat_props):
-        prop_entry(p, "owl:datatypeProperty", "datatype")
+    # ---- drop fully disconnected nodes (a lone owl:Thing once its star is gone,
+    #      or unreferenced skos:Concept/ConceptScheme scaffolding) ---------------
+    connected: set = set()
+    for p in propattr_arr:
+        connected.add(p["domain"]); connected.add(p["range"])
+    for c in clsattr_arr:
+        for s in c.get("superClasses", []):
+            connected.add(c["id"]); connected.add(s)
+        for e in c.get("equivalent", []):
+            connected.add(c["id"]); connected.add(e)
+    cls_arr = [c for c in cls_arr if c["id"] in connected]
+    clsattr_arr = [c for c in clsattr_arr if c["id"] in connected]
 
     header = {
         "languages": ["en", "undefined"],
         "baseIris": [HG],
         "iri": HG,
-        "title": {"IRI-based": "HeritageGraph", "en": "HeritageGraph (core + LUX/CIDOC-CRM bridge)"},
+        "title": {"IRI-based": "HeritageGraph", "en": "HeritageGraph Ontology"},
         "labels": {"IRI-based": "HeritageGraph", "en": "HeritageGraph"},
-        "description": {"en": "CAIR Nepal HeritageGraph ontology merged with the LUX "
-                              "(Yale Linked Art / CIDOC-CRM) interoperability bridge."},
+        "description": {"en": "An event-centric LinkML/OWL ontology for Nepalese living "
+                              "cultural heritage, aligned with CIDOC-CRM, PROV-O, CRMinf and "
+                              "SKOS. Class-to-class relations are rendered from the ontology's "
+                              "owl:Restriction axioms."},
         "other": {"created": [{"identifier": "created", "language": "en",
                                "value": date.today().isoformat(), "type": "label"}]},
     }
