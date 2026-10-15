@@ -2,11 +2,11 @@
 ======================================================================
   §4.4  Alignment & Interoperability
 ======================================================================
-Date     : 2026-10-15T18:36:40.295625
+Date     : 2026-10-15T21:59:35.433255
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.yaml
 
-  Parsed 5074 triples from TTL
+  Parsed 4180 triples from TTL
   Parsed 16 class_uri and 58 slot_uri mappings from YAML
 
 
@@ -28,6 +28,19 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     Temple                              → skos:exactMatch      → 300007595
 
   CIDOC-CRM: 55 class(es) aligned
+    E10_Transfer_of_Custody             → class_uri            → E10_Transfer_of_Custody
+    E12_Production                      → class_uri            → E12_Production
+    E14_Condition_Assessment            → class_uri            → E14_Condition_Assessment
+    E21_Person                          → class_uri            → E21_Person
+    E21_Person                          → subClassOf           → E39_Actor
+    E22_Human-Made_Object               → class_uri            → E22_Human-Made_Object
+    E29_Design_or_Procedure             → class_uri            → E29_Design_or_Procedure
+    E39_Actor                           → class_uri            → E39_Actor
+    E3_Condition_State                  → class_uri            → E3_Condition_State
+    E52_Time-Span                       → class_uri            → E52_Time-Span
+    E53_Place                           → class_uri            → E53_Place
+    E57_Material                        → class_uri            → E57_Material
+    E6_Destruction                      → class_uri            → E6_Destruction
     Actor                               → class_uri(YAML)      → crm:E39_Actor
     ArchitecturalElement                → broadMatch           → E25_Human-Made_Feature
     ArchitecturalStructure              → broadMatch           → E22_Human-Made_Object
@@ -40,24 +53,11 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     ConditionAssessment                 → class_uri(YAML)      → crm:E14_Condition_Assessment
     ConditionState                      → class_uri(YAML)      → crm:E3_Condition_State
     Consecration                        → broadMatch           → E7_Activity
-    DataCustodian                       → subClassOf           → E39_Actor
-    DataSource                          → broadMatch           → E73_Information_Object
-    Deity                               → broadMatch           → E28_Conceptual_Object
-    DestructionEvent                    → class_uri(YAML)      → crm:E6_Destruction
-    DocumentationActivity               → broadMatch           → E7_Activity
-    Enshrinement                        → broadMatch           → E7_Activity
-    Festival                            → broadMatch           → E7_Activity
-    FieldSurveyDataset                  → broadMatch           → E31_Document
-    Guthi                               → broadMatch           → E74_Group
-    Guthi                               → subClassOf           → E39_Actor
-    HistoricalEvent                     → broadMatch           → E5_Event
-    HumanMadeObject                     → class_uri(YAML)      → crm:E22_Human-Made_Object
-    IconographicObject                  → broadMatch           → E22_Human-Made_Object
 
   CRMinf: 3 class(es) aligned
+    I2_Belief                           → class_uri            → I2_Belief
     Assertion                           → class_uri(YAML)      → crminf:I2_Belief
     Proposition                         → broadMatch           → I4_Proposition_Set
-    I2_Belief                           → class_uri            → I2_Belief
 
   CRMsci: 1 class(es) aligned
     FieldSurveyActivity                 → broadMatch           → S4_Observation
@@ -74,6 +74,21 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     CalendarSystem                      → broadMatch           → TRS
 
   PROV-O: 46 class(es) aligned
+    E10_Transfer_of_Custody             → subClassOf           → Activity
+    E12_Production                      → subClassOf           → Activity
+    E14_Condition_Assessment            → subClassOf           → Activity
+    E21_Person                          → broadMatch           → Person
+    E22_Human-Made_Object               → subClassOf           → Entity
+    E29_Design_or_Procedure             → subClassOf           → Entity
+    E39_Actor                           → subClassOf           → Agent
+    E3_Condition_State                  → subClassOf           → Entity
+    E52_Time-Span                       → subClassOf           → Entity
+    E53_Place                           → subClassOf           → Entity
+    E57_Material                        → subClassOf           → Entity
+    I2_Belief                           → subClassOf           → Entity
+    Activity                            → class_uri            → Activity
+    Agent                               → class_uri            → Agent
+    Entity                              → class_uri            → Entity
     Activity                            → class_uri(YAML)      → prov:Activity
     Agent                               → class_uri(YAML)      → prov:Agent
     ArchitecturalElement                → subClassOf           → Entity
@@ -84,27 +99,13 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     Container                           → subClassOf           → Entity
     DataCustodian                       → broadMatch           → Agent
     DataSource                          → subClassOf           → Entity
-    Deity                               → subClassOf           → Entity
-    DocumentationActivity               → subClassOf           → Activity
-    Enshrinement                        → subClassOf           → Activity
-    Entity                              → class_uri(YAML)      → prov:Entity
-    Festival                            → broadMatch           → Activity
-    Guthi                               → broadMatch           → Organization
-    HistoricalEvent                     → subClassOf           → Activity
-    KumariEnthronementEvent             → broadMatch           → Activity
-    KumariLifecycleEvent                → broadMatch           → Activity
-    KumariRetirementEvent               → broadMatch           → Activity
-    KumariRole                          → subClassOf           → Entity
-    KumariSelectionEvent                → broadMatch           → Activity
-    KumariTenure                        → subClassOf           → Entity
-    Metadata                            → subClassOf           → Entity
-    PhysicalHeritageThing               → subClassOf           → Entity
 
   RICO: 1 class(es) aligned
     ArchivalRecord                      → exactMatch           → Record
     ArchivalRecord                      → skos:exactMatch      → Record
 
   Wikidata: 7 class(es) aligned
+    E22_Human-Made_Object               → narrowMatch          → Q838948
     ArchitecturalStructure              → exactMatch           → Q811979
     ArchitecturalStructure              → skos:exactMatch      → Q811979
     Deity                               → exactMatch           → Q178885
@@ -118,7 +119,6 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
     Stupa                               → skos:exactMatch      → Q180987
     Temple                              → exactMatch           → Q44539
     Temple                              → skos:exactMatch      → Q44539
-    E22_Human-Made_Object               → narrowMatch          → Q838948
 
 ======================================================================
   2. Property Alignments (TTL + YAML slot_uri)

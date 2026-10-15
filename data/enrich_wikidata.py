@@ -15,7 +15,7 @@ are deliberately NOT populated here: Wikidata does not contain those facts, and
 inventing them would be fabrication. They remain covered by the cited
 demonstrator ABox, which is the field-standard practice (ArCo, ICON).
 
-Output: data/reconciled/wikidata-kv.nq  (named graph http://cair-nepal.org/heritagegraph/graph/wikidata)
+Output: data/reconciled/wikidata-kv.nq  (named graph https://cair-nepal.org/heritagegraph/graph/wikidata)
 """
 from __future__ import annotations
 
@@ -30,14 +30,18 @@ import certifi
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "reconciled" / "wikidata-kv.nq"
-GRAPH = "http://cair-nepal.org/heritagegraph/graph/wikidata"
+GRAPH = "https://cair-nepal.org/heritagegraph/graph/wikidata"
 
-HG = "http://cair-nepal.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 GEO = "http://www.opengis.net/ont/geosparql#"
 PROV = "http://www.w3.org/ns/prov#"
 RDFS = "http://www.w3.org/2000/01/rdf-schema#"
 RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+# Wikidata style label -> ArchitecturalStyle individual (empty: none of the
+# styles Wikidata records for the Kathmandu Valley items is one of the five
+# enumeration values; e.g. "Newa architecture" is not specific enough).
+STYLE_TO_ENUM: dict[str, str] = {}
 XSD = "http://www.w3.org/2001/XMLSchema#"
 
 CTX = ssl.create_default_context(cafile=certifi.where())
@@ -183,14 +187,22 @@ def main() -> int:
             qr(prod, f"{PROV}wasDerivedFrom", struct)
             qr(prod, f"{CRM}P4_has_time-span", ts)
             qr(ts, f"{RDF}type", f"{CRM}E52_Time-Span")
-            q(ts, f"{CRM}P82a_begin_of_the_begin", lit(it["inception"][:10], f"{XSD}date")
+            # xsd:dateTime: the released range (xsd:date is outside OWL 2)
+            q(ts, f"{CRM}P82a_begin_of_the_begin",
+              lit(it["inception"][:10] + "T00:00:00", f"{XSD}dateTime")
               if len(it["inception"]) >= 10 else lit(it["inception"]))
             counts["productions"] += 1
 
-        # architectural style (CQ1/CQ6)
+        # architectural style (CQ1/CQ6): hasArchitecturalStyle is an object
+        # property over the closed ArchitecturalStyle enumeration, so only
+        # Wikidata styles that correspond to one of its values are emitted as
+        # such; other style labels are kept as a note.
         for st in it["styles"]:
-            q(struct, f"{HG}hasArchitecturalStyle", lit(st))
-            counts["styles"] += 1
+            if st in STYLE_TO_ENUM:
+                qr(struct, f"{HG}hasArchitecturalStyle", STYLE_TO_ENUM[st])
+                counts["styles"] += 1
+            else:
+                q(struct, f"{CRM}P3_has_note", lit(f"Architectural style (Wikidata): {st}"))
 
         # deity dedication -> Enshrinement (CQ7)
         for diri, dlabel in it["deities"].items():

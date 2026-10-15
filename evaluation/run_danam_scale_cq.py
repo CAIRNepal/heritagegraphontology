@@ -18,7 +18,10 @@ of bindings each CQ returns rather than an expected-vs-actual verdict: the
 tangible and provenance layers are populated densely, whereas the
 ritual/institutional/Living-Goddess layers -- which no structured dataset
 records -- stay covered by the cited demonstrator ABox. This script measures
-exactly that boundary."""
+exactly that boundary.
+
+Not part of the paper's evaluation and not run by any default target (see
+data/README.md for the bundle's known owl:sameAs inconsistency)."""
 
 from __future__ import annotations
 

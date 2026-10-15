@@ -174,12 +174,22 @@ def finalize_owl(sv: SchemaView) -> Graph:
         for eq in list(g.objects(cls, OWL.equivalentClass)):
             if (eq, OWL.unionOf, None) in g:
                 g.remove((cls, OWL.equivalentClass, eq))
+        for sc in list(g.objects(cls, RDFS.subClassOf)):
+            if (sc, OWL.unionOf, None) in g:
+                g.remove((cls, RDFS.subClassOf, sc))
         expr = BNode()
         head = BNode()
         Collection(g, head, members)
         g.add((expr, RDF.type, OWL.Class))
         g.add((expr, OWL.unionOf, head))
-        g.add((cls, OWL.equivalentClass, expr))
+        # A union over HeritageGraph classes is a definition (≡). A union that
+        # contains external classes (crm:E21_Person, …) is stated as a covering
+        # axiom (⊑) only: ≡ would make every member, i.e. CIDOC-CRM / CRMinf /
+        # PROV classes, a subclass of a HeritageGraph class.
+        if all(str(m).startswith(HG_NS) for m in members):
+            g.add((cls, OWL.equivalentClass, expr))
+        else:
+            g.add((cls, RDFS.subClassOf, expr))
         n_union += 1
     print(f"injected {n_union} owl:unionOf class definition(s)")
 
@@ -357,7 +367,9 @@ def finalize_owl(sv: SchemaView) -> Graph:
     for cn, c in sv.all_classes().items():
         if c.union_of:
             cls = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
-            ok = any((eq, OWL.unionOf, None) in g for eq in g.objects(cls, OWL.equivalentClass))
+            ok = any((eq, OWL.unionOf, None) in g
+                     for eq in list(g.objects(cls, OWL.equivalentClass))
+                     + list(g.objects(cls, RDFS.subClassOf)))
             if not ok:
                 missing.append(f"unionOf: {cn}")
     for sn, s in sv.all_slots().items():
@@ -632,6 +644,49 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
         n += 1
     print(f"DL: collapsed {n} faceted datatype intersection(s) into single-datatype restrictions")
 
+    # (i) No logical axioms about terms HeritageGraph does not own. gen-owl
+    # attaches every slot's range and every class's restrictions and parents to
+    # the IRI the slot or class reuses, so the core asserted global ranges on
+    # CIDOC-CRM properties (crm:P46_is_composed_of rdfs:range
+    # ArchitecturalElement), cardinality restrictions on crm:E21_Person, PROV-O
+    # classes and crminf:I2_Belief, and crm:E6_Destruction ⊑ HistoricalEvent.
+    # Asserted in a reused ontology, those axioms redefine the external terms
+    # for every dataset that uses them. Remove every logical axiom whose subject
+    # is an external IRI; the constraints stay where they belong: as
+    # restrictions on HeritageGraph classes (which gen-owl also emits) and in
+    # the SHACL shapes, which target the reused classes. owl:inverseOf between
+    # a HeritageGraph and an external property is symmetric and defines the
+    # HeritageGraph property, so it is re-stated with the HeritageGraph
+    # property as subject. Declarations and annotations are kept.
+    #
+    # One justified exception: rdfs:subClassOf between two named external
+    # classes. These are crm:E21_Person ⊑ crm:E39_Actor (CIDOC-CRM's own axiom,
+    # restated so the core classifies without importing CRM) and the
+    # HeritageGraph CRM→PROV-O alignment of the reused classes (crm:E39_Actor ⊑
+    # prov:Agent, crm:E12_Production ⊑ prov:Activity, …, crminf:I2_Belief ⊑
+    # prov:Entity). They give no external class a HeritageGraph superclass,
+    # classify consistently with CIDOC-CRM, CRMinf, and PROV-O merged
+    # (reasoning_extras.py), and the provenance layer's SHACL constraints
+    # (e.g. prov:wasAttributedTo values are prov:Agent) depend on them.
+    logical = (RDFS.domain, RDFS.range, RDFS.subClassOf, RDFS.subPropertyOf,
+               OWL.equivalentClass, OWL.equivalentProperty, OWL.inverseOf,
+               OWL.disjointWith, OWL.propertyChainAxiom)
+    n = 0
+    for pred in logical:
+        for s, o in list(g.subject_objects(pred)):
+            if not isinstance(s, URIRef) or str(s).startswith(HG_NS):
+                continue
+            if (pred == RDFS.subClassOf and isinstance(o, URIRef)
+                    and not str(o).startswith(HG_NS)):
+                continue  # named external → external: the exception above
+            g.remove((s, pred, o))
+            n += 1
+            if pred == OWL.inverseOf and isinstance(o, URIRef) and str(o).startswith(HG_NS):
+                g.add((o, OWL.inverseOf, s))
+            elif isinstance(o, BNode) and not any(g.subjects(None, o)):
+                _purge_node(g, o)
+    print(f"DL: removed {n} logical axiom(s) whose subject is an external term")
+
 
 def finalize_shacl(sv: SchemaView) -> None:
     g = Graph()
@@ -770,6 +825,9 @@ def sync_published() -> None:
     print("synced docs/ontology.{ttl,owl,nt,jsonld} and ontology/review.owl")
     # immutable per-release copy served at the version IRI
     subprocess.run([sys.executable, str(ROOT / "scripts" / "publish_release.py"),
+                    str(docs)], check=True)
+    # per-enumeration pages with value anchors (targets of enum IRIs)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "gen_enum_pages.py"),
                     str(docs)], check=True)
 
 

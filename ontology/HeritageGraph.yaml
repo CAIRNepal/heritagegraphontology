@@ -1,4 +1,4 @@
-id: http://cair-nepal.org/heritagegraph/schema
+id: https://cair-nepal.org/heritagegraph/schema
 name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
   CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
@@ -211,7 +211,7 @@ prefixes:
   # declared the linkml: prefix; strict loaders (e.g. PythonGenerator) fail
   # on the unresolvable CURIE.
   linkml: "https://w3id.org/linkml/"
-  heritageGraph: "http://cair-nepal.org/heritagegraph/"
+  heritageGraph: "https://cair-nepal.org/heritagegraph/"
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
   owl: "http://www.w3.org/2002/07/owl#"
@@ -242,8 +242,8 @@ prefixes:
 default_prefix: heritageGraph
 
 annotations:
-  owl:ontologyIRI: "http://cair-nepal.org/heritagegraph/ontology"
-  owl:versionIRI: "http://cair-nepal.org/heritagegraph/ontology/1.0.0"
+  owl:ontologyIRI: "https://cair-nepal.org/heritagegraph/ontology"
+  owl:versionIRI: "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
   owl:versionInfo: "1.0.0"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
@@ -252,10 +252,10 @@ annotations:
   dcterms:created: "2025-11-23"
   dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). http://cair-nepal.org/heritagegraph/ontology"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology"
   bibo:status: "Pre-release specification draft"
   vann:preferredNamespacePrefix: "heritageGraph"
-  vann:preferredNamespaceUri: "http://cair-nepal.org/heritagegraph/"
+  vann:preferredNamespaceUri: "https://cair-nepal.org/heritagegraph/"
   # CLEANUP (alpha.5): removed the owl:imports annotation -- it serialized as
   # one malformed space-separated literal, and alignment to CIDOC-CRM/PROV-O
   # is carried by mappings and subproperty bridges, not by importing the full

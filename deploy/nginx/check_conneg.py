@@ -2,13 +2,16 @@
 """Check content negotiation for the HeritageGraph IRIs on a deployed server.
 
 Given the base URL under which the namespace is served (normally the namespace
-itself, http://cair-nepal.org/heritagegraph/; for a local test e.g.
+itself, https://cair-nepal.org/heritagegraph/; for a local test e.g.
 http://localhost:8080/heritagegraph/), requests the ontology IRI, the version
 IRI, and a sample of term IRIs (a class, an object property, a datatype
 property, and an enumeration individual, taken from ontology/HeritageGraph.ttl)
 with each Accept type:
 
-  text/html             -> 200 text/html; term IRIs 303 to the term's docs anchor
+  text/html             -> 200 text/html; term IRIs 303 to the term's docs anchor;
+                           an enumeration individual (…/Enum#Value) 303s to
+                           docs/enum/<Enum>.html with no fragment, so the
+                           browser keeps #Value, and that page has id="Value"
   text/turtle           -> 200 text/turtle, parses, contains the expected node
   application/rdf+xml   -> 200 application/rdf+xml, parses, contains it
   application/ld+json   -> 200 application/ld+json, parses, contains it
@@ -17,7 +20,7 @@ The version IRI must resolve into docs/releases/<version>/ and its RDF must carr
 that owl:versionIRI. IRIs are requested at their path relative to the namespace,
 appended to the base URL, so the check runs against a staging server too.
 
-Run:  python3 deploy/nginx/check_conneg.py http://cair-nepal.org/heritagegraph/
+Run:  python3 deploy/nginx/check_conneg.py https://cair-nepal.org/heritagegraph/
 """
 from __future__ import annotations
 
@@ -111,7 +114,15 @@ def main(argv: list[str]) -> int:
                 problems.append(f"content type {ctype!r}, want {want_type!r}")
             if label == "version IRI" and f"/releases/{version}/" not in chain[-1][1]:
                 problems.append("not served from this release's files")
-            if accept == "text/html" and label not in ("ontology IRI", "version IRI"):
+            if accept == "text/html" and label == "enumeration individual":
+                final = chain[-1][1] if chain else ""
+                if not final.endswith(f"/docs/enum/{path}.html"):
+                    problems.append(f"not redirected to docs/enum/{path}.html")
+                if any("#" in u for _, u in chain[1:]):
+                    problems.append("redirect carries a fragment (would replace #" + fragment + ")")
+                if f'id="{fragment}"'.encode() not in body:
+                    problems.append(f'enumeration page has no anchor id="{fragment}"')
+            elif accept == "text/html" and label not in ("ontology IRI", "version IRI"):
                 if not any(url_.endswith(f"#{path}") for _, url_ in chain):
                     problems.append(f"no redirect to the docs anchor #{path}")
             if fmt and status == 200:
@@ -131,8 +142,8 @@ def main(argv: list[str]) -> int:
             print(f"  [{verdict}] {accept:<22} {hops:<10} {chain[-1][1] if chain else ''}"
                   + (f"   ({'; '.join(problems)})" if problems else ""))
         if fragment:
-            print(f"  note: '#{fragment}' is a fragment and is not sent to the server; "
-                  f"the IRI resolves like <{ns}{path}>")
+            print(f"  note: '#{fragment}' is not sent to the server; the browser keeps it "
+                  f"and lands on docs/enum/{path}.html#{fragment}")
     print(f"\n{'PASS' if not failures else f'FAIL: {failures} check(s) failed'}")
     return 0 if not failures else 1
 

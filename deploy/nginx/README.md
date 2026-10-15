@@ -1,17 +1,19 @@
 # HeritageGraph IRIs on cair-nepal.org (nginx)
 
-Content negotiation for every IRI under `http://cair-nepal.org/heritagegraph/`.
+Content negotiation for every IRI under `https://cair-nepal.org/heritagegraph/`.
 
 | IRI | `text/html` | `text/turtle` · `application/rdf+xml` · `application/ld+json` · `application/n-triples` |
 |---|---|---|
 | `/heritagegraph/`, `/heritagegraph/ontology` | `docs/` (WIDOCO documentation) | `docs/ontology.{ttl,owl,jsonld,nt}` (current release) |
 | `/heritagegraph/ontology/<version>` | `docs/releases/<version>/` | `docs/releases/<version>/ontology.{ttl,owl,jsonld,nt}` |
-| `/heritagegraph/<Term>` (class, property, enumeration) | `docs/#<Term>` | current release |
-| `/heritagegraph/scheme/<Enum>` | `docs/#scheme/<Enum>` | current release |
+| `/heritagegraph/<Term>` (class, property) | `docs/#<Term>` | current release |
+| `/heritagegraph/<Enum>`, `/heritagegraph/scheme/<Enum>` | `docs/enum/<Enum>.html` | current release |
 
 All redirects are `303 See Other` with `Vary: Accept`. Enumeration individuals are hash
-IRIs (`…/ConditionType#Damaged`): the fragment is never sent to the server, so they
-resolve like their enumeration class, whose documentation lists the values.
+IRIs (`…/ConditionType#Damaged`): the fragment is never sent to the server, but browsers keep
+it across a redirect whose `Location` has no fragment. Enumeration IRIs are therefore
+redirected to `docs/enum/<Enum>.html` (one anchor per value, written by
+`scripts/gen_enum_pages.py`) without a fragment, and the browser lands on `#Damaged`.
 
 ## Files
 
@@ -33,7 +35,7 @@ resolve like their enumeration class, whose documentation lists the values.
 ## Test
 
 ```bash
-python3 deploy/nginx/check_conneg.py http://cair-nepal.org/heritagegraph/
+python3 deploy/nginx/check_conneg.py https://cair-nepal.org/heritagegraph/
 ```
 
 It requests the ontology IRI, the version IRI, and a class, object property, datatype

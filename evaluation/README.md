@@ -26,8 +26,8 @@ evaluation/
 │                                       --entailment runs the OWL-RL entailment +
 │                                       structural-census analysis
 ├── cq_expected.json                 ← §7.3  frozen, domain-grounded expected answer sets
-├── run_danam_scale_cq.py            ← §7 Threats  32 CQs at scale over the independent
-│                                       DANAM + Wikidata graph (../data/reconciled/)
+├── run_danam_scale_cq.py            ← 32 CQs over the DANAM + Wikidata bundle
+│                                       (not part of the paper's evaluation; not run by default)
 ├── run_metrics.py                   ← §7.3  Structural metrics
 ├── run_alignment.py                 ← §7.6  Alignment counts
 ├── mapping_audit.py                 ← §7.6  External mapping audit + negative
@@ -256,8 +256,12 @@ v1.0.0), the suite reproduces the figures reported in §7 of the paper.
 The paper is the authoritative source; the numbers below are a quick reference.
 
 ### §7.1 Consistency
-- **5,090** base triples; **26,436** after OWL-RL closure (**21,346** inferred)
-- **0** unsatisfiable classes under HermiT (standalone and merged with CRM/CRMinf/PROV-O)
+- **4,180** base triples; **13,959** after OWL-RL closure (**9,779** inferred)
+- **0** unsatisfiable classes under HermiT (standalone and merged with CRM/CRMinf/CRMsci/PROV-O)
+- HermiT: **579** asserted `rdfs:subClassOf` axioms, **10** inferred named-class subsumptions
+  (`reasoning_extras.py entailments`)
+- No external class gains a HeritageGraph superclass and no enumeration value an extra HG type,
+  with the LUX module and CIDOC-CRM merged (`reasoning_extras.py no-external-superclass`)
 - Ontology + each example ABox, parsed into one graph, is inside OWL 2 DL and HermiT-consistent
   (`check_combined_dl.py`, `make combined`); every `hg:` term used in examples, queries, and
   evaluation code is declared (`check_declared_terms.py`, `make terms`)
@@ -274,16 +278,15 @@ The paper is the authoritative source; the numbers below are a quick reference.
 - Three pattern ablations (`pattern_experiments.py ablation`, `... tenure`,
   `... sameas`) show each pattern is load-bearing
 
-### At-scale answerability over independent data (§7 Threats)
+### DANAM bundle (not part of the paper's evaluation)
+Not run by any default target; see `../data/README.md` for its known `owl:sameAs`
+inconsistency.
 - `run_danam_scale_cq.py` runs the same 32 CQs over two independent third-party
   sources mapped to the released vocabulary — the reconciled DANAM/OpenStreetMap
   graph (`../data/reconciled/danam-heritagegraph.nq`, 130,286 quads) and a live
   Wikidata enrichment (`../data/reconciled/wikidata-kv.nq`, built by
   `../data/enrich_wikidata.py`)
-- **8/32** CQs return bindings over the combined 138,461-triple graph; the
-  provenance query alone returns **7,859** source-attributed assertions. The
-  remaining CQs concern fine-grained ethnographic facts no structured dataset
-  records, and stay evidenced by the cited demonstrator
+- Run it by hand (`python3 run_danam_scale_cq.py`) for per-CQ binding counts
 
 ### §7.4 Constraint Validation
 - **75** `sh:NodeShape`s with **1,204** property shapes; released open (closedness relaxed)

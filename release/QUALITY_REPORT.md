@@ -1,13 +1,13 @@
 # HeritageGraph Release Quality Report
 
-Generated: 2026-10-15T18:36:56.217629
+Generated: 2026-10-15T21:59:47.674837
 
 ## Executive summary
 
 | Dimension | Score (/10) | Status |
 |-----------|-------------|--------|
 | Artefact packaging | 8.5 | Release bundle complete (TTL, SHACL, alignment, EDM, VoID, examples) |
-| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 21,330 inferred triples |
+| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 9,779 inferred triples |
 | Logical consistency (HermiT DL) | 9.0 | HermiT: 0 unsatisfiable classes (imports stripped) |
 | Schema adequacy (CQ TBox) | 9.5 | 32/32 ASK queries pass |
 | ABox demonstrability | 8.5 | Mini Kathmandu ABox + 32 sample SELECT queries |
@@ -50,10 +50,10 @@ https://github.com/CAIRNepal/heritagegraphontology
 
 ```
 All-32 CQ expected-vs-actual execution
-Date: 2026-10-15T18:36:55.393703
+Date: 2026-10-15T21:59:46.713786
 TBox: HeritageGraph.ttl
 ABox: kathmandu-mini-abox.ttl
-Triples loaded: 5417
+Triples loaded: 4523
 Pass criterion: returned bindings == expected answer set (exact match).
 
 CQ1   [PASS] expected=1  actual=1  Which architectural structures were built during a time period using an architectural style?
@@ -98,30 +98,30 @@ Negative control (CQ11 with a broken predicate): actual=0 vs expected=1 -> misma
 ## Consistency excerpt
 
 ```
-===
+
   ✅  No classes found subClassOf owl:Nothing
 
 ======================================================================
   Step 4 — Ontology Metadata
 ======================================================================
   owl:Ontology declarations: 1
-    IRI: http://cair-nepal.org/heritagegraph/ontology
+    IRI: https://cair-nepal.org/heritagegraph/ontology
       rdfs:label = HeritageGraph
       pav:version = 1.0.0
-      owl:versionIRI = http://cair-nepal.org/heritagegraph/ontology/1.0.0
+      owl:versionIRI = https://cair-nepal.org/heritagegraph/ontology/1.0.0
 
 ======================================================================
   Step 5 — Quick Consistency Indicators
 ======================================================================
   owl:disjointWith pairs declared: 2
-  Object properties without explicit rdfs:range: 1/149
-  Datatype properties without explicit rdfs:range: 1/42
+  Object properties without explicit rdfs:range: 47/149
+  Datatype properties without explicit rdfs:range: 10/42
 
 ======================================================================
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 21330 inferred triples
+  OWL-RL closure      : 9779 inferred triples
   Unsatisfiable       : 0 classes
   Disjointness axioms : 2
 
@@ -146,7 +146,7 @@ n            label:✅  def:✅
   Named owl:Class (HG namespace)         70         66        ❌
   Object properties                     123        149        ❌
   Datatype properties                    48         42        ❌
-  Union classes (named)                   3          2        ❌
+  Union classes (named)                   3          1        ❌
   Named individuals (enum values)         64         51        ❌
   SHACL NodeShapes                       61         61        ✅
   CQ TBox pass rate                   32/32      32/32        ✅

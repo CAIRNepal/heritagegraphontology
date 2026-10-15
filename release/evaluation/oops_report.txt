@@ -2,23 +2,23 @@
 ======================================================================
   §4.2  Modeling Quality — OOPS! Pitfall Analysis
 ======================================================================
-Date     : 2026-10-15T18:36:43.760501
+Date     : 2026-10-15T21:59:36.936935
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
-  Parsed 5074 triples
+  Parsed 4180 triples
 
 ======================================================================
   OOPS! Online Service
 ======================================================================
   ✅ OOPS! response saved to: /Users/nirajkarki/cair/heritagegraphontology/evaluation/results/oops_response.xml
-  Response size: 36321 chars
+  Response size: 36217 chars
   → Open the XML file to review detected pitfalls.
 
 ======================================================================
   Local Heuristic Pitfall Scan
 ======================================================================
 
-  Total pitfalls detected: 169
+  Total pitfalls detected: 224
   Unique pitfall types:    3
 
   [    MINOR] P08 — Missing annotations  (4 occurrence(s))
@@ -27,11 +27,11 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
              → http://www.w3.org/2004/02/skos/core#Concept: Missing rdfs:label
 
   [IMPORTANT] P10 — Missing disjointness  (14 occurrence(s))
-             → http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object: Sibling classes lack owl:disjointWith: ...
-             → http://www.w3.org/ns/prov#Activity: Sibling classes lack owl:disjointWith: SyncreticRelationship,...
-             → http://cair-nepal.org/heritagegraph/DataSource: Sibling classes lack owl:disjointWith: ArchivalRe...
+             → https://cair-nepal.org/heritagegraph/DocumentationActivity: Sibling classes lack owl:disjointWith...
+             → http://www.w3.org/ns/prov#Entity: Sibling classes lack owl:disjointWith: SelectionCriterion, Prop...
+             → http://www.w3.org/ns/prov#Activity: Sibling classes lack owl:disjointWith: Enshrinement, E14_Cond...
 
-  [IMPORTANT] P11 — Missing domain or range  (151 occurrence(s))
+  [IMPORTANT] P11 — Missing domain or range  (206 occurrence(s))
+             → http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of: Missing rdfs:domain
+             → http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of: Missing rdfs:range
              → http://www.cidoc-crm.org/cidoc-crm/P62_depicts: Missing rdfs:domain
-             → http://cair-nepal.org/heritagegraph/selection_criteria: Missing rdfs:domain
-             → http://www.w3.org/ns/prov#wasGeneratedBy: Missing rdfs:domain

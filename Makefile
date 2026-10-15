@@ -30,12 +30,13 @@ $(ROBOT_JAR):
 	mkdir -p $(dir $@)
 	curl -fsSL -o $@ https://github.com/ontodev/robot/releases/download/v$(ROBOT_VERSION)/robot.jar
 
-check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+each example in OWL 2 DL and HermiT-consistent
+check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+each example DL/HermiT, no HG superclass on external terms
 	python3 scripts/check_yaml_ttl_sync.py
 	python3 evaluation/check_declared_terms.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py no-external-superclass
 
-BASE ?= http://cair-nepal.org/heritagegraph/
+BASE ?= https://cair-nepal.org/heritagegraph/
 conneg:              ## check content negotiation of the deployed IRIs (BASE=<url> for staging)
 	python3 deploy/nginx/check_conneg.py $(BASE)
 

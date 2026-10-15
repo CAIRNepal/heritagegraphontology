@@ -34,7 +34,7 @@ SHACL_TTL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
 OUT = ROOT / "evaluation" / "results" / "tgdk_eval_report.txt"
 
-HG = "http://cair-nepal.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 buf = io.StringIO()
 def w(line=""):
     print(line)

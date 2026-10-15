@@ -4,7 +4,9 @@
 Two subcommands (default: audit):
 
   audit             Full-pass audit of every external mapping triple in
-                    HeritageGraph.ttl. Enumerates all triples
+                    HeritageGraph.ttl and the LUX alignment module
+                    (ontology/lux/heritagegraph-lux-alignment.ttl).
+                    Enumerates all triples
                     <hg-term, mapping-predicate, external-term> for the mapping
                     predicates (skos:exactMatch / closeMatch / broadMatch /
                     relatedMatch / narrowMatch, rdfs:subClassOf,
@@ -14,9 +16,17 @@ Two subcommands (default: audit):
                          term-level HTTP-dereference fallback);
                       2. category  -- class-valued mappings point at classes,
                          property-valued mappings at properties.
-                    Writes results/mapping_audit.csv (one row per mapping) for
-                    the rater's semantic-adequacy verdicts. Network fetches are
-                    cached under results/.vocab_cache.
+                    Additionally, every CIDOC-CRM / CRMinf / CRMsci IRI used
+                    anywhere in either file (any position, not only mapping
+                    targets) must be defined in the official RDFS release.
+                    Targets that cannot be fetched (e.g. Getty AAT throttling)
+                    can be verified by hand and recorded in
+                    mapping_manual_verification.csv. Writes
+                    results/mapping_audit.csv (one row per mapping) for the
+                    rater's semantic-adequacy verdicts and exits non-zero if
+                    any target is not in its vocabulary, any category
+                    mismatches, or any CRM-family term is undefined. Network
+                    fetches are cached under results/.vocab_cache.
 
   negative-control  Seeds the TBox with deliberately wrong mappings from four
                     failure classes and runs the same machine tier over them,
@@ -46,11 +56,17 @@ from rdflib import Graph, OWL, RDF, RDFS, SKOS, URIRef
 
 ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
+LUX = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
+SOURCES = {"core": TTL, "lux": LUX}
+MANUAL = Path(__file__).resolve().parent / "mapping_manual_verification.csv"
+CRM_FAMILY = ("http://www.cidoc-crm.org/cidoc-crm/",
+              "http://www.cidoc-crm.org/extensions/crminf/",
+              "http://www.cidoc-crm.org/extensions/crmsci/")
 RESULTS = Path(__file__).resolve().parent / "results"
 CACHE = RESULTS / ".vocab_cache"
 CACHE.mkdir(parents=True, exist_ok=True)
 
-HG = "http://cair-nepal.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 MAPPING_PREDS = [SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
                  SKOS.relatedMatch, SKOS.narrowMatch,
@@ -123,7 +139,27 @@ def http_exists(uri: str) -> str:
         probe = ("https://www.wikidata.org/wiki/Special:EntityData/"
                  + uri.rsplit("/", 1)[1] + ".json")
     elif uri.startswith("http://vocab.getty.edu/"):
-        probe = uri + ".json"  # Getty rejects HEAD on term URIs
+        # Getty rejects HEAD on term URIs and throttles bursts (HTTP 499/429):
+        # try several representations with back-off before giving up.
+        import time
+        status = ""
+        for attempt in range(2):  # first try + one retry
+            for probe in (uri + ".json", uri + ".rdf",
+                          uri.replace("http://", "https://") + ".json"):
+                try:
+                    req = urllib.request.Request(probe, headers={
+                        "User-Agent": "heritagegraph-audit/1.0 (ontology mapping audit)",
+                        "Accept": "application/json, application/rdf+xml;q=0.9, */*;q=0.1"})
+                    resp = urllib.request.urlopen(req, timeout=60, context=SSL_CTX)
+                    return f"http:{resp.status}"
+                except urllib.error.HTTPError as e:
+                    status = f"http:{e.code}"
+                    if e.code == 404:
+                        return status
+                except Exception as e:
+                    status = f"http-error:{e}"
+            time.sleep(5 * (attempt + 1))
+        return status
     try:
         req = urllib.request.Request(probe, method="GET",
                                      headers={"User-Agent": "heritagegraph-audit/1.0",
@@ -143,25 +179,71 @@ def http_exists(uri: str) -> str:
         return f"http-error:{e}"
 
 
+LINKED_ART_CONTEXT = "https://linked.art/ns/v1/linked-art.json"
+LINKED_ART_NS = ("http://www.ics.forth.gr/isl/CRMdig/", "https://linked.art/ns/terms/")
+
+
+def linked_art_terms() -> set[str]:
+    """IRIs the Linked Art JSON-LD context maps its terms to. CRMdig (FORTH
+    namespace) and la: terms are verified here: they are the IRIs LUX data
+    carries, and the FORTH CRMdig IRIs do not dereference."""
+    import json
+    data = fetch(LINKED_ART_CONTEXT, "linked-art-context.json")
+    if data is None:
+        return set()
+    ctx = json.loads(data)["@context"]
+    prefixes = {k: v for k, v in ctx.items() if isinstance(v, str) and v.endswith(("/", "#"))}
+    out = set()
+
+    def walk(c):
+        for v in c.values():
+            iri = v.get("@id") if isinstance(v, dict) else v if isinstance(v, str) else None
+            if isinstance(iri, str) and ":" in iri:
+                p, _, local = iri.partition(":")
+                out.add(prefixes[p] + local if p in prefixes else iri)
+            if isinstance(v, dict) and isinstance(v.get("@context"), dict):
+                walk(v["@context"])
+    walk(ctx)
+    return out
+
+
+def manual_verdicts() -> dict[str, str]:
+    """target IRI -> verdict ('exists' / 'missing') recorded by hand."""
+    if not MANUAL.exists():
+        return {}
+    with open(MANUAL, encoding="utf-8") as f:
+        return {r["target"]: r["verdict"].strip().lower()
+                for r in csv.DictReader(f) if r.get("target")}
+
+
 def run_audit() -> int:
-    tbox = Graph()
-    tbox.parse(TTL, format="turtle")
+    graphs = {}
+    for name, path in SOURCES.items():
+        g = Graph()
+        g.parse(path, format="turtle")
+        graphs[name] = g
+    tbox = graphs["core"] + graphs["lux"]
     hg_classes = set(tbox.subjects(RDF.type, OWL.Class))
     hg_props = (set(tbox.subjects(RDF.type, OWL.ObjectProperty))
                 | set(tbox.subjects(RDF.type, OWL.DatatypeProperty)))
 
     mappings = []
-    for pred in MAPPING_PREDS:
-        for s, o in tbox.subject_objects(pred):
-            if (str(s).startswith(HG) and isinstance(o, URIRef)
-                    and not str(o).startswith(HG)):
-                mappings.append((s, pred, o))
-    mappings.sort(key=lambda m: (str(m[1]), str(m[0])))
-    print(f"External mapping triples: {len(mappings)}")
+    for source, g in graphs.items():
+        for pred in MAPPING_PREDS:
+            for s, o in g.subject_objects(pred):
+                if (str(s).startswith(HG) and isinstance(o, URIRef)
+                        and not str(o).startswith(HG)):
+                    mappings.append((source, s, pred, o))
+    mappings.sort(key=lambda m: (m[0], str(m[2]), str(m[1])))
+    print(f"External mapping triples: {len(mappings)} "
+          f"(core {sum(m[0] == 'core' for m in mappings)}, "
+          f"LUX module {sum(m[0] == 'lux' for m in mappings)})")
+    manual = manual_verdicts()
+    la_terms = None
 
     vocabs: dict[str, Graph | None] = {}
     rows = []
-    for s, p, o in mappings:
+    for source, s, p, o in mappings:
         target = str(o)
         prefix = next((pf for pf in DOCS if target.startswith(pf)), None)
         exists, kind = "unverified", ""
@@ -180,16 +262,25 @@ def run_audit() -> int:
                         kind = "property"
                     else:
                         kind = "other"
+        if exists == "unverified" and target.startswith(LINKED_ART_NS):
+            if la_terms is None:
+                la_terms = linked_art_terms()
+            if target in la_terms:
+                exists = "defined"
         if exists in ("unverified", "NOT-IN-VOCAB"):
             status = http_exists(target)
             if status.startswith("http:2") or status.startswith("http:3"):
                 exists = exists if exists == "NOT-IN-VOCAB" else "resolves"
             elif exists == "unverified":
                 exists = f"unreachable({status})"
+        if exists.startswith("unreachable") and target in manual:
+            exists = ("verified-manually" if manual[target] == "exists"
+                      else "NOT-IN-VOCAB")
 
         subj_kind = "class" if s in hg_classes else ("property" if s in hg_props else "other")
         kind_ok = (kind == "" or kind == "other" or kind == subj_kind)
         rows.append({
+            "source": source,
             "subject": str(s).replace(HG, "hg:"),
             "predicate": str(p).split("#")[-1].split("/")[-1],
             "target": target,
@@ -207,13 +298,44 @@ def run_audit() -> int:
         w.writerows(rows)
 
     n_def = sum(r["target_exists"] in ("defined", "resolves") for r in rows)
+    n_man = sum(r["target_exists"] == "verified-manually" for r in rows)
     n_miss = sum(r["target_exists"] == "NOT-IN-VOCAB" for r in rows)
-    n_unv = len(rows) - n_def - n_miss
+    n_unv = len(rows) - n_def - n_man - n_miss
     n_kind = sum(r["category_ok"] == "MISMATCH" for r in rows)
     print(f"targets defined/resolving: {n_def}, not in vocabulary: {n_miss}, "
           f"unverified: {n_unv}, category mismatches: {n_kind}")
+    print(f"Breakdown: audited {len(rows)}; verified automatically {n_def}; "
+          f"verified manually {n_man}; failed {n_miss + n_kind} "
+          f"({n_miss} not in vocabulary, {n_kind} category mismatches); "
+          f"still unverified {n_unv}")
+    for r in rows:
+        if r["target_exists"].startswith("unreachable"):
+            print(f"  unverified: {r['source']}: {r['subject']} {r['predicate']} "
+                  f"{r['target']}  [{r['target_exists']}]")
+        if r["target_exists"] == "NOT-IN-VOCAB" or r["category_ok"] == "MISMATCH":
+            print(f"  FAILED:     {r['source']}: {r['subject']} {r['predicate']} "
+                  f"{r['target']}  [{r['target_exists']}, category {r['category_ok']}]")
+
+    # CRM-family term inventory: any position, both files.
+    undefined = []
+    for prefix in CRM_FAMILY:
+        if prefix not in vocabs:
+            vocabs[prefix] = load_vocab(prefix)
+        vg = vocabs[prefix]
+        used = {x for g in graphs.values() for t in g for x in t
+                if isinstance(x, URIRef) and str(x).startswith(prefix) and str(x) != prefix}
+        if vg is None:
+            print(f"  [warn] cannot load {prefix}; {len(used)} term(s) unchecked")
+            undefined.append(f"{prefix} (vocabulary not loadable)")
+            continue
+        missing = sorted(str(x) for x in used if (x, None, None) not in vg)
+        print(f"CRM-family inventory {prefix}: {len(used)} term(s) used, "
+              f"{len(used) - len(missing)} defined in the official RDFS")
+        for m in missing:
+            print(f"  UNDEFINED: {m}")
+        undefined += missing
     print(f"Report: {out}")
-    return 0
+    return 1 if (n_miss or n_kind or undefined) else 0
 
 
 def run_negative_control() -> int:
@@ -227,6 +349,9 @@ def run_negative_control() -> int:
         ("F3 property mapped to a class",
          URIRef(HG + "performsRitual"), RDFS.subPropertyOf,
          URIRef(CRM + "E5_Event"), "CATEGORY-MISMATCH"),
+        ("F5 non-existent CRM term (former LUX target)",
+         URIRef(HG + "CalendarSystem"), SKOS.broadMatch,
+         URIRef(CRM + "E29_Designated_Reference_System"), "NOT-IN-VOCAB"),
         ("F4 wrong but category-compatible",
          URIRef(HG + "Temple"), SKOS.broadMatch,
          URIRef(CRM + "E39_Actor"), "UNDETECTED (rater tier only)"),

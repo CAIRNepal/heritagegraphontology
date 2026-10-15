@@ -40,7 +40,7 @@ ROOT = HERE.parents[1]
 CORE = ROOT / "ontology" / "HeritageGraph.ttl"
 BRIDGE = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
 ENDPOINT = "https://semihyumusak.com.tr/oxigraph/query"
-HG = "http://cair-nepal.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 NAMESPACES = {
     "hg:": HG, "crm:": CRM,
@@ -103,7 +103,7 @@ def e3_counts(offline: bool) -> list[tuple[str, int]]:
             return [(LEGACY_TYPES.get(r["v1_class"], r["v1_class"]), int(r["instances"]))
                     for r in csv.DictReader(f)]
     rows = sparql("""SELECT ?t (COUNT(?s) AS ?n) WHERE {
-      GRAPH <http://cair-nepal.org/heritagegraph/imported/lux> { ?s a ?t } }
+      GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?s a ?t } }
       GROUP BY ?t ORDER BY DESC(?n)""")
     return [(LEGACY_TYPES.get(short(b["t"]["value"]), short(b["t"]["value"])),
              int(b["n"]["value"])) for b in rows]

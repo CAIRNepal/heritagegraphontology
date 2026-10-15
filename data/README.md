@@ -1,7 +1,9 @@
 # Independent-data bundle
 
+**Not part of the paper's evaluation.** This bundle is kept for exploration only; no default evaluation target (Makefiles, CI, `scripts/run_release_quality.py`) uses it. Known issue: ontology + `danam-heritagegraph.nq` is inside OWL 2 DL (geometry literals aside) but HermiT finds it inconsistent: two Pashupatinath records (`…/id/unesco/pashupati`, `…/id/intangible/pashupati-complex`) are both `owl:sameAs` Wikidata Q1814492, so they denote one structure, which then carries two different `crm:P3_has_note` values while the ontology allows at most one.
+
 Third-party data mapped to the released HeritageGraph vocabulary
-(`http://cair-nepal.org/heritagegraph/`), used by `evaluation/run_danam_scale_cq.py`.
+(`https://cair-nepal.org/heritagegraph/`), used by `evaluation/run_danam_scale_cq.py`.
 
 | File | Origin | How to regenerate |
 |---|---|---|

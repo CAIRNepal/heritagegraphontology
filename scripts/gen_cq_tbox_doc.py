@@ -34,7 +34,7 @@ TYPE_CURIE = {
     OWL.NamedIndividual: "owl:NamedIndividual",
 }
 DOC_PREFIXES = {
-    "hg": "http://cair-nepal.org/heritagegraph/",
+    "hg": "https://cair-nepal.org/heritagegraph/",
     "crm": "http://www.cidoc-crm.org/cidoc-crm/",
     "crminf": "http://www.cidoc-crm.org/extensions/crminf/",
     "prov": "http://www.w3.org/ns/prov#",

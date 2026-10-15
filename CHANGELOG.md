@@ -2,11 +2,41 @@
 
 ## [Unreleased] - v1.0.0 consistency fixes
 
+### Changed (no axioms on external terms; LUX mapping from the companion repository)
+- The core no longer asserts logical axioms whose subject is an external term (259 removed):
+  global `rdfs:range`/`rdfs:domain` on CIDOC-CRM/PROV-O properties (incl. `crm:P46_is_composed_of`
+  / `crm:P46i_forms_part_of` → ArchitecturalElement/ArchitecturalStructure), cardinality and value
+  restrictions on reused classes (`crm:E21_Person`, PROV-O classes, `crminf:I2_Belief`, …),
+  `crm:E6_Destruction ⊑ HistoricalEvent`, and restated PROV-O inverses. The constraints remain as
+  restrictions on HeritageGraph classes and in SHACL. Kept, with justification: 12
+  `rdfs:subClassOf` axioms between named external classes (`crm:E21_Person ⊑ crm:E39_Actor`,
+  restated from CIDOC-CRM, and the CRM→PROV-O alignment of the reused classes).
+- `AssertionSubject` is a covering axiom (`⊑ union`) instead of `≡ union`, which made the reused
+  CRM/CRMinf classes subclasses of a HeritageGraph class.
+- LUX alignment module rebuilt from the updated mapping in CAIRNepal/heritagegraph-lux-migration
+  (alignment/heritagegraph-lux-alignment.ttl), migrated to v1.0.0 core terms: no equivalence to
+  external classes (`Deity ≡ crm:E28_Conceptual_Object` removed; `HistoricalEvent`, `Activity`,
+  `Concept` now `⊑`), no axioms on external terms, no enumeration under `Concept`, CalendarSystem's
+  mapping to the non-existent `crm:E29_Designated_Reference_System` removed.
+- New gate `reasoning_extras.py no-external-superclass` (make check, CI): core + LUX module +
+  CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci) must not entail an HG superclass for any external class or
+  an extra HG type for any enumeration individual.
+- `mapping_audit.py` also audits the LUX module, checks every CRM/CRMinf/CRMsci IRI used anywhere
+  against the official RDFS, verifies CRMdig/Linked Art targets against the Linked Art context,
+  retries Getty AAT, accepts manual verdicts (`mapping_manual_verification.csv`), and exits non-zero
+  on any failure.
+- Every enumeration value has an HTML anchor (`docs/enum/<Enum>.html`, `scripts/gen_enum_pages.py`);
+  nginx routes enumeration IRIs there so `…/ConditionType#Damaged` lands on the value. IRIs are
+  served over https (http redirects to https).
+- `reconcile_store.py` writes enumeration IRIs, `xsd:decimal` scores, `xsd:dateTime` dates, property
+  IRIs for `propositionPredicate`, and a declarations graph.
+- Deleted `interop_fixes.py`, `postprocess_shacl.py`, `HeritageGraph_fixed.yaml`.
+
 ### Changed (namespace and alignment)
-- Namespace moved from the former w3id.org namespace to `http://cair-nepal.org/heritagegraph/`
+- Namespace moved from the former w3id.org namespace to `https://cair-nepal.org/heritagegraph/`
   (ontology IRI `…/ontology`, version IRI `…/ontology/1.0.0`), set once in the LinkML source;
   `finalize_alpha5_artifacts.py` now derives the namespace and ontology IRI from the YAML.
-  Example data uses `http://cair-nepal.org/heritagegraph/example/`.
+  Example data uses `https://cair-nepal.org/heritagegraph/example/`.
 - `w3id/` replaced by `deploy/nginx/`: content negotiation for the ontology, version, term, and
   concept-scheme IRIs, plus `deploy/nginx/check_conneg.py` (`make conneg`). Version IRIs serve
   the immutable copy written by `scripts/publish_release.py` to `docs/releases/<version>/`.

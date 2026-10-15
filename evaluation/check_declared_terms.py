@@ -5,7 +5,7 @@ must be declared in the released ontology.
 Scans examples/ (ABoxes and examples/queries/), evaluation/ (scripts, fixtures,
 expected answers), and the generated cq_sparql.md for HeritageGraph IRIs, in any
 of the spellings the repository uses: CURIEs (hg:x, heritageGraph:x), full IRIs
-(<http://cair-nepal.org/heritagegraph/x>, including enumeration individuals such as
+(<https://cair-nepal.org/heritagegraph/x>, including enumeration individuals such as
 .../ConditionType#Damaged), and the Python constructions HG + "x" and U("x").
 Each term must be the subject of an rdf:type triple in
 ontology/HeritageGraph.ttl. A stale term (e.g. a snake_case name from an older
@@ -35,7 +35,7 @@ from rdflib import Graph, RDF, URIRef
 
 ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
-HG = "http://cair-nepal.org/heritagegraph/"
+HG = "https://cair-nepal.org/heritagegraph/"
 
 SCAN = [ROOT / "examples", ROOT / "evaluation", ROOT / "ontology" / "lux",
         ROOT / "cq_sparql.md"]

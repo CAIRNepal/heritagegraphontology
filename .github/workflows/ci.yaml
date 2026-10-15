@@ -50,6 +50,9 @@ jobs:
       - name: Ontology + each example ABox is OWL 2 DL and HermiT-consistent
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/check_combined_dl.py
 
+      - name: Core + LUX + CIDOC-CRM give no external class an HG superclass
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py no-external-superclass
+
       - name: Competency questions match their expected answer sets
         run: python3 evaluation/run_abox_cq32.py
 

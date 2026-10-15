@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write the immutable per-release copy of the ontology served at its version IRI.
 
-The version IRI (e.g. http://cair-nepal.org/heritagegraph/ontology/1.0.0) must
+The version IRI (e.g. https://cair-nepal.org/heritagegraph/ontology/1.0.0) must
 return that exact release's files, independent of later releases. This script
 reads ontology/HeritageGraph.ttl, takes the version from its owl:versionIRI,
 and writes <docs>/releases/<version>/ontology.{ttl,owl,nt,jsonld} plus a small

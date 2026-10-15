@@ -87,7 +87,7 @@ for name, q in BLIND_QUERIES.items():
     print(f"[{len(rows)} row(s)] {name}")
     for r in rows:
         print("   -> " + " | ".join(
-            str(x).replace("http://cair-nepal.org/heritagegraph/example/", "")
+            str(x).replace("https://cair-nepal.org/heritagegraph/example/", "")
             for x in r))
     if not rows:
         failures.append(name)
@@ -145,9 +145,9 @@ for belief_id, agent_id in sorted(attributed.items(), key=lambda kv: str(kv[0]))
     ok_agent = agent_id in agent_ids
     sources = derived.get(belief_id, [])
     ok_src = all(s in entity_ids for s in sources) and sources
-    b = str(belief_id).replace("http://cair-nepal.org/heritagegraph/example/", "")
-    a = str(agent_id).replace("http://cair-nepal.org/heritagegraph/example/", "")
-    ss = [str(s).replace("http://cair-nepal.org/heritagegraph/example/", "")
+    b = str(belief_id).replace("https://cair-nepal.org/heritagegraph/example/", "")
+    a = str(agent_id).replace("https://cair-nepal.org/heritagegraph/example/", "")
+    ss = [str(s).replace("https://cair-nepal.org/heritagegraph/example/", "")
           for s in sources]
     print(f"  walk {b} --wasAttributedTo--> {a} "
           f"[agent record: {ok_agent}] --wasDerivedFrom--> {ss} "

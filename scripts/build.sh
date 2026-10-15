@@ -105,6 +105,7 @@ else
   find "$OUT" -mindepth 1 -maxdepth 1 ! -name releases -exec rm -rf {} + && cp -R "$GEN"/. "$OUT"/
 fi
 "$PY" "$ROOT/scripts/publish_release.py" "$OUT"
+"$PY" "$ROOT/scripts/gen_enum_pages.py" "$OUT"
 
 # Overwrite the bundled WebVOWL MIT license with the ontology's CC BY 4.0 license.
 # WIDOCO copies webvowl_1.1.7_patched (which ships the MIT text) on every run;

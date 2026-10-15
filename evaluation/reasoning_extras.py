@@ -41,6 +41,7 @@ import urllib.request
 from pathlib import Path
 
 from rdflib import Graph, OWL, RDF, RDFS, URIRef
+from rdflib.collection import Collection
 
 ROOT = Path(__file__).resolve().parents[1]
 ROBOT_JAR = os.environ.get("ROBOT_JAR", "/tmp/hgtools/robot.jar")
@@ -53,10 +54,10 @@ JAVA = str(Path(JAVA_HOME) / "bin" / "java")
 # injection: the OWL axioms are load-bearing.
 # ===========================================================================
 def run_injection() -> int:
-    COMMON = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
+    COMMON = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
+@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
 
 # The declaration is required so that the OWLAPI Turtle parser reads the
 # embodiment triples as ObjectPropertyAssertions; undeclared predicates are
@@ -70,10 +71,10 @@ ex:D2 a hg:Deity , owl:NamedIndividual ; rdfs:label "deity two" .
 """
     DIFFERENT = "ex:D1 owl:differentFrom ex:D2 .\n"
 
-    DISJOINT_JOINT = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
+    DISJOINT_JOINT = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
+@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
 
 ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
     rdfs:label "joint Stupa-and-Chaitya individual" .
@@ -129,7 +130,7 @@ ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
 # ===========================================================================
 # merged-import: HermiT over HG + CIDOC-CRM + CRMinf + CRMsci + PROV-O.
 # ===========================================================================
-HG_NS = "http://cair-nepal.org/heritagegraph/"
+HG_NS = "https://cair-nepal.org/heritagegraph/"
 PROV_NS = "http://www.w3.org/ns/prov#"
 CACHE = Path(os.environ.get("VOCAB_CACHE", "/tmp/hgtools/vocab"))
 
@@ -165,7 +166,13 @@ def _fetch(name: str, fname: str, url: str) -> Path:
     p = CACHE / fname
     if not p.exists() or p.stat().st_size == 0:
         print(f"  fetching {name} from {url}")
-        urllib.request.urlretrieve(url, p)
+        try:
+            import certifi, ssl
+            ctx = ssl.create_default_context(cafile=certifi.where())
+        except ImportError:
+            ctx = None
+        with urllib.request.urlopen(url, context=ctx, timeout=120) as r:
+            p.write_bytes(r.read())
     clean = p.with_suffix(".noimports.ttl")
     if not clean.exists():
         g = Graph()
@@ -374,10 +381,119 @@ def run_entailments() -> int:
     return 0
 
 
+# ===========================================================================
+# no-external-superclass: HeritageGraph must not redefine external terms.
+# ===========================================================================
+LUX_MODULE = ROOT / "ontology/lux/heritagegraph-lux-alignment.ttl"
+EXTERNAL_CLASS_NS = (
+    "http://www.cidoc-crm.org/cidoc-crm/",
+    "http://www.cidoc-crm.org/extensions/",
+    "http://www.w3.org/ns/prov#",
+    "https://linked.art/ns/terms/",
+    "http://www.ics.forth.gr/isl/CRMdig/",
+)
+
+
+def _hijacks(extra_ttl: str = "") -> tuple[list[str], int, int]:
+    """Classify core + LUX module + CIDOC-CRM 7.1.3 + CRMinf + CRMsci with
+    HermiT (subclass and class-assertion inferences) and return the
+    violations: an external class with a HeritageGraph superclass, or an
+    enumeration individual with a HeritageGraph type other than its own
+    enumeration class. Also returns the numbers of external classes and
+    enumeration individuals examined."""
+    paths = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3", "CRMinf v1.0", "CRMsci v2.0")]
+    core = Graph()
+    core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    enum_members: dict[URIRef, set[URIRef]] = {}
+    for cls, lst in core.subject_objects(OWL.oneOf):
+        for ind in Collection(core, lst):
+            enum_members.setdefault(ind, set()).add(cls)
+    with tempfile.TemporaryDirectory() as td:
+        merged = Graph()
+        for p in [ROOT / "ontology/HeritageGraph.ttl", LUX_MODULE] + paths:
+            merged.parse(p, format="turtle")
+        if extra_ttl:
+            merged.parse(data=extra_ttl, format="turtle")
+        merged.remove((None, OWL.imports, None))
+        src, out = Path(td) / "merged.ttl", Path(td) / "reasoned.ttl"
+        merged.serialize(src, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--equivalent-classes-allowed", "all",
+                               "--axiom-generators", "SubClass EquivalentClass ClassAssertion",
+                               "--input", str(src), "--output", str(out)],
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            return [f"merged graph not classifiable: {proc.stdout[-300:]}{proc.stderr[-300:]}"], 0, 0
+        reasoned = Graph()
+        reasoned.parse(out, format="turtle")
+    # transitive named-class closure over asserted + inferred axioms
+    sup: dict[URIRef, set[URIRef]] = {}
+    for g in (merged, reasoned):
+        for s, o in g.subject_objects(RDFS.subClassOf):
+            if isinstance(s, URIRef) and isinstance(o, URIRef):
+                sup.setdefault(s, set()).add(o)
+        for s, o in g.subject_objects(OWL.equivalentClass):
+            if isinstance(s, URIRef) and isinstance(o, URIRef):
+                sup.setdefault(s, set()).add(o); sup.setdefault(o, set()).add(s)
+
+    def ancestors(c: URIRef) -> set[URIRef]:
+        seen, todo = set(), [c]
+        while todo:
+            x = todo.pop()
+            for y in sup.get(x, ()):
+                if y not in seen:
+                    seen.add(y); todo.append(y)
+        return seen - {c}
+
+    hg = lambda u: str(u).startswith(HG_NS)
+    violations = []
+    ext_classes = {c for g in (merged, reasoned) for c in g.subjects(RDF.type, OWL.Class)
+                   if isinstance(c, URIRef) and str(c).startswith(EXTERNAL_CLASS_NS)}
+    for c in sorted(ext_classes):
+        bad = sorted(str(a) for a in ancestors(c) if hg(a))
+        if bad:
+            violations.append(f"{c} has HeritageGraph superclass(es): {', '.join(bad)}")
+    for ind, own in sorted(enum_members.items()):
+        types = {t for g in (merged, reasoned) for t in g.objects(ind, RDF.type) if isinstance(t, URIRef)}
+        hg_types = {t for t in types | {a for t in types for a in ancestors(t)} if hg(t)}
+        bad = sorted(str(t) for t in hg_types - own)
+        if bad:
+            violations.append(f"enumeration individual {ind} gains HeritageGraph type(s): {', '.join(bad)}")
+    return violations, len(ext_classes), len(enum_members)
+
+
+def run_no_external_superclass() -> int:
+    """Fail if core + LUX module + CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci) entail
+    that an external class gains a HeritageGraph superclass or that an
+    enumeration individual gains a HeritageGraph type beyond its own
+    enumeration; a negative control re-injects Deity ≡ crm:E28_Conceptual_Object
+    and must be caught."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    violations, n_cls, n_ind = _hijacks()
+    print(f"core + LUX module + CIDOC-CRM 7.1.3 + CRMinf + CRMsci, classified with HermiT: "
+          f"{n_cls} external classes, {n_ind} enumeration individuals examined")
+    for v in violations:
+        print("  VIOLATION:", v)
+    control, _, _ = _hijacks(
+        "<https://cair-nepal.org/heritagegraph/Deity> "
+        "<http://www.w3.org/2002/07/owl#equivalentClass> "
+        "<http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> .")
+    caught = any("E28_Conceptual_Object" in v or "E55_Type" in v for v in control)
+    print(f"negative control (Deity ≡ crm:E28_Conceptual_Object): "
+          f"{len(control)} violation(s) -> {'caught' if caught else 'NOT caught'}")
+    if violations or not caught:
+        print("FAIL")
+        return 1
+    print("PASS: no external class gains a HeritageGraph superclass and no enumeration "
+          "individual gains a HeritageGraph type beyond its own enumeration.")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
     "entailments": run_entailments,
+    "no-external-superclass": run_no_external_superclass,
 }
 
 

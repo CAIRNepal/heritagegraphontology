@@ -2,22 +2,22 @@
 ======================================================================
   §4.1  Logical Consistency & OWL-RL Reasoning
 ======================================================================
-Date      : 2026-10-15T18:36:40.425973
+Date      : 2026-10-15T21:59:35.553199
 Ontology  : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
 
 ======================================================================
   Step 1 — RDF Parse
 ======================================================================
-  ✅  Parsed successfully in 0.046s
-  Triples (original): 5074
+  ✅  Parsed successfully in 0.036s
+  Triples (original): 4180
 
 ======================================================================
   Step 2 — OWL-RL Deductive Closure
 ======================================================================
-  ✅  OWL-RL closure computed in 3.158s
-  Triples after closure : 26404
-  Inferred triples      : 21330
+  ✅  OWL-RL closure computed in 1.227s
+  Triples after closure : 13959
+  Inferred triples      : 9779
 
 ======================================================================
   Step 3 — Unsatisfiable Class Heuristic
@@ -28,23 +28,23 @@ Ontology  : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.
   Step 4 — Ontology Metadata
 ======================================================================
   owl:Ontology declarations: 1
-    IRI: http://cair-nepal.org/heritagegraph/ontology
+    IRI: https://cair-nepal.org/heritagegraph/ontology
       rdfs:label = HeritageGraph
       pav:version = 1.0.0
-      owl:versionIRI = http://cair-nepal.org/heritagegraph/ontology/1.0.0
+      owl:versionIRI = https://cair-nepal.org/heritagegraph/ontology/1.0.0
 
 ======================================================================
   Step 5 — Quick Consistency Indicators
 ======================================================================
   owl:disjointWith pairs declared: 2
-  Object properties without explicit rdfs:range: 1/149
-  Datatype properties without explicit rdfs:range: 1/42
+  Object properties without explicit rdfs:range: 47/149
+  Datatype properties without explicit rdfs:range: 10/42
 
 ======================================================================
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 21330 inferred triples
+  OWL-RL closure      : 9779 inferred triples
   Unsatisfiable       : 0 classes
   Disjointness axioms : 2
 

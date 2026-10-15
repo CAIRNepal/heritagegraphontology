@@ -11,7 +11,7 @@ institutions (Guthi), communities, the living-goddess (Kumari) tradition, and
 the source-attributed knowledge claims that connect them.
 
 This work is part of the [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/)
-project at CAIR-Nepal. Persistent base IRI: `http://cair-nepal.org/heritagegraph/`.
+project at CAIR-Nepal. Persistent base IRI: `https://cair-nepal.org/heritagegraph/`.
 
 ---
 
@@ -159,7 +159,7 @@ Published as SKOS ConceptSchemes (meaning-URIs used where declared, e.g.
 │   ├── pattern_experiments.py       #   §7 pattern baselines/ablations (6 subcommands)
 │   ├── mapping_audit.py             #   §7.6 external mapping audit + negative control
 │   ├── reasoning_extras.py          #   §7.1 inconsistency injection + merged-vocab classification
-│   ├── run_danam_scale_cq.py        #   §7 at-scale CQ run over independent data
+│   ├── run_danam_scale_cq.py        #   CQ run over the DANAM bundle (not part of the paper's evaluation)
 │   └── results/                     #   Generated reports
 ├── data/                            # Independent-data bundle
 │   ├── raw/                         #   DANAM source dumps
@@ -236,7 +236,7 @@ full script-to-paper-section map.
 ## Example instance data
 
 ```turtle
-@prefix hg:   <http://cair-nepal.org/heritagegraph/> .
+@prefix hg:   <https://cair-nepal.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 
 :IndraJatra
@@ -249,7 +249,7 @@ full script-to-paper-section map.
 
 ## Example queries
 
-Prefixes: `hg: <http://cair-nepal.org/heritagegraph/>`,
+Prefixes: `hg: <https://cair-nepal.org/heritagegraph/>`,
 `prov: <http://www.w3.org/ns/prov#>`,
 `crminf: <http://www.cidoc-crm.org/extensions/crminf/>`.
 
@@ -285,7 +285,9 @@ SELECT ?tenure ?selection ?enthronement ?retirement WHERE {
 ## Data and public SPARQL endpoint
 
 An independent-data bundle accompanies the release so the ontology can be
-exercised over real, third-party data mapped to the released vocabulary:
+exercised over real, third-party data mapped to the released vocabulary. It is
+not part of the paper's evaluation and has a known `owl:sameAs` inconsistency
+(see `data/README.md`):
 
 - `data/reconciled/danam-heritagegraph.nq` — ~130k quads reconciled from the
   DANAM / OpenStreetMap pipeline (tangible monuments + provenance);
