@@ -155,7 +155,7 @@ for belief_id, agent_id in sorted(attributed.items(), key=lambda kv: str(kv[0]))
     if ok_agent and ok_src:
         walked += 1
 
-expected_beliefs = 3   # Assert_BuildA, Assert_BuildB, Assert_RouteChange
+expected_beliefs = 4   # Assert_BuildA, Assert_BuildB, Assert_RouteChange, Assert_KumariSyncretism
 if walked < expected_beliefs:
     failures.append(f"generic-consumer walk ({walked}/{expected_beliefs})")
 print()
