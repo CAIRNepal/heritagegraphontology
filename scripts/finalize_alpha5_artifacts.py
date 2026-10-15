@@ -659,8 +659,11 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
     # HeritageGraph property, so it is re-stated with the HeritageGraph
     # property as subject. Declarations and annotations are kept.
     #
-    # One justified exception: rdfs:subClassOf between two named external
-    # classes. These are crm:E21_Person ⊑ crm:E39_Actor (CIDOC-CRM's own axiom,
+    # Two justified exceptions. First, owl:inverseOf between two external
+    # properties that the owning vocabulary itself declares inverse
+    # (prov:generated / prov:wasGeneratedBy, asserted by PROV-O; the YAML
+    # declares the pair as slot inverses). Second, rdfs:subClassOf between two
+    # named external classes. These are crm:E21_Person ⊑ crm:E39_Actor (CIDOC-CRM's own axiom,
     # restated so the core classifies without importing CRM) and the
     # HeritageGraph CRM→PROV-O alignment of the reused classes (crm:E39_Actor ⊑
     # prov:Agent, crm:E12_Production ⊑ prov:Activity, …, crminf:I2_Belief ⊑
@@ -676,9 +679,9 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
         for s, o in list(g.subject_objects(pred)):
             if not isinstance(s, URIRef) or str(s).startswith(HG_NS):
                 continue
-            if (pred == RDFS.subClassOf and isinstance(o, URIRef)
+            if (pred in (RDFS.subClassOf, OWL.inverseOf) and isinstance(o, URIRef)
                     and not str(o).startswith(HG_NS)):
-                continue  # named external → external: the exception above
+                continue  # named external → external: the exceptions above
             g.remove((s, pred, o))
             n += 1
             if pred == OWL.inverseOf and isinstance(o, URIRef) and str(o).startswith(HG_NS):

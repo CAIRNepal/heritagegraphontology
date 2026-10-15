@@ -3,14 +3,15 @@
 ## [Unreleased] - v1.0.0 consistency fixes
 
 ### Changed (no axioms on external terms; LUX mapping from the companion repository)
-- The core no longer asserts logical axioms whose subject is an external term (259 removed):
+- The core no longer asserts logical axioms whose subject is an external term (257 removed):
   global `rdfs:range`/`rdfs:domain` on CIDOC-CRM/PROV-O properties (incl. `crm:P46_is_composed_of`
   / `crm:P46i_forms_part_of` → ArchitecturalElement/ArchitecturalStructure), cardinality and value
   restrictions on reused classes (`crm:E21_Person`, PROV-O classes, `crminf:I2_Belief`, …),
-  `crm:E6_Destruction ⊑ HistoricalEvent`, and restated PROV-O inverses. The constraints remain as
-  restrictions on HeritageGraph classes and in SHACL. Kept, with justification: 12
-  `rdfs:subClassOf` axioms between named external classes (`crm:E21_Person ⊑ crm:E39_Actor`,
-  restated from CIDOC-CRM, and the CRM→PROV-O alignment of the reused classes).
+  and `crm:E6_Destruction ⊑ HistoricalEvent`. The constraints remain as restrictions on
+  HeritageGraph classes and in SHACL. Kept, with justification: 12 `rdfs:subClassOf` axioms
+  between named external classes (`crm:E21_Person ⊑ crm:E39_Actor`, restated from CIDOC-CRM,
+  and the CRM→PROV-O alignment of the reused classes) and the `prov:generated` /
+  `prov:wasGeneratedBy` `owl:inverseOf` pair, which PROV-O itself asserts.
 - `AssertionSubject` is a covering axiom (`⊑ union`) instead of `≡ union`, which made the reused
   CRM/CRMinf classes subclasses of a HeritageGraph class.
 - LUX alignment module rebuilt from the updated mapping in CAIRNepal/heritagegraph-lux-migration
