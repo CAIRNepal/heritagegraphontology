@@ -11,7 +11,7 @@
 #           <data + heritagegraph-lux-alignment.ttl + HeritageGraph.ttl>
 
 @prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix heritageGraph: <http://cair-nepal.org/heritagegraph/> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
@@ -35,7 +35,7 @@ heritageGraph:LuxLabelShape a sh:PropertyShape ;
 heritageGraph:NameShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Name ;
     sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:property [ sh:path heritageGraph:has_language ;
+    sh:property [ sh:path heritageGraph:hasLanguage ;
                   sh:class heritageGraph:Language ;
                   sh:description "Language of this name." ] .
 
@@ -50,13 +50,13 @@ heritageGraph:IdentifierShape a sh:NodeShape ;
 
 heritageGraph:LinguisticObjectShape a sh:NodeShape ;
     sh:targetClass heritageGraph:LinguisticObject ;
-    sh:property [ sh:path heritageGraph:has_language ;
+    sh:property [ sh:path heritageGraph:hasLanguage ;
                   sh:class heritageGraph:Language ;
                   sh:description "Language of the text." ] .
 
 heritageGraph:InscriptionShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Inscription ;
-    sh:property [ sh:path heritageGraph:has_language ;
+    sh:property [ sh:path heritageGraph:hasLanguage ;
                   sh:class heritageGraph:Language ] .
 
 heritageGraph:LanguageShape a sh:NodeShape ;
@@ -86,7 +86,7 @@ heritageGraph:DigitalObjectShape a sh:NodeShape ;
 
 heritageGraph:DimensionShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Dimension ;
-    sh:property [ sh:path heritageGraph:dimension_has_unit ;
+    sh:property [ sh:path heritageGraph:dimensionHasUnit ;
                   sh:class heritageGraph:MeasurementUnit ;
                   sh:maxCount 1 ;
                   sh:description "Unit of this dimension value." ] .
@@ -97,13 +97,13 @@ heritageGraph:MeasurementUnitShape a sh:NodeShape ;
 
 heritageGraph:MeasurementShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Measurement ;
-    sh:property [ sh:path heritageGraph:measurement_observes ;
+    sh:property [ sh:path heritageGraph:measurementObserves ;
                   sh:class heritageGraph:Dimension ;
                   sh:description "Dimension observed by this measurement." ] .
 
 heritageGraph:MonetaryAmountShape a sh:NodeShape ;
     sh:targetClass heritageGraph:MonetaryAmount ;
-    sh:property [ sh:path heritageGraph:amount_in_currency ;
+    sh:property [ sh:path heritageGraph:amountInCurrency ;
                   sh:class heritageGraph:Currency ;
                   sh:maxCount 1 ;
                   sh:description "Currency of this amount." ] .
@@ -155,7 +155,7 @@ heritageGraph:MoveShape a sh:NodeShape ;
 
 heritageGraph:AcquisitionShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Acquisition ;
-    sh:property [ sh:path heritageGraph:acquisition_amount ;
+    sh:property [ sh:path heritageGraph:acquisitionAmount ;
                   sh:class heritageGraph:MonetaryAmount ;
                   sh:description "Price/amount of the acquisition." ] .
 
@@ -175,7 +175,7 @@ heritageGraph:ProvenanceActivityShape a sh:NodeShape ;
 heritageGraph:GroupShape a sh:NodeShape ;
     sh:targetClass heritageGraph:Group ;
     sh:property heritageGraph:LuxLabelShape ;
-    sh:property [ sh:path heritageGraph:was_formed_by ;
+    sh:property [ sh:path heritageGraph:wasFormedBy ;
                   sh:class heritageGraph:Formation ;
                   sh:maxCount 1 ;
                   sh:description "Founding event of the group." ] .
@@ -186,7 +186,7 @@ heritageGraph:SetShape a sh:NodeShape ;
 
 heritageGraph:CuratedHoldingShape a sh:NodeShape ;
     sh:targetClass heritageGraph:CuratedHolding ;
-    sh:property [ sh:path heritageGraph:holds_item ;
+    sh:property [ sh:path heritageGraph:holdsItem ;
                   sh:nodeKind sh:BlankNodeOrIRI ;
                   sh:description "Items held in this curated holding." ] .
 

@@ -59,7 +59,7 @@ def superproperty_closure(g: Graph, props: set[URIRef]) -> set[URIRef]:
 
 
 def nondisjoint_sibling_groups(tbox: Graph) -> list[set[URIRef]]:
-    hg = "https://w3id.org/heritagegraph/"
+    hg = "http://cair-nepal.org/heritagegraph/"
     kids_by_parent: dict[URIRef, set[URIRef]] = {}
     for c, p in tbox.subject_objects(RDFS.subClassOf):
         if str(c).startswith(hg) and str(p).startswith(hg):

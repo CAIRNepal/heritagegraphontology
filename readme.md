@@ -11,7 +11,7 @@ institutions (Guthi), communities, the living-goddess (Kumari) tradition, and
 the source-attributed knowledge claims that connect them.
 
 This work is part of the [HeritageGraph](https://www.cair-nepal.org/research/projects/heritagegraph-illuminating-cultural-legacies-through-knowledge-graphs/)
-project at CAIR-Nepal. Persistent base IRI: `https://w3id.org/heritagegraph/`.
+project at CAIR-Nepal. Persistent base IRI: `http://cair-nepal.org/heritagegraph/`.
 
 ---
 
@@ -100,8 +100,8 @@ minting its own terms:
 | Prefix | Namespace | Used for |
 |---|---|---|
 | `crm:` | `http://www.cidoc-crm.org/cidoc-crm/` | Core event/object/actor backbone (E-classes, P-properties) |
-| `crminf:` | `http://www.ics.forth.gr/isl/CRMinf/` | Assertion/belief backbone (I2 Belief, I4 Proposition Set) |
-| `crmsci:` | `http://www.ics.forth.gr/isl/CRMsci/` | Scientific observation (field survey) |
+| `crminf:` | `http://www.cidoc-crm.org/extensions/crminf/` | Assertion/belief backbone (I2 Belief, I4 Proposition Set) |
+| `crmsci:` | `http://www.cidoc-crm.org/extensions/crmsci/` | Scientific observation (field survey) |
 | `prov:` | `http://www.w3.org/ns/prov#` | Provenance: agents, activities, derivation, attribution, revision |
 | `skos:` | `http://www.w3.org/2004/02/skos/core#` | Enumerations, mappings, notes |
 | `aat:` | `http://vocab.getty.edu/aat/` | Getty AAT concept/type mappings |
@@ -173,7 +173,7 @@ Published as SKOS ConceptSchemes (meaning-URIs used where declared, e.g.
 │   └── run_release_quality.py
 ├── registry/                        # LOV registry submission metadata
 ├── release/                         # Release quality reports
-├── w3id/                            # w3id.org redirect rules
+├── deploy/nginx/                    # cair-nepal.org content negotiation (nginx) + check_conneg.py
 ├── CHANGELOG.md · CITATION.cff · LICENSE.md · requirements.txt
 ```
 
@@ -236,7 +236,7 @@ full script-to-paper-section map.
 ## Example instance data
 
 ```turtle
-@prefix hg:   <https://w3id.org/heritagegraph/> .
+@prefix hg:   <http://cair-nepal.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 
 :IndraJatra
@@ -249,9 +249,9 @@ full script-to-paper-section map.
 
 ## Example queries
 
-Prefixes: `hg: <https://w3id.org/heritagegraph/>`,
+Prefixes: `hg: <http://cair-nepal.org/heritagegraph/>`,
 `prov: <http://www.w3.org/ns/prov#>`,
-`crminf: <http://www.ics.forth.gr/isl/CRMinf/>`.
+`crminf: <http://www.cidoc-crm.org/extensions/crminf/>`.
 
 **Eligibility criteria to become a Kumari** (subclass query, no string parsing):
 

@@ -8,7 +8,7 @@
 # Prefixes are repeated per query so each block is independently executable.
 
 # CQ1: Which architectural structures were built during a time period using an architectural style?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?structure ?style ?place WHERE {
   ?prod a crm:E12_Production ; crm:P108_has_produced ?structure .
@@ -17,7 +17,7 @@ SELECT ?structure ?style ?place WHERE {
 }
 
 # CQ2: Which architectural elements are components of structures used in a given ritual?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?element ?structure ?ritual WHERE {
   ?element a hg:ArchitecturalElement ; crm:P46i_forms_part_of ?structure .
@@ -25,14 +25,14 @@ SELECT ?element ?structure ?ritual WHERE {
 }
 
 # CQ3: Which iconographic objects depict a deity, and where are they currently located?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?object ?deity ?place WHERE {
   ?object crm:P62_depicts ?deity ; crm:P55_has_current_location ?place .
 }
 
 # CQ4: Which heritage structures are associated with historical events, and over what time-spans?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?event ?structure ?timespan WHERE {
   ?event a hg:HistoricalEvent ; hg:architecturalStructures ?structure ;
@@ -40,7 +40,7 @@ SELECT ?event ?structure ?timespan WHERE {
 }
 
 # CQ5: Which architectural structures within a geographical area belong to a particular typology?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?area ?typology ?structure WHERE {
   ?area a crm:E53_Place ; crm:P53i_is_former_or_current_location_of ?structure .
@@ -48,7 +48,7 @@ SELECT ?area ?typology ?structure WHERE {
 }
 
 # CQ6: Which heritage shares a common architectural style?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?a ?b ?style WHERE {
   ?a hg:hasArchitecturalStyle ?style .
   ?b hg:hasArchitecturalStyle ?style .
@@ -56,7 +56,7 @@ SELECT ?a ?b ?style WHERE {
 }
 
 # CQ7: Which sacred structures in a place are associated with which deities?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?enshrinement ?deity ?structure ?place WHERE {
   ?enshrinement a hg:Enshrinement ;
@@ -66,33 +66,33 @@ SELECT ?enshrinement ?deity ?structure ?place WHERE {
 }
 
 # CQ8: Among temples that conduct daily Nitya Puja, which are assessed as damaged/endangered?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?temple ?state ?conditionType WHERE {
   ?temple a hg:Temple ; crm:P34i_was_assessed_by ?ca .
   ?ca crm:P35_has_identified ?state .
   ?state hg:hasConditionType ?conditionType .
-  FILTER(?conditionType IN (<https://w3id.org/heritagegraph/ConditionType#Damaged>,
-                            <https://w3id.org/heritagegraph/ConditionType#Ruined>))
+  FILTER(?conditionType IN (<http://cair-nepal.org/heritagegraph/ConditionType#Damaged>,
+                            <http://cair-nepal.org/heritagegraph/ConditionType#Ruined>))
   ?ritual a hg:RitualEvent ; crm:P8_took_place_on_or_within ?temple ;
-          hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> .
+          hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#NityaPuja> .
 }
 
 # CQ9: Which caste groups have hereditary roles in rituals critical for a festival?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?group ?role ?ritual WHERE {
   ?group a hg:CasteGroup ; hg:traditionalRole ?role .
   ?ritual hg:performedByGroup ?group ; hg:isCriticalForFestival ?critical .
 }
 
 # CQ10: Which ritual objects are associated with rituals, and who is responsible for their use?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?object ?ritual ?actor WHERE {
   ?object hg:participatesInRitual ?ritual ; hg:usedBy ?actor .
 }
 
 # CQ11: Which rituals are associated with which sites, invoke which deities, with what recurrence?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?ritual ?place ?deity ?pattern WHERE {
   ?ritual a hg:RitualEvent ; crm:P7_took_place_at ?place ;
@@ -100,7 +100,7 @@ SELECT ?ritual ?place ?deity ?pattern WHERE {
 }
 
 # CQ12: What is the sequence of ritual events, and which actors are responsible for each step?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?first ?second ?actor WHERE {
   ?first crm:P183_ends_before_the_start_of ?second .
@@ -108,14 +108,14 @@ SELECT ?first ?second ?actor WHERE {
 }
 
 # CQ13: Which rituals move sacred presences between sites, and what routes are traversed?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?ritual ?start ?end ?route WHERE {
   ?ritual hg:startPlace ?start ; hg:endPlace ?end ;
           hg:routeDescription ?route .
 }
 
 # CQ14: How do crises trigger extraordinary rituals outside the normal calendar?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?crisis ?ritual ?pattern WHERE {
   ?crisis a hg:HistoricalEvent ; crm:P9_consists_of ?ritual .
@@ -123,22 +123,22 @@ SELECT ?crisis ?ritual ?pattern WHERE {
 }
 
 # CQ15: What materials and techniques are used in key ritual events?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?ritual ?material ?technique WHERE {
   ?ritual crm:P125_used_object_of_type ?material ; crm:P33_used_specific_technique ?technique .
 }
 
 # CQ16: What are the ritual obligations of participant groups, and how are their roles recorded?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?ritual ?group ?role WHERE {
   ?ritual hg:performedByGroup ?group .
   ?group hg:traditionalRole ?role .
 }
 
 # CQ17: Which rituals have documented transformations, and which sources attest them?
-PREFIX hg: <https://w3id.org/heritagegraph/>
-PREFIX crminf: <http://www.ics.forth.gr/isl/CRMinf/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 SELECT ?assertion ?ritual ?value ?source WHERE {
   ?assertion a crminf:I2_Belief ; hg:assertsAbout ?ritual ;
@@ -147,7 +147,7 @@ SELECT ?assertion ?ritual ?value ?source WHERE {
 }
 
 # CQ18: How do changes in structures reflect broader transitions (via provenance assertions)?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 SELECT ?structure ?assertion ?source WHERE {
   ?structure hg:hasAssertion ?assertion .
@@ -155,7 +155,7 @@ SELECT ?structure ?assertion ?source WHERE {
 }
 
 # CQ19: Which organisations manage which heritage, perform which rituals, and hold custody?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?heritage ?guthi ?ritual ?custody WHERE {
   ?heritage hg:managedByGuthi ?guthi .
@@ -163,21 +163,21 @@ SELECT ?heritage ?guthi ?ritual ?custody WHERE {
 }
 
 # CQ20: Which structures were commissioned by a specific patron?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?production ?patron ?structure WHERE {
   ?production hg:commissionedBy ?patron ; crm:P108_has_produced ?structure .
 }
 
 # CQ21: Which institutions provide economic and ritual support for sites, rituals, or sacred figures?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?supported ?institution WHERE {
   ?supported hg:supportedByInstitution ?institution .
   ?institution a hg:Guthi .
 }
 
 # CQ22: Which festivals bring together multiple groups around a shared syncretic deity?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?festival ?deity ?group1 ?group2 WHERE {
   ?festival a hg:Festival ; hg:invokesDeity ?deity ;
@@ -187,7 +187,7 @@ SELECT ?festival ?deity ?group1 ?group2 WHERE {
 }
 
 # CQ23: Which places or structures function as shared or contested sites for multiple traditions?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?structure ?tradition1 ?tradition2 WHERE {
   ?structure hg:hasReligiousTradition ?tradition1 , ?tradition2 .
   ?structure a hg:Temple .
@@ -195,7 +195,7 @@ SELECT ?structure ?tradition1 ?tradition2 WHERE {
 }
 
 # CQ24: Which rituals at Hindu temples and Buddhist monuments invoke the same syncretic deity?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?ritualAtTemple ?ritualAtStupa ?deityA ?deityB WHERE {
   ?ritualAtTemple crm:P8_took_place_on_or_within ?temple ; hg:invokesDeity ?deityA .
@@ -206,7 +206,7 @@ SELECT ?ritualAtTemple ?ritualAtStupa ?deityA ?deityB WHERE {
 }
 
 # CQ25: How do syncretic deities link traditions, and what evidence supports these links?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?syn ?deityA ?deityB ?source WHERE {
   ?syn a hg:SyncreticRelationship ;
@@ -215,7 +215,7 @@ SELECT ?syn ?deityA ?deityB ?source WHERE {
 }
 
 # CQ26: Which person served as Kumari, for which period, at which residence?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?person ?residence ?timespan WHERE {
   ?tenure a hg:KumariTenure ; hg:hadParticipant ?person ;
@@ -223,14 +223,14 @@ SELECT ?tenure ?person ?residence ?timespan WHERE {
 }
 
 # CQ27: For a given Kumari, which deity is believed present, in which religious traditions?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?tenure ?deity ?tradition WHERE {
   ?tenure a hg:KumariTenure ; hg:embodiedDeity ?deity .
   ?deity hg:hasReligiousTradition ?tradition .
 }
 
 # CQ28: How does the Kumari institution embody Hindu-Buddhist syncretism in a place and period?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?deity ?syn ?residence ?timespan WHERE {
   ?tenure hg:embodiedDeity ?deity ;
@@ -239,7 +239,7 @@ SELECT ?tenure ?deity ?syn ?residence ?timespan WHERE {
 }
 
 # CQ29: What daily rituals does a Kumari perform at her residence, with what temporal pattern?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?ritual ?type ?residence ?pattern WHERE {
   ?tenure a hg:KumariTenure ; hg:residenceStructure ?residence .
@@ -248,7 +248,7 @@ SELECT ?tenure ?ritual ?type ?residence ?pattern WHERE {
 }
 
 # CQ30: In which processions does a given Kumari participate, and in what sequence?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?person ?ritual ?neighbour WHERE {
   ?tenure a hg:KumariTenure ; hg:hadParticipant ?person .
@@ -258,14 +258,14 @@ SELECT ?tenure ?person ?ritual ?neighbour WHERE {
 }
 
 # CQ31: Which institution bears responsibility for a given Kumari during her tenure?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 SELECT ?tenure ?institution WHERE {
   ?tenure a hg:KumariTenure ; hg:supportedByInstitution ?institution .
   ?institution a hg:Guthi .
 }
 
 # CQ32: When and why did an individual stop being Kumari, and what event terminated the status?
-PREFIX hg: <https://w3id.org/heritagegraph/>
+PREFIX hg: <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?retirement ?tenure ?timespan ?reason WHERE {
   ?retirement a hg:KumariRetirementEvent ; hg:endedTenureOf ?tenure ;

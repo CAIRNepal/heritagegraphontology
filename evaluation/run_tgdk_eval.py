@@ -34,7 +34,7 @@ SHACL_TTL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
 OUT = ROOT / "evaluation" / "results" / "tgdk_eval_report.txt"
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "http://cair-nepal.org/heritagegraph/"
 buf = io.StringIO()
 def w(line=""):
     print(line)
@@ -217,7 +217,7 @@ def section_fair(g: rdflib.Graph) -> None:
     VANN = rdflib.Namespace("http://purl.org/vocab/vann/")
     BIBO = rdflib.Namespace("http://purl.org/ontology/bibo/")
     checks = {
-        "Ontology IRI is w3id (persistent)": str(ont).startswith("https://w3id.org/"),
+        "Ontology IRI is an HTTPS IRI in the project namespace": str(ont).startswith(HG),
         "owl:versionIRI": has(OWL.versionIRI),
         "dcterms:license (as IRI)": any(isinstance(o, rdflib.URIRef) for o in g.objects(ont, DCTERMS.license)),
         "dcterms:creator/publisher": has(DCTERMS.creator) and has(DCTERMS.publisher),
@@ -228,13 +228,13 @@ def section_fair(g: rdflib.Graph) -> None:
         "CITATION.cff in repo": (ROOT / "CITATION.cff").exists(),
         "Multiple serializations published (ttl/owl/nt/jsonld)": all(
             (ROOT / "docs" / f"ontology.{ext}").exists() for ext in ("ttl", "owl", "nt", "jsonld")),
-        "Machine-readable changelog/docs in repo": (ROOT / "HeritageGraph_URI_FIX_CHANGELOG.md").exists(),
+        "Changelog in repo (CHANGELOG.md)": (ROOT / "CHANGELOG.md").exists(),
     }
     passed = sum(checks.values())
     for k, v in checks.items():
         w(f"  [{'PASS' if v else 'FAIL'}] {k}")
     w(f"  Local FAIR checklist: {passed}/{len(checks)}")
-    w("  OPEN (network/deployment): w3id term-level dereferencing + content")
+    w("  OPEN (network/deployment): cair-nepal.org term-level dereferencing + content")
     w("  negotiation; LOV registry deposit; FOOPS! web score (run once the")
     w("  updated docs/ artifacts are deployed, else it grades the old content).")
 

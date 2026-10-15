@@ -5,8 +5,10 @@ HeritageGraph ontology.
 Reads the N-Quads export of the Fuseki/TDB2 `heritagegraph` store
 (data/reconciled/store_export.nq) and rewrites every ontology term from the
 initial pipeline namespace (https://cair-nepal.org/heritagegraph/, snake_case)
-to the current released ontology (https://w3id.org/heritagegraph/, camelCase),
-using data/reconcile_crosswalk.json. Specifically it:
+to the current released ontology (http://cair-nepal.org/heritagegraph/, camelCase),
+using data/reconcile_crosswalk.json. The two namespaces differ only in the
+scheme (https:// for the initial pipeline, http:// for the released ontology);
+only the https:// form is rewritten. Specifically it:
 
   * drops the old cair-nepal ontology T-Box graph (we use the real ontology);
   * drops predicates removed from the current ontology (epistemic_stance);

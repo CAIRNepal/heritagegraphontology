@@ -16,13 +16,13 @@ LOC="/fuseki/databases/heritagegraph"
 
 mkdir -p "$DBDIR"
 
-echo "==> Loading ontology (into named graph https://w3id.org/heritagegraph/ontology)"
+echo "==> Loading ontology (into named graph http://cair-nepal.org/heritagegraph/ontology)"
 docker run --rm \
   -v "$DBDIR:/fuseki/databases" \
   -v "$REPO/ontology:/staging/ontology:ro" \
   --entrypoint tdb2.tdbloader "$JENA_IMAGE" \
   --loc "$LOC" \
-  --graph "https://w3id.org/heritagegraph/ontology" \
+  --graph "http://cair-nepal.org/heritagegraph/ontology" \
   /staging/ontology/HeritageGraph.ttl
 
 echo "==> Loading reconciled DANAM data (quads keep their source graphs)"

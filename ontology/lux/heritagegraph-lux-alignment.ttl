@@ -6,22 +6,17 @@
 @prefix la:            <https://linked.art/ns/terms/> .
 @prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dig:           <http://www.ics.forth.gr/isl/CRMdig/> .
-@prefix sci:           <http://www.ics.forth.gr/isl/CRMsci/> .
-@prefix aat:           <http://vocab.getty.edu/aat/> .
-@prefix wikidata:      <http://www.wikidata.org/entity/> .
-@prefix prov:          <http://www.w3.org/ns/prov#> .
+@prefix sci:           <http://www.cidoc-crm.org/extensions/crmsci/> .
 @prefix pav:           <http://purl.org/pav/> .
 @prefix vann:          <http://purl.org/vocab/vann/> .
-@prefix foaf:          <http://xmlns.com/foaf/0.1/> .
-@prefix time:          <http://www.w3.org/2006/time#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
-@prefix heritageGraph: <https://w3id.org/heritagegraph/> .
+@prefix heritageGraph: <http://cair-nepal.org/heritagegraph/> .
 
 #####################################################################
 # HeritageGraph  ↔  LUX (Linked Art / CIDOC-CRM)  alignment ontology
 #
-# Companion to HeritageGraph.ttl  (CAIRNepal/heritagegraphontology@HeritageGraph)
-# Author : Semih Yumuşak, May 2026
+# Companion to HeritageGraph.ttl (v1.0.0).
+# Author : Semih Yumuşak, May 2026; migrated to the v1.0.0 core vocabulary.
 # Goal   : LUX → HG migration. LUX records are JSON-LD whose @context
 #          maps short names ('HumanMadeObject', 'Person', …) to
 #          *crm:* / *dig:* / *sci:* URIs (the real URIs that appear in
@@ -30,65 +25,53 @@
 #          la:Transfer, la:Payment, la:Addition, la:Removal,
 #          la:RightAcquisition, la:DigitalService.
 #
-# Therefore this alignment binds HG classes to the actual URIs LUX uses
-# (mostly crm:Enn) and only uses la: for the seven genuine la:-only
-# classes. Each comment shows the LUX JSON-LD alias for traceability.
+# v1.0.0 core reuses CIDOC-CRM IRIs directly for twelve classes
+# (crm:E3, E6, E10, E12, E14, E21, E22, E29, E39, E52, E53, E57) and for
+# most event/participation properties (crm:P4, P7, P14, P55, P108, …), so a
+# LUX node typed crm:E21_Person already IS a HeritageGraph person and needs
+# no alignment axiom. This module therefore only (a) places HeritageGraph-
+# minted classes and properties under the CRM / Linked Art terms LUX emits,
+# (b) adds the interoperability classes and properties LUX needs, and
+# (c) never asserts new axioms whose subject is a CIDOC-CRM, CRMinf, or other
+# external term (that would redefine terms the module does not own).
+# Each comment shows the LUX JSON-LD alias for traceability.
 #
 # Apply with:  owl:imports  or  cat alignment.ttl >> HeritageGraph.ttl
 #####################################################################
 
-<https://w3id.org/heritagegraph/alignment/lux> a owl:Ontology ;
+<http://cair-nepal.org/heritagegraph/alignment/lux> a owl:Ontology ;
     rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ;
     dct:title "HeritageGraph ↔ LUX Alignment Module"@en ;
-    dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. A modular companion that imports the HeritageGraph core ontology and adds (a) formal owl:equivalentClass / owl:equivalentProperty axioms to CIDOC-CRM, (b) 33 interoperability classes rooted in the URIs LUX actually emits, and (c) the HG-internal hierarchy and object properties wiring those classes into the core graph."@en ;
+    dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. A modular companion that imports the HeritageGraph core ontology and adds (a) owl:equivalentClass / owl:equivalentProperty and subsumption axioms from HeritageGraph-minted terms to CIDOC-CRM, (b) interoperability classes rooted in the URIs LUX actually emits, and (c) the HG-internal hierarchy and object properties wiring those classes into the core graph."@en ;
     dct:creator "Semih Yumuşak" ;
     dct:contributor "Niraj Karki (CAIR Nepal)" ;
     dct:publisher "CAIR Nepal" ;
     dct:license <https://www.apache.org/licenses/LICENSE-2.0> ;
     dct:source <https://lux.collections.yale.edu/> ;
-    dct:modified "2026-06-18"^^xsd:date ;
+    dct:modified "2026-10-15"^^xsd:date ;
     owl:versionInfo "1.0.0" ;
-    owl:versionIRI <https://w3id.org/heritagegraph/alignment/lux/1.0.0> ;
+    owl:versionIRI <http://cair-nepal.org/heritagegraph/alignment/lux/1.0.0> ;
     pav:derivedFrom <https://github.com/CAIRNepal/heritagegraph-lux-migration> ;
     vann:preferredNamespacePrefix "heritageGraph" ;
-    vann:preferredNamespaceUri "https://w3id.org/heritagegraph/" ;
+    vann:preferredNamespaceUri "http://cair-nepal.org/heritagegraph/" ;
     rdfs:seeAlso <https://linked.art/ns/v1/linked-art.json> ;
-    owl:imports <https://w3id.org/heritagegraph/> .
+    owl:imports <http://cair-nepal.org/heritagegraph/ontology> .
 
 
 #####################################################################
 # 1. CLASS-LEVEL ALIGNMENT
-#    Pattern:  <hg:Class> owl:equivalentClass | rdfs:subClassOf <crm:Class> .
+#    Pattern:  <HG class> owl:equivalentClass | rdfs:subClassOf <CRM class> .
 #    Comment column shows the LUX JSON-LD alias.
 #####################################################################
 
 # ---- Direct equivalents (semantically identical) ----------------------------
-
-heritageGraph:HumanMadeObject       owl:equivalentClass crm:E22_Human-Made_Object .   # LUX alias: "HumanMadeObject"
-
-heritageGraph:Person                owl:equivalentClass crm:E21_Person .              # LUX alias: "Person"
-
-heritageGraph:Actor                 owl:equivalentClass crm:E39_Actor .               # LUX alias: "Actor"
-
-heritageGraph:Place                 owl:equivalentClass crm:E53_Place .               # LUX alias: "Place"
-
-heritageGraph:TimeSpan              owl:equivalentClass crm:E52_Time-Span .           # LUX alias: "TimeSpan"
-
-heritageGraph:Material              owl:equivalentClass crm:E57_Material .            # LUX alias: "Material"
-
-heritageGraph:Production            owl:equivalentClass crm:E12_Production .          # LUX alias: "Production"
-
-heritageGraph:DestructionEvent      owl:equivalentClass crm:E6_Destruction .          # LUX alias: "Destruction"
-
-heritageGraph:TransferOfCustody     owl:equivalentClass crm:E10_Transfer_of_Custody . # LUX alias: "TransferOfCustody"
+# Person, Actor, Place, TimeSpan, Material, Production, Destruction,
+# TransferOfCustody, ConditionState, HumanMadeObject: reused directly by the
+# core (crm:E21, E39, E53, E52, E57, E12, E6, E10, E3, E22); no axiom needed.
 
 heritageGraph:HistoricalEvent       owl:equivalentClass crm:E5_Event .                # LUX alias: "Event"
 
-heritageGraph:ConditionState        owl:equivalentClass crm:E3_Condition_State .      # LUX alias: "ConditionState"
-
 heritageGraph:Deity                 owl:equivalentClass crm:E28_Conceptual_Object .   # LUX alias: "ConceptualObject"
-
-heritageGraph:Production            skos:closeMatch     crm:E12_Production .
 
 # ---- Architectural / object hierarchy ---------------------------------------
 # In LUX every building is crm:E22 classified_as a Type. We keep HG subclasses
@@ -102,7 +85,7 @@ heritageGraph:ArchitecturalElement   rdfs:subClassOf crm:E25_Human-Made_Feature 
 heritageGraph:Temple                 rdfs:subClassOf crm:E22_Human-Made_Object .
 heritageGraph:Stupa                  rdfs:subClassOf crm:E22_Human-Made_Object .
 heritageGraph:Chaitya                rdfs:subClassOf crm:E22_Human-Made_Object .
-heritageGraph:BuddhistMonument       rdfs:subClassOf crm:E22_Human-Made_Object .
+heritageGraph:ReligiousStructure     rdfs:subClassOf crm:E22_Human-Made_Object .
 heritageGraph:Pati                   rdfs:subClassOf crm:E22_Human-Made_Object .
 heritageGraph:Sattal                 rdfs:subClassOf crm:E22_Human-Made_Object .
 heritageGraph:Dharmashala            rdfs:subClassOf crm:E22_Human-Made_Object .
@@ -134,12 +117,10 @@ heritageGraph:MaskedDance            rdfs:subClassOf crm:E7_Activity .
 
 heritageGraph:Consecration           rdfs:subClassOf crm:E7_Activity .
 heritageGraph:Enshrinement           rdfs:subClassOf crm:E7_Activity .
-heritageGraph:LivingGoddessSelection rdfs:subClassOf crm:E7_Activity .
-heritageGraph:LivingGoddessRetirement rdfs:subClassOf crm:E7_Activity .
+heritageGraph:KumariSelectionEvent   rdfs:subClassOf crm:E7_Activity .
+heritageGraph:KumariRetirementEvent  rdfs:subClassOf crm:E7_Activity .
 
-heritageGraph:LivingGoddessTenure    rdfs:subClassOf crm:E4_Period .                 # LUX alias: "Period"
-
-heritageGraph:ConditionAssessment    rdfs:subClassOf crm:E14_Condition_Assessment .  # LUX alias: "ConditionAssessment"
+heritageGraph:KumariTenure           rdfs:subClassOf crm:E4_Period .                 # LUX alias: "Period"
 
 # ---- Documentation / source -------------------------------------------------
 
@@ -159,23 +140,22 @@ heritageGraph:OralHistoryRecording   rdfs:subClassOf crm:E33_Linguistic_Object .
 heritageGraph:ArchivalRecord         rdfs:subClassOf crm:E31_Document .
 
 # ---- Provenance / assertion -------------------------------------------------
+# Beliefs are crminf:I2_Belief in the core (an external class): not re-typed here.
 
-heritageGraph:HeritageAssertion      rdfs:subClassOf crm:E13_Attribute_Assignment .
 heritageGraph:SyncreticRelationship  rdfs:subClassOf crm:E13_Attribute_Assignment .
-heritageGraph:AssertableEntity       skos:broadMatch crm:E1_CRM_Entity .
+heritageGraph:AssertionSubject       skos:broadMatch crm:E1_CRM_Entity .
 
 # ---- Concepts / types -------------------------------------------------------
 
 heritageGraph:ReligiousTradition     rdfs:subClassOf crm:E55_Type .                  # LUX alias: "Type"
-heritageGraph:Technique              rdfs:subClassOf crm:E29_Design_or_Procedure .   # LUX alias: "DesignOrProcedure"
 heritageGraph:CalendarSystem         skos:broadMatch crm:E29_Designated_Reference_System .
 
-heritageGraph:DatePrecisionEnum      rdfs:subClassOf crm:E55_Type .
-heritageGraph:ConditionTypeEnum      rdfs:subClassOf crm:E55_Type .
-heritageGraph:ExistenceStatusEnum    rdfs:subClassOf crm:E55_Type .
-heritageGraph:GuthiTypeEnum          rdfs:subClassOf crm:E55_Type .
-heritageGraph:RitualTypeEnum         rdfs:subClassOf crm:E55_Type .
-heritageGraph:SyncreticTypeEnum      rdfs:subClassOf crm:E55_Type .
+heritageGraph:DatePrecision          rdfs:subClassOf crm:E55_Type .
+heritageGraph:ConditionType          rdfs:subClassOf crm:E55_Type .
+heritageGraph:ExistenceStatus        rdfs:subClassOf crm:E55_Type .
+heritageGraph:GuthiType              rdfs:subClassOf crm:E55_Type .
+heritageGraph:RitualType             rdfs:subClassOf crm:E55_Type .
+heritageGraph:SyncreticType          rdfs:subClassOf crm:E55_Type .
 
 # ---- Container / metadata ---------------------------------------------------
 # heritageGraph:Container has no LUX equivalent (LinkML construct).
@@ -184,109 +164,66 @@ heritageGraph:Metadata               rdfs:subClassOf crm:E73_Information_Object 
 
 #####################################################################
 # 2. PROPERTY-LEVEL ALIGNMENT
-#    Aligned to the crm: URIs LUX expands its short names to.
+#    Aligned to the crm: URIs LUX expands its short names to. Properties the
+#    core already IS (crm:P4, P7, P9, P14, P46, P55, P107, P108, P28-P30, P183,
+#    …) need no axiom.
 #####################################################################
 
 # ---- Agent / participation --------------------------------------------------
 
-heritageGraph:carried_out_by         owl:equivalentProperty crm:P14_carried_out_by .       # LUX alias: "carried_out_by"
-heritageGraph:carried_out_activity   owl:equivalentProperty crm:P14i_performed .           # LUX alias: "carried_out"
-heritageGraph:performed_by_group     rdfs:seeAlso           crm:P14_carried_out_by .   # datatype shortcut; object form: heritageGraph:carried_out_by ≡ crm:P14 (DL: datatype prop must not subPropertyOf an object prop)
-heritageGraph:performs_ritual        rdfs:subPropertyOf     crm:P14i_performed .
-heritageGraph:had_participant        owl:equivalentProperty crm:P11_had_participant .      # LUX alias: "participant"
-heritageGraph:invokes_deity          rdfs:subPropertyOf     crm:P12_occurred_in_the_presence_of .
-heritageGraph:is_invoked_in_ritual   rdfs:subPropertyOf     crm:P12i_was_present_at .
-heritageGraph:assertion_author       rdfs:subPropertyOf     crm:P14_carried_out_by .
-heritageGraph:was_attributed_to_agent rdfs:subPropertyOf    crm:P14_carried_out_by .
+heritageGraph:performsRitual         rdfs:subPropertyOf     crm:P14i_performed .
+heritageGraph:hadParticipant         owl:equivalentProperty crm:P11_had_participant .      # LUX alias: "participant"
+heritageGraph:invokesDeity           rdfs:subPropertyOf     crm:P12_occurred_in_the_presence_of .
+heritageGraph:isInvokedInRitual      rdfs:subPropertyOf     crm:P12i_was_present_at .
 
 # ---- Place / time -----------------------------------------------------------
 
-heritageGraph:took_place_at          owl:equivalentProperty crm:P7_took_place_at .         # LUX alias: "took_place_at"
-heritageGraph:has_timespan           owl:equivalentProperty crm:P4_has_time-span .         # LUX alias: "timespan"
-heritageGraph:has_current_location   owl:equivalentProperty crm:P55_has_current_location . # LUX alias: "current_location"
-heritageGraph:hypothesized_location  rdfs:subPropertyOf     crm:P55_has_current_location .
-heritageGraph:place_coordinates      rdfs:subPropertyOf     crm:P168_place_is_defined_by . # LUX alias: "defined_by"
-
-# ---- Composition / parts ----------------------------------------------------
-
-heritageGraph:has_component          rdfs:subPropertyOf     crm:P46_is_composed_of .       # LUX alias for physical: "part"
-heritageGraph:is_component_of        rdfs:subPropertyOf     crm:P46i_forms_part_of .       # LUX alias for physical: "part_of"
-heritageGraph:contains_structure     rdfs:subPropertyOf     crm:P59i_is_located_on_or_within .
-heritageGraph:is_part_of_festival    rdfs:subPropertyOf     crm:P9i_forms_part_of .        # LUX event 'part_of'
-heritageGraph:includes_ritual_event  rdfs:subPropertyOf     crm:P9_consists_of .           # LUX event 'part'
+heritageGraph:hypothesizedLocation   rdfs:subPropertyOf     crm:P55_has_current_location .
 
 # ---- Material / technique / type --------------------------------------------
 
-heritageGraph:used_materials         rdfs:subPropertyOf     crm:P45_consists_of .          # LUX alias: "made_of"
-heritageGraph:used_technique         rdfs:subPropertyOf     crm:P32_used_general_technique . # LUX alias: "technique"
-heritageGraph:has_architectural_style rdfs:subPropertyOf    crm:P2_has_type .              # LUX alias: "classified_as"
-heritageGraph:has_condition_type     rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:has_religious_tradition rdfs:subPropertyOf    crm:P2_has_type .
-heritageGraph:guthi_type             rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:ritual_type            rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:place_type             rdfs:seeAlso           crm:P2_has_type .          # datatype enum shortcut; object form is heritageGraph:place_type → crm:E55_Type via P2
-heritageGraph:custodian_type         rdfs:seeAlso           crm:P2_has_type .          # datatype enum shortcut (see note above)
-heritageGraph:syncretic_type         rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:date_precision         rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:source_type            rdfs:subPropertyOf     crm:P2_has_type .
-heritageGraph:existence_status       rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:hasArchitecturalStyle  rdfs:subPropertyOf     crm:P2_has_type .              # LUX alias: "classified_as"
+heritageGraph:hasConditionType       rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:hasReligiousTradition  rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:guthiType              rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:ritualType             rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:placeType              rdfs:seeAlso           crm:P2_has_type .          # datatype enum shortcut (DL: a datatype property must not subPropertyOf an object property)
+heritageGraph:custodianType          rdfs:seeAlso           crm:P2_has_type .          # datatype enum shortcut (see note above)
+heritageGraph:syncreticType          rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:datePrecision          rdfs:subPropertyOf     crm:P2_has_type .
+heritageGraph:existenceStatus        rdfs:subPropertyOf     crm:P2_has_type .
 
-# ---- Production / destruction / custody / title -----------------------------
+# ---- Production / destruction / custody -------------------------------------
 
-heritageGraph:was_produced_by_event  owl:equivalentProperty crm:P108i_was_produced_by .    # LUX alias: "produced_by"
-heritageGraph:produced_object        owl:equivalentProperty crm:P108_has_produced .        # LUX alias: "produced"
-heritageGraph:destruction_event      owl:equivalentProperty crm:P13i_was_destroyed_by .    # LUX alias: "destroyed_by"
-heritageGraph:transferred_to_actor   owl:equivalentProperty crm:P29_custody_received_by .  # LUX alias: "transferred_custody_to"
-heritageGraph:transferred_from_actor owl:equivalentProperty crm:P28_custody_surrendered_by . # LUX alias: "transferred_custody_from"
-heritageGraph:transferred_to_guthi   rdfs:subPropertyOf     crm:P29_custody_received_by .
-heritageGraph:transferred_object     owl:equivalentProperty crm:P30_transferred_custody_of . # LUX alias: "transferred_custody_of"
-heritageGraph:holds_custody_of       rdfs:subPropertyOf     crm:P49i_is_former_or_current_keeper_of .
+heritageGraph:destructionEvent       owl:equivalentProperty crm:P13i_was_destroyed_by .    # LUX alias: "destroyed_by"
+heritageGraph:transferredToGuthi     rdfs:subPropertyOf     crm:P29_custody_received_by .
 
 # ---- Membership -------------------------------------------------------------
 
-heritageGraph:has_membership         owl:equivalentProperty crm:P107_has_current_or_former_member .
-heritageGraph:member_of_group        owl:equivalentProperty crm:P107i_is_current_or_former_member_of .
-heritageGraph:managed_by_guthi       rdfs:subPropertyOf     crm:P49_has_former_or_current_keeper . # LUX alias: "current_keeper"
+heritageGraph:managedByGuthi         rdfs:subPropertyOf     crm:P49_has_former_or_current_keeper . # LUX alias: "current_keeper"
 
 # ---- Aboutness / depiction --------------------------------------------------
 
-heritageGraph:is_about_entity        owl:equivalentProperty crm:P129_is_about .            # LUX alias: "about"
-heritageGraph:is_about_event         owl:equivalentProperty crm:P129_is_about .
-heritageGraph:subject_entity         rdfs:subPropertyOf     crm:P140_assigned_attribute_to .
-heritageGraph:subject_event          rdfs:subPropertyOf     crm:P141_assigned .
-
-heritageGraph:depicts_deity          rdfs:subPropertyOf     crm:P138_represents .          # LUX alias: "represents"
-heritageGraph:is_about_deity         rdfs:subPropertyOf     crm:P138_represents .
-heritageGraph:is_depicted_in         rdfs:subPropertyOf     crm:P138i_has_representation . # LUX alias: "representation"
-
-# ---- Sequencing -------------------------------------------------------------
-
-heritageGraph:occurred_after         rdfs:subPropertyOf     crm:P183i_starts_after_the_end_of .
-heritageGraph:occurs_before          rdfs:subPropertyOf     crm:P183_ends_before_the_start_of .
+heritageGraph:isAboutDeity           rdfs:subPropertyOf     crm:P138_represents .          # LUX alias: "represents"
 
 # ---- Documentation linkage --------------------------------------------------
 
-heritageGraph:documented_in_source   owl:equivalentProperty crm:P67i_is_referred_to_by .   # LUX alias: "referred_to_by"
-heritageGraph:was_documented_by      rdfs:subPropertyOf     crm:P94i_was_created_by .
-heritageGraph:produced_information_object rdfs:subPropertyOf crm:P94_has_created .
-heritageGraph:created_by_documentation owl:equivalentProperty crm:P94i_was_created_by .
+heritageGraph:mentionedInSource      owl:equivalentProperty crm:P67i_is_referred_to_by .   # LUX alias: "referred_to_by"
+heritageGraph:documentedBy           rdfs:subPropertyOf     crm:P94i_was_created_by .
 
 # ---- Person life events (better expressed as Birth/Death events) ------------
 
-heritageGraph:birth_timespan         rdfs:subPropertyOf     crm:P4_has_time-span ;
+heritageGraph:birthTimespan          rdfs:subPropertyOf     crm:P4_has_time-span ;
                                      rdfs:comment "Better modeled via crm:P98i_was_born (LUX alias 'born') -> crm:P4_has_time-span."@en .
 
-heritageGraph:death_timespan         rdfs:subPropertyOf     crm:P4_has_time-span ;
+heritageGraph:deathTimespan          rdfs:subPropertyOf     crm:P4_has_time-span ;
                                      rdfs:comment "Better modeled via crm:P100i_died_in / crm:P93i_was_taken_out_of_existence_by + timespan."@en .
 
-heritageGraph:publication_timespan   rdfs:subPropertyOf     crm:P4_has_time-span .
+heritageGraph:publicationTimespan    rdfs:subPropertyOf     crm:P4_has_time-span .
 
 # ---- Identification / labelling --------------------------------------------
 
-heritageGraph:name                   rdfs:seeAlso           crm:P1_is_identified_by .      # datatype shortcut; object form: heritageGraph:identified_by_name → heritageGraph:Name (subPropertyOf P1)
-heritageGraph:id                     rdfs:seeAlso           crm:P1_is_identified_by .      # datatype shortcut; object form: heritageGraph:identified_by_identifier → heritageGraph:Identifier (subPropertyOf P1)
-heritageGraph:note                   rdfs:subPropertyOf     crm:P3_has_note .
-heritageGraph:source_citation        rdfs:seeAlso           crm:P67i_is_referred_to_by .   # datatype shortcut; object form: heritageGraph:documented_in_source ≡ crm:P67i
+heritageGraph:sourceCitation         rdfs:seeAlso           crm:P67i_is_referred_to_by .   # datatype shortcut; object form: heritageGraph:mentionedInSource ≡ crm:P67i
 
 
 #####################################################################
@@ -390,10 +327,9 @@ heritageGraph:LegalObject a owl:Class ;
 
 heritageGraph:AttributeAssignment a owl:Class ;
     rdfs:label "Attribute Assignment"@en ;
-    rdfs:comment "Generic super-class above HeritageAssertion / Verification / SyncreticRelationship. LUX alias: 'AttributeAssignment'."@en ;
+    rdfs:comment "Generic super-class above Verification / SyncreticRelationship. LUX alias: 'AttributeAssignment'."@en ;
     rdfs:subClassOf crm:E13_Attribute_Assignment .
 
-heritageGraph:HeritageAssertion     rdfs:subClassOf heritageGraph:AttributeAssignment .
 heritageGraph:Verification          rdfs:subClassOf heritageGraph:AttributeAssignment .
 heritageGraph:SyncreticRelationship rdfs:subClassOf heritageGraph:AttributeAssignment .
 
@@ -402,7 +338,7 @@ heritageGraph:Period a owl:Class ;
     rdfs:comment "Generic historical period (Lichhavi, Malla, Shah, Rana). LUX alias: 'Period'."@en ;
     rdfs:subClassOf crm:E4_Period .
 
-heritageGraph:LivingGoddessTenure rdfs:subClassOf heritageGraph:Period .
+heritageGraph:KumariTenure rdfs:subClassOf heritageGraph:Period .
 
 heritageGraph:Encounter a owl:Class ;
     rdfs:label "Encounter Event"@en ;
@@ -484,19 +420,16 @@ heritageGraph:Title a owl:Class ;
 #####################################################################
 
 # ---- 4.1  Existence-event hierarchy (CRM E63/E64 tree mirrored in HG) -----
+# crm:E12_Production and crm:E6_Destruction already sit under E63/E64 in CRM.
 
 heritageGraph:Birth        rdfs:subClassOf heritageGraph:BeginningOfExistence .
 heritageGraph:Formation    rdfs:subClassOf heritageGraph:BeginningOfExistence .
-heritageGraph:Production   rdfs:subClassOf heritageGraph:BeginningOfExistence .
 
 heritageGraph:Death            rdfs:subClassOf heritageGraph:EndOfExistence .
 heritageGraph:Dissolution      rdfs:subClassOf heritageGraph:EndOfExistence .
-heritageGraph:DestructionEvent rdfs:subClassOf heritageGraph:EndOfExistence .
 
 # ---- 4.2  Curation / activity hierarchy -----------------------------------
 
-heritageGraph:TransferOfCustody   rdfs:subClassOf heritageGraph:CurationActivity .
-heritageGraph:ConditionAssessment rdfs:subClassOf heritageGraph:CurationActivity .
 heritageGraph:Modification        rdfs:subClassOf heritageGraph:CurationActivity .
 
 heritageGraph:Acquisition rdfs:subClassOf heritageGraph:ProvenanceActivity .
@@ -519,122 +452,118 @@ heritageGraph:Metadata             rdfs:subClassOf heritageGraph:InformationObje
 heritageGraph:Set rdfs:subClassOf heritageGraph:CuratedHolding ;
     rdfs:comment "Linked Art mints la:Set distinct from crm:E78 to allow ad-hoc groupings. Within HG we additionally treat Set as a CuratedHolding for navigation; no semantic collapse — both parents remain."@en .
 
-# ---- 4.6  Actor hierarchy --------------------------------------------------
-
-heritageGraph:DataCustodian rdfs:subClassOf heritageGraph:Actor .
-
-# ---- 4.7  Object properties wiring new classes to existing HG graph -------
+# ---- 4.6  Object properties wiring new classes to existing HG graph -------
 
 # --- Descriptive properties of a physical heritage thing --------------------
 
-heritageGraph:carries_inscription a owl:ObjectProperty ;
+heritageGraph:carriesInscription a owl:ObjectProperty ;
     rdfs:label "carries inscription"@en ;
-    rdfs:domain heritageGraph:HumanMadeObject ;
+    rdfs:domain crm:E22_Human-Made_Object ;
     rdfs:range  heritageGraph:Inscription ;
     rdfs:subPropertyOf crm:P128_carries .
 
-heritageGraph:has_dimension a owl:ObjectProperty ;
+heritageGraph:hasDimension a owl:ObjectProperty ;
     rdfs:label "has dimension"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Dimension ;
     rdfs:subPropertyOf crm:P43_has_dimension .
 
-heritageGraph:has_visual_item a owl:ObjectProperty ;
+heritageGraph:hasVisualItem a owl:ObjectProperty ;
     rdfs:label "shows visual item"@en ;
-    rdfs:domain heritageGraph:HumanMadeObject ;
+    rdfs:domain crm:E22_Human-Made_Object ;
     rdfs:range  heritageGraph:VisualItem ;
     rdfs:subPropertyOf crm:P65_shows_visual_item .
 
-heritageGraph:has_digital_representation a owl:ObjectProperty ;
+heritageGraph:hasDigitalRepresentation a owl:ObjectProperty ;
     rdfs:label "has digital representation"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:DigitalObject ;
     rdfs:subPropertyOf crm:P138i_has_representation .
 
-heritageGraph:has_right a owl:ObjectProperty ;
+heritageGraph:hasRight a owl:ObjectProperty ;
     rdfs:label "has right"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Right .
 
-heritageGraph:subject_to_legal_object a owl:ObjectProperty ;
+heritageGraph:subjectToLegalObject a owl:ObjectProperty ;
     rdfs:label "subject to legal status"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:LegalObject ;
     rdfs:subPropertyOf crm:P67i_is_referred_to_by .
 
 # --- Identification ---------------------------------------------------------
 
-heritageGraph:identified_by_identifier a owl:ObjectProperty ;
+heritageGraph:identifiedByIdentifier a owl:ObjectProperty ;
     rdfs:label "identified by identifier"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Identifier ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
-heritageGraph:identified_by_name a owl:ObjectProperty ;
+heritageGraph:identifiedByName a owl:ObjectProperty ;
     rdfs:label "identified by name"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Name ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
-heritageGraph:identified_by_title a owl:ObjectProperty ;
+heritageGraph:identifiedByTitle a owl:ObjectProperty ;
     rdfs:label "has title"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Title ;
     rdfs:subPropertyOf crm:P102_has_title .
 
 # --- Lifecycle events linking individuals & groups to event nodes ----------
 
-heritageGraph:was_born_by a owl:ObjectProperty ;
+heritageGraph:wasBornBy a owl:ObjectProperty ;
     rdfs:label "was born by"@en ;
-    rdfs:domain heritageGraph:Person ;
+    rdfs:domain crm:E21_Person ;
     rdfs:range  heritageGraph:Birth ;
     rdfs:subPropertyOf crm:P98i_was_born .
 
-heritageGraph:died_in_event a owl:ObjectProperty ;
+heritageGraph:diedInEvent a owl:ObjectProperty ;
     rdfs:label "died in event"@en ;
-    rdfs:domain heritageGraph:Person ;
+    rdfs:domain crm:E21_Person ;
     rdfs:range  heritageGraph:Death ;
     rdfs:subPropertyOf crm:P100i_died_in .
 
-heritageGraph:was_formed_by a owl:ObjectProperty ;
+heritageGraph:wasFormedBy a owl:ObjectProperty ;
     rdfs:label "was formed by"@en ;
     rdfs:domain heritageGraph:Group ;
     rdfs:range  heritageGraph:Formation ;
     rdfs:subPropertyOf crm:P95i_was_formed_by .
 
-heritageGraph:dissolved_by a owl:ObjectProperty ;
+heritageGraph:dissolvedBy a owl:ObjectProperty ;
     rdfs:label "dissolved by"@en ;
     rdfs:domain heritageGraph:Group ;
     rdfs:range  heritageGraph:Dissolution ;
-    rdfs:subPropertyOf crm:P99i_dissolved_by .
+    rdfs:subPropertyOf crm:P99i_was_dissolved_by .
 
 # --- Object-history events --------------------------------------------------
 
-heritageGraph:was_modified_by a owl:ObjectProperty ;
+heritageGraph:wasModifiedBy a owl:ObjectProperty ;
     rdfs:label "was modified by"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Modification ;
     rdfs:subPropertyOf crm:P31i_was_modified_by .
 
-heritageGraph:was_moved_by a owl:ObjectProperty ;
+heritageGraph:wasMovedBy a owl:ObjectProperty ;
     rdfs:label "was moved by"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Move ;
     rdfs:subPropertyOf crm:P25i_moved_by .
 
-heritageGraph:was_acquired_through a owl:ObjectProperty ;
+heritageGraph:wasAcquiredThrough a owl:ObjectProperty ;
     rdfs:label "was acquired through"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Acquisition ;
     rdfs:subPropertyOf crm:P24i_changed_ownership_through .
 
-heritageGraph:was_encountered_in a owl:ObjectProperty ;
+heritageGraph:wasEncounteredIn a owl:ObjectProperty ;
     rdfs:label "was encountered in"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Encounter ;
-    rdfs:subPropertyOf sci:O19i_was_object_encountered_at .
+    rdfs:subPropertyOf sci:O19i_was_object_encountered_through .
 
-heritageGraph:was_measured_by a owl:ObjectProperty ;
+heritageGraph:wasMeasuredBy a owl:ObjectProperty ;
     rdfs:label "was measured by"@en ;
     rdfs:domain heritageGraph:PhysicalHeritageThing ;
     rdfs:range  heritageGraph:Measurement ;
@@ -642,25 +571,25 @@ heritageGraph:was_measured_by a owl:ObjectProperty ;
 
 # --- Measurement / monetary internal wiring --------------------------------
 
-heritageGraph:measurement_observes a owl:ObjectProperty ;
+heritageGraph:measurementObserves a owl:ObjectProperty ;
     rdfs:label "measurement observes"@en ;
     rdfs:domain heritageGraph:Measurement ;
     rdfs:range  heritageGraph:Dimension ;
     rdfs:subPropertyOf crm:P40_observed_dimension .
 
-heritageGraph:dimension_has_unit a owl:ObjectProperty ;
+heritageGraph:dimensionHasUnit a owl:ObjectProperty ;
     rdfs:label "dimension has unit"@en ;
     rdfs:domain heritageGraph:Dimension ;
     rdfs:range  heritageGraph:MeasurementUnit ;
     rdfs:subPropertyOf crm:P91_has_unit .
 
-heritageGraph:amount_in_currency a owl:ObjectProperty ;
+heritageGraph:amountInCurrency a owl:ObjectProperty ;
     rdfs:label "amount in currency"@en ;
     rdfs:domain heritageGraph:MonetaryAmount ;
     rdfs:range  heritageGraph:Currency ;
     rdfs:subPropertyOf crm:P180_has_currency .
 
-heritageGraph:acquisition_amount a owl:ObjectProperty ;
+heritageGraph:acquisitionAmount a owl:ObjectProperty ;
     rdfs:label "acquisition amount"@en ;
     rdfs:domain heritageGraph:Acquisition ;
     rdfs:range  heritageGraph:MonetaryAmount ;
@@ -668,7 +597,7 @@ heritageGraph:acquisition_amount a owl:ObjectProperty ;
 
 # --- Language --------------------------------------------------------------
 
-heritageGraph:has_language a owl:ObjectProperty ;
+heritageGraph:hasLanguage a owl:ObjectProperty ;
     rdfs:label "has language"@en ;
     rdfs:domain heritageGraph:LinguisticObject ;
     rdfs:range  heritageGraph:Language ;
@@ -676,20 +605,22 @@ heritageGraph:has_language a owl:ObjectProperty ;
 
 # --- Set / curated-holding membership --------------------------------------
 
-heritageGraph:member_of_set a owl:ObjectProperty ;
+heritageGraph:memberOfSet a owl:ObjectProperty ;
     rdfs:label "is member of set"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Set .
 
-heritageGraph:holds_item a owl:ObjectProperty ;
+# Not a sub-property of crm:P46_is_composed_of: a holding's items are not its
+# physical components, and the core ranges P46 over ArchitecturalElement, so
+# the sub-property axiom classified every held item as an architectural element.
+heritageGraph:holdsItem a owl:ObjectProperty ;
     rdfs:label "holds item"@en ;
     rdfs:domain heritageGraph:CuratedHolding ;
-    rdfs:range  heritageGraph:AssertableEntity ;
-    rdfs:subPropertyOf crm:P46_is_composed_of .
+    rdfs:range  heritageGraph:AssertionSubject .
 
 # --- Period containment ----------------------------------------------------
 
-heritageGraph:occurs_during_period a owl:ObjectProperty ;
+heritageGraph:occursDuringPeriod a owl:ObjectProperty ;
     rdfs:label "occurs during period"@en ;
     rdfs:domain heritageGraph:RitualEvent ;
     rdfs:range  heritageGraph:Period ;
@@ -697,23 +628,23 @@ heritageGraph:occurs_during_period a owl:ObjectProperty ;
 
 # --- Propositional object / doctrine ---------------------------------------
 
-heritageGraph:about_proposition a owl:ObjectProperty ;
+heritageGraph:aboutProposition a owl:ObjectProperty ;
     rdfs:label "is about proposition"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:PropositionalObject ;
     rdfs:subPropertyOf crm:P129_is_about .
 
 # --- Metadata on any heritage thing ----------------------------------------
 
-heritageGraph:has_metadata a owl:ObjectProperty ;
+heritageGraph:hasMetadata a owl:ObjectProperty ;
     rdfs:label "has metadata"@en ;
-    rdfs:domain heritageGraph:AssertableEntity ;
+    rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range  heritageGraph:Metadata ;
     rdfs:subPropertyOf crm:P67i_is_referred_to_by .
 
 # --- DataCustodian role ----------------------------------------------------
 
-heritageGraph:has_data_custodian a owl:ObjectProperty ;
+heritageGraph:hasDataCustodian a owl:ObjectProperty ;
     rdfs:label "has data custodian"@en ;
     rdfs:domain heritageGraph:DataSource ;
     rdfs:range  heritageGraph:DataCustodian ;
@@ -723,5 +654,90 @@ heritageGraph:has_data_custodian a owl:ObjectProperty ;
 
 heritageGraph:Container rdfs:subClassOf heritageGraph:InformationObject ;
     rdfs:comment "LinkML container construct; no LUX equivalent. Treated as a structural InformationObject for navigation."@en .
+
+
+#####################################################################
+# 5. DECLARATIONS OF EXTERNAL TERMS
+#    OWL 2 DL requires every entity used in an axiom to be declared. The
+#    module references these CIDOC-CRM / CRMsci / CRMdig / Linked Art terms
+#    beyond those the core already declares.
+#####################################################################
+
+crm:E11_Modification a owl:Class .
+crm:E13_Attribute_Assignment a owl:Class .
+crm:E16_Measurement a owl:Class .
+crm:E25_Human-Made_Feature a owl:Class .
+crm:E28_Conceptual_Object a owl:Class .
+crm:E30_Right a owl:Class .
+crm:E31_Document a owl:Class .
+crm:E33_E41_Linguistic_Appellation a owl:Class .
+crm:E33_Linguistic_Object a owl:Class .
+crm:E34_Inscription a owl:Class .
+crm:E35_Title a owl:Class .
+crm:E36_Visual_Item a owl:Class .
+crm:E42_Identifier a owl:Class .
+crm:E4_Period a owl:Class .
+crm:E54_Dimension a owl:Class .
+crm:E55_Type a owl:Class .
+crm:E56_Language a owl:Class .
+crm:E58_Measurement_Unit a owl:Class .
+crm:E5_Event a owl:Class .
+crm:E63_Beginning_of_Existence a owl:Class .
+crm:E64_End_of_Existence a owl:Class .
+crm:E65_Creation a owl:Class .
+crm:E66_Formation a owl:Class .
+crm:E67_Birth a owl:Class .
+crm:E68_Dissolution a owl:Class .
+crm:E69_Death a owl:Class .
+crm:E72_Legal_Object a owl:Class .
+crm:E73_Information_Object a owl:Class .
+crm:E74_Group a owl:Class .
+crm:E78_Curated_Holding a owl:Class .
+crm:E7_Activity a owl:Class .
+crm:E87_Curation_Activity a owl:Class .
+crm:E89_Propositional_Object a owl:Class .
+crm:E8_Acquisition a owl:Class .
+crm:E97_Monetary_Amount a owl:Class .
+crm:E98_Currency a owl:Class .
+crm:E9_Move a owl:Class .
+dig:D1_Digital_Object a owl:Class .
+la:Set a owl:Class .
+sci:S19_Encounter_Event a owl:Class .
+sci:S4_Observation a owl:Class .
+
+crm:P100i_died_in a owl:ObjectProperty .
+crm:P102_has_title a owl:ObjectProperty .
+crm:P109_has_current_or_former_curator a owl:ObjectProperty .
+crm:P10_falls_within a owl:ObjectProperty .
+crm:P11_had_participant a owl:ObjectProperty .
+crm:P128_carries a owl:ObjectProperty .
+crm:P138_represents a owl:ObjectProperty .
+crm:P138i_has_representation a owl:ObjectProperty .
+crm:P13i_was_destroyed_by a owl:ObjectProperty .
+crm:P179_had_sales_price a owl:ObjectProperty .
+crm:P180_has_currency a owl:ObjectProperty .
+crm:P1_is_identified_by a owl:ObjectProperty .
+crm:P24i_changed_ownership_through a owl:ObjectProperty .
+crm:P25i_moved_by a owl:ObjectProperty .
+crm:P31i_was_modified_by a owl:ObjectProperty .
+crm:P39i_was_measured_by a owl:ObjectProperty .
+crm:P40_observed_dimension a owl:ObjectProperty .
+crm:P43_has_dimension a owl:ObjectProperty .
+crm:P49_has_former_or_current_keeper a owl:ObjectProperty .
+crm:P65_shows_visual_item a owl:ObjectProperty .
+crm:P67i_is_referred_to_by a owl:ObjectProperty .
+crm:P72_has_language a owl:ObjectProperty .
+crm:P91_has_unit a owl:ObjectProperty .
+crm:P94i_was_created_by a owl:ObjectProperty .
+crm:P95i_was_formed_by a owl:ObjectProperty .
+crm:P98i_was_born a owl:ObjectProperty .
+crm:P99i_was_dissolved_by a owl:ObjectProperty .
+sci:O19i_was_object_encountered_through a owl:ObjectProperty .
+
+# Value of a Dimension / MonetaryAmount (LUX alias: "value").
+crm:P90_has_value a owl:DatatypeProperty .
+
+dct:contributor a owl:AnnotationProperty .
+pav:derivedFrom a owl:AnnotationProperty .
 
 # end of file

@@ -33,14 +33,14 @@ RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
 SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
-HG = Namespace("https://w3id.org/heritagegraph/")
+HG = Namespace("http://cair-nepal.org/heritagegraph/")
 
 # External namespace prefixes to check (in generated TTL)
 NAMESPACES = {
     "CIDOC-CRM": "http://www.cidoc-crm.org/cidoc-crm/",
-    "CRMsci": "http://www.ics.forth.gr/isl/CRMsci/",
+    "CRMsci": "http://www.cidoc-crm.org/extensions/crmsci/",
     "CRMdig": "http://www.cidoc-crm.org/crmdig/",
-    "CRMinf": "http://www.ics.forth.gr/isl/CRMinf/",
+    "CRMinf": "http://www.cidoc-crm.org/extensions/crminf/",
     "PROV-O": "http://www.w3.org/ns/prov#",
     "schema.org": "https://schema.org/",
     "AAT": "http://vocab.getty.edu/aat/",

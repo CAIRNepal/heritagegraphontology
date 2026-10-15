@@ -50,7 +50,7 @@ RESULTS = Path(__file__).resolve().parent / "results"
 CACHE = RESULTS / ".vocab_cache"
 CACHE.mkdir(parents=True, exist_ok=True)
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "http://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 MAPPING_PREDS = [SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
                  SKOS.relatedMatch, SKOS.narrowMatch,
@@ -61,9 +61,9 @@ DOCS = {
     "http://www.cidoc-crm.org/cidoc-crm/":
         ("http://www.cidoc-crm.org/cidoc-crm/", "xml"),
     "http://www.cidoc-crm.org/extensions/crminf/":
-        ("http://www.cidoc-crm.org/extensions/crminf/", "xml"),
+        ("https://cidoc-crm.org/extensions/crminf/rdfs/1.0/CRMinf_v1.0.rdf", "xml"),
     "http://www.cidoc-crm.org/extensions/crmsci/":
-        ("http://www.cidoc-crm.org/extensions/crmsci/", "xml"),
+        ("https://cidoc-crm.org/extensions/crmsci/rdfs/2.0/CRMsci_v2.0.rdf", "xml"),
     "http://www.w3.org/ns/prov#": ("http://www.w3.org/ns/prov.ttl", "turtle"),
     "http://www.w3.org/2006/time#": ("http://www.w3.org/2006/time.ttl", "turtle"),
     "http://www.w3.org/2004/02/skos/core#":

@@ -2,187 +2,255 @@
 ======================================================================
   §4.4  Alignment & Interoperability
 ======================================================================
-Date     : 2026-06-23T23:30:38.321799
+Date     : 2026-10-15T18:36:40.295625
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.yaml
 
-  Parsed 5007 triples from TTL
-  Parsed 26 class_uri and 57 slot_uri mappings from YAML
+  Parsed 5074 triples from TTL
+  Parsed 16 class_uri and 58 slot_uri mappings from YAML
 
 
 ======================================================================
   1. Class Alignments (TTL axioms + YAML class_uri)
 ======================================================================
 
-  AAT: 11 class(es) aligned
+  AAT: 6 class(es) aligned
     ArchitecturalElement                → exactMatch           → 300000885
     ArchitecturalElement                → skos:exactMatch      → 300000885
-    ArchitecturalStructure              → broadMatch           → 300004792
-    BuddhistMonument                    → exactMatch           → 300007576
-    BuddhistMonument                    → skos:exactMatch      → 300007576
     Deity                               → exactMatch           → 300343850
     Deity                               → skos:exactMatch      → 300343850
-    HumanMadeObject                     → exactMatch           → 300117127
-    HumanMadeObject                     → skos:exactMatch      → 300117127
-    IconographicObject                  → broadMatch           → 300264387
-    Murti                               → exactMatch           → 300047090
-    Murti                               → skos:exactMatch      → 300047090
-    Paubha                              → broadMatch           → 300033666
+    Paubha                              → broadMatch           → 300033618
     ReligiousTradition                  → exactMatch           → 300073708
     ReligiousTradition                  → skos:exactMatch      → 300073708
-    RitualEvent                         → broadMatch           → 300054754
+    Stupa                               → exactMatch           → 300007576
+    Stupa                               → skos:exactMatch      → 300007576
     Temple                              → exactMatch           → 300007595
     Temple                              → skos:exactMatch      → 300007595
 
-  CIDOC-CRM: 33 class(es) aligned
+  CIDOC-CRM: 55 class(es) aligned
     Actor                               → class_uri(YAML)      → crm:E39_Actor
-    Actor                               → subClassOf           → E39_Actor
-    ArchitecturalElement                → class_uri(YAML)      → crm:E25_Architectural_Element
-    ArchitecturalElement                → subClassOf           → E25_Architectural_Element
+    ArchitecturalElement                → broadMatch           → E25_Human-Made_Feature
+    ArchitecturalStructure              → broadMatch           → E22_Human-Made_Object
+    ArchitecturalStructure              → subClassOf           → E22_Human-Made_Object
+    ArchitecturalStyle                  → broadMatch           → E55_Type
     ArchivalRecord                      → broadMatch           → E31_Document
-    AssertableEntity                    → class_uri(YAML)      → crm:E1_CRM_Entity
-    AssertableEntity                    → subClassOf           → E1_CRM_Entity
-    CalendarSystem                      → broadMatch           → E29_Designated_Reference_System
+    AssertionSubject                    → broadMatch           → E1_CRM_Entity
     CasteGroup                          → broadMatch           → E74_Group
+    CasteGroup                          → subClassOf           → E39_Actor
     ConditionAssessment                 → class_uri(YAML)      → crm:E14_Condition_Assessment
-    ConditionAssessment                 → subClassOf           → E14_Condition_Assessment
     ConditionState                      → class_uri(YAML)      → crm:E3_Condition_State
-    ConditionState                      → subClassOf           → E3_Condition_State
+    Consecration                        → broadMatch           → E7_Activity
+    DataCustodian                       → subClassOf           → E39_Actor
     DataSource                          → broadMatch           → E73_Information_Object
-    Deity                               → class_uri(YAML)      → crm:E28_Conceptual_Object
-    Deity                               → subClassOf           → E28_Conceptual_Object
+    Deity                               → broadMatch           → E28_Conceptual_Object
     DestructionEvent                    → class_uri(YAML)      → crm:E6_Destruction
-    DestructionEvent                    → subClassOf           → E6_Destruction
-    DocumentationActivity               → subClassOf           → E7_Activity
-    FieldSurveyDataset                  → class_uri(YAML)      → crm:E31_Document
-    FieldSurveyDataset                  → subClassOf           → E31_Document
+    DocumentationActivity               → broadMatch           → E7_Activity
+    Enshrinement                        → broadMatch           → E7_Activity
+    Festival                            → broadMatch           → E7_Activity
+    FieldSurveyDataset                  → broadMatch           → E31_Document
     Guthi                               → broadMatch           → E74_Group
-    HeritageActivity                    → subClassOf           → E7_Activity
-    HistoricalEvent                     → class_uri(YAML)      → crm:E5_Event
-    HistoricalEvent                     → subClassOf           → E5_Event
+    Guthi                               → subClassOf           → E39_Actor
+    HistoricalEvent                     → broadMatch           → E5_Event
+    HumanMadeObject                     → class_uri(YAML)      → crm:E22_Human-Made_Object
+    IconographicObject                  → broadMatch           → E22_Human-Made_Object
 
-  CRMinf: 1 class(es) aligned
-    HeritageAssertion                   → class_uri(YAML)      → crminf:I2_Belief
-    HeritageAssertion                   → subClassOf           → I2_Belief
+  CRMinf: 3 class(es) aligned
+    Assertion                           → class_uri(YAML)      → crminf:I2_Belief
+    Proposition                         → broadMatch           → I4_Proposition_Set
+    I2_Belief                           → class_uri            → I2_Belief
 
   CRMsci: 1 class(es) aligned
-    FieldSurveyActivity                 → class_uri(YAML)      → crmsci:S4_Observation
-    FieldSurveyActivity                 → subClassOf           → S4_Observation
+    FieldSurveyActivity                 → broadMatch           → S4_Observation
 
   DBpedia: 3 class(es) aligned
-    Deity                               → closeMatch           → Deity
-    IconographicObject                  → exactMatch           → Artwork
-    IconographicObject                  → skos:exactMatch      → Artwork
-    Temple                              → closeMatch           → ReligiousBuilding
-    Temple                              → closeMatch           → Temple
-
-  EDM: 7 class(es) aligned
-    Actor                               → broadMatch           → Agent
-    DataSource                          → broadMatch           → WebResource
-    HumanMadeObject                     → broadMatch           → PhysicalThing
-    Person                              → broadMatch           → Agent
-    PhysicalHeritageThing               → broadMatch           → PhysicalThing
-    Place                               → broadMatch           → Place
-    RitualEvent                         → broadMatch           → Event
-
-  FOAF: 1 class(es) aligned
-    Person                              → broadMatch           → Person
-    Person                              → subClassOf           → Person
+    Deity                               → exactMatch           → Deity
+    Deity                               → skos:exactMatch      → Deity
+    IconographicObject                  → broadMatch           → Artwork
+    Temple                              → broadMatch           → ReligiousBuilding
+    Temple                              → exactMatch           → Temple
+    Temple                              → skos:exactMatch      → Temple
 
   OWL-Time: 1 class(es) aligned
-    CalendarSystem                      → class_uri(YAML)      → time:Calendar
-    CalendarSystem                      → subClassOf           → Calendar
+    CalendarSystem                      → broadMatch           → TRS
 
-  PROV-O: 3 class(es) aligned
-    DataCustodian                       → class_uri(YAML)      → prov:Agent
-    DataCustodian                       → subClassOf           → Agent
-    DocumentationActivity               → broadMatch           → Activity
-    HeritageAssertion                   → broadMatch           → Entity
+  PROV-O: 46 class(es) aligned
+    Activity                            → class_uri(YAML)      → prov:Activity
+    Agent                               → class_uri(YAML)      → prov:Agent
+    ArchitecturalElement                → subClassOf           → Entity
+    CalendarSystem                      → subClassOf           → Entity
+    CasteGroup                          → broadMatch           → Organization
+    Consecration                        → subClassOf           → Activity
+    Container                           → broadMatch           → Collection
+    Container                           → subClassOf           → Entity
+    DataCustodian                       → broadMatch           → Agent
+    DataSource                          → subClassOf           → Entity
+    Deity                               → subClassOf           → Entity
+    DocumentationActivity               → subClassOf           → Activity
+    Enshrinement                        → subClassOf           → Activity
+    Entity                              → class_uri(YAML)      → prov:Entity
+    Festival                            → broadMatch           → Activity
+    Guthi                               → broadMatch           → Organization
+    HistoricalEvent                     → subClassOf           → Activity
+    KumariEnthronementEvent             → broadMatch           → Activity
+    KumariLifecycleEvent                → broadMatch           → Activity
+    KumariRetirementEvent               → broadMatch           → Activity
+    KumariRole                          → subClassOf           → Entity
+    KumariSelectionEvent                → broadMatch           → Activity
+    KumariTenure                        → subClassOf           → Entity
+    Metadata                            → subClassOf           → Entity
+    PhysicalHeritageThing               → subClassOf           → Entity
 
   RICO: 1 class(es) aligned
-    ArchivalRecord                      → subClassOf           → Record
+    ArchivalRecord                      → exactMatch           → Record
+    ArchivalRecord                      → skos:exactMatch      → Record
 
-  Wikidata: 6 class(es) aligned
+  Wikidata: 7 class(es) aligned
     ArchitecturalStructure              → exactMatch           → Q811979
     ArchitecturalStructure              → skos:exactMatch      → Q811979
-    BuddhistMonument                    → closeMatch           → Q177980
-    HumanMadeObject                     → closeMatch           → Q838948
-    Murti                               → closeMatch           → Q2594295
-    Paubha                              → closeMatch           → Q130993
-    Temple                              → closeMatch           → Q44539
+    Deity                               → exactMatch           → Q178885
+    Deity                               → skos:exactMatch      → Q178885
+    Murti                               → exactMatch           → Q1781039
+    Murti                               → skos:exactMatch      → Q1781039
+    Paubha                              → closeMatch           → Q916651
+    Paubha                              → exactMatch           → Q7148832
+    Paubha                              → skos:exactMatch      → Q7148832
+    Stupa                               → exactMatch           → Q180987
+    Stupa                               → skos:exactMatch      → Q180987
+    Temple                              → exactMatch           → Q44539
+    Temple                              → skos:exactMatch      → Q44539
+    E22_Human-Made_Object               → narrowMatch          → Q838948
 
 ======================================================================
   2. Property Alignments (TTL + YAML slot_uri)
 ======================================================================
 
-  CIDOC-CRM: 40 propert(ies) aligned
-    architectural_structures                 → crm:P12_occurred_in_the_presence_of (ObjectProperty)
-    assessed_condition_state                 → crm:P35_has_identified         (ObjectProperty)
-    assessed_object                          → crm:P34_concerned              (ObjectProperty)
-    assigned_equivalent                      → crm:P141_assigned              (ObjectProperty)
-    assigned_to_deity                        → crm:P140_assigned_attribute_to (ObjectProperty)
-    carried_out_by                           → crm:P14_carried_out_by         (ObjectProperty)
-    commissioned_by                          → crm:P17_was_motivated_by       (ObjectProperty)
-    contains_structure                       → crm:P53i_is_former_or_current_location_of (ObjectProperty)
-    date_earliest                            → crm:P82a_begin_of_the_begin    (DatatypeProperty)
-    date_latest                              → crm:P82b_end_of_the_end        (DatatypeProperty)
-    depicts_deity                            → crm:P62_depicts                (ObjectProperty)
-    embodied_deity                           → crm:P14.1_in_the_role_of       (ObjectProperty)
-    had_participant                          → crm:P11_had_participant        (ObjectProperty)
-    has_component                            → crm:P46_is_composed_of         (ObjectProperty)
-    has_condition_assessment                 → crm:P34i_was_assessed_by       (ObjectProperty)
-    has_current_location                     → crm:P55_has_current_location   (ObjectProperty)
-    has_custody_event                        → crm:P30i_custody_transferred_through (ObjectProperty)
-    has_membership                           → crm:P107_has_current_or_former_member (ObjectProperty)
-    has_timespan                             → crm:P4_has_time-span           (ObjectProperty)
-    holds_custody_of                         → crm:P50_has_current_keeper     (ObjectProperty)
-    includes_ritual_event                    → crm:P9_consists_of             (ObjectProperty)
-    is_about_deity                           → crm:P129_is_about              (ObjectProperty)
-    is_component_of                          → crm:P46i_forms_part_of         (ObjectProperty)
-    is_depicted_in                           → crm:P62i_is_depicted_by        (ObjectProperty)
-    is_part_of_festival                      → crm:P9i_forms_part_of          (ObjectProperty)
-    member_of_group                          → crm:P107i_is_current_or_former_member_of (ObjectProperty)
-    note                                     → crm:P3_has_note                (DatatypeProperty)
-    occurs_after                             → crm:P120i_is_occurred_before_by (ObjectProperty)
-    occurs_before                            → crm:P120_occurs_before         (ObjectProperty)
-    produced_object                          → crm:P108_has_produced          (ObjectProperty)
-    residence_structure                      → crm:P74_has_current_or_former_residence (ObjectProperty)
-    ritual_on_structure                      → crm:P8_took_place_on_or_within (ObjectProperty)
-    source_language                          → crm:P72_has_language           (DatatypeProperty)
-    took_place_at                            → crm:P7_took_place_at           (ObjectProperty)
-    transferred_from_actor                   → crm:P28_custody_surrendered_by (ObjectProperty)
-    transferred_object                       → crm:P30_transferred_custody_of (ObjectProperty)
-    transferred_to_actor                     → crm:P29_custody_received_by    (ObjectProperty)
-    used_materials                           → crm:P125_used_object_of_type   (ObjectProperty)
-    used_technique                           → crm:P32_used_general_technique (ObjectProperty)
-    was_produced_by_event                    → crm:P108i_was_produced_by      (ObjectProperty)
+  CIDOC-CRM: 78 propert(ies) aligned
+    assessed_condition_state                 → crm:P35_has_identified         (Unknown)
+    assessed_object                          → crm:P34_concerned              (Unknown)
+    assigned_equivalent                      → crm:P141_assigned              (Unknown)
+    assigned_to_deity                        → crm:P140_assigned_attribute_to (Unknown)
+    carried_out_activity                     → crm:P14i_performed             (Unknown)
+    carried_out_by                           → crm:P14_carried_out_by         (Unknown)
+    consecrated_object                       → crm:P16_used_specific_object   (Unknown)
+    contains_structure                       → crm:P53i_is_former_or_current_location_of (Unknown)
+    date_earliest                            → crm:P82a_begin_of_the_begin    (Unknown)
+    date_latest                              → crm:P82b_end_of_the_end        (Unknown)
+    depicts_deity                            → crm:P62_depicts                (Unknown)
+    has_component                            → crm:P46_is_composed_of         (Unknown)
+    has_condition_assessment                 → crm:P34i_was_assessed_by       (Unknown)
+    has_current_location                     → crm:P55_has_current_location   (Unknown)
+    has_custody_event                        → crm:P30i_custody_transferred_through (Unknown)
+    has_membership                           → crm:P107_has_current_or_former_member (Unknown)
+    has_timespan                             → crm:P4_has_time-span           (Unknown)
+    has_type                                 → crm:P2_has_type                (Unknown)
+    holds_custody_of                         → crm:P50i_is_current_keeper_of  (Unknown)
+    http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member → http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of → http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P108_has_produced → http://www.cidoc-crm.org/cidoc-crm/P108_has_produced (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by → http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type → http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P129_is_about → http://www.cidoc-crm.org/cidoc-crm/P129_is_about (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of → http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at → http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to → http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P141_assigned → http://www.cidoc-crm.org/cidoc-crm/P141_assigned (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by → http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P14i_performed → http://www.cidoc-crm.org/cidoc-crm/P14i_performed (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object → http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of → http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of → http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by → http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by → http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P2_has_type → http://www.cidoc-crm.org/cidoc-crm/P2_has_type (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of → http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through → http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique → http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P34_concerned → http://www.cidoc-crm.org/cidoc-crm/P34_concerned (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by → http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P35_has_identified → http://www.cidoc-crm.org/cidoc-crm/P35_has_identified (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P3_has_note → http://www.cidoc-crm.org/cidoc-crm/P3_has_note (DatatypeProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of → http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of → http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span → http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P50i_is_current_keeper_of → http://www.cidoc-crm.org/cidoc-crm/P50i_is_current_keeper_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of → http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location → http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P62_depicts → http://www.cidoc-crm.org/cidoc-crm/P62_depicts (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by → http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at → http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin → http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin (DatatypeProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end → http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end (DatatypeProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within → http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P9_consists_of → http://www.cidoc-crm.org/cidoc-crm/P9_consists_of (ObjectProperty)
+    http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of → http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of (ObjectProperty)
+    includes_ritual_event                    → crm:P9_consists_of             (Unknown)
+    is_about                                 → crm:P129_is_about              (Unknown)
+    is_component_of                          → crm:P46i_forms_part_of         (Unknown)
+    is_depicted_in                           → crm:P62i_is_depicted_by        (Unknown)
+    is_part_of_festival                      → crm:P9i_forms_part_of          (Unknown)
+    member_of_group                          → crm:P107i_is_current_or_former_member_of (Unknown)
+    note                                     → crm:P3_has_note                (Unknown)
+    occurred_in_presence_of                  → crm:P12_occurred_in_the_presence_of (Unknown)
+    occurs_after                             → crm:P183i_starts_after_the_end_of (Unknown)
+    occurs_before                            → crm:P183_ends_before_the_start_of (Unknown)
+    produced_object                          → crm:P108_has_produced          (Unknown)
+    ritual_on_structure                      → crm:P8_took_place_on_or_within (Unknown)
+    took_place_at                            → crm:P7_took_place_at           (Unknown)
+    transferred_from_actor                   → crm:P28_custody_surrendered_by (Unknown)
+    transferred_object                       → crm:P30_transferred_custody_of (Unknown)
+    transferred_to_actor                     → crm:P29_custody_received_by    (Unknown)
+    used_materials                           → crm:P125_used_object_of_type   (Unknown)
+    used_technique                           → crm:P33_used_specific_technique (Unknown)
+    was_present_at                           → crm:P12i_was_present_at        (Unknown)
+    was_produced_by_event                    → crm:P108i_was_produced_by      (Unknown)
 
-  DCTerms: 1 propert(ies) aligned
-    id                                       → dcterms:identifier             (DatatypeProperty)
+  CRMinf: 2 propert(ies) aligned
+    asserts_proposition                      → crminf:J4_that                 (Unknown)
+    http://www.cidoc-crm.org/extensions/crminf/J4_that → http://www.cidoc-crm.org/extensions/crminf/J4_that (ObjectProperty)
 
-  DataCite: 5 propert(ies) aligned
-    datacite_creator                         → datacite:creator               (ObjectProperty)
-    datacite_identifier                      → datacite:identifier            (DatatypeProperty)
-    datacite_identifier_type                 → datacite:identifierType        (DatatypeProperty)
-    datacite_publisher                       → datacite:publisher             (ObjectProperty)
-    datacite_resource_type                   → datacite:resourceType          (DatatypeProperty)
+  DCTerms: 2 propert(ies) aligned
+    http://purl.org/dc/terms/identifier      → http://purl.org/dc/terms/identifier (DatatypeProperty)
+    id                                       → dcterms:identifier             (Unknown)
 
-  GeoSPARQL: 1 propert(ies) aligned
-    place_coordinates                        → geo:asWKT                      (DatatypeProperty)
+  GeoSPARQL: 2 propert(ies) aligned
+    http://www.opengis.net/ont/geosparql#asWKT → http://www.opengis.net/ont/geosparql#asWKT (DatatypeProperty)
+    place_coordinates                        → geo:asWKT                      (Unknown)
 
-  PROV-O: 9 propert(ies) aligned
-    assertion_content                        → prov:value                     (DatatypeProperty)
-    created_by_documentation                 → prov:wasGeneratedBy            (ObjectProperty)
-    documented_in_source                     → prov:wasInfluencedBy           (ObjectProperty)
-    generated_at_time                        → prov:generatedAtTime           (DatatypeProperty)
-    performed_by_agent                       → prov:wasAssociatedWith         (ObjectProperty)
-    produced_information_object              → prov:generated                 (ObjectProperty)
-    supersedes_assertion                     → prov:wasRevisionOf             (ObjectProperty)
-    was_attributed_to_agent                  → prov:wasAttributedTo           (ObjectProperty)
-    was_derived_from_source                  → prov:wasDerivedFrom            (ObjectProperty)
+  PROV-O: 28 propert(ies) aligned
+    acted_on_behalf_of                       → prov:actedOnBehalfOf           (Unknown)
+    assertion_content                        → prov:value                     (Unknown)
+    ended_at_time                            → prov:endedAtTime               (Unknown)
+    generated                                → prov:generated                 (Unknown)
+    generated_at_time                        → prov:generatedAtTime           (Unknown)
+    http://www.w3.org/ns/prov#actedOnBehalfOf → http://www.w3.org/ns/prov#actedOnBehalfOf (ObjectProperty)
+    http://www.w3.org/ns/prov#endedAtTime    → http://www.w3.org/ns/prov#endedAtTime (DatatypeProperty)
+    http://www.w3.org/ns/prov#generated      → http://www.w3.org/ns/prov#generated (ObjectProperty)
+    http://www.w3.org/ns/prov#generatedAtTime → http://www.w3.org/ns/prov#generatedAtTime (DatatypeProperty)
+    http://www.w3.org/ns/prov#startedAtTime  → http://www.w3.org/ns/prov#startedAtTime (DatatypeProperty)
+    http://www.w3.org/ns/prov#used           → http://www.w3.org/ns/prov#used (ObjectProperty)
+    http://www.w3.org/ns/prov#value          → http://www.w3.org/ns/prov#value (DatatypeProperty)
+    http://www.w3.org/ns/prov#wasAssociatedWith → http://www.w3.org/ns/prov#wasAssociatedWith (ObjectProperty)
+    http://www.w3.org/ns/prov#wasAttributedTo → http://www.w3.org/ns/prov#wasAttributedTo (ObjectProperty)
+    http://www.w3.org/ns/prov#wasDerivedFrom → http://www.w3.org/ns/prov#wasDerivedFrom (ObjectProperty)
+    http://www.w3.org/ns/prov#wasGeneratedBy → http://www.w3.org/ns/prov#wasGeneratedBy (ObjectProperty)
+    http://www.w3.org/ns/prov#wasInfluencedBy → http://www.w3.org/ns/prov#wasInfluencedBy (ObjectProperty)
+    http://www.w3.org/ns/prov#wasInformedBy  → http://www.w3.org/ns/prov#wasInformedBy (ObjectProperty)
+    http://www.w3.org/ns/prov#wasRevisionOf  → http://www.w3.org/ns/prov#wasRevisionOf (ObjectProperty)
+    started_at_time                          → prov:startedAtTime             (Unknown)
+    supersedes_assertion                     → prov:wasRevisionOf             (Unknown)
+    used                                     → prov:used                      (Unknown)
+    was_associated_with                      → prov:wasAssociatedWith         (Unknown)
+    was_attributed_to                        → prov:wasAttributedTo           (Unknown)
+    was_derived_from                         → prov:wasDerivedFrom            (Unknown)
+    was_generated_by                         → prov:wasGeneratedBy            (Unknown)
+    was_influenced_by                        → prov:wasInfluencedBy           (Unknown)
+    was_informed_by                          → prov:wasInformedBy             (Unknown)
 
   RDFS: 1 propert(ies) aligned
-    name                                     → rdfs:label                     (DatatypeProperty)
+    name                                     → rdfs:label                     (Unknown)
+
+  schema.org: 1 propert(ies) aligned
+    source_language                          → schema:inLanguage              (Unknown)
 
 ======================================================================
   3. Alignment Summary
@@ -190,29 +258,27 @@ YAML src : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.y
 
   Namespace               Classes   Properties
   --------------------------------------------
-  AAT                          11            0
-  CIDOC-CRM                    33           40
-  CRMinf                        1            0
+  AAT                           6            0
+  CIDOC-CRM                    55           78
+  CRMinf                        3            2
   CRMsci                        1            0
   DBpedia                       3            0
-  DCTerms                       0            1
-  DataCite                      0            5
-  EDM                           7            0
-  FOAF                          1            0
-  GeoSPARQL                     0            1
+  DCTerms                       0            2
+  GeoSPARQL                     0            2
   OWL-Time                      1            0
-  PROV-O                        3            9
+  PROV-O                       46           28
   RDFS                          0            1
   RICO                          1            0
-  Wikidata                      6            0
+  Wikidata                      7            0
+  schema.org                    0            1
   --------------------------------------------
-  TOTAL                        68           57
+  TOTAL                       123          114
 
   Paper §4.4 claims vs Actual:
     Metric                                      Paper   Actual   Match
     ----------------------------------------------------------------
-    CIDOC-CRM aligned classes (SKOS/slot)          32       33       ❌
-    External rdfs:subClassOf axioms (TTL)          31       31       ✅
-    CRM-family (CRM+CRMinf+CRMsci) classes         35       35       ✅
-    CIDOC-CRM aligned properties (slot_uri)        40       40       ✅
-    PROV-O aligned properties (slot_uri)            9        9       ✅
+    CIDOC-CRM aligned classes (SKOS/slot)          32       55       ❌
+    External rdfs:subClassOf axioms (TTL)          31       23       ❌
+    CRM-family (CRM+CRMinf+CRMsci) classes         35       59       ❌
+    CIDOC-CRM aligned properties (slot_uri)        40       78       ❌
+    PROV-O aligned properties (slot_uri)            9       28       ❌

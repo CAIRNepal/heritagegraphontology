@@ -8,6 +8,10 @@ on the first run (vocabularies are cached afterwards).
 
 Subcommands (default: all):
 
+  entailments     Classify the released ontology with HermiT and print the number
+                  of asserted rdfs:subClassOf axioms and of inferred subsumptions
+                  between named classes (excluding owl:Thing).
+
   injection       Inconsistency injection: show the OWL axioms bite rather than
                   decorate. Three arms: (A) a KumariTenure with two
                   owl:differentFrom embodiedDeity values must clash with the
@@ -17,7 +21,7 @@ Subcommands (default: all):
                   pair) must be unsatisfiable.
 
   merged-import   Merged-vocabulary classification: HermiT over HeritageGraph +
-                  the full CIDOC-CRM, CRMinf, and PROV-O vocabularies, closing
+                  the full CIDOC-CRM, CRMinf, CRMsci, and PROV-O vocabularies, closing
                   the threat that consistency was specific to the self-contained
                   released axiom set. Reports the documented PROV-O property-
                   chain vs. HG-cardinality DL collision and classifies under
@@ -49,10 +53,10 @@ JAVA = str(Path(JAVA_HOME) / "bin" / "java")
 # injection: the OWL axioms are load-bearing.
 # ===========================================================================
 def run_injection() -> int:
-    COMMON = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    COMMON = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
 
 # The declaration is required so that the OWLAPI Turtle parser reads the
 # embodiment triples as ObjectPropertyAssertions; undeclared predicates are
@@ -66,10 +70,10 @@ ex:D2 a hg:Deity , owl:NamedIndividual ; rdfs:label "deity two" .
 """
     DIFFERENT = "ex:D1 owl:differentFrom ex:D2 .\n"
 
-    DISJOINT_JOINT = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    DISJOINT_JOINT = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
 
 ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
     rdfs:label "joint Stupa-and-Chaitya individual" .
@@ -123,9 +127,9 @@ ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
 
 
 # ===========================================================================
-# merged-import: HermiT over HG + CIDOC-CRM + CRMinf + PROV-O.
+# merged-import: HermiT over HG + CIDOC-CRM + CRMinf + CRMsci + PROV-O.
 # ===========================================================================
-HG_NS = "https://w3id.org/heritagegraph/"
+HG_NS = "http://cair-nepal.org/heritagegraph/"
 PROV_NS = "http://www.w3.org/ns/prov#"
 CACHE = Path(os.environ.get("VOCAB_CACHE", "/tmp/hgtools/vocab"))
 
@@ -134,7 +138,19 @@ VOCABS = {
         "https://cidoc-crm.org/rdfs/7.1.3/CIDOC_CRM_v7.1.3.rdf"),
     "CRMinf v1.0": ("crminf.rdf",
         "https://cidoc-crm.org/extensions/crminf/rdfs/1.0/CRMinf_v1.0.rdf"),
+    "CRMsci v2.0": ("crmsci.rdf",
+        "https://cidoc-crm.org/extensions/crmsci/rdfs/2.0/CRMsci_v2.0.rdf"),
     "PROV-O": ("prov.ttl", "https://www.w3.org/ns/prov.ttl"),
+}
+
+# Namespace each vocabulary document declares its terms in. A merge only tests
+# the alignment if HG's terms in that namespace are the very terms the
+# document declares; _coverage() checks this before classifying.
+VOCAB_NS = {
+    "CIDOC-CRM v7.1.3": "http://www.cidoc-crm.org/cidoc-crm/",
+    "CRMinf v1.0": "http://www.cidoc-crm.org/extensions/crminf/",
+    "CRMsci v2.0": "http://www.cidoc-crm.org/extensions/crmsci/",
+    "PROV-O": PROV_NS,
 }
 
 
@@ -214,6 +230,27 @@ def _classify(label: str, inputs: list[Path]) -> bool:
     return not unsat and not hg_equiv
 
 
+def _coverage(name: str, hg_path: Path, vocab_path: Path) -> bool:
+    """HG terms in the vocabulary's namespace that the loaded document declares.
+
+    Fails if HG uses no term in that namespace, or a term the document does
+    not declare: either way the merge would classify HG's terms in isolation
+    (e.g. after a namespace mismatch) and test nothing about the alignment."""
+    ns = VOCAB_NS[name]
+    hg_g = Graph()
+    hg_g.parse(hg_path, format="turtle")
+    used = {t for triple in hg_g for t in triple
+            if isinstance(t, URIRef) and str(t).startswith(ns) and str(t) != ns}
+    v = Graph()
+    v.parse(vocab_path, format="turtle")
+    declared = {s for s in v.subjects(RDF.type, None) if isinstance(s, URIRef)}
+    missing = sorted(str(t)[len(ns):] for t in used - declared)
+    print(f"  [{name}] HG terms in {ns}: {len(used)}; declared by the loaded "
+          f"document: {len(used) - len(missing)}"
+          + (f"; NOT declared: {', '.join(missing)}" if missing else ""))
+    return bool(used) and not missing
+
+
 def run_merged_import() -> int:
     CACHE.mkdir(parents=True, exist_ok=True)
     hg = ROOT / "ontology/HeritageGraph.ttl"
@@ -221,6 +258,10 @@ def run_merged_import() -> int:
     paths = {}
     for name, (fname, url) in VOCABS.items():
         paths[name] = _fetch(name, fname, url)
+
+    print("Term coverage (does each merge load the terms HG actually uses?):")
+    for name, p in paths.items():
+        ok &= _coverage(name, hg, p)
 
     print("Pairwise merges with HeritageGraph:")
     for name, p in list(paths.items()):
@@ -275,9 +316,9 @@ def run_merged_import() -> int:
                     [hg_relaxed, paths["PROV-O"]])
 
     print("Full merge (chain axioms dropped from PROV-O):")
-    ok &= _classify("HG + CRM + CRMinf + PROV-O",
+    ok &= _classify("HG + CRM + CRMinf + CRMsci + PROV-O",
                     [hg, paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
-                     prov_nochain])
+                     paths["CRMsci v2.0"], prov_nochain])
 
     if ok:
         print("\nPASS: HermiT classifies every DL-admissible merged graph "
@@ -290,9 +331,53 @@ def run_merged_import() -> int:
     return 1
 
 
+# ===========================================================================
+# entailments: what HermiT adds to the released axiom set.
+# ===========================================================================
+def run_entailments() -> int:
+    """Classify the released ontology with HermiT (ROBOT reason, imports
+    stripped) and count subsumptions. "Asserted rdfs:subClassOf axioms" counts
+    every rdfs:subClassOf triple in the file (including those whose superclass
+    is a restriction or class expression); the entailment count is the named
+    class pairs (both sides IRIs) in ROBOT's reasoned output that are not
+    asserted, excluding the trivial C rdfs:subClassOf owl:Thing."""
+    with tempfile.TemporaryDirectory() as td:
+        src = Path(td) / "hg.ttl"
+        out = Path(td) / "reasoned.ttl"
+        g = Graph()
+        g.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+        g.remove((None, OWL.imports, None))
+        g.serialize(src, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--input", str(src), "--output", str(out)],
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            print("HermiT: ontology is inconsistent or has unsatisfiable classes")
+            return 1
+        reasoned = Graph()
+        reasoned.parse(out, format="turtle")
+
+    def named(graph: Graph) -> set:
+        return {(s, o) for s, o in graph.subject_objects(RDFS.subClassOf)
+                if isinstance(s, URIRef) and isinstance(o, URIRef) and s != o}
+
+    asserted_all = len(list(g.subject_objects(RDFS.subClassOf)))
+    new = named(reasoned) - named(g)
+    thing = sorted(s for s, o in new if o == OWL.Thing)
+    inferred = sorted((s, o) for s, o in new if o != OWL.Thing)
+    print(f"Asserted rdfs:subClassOf axioms: {asserted_all} "
+          f"(of which between named classes: {len(named(g))})")
+    print(f"Inferred subsumptions between named classes (excluding owl:Thing): {len(inferred)}")
+    print(f"  (plus {len(thing)} trivial C rdfs:subClassOf owl:Thing, not counted)")
+    for s, o in inferred:
+        print(f"    {str(s).rsplit('/', 1)[-1]}  rdfs:subClassOf  {str(o).rsplit('/', 1)[-1]}")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
+    "entailments": run_entailments,
 }
 
 

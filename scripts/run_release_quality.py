@@ -73,12 +73,12 @@ def main() -> int:
     disjoint_pairs = m.group(1) if m else "0"
 
     abox_pass = abox.count("[PASS]")
-    registry_score = 7.5  # w3id rules + LOV metadata prepared; deploy after tag
+    registry_score = 7.5  # nginx conneg rules + LOV metadata prepared; deploy after tag
     composite = round(
         (8.5 + 8.0 + 9.5 + 8.5 + 7.5 + 8.5 + registry_score + hermit_score) / 8,
         1,
     )
-    readiness = "Submission-ready draft" if composite >= 8.3 and hermit_score >= 9.0 else "Near submission — tag v1.0.0 + w3id PR remaining"
+    readiness = "Submission-ready draft" if composite >= 8.3 and hermit_score >= 9.0 else "Near submission — tag v1.0.0 + cair-nepal.org deployment remaining"
 
     report = f"""# HeritageGraph Release Quality Report
 
@@ -95,7 +95,7 @@ Generated: {datetime.now().isoformat()}
 | ABox demonstrability | 8.5 | Mini Kathmandu ABox + {abox_pass} sample SELECT queries |
 | Interoperability | 7.5 | CRM/PROV/EDM/FOAF alignment modules present |
 | Documentation fidelity | 8.5 | Manuscript metrics reconciled; docs metadata refreshed |
-| Registry readiness | {registry_score} | VoID + LOV metadata; w3id `.htaccess` prepared |
+| Registry readiness | {registry_score} | VoID + LOV metadata; nginx content negotiation prepared (`deploy/nginx/`) |
 | **Composite** | **{composite}** | **{readiness}** |
 
 ## Automated checks (all green)
@@ -111,11 +111,11 @@ Generated: {datetime.now().isoformat()}
 - [x] Regenerate artefacts from `HeritageGraph.yaml`
 - [x] Archive evaluation reports under `release/evaluation/`
 - [x] Refresh `docs/` ontology serialisations and HTML metadata
-- [x] Prepare `w3id/heritagegraph/.htaccess` for perma-id PR
+- [x] Prepare nginx content negotiation for cair-nepal.org (`deploy/nginx/`)
 - [x] Prepare `registry/lov-metadata.ttl` for LOV submission
 - [ ] Tag git release `v1.0.0` and push to `CAIRNepal/heritagegraphontology`
-- [ ] Open w3id PR (see `w3id/README.md`)
-- [ ] Submit LOV entry after w3id is live
+- [ ] Deploy `deploy/nginx/` on cair-nepal.org and run `deploy/nginx/check_conneg.py`
+- [ ] Submit LOV entry after the cair-nepal.org IRIs resolve
 - [ ] Fill author initials in `sw_template.tex` before journal submit
 
 ## Known intentional limitations
@@ -149,7 +149,7 @@ Generated: {datetime.now().isoformat()}
 ## Regenerate
 
 ```bash
-python3 scripts/regenerate_ontology_artifacts.py
+python3 scripts/finalize_alpha5_artifacts.py
 python3 scripts/run_release_quality.py
 ```
 """

@@ -60,11 +60,11 @@ DIMENSIONS = {
 # IRI prefixes stripped to their local names when canonicalising bindings, so
 # the expected file and the query output are compared on stable short forms.
 PREFIXES = [
-    "https://w3id.org/heritagegraph/demo/",
-    "https://w3id.org/heritagegraph/",
+    "http://cair-nepal.org/heritagegraph/example/",
+    "http://cair-nepal.org/heritagegraph/",
     "http://vocab.getty.edu/aat/",
     "http://www.cidoc-crm.org/cidoc-crm/",
-    "http://www.ics.forth.gr/isl/CRMinf/",
+    "http://www.cidoc-crm.org/extensions/crminf/",
     "http://www.w3.org/ns/prov#",
     "http://www.w3.org/2000/01/rdf-schema#",
 ]
@@ -216,7 +216,7 @@ SELECT ?actor ?activity WHERE { ?actor crm:P14i_performed ?activity . }"""
     print(f"  asserted graph: {len(d_a)} row(s); OWL-RL closure: {len(d_c)} row(s)")
     for r in d_c:
         print("   -> " + " | ".join(
-            str(x).replace("https://w3id.org/heritagegraph/demo/", "") for x in r))
+            str(x).replace("http://cair-nepal.org/heritagegraph/example/", "") for x in r))
     if d_a or not d_c:
         print("DEMO FAILED: expected 0 asserted rows and >0 closure rows")
         return 1

@@ -1,4 +1,4 @@
-id: https://w3id.org/heritagegraph/schema
+id: http://cair-nepal.org/heritagegraph/schema
 name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
   CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
@@ -211,7 +211,7 @@ prefixes:
   # declared the linkml: prefix; strict loaders (e.g. PythonGenerator) fail
   # on the unresolvable CURIE.
   linkml: "https://w3id.org/linkml/"
-  heritageGraph: "https://w3id.org/heritagegraph/"
+  heritageGraph: "http://cair-nepal.org/heritagegraph/"
   rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
   owl: "http://www.w3.org/2002/07/owl#"
@@ -229,16 +229,12 @@ prefixes:
   dbo: "http://dbpedia.org/ontology/"
   prov: "http://www.w3.org/ns/prov#"
   crm: "http://www.cidoc-crm.org/cidoc-crm/"
-  # URI FIX (alpha.5): current CRMsci releases on cidoc-crm.org are PDF/DOCX
-  # only and http://www.cidoc-crm.org/crmsci/ term URIs do not dereference.
-  # The namespace of the official CRMsci RDFS encodings, used by existing
-  # CRMsci data, is the FORTH namespace below.
-  crmsci: "http://www.ics.forth.gr/isl/CRMsci/"
-  # URI FIX (alpha.5): CRMinf has no current official RDF release (cidoc-crm.org
-  # publishes v1.2.1 as PDF/DOCX only) and http://www.cidoc-crm.org/crminf/ term
-  # URIs do not dereference. The de-facto RDF namespace used by existing CRMinf
-  # data and implementations (e.g. ResearchSpace) is the FORTH namespace below.
-  crminf: "http://www.ics.forth.gr/isl/CRMinf/"
+  # URI FIX: the official RDFS encodings published by CIDOC-CRM SIG / FORTH-ICS
+  # (CRMsci v2.0 and CRMinf v1.0, February 2024, cidoc-crm.org/extensions/*/rdfs/)
+  # use the cidoc-crm.org/extensions/ namespaces below. They replace the earlier
+  # ics.forth.gr/isl/ namespaces, which no official release uses.
+  crmsci: "http://www.cidoc-crm.org/extensions/crmsci/"
+  crminf: "http://www.cidoc-crm.org/extensions/crminf/"
   rico: "https://www.ica.org/standards/RiC/ontology#"
   bibo: "http://purl.org/ontology/bibo/"
   vann: "http://purl.org/vocab/vann/"
@@ -246,8 +242,8 @@ prefixes:
 default_prefix: heritageGraph
 
 annotations:
-  owl:ontologyIRI: "https://w3id.org/heritagegraph/ontology"
-  owl:versionIRI: "https://w3id.org/heritagegraph/ontology/1.0.0"
+  owl:ontologyIRI: "http://cair-nepal.org/heritagegraph/ontology"
+  owl:versionIRI: "http://cair-nepal.org/heritagegraph/ontology/1.0.0"
   owl:versionInfo: "1.0.0"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
@@ -256,10 +252,10 @@ annotations:
   dcterms:created: "2025-11-23"
   dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://w3id.org/heritagegraph/ontology"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). http://cair-nepal.org/heritagegraph/ontology"
   bibo:status: "Pre-release specification draft"
   vann:preferredNamespacePrefix: "heritageGraph"
-  vann:preferredNamespaceUri: "https://w3id.org/heritagegraph/"
+  vann:preferredNamespaceUri: "http://cair-nepal.org/heritagegraph/"
   # CLEANUP (alpha.5): removed the owl:imports annotation -- it serialized as
   # one malformed space-separated literal, and alignment to CIDOC-CRM/PROV-O
   # is carried by mappings and subproperty bridges, not by importing the full

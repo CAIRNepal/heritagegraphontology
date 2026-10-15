@@ -6,7 +6,7 @@ Addresses the committee-review validation blockers for the alpha.5 lineage:
      re-injects owl:disjointWith, asserts FAIR metadata as typed triples, and
      ABORTS if any declared axiom (disjointness, inverses, mappings,
      subproperty bridges) is missing from the final graph (axiom-survival
-     guard, mirroring scripts/regenerate_ontology_artifacts.py).
+     guard).
   2. SHACL: gen-shacl output fails its own demonstrator (identifier MinCount
      on every node although the node IRI is the identifier; sh:class on
      union_of classes that no generator can satisfy; closed shapes). This
@@ -35,11 +35,22 @@ SHACL_OUT = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
 RESULTS = ROOT / "evaluation" / "results"
 
-HG = Namespace("https://w3id.org/heritagegraph/")
+def _schema_identity() -> tuple[str, str]:
+    """HeritageGraph namespace and ontology IRI, read from the LinkML source
+    (default_prefix / prefixes / owl:ontologyIRI annotation) so that the YAML
+    is the single place they are defined."""
+    import yaml
+    data = yaml.safe_load(SCHEMA.read_text(encoding="utf-8"))
+    ns = data["prefixes"][data["default_prefix"]]
+    return ns, data["annotations"]["owl:ontologyIRI"]
+
+
+HG_NS, _ONTOLOGY_IRI = _schema_identity()
+HG = Namespace(HG_NS)
 SH = Namespace("http://www.w3.org/ns/shacl#")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 VANN = Namespace("http://purl.org/vocab/vann/")
-ONTOLOGY_IRI = URIRef("https://w3id.org/heritagegraph/ontology")
+ONTOLOGY_IRI = URIRef(_ONTOLOGY_IRI)
 
 
 def gen(kind: str, out: Path, extra: list[str] | None = None) -> None:
@@ -116,7 +127,7 @@ def apply_attribute_ranges(g: Graph, sv: SchemaView) -> None:
     n = 0
     for cn, c in sv.all_classes().items():
         for attr in (c.attributes or {}).values():
-            prop = URIRef(f"https://w3id.org/heritagegraph/{attr.name}")
+            prop = URIRef(f"{HG_NS}{attr.name}")
             if (prop, RDF.type, None) not in g or (prop, RDFS.range, None) in g:
                 continue
             rng = attr.range or "string"
@@ -189,11 +200,11 @@ def finalize_owl(sv: SchemaView) -> Graph:
         "http://purl.org/pav/version",
         "http://purl.org/vocab/vann/preferredNamespacePrefix",
         "http://purl.org/vocab/vann/preferredNamespaceUri",
-        "https://w3id.org/heritagegraph/crminf_pattern",
-        "https://w3id.org/heritagegraph/design_note",
-        "https://w3id.org/heritagegraph/prov_alignment",
-        "https://w3id.org/heritagegraph/prov_alignment_note",
-        "https://w3id.org/heritagegraph/provenance_scope",
+        HG_NS + "crminf_pattern",
+        HG_NS + "design_note",
+        HG_NS + "prov_alignment",
+        HG_NS + "prov_alignment_note",
+        HG_NS + "provenance_scope",
         "https://w3id.org/linkml/permissible_values",
     ]
     for ap in ANNOTATION_PREDICATES:
@@ -229,8 +240,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
                        "narrow_mappings": SKOS.narrowMatch,
                        "related_mappings": SKOS.relatedMatch}
     for en, e in sv.all_enums().items():
-        enum_cls = URIRef(f"https://w3id.org/heritagegraph/{en}")
-        scheme = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}")
+        enum_cls = URIRef(f"{HG_NS}{en}")
+        scheme = URIRef(f"{HG_NS}scheme/{en}")
         g.add((scheme, RDF.type, SKOS.ConceptScheme))
         g.add((scheme, SKOS.prefLabel, Literal(en)))
         # rdfs:label alongside prefLabel: generic tools (ROBOT report,
@@ -256,9 +267,9 @@ def finalize_owl(sv: SchemaView) -> Graph:
             if pv.meaning:
                 c = uri_for(sv, str(pv.meaning))
             else:
-                c = URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}")
+                c = URIRef(f"{HG_NS}{en}#{vn}")
                 if (c, None, None) not in g:
-                    c = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}/{vn}")
+                    c = URIRef(f"{HG_NS}scheme/{en}/{vn}")
             g.add((c, RDF.type, SKOS.Concept))
             g.add((c, SKOS.inScheme, scheme))
             g.add((c, SKOS.prefLabel, Literal(vn)))
@@ -297,13 +308,13 @@ def finalize_owl(sv: SchemaView) -> Graph:
         (DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")),
         (DCTERMS.bibliographicCitation, Literal(
             f"CAIR-Nepal (2026). HeritageGraph Ontology ({schema_version}). "
-            "https://w3id.org/heritagegraph/ontology")),
+            f"{ONTOLOGY_IRI}")),
         (DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")),
         (DCTERMS.creator, Literal("CAIR-Nepal")),
         (DCTERMS.publisher, Literal("CAIR-Nepal")),
         (BIBO.status, Literal("Pre-release specification draft (alpha)")),
         (VANN.preferredNamespacePrefix, Literal("heritageGraph")),
-        (VANN.preferredNamespaceUri, Literal("https://w3id.org/heritagegraph/")),
+        (VANN.preferredNamespaceUri, Literal(HG_NS)),
     ]
     for p, o in meta:
         for old in list(g.objects(ont, p)):
@@ -354,7 +365,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
             if (uri_for(sv, str(s.slot_uri)), OWL.deprecated, None) not in g:
                 missing.append(f"owl:deprecated: {sn}")
     for en, e in sv.all_enums().items():
-        scheme = URIRef(f"https://w3id.org/heritagegraph/scheme/{en}")
+        scheme = URIRef(f"{HG_NS}scheme/{en}")
         if (scheme, RDF.type, SKOS.ConceptScheme) not in g:
             missing.append(f"conceptScheme: {en}")
         for vn, pv in (e.permissible_values or {}).items():
@@ -362,8 +373,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
                 candidates = [uri_for(sv, str(pv.meaning))]
             else:
                 candidates = [
-                    URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}"),
-                    URIRef(f"https://w3id.org/heritagegraph/scheme/{en}/{vn}"),
+                    URIRef(f"{HG_NS}{en}#{vn}"),
+                    URIRef(f"{HG_NS}scheme/{en}/{vn}"),
                 ]
             if not any((c, SKOS.inScheme, scheme) in g for c in candidates):
                 missing.append(f"enumConcept: {en}.{vn}")
@@ -371,7 +382,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
                     "narrow_mappings", "related_mappings"):
             for curie in getattr(e, key, None) or []:
                 tgt = uri_for(sv, str(curie))
-                subj = URIRef(f"https://w3id.org/heritagegraph/{en}")
+                subj = URIRef(f"{HG_NS}{en}")
                 if tgt is not None and not any((subj, p, tgt) in g for p in mapping_preds):
                     missing.append(f"{key}: enum {en} -> {curie}")
     for sn, s in sv.all_slots().items():
@@ -437,6 +448,21 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
             if s == o:
                 g.remove((s, p, o)); n += 1
     print(f"DL: removed {n} self-referential mapping triple(s)")
+
+    # (a2) for a class whose IRI is an external class_uri (crm:E21_Person, ...),
+    # gen-owl additionally emits skos:exactMatch <heritageGraph:{ClassName}>, the
+    # "native" IRI it would have minted. Those IRIs are declared nowhere, so the
+    # mappings point at nothing. Drop SKOS mappings to undeclared IRIs in the
+    # HeritageGraph namespace.
+    hg_ns = HG_NS
+    n = 0
+    for p in (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
+              SKOS.narrowMatch, SKOS.relatedMatch):
+        for s, o in list(g.subject_objects(p)):
+            if (isinstance(o, URIRef) and str(o).startswith(hg_ns)
+                    and (o, RDF.type, None) not in g):
+                g.remove((s, p, o)); n += 1
+    print(f"DL: removed {n} mapping triple(s) to undeclared HeritageGraph IRIs")
 
     # (b) rdfs:label is built-in annotation vocabulary; the `name` slot
     # (slot_uri rdfs:label) makes gen-owl redeclare it as a datatype property,
@@ -559,7 +585,7 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
                 g.add((ONTOLOGY_IRI, p, o))
     g.add((ONTOLOGY_IRI, RDF.type, OWL.Ontology))
     g.add((ONTOLOGY_IRI, OWL.versionIRI,
-           URIRef(f"https://w3id.org/heritagegraph/ontology/{version}")))
+           URIRef(f"{ONTOLOGY_IRI}/{version}")))
     for pred in (DCTERMS.title, DCTERMS.description):
         if (pred, RDF.type, None) not in g:
             g.add((pred, RDF.type, OWL.AnnotationProperty))
@@ -662,7 +688,7 @@ def finalize_shacl(sv: SchemaView) -> None:
         emitted, iri = set(), {}
         for vn, pv in (e.permissible_values or {}).items():
             ind = (uri_for(sv, str(pv.meaning)) if pv.meaning
-                   else URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}"))
+                   else URIRef(f"{HG_NS}{en}#{vn}"))
             if (ind, RDF.type, OWL.NamedIndividual) not in owl_g:
                 sys.exit(f"enum individual missing from OWL: {en}.{vn} -> {ind}")
             key = ind if pv.meaning else Literal(vn)
@@ -742,6 +768,9 @@ def sync_published() -> None:
     # RDF/XML copy classified by evaluation/run_hermit.py
     g.serialize(destination=ROOT / "ontology" / "review.owl", format="xml")
     print("synced docs/ontology.{ttl,owl,nt,jsonld} and ontology/review.owl")
+    # immutable per-release copy served at the version IRI
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "publish_release.py"),
+                    str(docs)], check=True)
 
 
 def gen_json_schema() -> None:

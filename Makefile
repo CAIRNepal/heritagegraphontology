@@ -1,7 +1,7 @@
 # HeritageGraph — top-level build targets.
 # The ontology lives in ontology/ ; generated docs live in docs/ (never hand-edit).
 
-.PHONY: help docs preview webvowl artefacts check robot clean
+.PHONY: help docs preview webvowl artefacts check robot conneg clean
 
 help:                ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -34,6 +34,10 @@ check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+e
 	python3 scripts/check_yaml_ttl_sync.py
 	python3 evaluation/check_declared_terms.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
+
+BASE ?= http://cair-nepal.org/heritagegraph/
+conneg:              ## check content negotiation of the deployed IRIs (BASE=<url> for staging)
+	python3 deploy/nginx/check_conneg.py $(BASE)
 
 clean:               ## remove build artefacts
 	rm -f ontology/HeritageGraph.merged.ttl ontology/HeritageGraph.build.ttl

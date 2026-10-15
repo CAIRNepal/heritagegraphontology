@@ -67,4 +67,4 @@ To load from scratch, delete `./databases/heritagegraph` first.
   want both the modelled demonstrator and the DANAM data behind one endpoint.
 - Pair this live endpoint with an archival copy on **Zenodo** (persistent DOI)
   and a **VoID/DCAT** dataset description for full FAIR coverage; point your
-  `w3id.org/heritagegraph` redirect at the ontology and this landing page.
+  `cair-nepal.org/heritagegraph` redirect at the ontology and this landing page.

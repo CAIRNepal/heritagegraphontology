@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """OWL 2 DL profile + HermiT consistency of the ontology combined with each example ABox.
 
-For the ontology alone and for ontology + each example in examples/, the inputs
+For the ontology alone, the ontology + the LUX bridge module, and ontology +
+each example in examples/ (plus the LUX module for the LUX example), the inputs
 are parsed into ONE rdflib graph (owl:imports stripped, as the released Turtle
 is self-contained) and serialised to a single Turtle file, which is then checked
 with ROBOT:
@@ -41,10 +42,12 @@ ROBOT_JAR = os.environ.get("ROBOT_JAR", "/tmp/hgtools/robot.jar")
 JAVA = (str(Path(os.environ["JAVA_HOME"]) / "bin" / "java")
         if os.environ.get("JAVA_HOME") else shutil.which("java") or "java")
 
-SKIPPED = {
-    "lux-murti-merged.ttl": "needs the LUX bridge module, which is built on the "
-                            "pre-1.0.0 schema lineage (out of scope until migrated)",
+LUX = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
+# Examples that are expressed in a module on top of the core.
+MODULES = {
+    "lux-murti-merged.ttl": [LUX],
 }
+SKIPPED: dict[str, str] = {}
 
 
 def robot(*args: str) -> tuple[int, str]:
@@ -56,19 +59,19 @@ def robot(*args: str) -> tuple[int, str]:
     return proc.returncode, "\n".join(lines)
 
 
-def combine(name: str, abox: Path | None) -> Path:
+def combine(name: str, *extra: Path) -> Path:
     g = Graph()
     g.parse(TTL, format="turtle")
-    if abox is not None:
-        g.parse(abox, format="turtle")
+    for path in extra:
+        g.parse(path, format="turtle")
     g.remove((None, OWL.imports, None))
     path = OUT / f"{name}.ttl"
     g.serialize(destination=path, format="turtle")
     return path
 
 
-def check(name: str, abox: Path | None) -> bool:
-    combined = combine(name, abox)
+def check(name: str, *extra: Path) -> bool:
+    combined = combine(name, *extra)
     print(f"\n=== {name}  ({combined.relative_to(ROOT)})")
     rc_p, profile = robot("validate-profile", "--profile", "DL", "--input", str(combined))
     print(f"-- robot validate-profile --profile DL  (exit {rc_p})")
@@ -90,12 +93,15 @@ def main() -> int:
         print(f"ROBOT jar not found at {ROBOT_JAR} (set ROBOT_JAR)", file=sys.stderr)
         return 2
     OUT.mkdir(parents=True, exist_ok=True)
-    results = {"ontology": check("ontology", None)}
+    results = {"ontology": check("ontology"),
+               "lux-module": check("ontology+lux-module", LUX)}
     for abox in sorted(EXAMPLES.glob("*.ttl")):
         if abox.name in SKIPPED:
             print(f"\n=== SKIPPED {abox.name}: {SKIPPED[abox.name]}")
             continue
-        results[abox.stem] = check(f"ontology+{abox.stem}", abox)
+        modules = MODULES.get(abox.name, [])
+        name = "+".join(["ontology"] + [m.stem for m in modules] + [abox.stem])
+        results[abox.stem] = check(name, *modules, abox)
 
     print("\nSummary:")
     for name, ok in results.items():

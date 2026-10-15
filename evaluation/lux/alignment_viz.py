@@ -18,13 +18,13 @@ from rdflib import Graph, RDFS, OWL, URIRef
 
 HERE = Path(__file__).resolve().parent
 BRIDGE = HERE.parents[1] / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
-HG = "https://w3id.org/heritagegraph/"
+HG = "http://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 
 
 def short(u: str) -> str:
     return (u.replace(HG, "").replace(CRM, "crm:")
-            .replace("http://www.ics.forth.gr/isl/CRMsci/", "sci:")
+            .replace("http://www.cidoc-crm.org/extensions/crmsci/", "sci:")
             .replace("http://www.ics.forth.gr/isl/CRMdig/", "dig:")
             .replace("https://linked.art/ns/terms/", "la:"))
 

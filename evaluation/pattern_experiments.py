@@ -60,12 +60,12 @@ def run_ablation() -> int:
     statically IS attached. A degraded variant of each failing static query
     shows what survives flattening, so the baseline is lossy, not a strawman.
     """
-    PFX = """PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:  <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX crminf: <http://www.ics.forth.gr/isl/CRMinf/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
-PREFIX ex:  <https://w3id.org/heritagegraph/demo/>
-PREFIX st:  <https://w3id.org/heritagegraph/demo/static/>
+PREFIX ex:  <http://cair-nepal.org/heritagegraph/example/>
+PREFIX st:  <http://cair-nepal.org/heritagegraph/example/static/>
 """
 
     event_g = Graph()
@@ -73,10 +73,10 @@ PREFIX st:  <https://w3id.org/heritagegraph/demo/static/>
 
     static_g = Graph()
     static_g.parse(data="""
-@prefix hg:  <https://w3id.org/heritagegraph/> .
+@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
-@prefix st:  <https://w3id.org/heritagegraph/demo/static/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
+@prefix st:  <http://cair-nepal.org/heritagegraph/example/static/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
@@ -166,20 +166,20 @@ def run_tenure() -> int:
     """
     from pyshacl import validate
 
-    PFX = """PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:  <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX ex:  <https://w3id.org/heritagegraph/demo/>
-PREFIX ar:  <https://w3id.org/heritagegraph/demo/actorrole/>
+PREFIX ex:  <http://cair-nepal.org/heritagegraph/example/>
+PREFIX ar:  <http://cair-nepal.org/heritagegraph/example/actorrole/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 """
 
     tenure_g = Graph()
     tenure_g.parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
 
-    ACTOR_ROLE = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    ACTOR_ROLE = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
-@prefix ar:  <https://w3id.org/heritagegraph/demo/actorrole/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
+@prefix ar:  <http://cair-nepal.org/heritagegraph/example/actorrole/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 ex:KumariPerson a crm:E21_Person ; rdfs:label "Kumari (incumbent)" ;
@@ -241,9 +241,9 @@ ex:TS_Tenure2017 a crm:E52_Time-Span ; rdfs:label "2017--2025" .
     shapes = _shapes()
     ont = _ont_for_shacl()
 
-    TENURE_VIOLATION = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    TENURE_VIOLATION = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 ex:T a hg:KumariTenure ; rdfs:label "tenure" ;
     hg:embodiedDeity ex:D1 , ex:D2 ;
@@ -290,19 +290,19 @@ def run_sameas() -> int:
     """
     from owlrl import DeductiveClosure, OWLRL_Semantics
 
-    PFX = """PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:  <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX ex:  <https://w3id.org/heritagegraph/demo/>
+PREFIX ex:  <http://cair-nepal.org/heritagegraph/example/>
 """
 
-    BASE = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    BASE = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
 
 ex:Avalokitesvara a hg:Deity ; rdfs:label "Avalokiteshvara" ;
     hg:hasReligiousTradition ex:Buddhist .
@@ -318,7 +318,7 @@ ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
     REIFIED = """ex:Syn a hg:SyncreticRelationship ; rdfs:label "equivalence claim" ;
     crm:P140_assigned_attribute_to ex:Avalokitesvara ;
     crm:P141_assigned ex:Matsyendranath ;
-    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
+    hg:syncreticType <http://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
     prov:wasDerivedFrom ex:Src_Slusser .
 """
 
@@ -372,16 +372,16 @@ def run_custodianship() -> int:
     """
     from pyshacl import validate
 
-    PFX = """PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:  <http://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX ex:  <https://w3id.org/heritagegraph/demo/>
+PREFIX ex:  <http://cair-nepal.org/heritagegraph/example/>
 """
 
-    SCENARIO = """@prefix hg:  <https://w3id.org/heritagegraph/> .
+    SCENARIO = """@prefix hg:  <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
-@prefix ex:  <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:  <http://cair-nepal.org/heritagegraph/example/> .
 
 # Structure under custody.
 ex:Kasthamandap a hg:Temple ; rdfs:label "Kasthamandap" ;
@@ -389,9 +389,9 @@ ex:Kasthamandap a hg:Temple ; rdfs:label "Kasthamandap" ;
 
 # Institutions: a private temple guthi and the state corporation.
 ex:PrivateGuthi a hg:Guthi ; rdfs:label "Kasthamandap private Guthi" ;
-    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#TempleGuthi> .
+    hg:guthiType <http://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> .
 ex:GuthiSansthan a hg:Guthi ; rdfs:label "Guthi Sansthan (state corporation)" ;
-    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#RajGuthi> ;
+    hg:guthiType <http://cair-nepal.org/heritagegraph/GuthiType#RajGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
     hg:performsRitual ex:IndraJatra .
 
@@ -445,7 +445,7 @@ ex:MemberPerson a crm:E21_Person ; rdfs:label "Guthiyar (member)" .
         print(f"[{len(rows)} row(s)] {name}")
         for r in rows:
             print("   -> " + " | ".join(
-                str(x).replace("https://w3id.org/heritagegraph/demo/", "") for x in r))
+                str(x).replace("http://cair-nepal.org/heritagegraph/example/", "") for x in r))
     print()
 
     shapes = _shapes()
@@ -469,21 +469,21 @@ def run_supersession() -> int:
     """
     from pyshacl import validate
 
-    PFX = """PREFIX hg:     <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:     <http://cair-nepal.org/heritagegraph/>
 PREFIX crm:    <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX crminf: <http://www.ics.forth.gr/isl/CRMinf/>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX prov:   <http://www.w3.org/ns/prov#>
-PREFIX ex:     <https://w3id.org/heritagegraph/demo/>
+PREFIX ex:     <http://cair-nepal.org/heritagegraph/example/>
 PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 """
 
-    SCENARIO = """@prefix hg:     <https://w3id.org/heritagegraph/> .
+    SCENARIO = """@prefix hg:     <http://cair-nepal.org/heritagegraph/> .
 @prefix crm:    <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf: <http://www.ics.forth.gr/isl/CRMinf/> .
+@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
 @prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex:     <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:     <http://cair-nepal.org/heritagegraph/example/> .
 
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
@@ -556,8 +556,8 @@ ex:Prop_Date a hg:Proposition ;
 
     def short(x) -> str:
         return (str(x)
-                .replace("https://w3id.org/heritagegraph/demo/", "ex:")
-                .replace("https://w3id.org/heritagegraph/", "hg:")
+                .replace("http://cair-nepal.org/heritagegraph/example/", "ex:")
+                .replace("http://cair-nepal.org/heritagegraph/", "hg:")
                 .replace("http://www.cidoc-crm.org/cidoc-crm/", "crm:"))
 
     g = Graph()
@@ -615,18 +615,18 @@ def run_multicalendar() -> int:
     """
     from pyshacl import validate
 
-    PFX = """PREFIX hg:   <https://w3id.org/heritagegraph/>
+    PFX = """PREFIX hg:   <http://cair-nepal.org/heritagegraph/>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX ex:   <https://w3id.org/heritagegraph/demo/>
+PREFIX ex:   <http://cair-nepal.org/heritagegraph/example/>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 """
 
-    SCENARIO = """@prefix hg:   <https://w3id.org/heritagegraph/> .
+    SCENARIO = """@prefix hg:   <http://cair-nepal.org/heritagegraph/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex:   <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:   <http://cair-nepal.org/heritagegraph/example/> .
 
 # --- Religious traditions the calendars serve ---------------------------
 ex:HinduTradition a hg:ReligiousTradition ; rdfs:label "Hindu tradition" .
@@ -664,18 +664,18 @@ ex:TS_IJ_Gregorian a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Gregorian record" ;
     crm:P82a_begin_of_the_begin "2015-09-25T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:GregorianCalendar ;
-    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Exact> .
+    hg:datePrecision <http://cair-nepal.org/heritagegraph/DatePrecision#Exact> .
 ex:TS_IJ_BikramSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Bikram Sambat record (B.S. 2072)" ;
     crm:P82a_begin_of_the_begin "2072-01-01T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:BikramSambat ;
-    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Year> ;
+    hg:datePrecision <http://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P3_has_note "Year-precision record; B.S. 2072 spans 2015-04-14 to 2016-04-12 CE." .
 ex:TS_IJ_NepalSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Nepal Sambat record (N.S. 1135)" ;
     crm:P82a_begin_of_the_begin "1135-01-01T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:NepalSambat ;
-    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Year> ;
+    hg:datePrecision <http://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P3_has_note "Year-precision record; N.S. 1135 spans Oct 2014 to Nov 2015 CE." .
 
 # The two calendar-specific records document the dated occurrence.
@@ -733,7 +733,7 @@ ex:IndraJatra_2015 crm:P3_has_note
         print(f"[{len(rows)} row(s)] {name}")
         for r in rows:
             print("   -> " + " | ".join(
-                str(x).replace("https://w3id.org/heritagegraph/demo/", "")
+                str(x).replace("http://cair-nepal.org/heritagegraph/example/", "")
                 for x in r))
     print()
 

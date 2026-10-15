@@ -6,12 +6,11 @@
 # multi-calendar layers, and to give every one of the 32 competency questions
 # (examples/queries/cq-abox-32.rq) at least one witness binding.
 # The full demonstrator validates conformant against HeritageGraph.shacl.ttl
-# (closed shapes with sh:ignoredProperties for the ontology's polymorphic
-# vocabulary; see scripts/postprocess_shacl.py). A separate minimal instance
-# is examples/kathmandu-conformant.ttl.
-@prefix hg:   <https://w3id.org/heritagegraph/> .
+# (released open; see scripts/finalize_alpha5_artifacts.py). A separate
+# minimal instance is examples/kathmandu-conformant.ttl.
+@prefix hg:   <http://cair-nepal.org/heritagegraph/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
-@prefix crminf: <http://www.ics.forth.gr/isl/CRMinf/> .
+@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix schema: <http://schema.org/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -21,7 +20,7 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix wd:   <http://www.wikidata.org/entity/> .
-@prefix ex:   <https://w3id.org/heritagegraph/demo/> .
+@prefix ex:   <http://cair-nepal.org/heritagegraph/example/> .
 
 # --- places & time-spans ---
 ex:KathmanduDurbarSquare a crm:E53_Place ; rdfs:label "Kathmandu Durbar Square" .
@@ -30,7 +29,7 @@ ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra (annual, Bhadra)" .
 # --- tangible heritage: a temple + its construction (event-mediated) ---
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
-    dcterms:identifier "https://w3id.org/heritagegraph/demo/site/kasthamandap"^^xsd:anyURI ;
+    dcterms:identifier "http://cair-nepal.org/heritagegraph/example/site/kasthamandap"^^xsd:anyURI ;
     hg:hasArchitecturalStyle aat:300004829 ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 
@@ -48,7 +47,7 @@ ex:CS_Damaged a crm:E3_Condition_State ; rdfs:label "Damaged" .
 # --- institutional layer: a Guthi custodian ---
 ex:KasthamandapGuthi a hg:Guthi ;
     rdfs:label "Kasthamandap Temple Guthi" ;
-    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#TempleGuthi> ;
+    hg:guthiType <http://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
     hg:performsRitual ex:IndraJatra .
 
@@ -69,7 +68,7 @@ ex:Syn_Karunamaya a hg:SyncreticRelationship ;
     rdfs:label "Avalokiteshvara identified as Matsyendranath" ;
     crm:P140_assigned_attribute_to ex:Avalokitesvara ;
     crm:P141_assigned ex:Matsyendranath ;
-    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> .
+    hg:syncreticType <http://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> .
 
 # --- Living Goddess lifecycle ---
 ex:Taleju a hg:Deity ; rdfs:label "Taleju Bhavani" .
@@ -165,7 +164,7 @@ ex:Barahis a hg:CasteGroup ;
 
 ex:NityaPuja_KM a hg:RitualEvent ;
     rdfs:label "Daily nitya puja at Kasthamandap" ;
-    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
+    hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:Kasthamandap ;
     hg:recurrencePattern "daily" .
 
@@ -175,7 +174,7 @@ ex:YosinErection a hg:RitualEvent ;
     crm:P14_carried_out_by ex:Manandhars .
 ex:KumariProcession a hg:RitualEvent ;
     rdfs:label "Kumari chariot procession" ;
-    hg:ritualType <https://w3id.org/heritagegraph/RitualType#ChariotProcession> ;
+    hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#ChariotProcession> ;
     hg:performedByGroup ex:Manandhars ;
     hg:hadParticipant ex:KumariPerson ;
     crm:P183i_starts_after_the_end_of ex:YosinErection .
@@ -198,7 +197,7 @@ ex:ChariotConstruction a crm:E29_Design_or_Procedure ; rdfs:label "Traditional c
 
 ex:BungadyahProcession a hg:RitualEvent ;
     rdfs:label "Bungadyah (Rato Machhindranath) chariot procession" ;
-    hg:ritualType <https://w3id.org/heritagegraph/RitualType#ProcessionRitual> ;
+    hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual> ;
     hg:invokesDeity ex:Matsyendranath ;
     hg:startPlace ex:Bungamati ;
     hg:endPlace ex:Jawalakhel ;
@@ -210,11 +209,11 @@ ex:BungadyahProcession a hg:RitualEvent ;
 
 ex:BungamatiTemple a hg:Temple ;
     rdfs:label "Bungamati Machhindranath Temple" ;
-    hg:hasArchitecturalStyle <https://w3id.org/heritagegraph/ArchitecturalStyle#Shikhara> ;
+    hg:hasArchitecturalStyle <http://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> ;
     crm:P55_has_current_location ex:Bungamati .
 ex:NityaPuja_Bungamati a hg:RitualEvent ;
     rdfs:label "Daily nitya puja for Bungadyah" ;
-    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
+    hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:BungamatiTemple ;
     hg:invokesDeity ex:Matsyendranath ;
     hg:recurrencePattern "daily" .
@@ -247,7 +246,7 @@ ex:Syn_Taleju a hg:SyncreticRelationship ;
     rdfs:label "Taleju venerated as Vajradevi in Newar Buddhist practice" ;
     crm:P140_assigned_attribute_to ex:Taleju ;
     crm:P141_assigned ex:Vajradevi ;
-    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
+    hg:syncreticType <http://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
     hg:mentionedInSource ex:Src_Slusser .
 
 # --- Living Goddess lifecycle completion (CQ26, CQ29, CQ32) ---
@@ -260,7 +259,7 @@ ex:Tenure_2017 hg:hadParticipant ex:KumariPerson ;
     crm:P4_has_time-span ex:TS_Tenure2017 .
 ex:KumariNityaPuja a hg:RitualEvent ;
     rdfs:label "Daily nitya puja at Kumari Ghar" ;
-    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
+    hg:ritualType <http://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:KumariGhar ;
     hg:recurrencePattern "daily" .
 ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "2025" .
@@ -319,16 +318,16 @@ ex:BungadyahJatra crm:P4_has_time-span ex:TS_Bungadyah .
 # location and identifiers for structures and objects
 ex:SwayambhuHill a crm:E53_Place ; rdfs:label "Swayambhu hill" .
 ex:SwayambhuMahachaitya crm:P55_has_current_location ex:SwayambhuHill ;
-    dcterms:identifier "https://w3id.org/heritagegraph/demo/site/swayambhu"^^xsd:anyURI .
-ex:TalejuTemple dcterms:identifier "https://w3id.org/heritagegraph/demo/site/taleju-temple"^^xsd:anyURI .
-ex:BungamatiTemple dcterms:identifier "https://w3id.org/heritagegraph/demo/site/bungamati-temple"^^xsd:anyURI .
-ex:KumariGhar dcterms:identifier "https://w3id.org/heritagegraph/demo/site/kumari-ghar"^^xsd:anyURI .
-ex:Murti_Taleju dcterms:identifier "https://w3id.org/heritagegraph/demo/object/murti-taleju"^^xsd:anyURI .
+    dcterms:identifier "http://cair-nepal.org/heritagegraph/example/site/swayambhu"^^xsd:anyURI .
+ex:TalejuTemple dcterms:identifier "http://cair-nepal.org/heritagegraph/example/site/taleju-temple"^^xsd:anyURI .
+ex:BungamatiTemple dcterms:identifier "http://cair-nepal.org/heritagegraph/example/site/bungamati-temple"^^xsd:anyURI .
+ex:KumariGhar dcterms:identifier "http://cair-nepal.org/heritagegraph/example/site/kumari-ghar"^^xsd:anyURI .
+ex:Murti_Taleju dcterms:identifier "http://cair-nepal.org/heritagegraph/example/object/murti-taleju"^^xsd:anyURI .
 
 # identifiers for persons and attributed agents
-ex:KumariPerson dcterms:identifier "https://w3id.org/heritagegraph/demo/person/kumari-2017"^^xsd:anyURI .
-ex:Slusser dcterms:identifier "https://w3id.org/heritagegraph/demo/agent/slusser"^^xsd:anyURI .
-ex:DoA dcterms:identifier "https://w3id.org/heritagegraph/demo/agent/doa"^^xsd:anyURI .
+ex:KumariPerson dcterms:identifier "http://cair-nepal.org/heritagegraph/example/person/kumari-2017"^^xsd:anyURI .
+ex:Slusser dcterms:identifier "http://cair-nepal.org/heritagegraph/example/agent/slusser"^^xsd:anyURI .
+ex:DoA dcterms:identifier "http://cair-nepal.org/heritagegraph/example/agent/doa"^^xsd:anyURI .
 
 # provenance completeness
 ex:Assert_BuildA prov:generatedAtTime "2026-06-23T00:00:00"^^xsd:dateTime .
@@ -338,7 +337,7 @@ ex:Syn_Karunamaya prov:wasDerivedFrom ex:Src_Slusser .
 ex:Syn_Taleju prov:wasDerivedFrom ex:Src_Slusser .
 
 # condition-state typing
-ex:CS_Damaged hg:hasConditionType <https://w3id.org/heritagegraph/ConditionType#Damaged> .
+ex:CS_Damaged hg:hasConditionType <http://cair-nepal.org/heritagegraph/ConditionType#Damaged> .
 
 # =====================================================================
 # CITED GOLD-STANDARD LAYER
@@ -379,7 +378,7 @@ ex:Src_Owens a hg:DataSource ; rdfs:label "Owens, The Politics of Divinity (1989
     dcterms:creator "Bruce McCoy Owens" ; dcterms:date "1989" ;
     dcterms:bibliographicCitation "Owens, B. M. (1989). The Politics of Divinity in the Kathmandu Valley: The Festival of Bungadya/Rato Matsyendranath. PhD dissertation, Columbia University." .
 ex:Allen a crm:E39_Actor ; rdfs:label "Michael Allen" ;
-    dcterms:identifier "https://w3id.org/heritagegraph/demo/agent/allen"^^xsd:anyURI .
+    dcterms:identifier "http://cair-nepal.org/heritagegraph/example/agent/allen"^^xsd:anyURI .
 
 # --- per-cluster source attribution (dcterms:source) ---
 ex:Tenure_2017      dcterms:source ex:Src_Allen .

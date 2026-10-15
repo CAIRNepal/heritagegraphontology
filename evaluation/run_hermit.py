@@ -81,7 +81,7 @@ def main() -> int:
         return 0
 
     if not OWL_SOURCE.exists():
-        print(f"Missing {OWL_SOURCE}; run regenerate_ontology_artifacts.py first.", file=sys.stderr)
+        print(f"Missing {OWL_SOURCE}; run scripts/finalize_alpha5_artifacts.py first.", file=sys.stderr)
         return 1
 
     try:

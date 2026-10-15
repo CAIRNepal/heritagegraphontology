@@ -12,9 +12,9 @@ from pathlib import Path
 from rdflib import Graph, RDF, OWL
 from pyshacl import validate
 ROOT = str(Path(__file__).resolve().parents[1]) + "/"
-PFX = """PREFIX hg:<https://w3id.org/heritagegraph/>
+PFX = """PREFIX hg:<http://cair-nepal.org/heritagegraph/>
 PREFIX crm:<http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX crminf:<http://www.ics.forth.gr/isl/CRMinf/>
+PREFIX crminf:<http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX prov:<http://www.w3.org/ns/prov#>
 PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>"""
 
@@ -51,7 +51,7 @@ for name, q in CQ.items():
     rows = list(g.query(q))
     print(f"[{len(rows)} rows] {name}")
     for r in rows[:2]:
-        print("     -> " + " | ".join(str(x).replace('https://w3id.org/heritagegraph/demo/', '').replace('https://w3id.org/heritagegraph/', 'hg:').replace('http://vocab.getty.edu/aat/', 'aat:') for x in r))
+        print("     -> " + " | ".join(str(x).replace('http://cair-nepal.org/heritagegraph/example/', '').replace('http://cair-nepal.org/heritagegraph/', 'hg:').replace('http://vocab.getty.edu/aat/', 'aat:') for x in r))
 
 # SHACL validation setup: shapes + ontology graph (pipeline-gate configuration).
 shapes = Graph(); shapes.parse(ROOT + "ontology/HeritageGraph.shacl.ttl", format="turtle")
@@ -68,10 +68,10 @@ if not conforms:
     print(txt[:1500])
 
 # Conformance 2: minimal valid instance quartet.
-MINIMAL = """@prefix hg: <https://w3id.org/heritagegraph/> .
+MINIMAL = """@prefix hg: <http://cair-nepal.org/heritagegraph/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ex: <https://w3id.org/heritagegraph/demo/> .
+@prefix ex: <http://cair-nepal.org/heritagegraph/example/> .
 ex:T a hg:Temple ; rdfs:label "T" ; hg:hasArchitecturalStyle aat:300004829 .
 ex:G a hg:Guthi ; rdfs:label "G" .
 ex:R a hg:RitualEvent ; rdfs:label "R" .
@@ -90,14 +90,14 @@ if not conforms:
 # the constraint types the shapes actually carry: minCount, sh:in, sh:datatype
 # and sh:class value-typing.
 print("\n== SHACL negative tests (each should be caught) ==")
-NEG_PFX = """@prefix hg: <https://w3id.org/heritagegraph/> .
+NEG_PFX = """@prefix hg: <http://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf: <http://www.ics.forth.gr/isl/CRMinf/> .
+@prefix crminf: <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
-@prefix ex: <https://w3id.org/heritagegraph/demo/> .
+@prefix ex: <http://cair-nepal.org/heritagegraph/example/> .
 """
 tests = {
  "Event-mediated: Temple missing hasArchitecturalStyle (minCount)":
@@ -105,7 +105,7 @@ tests = {
  "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
   'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle aat:300004829 ; dcterms:identifier "plain string" .',
  "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":
-  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <https://w3id.org/heritagegraph/RitualType#Jatra> .',
+  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <http://cair-nepal.org/heritagegraph/RitualType#Jatra> .',
  "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)":
   'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P4_has_time-span ex:NotATimeSpan . ex:NotATimeSpan a hg:DataSource .',
  "Syncretic: SyncreticRelationship missing assigned deity (minCount)":

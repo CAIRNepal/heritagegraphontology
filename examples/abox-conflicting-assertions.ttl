@@ -1,7 +1,7 @@
 @prefix crm:     <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix crminf:  <http://www.ics.forth.gr/isl/CRMinf/> .
-@prefix hg:      <https://w3id.org/heritagegraph/> .
-@prefix ex:      <https://w3id.org/heritagegraph/example/> .
+@prefix crminf:  <http://www.cidoc-crm.org/extensions/crminf/> .
+@prefix hg:      <http://cair-nepal.org/heritagegraph/> .
+@prefix ex:      <http://cair-nepal.org/heritagegraph/example/> .
 @prefix prov:    <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -76,7 +76,7 @@ ex:syncretic_link a hg:SyncreticRelationship ;
     rdfs:label "Syncretic equivalence claim (example)"@en ;
     crm:P140_assigned_attribute_to ex:Matsyendranath ;
     crm:P141_assigned              ex:Avalokiteshvara ;
-    hg:syncreticType               <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
+    hg:syncreticType               <http://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
     prov:wasDerivedFrom            ex:oral_source ;
     hg:confidenceScore             "0.80"^^xsd:decimal ;
     hg:reconciliationStatus        "conflicting" .

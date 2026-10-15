@@ -15,7 +15,7 @@ are deliberately NOT populated here: Wikidata does not contain those facts, and
 inventing them would be fabrication. They remain covered by the cited
 demonstrator ABox, which is the field-standard practice (ArCo, ICON).
 
-Output: data/reconciled/wikidata-kv.nq  (named graph https://w3id.org/heritagegraph/graph/wikidata)
+Output: data/reconciled/wikidata-kv.nq  (named graph http://cair-nepal.org/heritagegraph/graph/wikidata)
 """
 from __future__ import annotations
 
@@ -30,9 +30,9 @@ import certifi
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "reconciled" / "wikidata-kv.nq"
-GRAPH = "https://w3id.org/heritagegraph/graph/wikidata"
+GRAPH = "http://cair-nepal.org/heritagegraph/graph/wikidata"
 
-HG = "https://w3id.org/heritagegraph/"
+HG = "http://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 GEO = "http://www.opengis.net/ont/geosparql#"
 PROV = "http://www.w3.org/ns/prov#"

@@ -24,13 +24,13 @@ import owlrl
 ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
 SHACL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
-HG = "https://w3id.org/heritagegraph/"
+HG = "http://cair-nepal.org/heritagegraph/"
 ONT = URIRef(HG + "ontology")
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
-CRMINF = "http://www.ics.forth.gr/isl/CRMinf/"
-CRMSCI = "http://www.ics.forth.gr/isl/CRMsci/"
+CRMINF = "http://www.cidoc-crm.org/extensions/crminf/"
+CRMSCI = "http://www.cidoc-crm.org/extensions/crmsci/"
 PROV = "http://www.w3.org/ns/prov#"
 GEO = "http://www.opengis.net/ont/geosparql#"
 TIME = "http://www.w3.org/2006/time#"

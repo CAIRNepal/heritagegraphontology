@@ -2,6 +2,28 @@
 
 ## [Unreleased] - v1.0.0 consistency fixes
 
+### Changed (namespace and alignment)
+- Namespace moved from the former w3id.org namespace to `http://cair-nepal.org/heritagegraph/`
+  (ontology IRI `…/ontology`, version IRI `…/ontology/1.0.0`), set once in the LinkML source;
+  `finalize_alpha5_artifacts.py` now derives the namespace and ontology IRI from the YAML.
+  Example data uses `http://cair-nepal.org/heritagegraph/example/`.
+- `w3id/` replaced by `deploy/nginx/`: content negotiation for the ontology, version, term, and
+  concept-scheme IRIs, plus `deploy/nginx/check_conneg.py` (`make conneg`). Version IRIs serve
+  the immutable copy written by `scripts/publish_release.py` to `docs/releases/<version>/`.
+- CRMinf and CRMsci use the official namespaces of their RDFS releases
+  (`http://www.cidoc-crm.org/extensions/crminf/`, `…/extensions/crmsci/`); the merged
+  classification (`reasoning_extras.py merged-import`) now checks that it loads every
+  CRMinf/CRMsci/CRM/PROV-O term the ontology uses, and includes CRMsci v2.0.
+- LUX alignment module migrated to v1.0.0 core terms (camelCase minted properties; no axioms on
+  external CIDOC-CRM/CRMinf terms; external terms declared for OWL 2 DL) and re-included in
+  `check_combined_dl.py` and `check_declared_terms.py`. `generate_lux_eval.py` decides coverage
+  locally against core + module and has an `--offline` mode.
+- Removed the 16 `skos:exactMatch` mappings from CRM/PROV/CRMinf classes to undeclared
+  HeritageGraph "native" IRIs (`heritageGraph:Person`, …) that gen-owl emitted.
+- `reasoning_extras.py entailments` prints the asserted `rdfs:subClassOf` count and the inferred
+  named-class subsumptions (excluding `owl:Thing`).
+- Deleted the stale `scripts/regenerate_ontology_artifacts.py`.
+
 ### Fixed
 - `confidenceScore` range: LinkML's `float ∩ integer[>=0] ∩ integer[<=1]` was an empty
   datatype, making every ABox with a score inconsistent under HermiT. The slot is now

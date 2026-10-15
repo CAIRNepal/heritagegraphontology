@@ -1,3 +1,10 @@
+# Raw N-Quads export of the initial DANAM pipeline's Fuseki/TDB2 store (pre-1.0.0
+# vocabulary, https://cair-nepal.org/heritagegraph/, snake_case). Kept unmodified as the
+# reconciliation input of data/reconcile_store.py. Its legacy T-Box graph
+# (<https://cair-nepal.org/heritagegraph/ontology>) still references the deprecated CIDOC-CRM
+# 'occurs before' pair (crm:P120_occurs_before and the non-existent P120i_is_occurred_before_by);
+# reconcile_store.py drops that graph, and the released ontology uses
+# crm:P183_ends_before_the_start_of / crm:P183i_starts_after_the_end_of instead.
 <https://cair-nepal.org/heritagegraph/ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> <https://cair-nepal.org/heritagegraph/ontology> .
 <https://cair-nepal.org/heritagegraph/ontology> <http://www.w3.org/2000/01/rdf-schema#label> "HeritageGraph" <https://cair-nepal.org/heritagegraph/ontology> .
 <https://cair-nepal.org/heritagegraph/ontology> <http://www.w3.org/2004/02/skos/core#definition> "An event-centric LinkML schema for representing Nepal cultural heritage information, fully aligned with CIDOC-CRM v7.2.1 and PROV-O. Enables provenance tracking, ritual-spatial-temporal reasoning, and multi-calendar date representation. DL expressivity: ALCIQ(D)." <https://cair-nepal.org/heritagegraph/ontology> .
