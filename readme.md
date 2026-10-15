@@ -101,12 +101,12 @@ minting its own terms:
 |---|---|---|
 | `crm:` | `http://www.cidoc-crm.org/cidoc-crm/` | Core event/object/actor backbone (E-classes, P-properties) |
 | `crminf:` | `http://www.ics.forth.gr/isl/CRMinf/` | Assertion/belief backbone (I2 Belief, I4 Proposition Set) |
-| `crmsci:` | `http://www.cidoc-crm.org/crmsci/` | Scientific observation (field survey) |
+| `crmsci:` | `http://www.ics.forth.gr/isl/CRMsci/` | Scientific observation (field survey) |
 | `prov:` | `http://www.w3.org/ns/prov#` | Provenance: agents, activities, derivation, attribution, revision |
 | `skos:` | `http://www.w3.org/2004/02/skos/core#` | Enumerations, mappings, notes |
 | `aat:` | `http://vocab.getty.edu/aat/` | Getty AAT concept/type mappings |
 | `edm:` | `http://www.europeana.eu/schemas/edm/` | Europeana Data Model profile |
-| `schema:` | `https://schema.org/` | Web-facing mappings |
+| `schema:` | `http://schema.org/` | Web-facing mappings |
 | `wd:` | `http://www.wikidata.org/entity/` | Entity mappings / `owl:sameAs` anchors |
 
 External mappings use `skos:exactMatch` / `closeMatch` / `broadMatch`,
@@ -169,7 +169,7 @@ Published as SKOS ConceptSchemes (meaning-URIs used where declared, e.g.
 ├── deploy/fuseki/                   # Ready-to-deploy read-only public SPARQL endpoint (Fuseki + Caddy)
 ├── scripts/                         # Build and tooling
 │   ├── build.sh                     #   Generate docs + WebVOWL (= make docs)
-│   ├── regenerate_ontology_artifacts.py
+│   ├── finalize_alpha5_artifacts.py #   YAML → OWL/SHACL/JSON Schema release pipeline (= make artefacts)
 │   └── run_release_quality.py
 ├── registry/                        # LOV registry submission metadata
 ├── release/                         # Release quality reports
@@ -203,10 +203,17 @@ Requires Docker (WIDOCO runs inside the container — no local Java needed).
 ### Regenerate all RDF artefacts from the LinkML source
 
 ```bash
-pip install -r requirements.txt linkml owlrl
-python3 scripts/regenerate_ontology_artifacts.py   # YAML → TTL/SHACL/JSON Schema
+pip install -r requirements.txt -r evaluation/requirements.txt linkml owlrl
+make artefacts                                     # YAML → TTL/SHACL/JSON Schema (scripts/finalize_alpha5_artifacts.py)
+make check                                         # release gates (needs Java; downloads ROBOT 1.9.8)
 python3 scripts/run_release_quality.py             # release quality report
 ```
+
+`make check` verifies that the committed OWL/SHACL were generated from the
+committed YAML, that every `hg:` term used in `examples/`, `examples/queries/`,
+and `evaluation/` is declared in the ontology, and that the ontology combined with
+each example ABox (parsed into one graph) is inside OWL 2 DL and consistent under
+HermiT.
 
 ### Run the evaluation
 

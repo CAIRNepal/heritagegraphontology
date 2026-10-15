@@ -1,7 +1,7 @@
 # HeritageGraph — top-level build targets.
 # The ontology lives in ontology/ ; generated docs live in docs/ (never hand-edit).
 
-.PHONY: help docs preview webvowl artefacts clean
+.PHONY: help docs preview webvowl artefacts check robot clean
 
 help:                ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
@@ -16,8 +16,24 @@ preview:             ## same, but into /tmp/hg-preview (leaves docs/ untouched)
 webvowl: docs        ## regenerate, then serve the visualization at :8000
 	@echo "open http://localhost:8000/webvowl/" && cd docs && python3 -m http.server 8000
 
-artefacts:           ## regenerate RDF artefacts from the LinkML source (ontology/HeritageGraph.yaml)
-	python3 scripts/regenerate_ontology_artifacts.py
+ROBOT_VERSION ?= 1.9.8
+ROBOT_JAR     ?= .tools/robot-$(ROBOT_VERSION).jar
+
+artefacts:           ## regenerate OWL/SHACL/JSON Schema (+ JSON-LD context, CQ TBox doc) from ontology/HeritageGraph.yaml
+	python3 scripts/finalize_alpha5_artifacts.py
+	python3 scripts/gen_jsonld_context.py
+	python3 scripts/gen_cq_tbox_doc.py
+
+robot: $(ROBOT_JAR)  ## download ROBOT $(ROBOT_VERSION) (needs Java) for `make check`
+
+$(ROBOT_JAR):
+	mkdir -p $(dir $@)
+	curl -fsSL -o $@ https://github.com/ontodev/robot/releases/download/v$(ROBOT_VERSION)/robot.jar
+
+check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+each example in OWL 2 DL and HermiT-consistent
+	python3 scripts/check_yaml_ttl_sync.py
+	python3 evaluation/check_declared_terms.py
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
 
 clean:               ## remove build artefacts
 	rm -f ontology/HeritageGraph.merged.ttl ontology/HeritageGraph.build.ttl

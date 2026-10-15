@@ -1988,12 +1988,12 @@ slots:
 
   date_earliest:
     slot_uri: crm:P82a_begin_of_the_begin
-    range: date
+    range: datetime
     description: "Earliest possible date (for uncertain dates)"
 
   date_latest:
     slot_uri: crm:P82b_end_of_the_end
-    range: date
+    range: datetime
     description: "Latest possible date (for uncertain dates)"
 
   calendar_system:
@@ -2092,7 +2092,7 @@ slots:
 
   last_known_existence_date:
     slot_uri: heritageGraph:lastKnownExistenceDate
-    range: date
+    range: datetime
     description: "Latest date when this structure is documented as existing (ISO 8601)"
 
   destruction_event:
@@ -2179,14 +2179,15 @@ slots:
     description: "Deity invoked or made present through ritual"
 
   occurs_before:
-    slot_uri: crm:P120_occurs_before
+    # CRM 7.x FIX: strict precedence is P183 in CIDOC-CRM 7.x; the pre-7.x
+    # "occurs before" property is deprecated and absent from the v7.1.3 RDFS.
+    slot_uri: crm:P183_ends_before_the_start_of
     range: RitualEvent
     description: "Points to the next ritual in the canonical sequence."
 
   occurs_after:
-    # URI FIX (alpha.5): crm:P120i_is_occurred_before_by does not exist; the
-    # official CIDOC-CRM RDF inverse of P120_occurs_before is P120i_occurs_after.
-    slot_uri: crm:P120i_occurs_after
+    # CRM 7.x FIX: inverse of P183_ends_before_the_start_of (CIDOC-CRM v7.1.3).
+    slot_uri: crm:P183i_starts_after_the_end_of
     range: RitualEvent
     description: "Points to the prerequisite ritual."
 
@@ -2653,7 +2654,10 @@ slots:
 
   confidence_score:
     slot_uri: heritageGraph:confidenceScore
-    range: float
+    # DATATYPE FIX: xsd:decimal, so the OWL range is ONE facet-restricted
+    # datatype, decimal[>= 0, <= 1] (see finalize_alpha5_artifacts.py); float
+    # with LinkML's integer-typed bounds produced an empty range.
+    range: decimal
     # CONSTRAINT FIX (alpha.5): the 0.0-1.0 range promised in prose is now
     # machine-enforced.
     minimum_value: 0

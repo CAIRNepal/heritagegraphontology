@@ -318,7 +318,7 @@ ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
     REIFIED = """ex:Syn a hg:SyncreticRelationship ; rdfs:label "equivalence claim" ;
     crm:P140_assigned_attribute_to ex:Avalokitesvara ;
     crm:P141_assigned ex:Matsyendranath ;
-    hg:syncreticType "Equivalence" ;
+    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
     prov:wasDerivedFrom ex:Src_Slusser .
 """
 
@@ -389,9 +389,9 @@ ex:Kasthamandap a hg:Temple ; rdfs:label "Kasthamandap" ;
 
 # Institutions: a private temple guthi and the state corporation.
 ex:PrivateGuthi a hg:Guthi ; rdfs:label "Kasthamandap private Guthi" ;
-    hg:guthiType "TempleGuthi" .
+    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#TempleGuthi> .
 ex:GuthiSansthan a hg:Guthi ; rdfs:label "Guthi Sansthan (state corporation)" ;
-    hg:guthiType "RajGuthi" ;
+    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#RajGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
     hg:performsRitual ex:IndraJatra .
 
@@ -505,7 +505,7 @@ ex:Assert_Date_v1 a crminf:I2_Belief ;
     prov:wasDerivedFrom ex:Src_Early ;
     prov:wasAttributedTo ex:Historian ;
     prov:generatedAtTime "1966-01-01T00:00:00"^^xsd:dateTime ;
-    hg:confidenceScore "0.4"^^xsd:float .
+    hg:confidenceScore "0.4"^^xsd:decimal .
 
 ex:Assert_Date_v2 a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build date, v2" ;
@@ -515,7 +515,7 @@ ex:Assert_Date_v2 a crminf:I2_Belief ;
     prov:wasAttributedTo ex:Slusser ;
     prov:generatedAtTime "1982-01-01T00:00:00"^^xsd:dateTime ;
     prov:wasRevisionOf ex:Assert_Date_v1 ;
-    hg:confidenceScore "0.6"^^xsd:float .
+    hg:confidenceScore "0.6"^^xsd:decimal .
 
 ex:Assert_Date_v3 a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build date, v3" ;
@@ -526,7 +526,7 @@ ex:Assert_Date_v3 a crminf:I2_Belief ;
     prov:generatedAtTime "2019-01-01T00:00:00"^^xsd:dateTime ;
     prov:wasRevisionOf ex:Assert_Date_v2 ;
     crminf:J4_that ex:Prop_Date ;
-    hg:confidenceScore "0.9"^^xsd:float .
+    hg:confidenceScore "0.9"^^xsd:decimal .
 
 ex:Prop_Date a hg:Proposition ;
     rdfs:label "Kasthamandap completed by 1143 CE" ;
@@ -662,20 +662,20 @@ ex:IndraJatra_2015 a hg:RitualEvent ;
 # Three source records of the same occurrence, each in its own calendar.
 ex:TS_IJ_Gregorian a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Gregorian record" ;
-    crm:P82a_begin_of_the_begin "2015-09-25"^^xsd:date ;
+    crm:P82a_begin_of_the_begin "2015-09-25T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:GregorianCalendar ;
-    hg:datePrecision "Exact" .
+    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Exact> .
 ex:TS_IJ_BikramSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Bikram Sambat record (B.S. 2072)" ;
-    crm:P82a_begin_of_the_begin "2072-01-01"^^xsd:date ;
+    crm:P82a_begin_of_the_begin "2072-01-01T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:BikramSambat ;
-    hg:datePrecision "Year" ;
+    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Year> ;
     crm:P3_has_note "Year-precision record; B.S. 2072 spans 2015-04-14 to 2016-04-12 CE." .
 ex:TS_IJ_NepalSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Nepal Sambat record (N.S. 1135)" ;
-    crm:P82a_begin_of_the_begin "1135-01-01"^^xsd:date ;
+    crm:P82a_begin_of_the_begin "1135-01-01T00:00:00"^^xsd:dateTime ;
     hg:calendarSystem ex:NepalSambat ;
-    hg:datePrecision "Year" ;
+    hg:datePrecision <https://w3id.org/heritagegraph/DatePrecision#Year> ;
     crm:P3_has_note "Year-precision record; N.S. 1135 spans Oct 2014 to Nov 2015 CE." .
 
 # The two calendar-specific records document the dated occurrence.

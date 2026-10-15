@@ -256,8 +256,11 @@ v1.0.0), the suite reproduces the figures reported in §7 of the paper.
 The paper is the authoritative source; the numbers below are a quick reference.
 
 ### §7.1 Consistency
-- **5,095** base triples; **26,414** after OWL-RL closure (**21,319** inferred)
+- **5,090** base triples; **26,436** after OWL-RL closure (**21,346** inferred)
 - **0** unsatisfiable classes under HermiT (standalone and merged with CRM/CRMinf/PROV-O)
+- Ontology + each example ABox, parsed into one graph, is inside OWL 2 DL and HermiT-consistent
+  (`check_combined_dl.py`, `make combined`); every `hg:` term used in examples, queries, and
+  evaluation code is declared (`check_declared_terms.py`, `make terms`)
 - **1** `owl:disjointWith` axiom (`Stupa`⊓`Chaitya`); separation is otherwise enforced by SHACL
 
 ### §7.2 OOPS! Pitfalls
@@ -277,7 +280,7 @@ The paper is the authoritative source; the numbers below are a quick reference.
   graph (`../data/reconciled/danam-heritagegraph.nq`, 130,286 quads) and a live
   Wikidata enrichment (`../data/reconciled/wikidata-kv.nq`, built by
   `../data/enrich_wikidata.py`)
-- **8/32** CQs return bindings over the combined 138,466-triple graph; the
+- **8/32** CQs return bindings over the combined 138,461-triple graph; the
   provenance query alone returns **7,859** source-attributed assertions. The
   remaining CQs concern fine-grained ethnographic facts no structured dataset
   records, and stay evidenced by the cited demonstrator

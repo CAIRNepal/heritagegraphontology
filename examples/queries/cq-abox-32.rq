@@ -72,9 +72,10 @@ SELECT ?temple ?state ?conditionType WHERE {
   ?temple a hg:Temple ; crm:P34i_was_assessed_by ?ca .
   ?ca crm:P35_has_identified ?state .
   ?state hg:hasConditionType ?conditionType .
-  FILTER(?conditionType IN ("Damaged", "Endangered", "At Risk"))
+  FILTER(?conditionType IN (<https://w3id.org/heritagegraph/ConditionType#Damaged>,
+                            <https://w3id.org/heritagegraph/ConditionType#Ruined>))
   ?ritual a hg:RitualEvent ; crm:P8_took_place_on_or_within ?temple ;
-          hg:ritualType "NityaPuja" .
+          hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> .
 }
 
 # CQ9: Which caste groups have hereditary roles in rituals critical for a festival?
@@ -102,7 +103,7 @@ SELECT ?ritual ?place ?deity ?pattern WHERE {
 PREFIX hg: <https://w3id.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?first ?second ?actor WHERE {
-  ?first crm:P120_occurs_before ?second .
+  ?first crm:P183_ends_before_the_start_of ?second .
   ?first (crm:P14_carried_out_by|hg:performedByGroup) ?actor .
 }
 
@@ -253,7 +254,7 @@ SELECT ?tenure ?person ?ritual ?neighbour WHERE {
   ?tenure a hg:KumariTenure ; hg:hadParticipant ?person .
   ?person a crm:E21_Person .
   ?ritual hg:hadParticipant ?person .
-  ?ritual (crm:P120_occurs_before|crm:P120i_occurs_after) ?neighbour .
+  ?ritual (crm:P183_ends_before_the_start_of|crm:P183i_starts_after_the_end_of) ?neighbour .
 }
 
 # CQ31: Which institution bears responsibility for a given Kumari during her tenure?

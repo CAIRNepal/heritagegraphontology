@@ -205,6 +205,13 @@ def finalize_owl(sv: SchemaView) -> Graph:
         if (None, u, None) in g and (u, RDF.type, OWL.AnnotationProperty) not in g:
             g.add((u, RDF.type, OWL.AnnotationProperty))
             n_ann += 1
+    # Record-level annotation predicates used by the released instance data but
+    # not by the schema itself; declared so ontology + data stays inside OWL 2
+    # DL (an undeclared predicate is a profile violation).
+    for u in (DCTERMS.date,):
+        if (u, RDF.type, None) not in g:
+            g.add((u, RDF.type, OWL.AnnotationProperty))
+            n_ann += 1
     print(f"declared {n_ann} owl:AnnotationProperty(ies)")
 
     # --- SKOS publication of enumerations (gen-owl emits nothing for them) ---
@@ -561,6 +568,44 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
         g.add((ONTOLOGY_IRI, DCTERMS.description, Literal(str(sv.schema.description))))
     print(f"DL: ontology IRI -> {ONTOLOGY_IRI} (versionIRI .../{version})")
 
+    # (h) gen-owl renders a numeric range with minimum_value/maximum_value as
+    # base ∩ xsd:integer[>= min] ∩ xsd:integer[<= max]. For a non-integer base
+    # (confidence_score: decimal) that intersection admits only the integers
+    # 0 and 1, and for xsd:float it is empty (float and integer value spaces are
+    # disjoint), so every real value made the ABox inconsistent. Rewrite each
+    # such intersection into ONE datatype restriction on the base type, with
+    # the facet values re-typed to it: base[>= min, <= max].
+    n = 0
+    for dt in list(g.subjects(OWL.intersectionOf, None)):
+        if not isinstance(dt, BNode) or (dt, RDF.type, RDFS.Datatype) not in g:
+            continue
+        members = list(Collection(g, g.value(dt, OWL.intersectionOf)))
+        bases = [m for m in members if isinstance(m, URIRef)]
+        faceted = [m for m in members
+                   if isinstance(m, BNode) and (m, OWL.onDatatype, None) in g]
+        if len(bases) != 1 or len(bases) + len(faceted) != len(members):
+            continue
+        base = bases[0]
+        restrictions = []
+        for m in faceted:
+            for r in Collection(g, g.value(m, OWL.withRestrictions)):
+                for facet, value in g.predicate_objects(r):
+                    node = BNode()
+                    g.add((node, facet, Literal(str(value), datatype=base)))
+                    restrictions.append(node)
+        new = BNode()
+        head = BNode()
+        Collection(g, head, restrictions)
+        g.add((new, RDF.type, RDFS.Datatype))
+        g.add((new, OWL.onDatatype, base))
+        g.add((new, OWL.withRestrictions, head))
+        for s, p in list(g.subject_predicates(dt)):
+            g.remove((s, p, dt))
+            g.add((s, p, new))
+        _purge_node(g, dt)
+        n += 1
+    print(f"DL: collapsed {n} faceted datatype intersection(s) into single-datatype restrictions")
+
 
 def finalize_shacl(sv: SchemaView) -> None:
     g = Graph()
@@ -603,6 +648,44 @@ def finalize_shacl(sv: SchemaView) -> None:
     for s, o in list(g.subject_objects(SH.ignoredProperties)):
         g.remove((s, SH.ignoredProperties, o))
     print(f"opened {n} closed shapes (and dropped their ignoredProperties lists)")
+    # (4) enum-ranged slots: gen-shacl lists permissible values as string
+    # literals in sh:in, while the OWL layer types these slots as object
+    # properties ranging over enumeration classes of named individuals, so data
+    # satisfying the shapes punned the property (OWL 2 DL violation). Rewrite
+    # each sh:in list to the enumeration individuals' IRIs: the declared
+    # meaning where present, else the <Enum#Value> IRI gen-owl mints (the same
+    # resources finalize_owl publishes as SKOS concepts).
+    owl_g = Graph()
+    owl_g.parse(OWL_OUT, format="turtle")
+    by_emitted = {}
+    for en, e in sv.all_enums().items():
+        emitted, iri = set(), {}
+        for vn, pv in (e.permissible_values or {}).items():
+            ind = (uri_for(sv, str(pv.meaning)) if pv.meaning
+                   else URIRef(f"https://w3id.org/heritagegraph/{en}#{vn}"))
+            if (ind, RDF.type, OWL.NamedIndividual) not in owl_g:
+                sys.exit(f"enum individual missing from OWL: {en}.{vn} -> {ind}")
+            key = ind if pv.meaning else Literal(vn)
+            emitted.add(key)
+            iri[key] = ind
+        by_emitted[frozenset(emitted)] = (en, iri)
+    n = 0
+    in_lists = [(ps, lst, list(Collection(g, lst)))
+                for ps, lst in g.subject_objects(SH["in"])]
+    for ps, lst, members in in_lists:
+        match = by_emitted.get(frozenset(members))
+        if match is None:
+            if any(isinstance(m, Literal) for m in members):
+                sys.exit(f"sh:in over literals matches no enum: {members}")
+            continue
+        _, iri = match
+        g.remove((ps, SH["in"], lst))
+        _purge_node(g, lst)
+        head = BNode()
+        Collection(g, head, [iri[m] for m in members])
+        g.add((ps, SH["in"], head))
+        n += 1
+    print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
 
@@ -656,7 +739,9 @@ def sync_published() -> None:
     g.serialize(destination=docs / "ontology.owl", format="xml")
     g.serialize(destination=docs / "ontology.nt", format="nt", encoding="utf-8")
     g.serialize(destination=docs / "ontology.jsonld", format="json-ld")
-    print("synced docs/ontology.{ttl,owl,nt,jsonld}")
+    # RDF/XML copy classified by evaluation/run_hermit.py
+    g.serialize(destination=ROOT / "ontology" / "review.owl", format="xml")
+    print("synced docs/ontology.{ttl,owl,nt,jsonld} and ontology/review.owl")
 
 
 def gen_json_schema() -> None:

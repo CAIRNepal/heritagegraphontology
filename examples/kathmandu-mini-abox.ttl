@@ -48,7 +48,7 @@ ex:CS_Damaged a crm:E3_Condition_State ; rdfs:label "Damaged" .
 # --- institutional layer: a Guthi custodian ---
 ex:KasthamandapGuthi a hg:Guthi ;
     rdfs:label "Kasthamandap Temple Guthi" ;
-    hg:guthiType "TempleGuthi" ;
+    hg:guthiType <https://w3id.org/heritagegraph/GuthiType#TempleGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
     hg:performsRitual ex:IndraJatra .
 
@@ -69,7 +69,7 @@ ex:Syn_Karunamaya a hg:SyncreticRelationship ;
     rdfs:label "Avalokiteshvara identified as Matsyendranath" ;
     crm:P140_assigned_attribute_to ex:Avalokitesvara ;
     crm:P141_assigned ex:Matsyendranath ;
-    hg:syncreticType "Equivalence" .
+    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> .
 
 # --- Living Goddess lifecycle ---
 ex:Taleju a hg:Deity ; rdfs:label "Taleju Bhavani" .
@@ -90,14 +90,14 @@ ex:Assert_BuildA a crminf:I2_Belief ;
     prov:value "12th century CE" ;
     prov:wasDerivedFrom ex:Src_Slusser ;
     prov:wasAttributedTo ex:Slusser ;
-    hg:confidenceScore "0.7"^^xsd:float .
+    hg:confidenceScore "0.7"^^xsd:decimal .
 ex:Assert_BuildB a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build-date (account B)" ;
     hg:assertsAbout ex:Kasthamandap ;
     prov:value "7th century CE" ;
     prov:wasDerivedFrom ex:Src_DoA ;
     prov:wasAttributedTo ex:DoA ;
-    hg:confidenceScore "0.5"^^xsd:float .
+    hg:confidenceScore "0.5"^^xsd:decimal .
 ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" ;
     dcterms:creator "Mary Shepherd Slusser" ; dcterms:date "1982" ;
     dcterms:bibliographicCitation "Slusser, M. S. (1982). Nepal Mandala: A Cultural Study of the Kathmandu Valley. Princeton University Press." .
@@ -165,20 +165,20 @@ ex:Barahis a hg:CasteGroup ;
 
 ex:NityaPuja_KM a hg:RitualEvent ;
     rdfs:label "Daily nitya puja at Kasthamandap" ;
-    hg:ritualType "NityaPuja" ;
+    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:Kasthamandap ;
     hg:recurrencePattern "daily" .
 
 ex:YosinErection a hg:RitualEvent ;
     rdfs:label "Yosin (ceremonial pole) erection" ;
-    crm:P120_occurs_before ex:KumariProcession ;
+    crm:P183_ends_before_the_start_of ex:KumariProcession ;
     crm:P14_carried_out_by ex:Manandhars .
 ex:KumariProcession a hg:RitualEvent ;
     rdfs:label "Kumari chariot procession" ;
-    hg:ritualType "ChariotProcession" ;
+    hg:ritualType <https://w3id.org/heritagegraph/RitualType#ChariotProcession> ;
     hg:performedByGroup ex:Manandhars ;
     hg:hadParticipant ex:KumariPerson ;
-    crm:P120i_occurs_after ex:YosinErection .
+    crm:P183i_starts_after_the_end_of ex:YosinErection .
 
 # --- iconographic object in ritual use (CQ3, CQ10) ---
 ex:KarmacharyaPriest a crm:E39_Actor ; rdfs:label "Karmacharya priest (hereditary)" .
@@ -198,7 +198,7 @@ ex:ChariotConstruction a crm:E29_Design_or_Procedure ; rdfs:label "Traditional c
 
 ex:BungadyahProcession a hg:RitualEvent ;
     rdfs:label "Bungadyah (Rato Machhindranath) chariot procession" ;
-    hg:ritualType "ProcessionRitual" ;
+    hg:ritualType <https://w3id.org/heritagegraph/RitualType#ProcessionRitual> ;
     hg:invokesDeity ex:Matsyendranath ;
     hg:startPlace ex:Bungamati ;
     hg:endPlace ex:Jawalakhel ;
@@ -210,11 +210,11 @@ ex:BungadyahProcession a hg:RitualEvent ;
 
 ex:BungamatiTemple a hg:Temple ;
     rdfs:label "Bungamati Machhindranath Temple" ;
-    hg:hasArchitecturalStyle "Shikhara" ;
+    hg:hasArchitecturalStyle <https://w3id.org/heritagegraph/ArchitecturalStyle#Shikhara> ;
     crm:P55_has_current_location ex:Bungamati .
 ex:NityaPuja_Bungamati a hg:RitualEvent ;
     rdfs:label "Daily nitya puja for Bungadyah" ;
-    hg:ritualType "NityaPuja" ;
+    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:BungamatiTemple ;
     hg:invokesDeity ex:Matsyendranath ;
     hg:recurrencePattern "daily" .
@@ -247,7 +247,7 @@ ex:Syn_Taleju a hg:SyncreticRelationship ;
     rdfs:label "Taleju venerated as Vajradevi in Newar Buddhist practice" ;
     crm:P140_assigned_attribute_to ex:Taleju ;
     crm:P141_assigned ex:Vajradevi ;
-    hg:syncreticType "Equivalence" ;
+    hg:syncreticType <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
     hg:mentionedInSource ex:Src_Slusser .
 
 # --- Living Goddess lifecycle completion (CQ26, CQ29, CQ32) ---
@@ -260,7 +260,7 @@ ex:Tenure_2017 hg:hadParticipant ex:KumariPerson ;
     crm:P4_has_time-span ex:TS_Tenure2017 .
 ex:KumariNityaPuja a hg:RitualEvent ;
     rdfs:label "Daily nitya puja at Kumari Ghar" ;
-    hg:ritualType "NityaPuja" ;
+    hg:ritualType <https://w3id.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:KumariGhar ;
     hg:recurrencePattern "daily" .
 ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "2025" .
@@ -274,7 +274,7 @@ ex:Assert_RouteChange a crminf:I2_Belief ;
     prov:value "Procession route adjusted after the 1934 earthquake" ;
     prov:wasDerivedFrom ex:Src_DoA ;
     prov:wasAttributedTo ex:DoA ;
-    hg:confidenceScore "0.6"^^xsd:float .
+    hg:confidenceScore "0.6"^^xsd:decimal .
 
 # =====================================================================
 # Required fields so the full demonstrator validates conformant against
@@ -284,20 +284,20 @@ ex:Assert_RouteChange a crminf:I2_Belief ;
 # =====================================================================
 
 # begin dates for existing time-spans
-ex:TS_Festival crm:P82a_begin_of_the_begin "2025-08-29"^^xsd:date .
-ex:TS_2015 crm:P82a_begin_of_the_begin "2015-04-25"^^xsd:date .
-ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28"^^xsd:date .
-ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-06-01"^^xsd:date .
+ex:TS_Festival crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
+ex:TS_2015 crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime .
+ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime .
+ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-06-01T00:00:00"^^xsd:dateTime .
 
 # shared time-spans for recurring and historical events
 ex:TS_Construction a crm:E52_Time-Span ; rdfs:label "Construction period (contested)" ;
-    crm:P82a_begin_of_the_begin "1100-01-01"^^xsd:date .
+    crm:P82a_begin_of_the_begin "1100-01-01T00:00:00"^^xsd:dateTime .
 ex:TS_Daily a crm:E52_Time-Span ; rdfs:label "Daily ritual cycle" ;
-    crm:P82a_begin_of_the_begin "2025-01-01"^^xsd:date .
+    crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime .
 ex:TS_Gunla a crm:E52_Time-Span ; rdfs:label "Gunla month (annual)" ;
-    crm:P82a_begin_of_the_begin "2025-07-25"^^xsd:date .
+    crm:P82a_begin_of_the_begin "2025-07-25T00:00:00"^^xsd:dateTime .
 ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra season" ;
-    crm:P82a_begin_of_the_begin "2025-04-20"^^xsd:date .
+    crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
 
 # time-spans on events that lacked one
 ex:Prod_Kasthamandap crm:P4_has_time-span ex:TS_Construction .
@@ -338,7 +338,7 @@ ex:Syn_Karunamaya prov:wasDerivedFrom ex:Src_Slusser .
 ex:Syn_Taleju prov:wasDerivedFrom ex:Src_Slusser .
 
 # condition-state typing
-ex:CS_Damaged hg:hasConditionType "Damaged" .
+ex:CS_Damaged hg:hasConditionType <https://w3id.org/heritagegraph/ConditionType#Damaged> .
 
 # =====================================================================
 # CITED GOLD-STANDARD LAYER
@@ -414,5 +414,5 @@ ex:Assert_KumariSyncretism a crminf:I2_Belief ;
     prov:value "Selected from the Buddhist Shakya lineage; venerated as the Hindu goddess Taleju/Durga" ;
     prov:wasDerivedFrom ex:Src_Allen ;
     prov:wasAttributedTo ex:Allen ;
-    hg:confidenceScore "0.9"^^xsd:float ;
+    hg:confidenceScore "0.9"^^xsd:decimal ;
     prov:generatedAtTime "2026-07-25T00:00:00"^^xsd:dateTime .

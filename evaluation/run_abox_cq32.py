@@ -111,7 +111,7 @@ PATTERN_TERMS = {
                        "P108_has_produced", "P34_concerned", "P44_has_condition"],
     "ritual": ["RitualEvent", "Festival", "performsRitual", "participatesInRitual",
                "invokesDeity", "P9i_forms_part_of", "ritualType", "performedByGroup",
-               "ritualCriticality", "P120"],
+               "ritualCriticality", "P183"],
     "institutional": ["Guthi", "guthiType", "CasteGroup", "traditionalRole",
                       "managedByGuthi", "transferredToGuthi", "P107"],
     "syncretic": ["SyncreticRelationship", "syncreticType", "Deity", "assignedDeity",

@@ -20,7 +20,7 @@ PYTHON := $(VENV)/bin/python
 PIP := $(VENV)/bin/pip
 RESULTS := results
 
-.PHONY: all setup consistency oops cq alignment metrics independent quality protege clean cleanall help
+.PHONY: all setup consistency oops cq alignment metrics terms combined independent quality protege clean cleanall help
 
 help: ## Show this help
 	@echo ""
@@ -51,7 +51,7 @@ quality: all ## Run evaluations + copy to release/
 	cd .. && $(CURDIR)/$(PYTHON) scripts/run_release_quality.py
 	@echo ""
 
-all: setup consistency oops cq alignment metrics ## Run ALL automated evaluations
+all: setup consistency oops cq alignment metrics terms combined ## Run ALL automated evaluations
 	@echo ""
 	@echo "=============================================="
 	@echo " ✅ All evaluations complete!"
@@ -72,6 +72,16 @@ oops: setup ## §4.2 — OOPS! pitfall analysis
 cq: setup ## §7.3 — Competency-question execution over the demonstrator ABox
 	@echo "Running §7.3 — Competency-Question Execution..."
 	$(PYTHON) run_abox_cq32.py
+	@echo ""
+
+terms: setup ## Every hg: term in examples/queries/evaluation is declared in the ontology
+	@echo "Checking HeritageGraph term declarations..."
+	$(PYTHON) check_declared_terms.py
+	@echo ""
+
+combined: setup ## Ontology + each example ABox in OWL 2 DL and HermiT-consistent (needs Java + ROBOT_JAR)
+	@echo "Checking ontology + example ABoxes (single graph) with ROBOT..."
+	$(PYTHON) check_combined_dl.py
 	@echo ""
 
 alignment: setup ## §4.4 — Alignment & interoperability

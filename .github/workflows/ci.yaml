@@ -24,8 +24,34 @@ jobs:
           pip install linkml rdflib owlrl pyyaml requests owlready2
           pip install -r evaluation/requirements.txt
 
+      - name: Committed OWL/SHACL generated from the committed YAML
+        run: python3 scripts/check_yaml_ttl_sync.py
+
       - name: Regenerate ontology artefacts
-        run: python3 scripts/regenerate_ontology_artifacts.py
+        run: |
+          python3 scripts/finalize_alpha5_artifacts.py
+          python3 scripts/gen_jsonld_context.py
+          python3 scripts/gen_cq_tbox_doc.py
+
+      - name: Set up Java (ROBOT / HermiT)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Download ROBOT 1.9.8
+        run: |
+          mkdir -p .tools
+          curl -fsSL -o .tools/robot.jar https://github.com/ontodev/robot/releases/download/v1.9.8/robot.jar
+
+      - name: Every hg term used in examples/queries/evaluation is declared
+        run: python3 evaluation/check_declared_terms.py
+
+      - name: Ontology + each example ABox is OWL 2 DL and HermiT-consistent
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/check_combined_dl.py
+
+      - name: Competency questions match their expected answer sets
+        run: python3 evaluation/run_abox_cq32.py
 
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py

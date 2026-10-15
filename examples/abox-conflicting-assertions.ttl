@@ -3,7 +3,6 @@
 @prefix hg:      <https://w3id.org/heritagegraph/> .
 @prefix ex:      <https://w3id.org/heritagegraph/example/> .
 @prefix prov:    <http://www.w3.org/ns/prov#> .
-@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
@@ -35,8 +34,8 @@ ex:scholarly_source a hg:ArchivalRecord ;
     dcterms:bibliographicCitation "Fictional example citation, Journal of Newar Studies (n.d.)." .
 
 # --- Responsible agents ---
-ex:guthi_elder a hg:Person ; rdfs:label "Guthi elder (example)"@en .
-ex:scholar     a hg:Person ; rdfs:label "Heritage scholar (example)"@en .
+ex:guthi_elder a crm:E21_Person ; rdfs:label "Guthi elder (example)"@en .
+ex:scholar     a crm:E21_Person ; rdfs:label "Heritage scholar (example)"@en .
 
 # --- Belief 1: community claim (identity) ---
 ex:assertion_community a crminf:I2_Belief ;
@@ -47,12 +46,12 @@ ex:assertion_community a crminf:I2_Belief ;
     prov:wasDerivedFrom   ex:oral_source ;
     prov:wasAttributedTo  ex:guthi_elder ;
     prov:generatedAtTime  "2024-03-15T10:00:00"^^xsd:dateTime ;
-    hg:confidenceScore    "0.85"^^xsd:float ;
+    hg:confidenceScore    "0.85"^^xsd:decimal ;
     hg:reconciliationStatus "conflicting" .
 
 ex:prop_identity_community a hg:Proposition ;
     hg:propositionSubject      ex:Matsyendranath ;
-    hg:propositionPredicate    skos:exactMatch ;
+    hg:propositionPredicate    "http://www.w3.org/2004/02/skos/core#exactMatch"^^xsd:anyURI ;
     hg:propositionObjectEntity ex:Avalokiteshvara .
 
 # --- Belief 2: scholarly claim (ritual conflation, not identity) ---
@@ -64,12 +63,12 @@ ex:assertion_scholarly a crminf:I2_Belief ;
     prov:wasDerivedFrom   ex:scholarly_source ;
     prov:wasAttributedTo  ex:scholar ;
     prov:generatedAtTime  "2023-11-02T09:30:00"^^xsd:dateTime ;
-    hg:confidenceScore    "0.70"^^xsd:float ;
+    hg:confidenceScore    "0.70"^^xsd:decimal ;
     hg:reconciliationStatus "conflicting" .
 
 ex:prop_identity_scholarly a hg:Proposition ;
     hg:propositionSubject      ex:Matsyendranath ;
-    hg:propositionPredicate    skos:relatedMatch ;
+    hg:propositionPredicate    "http://www.w3.org/2004/02/skos/core#relatedMatch"^^xsd:anyURI ;
     hg:propositionObjectEntity ex:Avalokiteshvara .
 
 # --- Reified syncretic equivalence (attributed, not asserted as identity) ---
@@ -77,7 +76,7 @@ ex:syncretic_link a hg:SyncreticRelationship ;
     rdfs:label "Syncretic equivalence claim (example)"@en ;
     crm:P140_assigned_attribute_to ex:Matsyendranath ;
     crm:P141_assigned              ex:Avalokiteshvara ;
-    hg:syncreticType               hg:Equivalence ;
+    hg:syncreticType               <https://w3id.org/heritagegraph/SyncreticType#Equivalence> ;
     prov:wasDerivedFrom            ex:oral_source ;
-    hg:confidenceScore             "0.80"^^xsd:float ;
+    hg:confidenceScore             "0.80"^^xsd:decimal ;
     hg:reconciliationStatus        "conflicting" .

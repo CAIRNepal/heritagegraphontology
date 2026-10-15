@@ -105,7 +105,7 @@ tests = {
  "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
   'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle aat:300004829 ; dcterms:identifier "plain string" .',
  "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":
-  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType hg:NotAGuthiType .',
+  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <https://w3id.org/heritagegraph/RitualType#Jatra> .',
  "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)":
   'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P4_has_time-span ex:NotATimeSpan . ex:NotATimeSpan a hg:DataSource .',
  "Syncretic: SyncreticRelationship missing assigned deity (minCount)":

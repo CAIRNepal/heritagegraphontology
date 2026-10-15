@@ -29,8 +29,8 @@ ONT = URIRef(HG + "ontology")
 
 SH = Namespace("http://www.w3.org/ns/shacl#")
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
-CRMINF = "http://www.cidoc-crm.org/extensions/crminf/"
-CRMSCI = "http://www.cidoc-crm.org/extensions/crmsci/"
+CRMINF = "http://www.ics.forth.gr/isl/CRMinf/"
+CRMSCI = "http://www.ics.forth.gr/isl/CRMsci/"
 PROV = "http://www.w3.org/ns/prov#"
 GEO = "http://www.opengis.net/ont/geosparql#"
 TIME = "http://www.w3.org/2006/time#"
@@ -280,31 +280,35 @@ def main() -> int:
     a.bind("ex", ex); a.bind("hg", H)
     def U(n): return H[n]
     # two conflicting, source-attributed assertions about one temple's build date
-    a.add((ex.KasthamandapA, RDF.type, U("HeritageAssertion")))
-    a.add((ex.KasthamandapA, U("asserts_about_entity"), ex.Kasthamandap))
-    a.add((ex.KasthamandapA, U("was_derived_from_source"), ex.Src_Slusser))
-    a.add((ex.KasthamandapA, U("asserted_value"), Literal("12th century")))
-    a.add((ex.KasthamandapB, RDF.type, U("HeritageAssertion")))
-    a.add((ex.KasthamandapB, U("asserts_about_entity"), ex.Kasthamandap))
-    a.add((ex.KasthamandapB, U("was_derived_from_source"), ex.Src_DoA))
-    a.add((ex.KasthamandapB, U("asserted_value"), Literal("7th century")))
+    belief = URIRef(CRMINF + "I2_Belief")
+    value = URIRef(PROV + "value")
+    derived = URIRef(PROV + "wasDerivedFrom")
+    a.add((ex.KasthamandapA, RDF.type, belief))
+    a.add((ex.KasthamandapA, U("assertsAbout"), ex.Kasthamandap))
+    a.add((ex.KasthamandapA, derived, ex.Src_Slusser))
+    a.add((ex.KasthamandapA, value, Literal("12th century")))
+    a.add((ex.KasthamandapB, RDF.type, belief))
+    a.add((ex.KasthamandapB, U("assertsAbout"), ex.Kasthamandap))
+    a.add((ex.KasthamandapB, derived, ex.Src_DoA))
+    a.add((ex.KasthamandapB, value, Literal("7th century")))
     a.add((ex.Kasthamandap, RDF.type, U("Temple")))
     # a Living Goddess tenure
-    a.add((ex.Ten1, RDF.type, U("LivingGoddessTenure")))
-    a.add((ex.Ten1, U("embodied_deity"), ex.Taleju))
+    a.add((ex.Ten1, RDF.type, U("KumariTenure")))
+    a.add((ex.Ten1, U("embodiedDeity"), ex.Taleju))
     a.add((ex.Taleju, RDF.type, U("Deity")))
 
-    q_conflict = """PREFIX hg:<%s> SELECT ?v ?src WHERE {
-        ?asr a hg:HeritageAssertion ;
-             hg:asserts_about_entity ?e ;
-             hg:asserted_value ?v ;
-             hg:was_derived_from_source ?src . }""" % HG
+    q_conflict = """PREFIX hg:<%s> PREFIX crminf:<%s> PREFIX prov:<%s>
+    SELECT ?v ?src WHERE {
+        ?asr a crminf:I2_Belief ;
+             hg:assertsAbout ?e ;
+             prov:value ?v ;
+             prov:wasDerivedFrom ?src . }""" % (HG, CRMINF, PROV)
     rows = list(a.query(q_conflict))
     print(f"  Multi-vocal/conflicting-assertion query -> {len(rows)} row(s):")
     for v, src in rows:
         print(f"      value={v}  source={localname(src)}")
     q_ten = """PREFIX hg:<%s> SELECT ?t ?d WHERE {
-        ?t a hg:LivingGoddessTenure ; hg:embodied_deity ?d . }""" % HG
+        ?t a hg:KumariTenure ; hg:embodiedDeity ?d . }""" % HG
     rows2 = list(a.query(q_ten))
     print(f"  Living-Goddess tenure query -> {len(rows2)} row(s)")
 

@@ -185,8 +185,15 @@ def section_shacl_consistency(g: rdflib.Graph) -> None:
     w("4. SHACL CONFORMANCE + 5. LOGICAL CONSISTENCY")
     w("=" * 72)
     from pyshacl import validate
+    # pyshacl degrades pathologically when the mixed-in ont_graph carries
+    # owl:NamedIndividual declarations (see finalize_alpha5_artifacts.run_pyshacl);
+    # strip them from this in-memory copy only. Enum individuals keep their
+    # enumeration-class typing, so validation semantics are unchanged.
+    ont = rdflib.Graph()
+    ont.parse(OWL_TTL, format="turtle")
+    ont.remove((None, RDF.type, OWL.NamedIndividual))
     conforms, _, _ = validate(data_graph=str(ABOX), shacl_graph=str(SHACL_TTL),
-                              ont_graph=str(OWL_TTL), inference="none")
+                              ont_graph=ont, inference="none")
     w(f"  SHACL (demonstrator ABox vs finalized shapes): "
       f"{'CONFORMS' if conforms else 'NON-CONFORMANT'}")
     from owlrl import DeductiveClosure, OWLRL_Semantics
