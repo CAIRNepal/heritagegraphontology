@@ -30,7 +30,7 @@ ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra (annual, Bhadra)" .
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/site/kasthamandap"^^xsd:anyURI ;
-    hg:hasArchitecturalStyle aat:300004829 ;
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 
 ex:Prod_Kasthamandap a crm:E12_Production ;
@@ -127,7 +127,7 @@ ex:KathmanduDurbarSquare crm:P53i_is_former_or_current_location_of ex:Kasthamand
 
 ex:TalejuTemple a hg:Temple ;
     rdfs:label "Taleju Temple, Hanuman Dhoka" ;
-    hg:hasArchitecturalStyle aat:300004829 ;
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 
 # --- enshrinement (CQ7) ---

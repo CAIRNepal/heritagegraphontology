@@ -12,7 +12,7 @@ ex:TSpan a crm:E52_Time-Span ;
     crm:P82b_end_of_the_end "1200-12-31T00:00:00"^^xsd:dateTime .
 ex:T a hg:Temple ; rdfs:label "Kasthamandap" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/t"^^xsd:anyURI ;
-    hg:hasArchitecturalStyle aat:300004829 ; crm:P55_has_current_location ex:Place .
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ; crm:P55_has_current_location ex:Place .
 ex:G a hg:Guthi ; rdfs:label "Temple Guthi" ; hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> .
 ex:R a hg:RitualEvent ; rdfs:label "Indra Jatra" ; crm:P4_has_time-span ex:TSpan .
 ex:S a hg:DataSource ; rdfs:label "Slusser (1982)" .

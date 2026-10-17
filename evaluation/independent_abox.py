@@ -72,7 +72,7 @@ MINIMAL = """@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
-ex:T a hg:Temple ; rdfs:label "T" ; hg:hasArchitecturalStyle aat:300004829 .
+ex:T a hg:Temple ; rdfs:label "T" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> .
 ex:G a hg:Guthi ; rdfs:label "G" .
 ex:R a hg:RitualEvent ; rdfs:label "R" .
 ex:D a hg:DataSource ; rdfs:label "D" .
@@ -103,7 +103,7 @@ tests = {
  "Event-mediated: Temple missing hasArchitecturalStyle (minCount)":
   'ex:BadTemple a hg:Temple ; rdfs:label "x" .',
  "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
-  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle aat:300004829 ; dcterms:identifier "plain string" .',
+  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ; dcterms:identifier "plain string" .',
  "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":
   'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <https://cair-nepal.org/heritagegraph/RitualType#Jatra> .',
  "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)":

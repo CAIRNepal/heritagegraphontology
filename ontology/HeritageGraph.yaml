@@ -162,7 +162,12 @@ enums:
     permissible_values:
       Pagoda:
         description: "Multi-tiered roof style indigenous to Nepal"
-        meaning: aat:300004829
+        # STYLE IRI FIX (v1.0.0): the AAT concept is the building type
+        # 'pagodas', not a style; it was the value's IRI (`meaning`), which
+        # typed a Getty term as ArchitecturalStyle. The value now has its own
+        # IRI and links to AAT by mapping.
+        close_mappings:
+          - aat:300004829
       Shikhara:
         description: "North Indian spire-shaped style"
         # MAPPING AUDIT (alpha.5): aat:300446671 = 'grīvā-śikhara' (verified)
@@ -175,13 +180,22 @@ enums:
         # MAPPING AUDIT (alpha.5): aat:300001285 = 'onion domes' (verified)
         # is narrower than this generic value; replaced with the verified
         # aat:300001280 = 'domes (architectural elements)'.
-        meaning: aat:300001280
+        # STYLE IRI FIX (v1.0.0): 'domes' is an architectural element, not a
+        # style -> related, not the value's IRI.
+        related_mappings:
+          - aat:300001280
       Chaitya:
         description: "Buddhist votive shrine style"
-        meaning: aat:300007562
+        # STYLE IRI FIX (v1.0.0): building type, not a style -> close mapping.
+        close_mappings:
+          - aat:300007562
       Stupa:
         description: "Buddhist dome-shaped reliquary"
-        meaning: aat:300007576
+        # STYLE IRI FIX (v1.0.0): aat:300007576 'stupas' is the building type
+        # the Stupa class is exact-matched to; as the value's IRI it was both
+        # a class mapping target and a style value. Close mapping instead.
+        close_mappings:
+          - aat:300007576
 
   #Guthi type enum
   GuthiType:
@@ -367,6 +381,7 @@ classes:
       - destruction_event
       - hypothesized_location
       - documented_in_source
+      - managed_by_guthi
       - has_assertion
     slot_usage:
       name:
@@ -708,6 +723,7 @@ classes:
       - note
       - ritual_type
       - ritual_on_structure
+      - took_place_at
       - has_timespan
       - lunar_date_tithi
       - recurrence_pattern

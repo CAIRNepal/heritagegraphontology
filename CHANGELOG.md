@@ -2,6 +2,15 @@
 
 ## [Unreleased] - v1.0.0 consistency fixes
 
+### Changed (schema pass)
+- `ArchitecturalStyle` values Pagoda, Dome, Chaitya, Stupa have their own IRIs
+  (`…/ArchitecturalStyle#Pagoda`, …). Their AAT concepts (building types / an architectural element)
+  had been the values' IRIs, which typed Getty terms as `ArchitecturalStyle` and made
+  `aat:300007576` both the `Stupa` class's `skos:exactMatch` target and a style value. They are now
+  linked by `skos:closeMatch` (Pagoda, Chaitya, Stupa) and `skos:relatedMatch` (Dome).
+- `RitualEvent` declares `took_place_at` (`crm:P7_took_place_at`), which CQ11 and the demonstrator use.
+- `ArchitecturalStructure` declares `managed_by_guthi`, which CQ19 and the demonstrator use.
+
 ### Changed (no axioms on external terms; LUX mapping from the companion repository)
 - The core no longer asserts logical axioms whose subject is an external term (257 removed):
   global `rdfs:range`/`rdfs:domain` on CIDOC-CRM/PROV-O properties (incl. `crm:P46_is_composed_of`

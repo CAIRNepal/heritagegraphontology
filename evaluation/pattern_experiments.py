@@ -82,7 +82,7 @@ PREFIX st:  <https://cair-nepal.org/heritagegraph/example/static/>
 
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
-    hg:hasArchitecturalStyle aat:300004829 ;
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare ;
     st:builtBy ex:LicchaviBuilders ;
     st:constructionDate "12th century CE", "7th century CE" ;
@@ -385,7 +385,7 @@ PREFIX ex:  <https://cair-nepal.org/heritagegraph/example/>
 
 # Structure under custody.
 ex:Kasthamandap a hg:Temple ; rdfs:label "Kasthamandap" ;
-    hg:hasArchitecturalStyle aat:300004829 .
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> .
 
 # Institutions: a private temple guthi and the state corporation.
 ex:PrivateGuthi a hg:Guthi ; rdfs:label "Kasthamandap private Guthi" ;
@@ -487,7 +487,7 @@ PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 
 ex:Kasthamandap a hg:Temple ;
     rdfs:label "Kasthamandap" ;
-    hg:hasArchitecturalStyle <http://vocab.getty.edu/aat/300004829> .
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> .
 
 ex:Src_Early a hg:DataSource ; rdfs:label "Early gazetteer attribution" .
 ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
