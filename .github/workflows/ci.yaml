@@ -53,6 +53,9 @@ jobs:
       - name: Core + LUX + CIDOC-CRM give no external class an HG superclass
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py no-external-superclass
 
+      - name: Core + LUX + CIDOC-CRM + demonstrator infer no KumariTenure to be crm:E5_Event
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py tenure-not-event
+
       - name: Competency questions match their expected answer sets
         run: python3 evaluation/run_abox_cq32.py
 

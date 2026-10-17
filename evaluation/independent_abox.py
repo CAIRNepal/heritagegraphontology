@@ -9,7 +9,7 @@ owl:NamedIndividual declarations stripped from the in-memory copy only, to
 avoid the known pySHACL slowdown -- see scripts/finalize_alpha5_artifacts.py).
 """
 from pathlib import Path
-from rdflib import Graph, RDF, OWL
+from rdflib import Graph, RDF, OWL, URIRef
 from pyshacl import validate
 ROOT = str(Path(__file__).resolve().parents[1]) + "/"
 PFX = """PREFIX hg:<https://cair-nepal.org/heritagegraph/>
@@ -87,8 +87,10 @@ if not conforms:
 # Negative tests: inject violations, expect non-conformance.
 # One test per modelling concern. The alpha lineage publishes OPEN shapes
 # (closedness is deliberately dropped by the pipeline), so the tests exercise
-# the constraint types the shapes actually carry: minCount, sh:in, sh:datatype
-# and sh:class value-typing.
+# the constraint components the shapes actually carry: minCount, maxCount,
+# sh:in, sh:datatype, sh:nodeKind, sh:or and sh:class value-typing. A test
+# counts as caught only if the report contains a violation of the component
+# it targets.
 print("\n== SHACL negative tests (each should be caught) ==")
 NEG_PFX = """@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
@@ -99,31 +101,45 @@ NEG_PFX = """@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
 """
+TENURE_OK = ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:residenceStructure ex:H ; hg:hadParticipant ex:P ;
+    crm:P4_has_time-span ex:TS .
+ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .
+ex:TS a crm:E52_Time-Span .''')
 tests = {
  "Event-mediated: Temple missing hasArchitecturalStyle (minCount)":
-  'ex:BadTemple a hg:Temple ; rdfs:label "x" .',
+  ('ex:BadTemple a hg:Temple ; rdfs:label "x" .', "MinCount"),
  "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
-  'ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ; dcterms:identifier "plain string" .',
+  ('ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ; dcterms:identifier "plain string" .', "Datatype"),
  "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":
-  'ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <https://cair-nepal.org/heritagegraph/RitualType#Jatra> .',
+  ('ex:BadGuthi a hg:Guthi ; rdfs:label "x" ; hg:guthiType <https://cair-nepal.org/heritagegraph/RitualType#Jatra> .', "In"),
  "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)":
-  'ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P4_has_time-span ex:NotATimeSpan . ex:NotATimeSpan a hg:DataSource .',
+  ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P4_has_time-span ex:NotATimeSpan . ex:NotATimeSpan a hg:DataSource .', "Class"),
  "Syncretic: SyncreticRelationship missing assigned deity (minCount)":
-  'ex:BadSyn a hg:SyncreticRelationship ; rdfs:label "x" ; crm:P141_assigned ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .',
+  ('ex:BadSyn a hg:SyncreticRelationship ; rdfs:label "x" ; crm:P141_assigned ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "MinCount"),
  "Provenance: Belief (HeritageAssertion) missing assertsAbout (minCount)":
-  'ex:BadAssert a crminf:I2_Belief ; rdfs:label "x" .',
+  ('ex:BadAssert a crminf:I2_Belief ; rdfs:label "x" .', "MinCount"),
  "Living Goddess: KumariTenure missing crm:P4_has_time-span (minCount)":
-  '''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:embodiedDeity ex:D1 ; hg:residenceStructure ex:H ; crm:P11_had_participant ex:P .
-ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .''',
+  ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:embodiedDeity ex:D1 ; hg:residenceStructure ex:H ; hg:hadParticipant ex:P .
+ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .''', "MinCount"),
  "Sibling separation: DocumentationActivity in a ritual-valued slot (sh:class)":
-  'ex:G a hg:Guthi ; rdfs:label "g" ; hg:performsRitual ex:Doc . ex:Doc a hg:DocumentationActivity ; rdfs:label "doc" .',
+  ('ex:G a hg:Guthi ; rdfs:label "g" ; hg:performsRitual ex:Doc . ex:Doc a hg:DocumentationActivity ; rdfs:label "doc" .', "Class"),
+ "Living Goddess: KumariTenure with two embodied deities (maxCount)":
+  (TENURE_OK + ' ex:BadTenure hg:embodiedDeity ex:D1 , ex:D2 . ex:D2 a hg:Deity ; rdfs:label "d2" .', "MaxCount"),
+ "Ritual: ritual site given as an unidentified blank node (nodeKind IRI)":
+  ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P8_took_place_on_or_within [ a hg:Temple ; rdfs:label "t" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ] .', "NodeKind"),
+ "Institutional: ritual performed by a person, not a Guthi or caste group (sh:or)":
+  ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; hg:performedByGroup ex:P . ex:P a crm:E21_Person ; rdfs:label "p" .', "Or"),
 }
+SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0
-for name, ttl in tests.items():
+for name, (ttl, component) in tests.items():
     dg = Graph()
     dg.parse(data=NEG_PFX + ttl, format="turtle")
-    c, _, _ = validate(dg, shacl_graph=shapes, ont_graph=ont,
-                       inference="none", abort_on_first=False)
-    caught += (not c)
-    print(f"  [{'CAUGHT' if not c else 'MISSED'}] {name}")
+    c, rg, _ = validate(dg, shacl_graph=shapes, ont_graph=ont,
+                        inference="none", abort_on_first=False)
+    comps = sorted({str(o)[len(SH_NS):].removesuffix("ConstraintComponent")
+                    for o in rg.objects(None, URIRef(SH_NS + "sourceConstraintComponent"))})
+    hit = component in comps
+    caught += hit
+    print(f"  [{'CAUGHT' if hit else 'MISSED'}] {name}  -> violated: {', '.join(comps) or 'none'}")
 print(f"Negative tests caught: {caught}/{len(tests)}")

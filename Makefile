@@ -30,11 +30,12 @@ $(ROBOT_JAR):
 	mkdir -p $(dir $@)
 	curl -fsSL -o $@ https://github.com/ontodev/robot/releases/download/v$(ROBOT_VERSION)/robot.jar
 
-check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+each example DL/HermiT, no HG superclass on external terms
+check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, ontology+each example DL/HermiT, no HG superclass on external terms, KumariTenure not an E5_Event
 	python3 scripts/check_yaml_ttl_sync.py
 	python3 evaluation/check_declared_terms.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py no-external-superclass
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py tenure-not-event
 
 BASE ?= https://cair-nepal.org/heritagegraph/
 conneg:              ## check content negotiation of the deployed IRIs (BASE=<url> for staging)

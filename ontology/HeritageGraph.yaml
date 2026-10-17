@@ -724,6 +724,7 @@ classes:
       - ritual_type
       - ritual_on_structure
       - took_place_at
+      - had_participant
       - has_timespan
       - lunar_date_tithi
       - recurrence_pattern
@@ -1920,7 +1921,8 @@ slots:
     slot_uri: heritageGraph:hadParticipant
     range: Actor
     multivalued: true
-    description: "Actor(s) participating in this period or situation (e.g. the girl holding a Kumari tenure)."
+    description: "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl
+      holding a Kumari tenure, or the Kumari in a chariot procession)."
 
   embodied_deity:
     # CRM D/R FIX (alpha.5): P14.1_in_the_role_of is not a first-class property

@@ -10,6 +10,17 @@
   linked by `skos:closeMatch` (Pagoda, Chaitya, Stupa) and `skos:relatedMatch` (Dome).
 - `RitualEvent` declares `took_place_at` (`crm:P7_took_place_at`), which CQ11 and the demonstrator use.
 - `ArchitecturalStructure` declares `managed_by_guthi`, which CQ19 and the demonstrator use.
+- `RitualEvent` declares `had_participant`, which CQ30 and the demonstrator use for the Kumari in a
+  procession (a participant, not the performer: `crm:P14_carried_out_by` stays with the performing group).
+- LUX module: `hadParticipant owl:equivalentProperty crm:P11_had_participant` replaced by `skos:closeMatch`.
+  P11's domain is `crm:E5_Event`, so the equivalence typed every `KumariTenure` (min-1 participant) as an
+  event once merged with CIDOC-CRM, contrary to its deliberate `crm:E4_Period` broad match.
+- New gate `reasoning_extras.py tenure-not-event` (make check, CI): core + LUX + CIDOC-CRM + CRMinf + CRMsci
+  + the demonstrator must not infer any `KumariTenure` to be `crm:E5_Event`; a negative control re-adding
+  the equivalence must be caught.
+- SHACL negative tests: 11 (added sh:maxCount, sh:nodeKind, sh:or); each test now passes only if the report
+  contains a violation of the component it targets.
+- `mapping_audit.py` also audits `owl:equivalentClass` / `owl:equivalentProperty` mappings.
 
 ### Changed (no axioms on external terms; LUX mapping from the companion repository)
 - The core no longer asserts logical axioms whose subject is an external term (257 removed):

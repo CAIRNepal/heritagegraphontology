@@ -27,6 +27,13 @@ Subcommands (default: all):
                   chain vs. HG-cardinality DL collision and classifies under
                   both minimal repairs.
 
+  no-external-superclass  Core + LUX module + CIDOC-CRM (+ CRMinf, CRMsci) must not give
+                  an external class a HeritageGraph superclass, or an enumeration
+                  individual an extra HeritageGraph type.
+
+  tenure-not-event  The same merge plus the demonstrator ABox must not infer that a
+                  KumariTenure is a crm:E5_Event.
+
 Run:  ROBOT_JAR=/tmp/hgtools/robot.jar \\
       JAVA_HOME=/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home \\
       python3 evaluation/reasoning_extras.py [injection|merged-import|all]
@@ -489,11 +496,84 @@ def run_no_external_superclass() -> int:
     return 0
 
 
+# ===========================================================================
+# tenure-not-event: KumariTenure stays a period, not a crm:E5_Event.
+# ===========================================================================
+E5_EVENT = URIRef("http://www.cidoc-crm.org/cidoc-crm/E5_Event")
+KUMARI_TENURE = URIRef(HG_NS + "KumariTenure")
+TENURE_PROBE = URIRef(HG_NS + "example/ProbeTenure")
+
+
+def _tenure_events(extra_ttl: str = "") -> tuple[list[str], int]:
+    """Classify core + LUX module + CIDOC-CRM 7.1.3 + CRMinf + CRMsci + the
+    demonstrator ABox + one probe tenure that uses every property the core
+    restricts on KumariTenure, and return the KumariTenure individuals (and
+    the class itself) that HermiT infers to be crm:E5_Event, plus the number
+    of tenure individuals examined."""
+    paths = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3", "CRMinf v1.0", "CRMsci v2.0")]
+    with tempfile.TemporaryDirectory() as td:
+        merged = Graph()
+        for p in [ROOT / "ontology/HeritageGraph.ttl", LUX_MODULE,
+                  ROOT / "examples/kathmandu-mini-abox.ttl"] + paths:
+            merged.parse(p, format="turtle")
+        # the probe tenure: one fresh value for every restricted property
+        props = {merged.value(r, OWL.onProperty) for r in merged.objects(KUMARI_TENURE, RDFS.subClassOf)
+                 if (r, RDF.type, OWL.Restriction) in merged}
+        merged.add((TENURE_PROBE, RDF.type, KUMARI_TENURE))
+        for i, prop in enumerate(sorted(p for p in props if p is not None)):
+            if (prop, RDF.type, OWL.ObjectProperty) in merged:
+                merged.add((TENURE_PROBE, prop, URIRef(f"{TENURE_PROBE}_v{i}")))
+        if extra_ttl:
+            merged.parse(data=extra_ttl, format="turtle")
+        merged.remove((None, OWL.imports, None))
+        src, out = Path(td) / "merged.ttl", Path(td) / "reasoned.ttl"
+        merged.serialize(src, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--equivalent-classes-allowed", "all", "--include-indirect", "true",
+                               "--axiom-generators", "SubClass ClassAssertion",
+                               "--input", str(src), "--output", str(out)],
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            return [f"merged graph not classifiable: {proc.stdout[-300:]}{proc.stderr[-300:]}"], 0
+        reasoned = Graph()
+        reasoned.parse(out, format="turtle")
+    tenures = sorted(set(merged.subjects(RDF.type, KUMARI_TENURE)))
+    bad = [f"{t} inferred crm:E5_Event" for t in tenures if (t, RDF.type, E5_EVENT) in reasoned]
+    if (KUMARI_TENURE, RDFS.subClassOf, E5_EVENT) in reasoned:
+        bad.append(f"{KUMARI_TENURE} inferred rdfs:subClassOf crm:E5_Event")
+    return bad, len(tenures)
+
+
+def run_tenure_not_event() -> int:
+    """Fail if the merged classification types a KumariTenure as crm:E5_Event
+    (the paper broad-matches it to crm:E4_Period deliberately); a negative
+    control re-injects hadParticipant ≡ crm:P11_had_participant (domain E5)
+    and must be caught."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    violations, n = _tenure_events()
+    print(f"core + LUX module + CIDOC-CRM 7.1.3 + CRMinf + CRMsci + demonstrator, classified with "
+          f"HermiT: {n} KumariTenure individual(s) examined (incl. a probe using every restricted property)")
+    for v in violations:
+        print("  VIOLATION:", v)
+    control, _ = _tenure_events(
+        f"<{HG_NS}hadParticipant> <http://www.w3.org/2002/07/owl#equivalentProperty> "
+        "<http://www.cidoc-crm.org/cidoc-crm/P11_had_participant> .")
+    caught = bool(control)
+    print(f"negative control (hadParticipant ≡ crm:P11_had_participant): "
+          f"{len(control)} violation(s) -> {'caught' if caught else 'NOT caught'}")
+    if violations or not caught:
+        print("FAIL")
+        return 1
+    print("PASS: no KumariTenure is inferred to be a crm:E5_Event.")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
     "entailments": run_entailments,
     "no-external-superclass": run_no_external_superclass,
+    "tenure-not-event": run_tenure_not_event,
 }
 
 

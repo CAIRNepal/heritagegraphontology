@@ -10,7 +10,8 @@ Two subcommands (default: audit):
                     <hg-term, mapping-predicate, external-term> for the mapping
                     predicates (skos:exactMatch / closeMatch / broadMatch /
                     relatedMatch / narrowMatch, rdfs:subClassOf,
-                    rdfs:subPropertyOf) and verifies each one:
+                    rdfs:subPropertyOf, owl:equivalentClass,
+                    owl:equivalentProperty) and verifies each one:
                       1. existence -- the target term is defined in its source
                          vocabulary (document-level fetch+parse, with a
                          term-level HTTP-dereference fallback);
@@ -70,7 +71,8 @@ HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 MAPPING_PREDS = [SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
                  SKOS.relatedMatch, SKOS.narrowMatch,
-                 RDFS.subClassOf, RDFS.subPropertyOf]
+                 RDFS.subClassOf, RDFS.subPropertyOf,
+                 OWL.equivalentClass, OWL.equivalentProperty]
 
 # vocabularies checkable at document level: prefix -> (fetch URL, format)
 DOCS = {

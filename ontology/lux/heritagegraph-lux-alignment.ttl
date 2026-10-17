@@ -162,7 +162,11 @@ heritageGraph:Metadata rdfs:subClassOf crm:E73_Information_Object .
 
 heritageGraph:performedByGroup rdfs:subPropertyOf crm:P14_carried_out_by .
 heritageGraph:performsRitual rdfs:subPropertyOf crm:P14i_performed .
-heritageGraph:hadParticipant owl:equivalentProperty crm:P11_had_participant .  # LUX alias: "participant"
+# hadParticipant is used on KumariTenure, which is deliberately not a crm:E5_Event
+# (broad-matched to crm:E4_Period). P11's domain is E5 Event, so an equivalence would
+# type every tenure with a participant as an event once merged with CIDOC-CRM.
+# Non-logical link instead.
+heritageGraph:hadParticipant skos:closeMatch crm:P11_had_participant .  # LUX alias: "participant"
 heritageGraph:invokesDeity rdfs:subPropertyOf crm:P12_occurred_in_the_presence_of .
 heritageGraph:isInvokedInRitual rdfs:subPropertyOf crm:P12i_was_present_at .
 
