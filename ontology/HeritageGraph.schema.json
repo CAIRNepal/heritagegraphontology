@@ -1015,6 +1015,16 @@
                         "null"
                     ]
                 },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "hypothesized_location": {
                     "description": "Possible locations if the structure is lost",
                     "items": {
@@ -2506,7 +2516,7 @@
                     ]
                 },
                 "has_religious_tradition": {
-                    "description": "Religious tradition(s) within which this deity is venerated",
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
                     "items": {
                         "type": "string"
                     },
@@ -3431,6 +3441,13 @@
                 "started_at_time": {
                     "description": "Time at which this activity started.",
                     "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "took_place_at": {
+                    "description": "Place where the event occurred",
                     "type": [
                         "string",
                         "null"
@@ -5560,6 +5577,16 @@
                 },
                 "has_custody_event": {
                     "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
                     "items": {
                         "type": "string"
                     },
@@ -8922,6 +8949,16 @@
                         "null"
                     ]
                 },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "hypothesized_location": {
                     "description": "Possible locations if the structure is lost",
                     "items": {
@@ -10094,6 +10131,16 @@
                         "null"
                     ]
                 },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "hypothesized_location": {
                     "description": "Possible locations if the structure is lost",
                     "items": {
@@ -10570,6 +10617,16 @@
                 },
                 "has_custody_event": {
                     "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
                     "items": {
                         "type": "string"
                     },

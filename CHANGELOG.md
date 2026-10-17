@@ -21,6 +21,11 @@
 - SHACL negative tests: 11 (added sh:maxCount, sh:nodeKind, sh:or); each test now passes only if the report
   contains a violation of the component it targets.
 - `mapping_audit.py` also audits `owl:equivalentClass` / `owl:equivalentProperty` mappings.
+- `Enshrinement` declares `took_place_at` (CQ7); `ReligiousStructure` declares `has_religious_tradition`
+  (CQ23: shared or contested sacred sites).
+- New gate `evaluation/check_cq_class_properties.py` (make check, CI): every `?x a C ; p ?y` pattern in the
+  CQ queries must use a property the SHACL shapes declare for C or a superclass, so no CQ relies on the
+  shapes being open; a negative control must be caught.
 
 ### Changed (no axioms on external terms; LUX mapping from the companion repository)
 - The core no longer asserts logical axioms whose subject is an external term (257 removed):

@@ -408,6 +408,9 @@ classes:
   ReligiousStructure:
     is_a: ArchitecturalStructure
     class_uri: heritageGraph:ReligiousStructure
+    slots:
+      # shared or contested sacred sites (CQ23)
+      - has_religious_tradition
     description: 'Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus
       of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).'
     # MAPPING AUDIT (alpha.5): aat:300007596 is the guide term '<temples by
@@ -803,6 +806,7 @@ classes:
       - enshrined_deity
       - enshrined_in_structure
       - carried_out_by
+      - took_place_at
       - has_timespan
     broad_mappings:
       # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
@@ -2239,7 +2243,7 @@ slots:
     is_a: has_type
     range: ReligiousTradition
     multivalued: true
-    description: "Religious tradition(s) within which this deity is venerated"
+    description: "Religious tradition(s) within which this deity is venerated, or which use this religious structure"
 
   includes_ritual_event:
     slot_uri: crm:P9_consists_of

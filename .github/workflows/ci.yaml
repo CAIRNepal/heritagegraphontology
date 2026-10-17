@@ -47,6 +47,9 @@ jobs:
       - name: Every hg term used in examples/queries/evaluation is declared
         run: python3 evaluation/check_declared_terms.py
 
+      - name: Every '?x a C ; p ?y' pattern in the CQs uses a property declared for C
+        run: python3 evaluation/check_cq_class_properties.py
+
       - name: Ontology + each example ABox is OWL 2 DL and HermiT-consistent
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/check_combined_dl.py
 
