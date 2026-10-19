@@ -1,0 +1,173 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+
+  # ---------------------------------------------------------------------------
+  # 1. Turtle / TTL parse — every .ttl in alignment/ must parse with rdflib.
+  # ---------------------------------------------------------------------------
+  ttl-parse:
+    name: TTL parse (rdflib)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: install rdflib
+        run: pip install "rdflib>=7.0,<8"
+      - name: parse every .ttl
+        run: |
+          set -e
+          for f in alignment/*.ttl; do
+            echo "==> $f"
+            python -c "
+          import sys, rdflib
+          g = rdflib.Graph()
+          g.parse('$f', format='turtle')
+          print(f'  {len(g)} triples — OK')
+          "
+          done
+      - name: report alignment stats
+        run: |
+          python <<'PY'
+          import rdflib
+          g = rdflib.Graph()
+          g.parse('alignment/heritagegraph-lux-alignment.ttl', format='turtle')
+          ec  = sum(1 for _ in g.triples((None, rdflib.OWL.equivalentClass, None)))
+          sc  = sum(1 for _ in g.triples((None, rdflib.RDFS.subClassOf,   None)))
+          ep  = sum(1 for _ in g.triples((None, rdflib.OWL.equivalentProperty, None)))
+          sp  = sum(1 for _ in g.triples((None, rdflib.RDFS.subPropertyOf, None)))
+          cls = sum(1 for _ in g.triples((None, rdflib.RDF.type, rdflib.OWL.Class)))
+          print(f"alignment summary: triples={len(g)}, classes={cls}, equivalentClass={ec}, subClassOf={sc}, equivalentProperty={ep}, subPropertyOf={sp}")
+          assert ec >= 10, "expected at least 10 owl:equivalentClass triples — regression?"
+          assert sp >= 30, "expected at least 30 rdfs:subPropertyOf triples — regression?"
+          PY
+
+  # ---------------------------------------------------------------------------
+  # 2. Python syntax + lint.
+  # ---------------------------------------------------------------------------
+  python-lint:
+    name: Python syntax + ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: install tooling
+        run: pip install "ruff>=0.5,<1" "rdflib>=7.0,<8"
+      - name: syntax check
+        run: |
+          python -m py_compile scripts/migrate_lux_to_hg.py
+          python -m py_compile mapping/build_mapping.py
+      - name: ruff (informational, doesn't fail the build yet)
+        run: |
+          ruff check --output-format=github scripts/ mapping/ || true
+      - name: regenerate XLSX and diff
+        run: |
+          set -e
+          pip install "openpyxl>=3.1,<4"
+          cp mapping/HeritageGraph_LUX_Mapping.xlsx /tmp/before.xlsx
+          python mapping/build_mapping.py
+          # Allow drift — we just want this to not crash. Hard-asserting equality
+          # on the binary xlsx is fragile; instead we compare row counts.
+          python <<'PY'
+          from openpyxl import load_workbook
+          a = load_workbook('/tmp/before.xlsx', read_only=True)
+          b = load_workbook('mapping/HeritageGraph_LUX_Mapping.xlsx', read_only=True)
+          for name in sorted(set(a.sheetnames) | set(b.sheetnames)):
+              ra = a[name].max_row if name in a.sheetnames else 0
+              rb = b[name].max_row if name in b.sheetnames else 0
+              status = 'OK' if ra == rb else f'DRIFT ({ra} → {rb})'
+              print(f"  {name:<30} {status}")
+              assert ra == rb, f"Row count drift in '{name}' — run mapping/build_mapping.py and commit"
+          PY
+
+  # ---------------------------------------------------------------------------
+  # 3. SPARQL syntax — every block in queries/*.sparql must parse.
+  # ---------------------------------------------------------------------------
+  sparql-syntax:
+    name: SPARQL syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install "rdflib>=7.0,<8"
+      - name: parse each labelled block
+        run: |
+          python <<'PY'
+          import re, sys, pathlib
+          from rdflib.plugins.sparql import prepareQuery, prepareUpdate
+          errors = 0
+          for path in pathlib.Path("queries").glob("*.sparql"):
+              text = path.read_text()
+              # Split on header line: # === label ===
+              # NB: '[ \t]+' after the '='s is required so pure banner lines
+              # ('# ====…') do NOT match — same regex as migrate_lux_to_hg.py.
+              parts = re.split(r"(?m)^# *={3,}[ \t]+(\S+)[ \t]*=*[ \t]*$", text)
+              # The preamble (PREFIX block) is parts[0]; remaining alternate label/body
+              preamble = parts[0]
+              blocks = list(zip(parts[1::2], parts[2::2])) if len(parts) > 1 else [(path.name, text)]
+              print(f"[{path.name}] {len(blocks)} block(s)")
+              for label, body in blocks:
+                  full = preamble + "\n" + body
+                  # Keyword must START a line — otherwise URIs like hg:Move or
+                  # la:Addition false-positive as update keywords.
+                  is_update = bool(re.search(r"(?mi)^\s*(WITH|INSERT|DELETE|CLEAR|DROP|LOAD|CREATE|COPY|MOVE|ADD)\b", body))
+                  try:
+                      if is_update:
+                          prepareUpdate(full)
+                      else:
+                          prepareQuery(full)
+                      print(f"   ✓ {label}")
+                  except Exception as e:
+                      print(f"   ✗ {label}: {e}")
+                      errors += 1
+          sys.exit(1 if errors else 0)
+          PY
+
+  # ---------------------------------------------------------------------------
+  # 4. Docker — compose config + Dockerfile lint.
+  # ---------------------------------------------------------------------------
+  docker-lint:
+    name: Docker compose + hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validate docker-compose syntax
+        working-directory: docker
+        run: |
+          cp .env.example .env
+          docker compose config -q
+      - name: hadolint Dockerfile
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: docker/migrator/Dockerfile
+          failure-threshold: warning
+
+  # ---------------------------------------------------------------------------
+  # 5. Shell — every .sh must pass `bash -n`.
+  # ---------------------------------------------------------------------------
+  shell-syntax:
+    name: Shell syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bash -n on every .sh
+        run: |
+          set -e
+          find . -name '*.sh' -not -path './.git/*' -print0 | while IFS= read -r -d '' f; do
+            echo "==> $f"
+            bash -n "$f"
+          done
+      - name: shellcheck (informational)
+        uses: ludeeus/action-shellcheck@master
+        with:
+          severity: warning
+          ignore_paths: ".git"

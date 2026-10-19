@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HeritageGraph – LUX alignment graph</title>
+<meta name="description" content="Interactive force-directed view of the HeritageGraph–LUX alignment ontology: 112 classes wired by rdfs:subClassOf and object-property edges, including 12 classes migrated by direct CIDOC-CRM URI reuse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --surface-2: #f1efe8;
+    --text: #1a1a1a;
+    --text-muted: #5f5e5a;
+    --border: rgba(0,0,0,0.12);
+    --success: #0F6E56;
+    --danger: #A32D2D;
+    --link: #185FA5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #18181a;
+      --surface: #222225;
+      --surface-2: #2a2a2d;
+      --text: #f1efe8;
+      --text-muted: #b4b2a9;
+      --border: rgba(255,255,255,0.12);
+      --success: #5DCAA5;
+      --danger: #F09595;
+      --link: #85B7EB;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+  header { margin-bottom: 1.5rem; }
+  h1 { font-size: 26px; font-weight: 500; margin: 0 0 .5rem; }
+  h2 { font-size: 18px; font-weight: 500; margin: 2rem 0 .75rem; }
+  .lede { color: var(--text-muted); font-size: 15px; max-width: 70ch; margin: 0; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 1.5rem 0;
+  }
+  .stat {
+    background: var(--surface-2);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .stat-label { font-size: 12px; color: var(--text-muted); }
+  .stat-value { font-size: 22px; font-weight: 500; margin-top: 2px; }
+  .stat-value.success { color: var(--success); }
+  .stat-value.danger { color: var(--danger); }
+  .stat-value .arrow { color: var(--text-muted); margin: 0 4px; font-weight: 400; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin: 0 0 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 11px; height: 11px; border-radius: 50%; }
+  .legend-line svg { vertical-align: middle; }
+  .graph-wrap {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 8px;
+    position: relative;
+  }
+  svg#hg-graph { width: 100%; display: block; height: 680px; }
+  #tip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity .15s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0;
+    align-items: center;
+    font-size: 13px;
+  }
+  .controls label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+  .controls input[type=checkbox] { accent-color: var(--link); }
+  .controls .search {
+    flex: 1;
+    min-width: 180px;
+    padding: 6px 10px;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+  }
+  .controls button {
+    padding: 6px 12px;
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    cursor: pointer;
+  }
+  .controls button:hover { background: var(--surface-2); }
+  .footer {
+    margin-top: 2rem;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .footer a { color: var(--link); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .node-identity circle { stroke-width: 1.8px; stroke-dasharray: 1.5,1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>HeritageGraph ↔ LUX alignment — class graph</h1>
+    <p class="lede">
+      Interactive force-directed view of the HeritageGraph–LUX alignment ontology. Ringed nodes
+      are classes migrated by <strong>direct CIDOC-CRM URI reuse</strong> — Person,
+      HumanMadeObject, Actor, Place, TimeSpan, Material, Production, DestructionEvent,
+      TransferOfCustody, ConditionAssessment, ConditionState, Technique — which carry their
+      CIDOC-CRM URI directly rather than a separate HeritageGraph URI. Hover any node for
+      details; drag to rearrange.
+    </p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Nodes shown</div><div class="stat-value" id="s-nodes">112</div></div>
+    <div class="stat"><div class="stat-label">Edges</div><div class="stat-value" id="s-edges">135</div></div>
+    <div class="stat"><div class="stat-label">Direct URI-reuse classes</div><div class="stat-value">12</div></div>
+    <div class="stat"><div class="stat-label">Alignment triples</div><div class="stat-value">632</div></div>
+  </div>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#378ADD"></span>Tangible heritage</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#7F77DD"></span>Conceptual</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#EF9F27"></span>Event / activity</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#639922"></span>Actor / group</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#1D9E75"></span>Spatiotemporal</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#D4537E"></span>Provenance / information</span>
+    <span class="legend-item legend-line"><svg width="22" height="6"><line x1="0" y1="3" x2="22" y2="3" stroke="#888780" stroke-width="1.5"/></svg> rdfs:subClassOf</span>
+    <span class="legend-item legend-line"><svg width="22" height="6"><line x1="0" y1="3" x2="22" y2="3" stroke="#378ADD" stroke-width="1.5" stroke-dasharray="3,3"/></svg> object property</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#888;border:1.8px dashed #0F6E56;box-sizing:border-box"></span>direct crm: URI reuse</span>
+  </div>
+
+  <div class="controls">
+    <input type="search" id="search" class="search" placeholder="Highlight class (e.g. Inscription, Payment, Person…)">
+    <label><input type="checkbox" id="show-sc" checked> subClassOf</label>
+    <label><input type="checkbox" id="show-op" checked> object property</label>
+    <label><input type="checkbox" id="only-identity"> only direct URI-reuse (12)</label>
+    <button id="restart">Restart layout</button>
+  </div>
+
+  <div class="graph-wrap">
+    <svg id="hg-graph" viewBox="0 0 1040 680" preserveAspectRatio="xMidYMid meet" role="img"
+         aria-label="HeritageGraph–LUX alignment ontology: 112 classes wired by subClassOf and object property edges."></svg>
+    <div id="tip"></div>
+  </div>
+
+  <h2>About direct URI reuse</h2>
+  <p style="color: var(--text-muted); max-width: 70ch;">
+    Most HeritageGraph classes have their own <code>heritageGraph:</code> URI, related to a
+    CIDOC-CRM or Linked Art term via <code>rdfs:subClassOf</code>. Twelve classes are the
+    exception: for concepts that map 1:1 onto a CIDOC-CRM term — Person, HumanMadeObject, Actor,
+    Place, TimeSpan, Material, Production, DestructionEvent, TransferOfCustody,
+    ConditionAssessment, ConditionState, Technique — the CIDOC-CRM URI (<code>crm:E21_Person</code>,
+    <code>crm:E22_Human-Made_Object</code>, etc.) is used directly as the class, with no separate
+    HeritageGraph wrapper. Those 12 nodes are shown with a dashed ring in this view.
+  </p>
+
+  <p class="footer">
+    Source ontology &amp; alignment: <a href="https://github.com/CAIRNepal/heritagegraph-lux-migration" target="_blank" rel="noopener">github.com/CAIRNepal/heritagegraph-lux-migration</a> ·
+    Companion HeritageGraph ontology: <a href="https://github.com/CAIRNepal/heritagegraphontology" target="_blank" rel="noopener">CAIRNepal/heritagegraphontology</a> ·
+    Persistent ID: <a href="https://w3id.org/heritagegraph/" target="_blank" rel="noopener">w3id.org/heritagegraph/</a> ·
+    Licence: Apache 2.0.
+  </p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(function () {
+  const COLORS = {
+    tangible: '#378ADD', concept: '#7F77DD', event: '#EF9F27',
+    actor: '#639922', spatial: '#1D9E75', prov: '#D4537E'
+  };
+  const IDENTITY = new Set(["Actor","ConditionAssessment","ConditionState","DestructionEvent","HumanMadeObject","Material","Person","Place","Production","Technique","TimeSpan","TransferOfCustody"]);
+  const nodes = [
+    {id:"Acquisition",g:"event"},
+    {id:"Activity",g:"event"},
+    {id:"Actor",g:"actor"},
+    {id:"Appellation",g:"concept"},
+    {id:"ArchitecturalElement",g:"tangible"},
+    {id:"ArchitecturalStructure",g:"tangible"},
+    {id:"AssertableEntity",g:"prov"},
+    {id:"AttributeAssignment",g:"event"},
+    {id:"AuthorityDocument",g:"prov"},
+    {id:"BeginningOfExistence",g:"event"},
+    {id:"BiologicalObject",g:"tangible"},
+    {id:"Birth",g:"event"},
+    {id:"BuddhistMonument",g:"tangible"},
+    {id:"CasteGroup",g:"actor"},
+    {id:"Chaitya",g:"tangible"},
+    {id:"Concept",g:"concept"},
+    {id:"ConditionAssessment",g:"event"},
+    {id:"ConditionState",g:"concept"},
+    {id:"ConditionTypeEnum",g:"concept"},
+    {id:"Consecration",g:"event"},
+    {id:"Container",g:"prov"},
+    {id:"Creation",g:"event"},
+    {id:"CuratedHolding",g:"prov"},
+    {id:"CurationActivity",g:"event"},
+    {id:"Currency",g:"concept"},
+    {id:"DataCustodian",g:"actor"},
+    {id:"DataSource",g:"prov"},
+    {id:"DatePrecisionEnum",g:"concept"},
+    {id:"Death",g:"event"},
+    {id:"DestructionEvent",g:"event"},
+    {id:"Dharmashala",g:"tangible"},
+    {id:"DhungeDhara",g:"tangible"},
+    {id:"DigitalObject",g:"prov"},
+    {id:"DigitalService",g:"prov"},
+    {id:"Dimension",g:"concept"},
+    {id:"Dissolution",g:"event"},
+    {id:"DocumentationActivity",g:"event"},
+    {id:"Encounter",g:"event"},
+    {id:"EndOfExistence",g:"event"},
+    {id:"Enshrinement",g:"event"},
+    {id:"ExistenceStatusEnum",g:"concept"},
+    {id:"Formation",g:"event"},
+    {id:"Group",g:"actor"},
+    {id:"Guthi",g:"actor"},
+    {id:"GuthiTypeEnum",g:"concept"},
+    {id:"HeritageAssertion",g:"prov"},
+    {id:"HistoricalEvent",g:"event"},
+    {id:"HumanMadeObject",g:"tangible"},
+    {id:"IconographicObject",g:"tangible"},
+    {id:"Identifier",g:"concept"},
+    {id:"IdentifierAssignment",g:"event"},
+    {id:"InformationObject",g:"prov"},
+    {id:"Inscription",g:"concept"},
+    {id:"Joining",g:"event"},
+    {id:"Language",g:"concept"},
+    {id:"Leaving",g:"event"},
+    {id:"LegalObject",g:"concept"},
+    {id:"LinguisticObject",g:"concept"},
+    {id:"LivingGoddessTenure",g:"spatial"},
+    {id:"Mark",g:"concept"},
+    {id:"Material",g:"concept"},
+    {id:"Measurement",g:"event"},
+    {id:"MeasurementUnit",g:"concept"},
+    {id:"Metadata",g:"prov"},
+    {id:"Modification",g:"event"},
+    {id:"MonetaryAmount",g:"concept"},
+    {id:"Move",g:"event"},
+    {id:"Murti",g:"tangible"},
+    {id:"Name",g:"concept"},
+    {id:"PartAddition",g:"event"},
+    {id:"PartRemoval",g:"event"},
+    {id:"Pati",g:"tangible"},
+    {id:"Paubha",g:"tangible"},
+    {id:"Payment",g:"event"},
+    {id:"Period",g:"spatial"},
+    {id:"Person",g:"actor"},
+    {id:"PhysicalFeature",g:"tangible"},
+    {id:"PhysicalHeritageThing",g:"tangible"},
+    {id:"Place",g:"spatial"},
+    {id:"Pokhari",g:"tangible"},
+    {id:"Presence",g:"spatial"},
+    {id:"ProductType",g:"concept"},
+    {id:"Production",g:"event"},
+    {id:"PropositionalObject",g:"concept"},
+    {id:"ProvenanceActivity",g:"event"},
+    {id:"Purchase",g:"event"},
+    {id:"ReligiousTradition",g:"concept"},
+    {id:"RestHouse",g:"tangible"},
+    {id:"Right",g:"concept"},
+    {id:"RightAcquisition",g:"event"},
+    {id:"RitualEvent",g:"event"},
+    {id:"RitualTypeEnum",g:"concept"},
+    {id:"Sattal",g:"tangible"},
+    {id:"Set",g:"prov"},
+    {id:"SetAddition",g:"event"},
+    {id:"SetRemoval",g:"event"},
+    {id:"Site",g:"tangible"},
+    {id:"Stupa",g:"tangible"},
+    {id:"SyncreticRelationship",g:"prov"},
+    {id:"SyncreticTypeEnum",g:"concept"},
+    {id:"Technique",g:"concept"},
+    {id:"Temple",g:"tangible"},
+    {id:"TimeSpan",g:"spatial"},
+    {id:"Title",g:"concept"},
+    {id:"Transfer",g:"event"},
+    {id:"TransferOfCustody",g:"event"},
+    {id:"Transformation",g:"event"},
+    {id:"TypeAssignment",g:"event"},
+    {id:"TypeCreation",g:"event"},
+    {id:"Verification",g:"prov"},
+    {id:"VisualItem",g:"concept"},
+    {id:"WaterStructure",g:"tangible"}
+  ];
+  const subClassEdges = [
+    ["Acquisition","ProvenanceActivity"],
+    ["Activity","HistoricalEvent"],
+    ["Appellation","Metadata"],
+    ["ArchitecturalElement","PhysicalFeature"],
+    ["ArchitecturalStructure","HumanMadeObject"],
+    ["AttributeAssignment","Activity"],
+    ["AuthorityDocument","DataSource"],
+    ["BeginningOfExistence","HistoricalEvent"],
+    ["BiologicalObject","PhysicalHeritageThing"],
+    ["Birth","BeginningOfExistence"],
+    ["BuddhistMonument","HumanMadeObject"],
+    ["CasteGroup","Group"],
+    ["Chaitya","HumanMadeObject"],
+    ["ConditionAssessment","CurationActivity"],
+    ["ConditionTypeEnum","Concept"],
+    ["Consecration","RitualEvent"],
+    ["Container","InformationObject"],
+    ["Creation","Activity"],
+    ["Creation","BeginningOfExistence"],
+    ["CuratedHolding","PhysicalHeritageThing"],
+    ["CurationActivity","Activity"],
+    ["Currency","Concept"],
+    ["DataCustodian","Actor"],
+    ["DatePrecisionEnum","Concept"],
+    ["Death","EndOfExistence"],
+    ["DestructionEvent","EndOfExistence"],
+    ["Dharmashala","HumanMadeObject"],
+    ["DhungeDhara","HumanMadeObject"],
+    ["DigitalObject","InformationObject"],
+    ["DigitalService","InformationObject"],
+    ["Dissolution","EndOfExistence"],
+    ["DocumentationActivity","Activity"],
+    ["Encounter","Activity"],
+    ["EndOfExistence","HistoricalEvent"],
+    ["Enshrinement","RitualEvent"],
+    ["ExistenceStatusEnum","Concept"],
+    ["Formation","BeginningOfExistence"],
+    ["Group","Actor"],
+    ["Guthi","Group"],
+    ["GuthiTypeEnum","Concept"],
+    ["HeritageAssertion","AttributeAssignment"],
+    ["HistoricalEvent","Period"],
+    ["IconographicObject","HumanMadeObject"],
+    ["Identifier","Appellation"],
+    ["IdentifierAssignment","AttributeAssignment"],
+    ["Inscription","LinguisticObject"],
+    ["Inscription","Mark"],
+    ["Joining","Activity"],
+    ["Language","Concept"],
+    ["Leaving","Activity"],
+    ["LinguisticObject","InformationObject"],
+    ["LivingGoddessTenure","Period"],
+    ["Mark","VisualItem"],
+    ["Measurement","AttributeAssignment"],
+    ["MeasurementUnit","Concept"],
+    ["Metadata","InformationObject"],
+    ["Modification","CurationActivity"],
+    ["MonetaryAmount","Dimension"],
+    ["Move","ProvenanceActivity"],
+    ["Murti","HumanMadeObject"],
+    ["Name","Appellation"],
+    ["Name","LinguisticObject"],
+    ["PartAddition","Modification"],
+    ["PartRemoval","Modification"],
+    ["Pati","HumanMadeObject"],
+    ["Paubha","HumanMadeObject"],
+    ["Payment","ProvenanceActivity"],
+    ["PhysicalFeature","PhysicalHeritageThing"],
+    ["Pokhari","HumanMadeObject"],
+    ["Presence","Period"],
+    ["ProductType","Concept"],
+    ["Production","BeginningOfExistence"],
+    ["PropositionalObject","InformationObject"],
+    ["ProvenanceActivity","Activity"],
+    ["Purchase","Acquisition"],
+    ["ReligiousTradition","Concept"],
+    ["RestHouse","HumanMadeObject"],
+    ["Right","PropositionalObject"],
+    ["RightAcquisition","ProvenanceActivity"],
+    ["RitualEvent","Activity"],
+    ["RitualTypeEnum","Concept"],
+    ["Sattal","HumanMadeObject"],
+    ["Set","CuratedHolding"],
+    ["SetAddition","CurationActivity"],
+    ["SetRemoval","CurationActivity"],
+    ["Site","PhysicalFeature"],
+    ["Stupa","HumanMadeObject"],
+    ["SyncreticRelationship","AttributeAssignment"],
+    ["SyncreticTypeEnum","Concept"],
+    ["Technique","PropositionalObject"],
+    ["Temple","HumanMadeObject"],
+    ["Title","Name"],
+    ["Transfer","ProvenanceActivity"],
+    ["TransferOfCustody","CurationActivity"],
+    ["Transformation","BeginningOfExistence"],
+    ["Transformation","EndOfExistence"],
+    ["TypeAssignment","AttributeAssignment"],
+    ["TypeCreation","Creation"],
+    ["Verification","AttributeAssignment"],
+    ["VisualItem","InformationObject"],
+    ["WaterStructure","HumanMadeObject"]
+  ].map(([s,t]) => ({source:s, target:t, kind:'sc'}));
+  const propEdges = [
+    ["Acquisition","MonetaryAmount","acquisition_amount"],
+    ["AssertableEntity","Identifier","identified_by_identifier"],
+    ["AssertableEntity","LegalObject","subject_to_legal_object"],
+    ["AssertableEntity","Metadata","has_metadata"],
+    ["AssertableEntity","Name","identified_by_name"],
+    ["AssertableEntity","PropositionalObject","about_proposition"],
+    ["AssertableEntity","Right","has_right"],
+    ["AssertableEntity","Set","member_of_set"],
+    ["AssertableEntity","Title","identified_by_title"],
+    ["CuratedHolding","AssertableEntity","holds_item"],
+    ["DataSource","DataCustodian","has_data_custodian"],
+    ["DigitalObject","DigitalService","digitally_available_via"],
+    ["Dimension","MeasurementUnit","dimension_has_unit"],
+    ["Group","Dissolution","dissolved_by"],
+    ["Group","Formation","was_formed_by"],
+    ["HumanMadeObject","Inscription","carries_inscription"],
+    ["HumanMadeObject","VisualItem","has_visual_item"],
+    ["LinguisticObject","Language","has_language"],
+    ["Measurement","Dimension","measurement_observes"],
+    ["MonetaryAmount","Currency","amount_in_currency"],
+    ["Payment","Actor","paid_from"],
+    ["Payment","Actor","paid_to"],
+    ["Payment","MonetaryAmount","paid_amount"],
+    ["Person","Birth","was_born_by"],
+    ["Person","Death","died_in_event"],
+    ["PhysicalHeritageThing","Acquisition","was_acquired_through"],
+    ["PhysicalHeritageThing","DigitalObject","has_digital_representation"],
+    ["PhysicalHeritageThing","Dimension","has_dimension"],
+    ["PhysicalHeritageThing","Encounter","was_encountered_in"],
+    ["PhysicalHeritageThing","Measurement","was_measured_by"],
+    ["PhysicalHeritageThing","Modification","was_modified_by"],
+    ["PhysicalHeritageThing","Move","was_moved_by"],
+    ["RitualEvent","Period","occurs_during_period"],
+    ["Transfer","PhysicalHeritageThing","transferred_thing"]
+  ].map(([s,t,l]) => ({source:s, target:t, kind:'op', label:l}));
+  const allEdges = subClassEdges.concat(propEdges);
+  document.getElementById('s-edges').textContent = allEdges.length;
+  document.getElementById('s-nodes').textContent = nodes.length;
+
+  const W = 1040, H = 680;
+  const svg = d3.select('#hg-graph');
+  const linkLayer = svg.append('g').attr('stroke-opacity', 0.55);
+  const nodeLayer = svg.append('g');
+  const tip = d3.select('#tip');
+
+  let link = linkLayer.selectAll('line').data(allEdges).join('line')
+    .attr('stroke', d => d.kind === 'sc' ? '#888780' : '#378ADD')
+    .attr('stroke-width', d => d.kind === 'sc' ? 1.4 : 1)
+    .attr('stroke-dasharray', d => d.kind === 'op' ? '3,3' : null);
+
+  let node = nodeLayer.selectAll('g').data(nodes).join('g')
+    .attr('class', d => IDENTITY.has(d.id) ? 'node-identity' : '')
+    .style('cursor', 'pointer')
+    .on('mouseover', (e,d) => {
+      tip.style('opacity', 1)
+        .html(`<strong>${d.id}</strong><br><span style="color:var(--text-muted)">${IDENTITY.has(d.id) ? 'direct crm: URI reuse — no heritageGraph: wrapper' : 'heritageGraph: class'}</span>`);
+    })
+    .on('mousemove', e => {
+      const wrap = document.querySelector('.graph-wrap');
+      const r = wrap.getBoundingClientRect();
+      tip.style('left', (e.clientX - r.left + 12) + 'px')
+         .style('top',  (e.clientY - r.top + 12) + 'px');
+    })
+    .on('mouseout', () => tip.style('opacity', 0));
+
+  node.append('circle')
+    .attr('r', d => IDENTITY.has(d.id) ? 7 : 5.5)
+    .attr('fill', d => COLORS[d.g])
+    .attr('stroke', d => IDENTITY.has(d.id) ? '#0F6E56' : '#ffffff')
+    .attr('stroke-opacity', d => IDENTITY.has(d.id) ? 0.9 : 0.7);
+
+  node.append('text')
+    .attr('font-size', d => IDENTITY.has(d.id) ? 10 : 9.5)
+    .attr('font-weight', d => IDENTITY.has(d.id) ? 500 : 400)
+    .attr('fill', 'currentColor')
+    .attr('dx', 8).attr('dy', 3.5)
+    .text(d => d.id);
+
+  const sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(allEdges).id(d => d.id)
+                     .distance(d => d.kind === 'sc' ? 45 : 60).strength(0.35))
+    .force('charge', d3.forceManyBody().strength(-190))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('collide', d3.forceCollide(30))
+    .on('tick', tick);
+
+  function tick () {
+    link.attr('x1', d=>d.source.x).attr('y1', d=>d.source.y)
+        .attr('x2', d=>d.target.x).attr('y2', d=>d.target.y);
+    node.attr('transform', d => {
+      d.x = Math.max(20, Math.min(W-130, d.x));
+      d.y = Math.max(14, Math.min(H-14, d.y));
+      return `translate(${d.x},${d.y})`;
+    });
+  }
+
+  const drag = d3.drag()
+    .on('start', (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+    .on('drag',  (e,d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end',   (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; });
+  node.call(drag);
+
+  // --- Controls ----------------------------------------------------------
+  const showSc = document.getElementById('show-sc');
+  const showOp = document.getElementById('show-op');
+  const onlyIdentity = document.getElementById('only-identity');
+  const search = document.getElementById('search');
+  const restart = document.getElementById('restart');
+
+  function applyFilters () {
+    link.style('display', d =>
+      (d.kind === 'sc' && !showSc.checked) ||
+      (d.kind === 'op' && !showOp.checked) ||
+      (onlyIdentity.checked && !(IDENTITY.has(d.source.id || d.source) && IDENTITY.has(d.target.id || d.target)))
+        ? 'none' : null);
+    node.style('opacity', d => onlyIdentity.checked && !IDENTITY.has(d.id) ? 0.18 : 1);
+    const q = search.value.trim().toLowerCase();
+    node.select('circle').attr('stroke-width', d => {
+      if (q && d.id.toLowerCase().includes(q)) return 2.5;
+      return IDENTITY.has(d.id) ? 1.8 : 1;
+    }).attr('stroke', d => {
+      if (q && d.id.toLowerCase().includes(q)) return '#185FA5';
+      return IDENTITY.has(d.id) ? '#0F6E56' : '#ffffff';
+    });
+  }
+  [showSc, showOp, onlyIdentity].forEach(el => el.addEventListener('change', applyFilters));
+  search.addEventListener('input', applyFilters);
+  restart.addEventListener('click', () => {
+    nodes.forEach(n => { n.fx = null; n.fy = null; });
+    sim.alpha(1).restart();
+  });
+})();
+</script>
+</body>
+</html>

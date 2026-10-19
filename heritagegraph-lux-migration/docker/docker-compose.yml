@@ -1,0 +1,128 @@
+# =============================================================================
+# LUX → HeritageGraph migration — Docker Compose stack
+# =============================================================================
+# Build context is the REPO ROOT (..) so the Dockerfile can COPY canonical
+# files from alignment/, queries/, scripts/ without duplication.
+#
+# Run from inside this directory:
+#     cp .env.example .env   # edit as needed
+#     docker compose up -d
+#     docker compose logs -f migrator
+# =============================================================================
+
+name: heritagegraph-lux-migration
+
+services:
+
+  # -----------------------------------------------------------------------
+  # 1. Oxigraph — the SPARQL 1.1 triplestore, persistent.
+  # -----------------------------------------------------------------------
+  oxigraph:
+    image: oxigraph/oxigraph:0.4.4
+    container_name: hg-oxigraph
+    restart: unless-stopped
+    command:
+      - "serve"
+      - "--location=/data"
+      - "--bind=0.0.0.0:7878"
+      # Make the default graph behave as the union of all named graphs so the
+      # built-in INSERT-WHERE transform templates (which don't wrap matches in
+      # an explicit GRAPH clause) can see the raw LUX data living in the
+      # <https://lux.collections.yale.edu/> named graph.
+      - "--union-default-graph"
+    ports:
+      - "${OXIGRAPH_PORT:-7878}:7878"
+    volumes:
+      - oxigraph_data:/data
+    # Note: oxigraph 0.4.x is built on a distroless base (no shell, no wget,
+    # no curl), so a CMD-SHELL based healthcheck always exits 1 → container
+    # reads as "unhealthy" even when serving correctly. We rely on
+    # `restart: unless-stopped` plus client-side wait loops in migrator /
+    # delta-syncer entrypoints instead. Dependents use `condition:
+    # service_started`, which is enough.
+    deploy:
+      resources:
+        limits:
+          memory: ${OXIGRAPH_MEM_LIMIT:-64g}
+
+  # -----------------------------------------------------------------------
+  # 2. Migrator — one-shot job. Runs the 7-phase migration pipeline.
+  # -----------------------------------------------------------------------
+  migrator:
+    build:
+      context: ..                                        # repo root
+      dockerfile: docker/migrator/Dockerfile
+    container_name: hg-migrator
+    restart: "no"
+    # Host network: required so LUX REST calls egress over the host's IPv6.
+    # Yale CloudFront blocks this host's IPv4 (Hetzner range) with HTTP 403.
+    # Side-effect: must reach oxigraph via the published localhost:7878 port,
+    # not the compose hostname.
+    network_mode: host
+    depends_on:
+      oxigraph:
+        condition: service_started
+    env_file: .env
+    environment:
+      OXIGRAPH_ENDPOINT: "http://localhost:7878"
+      RING_MODE:        "${RING_MODE:-crawl}"
+      BATCH_SIZE:       "${BATCH_SIZE:-50000}"
+      LIMIT_PER_QUERY:  "${LIMIT_PER_QUERY:-0}"
+      LUX_DUMP_URL:     "${LUX_DUMP_URL:-}"
+      LUX_DUMP_PATH:    "${LUX_DUMP_PATH:-}"
+      LUX_FILTER:       "${LUX_FILTER:-religious heritage}"
+      CRAWL_RPS:        "${CRAWL_RPS:-10}"
+      VALIDATION_MODE:  "${VALIDATION_MODE:-strict}"
+    volumes:
+      - lux_data:/work/lux
+      - migration_logs:/work/logs
+      - migration_state:/work/state
+      - ../alignment:/work/alignment:ro                  # canonical ttl files
+      - ../queries:/work/queries:ro                      # canonical sparql files
+    deploy:
+      resources:
+        limits:
+          memory: ${MIGRATOR_MEM_LIMIT:-8g}
+    profiles: ["", "migrate"]
+
+  # -----------------------------------------------------------------------
+  # 3. Delta-syncer — long-running. supercronic-driven weekly delta sync.
+  # -----------------------------------------------------------------------
+  delta-syncer:
+    build:
+      context: ..
+      dockerfile: docker/migrator/Dockerfile
+    container_name: hg-delta-syncer
+    restart: unless-stopped
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+    env_file: .env
+    environment:
+      OXIGRAPH_ENDPOINT: "http://oxigraph:7878"
+      DELTA_CRON:        "${DELTA_CRON:-0 4 * * MON}"
+      DELTA_URL:         "${DELTA_URL:-}"
+      VALIDATION_MODE:   "${VALIDATION_MODE:-strict}"
+    entrypoint: ["/work/bin/delta_loop.sh"]
+    volumes:
+      - lux_data:/work/lux
+      - migration_logs:/work/logs
+      - migration_state:/work/state
+      - ../alignment:/work/alignment:ro
+      - ../queries:/work/queries:ro
+    deploy:
+      resources:
+        limits:
+          memory: ${MIGRATOR_MEM_LIMIT:-8g}
+    profiles: ["", "delta"]
+
+# =============================================================================
+volumes:
+  oxigraph_data:
+    driver: local
+  lux_data:
+    driver: local
+  migration_logs:
+    driver: local
+  migration_state:
+    driver: local

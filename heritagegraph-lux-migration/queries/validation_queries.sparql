@@ -1,0 +1,225 @@
+# =============================================================================
+# Validation queries for the LUX → HeritageGraph migration
+# =============================================================================
+# Run with:
+#   python migrate_lux_to_hg.py --mode validate \
+#       --endpoint http://127.0.0.1:7878 --queries validation_queries.sparql
+#
+# Convention: queries are split by '# === <label> ===' headers so the
+# migrate script can iterate them. Headers V1 / V2 are HARD GATES (the script
+# fails the run if they return any rows). The rest produce informational rows
+# for manual review.
+# =============================================================================
+
+PREFIX la:   <https://linked.art/ns/terms/>
+PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dig:  <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX sci:  <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX hg:   <https://w3id.org/heritagegraph/>
+PREFIX hgi:  <https://w3id.org/heritagegraph/imported/lux/>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+
+# === V1_unmapped_lux_classes ===
+# HARD GATE — Every LUX class must have a HeritageGraph target.
+# Returns 0 rows when the alignment is complete.
+#
+# July 2026 (alpha5 sync): 12 classes (Person, HumanMadeObject, Actor,
+# Place, TimeSpan, Material, Production, DestructionEvent,
+# TransferOfCustody, ConditionAssessment, ConditionState, Technique) are
+# migrated by DIRECT URI REUSE — the imported node is typed with the same
+# crm: URI as the LUX source, with no separate heritageGraph: wrapper
+# class (see alignment §6). The old "some heritageGraph:-prefixed class
+# maps to ?luxClass" test alone would flag all of them as unmapped.
+#
+# First fix (same day) checked for *any instance* of ?luxClass already in
+# imported/lux — but that's DATA-dependent: under a bounded pilot run
+# (LIMIT_PER_QUERY), a genuinely-covered class can have zero migrated
+# instances from sampling alone, which produced 3 false V1 failures on the
+# first post-alpha5 deploy (E52_Time-Span, E12_Production, E57_Material —
+# all legitimately handled by the transform templates, just not sampled
+# into that particular limited run). Replaced with a SCHEMA-level marker
+# (alignment §6.1, heritageGraph:alignment_lux_directly_reuses) that is
+# true regardless of run size; the imported/lux instance check is kept as
+# a secondary/belt-and-suspenders signal, not the primary one.
+SELECT DISTINCT ?luxClass (COUNT(?x) AS ?instances)
+WHERE {
+  GRAPH <https://lux.collections.yale.edu/> { ?x a ?luxClass . }
+  FILTER (
+       STRSTARTS(STR(?luxClass), "http://www.cidoc-crm.org/cidoc-crm/")
+    || STRSTARTS(STR(?luxClass), "http://www.ics.forth.gr/isl/CRMdig/")
+    || STRSTARTS(STR(?luxClass), "http://www.ics.forth.gr/isl/CRMsci/")
+    || STRSTARTS(STR(?luxClass), "https://linked.art/ns/terms/")
+  )
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+      { ?hg rdfs:subClassOf+ ?luxClass }
+        UNION
+      { ?hg owl:equivalentClass ?luxClass }
+        UNION
+      { ?hg skos:closeMatch ?luxClass }
+        UNION
+      { ?hg skos:broadMatch ?luxClass }
+      FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+    }
+  }
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+      <https://w3id.org/heritagegraph/alignment/lux> hg:alignment_lux_directly_reuses ?luxClass .
+    }
+  }
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
+  }
+}
+GROUP BY ?luxClass
+ORDER BY DESC(?instances)
+
+
+# === V2_uri_rewrite_consistency ===
+# HARD GATE — Every imported HG instance must carry exactly one owl:sameAs
+# pointing back to its LUX origin URI. Catches missing/duplicate sameAs.
+SELECT ?hgInst (COUNT(?orig) AS ?same_as_count)
+WHERE {
+  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+    ?hgInst a ?cls .
+    FILTER (STRSTARTS(STR(?hgInst), "https://w3id.org/heritagegraph/imported/lux/"))
+    OPTIONAL { ?hgInst owl:sameAs ?orig . FILTER (STRSTARTS(STR(?orig), "https://lux.collections.yale.edu/")) }
+  }
+}
+GROUP BY ?hgInst
+HAVING (COUNT(?orig) != 1)
+
+
+# === V3_count_parity ===
+# Soft check — Per-class counts: LUX raw vs HG imported. Expect ±5 % per row.
+# KNOWN GAP (July 2026, informational only, not a hard gate): the 12
+# direct-URI-reuse classes (see V1 note) have no heritageGraph:-prefixed
+# ?hgClass row here since the alignment graph no longer relates a
+# heritageGraph: subject to them — their parity is implicitly covered by
+# V1/V2 instead. Not fixed here to keep this query's shape stable for
+# manual review; revisit if per-class parity on those 12 is needed.
+SELECT ?luxClass ?hgClass ?lux_count ?hg_count
+WHERE {
+  {
+    SELECT ?luxClass ?hgClass (COUNT(?x) AS ?lux_count)
+    WHERE {
+      GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+        { ?hgClass rdfs:subClassOf ?luxClass }
+          UNION
+        { ?hgClass owl:equivalentClass ?luxClass }
+        FILTER (STRSTARTS(STR(?hgClass), "https://w3id.org/heritagegraph/"))
+      }
+      GRAPH <https://lux.collections.yale.edu/> { ?x a ?luxClass . }
+    } GROUP BY ?luxClass ?hgClass
+  }
+  OPTIONAL {
+    SELECT ?hgClass (COUNT(?y) AS ?hg_count)
+    WHERE {
+      GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?hgClass . }
+    } GROUP BY ?hgClass
+  }
+}
+ORDER BY DESC(?lux_count)
+
+
+# === V4_unaligned_properties ===
+# Informational — properties used in LUX but not aligned to any HG property.
+SELECT DISTINCT ?prop (COUNT(?s) AS ?usage)
+WHERE {
+  GRAPH <https://lux.collections.yale.edu/> { ?s ?prop ?o . }
+  FILTER (
+       STRSTARTS(STR(?prop), "http://www.cidoc-crm.org/cidoc-crm/")
+    || STRSTARTS(STR(?prop), "https://linked.art/ns/terms/")
+    || STRSTARTS(STR(?prop), "http://www.ics.forth.gr/isl/CRMdig/")
+    || STRSTARTS(STR(?prop), "http://www.ics.forth.gr/isl/CRMsci/")
+  )
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+      { ?hgProp rdfs:subPropertyOf+ ?prop }
+        UNION
+      { ?hgProp owl:equivalentProperty ?prop }
+      FILTER (STRSTARTS(STR(?hgProp), "https://w3id.org/heritagegraph/"))
+    }
+  }
+}
+GROUP BY ?prop
+ORDER BY DESC(?usage)
+LIMIT 100
+
+
+# === V5_random_round_trip ===
+# Informational — pick 10 random imported records; show their HG type and the
+# original LUX URI. Operator should manually open both and confirm semantic match.
+SELECT ?hgInst ?hgClass ?luxOrig (RAND() AS ?r)
+WHERE {
+  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+    ?hgInst a ?hgClass ; owl:sameAs ?luxOrig .
+  }
+}
+ORDER BY ?r
+LIMIT 10
+
+
+# === V6_hg_native_preserved ===
+# Informational — HG-native classes must NOT shrink after migration.
+# Compare to a pre-migration baseline (run this before AND after; counts
+# must match exactly for the HG-only classes — they should not be touched
+# by the migration at all).
+SELECT ?cls (COUNT(?x) AS ?n)
+WHERE {
+  GRAPH <https://w3id.org/heritagegraph/> { ?x a ?cls . }
+  VALUES ?cls {
+    hg:LivingGoddessTenure
+    hg:LivingGoddessSelection
+    hg:LivingGoddessRetirement
+    hg:SyncreticRelationship
+    hg:Guthi
+    hg:CasteGroup
+    hg:Chaitya
+    hg:Stupa
+    hg:DhungeDhara
+    hg:Pokhari
+    hg:Pati
+    hg:Sattal
+    hg:Dharmashala
+    hg:Murti
+    hg:Paubha
+  }
+}
+GROUP BY ?cls
+ORDER BY ?cls
+
+
+# === V7_unique_id_per_record ===
+# HG-imported invariants — every imported record should have exactly one
+# rdf:type from the heritageGraph: namespace.
+SELECT ?hgInst (COUNT(DISTINCT ?cls) AS ?type_count)
+WHERE {
+  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+    ?hgInst a ?cls .
+    FILTER (STRSTARTS(STR(?cls), "https://w3id.org/heritagegraph/"))
+  }
+}
+GROUP BY ?hgInst
+HAVING (COUNT(DISTINCT ?cls) > 1)
+
+
+# === V8_orphan_check ===
+# Informational — imported HG instances that have no incoming references and
+# no outgoing properties beyond rdf:type + owl:sameAs (i.e. empty after import).
+SELECT ?hgInst ?hgClass (COUNT(?p) AS ?prop_count)
+WHERE {
+  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+    ?hgInst a ?hgClass .
+    OPTIONAL { ?hgInst ?p ?o .
+               FILTER (?p NOT IN (rdf:type, owl:sameAs)) }
+  }
+}
+GROUP BY ?hgInst ?hgClass
+HAVING (COUNT(?p) = 0)
+ORDER BY ?hgClass
+LIMIT 50

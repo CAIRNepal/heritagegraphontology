@@ -1,0 +1,452 @@
+# =============================================================================
+# LUX → HeritageGraph migration — SPARQL CONSTRUCT templates
+# =============================================================================
+# Verified May 2026 against the official Linked Art JSON-LD context;
+# extended July 2026 after the coverage/taxonomy gap audit (alignment §5);
+# updated July 2026 (alpha5 sync, alignment §6) — HumanMadeObject, Person,
+# Actor, Place, TimeSpan, Material, Production, DestructionEvent,
+# TransferOfCustody, ConditionAssessment, ConditionState and Technique are
+# now minted directly under their crm: URI (no heritageGraph: wrapper);
+# see alignment/heritagegraph-lux-alignment.ttl §6 for why.
+#
+# Important: Linked Art's JSON-LD context maps short names directly to crm: /
+# dig: / sci: URIs. So in LUX RDF data after parsing, the @type triples are
+# crm:E22_Human-Made_Object, crm:E21_Person, etc. — NOT la:HumanMadeObject.
+# These queries match against those actual URIs.
+#
+# NOTE ON RUNTIME PARITY: the production pipeline executes the *builtin*
+# INSERT WHERE templates in scripts/migrate_lux_to_hg.py (TRANSFORM_TEMPLATES,
+# paginated with LIMIT/OFFSET, minting under /imported/lux/ with owl:sameAs).
+# The CONSTRUCT forms below are the human-readable reference for the same
+# branch logic — keep BOTH in sync when adding a class.
+#
+# Block headers use the '# === label ===' convention so CI can syntax-check
+# each template separately (same parser as validation_queries.sparql).
+#
+# Setup:
+#   1) Load LUX dump (or federated SERVICE) as graph <https://lux.collections.yale.edu/>
+#   2) Load HeritageGraph.ttl + heritagegraph-lux-alignment.ttl into the
+#      reasoner / target store.
+#   3) Run each CONSTRUCT below; UNION them or run as separate jobs.
+# =============================================================================
+
+PREFIX la:            <https://linked.art/ns/terms/>
+PREFIX crm:           <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX dig:           <http://www.ics.forth.gr/isl/CRMdig/>
+PREFIX sci:           <http://www.ics.forth.gr/isl/CRMsci/>
+PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX rdfs:          <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dct:           <http://purl.org/dc/terms/>
+PREFIX skos:          <http://www.w3.org/2004/02/skos/core#>
+PREFIX owl:           <http://www.w3.org/2002/07/owl#>
+
+
+# === t1_object ===
+# 1. Object branch → hg:HumanMadeObject (subtype carried via classified_as)
+CONSTRUCT {
+  ?hgObj a crm:E22_Human-Made_Object ;
+         heritageGraph:id            ?obj ;
+         heritageGraph:name          ?label ;
+         heritageGraph:has_architectural_style ?type ;
+         heritageGraph:was_produced_by_event   ?prod ;
+         heritageGraph:has_current_location    ?place ;
+         heritageGraph:used_materials          ?mat ;
+         heritageGraph:carries_inscription     ?insc ;
+         heritageGraph:has_dimension           ?dim ;
+         heritageGraph:has_visual_item         ?vis .
+} WHERE {
+  ?obj a crm:E22_Human-Made_Object .
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/object/",
+                  REPLACE(STR(?obj), "^.*/", ""))) AS ?hgObj)
+  OPTIONAL { ?obj rdfs:label ?label }
+  OPTIONAL { ?obj crm:P2_has_type ?type }
+  OPTIONAL { ?obj crm:P108i_was_produced_by ?prod }
+  OPTIONAL { ?obj crm:P55_has_current_location ?place }
+  OPTIONAL { ?obj crm:P45_consists_of ?mat }
+  OPTIONAL { ?obj crm:P128_carries ?insc . ?insc a crm:E34_Inscription }
+  OPTIONAL { ?obj crm:P43_has_dimension ?dim }
+  OPTIONAL { ?obj crm:P65_shows_visual_item ?vis }
+}
+
+
+# === t2_person ===
+# 2. Person branch → hg:Person (with Birth/Death events)
+CONSTRUCT {
+  ?hgPerson a crm:E21_Person ;
+            heritageGraph:id   ?p ;
+            heritageGraph:name ?name .
+  ?birth a heritageGraph:Birth ;
+         heritageGraph:has_timespan  ?bSpan ;
+         heritageGraph:took_place_at ?bPlace .
+  ?death a heritageGraph:Death ;
+         heritageGraph:has_timespan  ?dSpan ;
+         heritageGraph:took_place_at ?dPlace .
+  ?hgPerson heritageGraph:was_born_by   ?birth ;
+            heritageGraph:died_in_event ?death .
+} WHERE {
+  ?p a crm:E21_Person .
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/person/",
+                  REPLACE(STR(?p), "^.*/", ""))) AS ?hgPerson)
+  OPTIONAL { ?p rdfs:label ?name }
+  OPTIONAL { ?p crm:P98i_was_born ?birth .
+             OPTIONAL { ?birth crm:P4_has_time-span  ?bSpan }
+             OPTIONAL { ?birth crm:P7_took_place_at  ?bPlace } }
+  OPTIONAL { ?p crm:P100i_died_in ?death .
+             OPTIONAL { ?death crm:P4_has_time-span  ?dSpan }
+             OPTIONAL { ?death crm:P7_took_place_at  ?dPlace } }
+}
+
+
+# === t3_group ===
+# 3. Group branch → hg:Group (Formation / Dissolution)
+CONSTRUCT {
+  ?hgGroup a heritageGraph:Group ;
+           heritageGraph:id   ?g ;
+           heritageGraph:name ?gname ;
+           heritageGraph:was_formed_by ?formed ;
+           heritageGraph:dissolved_by  ?dissolved .
+  ?formed a heritageGraph:Formation ;
+          heritageGraph:has_timespan  ?fSpan ;
+          heritageGraph:took_place_at ?fPlace .
+  ?dissolved a heritageGraph:Dissolution ;
+             heritageGraph:has_timespan ?xSpan .
+} WHERE {
+  ?g a crm:E74_Group .
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/group/",
+                  REPLACE(STR(?g), "^.*/", ""))) AS ?hgGroup)
+  OPTIONAL { ?g rdfs:label ?gname }
+  OPTIONAL { ?g crm:P95i_was_formed_by ?formed .
+             OPTIONAL { ?formed crm:P4_has_time-span  ?fSpan }
+             OPTIONAL { ?formed crm:P7_took_place_at  ?fPlace } }
+  OPTIONAL { ?g crm:P99i_was_dissolved_by ?dissolved .
+             OPTIONAL { ?dissolved crm:P4_has_time-span ?xSpan } }
+}
+
+
+# === t4_place ===
+# 4. Place branch → hg:Place
+CONSTRUCT {
+  ?hgPlace a crm:E53_Place ;
+           heritageGraph:id                ?pl ;
+           heritageGraph:name              ?plname ;
+           heritageGraph:place_coordinates ?wkt .
+} WHERE {
+  ?pl a crm:E53_Place .
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/place/",
+                  REPLACE(STR(?pl), "^.*/", ""))) AS ?hgPlace)
+  OPTIONAL { ?pl rdfs:label ?plname }
+  OPTIONAL { ?pl crm:P168_place_is_defined_by ?wkt }
+}
+
+
+# === t5_concept ===
+# 5. Concept branch. Generic E55 lands on hg:Concept (equivalentClass E55);
+#    specialised concept types get their specific HG class.
+CONSTRUCT {
+  ?hgConcept a ?hgType ;
+             heritageGraph:id   ?c ;
+             heritageGraph:name ?cname ;
+             skos:exactMatch    ?c .
+} WHERE {
+  {
+    ?c a crm:E55_Type .
+    FILTER NOT EXISTS { ?c a ?sub .
+      FILTER(?sub IN (crm:E56_Language, crm:E57_Material, crm:E58_Measurement_Unit,
+                      crm:E98_Currency, crm:E99_Product_Type)) }
+    BIND(heritageGraph:Concept AS ?hgType)
+  }
+  UNION { ?c a crm:E57_Material         . BIND(crm:E57_Material        AS ?hgType) }
+  UNION { ?c a crm:E56_Language         . BIND(heritageGraph:Language        AS ?hgType) }
+  UNION { ?c a crm:E98_Currency         . BIND(heritageGraph:Currency        AS ?hgType) }
+  UNION { ?c a crm:E97_Monetary_Amount  . BIND(heritageGraph:MonetaryAmount  AS ?hgType) }
+  UNION { ?c a crm:E58_Measurement_Unit . BIND(heritageGraph:MeasurementUnit AS ?hgType) }
+  UNION { ?c a crm:E72_Legal_Object     . BIND(heritageGraph:LegalObject     AS ?hgType) }
+  UNION { ?c a crm:E99_Product_Type     . BIND(heritageGraph:ProductType     AS ?hgType) }
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/concept/",
+                  REPLACE(STR(?c), "^.*/", ""))) AS ?hgConcept)
+  OPTIONAL { ?c rdfs:label ?cname }
+}
+
+
+# === t6_activity ===
+# 6. Activity / event branch → the most appropriate HG subclass.
+#    July 2026: added the five missing genuine la: activity classes,
+#    E96/E85/E86/E14/E13/E15/E17/E65/E81/E79/E80, and guarded fallbacks for
+#    generic E7 / E5 / E4 (ProvenanceActivity wrappers are E7-typed in LUX).
+CONSTRUCT {
+  ?hgEv a ?hgClass ;
+        heritageGraph:id             ?ev ;
+        heritageGraph:carried_out_by ?actor ;
+        heritageGraph:took_place_at  ?place ;
+        heritageGraph:has_timespan   ?span ;
+        heritageGraph:paid_amount    ?amt .
+} WHERE {
+  {  ?ev a crm:E12_Production            . BIND(crm:E12_Production            AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E11_Modification          . BIND(heritageGraph:Modification          AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E9_Move                   . BIND(heritageGraph:Move                  AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E10_Transfer_of_Custody   . BIND(crm:E10_Transfer_of_Custody     AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E96_Purchase              . BIND(heritageGraph:Purchase              AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E8_Acquisition            . BIND(heritageGraph:Acquisition           AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E67_Birth                 . BIND(heritageGraph:Birth                 AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E69_Death                 . BIND(heritageGraph:Death                 AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E66_Formation             . BIND(heritageGraph:Formation             AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E68_Dissolution           . BIND(heritageGraph:Dissolution           AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E85_Joining               . BIND(heritageGraph:Joining               AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E86_Leaving               . BIND(heritageGraph:Leaving               AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E6_Destruction            . BIND(crm:E6_Destruction      AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E81_Transformation        . BIND(heritageGraph:Transformation        AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E79_Part_Addition         . BIND(heritageGraph:PartAddition          AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E80_Part_Removal          . BIND(heritageGraph:PartRemoval           AS ?hgClass) }
+  UNION
+  {  ?ev a sci:S19_Encounter_Event       . BIND(heritageGraph:Encounter             AS ?hgClass) }   # CRMsci, NOT crm:E87
+  UNION
+  {  ?ev a crm:E87_Curation_Activity     . BIND(heritageGraph:CurationActivity      AS ?hgClass) }   # distinct from Encounter
+  UNION
+  {  ?ev a crm:E16_Measurement           . BIND(heritageGraph:Measurement           AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E14_Condition_Assessment  . BIND(crm:E14_Condition_Assessment   AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E15_Identifier_Assignment . BIND(heritageGraph:IdentifierAssignment  AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E17_Type_Assignment       . BIND(heritageGraph:TypeAssignment        AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E65_Creation              . BIND(heritageGraph:Creation              AS ?hgClass)
+     FILTER NOT EXISTS { ?ev a crm:E83_Type_Creation } }
+  UNION
+  {  ?ev a crm:E83_Type_Creation         . BIND(heritageGraph:TypeCreation          AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E63_Beginning_of_Existence . BIND(heritageGraph:BeginningOfExistence AS ?hgClass) }
+  UNION
+  {  ?ev a crm:E64_End_of_Existence      . BIND(heritageGraph:EndOfExistence        AS ?hgClass) }
+  UNION
+  {  ?ev a la:Payment                    . BIND(heritageGraph:Payment               AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?ev a la:Transfer                   . BIND(heritageGraph:Transfer              AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?ev a la:Addition                   . BIND(heritageGraph:SetAddition           AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?ev a la:Removal                    . BIND(heritageGraph:SetRemoval            AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?ev a la:RightAcquisition           . BIND(heritageGraph:RightAcquisition      AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?ev a crm:E13_Attribute_Assignment  . BIND(heritageGraph:AttributeAssignment   AS ?hgClass)
+     FILTER NOT EXISTS { ?ev a ?sub .
+       FILTER(?sub IN (crm:E14_Condition_Assessment, crm:E15_Identifier_Assignment,
+                       crm:E16_Measurement, crm:E17_Type_Assignment)) } }
+  UNION
+  {  ?ev a crm:E7_Activity               . BIND(heritageGraph:Activity              AS ?hgClass)
+     FILTER NOT EXISTS { ?ev a ?sub .
+       FILTER(?sub IN (crm:E12_Production, crm:E11_Modification, crm:E9_Move,
+                       crm:E10_Transfer_of_Custody, crm:E8_Acquisition, crm:E96_Purchase,
+                       crm:E85_Joining, crm:E86_Leaving, crm:E87_Curation_Activity,
+                       crm:E13_Attribute_Assignment, crm:E14_Condition_Assessment,
+                       crm:E15_Identifier_Assignment, crm:E16_Measurement,
+                       crm:E17_Type_Assignment, crm:E65_Creation,
+                       la:Payment, la:Transfer, la:Addition, la:Removal,
+                       la:RightAcquisition)) } }
+  UNION
+  {  ?ev a crm:E5_Event                  . BIND(heritageGraph:HistoricalEvent       AS ?hgClass)
+     FILTER NOT EXISTS { ?ev a ?sub .
+       FILTER(?sub IN (crm:E7_Activity, crm:E63_Beginning_of_Existence,
+                       crm:E64_End_of_Existence, crm:E67_Birth, crm:E69_Death,
+                       crm:E66_Formation, crm:E68_Dissolution, crm:E6_Destruction,
+                       crm:E81_Transformation, crm:E79_Part_Addition,
+                       crm:E80_Part_Removal)) } }
+  UNION
+  {  ?ev a crm:E4_Period                 . BIND(heritageGraph:Period                AS ?hgClass)
+     FILTER NOT EXISTS { ?ev a ?sub .
+       FILTER(?sub IN (crm:E5_Event, crm:E7_Activity, crm:E93_Presence)) } }
+
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/event/",
+                  REPLACE(STR(?ev), "^.*/", ""))) AS ?hgEv)
+  OPTIONAL { ?ev crm:P14_carried_out_by ?actor }
+  OPTIONAL { ?ev crm:P7_took_place_at   ?place }
+  OPTIONAL { ?ev crm:P4_has_time-span   ?span  }
+  OPTIONAL { ?ev la:paid_amount         ?amt   }
+}
+
+
+# === t7_work ===
+# 7. Information / Work branch (LinguisticObject, Inscription, Title,
+#    VisualItem, Mark, PropositionalObject, AuthorityDocument, Document,
+#    DigitalObject)
+CONSTRUCT {
+  ?hgWork a ?hgClass ;
+          heritageGraph:id   ?w ;
+          heritageGraph:name ?wname .
+} WHERE {
+  {  ?w a crm:E33_Linguistic_Object    . BIND(heritageGraph:LinguisticObject    AS ?hgClass)
+     FILTER NOT EXISTS { ?w a crm:E34_Inscription } }
+  UNION
+  {  ?w a crm:E34_Inscription          . BIND(heritageGraph:Inscription         AS ?hgClass) }
+  UNION
+  {  ?w a crm:E35_Title                . BIND(heritageGraph:Title               AS ?hgClass) }
+  UNION
+  {  ?w a crm:E36_Visual_Item          . BIND(heritageGraph:VisualItem          AS ?hgClass)
+     FILTER NOT EXISTS { ?w a crm:E37_Mark } }
+  UNION
+  {  ?w a crm:E37_Mark                 . BIND(heritageGraph:Mark                AS ?hgClass) }
+  UNION
+  {  ?w a crm:E89_Propositional_Object . BIND(heritageGraph:PropositionalObject AS ?hgClass) }
+  UNION
+  {  ?w a crm:E32_Authority_Document   . BIND(heritageGraph:AuthorityDocument   AS ?hgClass) }
+  UNION
+  {  ?w a crm:E31_Document             . BIND(heritageGraph:DataSource          AS ?hgClass)
+     FILTER NOT EXISTS { ?w a crm:E32_Authority_Document } }
+  UNION
+  {  ?w a dig:D1_Digital_Object        . BIND(heritageGraph:DigitalObject       AS ?hgClass) }   # dig: NOT crmdig:
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/work/",
+                  REPLACE(STR(?w), "^.*/", ""))) AS ?hgWork)
+  OPTIONAL { ?w rdfs:label ?wname }
+}
+
+
+# === t8_set ===
+# 8. Set / CuratedHolding → hg:Set / hg:CuratedHolding
+#    NOTE: la:Set is one of the seven genuine la: classes — it is NOT crm:E78.
+CONSTRUCT {
+  ?hgSet a heritageGraph:Set ;
+         heritageGraph:id   ?s ;
+         heritageGraph:name ?sname ;
+         heritageGraph:has_component ?member .
+  ?hgCH a heritageGraph:CuratedHolding ;
+        heritageGraph:id   ?ch ;
+        heritageGraph:name ?chname .
+} WHERE {
+  { ?s a la:Set .
+    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/set/",
+                    REPLACE(STR(?s), "^.*/", ""))) AS ?hgSet)
+    OPTIONAL { ?s rdfs:label ?sname }
+    OPTIONAL { ?s la:has_member ?member } }
+  UNION
+  { ?ch a crm:E78_Curated_Holding .
+    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/curated/",
+                    REPLACE(STR(?ch), "^.*/", ""))) AS ?hgCH)
+    OPTIONAL { ?ch rdfs:label ?chname } }
+}
+
+
+# === t9_identifier_name ===
+# 9. Identifier / Name / other Appellations (embedded on every record)
+CONSTRUCT {
+  ?hgId a heritageGraph:Identifier ;
+        heritageGraph:id   ?idVal ;
+        heritageGraph:name ?idLabel .
+  ?hgName a heritageGraph:Name ;
+          heritageGraph:name ?nameLabel .
+  ?hgApp a heritageGraph:Appellation ;
+         heritageGraph:name ?appLabel .
+} WHERE {
+  { ?ent crm:P1_is_identified_by ?id .
+    ?id a crm:E42_Identifier ;
+        rdfs:label ?idLabel ;
+        crm:P190_has_symbolic_content ?idVal .
+    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/id/",
+                    REPLACE(STR(?id), "^.*/", ""))) AS ?hgId) }
+  UNION
+  { ?ent crm:P1_is_identified_by ?nm .
+    ?nm a crm:E33_E41_Linguistic_Appellation ;
+        crm:P190_has_symbolic_content ?nameLabel .
+    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/name/",
+                    REPLACE(STR(?nm), "^.*/", ""))) AS ?hgName) }
+  UNION
+  { ?ent crm:P1_is_identified_by ?ap .
+    ?ap a crm:E41_Appellation ;
+        crm:P190_has_symbolic_content ?appLabel .
+    FILTER NOT EXISTS { ?ap a ?sub .
+      FILTER(?sub IN (crm:E42_Identifier, crm:E33_E41_Linguistic_Appellation,
+                      crm:E35_Title)) }
+    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/appellation/",
+                    REPLACE(STR(?ap), "^.*/", ""))) AS ?hgApp) }
+}
+
+
+# === t10_embedded ===
+# 10. Embedded structure — TimeSpan, Dimension, Right, DigitalService,
+#     BiologicalObject, PhysicalFeature/Site, Presence, ConditionState.
+#     Previously dropped entirely (major cause of the 3.47M → 98k ratio).
+CONSTRUCT {
+  ?hgE a ?hgClass ;
+       heritageGraph:id   ?e ;
+       heritageGraph:name ?elabel ;
+       heritageGraph:dimension_has_unit ?unit .
+} WHERE {
+  {  ?e a crm:E52_Time-Span            . BIND(crm:E52_Time-Span             AS ?hgClass) }
+  UNION
+  {  ?e a crm:E54_Dimension            . BIND(heritageGraph:Dimension            AS ?hgClass)
+     FILTER NOT EXISTS { ?e a crm:E97_Monetary_Amount } }
+  UNION
+  {  ?e a crm:E30_Right                . BIND(heritageGraph:Right                AS ?hgClass) }
+  UNION
+  {  ?e a la:DigitalService            . BIND(heritageGraph:DigitalService       AS ?hgClass) }   # genuine la: class
+  UNION
+  {  ?e a crm:E20_Biological_Object    . BIND(heritageGraph:BiologicalObject     AS ?hgClass) }   # Peabody specimens
+  UNION
+  {  ?e a crm:E26_Physical_Feature     . BIND(heritageGraph:PhysicalFeature      AS ?hgClass)
+     FILTER NOT EXISTS { ?e a ?sub .
+       FILTER(?sub IN (crm:E25_Human-Made_Feature, crm:E27_Site)) } }
+  UNION
+  {  ?e a crm:E27_Site                 . BIND(heritageGraph:Site                 AS ?hgClass) }
+  UNION
+  {  ?e a crm:E25_Human-Made_Feature   . BIND(heritageGraph:ArchitecturalElement AS ?hgClass) }
+  UNION
+  {  ?e a crm:E93_Presence             . BIND(heritageGraph:Presence             AS ?hgClass) }
+  UNION
+  {  ?e a crm:E3_Condition_State       . BIND(crm:E3_Condition_State       AS ?hgClass) }
+  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/embedded/",
+                  REPLACE(STR(?e), "^.*/", ""))) AS ?hgE)
+  OPTIONAL { ?e rdfs:label ?elabel }
+  OPTIONAL { ?e crm:P91_has_unit ?unit }
+}
+
+
+# === t11_sanity_unmapped ===
+# 11. Sanity-check: any LUX class with NO HG target?
+#     (Same logic as validation V1 — should return zero rows. Includes the
+#     July 2026 direct-URI-reuse branch — see V1's note in
+#     validation_queries.sparql.)
+SELECT DISTINCT ?luxClass (COUNT(?x) AS ?instances)
+WHERE {
+  ?x a ?luxClass .
+  FILTER (
+       STRSTARTS(STR(?luxClass), "http://www.cidoc-crm.org/cidoc-crm/")
+    || STRSTARTS(STR(?luxClass), "http://www.ics.forth.gr/isl/CRMdig/")
+    || STRSTARTS(STR(?luxClass), "http://www.ics.forth.gr/isl/CRMsci/")
+    || STRSTARTS(STR(?luxClass), "https://linked.art/ns/terms/")
+  )
+  FILTER NOT EXISTS {
+    { ?hg rdfs:subClassOf+ ?luxClass }
+      UNION
+    { ?hg owl:equivalentClass ?luxClass }
+      UNION
+    { ?hg skos:closeMatch ?luxClass }
+      UNION
+    { ?hg skos:broadMatch ?luxClass }
+    FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+  }
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+      <https://w3id.org/heritagegraph/alignment/lux> heritageGraph:alignment_lux_directly_reuses ?luxClass .
+    }
+  }
+  FILTER NOT EXISTS {
+    GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
+  }
+}
+GROUP BY ?luxClass
+ORDER BY DESC(?instances)
