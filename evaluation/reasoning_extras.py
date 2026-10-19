@@ -391,7 +391,7 @@ def run_entailments() -> int:
 # ===========================================================================
 # no-external-superclass: HeritageGraph must not redefine external terms.
 # ===========================================================================
-LUX_MODULE = ROOT / "ontology/lux/heritagegraph-lux-alignment.ttl"
+LUX_MODULE = ROOT / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
 EXTERNAL_CLASS_NS = (
     "http://www.cidoc-crm.org/cidoc-crm/",
     "http://www.cidoc-crm.org/extensions/",

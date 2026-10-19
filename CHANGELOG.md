@@ -2,7 +2,14 @@
 
 ## [Unreleased] - v1.0.0 consistency fixes
 
-### Changed (schema pass)
+### Changed (LUX migration folder)
+- The HeritageGraph–LUX migration repository is kept in `heritagegraph-lux-migration/` (imported unchanged
+  from CAIRNepal/heritagegraph-lux-migration@6772240, then synced to v1.0.0). Its
+  `alignment/heritagegraph-lux-alignment.ttl` is the single LUX mapping: the duplicate in `ontology/lux/` is
+  removed and every check and report reads the folder's file. LUX-facing CRMsci targets use the Linked Art
+  context namespace (`http://www.ics.forth.gr/isl/CRMsci/`), as do `generate_lux_eval.py` and the mapping
+  audit's Linked Art verification.
+
 - `ArchitecturalStyle` values Pagoda, Dome, Chaitya, Stupa have their own IRIs
   (`…/ArchitecturalStyle#Pagoda`, …). Their AAT concepts (building types / an architectural element)
   had been the values' IRIs, which typed Getty terms as `ArchitecturalStyle` and made

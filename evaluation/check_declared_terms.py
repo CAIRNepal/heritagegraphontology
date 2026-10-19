@@ -17,7 +17,7 @@ are not terms and are ignored. Two exemptions are explicit and printed:
     see a missing predicate);
   * SKIPPED: files out of scope (none at present).
 
-The LUX bridge module (ontology/lux/) mints its own interoperability terms;
+The LUX bridge module (heritagegraph-lux-migration/alignment/) mints its own interoperability terms;
 files that belong to it (LUX_SCOPED) may use those terms as well as the core's.
 Every other file may use core terms only.
 
@@ -37,16 +37,20 @@ ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
 HG = "https://cair-nepal.org/heritagegraph/"
 
+LUX_DIR = ROOT / "heritagegraph-lux-migration"
 SCAN = [ROOT / "examples", ROOT / "evaluation", ROOT / "ontology" / "lux",
-        ROOT / "cq_sparql.md"]
-LUX_MODULE_FILES = sorted((ROOT / "ontology" / "lux").glob("*.ttl"))
-LUX_SCOPED = ("ontology/lux", "evaluation/lux", "examples/lux-")
-SUFFIXES = {".ttl", ".rq", ".py", ".json", ".md", ".csv"}
+        LUX_DIR / "alignment", LUX_DIR / "queries", LUX_DIR / "scripts", ROOT / "cq_sparql.md"]
+LUX_MODULE_FILES = sorted((ROOT / "ontology" / "lux").glob("*.ttl")) + sorted((LUX_DIR / "alignment").glob("*.ttl"))
+LUX_SCOPED = ("ontology/lux", "evaluation/lux", "examples/lux-", "heritagegraph-lux-migration/")
+SUFFIXES = {".ttl", ".rq", ".sparql", ".py", ".json", ".md", ".csv"}
 IGNORED_DIRS = {".venv", "venv", "results", "__pycache__", "protege"}
 
 # Instance / document namespaces under the HeritageGraph base that are not terms.
 NON_TERMS = ("demo/", "example/", "ontology", "schema", "scheme/", "dataset", "imported/",
-             "alignment", "edm-profile")
+             "alignment", "edm-profile",
+             # instance IRIs minted by the LUX migration CONSTRUCTs
+             "appellation/", "concept/", "curated/", "embedded/", "event/", "group/", "id/",
+             "name/", "object/", "person/", "place/", "set/", "work/")
 
 # Pre-1.0.0 types that external data (the LUX endpoint's migrated graph) still
 # carries; only the script that maps them onto v1.0.0 classes may name them.

@@ -5,7 +5,7 @@ Two subcommands (default: audit):
 
   audit             Full-pass audit of every external mapping triple in
                     HeritageGraph.ttl and the LUX alignment module
-                    (ontology/lux/heritagegraph-lux-alignment.ttl).
+                    (heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl).
                     Enumerates all triples
                     <hg-term, mapping-predicate, external-term> for the mapping
                     predicates (skos:exactMatch / closeMatch / broadMatch /
@@ -57,7 +57,7 @@ from rdflib import Graph, OWL, RDF, RDFS, SKOS, URIRef
 
 ROOT = Path(__file__).resolve().parents[1]
 TTL = ROOT / "ontology" / "HeritageGraph.ttl"
-LUX = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
+LUX = ROOT / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
 SOURCES = {"core": TTL, "lux": LUX}
 MANUAL = Path(__file__).resolve().parent / "mapping_manual_verification.csv"
 CRM_FAMILY = ("http://www.cidoc-crm.org/cidoc-crm/",
@@ -182,12 +182,13 @@ def http_exists(uri: str) -> str:
 
 
 LINKED_ART_CONTEXT = "https://linked.art/ns/v1/linked-art.json"
-LINKED_ART_NS = ("http://www.ics.forth.gr/isl/CRMdig/", "https://linked.art/ns/terms/")
+LINKED_ART_NS = ("http://www.ics.forth.gr/isl/CRMdig/", "http://www.ics.forth.gr/isl/CRMsci/",
+                 "https://linked.art/ns/terms/")
 
 
 def linked_art_terms() -> set[str]:
-    """IRIs the Linked Art JSON-LD context maps its terms to. CRMdig (FORTH
-    namespace) and la: terms are verified here: they are the IRIs LUX data
+    """IRIs the Linked Art JSON-LD context maps its terms to. CRMdig and CRMsci
+    (FORTH namespaces) and la: terms are verified here: they are the IRIs LUX data
     carries, and the FORTH CRMdig IRIs do not dereference."""
     import json
     data = fetch(LINKED_ART_CONTEXT, "linked-art-context.json")

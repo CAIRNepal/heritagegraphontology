@@ -17,7 +17,7 @@ from pathlib import Path
 from rdflib import Graph, RDFS, OWL, URIRef
 
 HERE = Path(__file__).resolve().parent
-BRIDGE = HERE.parents[1] / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
+BRIDGE = HERE.parents[1] / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
 HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 

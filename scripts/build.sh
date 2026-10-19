@@ -15,7 +15,7 @@
 #   2. runs WIDOCO (owl2vowl runs inside the container — no local Java needed)
 #   3. publishes a single, fresh docs site (HTML + RDF serializations + WebVOWL)
 #
-# The LUX alignment (ontology/lux/heritagegraph-lux-alignment.ttl) is a SEPARATE
+# The LUX alignment (heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl) is a SEPARATE
 # module and is intentionally NOT documented here.
 #
 # Requirements: docker, python3 with rdflib (e.g. the repo venv).

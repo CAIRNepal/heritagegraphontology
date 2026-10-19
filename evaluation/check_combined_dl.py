@@ -42,7 +42,7 @@ ROBOT_JAR = os.environ.get("ROBOT_JAR", "/tmp/hgtools/robot.jar")
 JAVA = (str(Path(os.environ["JAVA_HOME"]) / "bin" / "java")
         if os.environ.get("JAVA_HOME") else shutil.which("java") or "java")
 
-LUX = ROOT / "ontology" / "lux" / "heritagegraph-lux-alignment.ttl"
+LUX = ROOT / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
 # Examples that are expressed in a module on top of the core.
 MODULES = {
     "lux-murti-merged.ttl": [LUX],

@@ -10,7 +10,7 @@
 #
 # Validate (merged shapes + RDFS inference):
 #   pyshacl -s ontology/HeritageGraph.shacl.ttl -s ontology/lux/HeritageGraph-lux.shacl.ttl \
-#           -e ontology/lux/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
+#           -e heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
 #           -i rdfs -df turtle examples/lux-murti-merged.ttl
 
 @prefix hg:   <https://cair-nepal.org/heritagegraph/> .
