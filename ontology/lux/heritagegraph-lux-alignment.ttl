@@ -49,6 +49,17 @@
 # updated to reference those crm: URIs directly instead of the retired
 # heritageGraph: wrapper. See §6 below for the full note.
 #
+# Source (October 2026): imported from CAIRNepal/heritagegraph-lux-migration,
+# alignment/heritagegraph-lux-alignment.ttl at commit 6772240 (2026-07-26), and
+# migrated to the v1.0.0 core: namespace https://cair-nepal.org/heritagegraph/,
+# camelCase property names, official CRMinf/CRMsci namespaces, no logical axioms
+# whose subject is an external term, no equivalence to external classes
+# (Activity, Concept, HistoricalEvent now rdfs:subClassOf; Deity ≡ crm:E28 and
+# CalendarSystem → crm:E29_Designated_Reference_System removed), no enumeration
+# under Concept, mappings on properties whose core IRI already is the CRM
+# property dropped as redundant, and hadParticipant ≡ crm:P11 replaced by
+# skos:closeMatch. This file is the authoritative copy for HeritageGraph v1.0.0.
+#
 # Apply with:  owl:imports  or  cat alignment.ttl >> HeritageGraph.ttl
 #####################################################################
 

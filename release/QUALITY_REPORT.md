@@ -1,13 +1,13 @@
 # HeritageGraph Release Quality Report
 
-Generated: 2026-10-15T21:59:47.674837
+Generated: 2026-10-19T21:54:15.174214
 
 ## Executive summary
 
 | Dimension | Score (/10) | Status |
 |-----------|-------------|--------|
 | Artefact packaging | 8.5 | Release bundle complete (TTL, SHACL, alignment, EDM, VoID, examples) |
-| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 9,779 inferred triples |
+| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 10,209 inferred triples |
 | Logical consistency (HermiT DL) | 9.0 | HermiT: 0 unsatisfiable classes (imports stripped) |
 | Schema adequacy (CQ TBox) | 9.5 | 32/32 ASK queries pass |
 | ABox demonstrability | 8.5 | Mini Kathmandu ABox + 32 sample SELECT queries |
@@ -50,10 +50,10 @@ https://github.com/CAIRNepal/heritagegraphontology
 
 ```
 All-32 CQ expected-vs-actual execution
-Date: 2026-10-15T21:59:46.713786
+Date: 2026-10-19T21:54:13.756488
 TBox: HeritageGraph.ttl
 ABox: kathmandu-mini-abox.ttl
-Triples loaded: 4523
+Triples loaded: 4575
 Pass criterion: returned bindings == expected answer set (exact match).
 
 CQ1   [PASS] expected=1  actual=1  Which architectural structures were built during a time period using an architectural style?
@@ -98,7 +98,6 @@ Negative control (CQ11 with a broken predicate): actual=0 vs expected=1 -> misma
 ## Consistency excerpt
 
 ```
-
   ✅  No classes found subClassOf owl:Nothing
 
 ======================================================================
@@ -121,7 +120,7 @@ Negative control (CQ11 with a broken predicate): actual=0 vs expected=1 -> misma
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 9779 inferred triples
+  OWL-RL closure      : 10209 inferred triples
   Unsatisfiable       : 0 classes
   Disjointness axioms : 2
 

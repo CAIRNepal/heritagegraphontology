@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constraint census for the published SHACL shapes.
 
-The negative-test suite (evaluation/independent_abox.py) injects eight
+The negative-test suite (evaluation/independent_abox.py) injects eleven
 single violations; on its own that is an anecdote. This script supplies the
 systematic statement behind it: how many constraints of each SHACL component
 type the published shape graph carries, and which of those component types
@@ -28,12 +28,15 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 8 tests hitting it.
+# Negative-test coverage: component type -> number of the 11 tests hitting it.
 NEG_TESTS = {
     "sh:minCount": 4,   # missing style / assigned deity / assertsAbout / time-span
+    "sh:maxCount": 1,   # two embodied deities on one tenure
     "sh:datatype": 1,   # dcterms:identifier not xsd:anyURI
-    "sh:in": 1,         # guthiType outside the controlled vocabulary
     "sh:class": 2,      # non-TimeSpan time-span; DocumentationActivity in ritual slot
+    "sh:in": 1,         # guthiType outside the controlled vocabulary
+    "sh:nodeKind": 1,   # ritual site given as a blank node
+    "sh:or": 1,         # ritual performed by a person, not a Guthi or caste group
 }
 
 direct = {
@@ -65,5 +68,6 @@ for name, pred in direct.items():
 touched = [k for k in direct if NEG_TESTS.get(k)]
 print(f"\nTotal component occurrences: {total}")
 print(f"Component types present: {len(direct)}; "
-      f"exercised by the 8 negative tests: {len(touched)} ({', '.join(touched)})")
-print("Untouched by negative tests: sh:maxCount, sh:nodeKind, sh:or.")
+      f"exercised by the {sum(NEG_TESTS.values())} negative tests: {len(touched)} ({', '.join(touched)})")
+untouched = [k for k in direct if not NEG_TESTS.get(k)]
+print(f"Untouched by negative tests: {', '.join(untouched) or 'none'}.")

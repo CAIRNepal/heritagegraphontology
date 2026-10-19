@@ -2,10 +2,10 @@
 ======================================================================
   §4.2  Modeling Quality — OOPS! Pitfall Analysis
 ======================================================================
-Date     : 2026-10-15T21:59:36.936935
+Date     : 2026-10-19T21:54:04.124716
 Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
 
-  Parsed 4180 triples
+  Parsed 4232 triples
 
 ======================================================================
   OOPS! Online Service
@@ -22,16 +22,16 @@ Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.t
   Unique pitfall types:    3
 
   [    MINOR] P08 — Missing annotations  (4 occurrence(s))
-             → http://www.w3.org/2004/02/skos/core#ConceptScheme: Missing rdfs:label
-             → http://www.w3.org/2004/02/skos/core#ConceptScheme: Missing skos:definition or rdfs:comment
              → http://www.w3.org/2004/02/skos/core#Concept: Missing rdfs:label
+             → http://www.w3.org/2004/02/skos/core#Concept: Missing skos:definition or rdfs:comment
+             → http://www.w3.org/2004/02/skos/core#ConceptScheme: Missing rdfs:label
 
   [IMPORTANT] P10 — Missing disjointness  (14 occurrence(s))
-             → https://cair-nepal.org/heritagegraph/DocumentationActivity: Sibling classes lack owl:disjointWith...
-             → http://www.w3.org/ns/prov#Entity: Sibling classes lack owl:disjointWith: SelectionCriterion, Prop...
-             → http://www.w3.org/ns/prov#Activity: Sibling classes lack owl:disjointWith: Enshrinement, E14_Cond...
+             → https://cair-nepal.org/heritagegraph/SelectionCriterion: Sibling classes lack owl:disjointWith: T...
+             → https://cair-nepal.org/heritagegraph/ArchitecturalStructure: Sibling classes lack owl:disjointWit...
+             → http://www.w3.org/ns/prov#Entity: Sibling classes lack owl:disjointWith: I2_Belief, E57_Material,...
 
   [IMPORTANT] P11 — Missing domain or range  (206 occurrence(s))
-             → http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of: Missing rdfs:domain
-             → http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of: Missing rdfs:range
-             → http://www.cidoc-crm.org/cidoc-crm/P62_depicts: Missing rdfs:domain
+             → http://www.w3.org/ns/prov#wasInformedBy: Missing rdfs:domain
+             → http://www.w3.org/ns/prov#wasInformedBy: Missing rdfs:range
+             → https://cair-nepal.org/heritagegraph/isInvokedInRitual: Missing rdfs:domain
