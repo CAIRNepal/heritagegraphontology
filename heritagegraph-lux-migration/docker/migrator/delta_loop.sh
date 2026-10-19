@@ -53,7 +53,7 @@ printf -v DELTA_MIN  '%02d' "$((10#$DELTA_MIN))"
 ENDPOINT="${OXIGRAPH_ENDPOINT:-http://oxigraph:7878}"
 DELTA_URL="${DELTA_URL:-https://linked-art.lux.collections.yale.edu/data/diffs/latest.nq.gz}"
 QUERIES_DIR="${QUERIES_DIR:-/work/queries}"
-GRAPH_IMPORTED="https://w3id.org/heritagegraph/imported/lux"
+GRAPH_IMPORTED="https://cair-nepal.org/heritagegraph/imported/lux"
 
 # Graceful shutdown — log and exit cleanly on TERM/INT.
 shutdown() {

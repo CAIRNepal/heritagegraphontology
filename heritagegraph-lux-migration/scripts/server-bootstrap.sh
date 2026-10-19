@@ -115,7 +115,7 @@ else
         "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl" \
        || curl -fL --retry 3 \
         -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/HeritageGraph.ttl" \
+        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl" \
        || curl -fL --retry 3 \
         -o "$HG_TTL" \
         "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/HeritageGraph.ttl"; then

@@ -34,7 +34,7 @@ PREFIX la:            <https://linked.art/ns/terms/>
 PREFIX crm:           <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dig:           <http://www.ics.forth.gr/isl/CRMdig/>
 PREFIX sci:           <http://www.ics.forth.gr/isl/CRMsci/>
-PREFIX heritageGraph: <https://w3id.org/heritagegraph/>
+PREFIX heritageGraph: <https://cair-nepal.org/heritagegraph/>
 PREFIX rdfs:          <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX dct:           <http://purl.org/dc/terms/>
 PREFIX skos:          <http://www.w3.org/2004/02/skos/core#>
@@ -42,21 +42,21 @@ PREFIX owl:           <http://www.w3.org/2002/07/owl#>
 
 
 # === t1_object ===
-# 1. Object branch → hg:HumanMadeObject (subtype carried via classified_as)
+# 1. Object branch → crm:E22_Human-Made_Object (subtype carried via classified_as)
 CONSTRUCT {
   ?hgObj a crm:E22_Human-Made_Object ;
-         heritageGraph:id            ?obj ;
-         heritageGraph:name          ?label ;
-         heritageGraph:has_architectural_style ?type ;
-         heritageGraph:was_produced_by_event   ?prod ;
-         heritageGraph:has_current_location    ?place ;
-         heritageGraph:used_materials          ?mat ;
-         heritageGraph:carries_inscription     ?insc ;
-         heritageGraph:has_dimension           ?dim ;
-         heritageGraph:has_visual_item         ?vis .
+         owl:sameAs            ?obj ;
+         <http://www.w3.org/2000/01/rdf-schema#label>          ?label ;
+         heritageGraph:hasArchitecturalStyle ?type ;
+         crm:P108i_was_produced_by   ?prod ;
+         crm:P55_has_current_location    ?place ;
+         crm:P45_consists_of          ?mat ;
+         heritageGraph:carriesInscription     ?insc ;
+         heritageGraph:hasDimension           ?dim ;
+         heritageGraph:hasVisualItem         ?vis .
 } WHERE {
   ?obj a crm:E22_Human-Made_Object .
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/object/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/object/",
                   REPLACE(STR(?obj), "^.*/", ""))) AS ?hgObj)
   OPTIONAL { ?obj rdfs:label ?label }
   OPTIONAL { ?obj crm:P2_has_type ?type }
@@ -70,22 +70,22 @@ CONSTRUCT {
 
 
 # === t2_person ===
-# 2. Person branch → hg:Person (with Birth/Death events)
+# 2. Person branch → crm:E21_Person (with Birth/Death events)
 CONSTRUCT {
   ?hgPerson a crm:E21_Person ;
-            heritageGraph:id   ?p ;
-            heritageGraph:name ?name .
+            owl:sameAs   ?p ;
+            <http://www.w3.org/2000/01/rdf-schema#label> ?name .
   ?birth a heritageGraph:Birth ;
-         heritageGraph:has_timespan  ?bSpan ;
-         heritageGraph:took_place_at ?bPlace .
+         crm:P4_has_time-span  ?bSpan ;
+         crm:P7_took_place_at ?bPlace .
   ?death a heritageGraph:Death ;
-         heritageGraph:has_timespan  ?dSpan ;
-         heritageGraph:took_place_at ?dPlace .
-  ?hgPerson heritageGraph:was_born_by   ?birth ;
-            heritageGraph:died_in_event ?death .
+         crm:P4_has_time-span  ?dSpan ;
+         crm:P7_took_place_at ?dPlace .
+  ?hgPerson heritageGraph:wasBornBy   ?birth ;
+            heritageGraph:diedInEvent ?death .
 } WHERE {
   ?p a crm:E21_Person .
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/person/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/person/",
                   REPLACE(STR(?p), "^.*/", ""))) AS ?hgPerson)
   OPTIONAL { ?p rdfs:label ?name }
   OPTIONAL { ?p crm:P98i_was_born ?birth .
@@ -101,18 +101,18 @@ CONSTRUCT {
 # 3. Group branch → hg:Group (Formation / Dissolution)
 CONSTRUCT {
   ?hgGroup a heritageGraph:Group ;
-           heritageGraph:id   ?g ;
-           heritageGraph:name ?gname ;
-           heritageGraph:was_formed_by ?formed ;
-           heritageGraph:dissolved_by  ?dissolved .
+           owl:sameAs   ?g ;
+           <http://www.w3.org/2000/01/rdf-schema#label> ?gname ;
+           heritageGraph:wasFormedBy ?formed ;
+           heritageGraph:dissolvedBy  ?dissolved .
   ?formed a heritageGraph:Formation ;
-          heritageGraph:has_timespan  ?fSpan ;
-          heritageGraph:took_place_at ?fPlace .
+          crm:P4_has_time-span  ?fSpan ;
+          crm:P7_took_place_at ?fPlace .
   ?dissolved a heritageGraph:Dissolution ;
-             heritageGraph:has_timespan ?xSpan .
+             crm:P4_has_time-span ?xSpan .
 } WHERE {
   ?g a crm:E74_Group .
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/group/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/group/",
                   REPLACE(STR(?g), "^.*/", ""))) AS ?hgGroup)
   OPTIONAL { ?g rdfs:label ?gname }
   OPTIONAL { ?g crm:P95i_was_formed_by ?formed .
@@ -124,15 +124,15 @@ CONSTRUCT {
 
 
 # === t4_place ===
-# 4. Place branch → hg:Place
+# 4. Place branch → crm:E53_Place
 CONSTRUCT {
   ?hgPlace a crm:E53_Place ;
-           heritageGraph:id                ?pl ;
-           heritageGraph:name              ?plname ;
-           heritageGraph:place_coordinates ?wkt .
+           owl:sameAs                ?pl ;
+           <http://www.w3.org/2000/01/rdf-schema#label>              ?plname ;
+           <http://www.opengis.net/ont/geosparql#asWKT> ?wkt .
 } WHERE {
   ?pl a crm:E53_Place .
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/place/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/place/",
                   REPLACE(STR(?pl), "^.*/", ""))) AS ?hgPlace)
   OPTIONAL { ?pl rdfs:label ?plname }
   OPTIONAL { ?pl crm:P168_place_is_defined_by ?wkt }
@@ -144,8 +144,8 @@ CONSTRUCT {
 #    specialised concept types get their specific HG class.
 CONSTRUCT {
   ?hgConcept a ?hgType ;
-             heritageGraph:id   ?c ;
-             heritageGraph:name ?cname ;
+             owl:sameAs   ?c ;
+             <http://www.w3.org/2000/01/rdf-schema#label> ?cname ;
              skos:exactMatch    ?c .
 } WHERE {
   {
@@ -162,7 +162,7 @@ CONSTRUCT {
   UNION { ?c a crm:E58_Measurement_Unit . BIND(heritageGraph:MeasurementUnit AS ?hgType) }
   UNION { ?c a crm:E72_Legal_Object     . BIND(heritageGraph:LegalObject     AS ?hgType) }
   UNION { ?c a crm:E99_Product_Type     . BIND(heritageGraph:ProductType     AS ?hgType) }
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/concept/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/concept/",
                   REPLACE(STR(?c), "^.*/", ""))) AS ?hgConcept)
   OPTIONAL { ?c rdfs:label ?cname }
 }
@@ -175,11 +175,11 @@ CONSTRUCT {
 #    generic E7 / E5 / E4 (ProvenanceActivity wrappers are E7-typed in LUX).
 CONSTRUCT {
   ?hgEv a ?hgClass ;
-        heritageGraph:id             ?ev ;
-        heritageGraph:carried_out_by ?actor ;
-        heritageGraph:took_place_at  ?place ;
-        heritageGraph:has_timespan   ?span ;
-        heritageGraph:paid_amount    ?amt .
+        owl:sameAs             ?ev ;
+        crm:P14_carried_out_by ?actor ;
+        crm:P7_took_place_at  ?place ;
+        crm:P4_has_time-span   ?span ;
+        heritageGraph:paidAmount    ?amt .
 } WHERE {
   {  ?ev a crm:E12_Production            . BIND(crm:E12_Production            AS ?hgClass) }
   UNION
@@ -272,7 +272,7 @@ CONSTRUCT {
      FILTER NOT EXISTS { ?ev a ?sub .
        FILTER(?sub IN (crm:E5_Event, crm:E7_Activity, crm:E93_Presence)) } }
 
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/event/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/event/",
                   REPLACE(STR(?ev), "^.*/", ""))) AS ?hgEv)
   OPTIONAL { ?ev crm:P14_carried_out_by ?actor }
   OPTIONAL { ?ev crm:P7_took_place_at   ?place }
@@ -287,8 +287,8 @@ CONSTRUCT {
 #    DigitalObject)
 CONSTRUCT {
   ?hgWork a ?hgClass ;
-          heritageGraph:id   ?w ;
-          heritageGraph:name ?wname .
+          owl:sameAs   ?w ;
+          <http://www.w3.org/2000/01/rdf-schema#label> ?wname .
 } WHERE {
   {  ?w a crm:E33_Linguistic_Object    . BIND(heritageGraph:LinguisticObject    AS ?hgClass)
      FILTER NOT EXISTS { ?w a crm:E34_Inscription } }
@@ -310,7 +310,7 @@ CONSTRUCT {
      FILTER NOT EXISTS { ?w a crm:E32_Authority_Document } }
   UNION
   {  ?w a dig:D1_Digital_Object        . BIND(heritageGraph:DigitalObject       AS ?hgClass) }   # dig: NOT crmdig:
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/work/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/work/",
                   REPLACE(STR(?w), "^.*/", ""))) AS ?hgWork)
   OPTIONAL { ?w rdfs:label ?wname }
 }
@@ -321,21 +321,21 @@ CONSTRUCT {
 #    NOTE: la:Set is one of the seven genuine la: classes — it is NOT crm:E78.
 CONSTRUCT {
   ?hgSet a heritageGraph:Set ;
-         heritageGraph:id   ?s ;
-         heritageGraph:name ?sname ;
-         heritageGraph:has_component ?member .
+         owl:sameAs   ?s ;
+         <http://www.w3.org/2000/01/rdf-schema#label> ?sname ;
+         crm:P46_is_composed_of ?member .
   ?hgCH a heritageGraph:CuratedHolding ;
-        heritageGraph:id   ?ch ;
-        heritageGraph:name ?chname .
+        owl:sameAs   ?ch ;
+        <http://www.w3.org/2000/01/rdf-schema#label> ?chname .
 } WHERE {
   { ?s a la:Set .
-    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/set/",
+    BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/set/",
                     REPLACE(STR(?s), "^.*/", ""))) AS ?hgSet)
     OPTIONAL { ?s rdfs:label ?sname }
     OPTIONAL { ?s la:has_member ?member } }
   UNION
   { ?ch a crm:E78_Curated_Holding .
-    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/curated/",
+    BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/curated/",
                     REPLACE(STR(?ch), "^.*/", ""))) AS ?hgCH)
     OPTIONAL { ?ch rdfs:label ?chname } }
 }
@@ -345,24 +345,24 @@ CONSTRUCT {
 # 9. Identifier / Name / other Appellations (embedded on every record)
 CONSTRUCT {
   ?hgId a heritageGraph:Identifier ;
-        heritageGraph:id   ?idVal ;
-        heritageGraph:name ?idLabel .
+        owl:sameAs   ?idVal ;
+        <http://www.w3.org/2000/01/rdf-schema#label> ?idLabel .
   ?hgName a heritageGraph:Name ;
-          heritageGraph:name ?nameLabel .
+          <http://www.w3.org/2000/01/rdf-schema#label> ?nameLabel .
   ?hgApp a heritageGraph:Appellation ;
-         heritageGraph:name ?appLabel .
+         <http://www.w3.org/2000/01/rdf-schema#label> ?appLabel .
 } WHERE {
   { ?ent crm:P1_is_identified_by ?id .
     ?id a crm:E42_Identifier ;
         rdfs:label ?idLabel ;
         crm:P190_has_symbolic_content ?idVal .
-    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/id/",
+    BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/id/",
                     REPLACE(STR(?id), "^.*/", ""))) AS ?hgId) }
   UNION
   { ?ent crm:P1_is_identified_by ?nm .
     ?nm a crm:E33_E41_Linguistic_Appellation ;
         crm:P190_has_symbolic_content ?nameLabel .
-    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/name/",
+    BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/name/",
                     REPLACE(STR(?nm), "^.*/", ""))) AS ?hgName) }
   UNION
   { ?ent crm:P1_is_identified_by ?ap .
@@ -371,7 +371,7 @@ CONSTRUCT {
     FILTER NOT EXISTS { ?ap a ?sub .
       FILTER(?sub IN (crm:E42_Identifier, crm:E33_E41_Linguistic_Appellation,
                       crm:E35_Title)) }
-    BIND(IRI(CONCAT("https://w3id.org/heritagegraph/appellation/",
+    BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/appellation/",
                     REPLACE(STR(?ap), "^.*/", ""))) AS ?hgApp) }
 }
 
@@ -382,9 +382,9 @@ CONSTRUCT {
 #     Previously dropped entirely (major cause of the 3.47M → 98k ratio).
 CONSTRUCT {
   ?hgE a ?hgClass ;
-       heritageGraph:id   ?e ;
-       heritageGraph:name ?elabel ;
-       heritageGraph:dimension_has_unit ?unit .
+       owl:sameAs   ?e ;
+       <http://www.w3.org/2000/01/rdf-schema#label> ?elabel ;
+       heritageGraph:dimensionHasUnit ?unit .
 } WHERE {
   {  ?e a crm:E52_Time-Span            . BIND(crm:E52_Time-Span             AS ?hgClass) }
   UNION
@@ -408,7 +408,7 @@ CONSTRUCT {
   {  ?e a crm:E93_Presence             . BIND(heritageGraph:Presence             AS ?hgClass) }
   UNION
   {  ?e a crm:E3_Condition_State       . BIND(crm:E3_Condition_State       AS ?hgClass) }
-  BIND(IRI(CONCAT("https://w3id.org/heritagegraph/embedded/",
+  BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/embedded/",
                   REPLACE(STR(?e), "^.*/", ""))) AS ?hgE)
   OPTIONAL { ?e rdfs:label ?elabel }
   OPTIONAL { ?e crm:P91_has_unit ?unit }
@@ -437,15 +437,15 @@ WHERE {
     { ?hg skos:closeMatch ?luxClass }
       UNION
     { ?hg skos:broadMatch ?luxClass }
-    FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+    FILTER (STRSTARTS(STR(?hg), "https://cair-nepal.org/heritagegraph/"))
   }
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
-      <https://w3id.org/heritagegraph/alignment/lux> heritageGraph:alignment_lux_directly_reuses ?luxClass .
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
+      <https://cair-nepal.org/heritagegraph/alignment/lux> heritageGraph:alignmentLuxDirectlyReuses ?luxClass .
     }
   }
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
+    GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
   }
 }
 GROUP BY ?luxClass

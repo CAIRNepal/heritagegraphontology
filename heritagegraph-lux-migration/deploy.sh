@@ -63,7 +63,7 @@ say "pre-flight (running from $(pwd))"
 if [[ ! -f alignment/HeritageGraph.ttl ]]; then
     warn "alignment/HeritageGraph.ttl not present — migrator will skip the HG ontology load."
     warn "Download with:"
-    warn "  curl -L -o alignment/HeritageGraph.ttl https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/HeritageGraph.ttl"
+    warn "  curl -L -o alignment/HeritageGraph.ttl https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl"
 fi
 ok "local files look sane"
 

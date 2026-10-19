@@ -57,7 +57,7 @@ validate:                                   ## Run validation queries on the liv
 delta-now:                                  ## Trigger an immediate delta sync.
 	$(COMPOSE) exec delta-syncer /work/bin/run_delta.sh
 
-ALIGN_GRAPH ?= https://w3id.org/heritagegraph/alignment/lux
+ALIGN_GRAPH ?= https://cair-nepal.org/heritagegraph/alignment/lux
 ALIGN_TTL   ?= alignment/heritagegraph-lux-alignment.ttl
 
 reload-alignment:                           ## Clear and reload the alignment named graph from $(ALIGN_TTL).

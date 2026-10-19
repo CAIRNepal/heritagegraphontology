@@ -19,7 +19,7 @@ cd heritagegraph-lux-migration
 
 # 1. fetch HeritageGraph.ttl into alignment/
 curl -L -o alignment/HeritageGraph.ttl \
-  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/HeritageGraph.ttl
+  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl
 
 # 2. configure
 cp docker/.env.example docker/.env

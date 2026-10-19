@@ -152,16 +152,16 @@ hg-delta-syncer   Up 7 minutes
 
 Triple counts:
   https://lux.collections.yale.edu/                              3,210,000
-  https://w3id.org/heritagegraph/                                  120
-  https://w3id.org/heritagegraph/alignment/lux                     273
-  https://w3id.org/heritagegraph/imported/lux                  120,000
+  https://cair-nepal.org/heritagegraph/                                  120
+  https://cair-nepal.org/heritagegraph/alignment/lux                     273
+  https://cair-nepal.org/heritagegraph/imported/lux                  120,000
 ```
 
 ### Ad-hoc SPARQL sorgu
 
 ```bash
 ssh root@server42.dnsbilisim.net 'cd /root/github/heritagegraph-lux-migration && \
-    make sparql Q="SELECT (COUNT(*) AS ?n) WHERE { GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?s a ?t } }"'
+    make sparql Q="SELECT (COUNT(*) AS ?n) WHERE { GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?s a ?t } }"'
 ```
 
 Lokalden SPARQL erişimi (Oxigraph 7878 portu sunucuda local-only; SSH tunnel ile aç):

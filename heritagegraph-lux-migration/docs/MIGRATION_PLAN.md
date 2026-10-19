@@ -79,9 +79,9 @@ Keep LUX raw, alignment, HG-native, and HG-imported in separate graphs so we can
 | Graph URI | Contents |
 |---|---|
 | `<https://lux.collections.yale.edu/>` | Raw LUX dump (read-only after load) |
-| `<https://w3id.org/heritagegraph/alignment/lux>` | The 273-triple alignment ontology |
-| `<https://w3id.org/heritagegraph/>` | HeritageGraph.ttl + native (Niraj/Nabin's) data |
-| `<https://w3id.org/heritagegraph/imported/lux>` | LUX records transformed into HG instances (this graph is the migration output) |
+| `<https://cair-nepal.org/heritagegraph/alignment/lux>` | The 273-triple alignment ontology |
+| `<https://cair-nepal.org/heritagegraph/>` | HeritageGraph.ttl + native (Niraj/Nabin's) data |
+| `<https://cair-nepal.org/heritagegraph/imported/lux>` | LUX records transformed into HG instances (this graph is the migration output) |
 
 ---
 
@@ -142,9 +142,9 @@ oxigraph load \
 
 ```bash
 oxigraph load --location /var/lib/oxigraph \
-  --file HeritageGraph.ttl              --graph "https://w3id.org/heritagegraph/"
+  --file HeritageGraph.ttl              --graph "https://cair-nepal.org/heritagegraph/"
 oxigraph load --location /var/lib/oxigraph \
-  --file heritagegraph-lux-alignment.ttl --graph "https://w3id.org/heritagegraph/alignment/lux"
+  --file heritagegraph-lux-alignment.ttl --graph "https://cair-nepal.org/heritagegraph/alignment/lux"
 ```
 
 ### 4.3 Materialize subClassOf inferences (optional but recommended)
@@ -152,13 +152,13 @@ oxigraph load --location /var/lib/oxigraph \
 Oxigraph does NOT do automatic OWL inference. We materialize the alignment closure once so transformation queries are simpler:
 
 ```sparql
-INSERT { GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+INSERT { GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
   ?inst a ?super .
 } }
 WHERE { GRAPH ?g {
   ?inst a ?sub .
   ?sub  rdfs:subClassOf+ ?super .
-  FILTER (STRSTARTS(STR(?sub), "https://w3id.org/heritagegraph/"))
+  FILTER (STRSTARTS(STR(?sub), "https://cair-nepal.org/heritagegraph/"))
 } }
 ```
 
@@ -177,7 +177,7 @@ python migrate_lux_to_hg.py \
   --mode transform \
   --endpoint http://127.0.0.1:7878 \
   --queries lux_to_hg_migration.sparql \
-  --target-graph "https://w3id.org/heritagegraph/imported/lux" \
+  --target-graph "https://cair-nepal.org/heritagegraph/imported/lux" \
   --batch-size 50000 \
   --log-file migration.log
 ```
@@ -186,11 +186,11 @@ What each query writes:
 
 | # | Query | Writes (HG class) | Approx records |
 |---|---|---|---|
-| 1 | Object branch | `hg:HumanMadeObject` | ~5.5 M |
-| 2 | Person branch | `hg:Person` + `hg:Birth`/`hg:Death` | ~1.2 M |
+| 1 | Object branch | `crm:E22_Human-Made_Object` | ~5.5 M |
+| 2 | Person branch | `crm:E21_Person` + `hg:Birth`/`hg:Death` | ~1.2 M |
 | 3 | Group branch | `hg:Group` + `hg:Formation`/`hg:Dissolution` | ~150 K |
-| 4 | Place branch | `hg:Place` | ~700 K |
-| 5 | Concept branch | `hg:Type`/`hg:Material`/`hg:Language`/… | ~3 M |
+| 4 | Place branch | `crm:E53_Place` | ~700 K |
+| 5 | Concept branch | `hg:Concept`/`crm:E57_Material`/`hg:Language`/… | ~3 M |
 | 6 | Activity branch | 14 HG event subclasses | ~5 M |
 | 7 | Work branch | `hg:LinguisticObject`/`hg:VisualItem`/`hg:PropositionalObject`/`hg:DigitalObject` | ~600 K |
 | 8 | Set / CuratedHolding | `hg:Set` / `hg:CuratedHolding` | ~150 K |
@@ -201,7 +201,7 @@ What each query writes:
 Pure `INSERT { } WHERE { }` over 16 M records will OOM Oxigraph (or any triplestore). The script slices each query by chunk:
 
 ```sparql
-INSERT { GRAPH <…/imported/lux> { ?hgObj a heritageGraph:HumanMadeObject . … } }
+INSERT { GRAPH <…/imported/lux> { ?hgObj a crm:E22_Human-Made_Object . … } }
 WHERE  {
   ?obj a crm:E22_Human-Made_Object .
   …
@@ -220,13 +220,13 @@ LUX URIs look like `https://lux.collections.yale.edu/data/object/abcd-efgh-…`.
 ```
 https://lux.collections.yale.edu/data/object/UUID
               ↓
-https://w3id.org/heritagegraph/imported/lux/object/UUID
+https://cair-nepal.org/heritagegraph/imported/lux/object/UUID
 ```
 
 The original LUX URI is preserved as `owl:sameAs`, so federated discovery still works:
 
 ```turtle
-hgi:object/UUID  a heritageGraph:HumanMadeObject ;
+hgi:object/UUID  a crm:E22_Human-Made_Object ;
                  owl:sameAs <https://lux.collections.yale.edu/data/object/UUID> ;
                  …
 ```
@@ -258,12 +258,12 @@ WHERE {
       || STRSTARTS(STR(?luxClass),"http://www.ics.forth.gr/isl/CRMsci/")
       || STRSTARTS(STR(?luxClass),"https://linked.art/ns/terms/"))
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
-      ?hg rdfs:subClassOf+ ?luxClass .   FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
+      ?hg rdfs:subClassOf+ ?luxClass .   FILTER (STRSTARTS(STR(?hg), "https://cair-nepal.org/heritagegraph/"))
     }
     UNION
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
-      ?hg owl:equivalentClass ?luxClass . FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
+      ?hg owl:equivalentClass ?luxClass . FILTER (STRSTARTS(STR(?hg), "https://cair-nepal.org/heritagegraph/"))
     }
   }
 }
@@ -324,7 +324,7 @@ Two-engineer-week realistic estimate including pilot iteration.
 Migration writes to one isolated named graph. Rollback is one SPARQL Update:
 
 ```sparql
-DROP GRAPH <https://w3id.org/heritagegraph/imported/lux> ;
+DROP GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> ;
 ```
 
 The raw LUX graph and HG-native graph are untouched, so nothing else is affected. The snapshot from Phase 7 is the disaster-recovery fallback.
@@ -345,8 +345,8 @@ gunzip -k /data/lux/lux.nq.gz
 oxigraph load --location /var/lib/oxigraph --file /data/lux/lux.nq --format application/n-quads
 
 # 4. load HG ontology + alignment
-oxigraph load --location /var/lib/oxigraph --file HeritageGraph.ttl              --graph "https://w3id.org/heritagegraph/"
-oxigraph load --location /var/lib/oxigraph --file heritagegraph-lux-alignment.ttl --graph "https://w3id.org/heritagegraph/alignment/lux"
+oxigraph load --location /var/lib/oxigraph --file HeritageGraph.ttl              --graph "https://cair-nepal.org/heritagegraph/"
+oxigraph load --location /var/lib/oxigraph --file heritagegraph-lux-alignment.ttl --graph "https://cair-nepal.org/heritagegraph/alignment/lux"
 
 # 5. pilot transform (religious subset, dry-run first)
 python migrate_lux_to_hg.py --mode transform --endpoint http://127.0.0.1:7878 \
@@ -354,7 +354,7 @@ python migrate_lux_to_hg.py --mode transform --endpoint http://127.0.0.1:7878 \
 
 # 6. full transform
 python migrate_lux_to_hg.py --mode transform --endpoint http://127.0.0.1:7878 \
-       --queries lux_to_hg_migration.sparql --target-graph https://w3id.org/heritagegraph/imported/lux
+       --queries lux_to_hg_migration.sparql --target-graph https://cair-nepal.org/heritagegraph/imported/lux
 
 # 7. validate
 python migrate_lux_to_hg.py --mode validate --endpoint http://127.0.0.1:7878 \

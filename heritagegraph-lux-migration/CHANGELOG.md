@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. Format insp
 
 ## [Unreleased]
 
+### Changed — synced to HeritageGraph v1.0.0 (October 2026)
+- Namespace `https://w3id.org/heritagegraph/` → `https://cair-nepal.org/heritagegraph/` (terms, named graphs, minted instance IRIs); the ontology is fetched from `ontology/HeritageGraph.ttl` on the HeritageGraph branch.
+- Every HeritageGraph term in the alignment, queries, migrator templates and mapping workbook resolved to its v1.0.0 IRI: LinkML class → `class_uri`, slot → `slot_uri`, new LUX classes/properties → camelCase. Renames: `LivingGoddessTenure/Selection/Retirement` → `KumariTenure/KumariSelectionEvent/KumariRetirementEvent`, `*Enum` → enumeration names, `AssertableEntity` → `AssertionSubject`, `HeritageAssertion` → `Assertion` (`crminf:I2_Belief`).
+- Mappings whose HG property is now the CRM property itself (e.g. `carried_out_by` = `crm:P14_carried_out_by`) are identity, not `owl:equivalentProperty`; no axioms are asserted on external CRM/PROV terms; `Activity`, `Concept`, `HistoricalEvent` are `rdfs:subClassOf` (not `≡`) their CRM class; `Deity ≡ crm:E28`, `CalendarSystem → crm:E29_Designated_Reference_System` (not a CRM class) and enumeration ⊑ `Concept` dropped; `hadParticipant ≡ crm:P11` → `skos:closeMatch`; datatype shortcuts `placeType`, `custodianType`, `sourceCitation` use `rdfs:seeAlso`; `dissolvedBy ⊑ crm:P99i_was_dissolved_by` (the Linked Art IRI).
+- Object materials migrate to `crm:P45_consists_of` (LA `made_of`); the reference CONSTRUCTs link imported nodes with `owl:sameAs`, as the production templates do.
+- Alignment: 677 triples, 0 `owl:equivalentClass`, 178 `rdfs:subClassOf`, 2 `owl:equivalentProperty`, 52 `rdfs:subPropertyOf`; core + alignment is OWL 2 DL and HermiT-consistent.
+
 ### Added
 - **`alignment/heritagegraph-lux-alignment.ttl` Section 4** — internal HG hierarchy and 29 new object properties wiring every new class from Section 3 into the existing HG graph. Closes the "orphan nodes" feedback (Niraj, June 2026): before this change the 33 new classes (Birth, Death, Inscription, VisualItem, …) sat only under external CRM/Linked-Art URIs and appeared disconnected in HG-only visualisations. Now each has at least one HG-internal `rdfs:subClassOf` and / or appears in the domain or range of an HG object property.
   * Existence-event hierarchy: `Birth/Formation/Production ⊏ BeginningOfExistence`; `Death/Dissolution/DestructionEvent ⊏ EndOfExistence`.

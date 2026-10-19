@@ -85,9 +85,9 @@ LOG = logging.getLogger("lux2hg")
 # =============================================================================
 
 DEFAULT_GRAPH_RAW       = "https://lux.collections.yale.edu/"
-DEFAULT_GRAPH_ALIGNMENT = "https://w3id.org/heritagegraph/alignment/lux"
-DEFAULT_GRAPH_HG        = "https://w3id.org/heritagegraph/"
-DEFAULT_GRAPH_IMPORTED  = "https://w3id.org/heritagegraph/imported/lux"
+DEFAULT_GRAPH_ALIGNMENT = "https://cair-nepal.org/heritagegraph/alignment/lux"
+DEFAULT_GRAPH_HG        = "https://cair-nepal.org/heritagegraph/"
+DEFAULT_GRAPH_IMPORTED  = "https://cair-nepal.org/heritagegraph/imported/lux"
 
 LUX_REST_ROOT = "https://lux.collections.yale.edu/api"
 LUX_SEARCH_EP = LUX_REST_ROOT + "/search"
@@ -267,26 +267,26 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "object": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
-    PREFIX hgi: <https://w3id.org/heritagegraph/imported/lux/object/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
+    PREFIX hgi: <https://cair-nepal.org/heritagegraph/imported/lux/object/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
       ?hgObj a crm:E22_Human-Made_Object ;
              owl:sameAs ?obj ;
-             hg:name    ?label ;
-             hg:has_architectural_style ?type ;
-             hg:was_produced_by_event   ?prod ;
-             hg:has_current_location    ?place ;
-             hg:used_materials          ?mat ;
-             hg:carries_inscription     ?insc ;
-             hg:has_dimension           ?dim ;
-             hg:has_visual_item         ?vis .
+             <http://www.w3.org/2000/01/rdf-schema#label>    ?label ;
+             hg:hasArchitecturalStyle ?type ;
+             crm:P108i_was_produced_by   ?prod ;
+             crm:P55_has_current_location    ?place ;
+             crm:P45_consists_of          ?mat ;
+             hg:carriesInscription     ?insc ;
+             hg:hasDimension           ?dim ;
+             hg:hasVisualItem         ?vis .
     } } WHERE {
       { SELECT ?obj WHERE {
           ?obj a crm:E22_Human-Made_Object .
         } ORDER BY ?obj LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/object/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/object/",
                       REPLACE(STR(?obj), "^.*/", ""))) AS ?hgObj)
       OPTIONAL { ?obj rdfs:label ?label }
       OPTIONAL { ?obj crm:P2_has_type ?type }
@@ -301,14 +301,14 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "person": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgPerson a crm:E21_Person ; owl:sameAs ?p ; hg:name ?name ;
-                hg:was_born_by ?birth ; hg:died_in_event ?death .
+      ?hgPerson a crm:E21_Person ; owl:sameAs ?p ; <http://www.w3.org/2000/01/rdf-schema#label> ?name ;
+                hg:wasBornBy ?birth ; hg:diedInEvent ?death .
     } } WHERE {
       { SELECT ?p WHERE { ?p a crm:E21_Person . } ORDER BY ?p LIMIT {LIMIT} OFFSET {OFFSET} }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/person/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/person/",
                       REPLACE(STR(?p), "^.*/", ""))) AS ?hgPerson)
       OPTIONAL { ?p rdfs:label ?name }
       OPTIONAL { ?p crm:P98i_was_born ?birth }
@@ -318,14 +318,14 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "group": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgGroup a hg:Group ; owl:sameAs ?g ; hg:name ?gname ;
-               hg:was_formed_by ?formed ; hg:dissolved_by ?dissolved .
+      ?hgGroup a hg:Group ; owl:sameAs ?g ; <http://www.w3.org/2000/01/rdf-schema#label> ?gname ;
+               hg:wasFormedBy ?formed ; hg:dissolvedBy ?dissolved .
     } } WHERE {
       { SELECT ?g WHERE { ?g a crm:E74_Group . } ORDER BY ?g LIMIT {LIMIT} OFFSET {OFFSET} }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/group/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/group/",
                       REPLACE(STR(?g), "^.*/", ""))) AS ?hgGroup)
       OPTIONAL { ?g rdfs:label ?gname }
       OPTIONAL { ?g crm:P95i_was_formed_by    ?formed }
@@ -335,14 +335,14 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "place": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
       ?hgPlace a crm:E53_Place ; owl:sameAs ?pl ;
-               hg:name ?plname ; hg:place_coordinates ?wkt .
+               <http://www.w3.org/2000/01/rdf-schema#label> ?plname ; <http://www.opengis.net/ont/geosparql#asWKT> ?wkt .
     } } WHERE {
       { SELECT ?pl WHERE { ?pl a crm:E53_Place . } ORDER BY ?pl LIMIT {LIMIT} OFFSET {OFFSET} }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/place/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/place/",
                       REPLACE(STR(?pl), "^.*/", ""))) AS ?hgPlace)
       OPTIONAL { ?pl rdfs:label ?plname }
       OPTIONAL { ?pl crm:P168_place_is_defined_by ?wkt }
@@ -357,12 +357,12 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX sci: <http://www.ics.forth.gr/isl/CRMsci/>
     PREFIX la:  <https://linked.art/ns/terms/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
       ?hgEv a ?hgClass ; owl:sameAs ?ev ;
-            hg:carried_out_by ?actor ; hg:took_place_at ?place ; hg:has_timespan ?span ;
-            hg:paid_amount ?amt .
+            crm:P14_carried_out_by ?actor ; crm:P7_took_place_at ?place ; crm:P4_has_time-span ?span ;
+            hg:paidAmount ?amt .
     } } WHERE {
       { SELECT ?ev ?hgClass WHERE {
           { ?ev a crm:E12_Production            . BIND(crm:E12_Production              AS ?hgClass) }
@@ -423,7 +423,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
                     FILTER(?sub IN (crm:E5_Event, crm:E7_Activity, crm:E93_Presence)) } }
         } ORDER BY ?ev LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/event/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/event/",
                       REPLACE(STR(?ev), "^.*/", ""))) AS ?hgEv)
       OPTIONAL { ?ev crm:P14_carried_out_by ?actor }
       OPTIONAL { ?ev crm:P7_took_place_at   ?place }
@@ -435,10 +435,10 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX dig: <http://www.ics.forth.gr/isl/CRMdig/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgWork a ?hgClass ; owl:sameAs ?w ; hg:name ?wname .
+      ?hgWork a ?hgClass ; owl:sameAs ?w ; <http://www.w3.org/2000/01/rdf-schema#label> ?wname .
     } } WHERE {
       { SELECT ?w ?hgClass WHERE {
           { ?w a crm:E33_Linguistic_Object   . BIND(hg:LinguisticObject     AS ?hgClass)
@@ -455,7 +455,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
           UNION { ?w a dig:D1_Digital_Object . BIND(hg:DigitalObject        AS ?hgClass) }
         } ORDER BY ?w LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/work/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/work/",
                       REPLACE(STR(?w), "^.*/", ""))) AS ?hgWork)
       OPTIONAL { ?w rdfs:label ?wname }
     }""",
@@ -464,17 +464,17 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX la:  <https://linked.art/ns/terms/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgX a ?hgClass ; owl:sameAs ?x ; hg:name ?xname .
+      ?hgX a ?hgClass ; owl:sameAs ?x ; <http://www.w3.org/2000/01/rdf-schema#label> ?xname .
     } } WHERE {
       { SELECT ?x ?hgClass WHERE {
           { ?x a la:Set                  . BIND(hg:Set            AS ?hgClass) }
           UNION { ?x a crm:E78_Curated_Holding . BIND(hg:CuratedHolding AS ?hgClass) }
         } ORDER BY ?x LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/set/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/set/",
                       REPLACE(STR(?x), "^.*/", ""))) AS ?hgX)
       OPTIONAL { ?x rdfs:label ?xname }
     }""",
@@ -482,10 +482,10 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "concept": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgC a ?hgClass ; owl:sameAs ?c ; hg:name ?cname .
+      ?hgC a ?hgClass ; owl:sameAs ?c ; <http://www.w3.org/2000/01/rdf-schema#label> ?cname .
     } } WHERE {
       { SELECT ?c ?hgClass WHERE {
           { ?c a crm:E55_Type             . BIND(hg:Concept         AS ?hgClass)
@@ -501,7 +501,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
           UNION { ?c a crm:E99_Product_Type     . BIND(hg:ProductType     AS ?hgClass) }
         } ORDER BY ?c LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/concept/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/concept/",
                       REPLACE(STR(?c), "^.*/", ""))) AS ?hgC)
       OPTIONAL { ?c rdfs:label ?cname }
     }""",
@@ -509,10 +509,10 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     "identifier_name": """
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgA a ?hgClass ; owl:sameAs ?a ; hg:name ?content .
+      ?hgA a ?hgClass ; owl:sameAs ?a ; <http://www.w3.org/2000/01/rdf-schema#label> ?content .
     } } WHERE {
       { SELECT ?a ?hgClass WHERE {
           { ?a a crm:E42_Identifier . BIND(hg:Identifier AS ?hgClass) }
@@ -523,7 +523,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
                               crm:E35_Title)) } }
         } ORDER BY ?a LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/appellation/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/appellation/",
                       REPLACE(STR(?a), "^.*/", ""))) AS ?hgA)
       OPTIONAL { ?a crm:P190_has_symbolic_content ?content }
     }""",
@@ -532,11 +532,11 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
     PREFIX la:  <https://linked.art/ns/terms/>
     PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-    PREFIX hg:  <https://w3id.org/heritagegraph/>
+    PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgE a ?hgClass ; owl:sameAs ?e ; hg:name ?elabel ;
-           hg:dimension_has_unit ?unit .
+      ?hgE a ?hgClass ; owl:sameAs ?e ; <http://www.w3.org/2000/01/rdf-schema#label> ?elabel ;
+           hg:dimensionHasUnit ?unit .
     } } WHERE {
       { SELECT ?e ?hgClass WHERE {
           { ?e a crm:E52_Time-Span       . BIND(crm:E52_Time-Span         AS ?hgClass) }
@@ -554,7 +554,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
           UNION { ?e a crm:E3_Condition_State . BIND(crm:E3_Condition_State AS ?hgClass) }
         } ORDER BY ?e LIMIT {LIMIT} OFFSET {OFFSET}
       }
-      BIND(IRI(CONCAT("https://w3id.org/heritagegraph/imported/lux/embedded/",
+      BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/embedded/",
                       REPLACE(STR(?e), "^.*/", ""))) AS ?hgE)
       OPTIONAL { ?e rdfs:label ?elabel }
       OPTIONAL { ?e crm:P91_has_unit ?unit }

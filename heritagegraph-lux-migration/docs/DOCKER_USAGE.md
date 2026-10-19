@@ -28,7 +28,7 @@ docker/
 cp .env.example .env
 # put HeritageGraph.ttl into alignment/  (download from CAIRNepal/heritagegraphontology)
 curl -L -o alignment/HeritageGraph.ttl \
-  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/HeritageGraph.ttl
+  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl
 
 docker compose up -d
 docker compose logs -f migrator
@@ -119,7 +119,7 @@ By default, Oxigraph is exposed on the host at port `${OXIGRAPH_PORT:-7878}`. To
 
 * Migration failed mid-transform? Just `docker compose up -d migrator` again — the SPARQL INSERT WHERE batches are idempotent (RDF set semantics) and the state file resumes from the last completed batch.
 * Validation V1 reports unmapped LUX classes? Update `alignment/heritagegraph-lux-alignment.ttl`, `make reset`, re-run.
-* Bad data ingested? `DROP GRAPH <https://w3id.org/heritagegraph/imported/lux>` (or `make reset-everything` for full wipe). The HG-native graph is never touched.
+* Bad data ingested? `DROP GRAPH <https://cair-nepal.org/heritagegraph/imported/lux>` (or `make reset-everything` for full wipe). The HG-native graph is never touched.
 
 ## Security notes
 

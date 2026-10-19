@@ -15,8 +15,8 @@ PREFIX la:   <https://linked.art/ns/terms/>
 PREFIX crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX dig:  <http://www.ics.forth.gr/isl/CRMdig/>
 PREFIX sci:  <http://www.ics.forth.gr/isl/CRMsci/>
-PREFIX hg:   <https://w3id.org/heritagegraph/>
-PREFIX hgi:  <https://w3id.org/heritagegraph/imported/lux/>
+PREFIX hg:   <https://cair-nepal.org/heritagegraph/>
+PREFIX hgi:  <https://cair-nepal.org/heritagegraph/imported/lux/>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
@@ -42,7 +42,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 # first post-alpha5 deploy (E52_Time-Span, E12_Production, E57_Material —
 # all legitimately handled by the transform templates, just not sampled
 # into that particular limited run). Replaced with a SCHEMA-level marker
-# (alignment §6.1, heritageGraph:alignment_lux_directly_reuses) that is
+# (alignment §6.1, heritageGraph:alignmentLuxDirectlyReuses) that is
 # true regardless of run size; the imported/lux instance check is kept as
 # a secondary/belt-and-suspenders signal, not the primary one.
 SELECT DISTINCT ?luxClass (COUNT(?x) AS ?instances)
@@ -55,7 +55,7 @@ WHERE {
     || STRSTARTS(STR(?luxClass), "https://linked.art/ns/terms/")
   )
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
       { ?hg rdfs:subClassOf+ ?luxClass }
         UNION
       { ?hg owl:equivalentClass ?luxClass }
@@ -63,16 +63,16 @@ WHERE {
       { ?hg skos:closeMatch ?luxClass }
         UNION
       { ?hg skos:broadMatch ?luxClass }
-      FILTER (STRSTARTS(STR(?hg), "https://w3id.org/heritagegraph/"))
+      FILTER (STRSTARTS(STR(?hg), "https://cair-nepal.org/heritagegraph/"))
     }
   }
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
-      <https://w3id.org/heritagegraph/alignment/lux> hg:alignment_lux_directly_reuses ?luxClass .
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
+      <https://cair-nepal.org/heritagegraph/alignment/lux> hg:alignmentLuxDirectlyReuses ?luxClass .
     }
   }
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
+    GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?y a ?luxClass . }
   }
 }
 GROUP BY ?luxClass
@@ -84,9 +84,9 @@ ORDER BY DESC(?instances)
 # pointing back to its LUX origin URI. Catches missing/duplicate sameAs.
 SELECT ?hgInst (COUNT(?orig) AS ?same_as_count)
 WHERE {
-  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+  GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> {
     ?hgInst a ?cls .
-    FILTER (STRSTARTS(STR(?hgInst), "https://w3id.org/heritagegraph/imported/lux/"))
+    FILTER (STRSTARTS(STR(?hgInst), "https://cair-nepal.org/heritagegraph/imported/lux/"))
     OPTIONAL { ?hgInst owl:sameAs ?orig . FILTER (STRSTARTS(STR(?orig), "https://lux.collections.yale.edu/")) }
   }
 }
@@ -107,11 +107,11 @@ WHERE {
   {
     SELECT ?luxClass ?hgClass (COUNT(?x) AS ?lux_count)
     WHERE {
-      GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+      GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
         { ?hgClass rdfs:subClassOf ?luxClass }
           UNION
         { ?hgClass owl:equivalentClass ?luxClass }
-        FILTER (STRSTARTS(STR(?hgClass), "https://w3id.org/heritagegraph/"))
+        FILTER (STRSTARTS(STR(?hgClass), "https://cair-nepal.org/heritagegraph/"))
       }
       GRAPH <https://lux.collections.yale.edu/> { ?x a ?luxClass . }
     } GROUP BY ?luxClass ?hgClass
@@ -119,7 +119,7 @@ WHERE {
   OPTIONAL {
     SELECT ?hgClass (COUNT(?y) AS ?hg_count)
     WHERE {
-      GRAPH <https://w3id.org/heritagegraph/imported/lux> { ?y a ?hgClass . }
+      GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?y a ?hgClass . }
     } GROUP BY ?hgClass
   }
 }
@@ -138,11 +138,11 @@ WHERE {
     || STRSTARTS(STR(?prop), "http://www.ics.forth.gr/isl/CRMsci/")
   )
   FILTER NOT EXISTS {
-    GRAPH <https://w3id.org/heritagegraph/alignment/lux> {
+    GRAPH <https://cair-nepal.org/heritagegraph/alignment/lux> {
       { ?hgProp rdfs:subPropertyOf+ ?prop }
         UNION
       { ?hgProp owl:equivalentProperty ?prop }
-      FILTER (STRSTARTS(STR(?hgProp), "https://w3id.org/heritagegraph/"))
+      FILTER (STRSTARTS(STR(?hgProp), "https://cair-nepal.org/heritagegraph/"))
     }
   }
 }
@@ -156,7 +156,7 @@ LIMIT 100
 # original LUX URI. Operator should manually open both and confirm semantic match.
 SELECT ?hgInst ?hgClass ?luxOrig (RAND() AS ?r)
 WHERE {
-  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+  GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> {
     ?hgInst a ?hgClass ; owl:sameAs ?luxOrig .
   }
 }
@@ -171,11 +171,11 @@ LIMIT 10
 # by the migration at all).
 SELECT ?cls (COUNT(?x) AS ?n)
 WHERE {
-  GRAPH <https://w3id.org/heritagegraph/> { ?x a ?cls . }
+  GRAPH <https://cair-nepal.org/heritagegraph/> { ?x a ?cls . }
   VALUES ?cls {
-    hg:LivingGoddessTenure
-    hg:LivingGoddessSelection
-    hg:LivingGoddessRetirement
+    hg:KumariTenure
+    hg:KumariSelectionEvent
+    hg:KumariRetirementEvent
     hg:SyncreticRelationship
     hg:Guthi
     hg:CasteGroup
@@ -199,9 +199,9 @@ ORDER BY ?cls
 # rdf:type from the heritageGraph: namespace.
 SELECT ?hgInst (COUNT(DISTINCT ?cls) AS ?type_count)
 WHERE {
-  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+  GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> {
     ?hgInst a ?cls .
-    FILTER (STRSTARTS(STR(?cls), "https://w3id.org/heritagegraph/"))
+    FILTER (STRSTARTS(STR(?cls), "https://cair-nepal.org/heritagegraph/"))
   }
 }
 GROUP BY ?hgInst
@@ -213,7 +213,7 @@ HAVING (COUNT(DISTINCT ?cls) > 1)
 # no outgoing properties beyond rdf:type + owl:sameAs (i.e. empty after import).
 SELECT ?hgInst ?hgClass (COUNT(?p) AS ?prop_count)
 WHERE {
-  GRAPH <https://w3id.org/heritagegraph/imported/lux> {
+  GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> {
     ?hgInst a ?hgClass .
     OPTIONAL { ?hgInst ?p ?o .
                FILTER (?p NOT IN (rdf:type, owl:sameAs)) }

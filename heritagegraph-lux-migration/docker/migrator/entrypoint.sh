@@ -42,9 +42,9 @@ CRAWL_RPS="${CRAWL_RPS:-10}"
 VALIDATION_MODE="${VALIDATION_MODE:-strict}"
 
 GRAPH_RAW="https://lux.collections.yale.edu/"
-GRAPH_HG="https://w3id.org/heritagegraph/"
-GRAPH_ALIGN="https://w3id.org/heritagegraph/alignment/lux"
-GRAPH_IMPORTED="https://w3id.org/heritagegraph/imported/lux"
+GRAPH_HG="https://cair-nepal.org/heritagegraph/"
+GRAPH_ALIGN="https://cair-nepal.org/heritagegraph/alignment/lux"
+GRAPH_IMPORTED="https://cair-nepal.org/heritagegraph/imported/lux"
 
 # ---------- helpers -----------------------------------------------------------
 

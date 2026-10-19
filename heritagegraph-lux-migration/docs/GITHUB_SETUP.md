@@ -105,7 +105,7 @@ cd /root/github
 git clone https://github.com/CAIRNepal/heritagegraph-lux-migration.git
 cd heritagegraph-lux-migration
 cp docker/.env.example docker/.env && $EDITOR docker/.env
-curl -L -o alignment/HeritageGraph.ttl https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/HeritageGraph.ttl
+curl -L -o alignment/HeritageGraph.ttl https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl
 make up
 ```
 
