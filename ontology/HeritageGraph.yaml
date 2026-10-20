@@ -1719,9 +1719,12 @@ classes:
 
       
       carried_out_by:
-        range: Person
+        # RANGE FIX (v1.0.1): was Person. performed_by_group is a subproperty of
+        # carried_out_by (crm:P14), so a Person-only range made any Guthi or caste
+        # group performing a retirement a crm:E21_Person.
+        range: Actor
         multivalued: true
-        description: "Priests or officials who performed the retirement ritual"
+        description: "Priests, officials, or groups who performed the retirement ritual"
       took_place_at:
         range: Place
         description: "Where the retirement ceremony occurred"

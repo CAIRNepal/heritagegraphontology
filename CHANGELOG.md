@@ -9,7 +9,11 @@
   cites the v1.0.0 version DOI. The v1.0.0 tag and `docs/releases/1.0.0/` are unchanged.
 
 
-### Changed (LUX module conservativity)
+### Fixed (KumariRetirementEvent performer range)
+- `KumariRetirementEvent`'s `carried_out_by` (`crm:P14_carried_out_by`) range relaxed from `crm:E21_Person`
+  to `crm:E39_Actor`. `performedByGroup` is a subproperty of `crm:P14_carried_out_by`, so the Person-only
+  restriction made any Guthi or caste group performing a retirement a `crm:E21_Person`.
+
 - New gate `reasoning_extras.py lux-conservativity` (make check, CI): probe instances of every class/property
   pair the LUX module maps, classified with the module and CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci), must not be
   typed against CRM's disjointness (C1: E2 Temporal Entity / E77 Persistent Item, stated in the E2 scope note;
