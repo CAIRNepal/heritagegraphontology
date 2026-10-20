@@ -166,6 +166,13 @@ heritageGraph:SyncreticType rdfs:subClassOf crm:E55_Type .
 heritageGraph:Metadata rdfs:subClassOf crm:E73_Information_Object .
 
 #####################################################################
+# Conservativity (October 2026): loaded with CIDOC-CRM, a mapping must not give
+# HeritageGraph data a CRM type that contradicts CIDOC-CRM (E2 Temporal Entity is
+# disjoint from E77 Persistent Item; E18 Physical Thing vs E28 non-material
+# Conceptual Object) nor a core class the core does not entail. Property mappings
+# whose CRM domain or range violated this are skos:closeMatch below
+# (evaluation/reasoning_extras.py lux-conservativity checks it).
+#####################################################################
 # 2. PROPERTY-LEVEL ALIGNMENT
 #    Aligned to the crm: URIs LUX expands its short names to.
 #####################################################################
@@ -209,30 +216,30 @@ heritageGraph:transferredToGuthi rdfs:subPropertyOf crm:P29_custody_received_by 
 
 # ---- Membership -------------------------------------------------------------
 
-heritageGraph:managedByGuthi rdfs:subPropertyOf crm:P49_has_former_or_current_keeper .  # LUX alias: "current_keeper"
+heritageGraph:managedByGuthi skos:closeMatch crm:P49_has_former_or_current_keeper .  # LUX alias: "current_keeper"; P49 domain E18 would make managed rituals physical things
 
 # ---- Aboutness / depiction --------------------------------------------------
 
 
-heritageGraph:isAboutDeity rdfs:subPropertyOf crm:P138_represents .
+heritageGraph:isAboutDeity skos:closeMatch crm:P138_represents .  # P138 domain E36 would make a Murti a visual item
 
 # ---- Sequencing -------------------------------------------------------------
 
 
 # ---- Documentation linkage --------------------------------------------------
 
-heritageGraph:mentionedInSource owl:equivalentProperty crm:P67i_is_referred_to_by .  # LUX alias: "referred_to_by"
-heritageGraph:documentedBy rdfs:subPropertyOf crm:P94i_was_created_by .
+heritageGraph:mentionedInSource rdfs:subPropertyOf crm:P67i_is_referred_to_by .  # LUX alias: "referred_to_by"; ⊑ not ≡: mentionedInSource (range DataSource) is narrower than P67i
+heritageGraph:documentedBy skos:closeMatch crm:P94i_was_created_by .  # P94i domain E28 would make documented structures conceptual objects
 
 # ---- Person life events (better expressed as Birth/Death events) ------------
 
-heritageGraph:birthTimespan rdfs:subPropertyOf crm:P4_has_time-span ;
+heritageGraph:birthTimespan skos:closeMatch crm:P4_has_time-span ;  # P4 domain E2 would make a person a temporal entity
     rdfs:comment "Better modeled via crm:P98i_was_born (LUX alias 'born') -> crm:P4_has_time-span."@en .
 
-heritageGraph:deathTimespan rdfs:subPropertyOf crm:P4_has_time-span ;
+heritageGraph:deathTimespan skos:closeMatch crm:P4_has_time-span ;  # P4 domain E2 would make a person a temporal entity
     rdfs:comment "Better modeled via crm:P100i_died_in / crm:P93i_was_taken_out_of_existence_by + timespan."@en .
 
-heritageGraph:publicationTimespan rdfs:subPropertyOf crm:P4_has_time-span .
+heritageGraph:publicationTimespan skos:closeMatch crm:P4_has_time-span .  # P4 domain E2 would make a source a temporal entity
 
 # ---- Identification / labelling --------------------------------------------
 
@@ -455,7 +462,8 @@ heritageGraph:Inscription rdfs:subClassOf heritageGraph:LinguisticObject .  # E3
 heritageGraph:DigitalObject rdfs:subClassOf heritageGraph:InformationObject .
 heritageGraph:LinguisticObject rdfs:subClassOf heritageGraph:InformationObject .
 heritageGraph:PropositionalObject rdfs:subClassOf heritageGraph:InformationObject .
-heritageGraph:Metadata rdfs:subClassOf heritageGraph:InformationObject .
+# Metadata ⊑ hg:InformationObject removed: the core has InformationObject ⊑ DataSource, so it made all
+# metadata a DataSource (a new subsumption between core classes). Metadata ⊑ crm:E73 is kept (§1).
 
 # ---- 4.5  Curated holding / set -------------------------------------------
 
@@ -660,7 +668,7 @@ heritageGraph:hasDataCustodian a owl:ObjectProperty ;
     rdfs:label "has data custodian"@en ;
     rdfs:domain heritageGraph:DataSource ;
     rdfs:range heritageGraph:DataCustodian ;
-    rdfs:subPropertyOf crm:P109_has_current_or_former_curator .
+    skos:closeMatch crm:P109_has_current_or_former_curator .  # P109 domain E78 would make a DataSource a physical holding
 
 # --- Container (LinkML construct, kept as InformationObject child) ---------
 
@@ -691,8 +699,9 @@ heritageGraph:Container rdfs:subClassOf heritageGraph:InformationObject ;
 heritageGraph:Activity a owl:Class ;
     rdfs:label "Activity"@en ;
     rdfs:comment "Generic intentional activity; landing class for LUX crm:E7_Activity instances that match no more specific HG class. LUX alias: 'Activity'. NOTE (July 2026): the core ontology also uses the English label 'Activity' for an unrelated abstract class whose class_uri is prov:Activity (PROV-O top, no crm:E7 relation) — a naming coincidence only. heritageGraph:Activity (this resource, our own URI) and prov:Activity (theirs) are distinct RDF resources; no logical clash, but avoid confusing the two in documentation/diagrams."@en ;
-    rdfs:subClassOf crm:E7_Activity ;
-    rdfs:subClassOf heritageGraph:HistoricalEvent .  # E7 ⊏ E5
+    rdfs:subClassOf crm:E7_Activity .
+    # hg:Activity ⊑ hg:HistoricalEvent removed: with HistoricalEvent ⊑ crm:E5 (not ≡) it placed the core's
+    # RitualEvent and DocumentationActivity under the core's HistoricalEvent. E7 ⊑ E5 still holds via CRM.
 
 heritageGraph:Concept a owl:Class ;
     rdfs:label "Concept"@en ;

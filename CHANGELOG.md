@@ -9,7 +9,19 @@
   cites the v1.0.0 version DOI. The v1.0.0 tag and `docs/releases/1.0.0/` are unchanged.
 
 
-### Changed (LUX migration folder)
+### Changed (LUX module conservativity)
+- New gate `reasoning_extras.py lux-conservativity` (make check, CI): probe instances of every class/property
+  pair the LUX module maps, classified with the module and CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci), must not be
+  typed against CRM's disjointness (C1: E2 Temporal Entity / E77 Persistent Item, stated in the E2 scope note;
+  C2: E18 Physical Thing / E28 Conceptual Object, from the scope notes) or with a core class that core +
+  CIDOC-CRM alone do not entail (C3, conservativity). A negative control re-adding
+  `documentedBy ⊑ crm:P94i_was_created_by` must be caught.
+- Repairs in the module: seven property mappings weakened to `skos:closeMatch` (`documentedBy`,
+  `managedByGuthi`, `isAboutDeity`, `birthTimespan`, `deathTimespan`, `publicationTimespan`,
+  `hasDataCustodian`); `mentionedInSource ≡ crm:P67i_is_referred_to_by` → `rdfs:subPropertyOf` (the
+  equivalence made everything that refers to something a DataSource); `hg:Activity ⊑ hg:HistoricalEvent`
+  and `Metadata ⊑ hg:InformationObject` removed (new subsumptions between core classes).
+
 - The HeritageGraph–LUX migration repository is kept in `heritagegraph-lux-migration/` (imported unchanged
   from CAIRNepal/heritagegraph-lux-migration@6772240, then synced to v1.0.0). Its
   `alignment/heritagegraph-lux-alignment.ttl` is the single LUX mapping: the duplicate in `ontology/lux/` is

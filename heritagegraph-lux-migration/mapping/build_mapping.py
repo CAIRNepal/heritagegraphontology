@@ -160,14 +160,14 @@ PROP_ROWS = [
 
     ('has_membership', 'Person', 'current_or_former_member', 'crm:P107_has_current_or_former_member', 'identity (direct URI reuse)', ''),
     ('member_of_group', 'Guthi', 'member_of', 'crm:P107i_is_current_or_former_member_of', 'identity (direct URI reuse)', ''),
-    ("managed_by_guthi",         "Guthi",                "current_keeper / current_owner","crm:P49_has_former_or_current_keeper", "subPropertyOf", ""),
+    ('managed_by_guthi', 'Guthi', 'current_keeper / current_owner', 'crm:P49_has_former_or_current_keeper', 'closeMatch', ''),
 
-    ("birth_timespan",           "TimeSpan",             "born → timespan",            "crm:E67_Birth via P4_has_time-span","subPropertyOf",      "Better modeled via 'born' Activity (P98i_was_born) with timespan."),
-    ("death_timespan",           "TimeSpan",             "died → timespan",            "crm:E69_Death via P4_has_time-span","subPropertyOf",      ""),
-    ("publication_timespan",     "TimeSpan",             "created → timespan",         "crm:E65_Creation via P4_has_time-span","subPropertyOf",   ""),
+    ('birth_timespan', 'TimeSpan', 'born → timespan', 'crm:E67_Birth via P4_has_time-span', 'closeMatch', "Better modeled via 'born' Activity (P98i_was_born) with timespan."),
+    ('death_timespan', 'TimeSpan', 'died → timespan', 'crm:E69_Death via P4_has_time-span', 'closeMatch', ''),
+    ('publication_timespan', 'TimeSpan', 'created → timespan', 'crm:E65_Creation via P4_has_time-span', 'closeMatch', ''),
 
-    ("documented_in_source",     "DataSource",           "referred_to_by",             "crm:P67i_is_referred_to_by",      "equivalentProperty", ""),
-    ("was_documented_by",        "DocumentationActivity","(provenance)",               "crm:P94i_was_created_by",         "subPropertyOf",      ""),
+    ('documented_in_source', 'DataSource', 'referred_to_by', 'crm:P67i_is_referred_to_by', 'subPropertyOf', ''),
+    ('was_documented_by', 'DocumentationActivity', '(provenance)', 'crm:P94i_was_created_by', 'closeMatch', ''),
     ('generated', 'InformationObject', 'created', 'crm:P94_has_created', 'none (v1.0.0 uses prov:generated)', 'Renamed from produced_information_object in v1.0.0.'),
     ('was_generated_by', 'DocumentationActivity', 'created_by', 'crm:P94i_was_created_by', 'none (v1.0.0 uses prov:wasGeneratedBy)', 'Renamed from created_by_documentation in v1.0.0.'),
 
@@ -182,7 +182,7 @@ PROP_ROWS = [
     ('occurs_before', 'RitualEvent', '(no LUX alias)', 'crm:P183_ends_before_the_start_of', 'identity (direct URI reuse)', ''),
 
     ('depicts_deity', 'Deity', 'represents (on VisualItem)', 'crm:P138_represents', 'none (v1.0.0 uses crm:P62_depicts)', 'Object → VisualItem → represents → Deity.'),
-    ("is_about_deity",           "Deity",                "represents",                 "crm:P138_represents",             "subPropertyOf",      ""),
+    ('is_about_deity', 'Deity', 'represents', 'crm:P138_represents', 'closeMatch', ''),
     ('is_depicted_in', 'IconographicObject', 'representation', 'crm:P138i_has_representation', 'none (v1.0.0 uses crm:P62i_is_depicted_by)', ''),
 
     ('name', 'xsd:string', 'identified_by → Name', 'crm:P1_is_identified_by', 'none (v1.0.0 uses rdfs:label)', 'LUX uses Name + content.'),

@@ -34,6 +34,11 @@ Subcommands (default: all):
   tenure-not-event  The same merge plus the demonstrator ABox must not infer that a
                   KumariTenure is a crm:E5_Event.
 
+  lux-conservativity  Probe instances of every class/property pair the LUX module maps,
+                  classified with the module and CIDOC-CRM, must not be typed against
+                  CRM's disjointness (E2/E77 stated; E18/E28 from the scope notes) or
+                  with a core class that core + CIDOC-CRM alone do not entail.
+
 Run:  ROBOT_JAR=/tmp/hgtools/robot.jar \\
       JAVA_HOME=/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home \\
       python3 evaluation/reasoning_extras.py [injection|merged-import|all]
@@ -568,12 +573,136 @@ def run_tenure_not_event() -> int:
     return 0
 
 
+# ===========================================================================
+# lux-conservativity: the LUX module must not give HeritageGraph data CRM
+# types that contradict CIDOC-CRM or the core ontology.
+# ===========================================================================
+CRM_NS = "http://www.cidoc-crm.org/cidoc-crm/"
+E2, E77, E18, E28 = (URIRef(CRM_NS + c) for c in
+                     ("E2_Temporal_Entity", "E77_Persistent_Item", "E18_Physical_Thing", "E28_Conceptual_Object"))
+PROBE_NS = HG_NS + "example/lux-probe/"
+
+
+def _lux_probe_abox(module: Graph) -> tuple[Graph, dict]:
+    """One subject/object pair per (class, slot) whose property the module maps
+    to an external property, plus one per module-declared property with an
+    rdfs:domain/rdfs:range. Subjects are typed with the class, objects with the
+    slot range (or the property range)."""
+    from linkml_runtime import SchemaView
+    mapped = {s for p in (OWL.equivalentProperty, RDFS.subPropertyOf)
+              for s, o in module.subject_objects(p)
+              if str(s).startswith(HG_NS) and not str(o).startswith(HG_NS)}
+    sv = SchemaView(str(ROOT / "ontology/HeritageGraph.yaml"))
+    abox, where = Graph(), {}
+    i = 0
+    for c in sv.all_classes():
+        c_iri = URIRef(sv.get_uri(sv.get_class(c), expand=True))
+        for s in sv.class_induced_slots(c):
+            prop = URIRef(sv.get_uri(s, expand=True))
+            if prop not in mapped:
+                continue
+            i += 1
+            subj, obj = URIRef(f"{PROBE_NS}s{i}"), URIRef(f"{PROBE_NS}o{i}")
+            abox.add((subj, RDF.type, c_iri)); abox.add((subj, prop, obj))
+            if s.range in sv.all_classes():
+                abox.add((obj, RDF.type, URIRef(sv.get_uri(sv.get_class(s.range), expand=True))))
+            where[subj] = f"{c} {s.name} (subject)"; where[obj] = f"{c} {s.name} (object, range {s.range})"
+    for prop in mapped:
+        dom, rng = module.value(prop, RDFS.domain), module.value(prop, RDFS.range)
+        if dom is None and rng is None:
+            continue
+        i += 1
+        subj, obj = URIRef(f"{PROBE_NS}s{i}"), URIRef(f"{PROBE_NS}o{i}")
+        abox.add((subj, prop, obj))
+        if isinstance(dom, URIRef): abox.add((subj, RDF.type, dom))
+        if isinstance(rng, URIRef): abox.add((obj, RDF.type, rng))
+        n = str(prop)[len(HG_NS):]
+        where[subj] = f"{n} (subject)"; where[obj] = f"{n} (object)"
+    return abox, where
+
+
+def _reason_types(graphs: list, abox: Graph) -> dict:
+    with tempfile.TemporaryDirectory() as td:
+        merged = Graph()
+        for p in graphs:
+            merged.parse(p, format="turtle") if isinstance(p, Path) else merged.__iadd__(p)
+        merged += abox
+        merged.remove((None, OWL.imports, None))
+        src, out = Path(td) / "merged.ttl", Path(td) / "reasoned.ttl"
+        merged.serialize(src, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--equivalent-classes-allowed", "all", "--include-indirect", "true",
+                               "--axiom-generators", "ClassAssertion",
+                               "--input", str(src), "--output", str(out)],
+                              capture_output=True, text=True)
+        if proc.returncode != 0:
+            raise RuntimeError(f"not classifiable: {proc.stdout[-300:]}{proc.stderr[-300:]}")
+        reasoned = Graph(); reasoned.parse(out, format="turtle")
+    return {x: {t for g in (merged, reasoned) for t in g.objects(x, RDF.type) if isinstance(t, URIRef)}
+            for x in set(abox.subjects())}
+
+
+def _lux_violations(module: Graph) -> tuple[list[str], int]:
+    """C1 stated disjointness (E2 scope note: E2 Temporal Entity is disjoint from
+    E77 Persistent Item); C2 scope-note definitions (E18 physical vs E28
+    non-material); C3 conservativity w.r.t. the core (no class declared by the
+    core is entailed for an instance unless core + CIDOC-CRM already entail it)."""
+    vocabs = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3", "CRMinf v1.0", "CRMsci v2.0")]
+    core_ttl = ROOT / "ontology/HeritageGraph.ttl"
+    core = Graph(); core.parse(core_ttl, format="turtle")
+    core_classes = {c for c in core.subjects(RDF.type, OWL.Class) if isinstance(c, URIRef)}
+    abox, where = _lux_probe_abox(module)
+    base = _reason_types([core_ttl] + vocabs, abox)
+    full = _reason_types([core_ttl, module] + vocabs, abox)
+    out = []
+    for x, types in full.items():
+        if x not in where:
+            continue
+        if E2 in types and E77 in types:
+            out.append(f"C1 {where[x]}: both crm:E2_Temporal_Entity and crm:E77_Persistent_Item")
+        if E18 in types and E28 in types:
+            out.append(f"C2 {where[x]}: both crm:E18_Physical_Thing and crm:E28_Conceptual_Object")
+        asserted = set(abox.objects(x, RDF.type))
+        if asserted and asserted <= core_classes:   # C3 concerns instances of core classes only
+            for t in sorted((types - base.get(x, set())) & core_classes):
+                out.append(f"C3 {where[x]}: gains core class {t}")
+    return sorted(set(out)), len(where)
+
+
+def run_lux_conservativity() -> int:
+    """Fail if the LUX module, loaded with CIDOC-CRM (+ CRMinf, CRMsci), types
+    probe instances of HeritageGraph classes against CIDOC-CRM's disjointness
+    (C1, C2) or with core classes the core does not entail (C3); a negative
+    control re-adds documentedBy ⊑ crm:P94i_was_created_by and must be caught."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    module = Graph(); module.parse(LUX_MODULE, format="turtle")
+    violations, n = _lux_violations(module)
+    print(f"LUX module + core + CIDOC-CRM 7.1.3 + CRMinf + CRMsci, HermiT: {n} probe instances "
+          f"(every mapped class/property pair)")
+    for v in violations:
+        print("  VIOLATION:", v)
+    control = Graph(); control += module
+    control.add((URIRef(HG_NS + "documentedBy"), RDFS.subPropertyOf,
+                 URIRef(CRM_NS + "P94i_was_created_by")))
+    c_viol, _ = _lux_violations(control)
+    caught = len(c_viol) > len(violations)
+    print(f"negative control (documentedBy ⊑ crm:P94i_was_created_by): "
+          f"{len(c_viol) - len(violations)} additional violation(s) -> {'caught' if caught else 'NOT caught'}")
+    if violations or not caught:
+        print("FAIL")
+        return 1
+    print("PASS: the LUX module assigns no CRM type that contradicts CIDOC-CRM's disjointness "
+          "and no core class the core does not entail.")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
     "entailments": run_entailments,
     "no-external-superclass": run_no_external_superclass,
     "tenure-not-event": run_tenure_not_event,
+    "lux-conservativity": run_lux_conservativity,
 }
 
 
