@@ -1,6 +1,13 @@
 # Changelog
 
-## [Unreleased] - v1.0.0 consistency fixes
+## [Unreleased] - v1.0.1
+
+### Added (release identifiers)
+- v1.0.0 is archived on Zenodo (version DOI 10.5281/zenodo.23435677, concept DOI 10.5281/zenodo.23435676).
+  The ontology header carries `bibo:doi` (concept DOI) and `dcterms:issued` (2026-10-17); the header is
+  versioned 1.0.1 (`owl:versionIRI …/ontology/1.0.1`). README has the concept-DOI badge; CITATION.cff
+  cites the v1.0.0 version DOI. The v1.0.0 tag and `docs/releases/1.0.0/` are unchanged.
+
 
 ### Changed (LUX migration folder)
 - The HeritageGraph–LUX migration repository is kept in `heritagegraph-lux-migration/` (imported unchanged

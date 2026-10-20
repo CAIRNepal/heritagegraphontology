@@ -3,6 +3,7 @@
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Documentation](https://img.shields.io/badge/Documentation-Online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23435676.svg)](https://doi.org/10.5281/zenodo.23435676)
 
 An **event-centric OWL 2 DL ontology for living-heritage systems**, demonstrated
 through the cultural heritage of Nepal's Kathmandu Valley: tangible and

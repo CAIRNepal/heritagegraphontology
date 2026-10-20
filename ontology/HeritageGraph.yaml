@@ -3,7 +3,7 @@ name: HeritageGraph
 description: "An event-centric LinkML schema for representing cultural heritage information, aligned with
   CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking
   and ritual-spatial-temporal reasoning."
-version: 1.0.0
+version: 1.0.1
 license: CC-BY-4.0
 
 
@@ -257,8 +257,8 @@ default_prefix: heritageGraph
 
 annotations:
   owl:ontologyIRI: "https://cair-nepal.org/heritagegraph/ontology"
-  owl:versionIRI: "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
-  owl:versionInfo: "1.0.0"
+  owl:versionIRI: "https://cair-nepal.org/heritagegraph/ontology/1.0.1"
+  owl:versionInfo: "1.0.1"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
@@ -266,7 +266,11 @@ annotations:
   dcterms:created: "2025-11-23"
   dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology"
+  # Zenodo archive: concept DOI (resolves to the latest version); first issued
+  # as v1.0.0 on 2026-10-17 (version DOI 10.5281/zenodo.23435677).
+  dcterms:issued: "2026-10-17"
+  bibo:doi: "10.5281/zenodo.23435676"
+  dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.1). https://cair-nepal.org/heritagegraph/ontology"
   bibo:status: "Pre-release specification draft"
   vann:preferredNamespacePrefix: "heritageGraph"
   vann:preferredNamespaceUri: "https://cair-nepal.org/heritagegraph/"

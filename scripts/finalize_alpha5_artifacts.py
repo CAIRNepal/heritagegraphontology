@@ -203,10 +203,12 @@ def finalize_owl(sv: SchemaView) -> Graph:
         "http://purl.org/dc/terms/created",
         "http://purl.org/dc/terms/license",
         "http://purl.org/dc/terms/modified",
+        "http://purl.org/dc/terms/issued",
         "http://purl.org/dc/terms/source",
         "http://purl.org/dc/terms/creator",
         "http://purl.org/dc/terms/publisher",
         "http://purl.org/ontology/bibo/status",
+        "http://purl.org/ontology/bibo/doi",
         "http://purl.org/pav/version",
         "http://purl.org/vocab/vann/preferredNamespacePrefix",
         "http://purl.org/vocab/vann/preferredNamespaceUri",
@@ -326,6 +328,12 @@ def finalize_owl(sv: SchemaView) -> Graph:
         (VANN.preferredNamespacePrefix, Literal("heritageGraph")),
         (VANN.preferredNamespaceUri, Literal(HG_NS)),
     ]
+    # release identifiers set in the schema header (dcterms:issued, bibo:doi)
+    header = {k: str(v.value) for k, v in (sv.schema.annotations or {}).items()}
+    if header.get("dcterms:issued"):
+        meta.append((DCTERMS.issued, Literal(header["dcterms:issued"], datatype=XSD.date)))
+    if header.get("bibo:doi"):
+        meta.append((BIBO.doi, Literal(header["bibo:doi"])))
     for p, o in meta:
         for old in list(g.objects(ont, p)):
             g.remove((ont, p, old))
