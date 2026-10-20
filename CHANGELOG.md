@@ -1,38 +1,43 @@
 # Changelog
 
-## [Unreleased] - v1.0.1
+## [1.0.1] - 2026-10-20
 
-### Added (release identifiers)
-- v1.0.0 is archived on Zenodo (version DOI 10.5281/zenodo.23435677, concept DOI 10.5281/zenodo.23435676).
-  The ontology header carries `bibo:doi` (concept DOI) and `dcterms:issued` (2026-10-17); the header is
-  versioned 1.0.1 (`owl:versionIRI …/ontology/1.0.1`). README has the concept-DOI badge; CITATION.cff
-  cites the v1.0.0 version DOI. The v1.0.0 tag and `docs/releases/1.0.0/` are unchanged.
-
-
-### Fixed (KumariRetirementEvent performer range)
-- `KumariRetirementEvent`'s `carried_out_by` (`crm:P14_carried_out_by`) range relaxed from `crm:E21_Person`
-  to `crm:E39_Actor`. `performedByGroup` is a subproperty of `crm:P14_carried_out_by`, so the Person-only
-  restriction made any Guthi or caste group performing a retirement a `crm:E21_Person`.
-
-- New gate `reasoning_extras.py lux-conservativity` (make check, CI): probe instances of every class/property
-  pair the LUX module maps, classified with the module and CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci), must not be
-  typed against CRM's disjointness (C1: E2 Temporal Entity / E77 Persistent Item, stated in the E2 scope note;
-  C2: E18 Physical Thing / E28 Conceptual Object, from the scope notes) or with a core class that core +
-  CIDOC-CRM alone do not entail (C3, conservativity). A negative control re-adding
-  `documentedBy ⊑ crm:P94i_was_created_by` must be caught.
-- Repairs in the module: seven property mappings weakened to `skos:closeMatch` (`documentedBy`,
-  `managedByGuthi`, `isAboutDeity`, `birthTimespan`, `deathTimespan`, `publicationTimespan`,
-  `hasDataCustodian`); `mentionedInSource ≡ crm:P67i_is_referred_to_by` → `rdfs:subPropertyOf` (the
-  equivalence made everything that refers to something a DataSource); `hg:Activity ⊑ hg:HistoricalEvent`
-  and `Metadata ⊑ hg:InformationObject` removed (new subsumptions between core classes).
-
+### Added
+- Release identifiers: the ontology header carries `bibo:doi` with the Zenodo concept DOI
+  (10.5281/zenodo.23435676, valid across versions), `dcterms:issued` (2026-10-17, first release) and
+  `owl:priorVersion` <https://cair-nepal.org/heritagegraph/ontology/1.0.0>; version IRI
+  `…/ontology/1.0.1`, `owl:versionInfo` 1.0.1. README has the concept-DOI badge; CITATION.cff is
+  version 1.0.1 with the concept DOI and lists the v1.0.0 version DOI (10.5281/zenodo.23435677).
 - The HeritageGraph–LUX migration repository is kept in `heritagegraph-lux-migration/` (imported unchanged
   from CAIRNepal/heritagegraph-lux-migration@6772240, then synced to v1.0.0). Its
   `alignment/heritagegraph-lux-alignment.ttl` is the single LUX mapping: the duplicate in `ontology/lux/` is
   removed and every check and report reads the folder's file. LUX-facing CRMsci targets use the Linked Art
   context namespace (`http://www.ics.forth.gr/isl/CRMsci/`), as do `generate_lux_eval.py` and the mapping
   audit's Linked Art verification.
+- New gate `reasoning_extras.py lux-conservativity` (make check, CI): probe instances of every class/property
+  pair the LUX module maps, classified with the module and CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci), must not be
+  typed against CRM's disjointness (C1: E2 Temporal Entity / E77 Persistent Item, stated in the E2 scope note;
+  C2: E18 Physical Thing / E28 Conceptual Object, from the scope notes) or with a core class that core +
+  CIDOC-CRM alone do not entail (C3, conservativity). A negative control re-adding
+  `documentedBy ⊑ crm:P94i_was_created_by` must be caught.
 
+### Changed
+- Repairs in the module: seven property mappings weakened to `skos:closeMatch` (`documentedBy`,
+  `managedByGuthi`, `isAboutDeity`, `birthTimespan`, `deathTimespan`, `publicationTimespan`,
+  `hasDataCustodian`); `mentionedInSource ≡ crm:P67i_is_referred_to_by` → `rdfs:subPropertyOf` (the
+  equivalence made everything that refers to something a DataSource); `hg:Activity ⊑ hg:HistoricalEvent`
+  and `Metadata ⊑ hg:InformationObject` removed (new subsumptions between core classes).
+
+### Fixed
+- `KumariRetirementEvent`'s `carried_out_by` (`crm:P14_carried_out_by`) range relaxed from `crm:E21_Person`
+  to `crm:E39_Actor`. `performedByGroup` is a subproperty of `crm:P14_carried_out_by`, so the Person-only
+  restriction made any Guthi or caste group performing a retirement a `crm:E21_Person`.
+
+## [1.0.0] - 2026-10-17
+
+Archived on Zenodo: version DOI 10.5281/zenodo.23435677 (tag v1.0.0).
+
+### Changed (schema pass)
 - `ArchitecturalStyle` values Pagoda, Dome, Chaitya, Stupa have their own IRIs
   (`…/ArchitecturalStyle#Pagoda`, …). Their AAT concepts (building types / an architectural element)
   had been the values' IRIs, which typed Getty terms as `ArchitecturalStyle` and made
@@ -140,7 +145,7 @@
 - `make artefacts` and CI regenerate through `scripts/finalize_alpha5_artifacts.py` (the
   pipeline that produces the released artefacts), which now also syncs `ontology/review.owl`.
 
-## [1.0.0] - 2026-06-05
+## [1.0.0 pre-release draft] - 2026-06-05
 
 ### Added
 - Full OWL `rdfs:subClassOf` axioms for all external `class_uri` mappings (CRM, CRMinf, CRMsci, PROV, OWL-Time).

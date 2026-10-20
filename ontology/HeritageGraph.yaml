@@ -259,6 +259,7 @@ annotations:
   owl:ontologyIRI: "https://cair-nepal.org/heritagegraph/ontology"
   owl:versionIRI: "https://cair-nepal.org/heritagegraph/ontology/1.0.1"
   owl:versionInfo: "1.0.1"
+  owl:priorVersion: "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
   dcterms:creator: "CAIR-Nepal"
   dcterms:publisher: "CAIR-Nepal"
   dcterms:license: "https://creativecommons.org/licenses/by/4.0/"
@@ -266,8 +267,9 @@ annotations:
   dcterms:created: "2025-11-23"
   dcterms:modified: "2026-07-22"
   dcterms:source: "https://github.com/CAIRNepal/heritagegraphontology"
-  # Zenodo archive: concept DOI (resolves to the latest version); first issued
-  # as v1.0.0 on 2026-10-17 (version DOI 10.5281/zenodo.23435677).
+  # Zenodo archive: bibo:doi is the concept DOI, valid across versions (resolves
+  # to the latest); first issued as v1.0.0 on 2026-10-17 (version DOI
+  # 10.5281/zenodo.23435677).
   dcterms:issued: "2026-10-17"
   bibo:doi: "10.5281/zenodo.23435676"
   dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.1). https://cair-nepal.org/heritagegraph/ontology"

@@ -334,6 +334,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
         meta.append((DCTERMS.issued, Literal(header["dcterms:issued"], datatype=XSD.date)))
     if header.get("bibo:doi"):
         meta.append((BIBO.doi, Literal(header["bibo:doi"])))
+    if header.get("owl:priorVersion"):
+        meta.append((OWL.priorVersion, URIRef(header["owl:priorVersion"])))
     for p, o in meta:
         for old in list(g.objects(ont, p)):
             g.remove((ont, p, old))
