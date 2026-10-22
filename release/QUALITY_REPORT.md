@@ -1,13 +1,13 @@
 # HeritageGraph Release Quality Report
 
-Generated: 2026-10-19T21:54:15.174214
+Generated: 2026-10-22T18:22:39.766312
 
 ## Executive summary
 
 | Dimension | Score (/10) | Status |
 |-----------|-------------|--------|
 | Artefact packaging | 8.5 | Release bundle complete (TTL, SHACL, alignment, EDM, VoID, examples) |
-| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 10,209 inferred triples |
+| Logical consistency (OWL-RL) | 8.0 | 0 unsatisfiable classes; 10,261 inferred triples |
 | Logical consistency (HermiT DL) | 9.0 | HermiT: 0 unsatisfiable classes (imports stripped) |
 | Schema adequacy (CQ TBox) | 9.5 | 32/32 ASK queries pass |
 | ABox demonstrability | 8.5 | Mini Kathmandu ABox + 32 sample SELECT queries |
@@ -50,10 +50,10 @@ https://github.com/CAIRNepal/heritagegraphontology
 
 ```
 All-32 CQ expected-vs-actual execution
-Date: 2026-10-19T21:54:13.756488
+Date: 2026-10-22T18:22:37.673701
 TBox: HeritageGraph.ttl
 ABox: kathmandu-mini-abox.ttl
-Triples loaded: 4575
+Triples loaded: 4584
 Pass criterion: returned bindings == expected answer set (exact match).
 
 CQ1   [PASS] expected=1  actual=1  Which architectural structures were built during a time period using an architectural style?
@@ -106,8 +106,8 @@ Negative control (CQ11 with a broken predicate): actual=0 vs expected=1 -> misma
   owl:Ontology declarations: 1
     IRI: https://cair-nepal.org/heritagegraph/ontology
       rdfs:label = HeritageGraph
-      pav:version = 1.0.0
-      owl:versionIRI = https://cair-nepal.org/heritagegraph/ontology/1.0.0
+      pav:version = 1.0.1
+      owl:versionIRI = https://cair-nepal.org/heritagegraph/ontology/1.0.1
 
 ======================================================================
   Step 5 — Quick Consistency Indicators
@@ -120,7 +120,7 @@ Negative control (CQ11 with a broken predicate): actual=0 vs expected=1 -> misma
   Summary
 ======================================================================
   Parse               : ✅ OK
-  OWL-RL closure      : 10209 inferred triples
+  OWL-RL closure      : 10261 inferred triples
   Unsatisfiable       : 0 classes
   Disjointness axioms : 2
 

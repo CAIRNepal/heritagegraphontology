@@ -21,8 +21,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install linkml rdflib owlrl pyyaml requests owlready2
-          pip install -r evaluation/requirements.txt
+          # pinned toolchain that built the release (unpinned LinkML regenerates different SHACL)
+          pip install -r requirements-build.txt
 
       - name: Committed OWL/SHACL generated from the committed YAML
         run: python3 scripts/check_yaml_ttl_sync.py
