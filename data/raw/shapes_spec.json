@@ -1,0 +1,4964 @@
+{
+ "http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E31_Document": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E31_Document",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E31_Document",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://purl.org/spar/datacite/identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/local_contexts_label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/OralHistory",
+     "https://cair-nepal.org/heritagegraph/Inscription",
+     "https://cair-nepal.org/heritagegraph/FieldSurvey",
+     "https://cair-nepal.org/heritagegraph/ArchivalRecordSource",
+     "https://cair-nepal.org/heritagegraph/PublishedScholarship",
+     "https://cair-nepal.org/heritagegraph/CommunityNarrative",
+     "https://cair-nepal.org/heritagegraph/RitualProtocol"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/publication_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_url",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/publisher",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifierType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_citation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/community_attribution",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_knowledge_notice",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/creator",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/resourceType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/archival_location",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E33_Linguistic_Object",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://purl.org/spar/datacite/creator",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/OralHistory",
+     "https://cair-nepal.org/heritagegraph/Inscription",
+     "https://cair-nepal.org/heritagegraph/FieldSurvey",
+     "https://cair-nepal.org/heritagegraph/ArchivalRecordSource",
+     "https://cair-nepal.org/heritagegraph/PublishedScholarship",
+     "https://cair-nepal.org/heritagegraph/CommunityNarrative",
+     "https://cair-nepal.org/heritagegraph/RitualProtocol"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/derived_from_interview",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_citation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/local_contexts_label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/publication_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifierType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_url",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/archival_location",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/resourceType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/community_attribution",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/publisher",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_knowledge_notice",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E5_Event": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E5_Event",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E5_Event",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of",
+    "cls": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/extensions/crmsci/S4_Observation": {
+  "shape": "http://www.cidoc-crm.org/extensions/crmsci/S4_Observation",
+  "targetClass": "http://www.cidoc-crm.org/extensions/crmsci/S4_Observation",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_event",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_method",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasAssociatedWith",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_equipment",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_entity",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/generated_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#generated",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/InformationObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/ArchivalRecord": {
+  "shape": "https://cair-nepal.org/heritagegraph/ArchivalRecord",
+  "targetClass": "https://cair-nepal.org/heritagegraph/ArchivalRecord",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://purl.org/spar/datacite/creator",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_knowledge_notice",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/resourceType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/publisher",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_citation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifierType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/community_attribution",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_url",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/OralHistory",
+     "https://cair-nepal.org/heritagegraph/Inscription",
+     "https://cair-nepal.org/heritagegraph/FieldSurvey",
+     "https://cair-nepal.org/heritagegraph/ArchivalRecordSource",
+     "https://cair-nepal.org/heritagegraph/PublishedScholarship",
+     "https://cair-nepal.org/heritagegraph/CommunityNarrative",
+     "https://cair-nepal.org/heritagegraph/RitualProtocol"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/local_contexts_label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/publication_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/archival_location",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/BuddhistMonument": {
+  "shape": "https://cair-nepal.org/heritagegraph/BuddhistMonument",
+  "targetClass": "https://cair-nepal.org/heritagegraph/BuddhistMonument",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Chaitya": {
+  "shape": "https://cair-nepal.org/heritagegraph/Chaitya",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Chaitya",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/ChariotFestival": {
+  "shape": "https://cair-nepal.org/heritagegraph/ChariotFestival",
+  "targetClass": "https://cair-nepal.org/heritagegraph/ChariotFestival",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Container": {
+  "shape": "https://cair-nepal.org/heritagegraph/Container",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Container",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/enshrinement_events",
+    "cls": "https://cair-nepal.org/heritagegraph/Enshrinement",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/production_events",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_events",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/architectural_elements",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/data_sources",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/caste_groups",
+    "cls": "https://cair-nepal.org/heritagegraph/CasteGroup",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/custody_events",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/metadata",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Metadata",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/syncretic_relationships",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/guthis",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/data_custodians",
+    "cls": "http://www.w3.org/ns/prov#Agent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/persons",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/religious_traditions",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E55_Type",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/documentation_activities",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/festivals",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/information_objects",
+    "cls": "https://cair-nepal.org/heritagegraph/InformationObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/calendar_systems",
+    "cls": "http://www.w3.org/2006/time#Calendar",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/physical_heritage_things",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/materials",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/consecration_events",
+    "cls": "https://cair-nepal.org/heritagegraph/Consecration",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/provenance_assertions",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/deities",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Dharmashala": {
+  "shape": "https://cair-nepal.org/heritagegraph/Dharmashala",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Dharmashala",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/DhungeDhara": {
+  "shape": "https://cair-nepal.org/heritagegraph/DhungeDhara",
+  "targetClass": "https://cair-nepal.org/heritagegraph/DhungeDhara",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/HeritageActivity": {
+  "shape": "https://cair-nepal.org/heritagegraph/HeritageActivity",
+  "targetClass": "https://cair-nepal.org/heritagegraph/HeritageActivity",
+  "closed": false,
+  "props": []
+ },
+ "https://cair-nepal.org/heritagegraph/LivingGoddessSelection": {
+  "shape": "https://cair-nepal.org/heritagegraph/LivingGoddessSelection",
+  "targetClass": "https://cair-nepal.org/heritagegraph/LivingGoddessSelection",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/selected_person",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/initiated_tenure",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E4_Period",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/selection_criteria_met",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_critical_for_festival",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/MaskedDance": {
+  "shape": "https://cair-nepal.org/heritagegraph/MaskedDance",
+  "targetClass": "https://cair-nepal.org/heritagegraph/MaskedDance",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Pati": {
+  "shape": "https://cair-nepal.org/heritagegraph/Pati",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Pati",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Paubha": {
+  "shape": "https://cair-nepal.org/heritagegraph/Paubha",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Paubha",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P62_depicts",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Pokhari": {
+  "shape": "https://cair-nepal.org/heritagegraph/Pokhari",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Pokhari",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/RestHouse": {
+  "shape": "https://cair-nepal.org/heritagegraph/RestHouse",
+  "targetClass": "https://cair-nepal.org/heritagegraph/RestHouse",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Sattal": {
+  "shape": "https://cair-nepal.org/heritagegraph/Sattal",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Sattal",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Stupa": {
+  "shape": "https://cair-nepal.org/heritagegraph/Stupa",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Stupa",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Verification": {
+  "shape": "https://cair-nepal.org/heritagegraph/Verification",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Verification",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_equipment",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/verified_by_expert",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_method",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/verification_method",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#generated",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/InformationObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_event",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/verified_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasAssociatedWith",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_entity",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/generated_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/WaterStructure": {
+  "shape": "https://cair-nepal.org/heritagegraph/WaterStructure",
+  "targetClass": "https://cair-nepal.org/heritagegraph/WaterStructure",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/syncretic_type",
+    "minCount": "1",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Equivalence",
+     "https://cair-nepal.org/heritagegraph/Appropriation",
+     "https://cair-nepal.org/heritagegraph/Fusion",
+     "https://cair-nepal.org/heritagegraph/Historical"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/assertion_author",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/confidence_score",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "minCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/reconciliation_status",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P141_assigned",
+    "minCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity",
+  "closed": true,
+  "props": []
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_condition_type",
+    "minCount": "1",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Good",
+     "https://cair-nepal.org/heritagegraph/Damaged",
+     "https://cair-nepal.org/heritagegraph/Ruined",
+     "https://cair-nepal.org/heritagegraph/Restored"
+    ]
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E7_Activity": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_entity",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/generated_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_equipment",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_method",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_event",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#generated",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/InformationObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasAssociatedWith",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   }
+  ]
+ },
+ "http://www.w3.org/ns/prov#Agent": {
+  "shape": "http://www.w3.org/ns/prov#Agent",
+  "targetClass": "http://www.w3.org/ns/prov#Agent",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/custodian_type",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/IconographicObject": {
+  "shape": "https://cair-nepal.org/heritagegraph/IconographicObject",
+  "targetClass": "https://cair-nepal.org/heritagegraph/IconographicObject",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P62_depicts",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/LivingGoddessRetirement": {
+  "shape": "https://cair-nepal.org/heritagegraph/LivingGoddessRetirement",
+  "targetClass": "https://cair-nepal.org/heritagegraph/LivingGoddessRetirement",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ended_tenure_of",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E4_Period",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Metadata": {
+  "shape": "https://cair-nepal.org/heritagegraph/Metadata",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Metadata",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/dataset_name",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/license",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/dataset_version",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/curator",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/generated_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/schema_version",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Murti": {
+  "shape": "https://cair-nepal.org/heritagegraph/Murti",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Murti",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/consecrated_by_event",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Consecration",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P62_depicts",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P129_is_about",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Temple": {
+  "shape": "https://cair-nepal.org/heritagegraph/Temple",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Temple",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "minCount": "1",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/enshrines_deity_through_event",
+    "cls": "https://cair-nepal.org/heritagegraph/Enshrinement",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E4_Period": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E4_Period",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E4_Period",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P11_had_participant",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/supported_by_institution",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_retirement_event",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/LivingGoddessRetirement",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P74_has_current_or_former_residence",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.w3.org/2006/time#Calendar": {
+  "shape": "http://www.w3.org/2006/time#Calendar",
+  "targetClass": "http://www.w3.org/2006/time#Calendar",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_primary_for_tradition",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E55_Type",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/year_offset_from_gregorian",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#integer",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epoch_date_gregorian",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Consecration": {
+  "shape": "https://cair-nepal.org/heritagegraph/Consecration",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Consecration",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/consecrated_object",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Murti",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/makes_deity_present",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "minCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/HeritageEvent": {
+  "shape": "https://cair-nepal.org/heritagegraph/HeritageEvent",
+  "targetClass": "https://cair-nepal.org/heritagegraph/HeritageEvent",
+  "closed": true,
+  "props": []
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E55_Type": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E55_Type",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E55_Type",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Enshrinement": {
+  "shape": "https://cair-nepal.org/heritagegraph/Enshrinement",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Enshrinement",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/enshrined_in_structure",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Temple",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/enshrined_deity",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/ArchitecturalStructure": {
+  "shape": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+  "targetClass": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/destruction_event",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/last_known_existence_date",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_architectural_style",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Pagoda",
+     "https://cair-nepal.org/heritagegraph/Shikhara",
+     "https://cair-nepal.org/heritagegraph/Dome",
+     "https://cair-nepal.org/heritagegraph/ChaityaStyle",
+     "https://cair-nepal.org/heritagegraph/StupaStyle"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/participates_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/existence_status",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Extant",
+     "https://cair-nepal.org/heritagegraph/PartiallyExtant",
+     "https://cair-nepal.org/heritagegraph/Destroyed",
+     "https://cair-nepal.org/heritagegraph/Lost",
+     "https://cair-nepal.org/heritagegraph/Hypothetical",
+     "https://cair-nepal.org/heritagegraph/Unknown"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasInfluencedBy",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/hypothesized_location",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/InformationObject": {
+  "shape": "https://cair-nepal.org/heritagegraph/InformationObject",
+  "targetClass": "https://cair-nepal.org/heritagegraph/InformationObject",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://purl.org/spar/datacite/identifierType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/OralHistory",
+     "https://cair-nepal.org/heritagegraph/Inscription",
+     "https://cair-nepal.org/heritagegraph/FieldSurvey",
+     "https://cair-nepal.org/heritagegraph/ArchivalRecordSource",
+     "https://cair-nepal.org/heritagegraph/PublishedScholarship",
+     "https://cair-nepal.org/heritagegraph/CommunityNarrative",
+     "https://cair-nepal.org/heritagegraph/RitualProtocol"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_about_event",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_citation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_about_entity",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/publication_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_url",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/archival_location",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_knowledge_notice",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/resourceType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/publisher",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/local_contexts_label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/creator",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/community_attribution",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasGeneratedBy",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E57_Material": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/CasteGroup": {
+  "shape": "https://cair-nepal.org/heritagegraph/CasteGroup",
+  "targetClass": "https://cair-nepal.org/heritagegraph/CasteGroup",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_role",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/Festival": {
+  "shape": "https://cair-nepal.org/heritagegraph/Festival",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Festival",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E21_Person": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/death_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/orcid_identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/institutional_affiliation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/carried_out_activity",
+    "cls": "https://cair-nepal.org/heritagegraph/HeritageEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/birth_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/expertise_area",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/dc/terms/identifier",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of",
+    "cls": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E25_Architectural_Element",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P35_has_identified",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P34_concerned",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/DataSource": {
+  "shape": "https://cair-nepal.org/heritagegraph/DataSource",
+  "targetClass": "https://cair-nepal.org/heritagegraph/DataSource",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/community_attribution",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/publisher",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/traditional_knowledge_notice",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifierType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_url",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/OralHistory",
+     "https://cair-nepal.org/heritagegraph/Inscription",
+     "https://cair-nepal.org/heritagegraph/FieldSurvey",
+     "https://cair-nepal.org/heritagegraph/ArchivalRecordSource",
+     "https://cair-nepal.org/heritagegraph/PublishedScholarship",
+     "https://cair-nepal.org/heritagegraph/CommunityNarrative",
+     "https://cair-nepal.org/heritagegraph/RitualProtocol"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P72_has_language",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/local_contexts_label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/identifier",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/resourceType",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/archival_location",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/publication_timespan",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://purl.org/spar/datacite/creator",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/source_citation",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/transferred_to_guthi",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E12_Production": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P108_has_produced",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "minCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P17_was_motivated_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P32_used_general_technique",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing": {
+  "shape": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+  "targetClass": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+  "closed": true,
+  "props": []
+ },
+ "https://cair-nepal.org/heritagegraph/Guthi": {
+  "shape": "https://cair-nepal.org/heritagegraph/Guthi",
+  "targetClass": "https://cair-nepal.org/heritagegraph/Guthi",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P50_has_current_keeper",
+    "cls": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performs_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/guthi_type",
+    "minCount": "1",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/SiGuthi",
+     "https://cair-nepal.org/heritagegraph/JatraGuthi",
+     "https://cair-nepal.org/heritagegraph/PujaGuthi",
+     "https://cair-nepal.org/heritagegraph/TempleGuthi",
+     "https://cair-nepal.org/heritagegraph/NashaGuthi",
+     "https://cair-nepal.org/heritagegraph/SanaGuthi",
+     "https://cair-nepal.org/heritagegraph/SanGuthi",
+     "https://cair-nepal.org/heritagegraph/RajGuthi"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_invoked_in_ritual",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_religious_tradition",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E55_Type",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/is_enshrined_through_event",
+    "cls": "https://cair-nepal.org/heritagegraph/Enshrinement",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by",
+    "cls": "https://cair-nepal.org/heritagegraph/IconographicObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E39_Actor": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/carried_out_activity",
+    "cls": "https://cair-nepal.org/heritagegraph/HeritageEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/date_precision",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Exact",
+     "https://cair-nepal.org/heritagegraph/Year",
+     "https://cair-nepal.org/heritagegraph/Decade",
+     "https://cair-nepal.org/heritagegraph/Century",
+     "https://cair-nepal.org/heritagegraph/Circa"
+    ]
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/calendar_system",
+    "maxCount": "1",
+    "cls": "http://www.w3.org/2006/time#Calendar",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#date",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/extensions/crminf/I2_Belief": {
+  "shape": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+  "targetClass": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.w3.org/ns/prov#wasRevisionOf",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#value",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/reconciliation_status",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/asserted_value",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/epistemic_stance",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/Scholarly",
+     "https://cair-nepal.org/heritagegraph/Community",
+     "https://cair-nepal.org/heritagegraph/Priestly",
+     "https://cair-nepal.org/heritagegraph/State",
+     "https://cair-nepal.org/heritagegraph/SyncreticTradition",
+     "https://cair-nepal.org/heritagegraph/Uncertain"
+    ]
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#generatedAtTime",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/asserted_property",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasAttributedTo",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/confidence_score",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/asserts_about_event",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/conflicts_with_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/asserts_about_entity",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasDerivedFrom",
+    "minCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/DataSource",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/data_quality_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/DocumentationActivity": {
+  "shape": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+  "targetClass": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_entity",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#generated",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/InformationObject",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_method",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/generated_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/used_equipment",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/subject_event",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/ns/prov#wasAssociatedWith",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+    "nodeKind": "http://www.w3.org/ns/shacl#IRI"
+   }
+  ]
+ },
+ "https://cair-nepal.org/heritagegraph/RitualEvent": {
+  "shape": "https://cair-nepal.org/heritagegraph/RitualEvent",
+  "targetClass": "https://cair-nepal.org/heritagegraph/RitualEvent",
+  "closed": true,
+  "props": [
+   {
+    "path": "https://cair-nepal.org/heritagegraph/managed_by_guthi",
+    "cls": "https://cair-nepal.org/heritagegraph/Guthi",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/performed_by_group"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/was_documented_by",
+    "cls": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120i_is_occurred_before_by",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+    "minCount": "1",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/start_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/has_provenance_assertion",
+    "cls": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/lunar_date_tithi",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_description",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/ritual_type",
+    "maxCount": "1",
+    "in": [
+     "https://cair-nepal.org/heritagegraph/NityaPuja",
+     "https://cair-nepal.org/heritagegraph/NaimittikaPuja",
+     "https://cair-nepal.org/heritagegraph/KamyaPuja",
+     "https://cair-nepal.org/heritagegraph/Abhisheka",
+     "https://cair-nepal.org/heritagegraph/Homa",
+     "https://cair-nepal.org/heritagegraph/Bhajan",
+     "https://cair-nepal.org/heritagegraph/Yagna",
+     "https://cair-nepal.org/heritagegraph/Vrata",
+     "https://cair-nepal.org/heritagegraph/Jatra",
+     "https://cair-nepal.org/heritagegraph/ChariotProcession",
+     "https://cair-nepal.org/heritagegraph/MaskedPerformance",
+     "https://cair-nepal.org/heritagegraph/RitualConsecration",
+     "https://cair-nepal.org/heritagegraph/ProcessionRitual",
+     "https://cair-nepal.org/heritagegraph/InstallationRitual",
+     "https://cair-nepal.org/heritagegraph/DeinstallationRitual",
+     "https://cair-nepal.org/heritagegraph/ReturningRitual",
+     "https://cair-nepal.org/heritagegraph/Circumambulation",
+     "https://cair-nepal.org/heritagegraph/RelicTour",
+     "https://cair-nepal.org/heritagegraph/ProcessionalMovement"
+    ]
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/manifests_divine_presence",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/end_place",
+    "maxCount": "1",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P120_occurs_before",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/RitualEvent",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+    "maxCount": "1",
+    "cls": "https://cair-nepal.org/heritagegraph/Festival",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/route_places",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/recurrence_pattern",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/invokes_deity",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+    "cls": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   }
+  ]
+ },
+ "http://www.cidoc-crm.org/cidoc-crm/E53_Place": {
+  "shape": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+  "targetClass": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+  "closed": true,
+  "props": [
+   {
+    "path": "http://www.opengis.net/ont/geosparql#asWKT",
+    "maxCount": "1",
+    "datatype": "http://www.opengis.net/ont/geosparql#wktLiteral",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "https://cair-nepal.org/heritagegraph/place_type",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   },
+   {
+    "path": "http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of",
+    "cls": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+    "nodeKind": "http://www.w3.org/ns/shacl#BlankNodeOrIRI"
+   },
+   {
+    "path": "http://www.w3.org/2000/01/rdf-schema#label",
+    "minCount": "1",
+    "maxCount": "1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#string",
+    "nodeKind": "http://www.w3.org/ns/shacl#Literal"
+   }
+  ]
+ }
+}

@@ -1,0 +1,26 @@
+# Fuseki assembler: READ-ONLY service over the HeritageGraph TDB2 dataset.
+# Only SPARQL query and read-only Graph-Store endpoints are exposed; there is
+# deliberately NO fuseki:update and NO fuseki:gsp-rw, so the public endpoint
+# cannot be modified over HTTP.
+
+@prefix :       <#> .
+@prefix fuseki: <http://jena.apache.org/fuseki#> .
+@prefix ja:     <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:   <http://jena.apache.org/2016/tdb#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+
+:service a fuseki:Service ;
+    rdfs:label       "HeritageGraph (DANAM) — read-only" ;
+    fuseki:name      "heritagegraph" ;
+    fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "sparql" ] ;
+    fuseki:endpoint  [ fuseki:operation fuseki:query ; fuseki:name "query" ] ;
+    fuseki:endpoint  [ fuseki:operation fuseki:gsp-r ; fuseki:name "get" ] ;
+    fuseki:dataset   :dataset .
+
+# unionDefaultGraph makes queries without an explicit GRAPH clause see the union
+# of all named graphs (openstreetmap / wikidata / unesco / intangible / crosswalk
+# / ontology), which is how the competency-question queries are written.
+:dataset a tdb2:DatasetTDB2 ;
+    tdb2:location          "/fuseki/databases/heritagegraph" ;
+    tdb2:unionDefaultGraph true .

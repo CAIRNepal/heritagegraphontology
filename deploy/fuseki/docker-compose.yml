@@ -1,0 +1,45 @@
+# Public, read-only HeritageGraph SPARQL endpoint.
+#
+#   fuseki  — Apache Jena Fuseki serving the TDB2 dataset (query only)
+#   caddy   — reverse proxy terminating HTTPS (automatic Let's Encrypt certs)
+#
+# The TDB2 database lives in ./databases (bind mount) and is populated by
+# ./load.sh BEFORE the first `docker compose up`. Fuseki is not published to the
+# host directly; only Caddy is reachable from the internet.
+#
+# Pin the image tags below to the exact current releases before deploying.
+
+services:
+  fuseki:
+    image: apache/jena-fuseki:5.2.0
+    container_name: heritagegraph-fuseki
+    restart: unless-stopped
+    environment:
+      # Admin UI is additionally blocked at the proxy; still set a strong value.
+      - ADMIN_PASSWORD=${FUSEKI_ADMIN_PASSWORD:?set FUSEKI_ADMIN_PASSWORD in .env}
+      - JAVA_OPTIONS=-Xmx2g -Xms2g
+    volumes:
+      - ./config/heritagegraph.ttl:/fuseki/configuration/heritagegraph.ttl:ro
+      - ./databases:/fuseki/databases
+    expose:
+      - "3030"          # internal only; not published to the host
+
+  caddy:
+    image: caddy:2
+    container_name: heritagegraph-caddy
+    restart: unless-stopped
+    depends_on:
+      - fuseki
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN:?set DOMAIN in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  caddy-data:
+  caddy-config:

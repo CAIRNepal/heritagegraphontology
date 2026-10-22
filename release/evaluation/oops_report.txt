@@ -1,0 +1,37 @@
+
+======================================================================
+  §4.2  Modeling Quality — OOPS! Pitfall Analysis
+======================================================================
+Date     : 2026-10-19T21:54:04.124716
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
+
+  Parsed 4232 triples
+
+======================================================================
+  OOPS! Online Service
+======================================================================
+  ✅ OOPS! response saved to: /Users/nirajkarki/cair/heritagegraphontology/evaluation/results/oops_response.xml
+  Response size: 36217 chars
+  → Open the XML file to review detected pitfalls.
+
+======================================================================
+  Local Heuristic Pitfall Scan
+======================================================================
+
+  Total pitfalls detected: 224
+  Unique pitfall types:    3
+
+  [    MINOR] P08 — Missing annotations  (4 occurrence(s))
+             → http://www.w3.org/2004/02/skos/core#Concept: Missing rdfs:label
+             → http://www.w3.org/2004/02/skos/core#Concept: Missing skos:definition or rdfs:comment
+             → http://www.w3.org/2004/02/skos/core#ConceptScheme: Missing rdfs:label
+
+  [IMPORTANT] P10 — Missing disjointness  (14 occurrence(s))
+             → https://cair-nepal.org/heritagegraph/SelectionCriterion: Sibling classes lack owl:disjointWith: T...
+             → https://cair-nepal.org/heritagegraph/ArchitecturalStructure: Sibling classes lack owl:disjointWit...
+             → http://www.w3.org/ns/prov#Entity: Sibling classes lack owl:disjointWith: I2_Belief, E57_Material,...
+
+  [IMPORTANT] P11 — Missing domain or range  (206 occurrence(s))
+             → http://www.w3.org/ns/prov#wasInformedBy: Missing rdfs:domain
+             → http://www.w3.org/ns/prov#wasInformedBy: Missing rdfs:range
+             → https://cair-nepal.org/heritagegraph/isInvokedInRitual: Missing rdfs:domain

@@ -29,12 +29,12 @@ from owlrl import DeductiveClosure, OWLRL_Semantics
 # Configuration
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
-ONTOLOGY_FILE = SCRIPT_DIR.parent / "HeritageGraph.ttl"
+ONTOLOGY_FILE = SCRIPT_DIR.parent / "ontology" / "HeritageGraph.ttl"
 RESULTS_DIR = SCRIPT_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
 SKOS = Namespace("http://www.w3.org/2004/02/skos/core#")
-HG = Namespace("https://w3id.org/heritagegraph/")
+HG = Namespace("https://cair-nepal.org/heritagegraph/")
 
 # ---------------------------------------------------------------------------
 # Helpers

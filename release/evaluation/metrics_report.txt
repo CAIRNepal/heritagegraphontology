@@ -1,0 +1,160 @@
+
+======================================================================
+  §4.5 / §4.6  Structural Completeness & Ontology Metrics
+======================================================================
+Date     : 2026-10-19T21:54:02.108222
+Ontology : /Users/nirajkarki/cair/heritagegraphontology/ontology/HeritageGraph.ttl
+
+  Total triples: 4232
+
+======================================================================
+  §4.6  Ontology Metrics
+======================================================================
+
+  Named classes (total)      : 84
+  HeritageGraph namespace    : 66
+  External namespace classes : 18
+  Object properties          : 149
+  Datatype properties        : 42
+  Union classes (all unionOf): 6
+    ├ Named union classes    : 1
+    │   → PhysicalHeritageThing
+    ├ Enum-as-union classes  : 0
+    └ Anonymous union uses   : 6
+  Named individuals          : 51
+  Annotation properties      : 30
+
+======================================================================
+  §4.5  Structural Completeness
+======================================================================
+
+  Classes with rdfs:label            : 82/84
+  Classes with definition            : 82/84
+
+  Classes MISSING definition (2):
+    - Concept
+    - ConceptScheme
+
+  Object props with rdfs:range       : 102/149
+  Datatype props with rdfs:range     : 32/42
+  Object props with rdfs:domain      : 0/149
+  Datatype props with rdfs:domain    : 0/42
+  Properties with rdfs:label         : 191/191
+
+======================================================================
+  Class Hierarchy Analysis
+======================================================================
+
+  Root classes (no named parent): 8
+    - ArchitecturalStyle
+    - AssertionSubject
+    - ConditionType
+    - DatePrecision
+    - ExistenceStatus
+    - GuthiType
+    - RitualType
+    - SyncreticType
+
+  Max hierarchy depth: 4
+  Deepest class: Chaitya
+
+  Classes with subclasses:
+    prov#Entity                              12 subclass(es)
+    prov#Activity                            6 subclass(es)
+    SelectionCriterion                       5 subclass(es)
+    DataSource                               4 subclass(es)
+    ReligiousStructure                       4 subclass(es)
+    E39_Actor                                3 subclass(es)
+    RestHouse                                3 subclass(es)
+    RitualEvent                              3 subclass(es)
+    DocumentationActivity                    3 subclass(es)
+    KumariLifecycleEvent                     3 subclass(es)
+    ArchitecturalStructure                   3 subclass(es)
+    E22_Human-Made_Object                    2 subclass(es)
+    Festival                                 2 subclass(es)
+    WaterStructure                           2 subclass(es)
+    IconographicObject                       2 subclass(es)
+
+======================================================================
+  Full Class List (HeritageGraph namespace)
+======================================================================
+    1. AgeCriterion                             label:✅  def:✅
+    2. ArchitecturalElement                     label:✅  def:✅
+    3. ArchitecturalStructure                   label:✅  def:✅
+    4. ArchitecturalStyle                       label:✅  def:✅
+    5. ArchivalRecord                           label:✅  def:✅
+    6. AssertionSubject                         label:✅  def:✅
+    7. CalendarSystem                           label:✅  def:✅
+    8. CasteGroup                               label:✅  def:✅
+    9. Chaitya                                  label:✅  def:✅
+   10. ChariotFestival                          label:✅  def:✅
+   11. ConditionType                            label:✅  def:✅
+   12. Consecration                             label:✅  def:✅
+   13. Container                                label:✅  def:✅
+   14. DataCustodian                            label:✅  def:✅
+   15. DataSource                               label:✅  def:✅
+   16. DatePrecision                            label:✅  def:✅
+   17. Deity                                    label:✅  def:✅
+   18. Dharmashala                              label:✅  def:✅
+   19. DhungeDhara                              label:✅  def:✅
+   20. DocumentationActivity                    label:✅  def:✅
+   21. Enshrinement                             label:✅  def:✅
+   22. ExistenceStatus                          label:✅  def:✅
+   23. FearlessnessAssessment                   label:✅  def:✅
+   24. Festival                                 label:✅  def:✅
+   25. FieldSurveyActivity                      label:✅  def:✅
+   26. FieldSurveyDataset                       label:✅  def:✅
+   27. Guthi                                    label:✅  def:✅
+   28. GuthiType                                label:✅  def:✅
+   29. HistoricalEvent                          label:✅  def:✅
+   30. HoroscopeCompatibilityCriterion          label:✅  def:✅
+   31. IconographicObject                       label:✅  def:✅
+   32. InformationObject                        label:✅  def:✅
+   33. KumariEnthronementEvent                  label:✅  def:✅
+   34. KumariHouse                              label:✅  def:✅
+   35. KumariLifecycleEvent                     label:✅  def:✅
+   36. KumariRetirementEvent                    label:✅  def:✅
+   37. KumariRole                               label:✅  def:✅
+   38. KumariSelectionEvent                     label:✅  def:✅
+   39. KumariTenure                             label:✅  def:✅
+   40. LineageCriterion                         label:✅  def:✅
+   41. MaskedDance                              label:✅  def:✅
+   42. Metadata                                 label:✅  def:✅
+   43. Murti                                    label:✅  def:✅
+   44. OralHistoryInterview                     label:✅  def:✅
+   45. OralHistoryRecording                     label:✅  def:✅
+   46. Pati                                     label:✅  def:✅
+   47. Paubha                                   label:✅  def:✅
+   48. PhysicalHeritageThing                    label:✅  def:✅
+   49. PhysicalIntegrityCriterion               label:✅  def:✅
+   50. Pokhari                                  label:✅  def:✅
+   51. Proposition                              label:✅  def:✅
+   52. ReligiousStructure                       label:✅  def:✅
+   53. ReligiousTradition                       label:✅  def:✅
+   54. RestHouse                                label:✅  def:✅
+   55. RitualAssessment                         label:✅  def:✅
+   56. RitualEvent                              label:✅  def:✅
+   57. RitualType                               label:✅  def:✅
+   58. Sattal                                   label:✅  def:✅
+   59. SelectionCriterion                       label:✅  def:✅
+   60. Stupa                                    label:✅  def:✅
+   61. SyncreticRelationship                    label:✅  def:✅
+   62. SyncreticType                            label:✅  def:✅
+   63. Temple                                   label:✅  def:✅
+   64. ThirtyTwoPerfectionsCriterion            label:✅  def:✅
+   65. Verification                             label:✅  def:✅
+   66. WaterStructure                           label:✅  def:✅
+
+======================================================================
+  Paper Claims vs Actual
+======================================================================
+
+  Metric                              Paper     Actual    Match
+  --------------------------------------------------------------
+  Named owl:Class (HG namespace)         70         66        ❌
+  Object properties                     123        149        ❌
+  Datatype properties                    48         42        ❌
+  Union classes (named)                   3          1        ❌
+  Named individuals (enum values)         64         51        ❌
+  SHACL NodeShapes                       61         61        ✅
+  CQ TBox pass rate                   32/32      32/32        ✅

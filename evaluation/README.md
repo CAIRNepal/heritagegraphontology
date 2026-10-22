@@ -1,40 +1,61 @@
 # HeritageGraph Ontology — Evaluation Suite
 
-Reproducible evaluation of the HeritageGraph ontology across the seven dimensions described in the SWJ paper submission (§4.1–§4.7).
+Reproducible evaluation of the HeritageGraph ontology, backing the evaluation
+section (§7.1–§7.8) of the TGDK paper submission. Every script targets the
+released ontology `../ontology/HeritageGraph.ttl` and the demonstrator
+`../examples/kathmandu-mini-abox.ttl`; authoritative figures are reported in the
+paper and regenerated into `results/`.
 
 ## Directory Structure
 
 ```
 evaluation/
-├── README.md                    ← You are here
-├── Makefile                     ← One-command reproducibility
-├── requirements.txt             ← Python dependencies
-├── setup.sh                     ← Environment setup script
+├── README.md                        ← You are here
+├── Makefile                         ← One-command reproducibility
+├── requirements.txt                 ← Python dependencies
+├── setup.sh                         ← Environment setup script
 │
-├── run_consistency.py           ← §4.1  Logical consistency & OWL-RL reasoning
-├── run_oops.py                  ← §4.2  OOPS! pitfall analysis
-├── run_cq_validation.py         ← §4.3 + §4.7  CQ validation & traceability
-├── run_alignment.py             ← §4.4  Alignment & interoperability
-├── run_metrics.py               ← §4.5 + §4.6  Structural completeness & metrics
+│   Core dimensions
+├── run_consistency.py               ← §7.1  OWL-RL closure & parse check
+├── run_hermit.py                    ← §7.1  OWL 2 DL consistency (HermiT/ROBOT)
+├── reasoning_extras.py              ← §7.1  merged-vocabulary classification +
+│                                       inconsistency injection (subcommands:
+│                                       injection | merged-import | all)
+├── run_oops.py                      ← §7.2  OOPS! pitfall analysis
+├── run_abox_cq32.py                 ← §7.3  32 competency questions (expected-vs-actual);
+│                                       --entailment runs the OWL-RL entailment +
+│                                       structural-census analysis
+├── cq_expected.json                 ← §7.3  frozen, domain-grounded expected answer sets
+├── run_danam_scale_cq.py            ← 32 CQs over the DANAM + Wikidata bundle
+│                                       (not part of the paper's evaluation; not run by default)
+├── run_metrics.py                   ← §7.3  Structural metrics
+├── run_alignment.py                 ← §7.6  Alignment counts
+├── mapping_audit.py                 ← §7.6  External mapping audit + negative
+│                                       control (subcommands: audit |
+│                                       negative-control)
+├── shacl_census.py                  ← §7.4  SHACL constraint-component census
+├── provo_consumer.py                ← §7.5  PROV-O generic-consumer interop
 │
-├── setup_protege.sh             ← §4.1  Protégé download & configuration
-├── protege/
-│   ├── launch_protege.sh        ← One-click Protégé launcher
-│   └── PROTEGE_EVALUATION_CHECKLIST.md
+│   Pattern experiments (§7.3, §7.5) — one CLI, run:
+│   pattern_experiments.py [ablation|tenure|sameas|custodianship|
+│                           supersession|multicalendar|all]
+├── pattern_experiments.py           ← ablation      event-mediation vs static
+│                                       tenure        tenure node vs actor-role
+│                                       sameas        owl:sameAs vs reified
+│                                       custodianship institutional depth
+│                                       supersession  belief supersession chain
+│                                       multicalendar multi-calendar resolution
+├── artifact_lockstep.py             ← LinkML↔generated-artifact lockstep
 │
-├── queries/                     ← (Optional) Individual .rq SPARQL files
+│   Independent cross-checks
+├── independent_eval.py              ← Independent, from-scratch re-evaluation
+├── independent_abox.py              ← Independent ABox SHACL conformance + negatives
+├── run_tgdk_eval.py                 ← Aggregate TGDK evaluation driver
 │
-└── results/                     ← All generated reports land here
-    ├── consistency_report.txt
-    ├── consistency_report.csv
-    ├── oops_report.txt
-    ├── oops_response.xml
-    ├── cq_validation_report.txt
-    ├── cq_traceability_matrix.csv
-    ├── alignment_report.txt
-    ├── alignment_report.csv
-    ├── metrics_report.txt
-    └── metrics_report.csv
+├── setup_protege.sh                 ← §7.1  Protégé download & configuration
+├── protege/                         ← Protégé install target
+├── lux/                             ← §7.7  Yale LUX interoperability case study
+└── results/                         ← All generated reports land here (git-ignored)
 ```
 
 ## Quick Start
@@ -126,11 +147,12 @@ Then follow `protege/PROTEGE_EVALUATION_CHECKLIST.md`.
 
 | Tool | What it checks | Script |
 |------|---------------|--------|
-| **rdflib SPARQL** | 32 TBox-only ASK queries against schema | `run_cq_validation.py` |
+| **rdflib SPARQL 1.1** | 32 instance-level SELECT queries over the demonstrator ABox (`../examples/queries/cq-abox-32.rq`), each compared against its frozen expected answer set (`cq_expected.json`) | `run_abox_cq32.py` |
+| **rdflib + OWL-RL** | how CQ answer sets change under deductive closure | `run_abox_cq32.py --entailment` |
 
 **Output:**
-- `results/cq_validation_report.txt` — Pass/fail for each CQ
-- `results/cq_traceability_matrix.csv` — Full CQ → ontology element mapping
+- `results/abox_cq32_report.txt` / `.csv` — expected vs actual rows per CQ (a CQ passes only when its returned bindings equal the expected answer set exactly; the runner also prints a negative-control check proving the oracle discriminates)
+- `results/abox_cq32_table.tex` — LaTeX table body for the paper appendix
 
 **CQ Dimensions:**
 - **Structural** (CQ1–CQ6): Architecture, typology, location
@@ -168,20 +190,7 @@ Computed by `run_metrics.py`:
 - Union class count
 - Named individual count
 - Hierarchy depth
-- Comparison against paper claims (111 classes, 118 obj props, etc.)
-
-### §4.7 — CQ Traceability
-
-Generated by `run_cq_validation.py` as `results/cq_traceability_matrix.csv`:
-
-| Column | Description |
-|--------|-------------|
-| `cq_id` | CQ identifier (CQ1–CQ32) |
-| `dimension` | Thematic dimension |
-| `question` | Full competency question text |
-| `ontology_elements` | Classes and properties needed |
-| `ask_result` | Boolean pass/fail |
-| `time_ms` | Query execution time |
+- Comparison against paper claims (70 classes, 123 obj props, 47 datatype props, 64 individuals, etc.)
 
 ---
 
@@ -218,7 +227,7 @@ make all
 # 4. Check results
 ls -la results/
 cat results/metrics_report.txt
-cat results/cq_validation_report.txt
+cat results/abox_cq32_report.txt
 cat results/alignment_report.txt
 cat results/consistency_report.txt
 cat results/oops_report.txt
@@ -226,60 +235,78 @@ cat results/oops_report.txt
 
 ## Ontology File
 
-The evaluation targets `../HeritageGraph.ttl` (generated from `../HeritageGraph.yaml` via LinkML).
+The evaluation targets `../ontology/HeritageGraph.ttl`, generated from
+`../ontology/HeritageGraph.yaml` by `../scripts/finalize_alpha5_artifacts.py`
+(which repairs the known gen-owl omissions and guards axiom survival).
 
-The alignment script (`run_alignment.py`) also reads `../HeritageGraph.yaml` directly to extract `slot_uri` / `class_uri` mappings that are not emitted as OWL triples in the generated TTL.
+The alignment script (`run_alignment.py`) also reads the YAML directly to extract
+`slot_uri` / `class_uri` mappings.
 
 If the TTL is out of date, regenerate it:
 ```bash
-pip install linkml
-cd ..
-gen-owl HeritageGraph.yaml -o HeritageGraph.ttl
+python3 scripts/finalize_alpha5_artifacts.py
 ```
 
 ---
 
 ## Expected Results Summary
 
-When run against the current HeritageGraph ontology, the evaluation suite produces:
+When run against the released ontology (`../ontology/HeritageGraph.ttl`,
+v1.0.0), the suite reproduces the figures reported in §7 of the paper.
+The paper is the authoritative source; the numbers below are a quick reference.
 
-### §4.1 Consistency
-- **4,312** base triples parsed
-- **17,894** inferred triples via OWL-RL closure (22,206 total)
-- **0** unsatisfiable classes detected
+### §7.1 Consistency
+- **4,180** base triples; **13,959** after OWL-RL closure (**9,779** inferred)
+- **0** unsatisfiable classes under HermiT (standalone and merged with CRM/CRMinf/CRMsci/PROV-O)
+- HermiT: **579** asserted `rdfs:subClassOf` axioms, **10** inferred named-class subsumptions
+  (`reasoning_extras.py entailments`)
+- No external class gains a HeritageGraph superclass and no enumeration value an extra HG type,
+  with the LUX module and CIDOC-CRM merged (`reasoning_extras.py no-external-superclass`)
+- Ontology + each example ABox, parsed into one graph, is inside OWL 2 DL and HermiT-consistent
+  (`check_combined_dl.py`, `make combined`); every `hg:` term used in examples, queries, and
+  evaluation code is declared (`check_declared_terms.py`, `make terms`)
+- **1** `owl:disjointWith` axiom (`Stupa`⊓`Chaitya`); separation is otherwise enforced by SHACL
 
-### §4.2 OOPS! Pitfalls
-- **P08** (Minor): 6 classes missing annotations (enum parent classes)
-- **P10** (Important): 17 sibling class pairs missing `owl:disjointWith`
-- **P11** (Important): 147 missing domain/range declarations
-- **P13** (Minor): 5 likely inverse pairs missing `owl:inverseOf`
-- **P22** (Critical): 2 non-HTTP URIs (ontology IRI uses `file://` scheme)
+### §7.2 OOPS! Pitfalls
+- No critical pitfall; only the deliberate, documented design decisions are reported
+  (see `run_oops.py` and the paper §7.2).
 
-### §4.3 Competency Questions
-- **32/32** CQs pass (100%)
-- All 4 dimensions: Structural 6/6, Ritual/Festival 12/12, Institutional/Syncretic 7/7, Living Goddess 7/7
+### §7.3 Competency Questions
+- **32/32** CQs match their frozen expected answer set exactly (39 expected rows) over the demonstrator ABox — expected-vs-actual, not a non-empty check
+- A negative control (a query with a broken predicate) is reported as a mismatch, showing the oracle discriminates
+- Dimensions: Structural 6/6, Ritual/Festival 12/12, Institutional/Syncretic 7/7, Living Goddess 7/7
+- Three pattern ablations (`pattern_experiments.py ablation`, `... tenure`,
+  `... sameas`) show each pattern is load-bearing
 
-### §4.4 Alignment
-| Namespace | Classes | Properties |
-|-----------|---------|------------|
-| CIDOC-CRM | 42 | 71 ✅ |
-| PROV-O | 3 | 11 ✅ |
-| AAT | 25 | 0 |
-| Wikidata | 6 | 0 |
-| DBpedia | 3 | 0 |
-| DataCite | 0 | 5 |
-| Others | 5 | 3 |
+### DANAM bundle (not part of the paper's evaluation)
+Not run by any default target; see `../data/README.md` for its known `owl:sameAs`
+inconsistency.
+- `run_danam_scale_cq.py` runs the same 32 CQs over two independent third-party
+  sources mapped to the released vocabulary — the reconciled DANAM/OpenStreetMap
+  graph (`../data/reconciled/danam-heritagegraph.nq`, 130,286 quads) and a live
+  Wikidata enrichment (`../data/reconciled/wikidata-kv.nq`, built by
+  `../data/enrich_wikidata.py`)
+- Run it by hand (`python3 run_danam_scale_cq.py`) for per-CQ binding counts
 
-### §4.5/§4.6 Metrics — Paper vs Actual
-| Metric | Paper | Actual | Match |
-|--------|-------|--------|-------|
-| Classes (HG namespace) | 111 | 111 | ✅ |
-| Object properties | 118 | 118 | ✅ |
-| Datatype properties | 44 | 44 | ✅ |
-| Union classes (named) | 2 | 2 | ✅ |
-| Named individuals | 0 | 0 | ✅ |
+### §7.4 Constraint Validation
+- **75** `sh:NodeShape`s with **1,204** property shapes; released open (closedness relaxed)
+- Demonstrator ABox conforms; 8 single-violation negative tests are all caught
 
-### Known Notes
-- **CRM class count** (42 vs paper's 35): The script finds 42 CRM-aligned classes because it also counts AAT concepts that have `rdfs:subClassOf crm:E55_Type`. The paper's 35 counts only direct `class_uri` mappings from the YAML.
-- **P22 non-HTTP URI**: The ontology IRI resolves to a `file://` path (`CulturalHeritageOntology.owl.ttl`). This should be fixed before publication to use the canonical `https://w3id.org/heritagegraph/` URI.
-- **Property alignment source**: Property alignments (71 CRM, 11 PROV-O) are extracted from `HeritageGraph.yaml` `slot_uri` values since LinkML does not emit these as OWL triples in the generated TTL.
+### §7.6 Alignment
+- **42** classes and **25** minted properties map to **12** external vocabularies via
+  **116** mapping triples (48 `skos:broadMatch`, 23 `rdfs:subClassOf`, 23 `rdfs:subPropertyOf`,
+  16 `skos:exactMatch`, 6 `skos:closeMatch`)
+- Led by CIDOC-CRM (31 classes, 22 properties), PROV-O (28 classes), Getty AAT (6 classes)
+
+### Metrics
+| Metric | Value |
+|--------|-------|
+| Classes (named) | 84 (66 HG-minted + 18 reused) |
+| Object properties | 149 |
+| Datatype properties | 42 |
+| SKOS concepts (enumerations) | 51 |
+| SHACL NodeShapes | 75 |
+| CQ pass rate (ABox, expected-vs-actual) | 32/32 |
+
+All reports are regenerated against `../ontology/HeritageGraph.ttl`; re-run with
+`make all` (from this directory) to refresh `results/`.
