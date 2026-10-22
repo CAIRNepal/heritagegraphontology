@@ -309,8 +309,8 @@ cite:
 
 ```text
 Niraj Karki, Nabin Oli, Anu Sapkota, Semih Yumusak, and Tek Raj Chhetri (2026).
-HeritageGraph Ontology (Version 1.0.0).
-https://cairnepal.github.io/heritagegraphontology/
+HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal.
+https://doi.org/10.5281/zenodo.23435676
 ```
 
 A `CITATION.cff` file is included for automated citation tools (Zenodo, GitHub,
