@@ -29,6 +29,16 @@
   and `Metadata ⊑ hg:InformationObject` removed (new subsumptions between core classes).
 
 ### Fixed
+- CI: the build toolchain is pinned (`requirements-build.txt`: LinkML 1.9.6, rdflib 7.6.0, owlrl 7.1.4,
+  pySHACL 0.31.0, …). Unpinned installs pulled LinkML 1.12, whose SHACL generator emits different shapes
+  for `uriorcurie` slots, so the regenerate step failed its own SHACL self-check and every later step
+  (checks, documentation, Pages deploy) was skipped.
+- Documentation and header metadata at release level: `bibo:status` "Published" (was the hard-coded
+  "Pre-release specification draft (alpha)"); `dcterms:creator` lists the five authors (CAIR-Nepal stays
+  publisher); `dcterms:bibliographicCitation` names the authors and the concept DOI; the WIDOCO page is
+  titled with the version instead of "Release: <created date>"; the authored sections cite CIDOC-CRM 7.1.3
+  (not 7.2.1), add CRMsci, drop the unsupported EDM alignment claim, give 11 external vocabularies, and
+  point to the LUX alignment in `heritagegraph-lux-migration/`.
 - `KumariRetirementEvent`'s `carried_out_by` (`crm:P14_carried_out_by`) range relaxed from `crm:E21_Person`
   to `crm:E39_Actor`. `performedByGroup` is a subproperty of `crm:P14_carried_out_by`, so the Person-only
   restriction made any Guthi or caste group performing a retirement a `crm:E21_Person`.

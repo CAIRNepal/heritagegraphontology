@@ -92,6 +92,12 @@ html = html.replace(
     "https://img.shields.io/badge/License-https://creativecommons.org/licenses/by/4.0/-blue.svg",
     "https://img.shields.io/badge/License-CC--BY--4.0-blue.svg",
 )
+# WIDOCO titles the page "Release: <dcterms:created>", which reads as a 2025
+# release; show the version instead (the dates are listed below the heading).
+import re
+m = re.search(r"<dt>Revision:</dt>\s*<dd>([^<]+)</dd>", html)
+if m:
+    html = re.sub(r"<h2>Release: [^<]*</h2>", f"<h2>Version {m.group(1).strip()}</h2>", html, count=1)
 open(p, "w", encoding="utf-8").write(html)
 PY
 fi

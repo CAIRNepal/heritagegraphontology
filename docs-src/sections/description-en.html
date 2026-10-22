@@ -57,22 +57,23 @@ construction dates) coexist with their evidence and epistemic standing.
 The core vocabulary carries its external alignments **inline** (SKOS
 `exactMatch` / `closeMatch` / `broadMatch`, `rdfs:subClassOf`, and
 `rdfs:subPropertyOf`) to CIDOC-CRM, CRMinf, PROV-O, Getty AAT, schema.org,
-Wikidata, and a Europeana EDM projection. Companion artefacts (in `ontology/`):
+and Wikidata. Companion artefacts:
 
-- `HeritageGraph.shacl.ttl` — SHACL validation shapes for the core vocabulary
+- `ontology/HeritageGraph.shacl.ttl` — SHACL validation shapes for the core vocabulary
   (75 node shapes).
-- `lux/heritagegraph-lux-alignment.ttl` — a bridge to Yale's LUX / Linked Art,
-  with its shapes in `lux/HeritageGraph-lux.shacl.ttl` (33 node shapes).
+- `heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl` — a
+  bridge to Yale's LUX / Linked Art (part of the HeritageGraph–LUX migration),
+  with its shapes in `ontology/lux/HeritageGraph-lux.shacl.ttl` (33 node shapes).
 - `examples/kathmandu-mini-abox.ttl` — a small worked instance dataset (the
   demonstrator ABox) that exercises every modelling pattern.
 
 ### Quality at a glance
 
 The ontology is logically consistent under the HermiT reasoner — **0**
-unsatisfiable classes, both standalone and when merged with CIDOC-CRM, CRMinf,
-and PROV-O — and answers all **32/32** competency questions as SPARQL queries
+unsatisfiable classes, both standalone and when merged with CIDOC-CRM 7.1.3,
+CRMinf, CRMsci, and PROV-O — and answers all **32/32** competency questions as SPARQL queries
 over the demonstrator ABox (expected-versus-actual exact match). Its external
-alignment spans SKOS mappings to **12** vocabularies plus the EDM profile. See the
+alignment spans mapping axioms to **11** external vocabularies. See the
 [evaluation suite](https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation)
 for reproducible reports.
 

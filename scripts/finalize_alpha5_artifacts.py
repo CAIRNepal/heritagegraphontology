@@ -314,31 +314,33 @@ def finalize_owl(sv: SchemaView) -> Graph:
     onts = list(g.subjects(RDF.type, OWL.Ontology))
     ont = onts[0] if onts else ONTOLOGY_IRI
     schema_version = str(sv.schema.version)
+    # descriptive metadata comes from the schema header; creators are "; "-separated
+    header = {k: str(v.value) for k, v in (sv.schema.annotations or {}).items()}
+    citation = header.get("dcterms:bibliographicCitation") or (
+        f"CAIR-Nepal (2026). HeritageGraph Ontology ({schema_version}). {ONTOLOGY_IRI}")
+    creators = [c.strip() for c in header.get("dcterms:creator", "CAIR-Nepal").split(";") if c.strip()]
     meta = [
         (DCTERMS.created, Literal("2025-11-23", datatype=XSD.date)),
         (DCTERMS.modified, Literal(date.today().isoformat(), datatype=XSD.date)),
         (DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")),
-        (DCTERMS.bibliographicCitation, Literal(
-            f"CAIR-Nepal (2026). HeritageGraph Ontology ({schema_version}). "
-            f"{ONTOLOGY_IRI}")),
+        (DCTERMS.bibliographicCitation, Literal(citation)),
         (DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")),
-        (DCTERMS.creator, Literal("CAIR-Nepal")),
-        (DCTERMS.publisher, Literal("CAIR-Nepal")),
-        (BIBO.status, Literal("Pre-release specification draft (alpha)")),
+        *[(DCTERMS.creator, Literal(c)) for c in creators],
+        (DCTERMS.publisher, Literal(header.get("dcterms:publisher", "CAIR-Nepal"))),
+        (BIBO.status, Literal(header.get("bibo:status", "Published"))),
         (VANN.preferredNamespacePrefix, Literal("heritageGraph")),
         (VANN.preferredNamespaceUri, Literal(HG_NS)),
     ]
     # release identifiers set in the schema header (dcterms:issued, bibo:doi)
-    header = {k: str(v.value) for k, v in (sv.schema.annotations or {}).items()}
     if header.get("dcterms:issued"):
         meta.append((DCTERMS.issued, Literal(header["dcterms:issued"], datatype=XSD.date)))
     if header.get("bibo:doi"):
         meta.append((BIBO.doi, Literal(header["bibo:doi"])))
     if header.get("owl:priorVersion"):
         meta.append((OWL.priorVersion, URIRef(header["owl:priorVersion"])))
+    for p in {p for p, _ in meta}:
+        g.remove((ont, p, None))
     for p, o in meta:
-        for old in list(g.objects(ont, p)):
-            g.remove((ont, p, old))
         g.add((ont, p, o))
     g.bind("bibo", BIBO); g.bind("vann", VANN)
 
