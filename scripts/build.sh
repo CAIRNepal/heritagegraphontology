@@ -92,7 +92,7 @@ fi
 # CC-BY-4.0 label instead, keeping the link target unchanged.
 INDEX="$GEN/index.html"
 if [ -f "$INDEX" ]; then
-  "$PY" - "$INDEX" <<'PY'
+  "$PY" - "$INDEX" "$ONT/HeritageGraph.yaml" <<'PY'
 import sys
 p = sys.argv[1]
 html = open(p, encoding="utf-8").read()
@@ -106,6 +106,14 @@ import re
 m = re.search(r"<dt>Revision:</dt>\s*<dd>([^<]+)</dd>", html)
 if m:
     html = re.sub(r"<h2>Release: [^<]*</h2>", f"<h2>Version {m.group(1).strip()}</h2>", html, count=1)
+# RDF has no order, so WIDOCO lists the creators alphabetically; list them in
+# the author order of the schema header (dcterms:creator, "; "-separated).
+mc = re.search(r'^\s*dcterms:creator:\s*"([^"]+)"', open(sys.argv[2], encoding="utf-8").read(), re.M)
+if mc:
+    order = [c.strip() for c in mc.group(1).split(";") if c.strip()]
+    ma = re.search(r"(<dt>Authors:</dt>\s*)((?:<dd>[^<]*</dd>)+)", html)
+    if ma and sorted(re.findall(r"<dd>([^<]*)</dd>", ma.group(2))) == sorted(order):
+        html = html[:ma.start(2)] + "".join(f"<dd>{c}</dd>" for c in order) + html[ma.end(2):]
 open(p, "w", encoding="utf-8").write(html)
 PY
 fi
