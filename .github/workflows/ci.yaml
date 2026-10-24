@@ -7,6 +7,10 @@ on:
       - HeritageGraph
   workflow_dispatch:
 
+# the Pages deploy pushes to gh-pages; newer repositories give GITHUB_TOKEN read-only access by default
+permissions:
+  contents: write
+
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
