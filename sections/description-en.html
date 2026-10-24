@@ -1,5 +1,84 @@
-<h2 id="desc" class="list">CulturalHeritageOntology: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
+<h2 id="desc" class="list">HeritageGraph: Description <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
 
-<span class="markdown">This is a placeholder text for the description of your ontology. The description should include an explanation and a diagram explaining how the classes are related, examples of usage, etc.
+<span class="markdown">
+HeritageGraph follows an **event-centric** modelling pattern inherited from
+CIDOC-CRM: instead of linking attributes directly to a heritage object, the
+ontology connects objects, places, agents, and time-spans *through events*. This
+makes provenance, sequence, and participation explicit and queryable. The schema
+contains **84 classes** (66 newly minted plus 18 reused from CIDOC-CRM, CRMinf,
+PROV-O, and SKOS that carry local axioms), **149 object properties**, **42
+datatype properties**, and **7 enumerations** published as SKOS concept schemes
+(**51** controlled-vocabulary concepts). It is generated from a LinkML source of
+truth (`HeritageGraph.yaml`).
 
-</span>
+### Core building blocks
+
+- **Physical heritage things** — `PhysicalHeritageThing` (a union of
+  `ArchitecturalStructure`, `IconographicObject`, and `ArchitecturalElement`)
+  covers temples (`Temple`, `Stupa`, `Chaitya`, `ReligiousStructure`),
+  *murti*/*paubha* icons (`Murti`, `Paubha`), water structures (`WaterStructure`,
+  `DhungeDhara`, `Pokhari`), and rest houses (`RestHouse`, `Pati`, `Sattal`,
+  `Dharmashala`).
+- **Events** — heritage change is represented through typed events:
+  production (via CIDOC-CRM `crm:E12_Production`), `Consecration`, `Enshrinement`,
+  custody transfer, `RitualEvent` (e.g. `ChariotFestival`, `MaskedDance`) grouped
+  by `Festival`, `HistoricalEvent`, and the living-goddess lifecycle
+  (`KumariSelectionEvent`, `KumariEnthronementEvent`, `KumariTenure`,
+  `KumariRetirementEvent`, generalised by `KumariLifecycleEvent`).
+- **Actors & institutions** — actors and persons (via CIDOC-CRM `crm:E39_Actor` /
+  `crm:E21_Person`), `CasteGroup`, `DataCustodian`, and the institution central to
+  Nepalese heritage, `Guthi` (typed by the `GuthiType` enumeration).
+- **Places & time** — places and time-spans (via `crm:E53_Place` /
+  `crm:E52_Time-Span`) and `CalendarSystem` support multi-calendar dating
+  (e.g. Bikram Sambat, Nepal Sambat, Gregorian) with explicit `DatePrecision`.
+- **Knowledge & provenance** — assertions and beliefs (aligned with CRMinf
+  `I2_Belief` / `Proposition` and PROV-O), `DataSource` (`ArchivalRecord`,
+  `OralHistoryRecording`, `FieldSurveyDataset`), `DocumentationActivity`,
+  `FieldSurveyActivity`, and `Verification` capture *who asserted what, from which
+  source, and with what confidence*, so competing sources can coexist.
+- **Syncretism** — `SyncreticRelationship` links `Deity` instances that bridge
+  Hindu and Buddhist traditions (`ReligiousTradition`), typed by the
+  `SyncreticType` enumeration — as a provenance-qualified interpretive assertion
+  rather than semantic identity (`owl:sameAs`).
+
+### How the pieces relate
+
+A typical pattern looks like this: an `ArchitecturalStructure` was produced by a
+production event (`crm:E12_Production`) that took place at a place
+(`crm:E53_Place`), occurred during a time-span (`crm:E52_Time-Span`), and had a
+`Person` or `Guthi` as participant. A `RitualEvent` activates the same structure
+during a `Festival`, following a canonical sequence. Each fact can be recorded as
+a source-attributed belief (CRMinf `I2_Belief`) that was derived from a
+`DataSource` and checked by a `Verification`, so contradictory claims (e.g. two
+construction dates) coexist with their evidence and epistemic standing.
+
+### Interoperability modules
+
+The core vocabulary carries its external alignments **inline** (SKOS
+`exactMatch` / `closeMatch` / `broadMatch`, `rdfs:subClassOf`, and
+`rdfs:subPropertyOf`) to CIDOC-CRM, CRMinf, PROV-O, Getty AAT, schema.org,
+and Wikidata. Companion artefacts:
+
+- `ontology/HeritageGraph.shacl.ttl` — SHACL validation shapes for the core vocabulary
+  (75 node shapes).
+- `heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl` — a
+  bridge to Yale's LUX / Linked Art (part of the HeritageGraph–LUX migration),
+  with its shapes in `ontology/lux/HeritageGraph-lux.shacl.ttl` (33 node shapes).
+- `examples/kathmandu-mini-abox.ttl` — a small worked instance dataset (the
+  demonstrator ABox) that exercises every modelling pattern.
+
+### Quality at a glance
+
+The ontology is logically consistent under the HermiT reasoner — **0**
+unsatisfiable classes, both standalone and when merged with CIDOC-CRM 7.1.3,
+CRMinf, CRMsci, and PROV-O — and answers all **32/32** competency questions as SPARQL queries
+over the demonstrator ABox (expected-versus-actual exact match). Its external
+alignment spans mapping axioms to **11** external vocabularies. See the
+[evaluation suite](https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation)
+for reproducible reports.
+
+The diagram below (open the **Visualize with WebVowl** badge at the top of this
+page) shows the connected class graph. Note that the upper-ontology *super-property*
+links (CIDOC-CRM `P…`, PROV-O `was…`) are recorded on each property but are not
+drawn as separate nodes, to keep the visualization focused on HeritageGraph's own
+classes and relations.</span>
