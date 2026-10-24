@@ -44,7 +44,10 @@ PY
 PLATFORM=""
 case "$(uname -m)" in arm64|aarch64) PLATFORM="--platform linux/amd64" ;; esac
 
-TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
+TMP="$(mktemp -d)"; WORK="$(mktemp -d)"
+# WIDOCO runs as root inside Docker; on Linux its output is root-owned, so the
+# cleanup must tolerate files the calling user cannot delete.
+trap 'rm -rf "$TMP" "$WORK" 2>/dev/null || true' EXIT
 chmod 777 "$TMP"
 
 echo "▶ 2/3  running WIDOCO (owl2vowl) on the core ontology"
@@ -56,8 +59,13 @@ docker run --rm -u 0 $PLATFORM \
   -outFolder /output \
   -lang en -rewriteAll -webVowl
 
+# Work on a copy owned by the calling user: on a Linux CI runner the files
+# WIDOCO wrote as root are readable but not writable, and the steps below patch
+# them in place (Docker Desktop on macOS maps ownership, so this never showed locally).
+cp -R "$TMP"/. "$WORK"/
+
 # Widoco may nest everything under a doc/ subfolder depending on version
-GEN="$TMP"; [ -d "$TMP/doc" ] && GEN="$TMP/doc"
+GEN="$WORK"; [ -d "$WORK/doc" ] && GEN="$WORK/doc"
 [ -f "$GEN/index-en.html" ] && mv -f "$GEN/index-en.html" "$GEN/index.html" || true
 
 # Declutter the WebVOWL graph: drop the external CIDOC-CRM/PROV alignment
