@@ -83,6 +83,8 @@ if command -v rsync >/dev/null 2>&1; then
 else
   find "$OUT" -mindepth 1 -maxdepth 1 ! -name releases -exec rm -rf {} + && cp -R "$SITE"/. "$OUT"/
 fi
+# OntoReview's graph leaves enumeration values unconnected; link each to its class
+"$PY" "$ROOT/scripts/link_enum_values.py" "$OUT"
 "$PY" "$ROOT/scripts/publish_release.py" "$OUT"
 "$PY" "$ROOT/scripts/gen_enum_pages.py" "$OUT"
 
