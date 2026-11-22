@@ -161,6 +161,7 @@ enums:
       - crm:E55_Type
     permissible_values:
       Pagoda:
+        title: "Pagoda style"
         description: "Multi-tiered roof style indigenous to Nepal"
         # STYLE IRI FIX (v1.0.0): the AAT concept is the building type
         # 'pagodas', not a style; it was the value's IRI (`meaning`), which
@@ -169,6 +170,7 @@ enums:
         close_mappings:
           - aat:300004829
       Shikhara:
+        title: "Shikhara style"
         description: "North Indian spire-shaped style"
         # MAPPING AUDIT (alpha.5): aat:300446671 = 'grīvā-śikhara' (verified)
         # names a specific sikhara variant, not the general style; no general
@@ -176,6 +178,7 @@ enums:
         # expert confirmation.
         # meaning: aat:300446671
       Dome:
+        title: "Dome style"
         description: "Dome-based style (Mughal/Neo-classical influence)"
         # MAPPING AUDIT (alpha.5): aat:300001285 = 'onion domes' (verified)
         # is narrower than this generic value; replaced with the verified
@@ -185,11 +188,13 @@ enums:
         related_mappings:
           - aat:300001280
       Chaitya:
+        title: "Chaitya style"
         description: "Buddhist votive shrine style"
         # STYLE IRI FIX (v1.0.0): building type, not a style -> close mapping.
         close_mappings:
           - aat:300007562
       Stupa:
+        title: "Stupa style"
         description: "Buddhist dome-shaped reliquary"
         # STYLE IRI FIX (v1.0.0): aat:300007576 'stupas' is the building type
         # the Stupa class is exact-matched to; as the value's IRI it was both
@@ -1655,6 +1660,7 @@ classes:
         inlined_as_list: true
 
       metadata:
+        title: "has metadata"
         description: "Dataset metadata"
         range: Metadata
         # CONTAINER FIX (alpha.5): Metadata carries an identifier (Entity
@@ -2006,6 +2012,7 @@ slots:
     # CONSTRAINT FIX (alpha.5): machine-readable LinkML deprecated metaslot
     # instead of a free-text annotation that generators ignore.
     deprecated: "Deprecated free-text criteria list; use has_criterion -> SelectionCriterion subclasses."
+    deprecated_element_has_possible_replacement: has_criterion
   has_timespan:
     slot_uri: crm:P4_has_time-span
     range: TimeSpan
@@ -2024,6 +2031,7 @@ slots:
     description: "Latest possible date (for uncertain dates)"
 
   calendar_system:
+    title: "has calendar system"
     slot_uri: heritageGraph:calendarSystem
     range: CalendarSystem
     description: "Calendar system used for date representation"
@@ -2113,6 +2121,7 @@ slots:
       Nepal Sambat for Newar Buddhist)"
 
   existence_status:
+    title: "has existence status"
     slot_uri: heritageGraph:existenceStatus
     range: ExistenceStatus
     description: "Current physical status of the structure"
@@ -2272,6 +2281,7 @@ slots:
       use the specific typing slots below in data."
 
   ritual_type:
+    title: "has ritual type"
     slot_uri: heritageGraph:ritualType
     is_a: has_type
     range: RitualType
@@ -2293,6 +2303,7 @@ slots:
     multivalued: true
 
   syncretic_type:
+    title: "has syncretic type"
     slot_uri: heritageGraph:syncreticType
     is_a: has_type
     description: "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic
@@ -2450,6 +2461,7 @@ slots:
     description: "New custodian (Guthi)"
 
   guthi_type:
+    title: "has guthi type"
     slot_uri: heritageGraph:guthiType
     is_a: has_type
     range: GuthiType
@@ -2510,6 +2522,7 @@ slots:
     range: integer
     description: "Mathematical offset to convert to Common Era (e.g., +57 for BS)."
   date_precision:
+    title: "has date precision"
     slot_uri: heritageGraph:datePrecision
     range: DatePrecision
     description: "The level of precision for a recorded date."

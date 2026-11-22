@@ -86,6 +86,16 @@ def humanize_name(name: str) -> str:
     return _re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", name)
 
 
+# Editorial annotation predicates the LinkML schema uses on its own terms.
+ANNOTATION_DEFINITIONS = {
+    "crminf_pattern": "Editorial note naming the CRMinf pattern that a class instantiates.",
+    "design_note": "Editorial note recording a modelling decision about a term.",
+    "prov_alignment": "Editorial note naming the PROV-O term that a slot is aligned with.",
+    "prov_alignment_note": "Editorial note explaining the status of a class's PROV-O alignment.",
+    "provenance_scope": "States whether a class's provenance slots describe the data record or the real-world referent.",
+}
+
+
 def humanize_and_tag_labels(g: Graph) -> None:
     """Humanize machine-style labels and add @en tags (gen-owl emits element
     names as bare literals). Ontology-node labels (proper names) are tagged
@@ -255,12 +265,14 @@ def finalize_owl(sv: SchemaView) -> Graph:
         enum_cls = URIRef(f"{HG_NS}{en}")
         scheme = URIRef(f"{HG_NS}scheme/{en}")
         g.add((scheme, RDF.type, SKOS.ConceptScheme))
-        g.add((scheme, SKOS.prefLabel, Literal(en)))
         # rdfs:label alongside prefLabel: generic tools (ROBOT report,
         # Protege) look for rdfs:label and flagged these as missing_label.
         # The '(concept scheme)' suffix keeps the scheme's label distinct from
-        # the enum class of the same name (ROBOT duplicate_label).
-        g.add((scheme, RDFS.label, Literal(f"{humanize_name(en)} (concept scheme)", lang="en")))
+        # the enum class of the same name (ROBOT duplicate_label); prefLabel
+        # carries the same text so the scheme has one label per language.
+        scheme_label = Literal(f"{humanize_name(en)} (concept scheme)", lang="en")
+        g.add((scheme, SKOS.prefLabel, scheme_label))
+        g.add((scheme, RDFS.label, scheme_label))
         if e.description:
             g.add((scheme, SKOS.definition, Literal(str(e.description))))
         # enum-level mappings (e.g. ArchitecturalStyle broadMatch crm:E55_Type)
@@ -284,11 +296,16 @@ def finalize_owl(sv: SchemaView) -> Graph:
                     c = URIRef(f"{HG_NS}scheme/{en}/{vn}")
             g.add((c, RDF.type, SKOS.Concept))
             g.add((c, SKOS.inScheme, scheme))
-            g.add((c, SKOS.prefLabel, Literal(vn)))
+            # the value's title (e.g. "Stupa style") keeps it distinct from a
+            # class of the same name; gen-owl itself labels it with the name
+            label = Literal(str(pv.title), lang="en") if pv.title else Literal(vn)
+            g.remove((c, SKOS.prefLabel, None))
+            g.add((c, SKOS.prefLabel, label))
             if not pv.meaning:
                 # label minted concepts only; external meaning IRIs (aat:,
                 # wikidata:) keep their owners' labels to avoid duplicate_label
-                g.add((c, RDFS.label, Literal(vn)))
+                g.remove((c, RDFS.label, None))
+                g.add((c, RDFS.label, label))
             if pv.description:
                 g.add((c, SKOS.definition, Literal(str(pv.description))))
             n_concept += 1
@@ -307,8 +324,48 @@ def finalize_owl(sv: SchemaView) -> Graph:
                 if s.description:
                     g.add((prop, SKOS.definition, Literal(str(s.description))))
             g.add((prop, OWL.deprecated, Literal(True)))
+            # obsolete label (ROBOT convention) and the replacement term
+            g.remove((prop, RDFS.label, None))
+            g.add((prop, RDFS.label, Literal(f"obsolete {humanize_name(sn).lower()}", lang="en")))
+            repl = s.deprecated_element_has_exact_replacement or s.deprecated_element_has_possible_replacement
+            if repl and repl in sv.all_slots():
+                r = sv.get_slot(repl)
+                g.add((prop, DCTERMS.isReplacedBy,
+                       uri_for(sv, str(r.slot_uri)) if r.slot_uri else URIRef(f"{HG_NS}{repl}")))
+                # declared here: the general annotation declaration ran earlier (OWL 2 DL)
+                g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
             n_dep += 1
     print(f"marked {n_dep} property(ies) owl:deprecated")
+
+    # --- slot titles as labels (gen-owl labels a property with its name) ---
+    n_title = 0
+    titled = {sn: sl for sn, sl in sv.all_slots().items() if sl.title}
+    for cn, cl in sv.all_classes().items():
+        for an, at in (cl.attributes or {}).items():
+            if at.title:
+                titled.setdefault(an, at)
+    for sn, sl in titled.items():
+        prop = uri_for(sv, str(sl.slot_uri)) if sl.slot_uri else URIRef(f"{HG_NS}{sn}")
+        if prop is not None and (prop, RDF.type, None) in g:
+            g.remove((prop, RDFS.label, None))
+            g.add((prop, RDFS.label, Literal(str(sl.title), lang="en")))
+            n_title += 1
+    print(f"labelled {n_title} property(ies) from their slot title")
+
+    # --- labels and definitions for the schema's own annotation predicates ---
+    for name, definition in ANNOTATION_DEFINITIONS.items():
+        u = URIRef(HG_NS + name)
+        if (u, RDF.type, OWL.AnnotationProperty) in g:
+            g.add((u, RDFS.label, Literal(humanize_name(name).lower(), lang="en")))
+            g.add((u, SKOS.definition, Literal(definition, lang="en")))
+    # the LinkML schema IRI, which gen-owl uses as every term's skos:inScheme
+    schema_iri = URIRef(HG_NS + "schema")
+    if (None, SKOS.inScheme, schema_iri) in g:
+        g.add((schema_iri, RDF.type, SKOS.ConceptScheme))
+        g.add((schema_iri, RDFS.label, Literal("HeritageGraph LinkML schema", lang="en")))
+        g.add((schema_iri, SKOS.definition, Literal(
+            "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it.",
+            lang="en")))
 
     # --- FAIR metadata as typed triples on the ontology node ---
     onts = list(g.subjects(RDF.type, OWL.Ontology))
