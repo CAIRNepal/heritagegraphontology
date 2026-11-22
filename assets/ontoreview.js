@@ -297,7 +297,11 @@
     var figEl = $("#figure-graph");
     if (figEl) figEl.setAttribute("data-notation", notation);
     g.nodes.forEach(function (n) { n.data.full = n.data.attrs ? n.data.label + "\n───\n" + n.data.attrs : n.data.label; });
-    var cy = window.cytoscape({ container: el, elements: vowl ? toVowl(g) : g.nodes.concat(g.edges), minZoom: 0.05, maxZoom: 3, wheelSensitivity: 0.3 });
+    // members of a class (enum values, named individuals): small nodes tied to their class by rdf:type
+    var vals = (g.values || []).map(function (n) {
+      return { data: Object.assign({}, n.data, { full: n.data.label, show: breakable(n.data.label) }) };
+    });
+    var cy = window.cytoscape({ container: el, elements: vowl ? toVowl(g).concat(vals) : g.nodes.concat(vals, g.edges), minZoom: 0.05, maxZoom: 3, wheelSensitivity: 0.3 });
     var status = $("#g-status");
     var classCount = g.nodes.length;
     var propCount = g.edges.filter(function (e) { return e.data.type === "prop"; }).length;
@@ -310,7 +314,8 @@
     if (layoutName === "force") layoutName = "cose";
     var mode = "hierarchy";
     var focused = null;
-    function isClass(n) { return !n.data("pel"); }
+    function isClass(n) { return !n.data("pel") && !n.data("val"); }
+    var TREE = "[type = 'sub'], [type = 'eq'], [type = 'inst']";
 
     // UML: fan out property edges that leave the same class so their labels do not overlap
     var fan = {};
@@ -324,7 +329,8 @@
       var d = 28 + 26 * Math.floor((i - 1) / 2);
       return [i % 2 ? d : -d];
     }
-    cy.edges("[type = 'sub']").forEach(function (ed) { ed.data("name", "subclass of"); });
+    cy.edges("[type = 'sub']").forEach(function (ed) { ed.data("name", ed.data("rel") || "subclass of"); });
+    cy.edges("[type = 'inst']").forEach(function (ed) { ed.data("name", "instance of (rdf:type)"); });
     cy.edges("[type = 'eq']").forEach(function (ed) { ed.data("name", "equivalent to (part of)"); });
 
     function umlStyle(ink, muted, rule, paper, link) {
@@ -336,7 +342,12 @@
           "text-wrap": "wrap", "text-max-width": 220, "line-height": 1.35 } },
         { selector: "node[kind = 'external']", style: { "border-style": "dashed", "color": muted, "border-color": muted } },
         { selector: "node[?dep]", style: { "color": muted, "border-color": muted } },
+        { selector: "node[?val]", style: { "shape": "round-rectangle", "font-size": 11, "font-family": css("--sans"), "padding": "4px",
+          "border-color": muted, "color": ink, "text-max-width": 160 } },
+        { selector: "node[kind = 'concept_scheme']", style: { "border-style": "double", "border-width": 3 } },
         { selector: "edge", style: { "width": 1, "curve-style": "bezier", "line-color": rule } },
+        { selector: "edge[type = 'inst']", style: { "line-style": "dashed", "line-dash-pattern": [2, 3], "line-color": muted, "width": 1,
+          "target-arrow-shape": "circle", "target-arrow-color": muted, "arrow-scale": 0.6 } },
         { selector: "edge[type = 'sub']", style: { "source-arrow-shape": "triangle", "source-arrow-fill": "hollow", "source-arrow-color": ink, "line-color": ink, "arrow-scale": 1.45, "width": 1.4 } },
         { selector: "edge[type = 'eq']", style: { "line-style": "dotted", "line-color": muted, "source-arrow-shape": "triangle", "source-arrow-fill": "hollow", "source-arrow-color": muted, "width": 1.2 } },
         { selector: "edge[type = 'prop']", style: { "text-margin-y": -7, "line-style": "dashed", "line-dash-pattern": [5, 3], "target-arrow-shape": "vee", "target-arrow-color": link, "line-color": link,
@@ -365,6 +376,11 @@
         { selector: "node[kind = 'literal']", style: { "shape": "rectangle", "width": "label", "height": "label", "padding": "4px",
           "font-size": 11, "background-color": css("--vowl-literal"), "border-width": 1, "border-color": stroke } },
         { selector: "node[?generic]", style: { "border-style": "dashed" } },
+        { selector: "node[?val]", style: { "shape": "round-rectangle", "width": "label", "height": "label", "padding": "4px",
+          "font-size": 11, "text-max-width": "120px", "background-color": css("--vowl-value") || "#f3e3c3", "border-width": 1, "border-color": stroke } },
+        { selector: "node[kind = 'concept_scheme']", style: { "border-style": "double", "border-width": 5 } },
+        { selector: "edge[type = 'inst']", style: { "line-style": "dashed", "line-dash-pattern": [2, 3], "width": 1, "line-color": stroke,
+          "target-arrow-shape": "circle", "target-arrow-color": stroke, "arrow-scale": 0.6 } },
         { selector: "edge", style: { "width": 1.2, "curve-style": "bezier", "line-color": stroke, "arrow-scale": 1.05 } },
         { selector: "edge[type = 'pb']", style: { "target-arrow-shape": "triangle", "target-arrow-color": stroke } },
         { selector: "edge[?both]", style: { "source-arrow-shape": "triangle", "source-arrow-color": stroke } },
@@ -376,7 +392,7 @@
           "source-arrow-color": stroke, "width": 1.3 } },
         { selector: ".hl", style: { "border-width": 3.5, "border-color": link, "border-style": "solid" } },
         { selector: "node.path[?cls]", style: { "border-color": link, "border-width": 3 } },
-        { selector: "node.path[?pel]", style: { "border-width": 1.5, "border-color": link } },
+        { selector: "node.path[?pel], node.path[?val]", style: { "border-width": 1.5, "border-color": link } },
         { selector: "edge.path", style: { "line-color": link, "source-arrow-color": link, "target-arrow-color": link, "width": 2.4, "z-index": 9 } }
       ];
     }
@@ -402,6 +418,10 @@
         if (depth[c.id()] === undefined) { depth[c.id()] = depth[n.id()] + 1; queue.push(c); }
       });
     }
+    cy.nodes("[?val]").forEach(function (v) {
+      var up = v.incomers("edge[type = 'inst']").sources().map(function (c) { return depth[c.id()] || 0; });
+      depth[v.id()] = (up.length ? Math.max.apply(null, up) : 0) + 1;
+    });
     var large = classCount > 150;
 
     // show/hide property elements; a property is visible only when the classes it joins are
@@ -413,10 +433,19 @@
       cy.nodes("[kind = 'literal']").forEach(function (l) { l.toggleClass("hidden", l.neighborhood("node").some(function (x) { return x.hasClass("hidden"); })); });
       cy.edges("[?pel]").forEach(function (e) { e.toggleClass("hidden", e.source().hasClass("hidden") || e.target().hasClass("hidden")); });
     }
+    // a value is visible whenever one of its classes is
+    function syncValues() {
+      cy.nodes("[?val]").forEach(function (v) {
+        var cls = v.incomers("edge[type = 'inst']").sources();
+        v.toggleClass("hidden", !cls.length || cls.every(function (c) { return c.hasClass("hidden"); }));
+      });
+      cy.edges("[type = 'inst']").forEach(function (e) { e.toggleClass("hidden", e.source().hasClass("hidden") || e.target().hasClass("hidden")); });
+    }
     function applyEdges() {
-      if (vowl) { syncProps(); return; }
+      if (vowl) { syncProps(); syncValues(); return; }
       cy.edges("[type = 'prop']").toggleClass("hidden", !showProps);
       cy.nodes().forEach(function (n) { n.style("label", showProps ? n.data("full") : n.data("label")); });
+      syncValues();
     }
     function visible() { return cy.elements().not(".hidden"); }
     var hasDagre = (function () { try { return !!cy.layout({ name: "dagre", eles: cy.collection() }); } catch (e) { return false; } })();
@@ -427,7 +456,7 @@
     }
     function run() {
       var all = visible();
-      var tree = vowl ? all : all.nodes().union(all.edges("[type = 'sub'], [type = 'eq']"));
+      var tree = vowl ? all : all.nodes().union(all.edges(TREE));
       var opts, horizontal = false;
       cy.edges("[type = 'sub']").toggleClass("sublabel", vowl && all.nodes().filter(isClass).length <= 20);
       if (layoutName === "hierarchy") {
@@ -436,7 +465,7 @@
           opts = { name: "dagre", rankDir: horizontal ? "LR" : "TB", nodeSep: horizontal ? 14 : 28, rankSep: horizontal ? 70 : 56,
             edgeSep: 10, ranker: "network-simplex", padding: 30, nodeDimensionsIncludeLabels: true };
         } else {
-          var r = tree.nodes().filter(function (n) { return n.incomers("edge[type = 'sub'], edge[type = 'eq']").not(".hidden").length === 0; });
+          var r = tree.nodes().filter(function (n) { return n.incomers(TREE).not(".hidden").length === 0; });
           opts = { name: "breadthfirst", directed: true, roots: r, padding: 30, avoidOverlap: true, nodeDimensionsIncludeLabels: true };
         }
         if (!vowl) cy.edges("[type = 'sub']").style({ "curve-style": "taxi", "taxi-direction": horizontal ? "horizontal" : "vertical", "taxi-turn": "50%" });
@@ -450,8 +479,8 @@
           // WebVOWL-like force layout: property nodes stay close to their classes, classes push apart
           opts = { name: "cose", animate: false, randomize: true, padding: 30, nodeDimensionsIncludeLabels: true,
             nodeRepulsion: function (n) { return isClass(n) ? 900000 : 120000; },
-            idealEdgeLength: function (e) { return e.data("type") === "sub" ? 95 : e.data("type") === "eq" ? 95 : 34; },
-            edgeElasticity: function (e) { return e.data("pel") ? 260 : 110; },
+            idealEdgeLength: function (e) { var t = e.data("type"); return t === "sub" || t === "eq" ? 95 : t === "inst" ? 46 : 34; },
+            edgeElasticity: function (e) { return e.data("pel") || e.data("type") === "inst" ? 260 : 110; },
             nodeOverlap: 24, gravity: 0.6, componentSpacing: 60, numIter: 3000, coolingFactor: 0.97, minTemp: 1 };
         } else {
           opts = { name: "cose", animate: false, nodeRepulsion: 400000, idealEdgeLength: 110, nodeOverlap: 40, gravity: 0.4,
@@ -506,7 +535,7 @@
       if (!vowl) keep.edgesWith(keep).filter("[type = 'prop']").removeClass("hidden");
       node.addClass("hl");
       var was = showProps;
-      if (vowl) { showProps = true; syncProps(); showProps = was; }
+      if (vowl) { showProps = true; syncProps(); showProps = was; syncValues(); }
       else {
         applyEdges();
         if (!showProps) node.connectedEdges("[type = 'prop']").removeClass("hidden").connectedNodes().removeClass("hidden");
@@ -533,7 +562,7 @@
     cy.on("tap", "node", function (e) {
       var d = e.target.data();
       if (d.kind === "literal") return;
-      if (d.pel) { if (d.href) location.href = d.href; return; }
+      if (d.pel || d.val) { if (d.href) location.href = d.href; return; }
       if (mode === "focus" && focused === d.id && d.href) { location.href = d.href; return; }
       if (d.kind === "external") { if (d.href) window.open(d.href, "_blank", "noopener"); return; }
       focus(d.id);
@@ -544,7 +573,8 @@
       if (isClass(t)) {
         c = t.union(walk(t, "up")).union(walk(t, "down"));
         var props = t.neighborhood("node[?pel]");
-        var around = props.union(props.neighborhood()).union(t.connectedEdges("[type = 'prop']")).union(t.connectedEdges("[type = 'prop']").connectedNodes());
+        var around = props.union(props.neighborhood()).union(t.connectedEdges("[type = 'prop']")).union(t.connectedEdges("[type = 'prop']").connectedNodes())
+          .union(t.connectedEdges("[type = 'inst']")).union(t.connectedEdges("[type = 'inst']").connectedNodes());
         c.addClass("path");
         cy.elements().not(c).not(around).addClass("dim");
       } else {
@@ -556,7 +586,7 @@
       el.style.cursor = t.data("kind") === "literal" ? "" : "pointer";
     });
     cy.on("mouseout", "node", function () { cy.elements().removeClass("path dim"); el.style.cursor = ""; });
-    cy.on("mouseover", "edge[type = 'sub'], edge[type = 'eq']", function (e) { e.target.addClass("named path"); e.target.connectedNodes().addClass("path"); });
+    cy.on("mouseover", "edge[type = 'sub'], edge[type = 'eq'], edge[type = 'inst']", function (e) { e.target.addClass("named path"); e.target.connectedNodes().addClass("path"); });
     cy.on("mouseout", "edge", function (e) { e.target.removeClass("named path"); e.target.connectedNodes().removeClass("path"); });
     cy.on("tap", "edge[type = 'prop']", function (e) { var h = e.target.data("href"); if (h) location.href = h; });
 
