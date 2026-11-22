@@ -4,7 +4,7 @@ Content negotiation for every IRI under `https://cair-nepal.org/heritagegraph/`.
 
 | IRI | `text/html` | `text/turtle` · `application/rdf+xml` · `application/ld+json` · `application/n-triples` |
 |---|---|---|
-| `/heritagegraph/`, `/heritagegraph/ontology` | `docs/` (WIDOCO documentation) | `docs/ontology.{ttl,owl,jsonld,nt}` (current release) |
+| `/heritagegraph/`, `/heritagegraph/ontology` | `docs/` (OntoReview documentation) | `docs/ontology.{ttl,owl,jsonld,nt}` (current release) |
 | `/heritagegraph/ontology/<version>` | `docs/releases/<version>/` | `docs/releases/<version>/ontology.{ttl,owl,jsonld,nt}` |
 | `/heritagegraph/<Term>` (class, property) | `docs/#<Term>` | current release |
 | `/heritagegraph/<Enum>`, `/heritagegraph/scheme/<Enum>` | `docs/enum/<Enum>.html` | current release |

@@ -1,0 +1,3507 @@
+# HeritageGraph Ontology
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ontology`
+
+**Version:** 1.0.1
+
+**Authors:** Niraj Karki, Nabin Oli, Anu Sapkota, Tek Raj Chhetri, Semih Yumusak
+
+**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities and institutions (notably the *Guthi*) that sustain them. Rather than attaching facts directly to objects, the model represents history as a web of events (production, ritual, custody transfer, documentation) so that spatial, temporal, and participatory relationships can be queried and reasoned over. Every assertion can carry its provenance and epistemic standing, allowing competing or multi-vocal sources to coexist. The ontology is generated from a LinkML schema, is an OWL 2 DL vocabulary that is logically consistent under the HermiT reasoner, and is aligned with CIDOC-CRM 7.1.3, CRMinf, CRMsci, and PROV-O, and through a companion module with Linked Art, to maximise interoperability with the wider cultural-heritage Linked Data cloud.
+
+An event-centric LinkML schema for representing cultural heritage information, aligned with CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking and ritual-spatial-temporal reasoning.
+
+## Contents
+
+- [Classes](classes.md) (84)
+- [Object properties](object-properties.md) (149)
+- [Datatype properties](datatype-properties.md) (42)
+- [Annotation properties](annotation-properties.md) (37)
+- [Concept schemes](concept-schemes.md) (8)
+- [Concepts](concepts.md) (51)
+
+---
+
+# Classes
+
+### Activity
+
+**IRI:** `http://www.w3.org/ns/prov#Activity` · `prov:Activity`
+
+Direct LinkML representation of prov:Activity. Applied to events and processes that use, transform, generate, document, assess, or verify entities.
+
+| | |
+|---|---|
+| Subclasses | [Condition Assessment](classes.md#e14_condition_assessment), [Consecration](classes.md#consecration), [Documentation Activity](classes.md#documentationactivity), [Enshrinement](classes.md#enshrinement), [Historical Event](classes.md#historicalevent), [Production](classes.md#e12_production), [Ritual Event](classes.md#ritualevent), [Syncretic Relationship](classes.md#syncreticrelationship), [Transfer Of Custody](classes.md#e10_transfer_of_custody) |
+| Used in | used in axioms of [Information Object](classes.md#informationobject) |
+
+### Actor
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E39_Actor` · `crm:E39_Actor`
+
+General actor (person or group) responsible for events
+
+| | |
+|---|---|
+| Superclasses | [Agent](classes.md#agent) |
+| Subclasses | [Caste Group](classes.md#castegroup), [Data Custodian](classes.md#datacustodian), [Guthi](classes.md#guthi), [Person](classes.md#e21_person) |
+| Used in | in range of [actors](object-properties.md#actors); in range of [Commissioned by](object-properties.md#commissionedby); in range of [Datacite creator](object-properties.md#sourcecreator); in range of [Datacite publisher](object-properties.md#sourcepublisher); in range of [Had participant](object-properties.md#hadparticipant); in range of [Performed by group](object-properties.md#performedbygroup); in range of [Used by](object-properties.md#usedby); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Consecration](classes.md#consecration); used in axioms of [Container](classes.md#container); used in axioms of [Data Source](classes.md#datasource); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Age Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/AgeCriterion` · `heritageGraph:AgeCriterion`
+
+Candidate must be within the prescribed pre-pubescent age range.
+
+| | |
+|---|---|
+| Superclasses | [Selection Criterion](classes.md#selectioncriterion) |
+
+### Agent
+
+**IRI:** `http://www.w3.org/ns/prov#Agent` · `prov:Agent`
+
+Direct LinkML representation of prov:Agent. Agents bear responsibility for activities or entities. PROV-O permits an individual agent also to be typed as an Entity, but does not define every Agent as a subclass of Entity.
+
+| | |
+|---|---|
+| Subclasses | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### Architectural Element
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalElement` · `heritageGraph:ArchitecturalElement`
+
+Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [note](datatype-properties.md#p3_has_note) *max* `1`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Is component of](object-properties.md#p46i_forms_part_of) *only* [Architectural Structure](classes.md#architecturalstructure); [Is component of](object-properties.md#p46i_forms_part_of) *min* `1`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Is component of](object-properties.md#p46i_forms_part_of) *max* `1` |
+| Used in | in range of [Architectural elements](object-properties.md#architectural_elements); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Physical Heritage Thing](classes.md#physicalheritagething) |
+
+### Architectural Structure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStructure` · `heritageGraph:ArchitecturalStructure`
+
+Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation.
+
+| | |
+|---|---|
+| Superclasses | [Human Made Object](classes.md#e22_human-made_object) |
+| Restrictions | [Was produced by event](object-properties.md#p108i_was_produced_by) *min* `0`; [Documented in source](object-properties.md#mentionedinsource) *only* [Data Source](classes.md#datasource); [Has component](object-properties.md#p46_is_composed_of) *only* [Architectural Element](classes.md#architecturalelement); [Has current location](object-properties.md#p55_has_current_location) *max* `1`; [has existence status](object-properties.md#existencestatus) *max* `1`; [has existence status](object-properties.md#existencestatus) *only* [Existence Status](classes.md#existencestatus-2); [Managed by guthi](object-properties.md#managedbyguthi) *min* `0`; [Has condition assessment](object-properties.md#p34i_was_assessed_by) *only* [Condition Assessment](classes.md#e14_condition_assessment); [Has architectural style](object-properties.md#hasarchitecturalstyle) *only* [Architectural Style](classes.md#architecturalstyle-2); [Was produced by event](object-properties.md#p108i_was_produced_by) *only* [Production](classes.md#e12_production); [note](datatype-properties.md#p3_has_note) *max* `1`; [Last known existence date](datatype-properties.md#lastknownexistencedate) *min* `0`; [Has architectural style](object-properties.md#hasarchitecturalstyle) *min* `0`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Has current location](object-properties.md#p55_has_current_location) *only* [Place](classes.md#e53_place); [Documented in source](object-properties.md#mentionedinsource) *min* `0`; [has destruction event](object-properties.md#destructionevent) *only* [Destruction Event](classes.md#e6_destruction); [Has assertion](object-properties.md#hasassertion) *min* `0`; [Was produced by event](object-properties.md#p108i_was_produced_by) *max* `1`; [Has architectural style](object-properties.md#hasarchitecturalstyle) *max* `1`; [Has current location](object-properties.md#p55_has_current_location) *min* `0`; [Has component](object-properties.md#p46_is_composed_of) *min* `0`; [Managed by guthi](object-properties.md#managedbyguthi) *only* [Guthi](classes.md#guthi); [Has condition assessment](object-properties.md#p34i_was_assessed_by) *min* `0`; [has destruction event](object-properties.md#destructionevent) *max* `1`; [Last known existence date](datatype-properties.md#lastknownexistencedate) *max* `1`; [Hypothesized location](object-properties.md#hypothesizedlocation) *min* `0`; [Hypothesized location](object-properties.md#hypothesizedlocation) *only* [Place](classes.md#e53_place); [has existence status](object-properties.md#existencestatus) *min* `0`; [Last known existence date](datatype-properties.md#lastknownexistencedate) *only* [xsd:dateTime](http://www.w3.org/2001/XMLSchema#dateTime); [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [note](datatype-properties.md#p3_has_note) *min* `0`; [has destruction event](object-properties.md#destructionevent) *min* `0` |
+| Subclasses | [Religious Structure](classes.md#religiousstructure), [Rest House](classes.md#resthouse), [Water Structure](classes.md#waterstructure) |
+| Used in | in range of [Architectural structures](object-properties.md#architecturalstructures); in range of [Residence structure](object-properties.md#residencestructure); in range of [structures](object-properties.md#structures); used in axioms of [Architectural Element](classes.md#architecturalelement); used in axioms of [Container](classes.md#container); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Physical Heritage Thing](classes.md#physicalheritagething) |
+
+### Architectural Style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle` · `heritageGraph:ArchitecturalStyle`
+
+A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type.
+
+| | |
+|---|---|
+| Instances | [Chaitya style](concepts.md#chaitya), [Dome style](concepts.md#dome), [Pagoda style](concepts.md#pagoda), [Shikhara style](concepts.md#shikhara), [Stupa style](concepts.md#stupa-2) |
+| Used in | in range of [Has architectural style](object-properties.md#hasarchitecturalstyle); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
+| permissible_values | Chaitya style; Shikhara; Dome; Stupa style; Pagoda |
+
+### Archival Record
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchivalRecord` · `heritageGraph:ArchivalRecord`
+
+Government or institutional administrative record
+
+| | |
+|---|---|
+| Superclasses | [Data Source](classes.md#datasource) |
+
+### Assertion
+
+**IRI:** `http://www.cidoc-crm.org/extensions/crminf/I2_Belief` · `crminf:I2_Belief`
+
+A provenance-bearing belief or claim about a heritage entity or event. The assertion is represented as CRMinf I2 Belief and as a prov:Entity, allowing source, attribution, generation time, revision, confidence, and reconciliation status to be recorded explicitly.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [assertions](object-properties.md#assertions); in range of [Has assertion](object-properties.md#hasassertion); in range of [Verified assertion](object-properties.md#verifiedassertion); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Verification](classes.md#verification) |
+| crminf_pattern | I2_Belief -J4_that-> I4_Proposition_Set; evidence via I5_Inference_Making (J1_used_as_premise / J2_concluded_that); expert re-check via I7_Belief_Adoption |
+
+### Assertion Subject
+
+**IRI:** `https://cair-nepal.org/heritagegraph/AssertionSubject` · `heritageGraph:AssertionSubject`
+
+Any HeritageGraph entity or event that may be the subject of an assertion.
+
+| | |
+|---|---|
+| Restrictions | [Human Made Object](classes.md#e22_human-made_object) *or* [Architectural Element](classes.md#architecturalelement) *or* [Deity](classes.md#deity) *or* [Religious Tradition](classes.md#religioustradition) *or* [Historical Event](classes.md#historicalevent) *or* [Ritual Event](classes.md#ritualevent) *or* [Production](classes.md#e12_production) *or* [Consecration](classes.md#consecration) *or* [Enshrinement](classes.md#enshrinement) *or* [Transfer Of Custody](classes.md#e10_transfer_of_custody) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Condition State](classes.md#e3_condition_state) *or* [Actor](classes.md#e39_actor) *or* [Place](classes.md#e53_place) *or* [Time Span](classes.md#e52_time-span) *or* [Data Source](classes.md#datasource) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Kumari Tenure](classes.md#kumaritenure) *or* [Technique](classes.md#e29_design_or_procedure) *or* [Material](classes.md#e57_material) *or* [Kumari Role](classes.md#kumarirole) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Assertion](classes.md#i2_belief) *or* [Calendar System](classes.md#calendarsystem) |
+| Used in | in range of [Asserts about](object-properties.md#assertsabout); in range of [documents](object-properties.md#documents); in range of [Proposition object entity](object-properties.md#propositionobjectentity); in range of [Proposition subject](object-properties.md#propositionsubject); used in axioms of [Documentation Activity](classes.md#documentationactivity); used in axioms of [Information Object](classes.md#informationobject); used in axioms of [Proposition](classes.md#proposition) |
+
+### Calendar System
+
+**IRI:** `https://cair-nepal.org/heritagegraph/CalendarSystem` · `heritageGraph:CalendarSystem`
+
+Calendar reckoning system with conversion rules for multi-calendar temporal reasoning
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Epoch date gregorian](datatype-properties.md#epochdategregorian) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Year offset from gregorian](datatype-properties.md#yearoffsetfromgregorian) *only* [xsd:integer](http://www.w3.org/2001/XMLSchema#integer); [Is primary for tradition](object-properties.md#isprimaryfortradition) *min* `0`; [Is primary for tradition](object-properties.md#isprimaryfortradition) *only* [Religious Tradition](classes.md#religioustradition); [Epoch date gregorian](datatype-properties.md#epochdategregorian) *max* `1`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Year offset from gregorian](datatype-properties.md#yearoffsetfromgregorian) *min* `0`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *max* `1`; [Epoch date gregorian](datatype-properties.md#epochdategregorian) *min* `0`; [Year offset from gregorian](datatype-properties.md#yearoffsetfromgregorian) *max* `1` |
+| Used in | in range of [Calendar systems](object-properties.md#calendar_systems); in range of [has calendar system](object-properties.md#calendarsystem); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+
+### Caste Group
+
+**IRI:** `https://cair-nepal.org/heritagegraph/CasteGroup` · `heritageGraph:CasteGroup`
+
+Hereditary social group (Jati) with specific ritual roles and occupational duties
+
+| | |
+|---|---|
+| Superclasses | [Actor](classes.md#e39_actor) |
+| Restrictions | [Traditional role](datatype-properties.md#traditionalrole) *max* `1`; [Traditional role](datatype-properties.md#traditionalrole) *min* `0`; [Traditional role](datatype-properties.md#traditionalrole) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *max* `1`; [note](datatype-properties.md#p3_has_note) *min* `0`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | in range of [Caste groups](object-properties.md#caste_groups); in range of [Performed by group](object-properties.md#performedbygroup); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Chaitya
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Chaitya` · `heritageGraph:Chaitya`
+
+Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley.
+
+| | |
+|---|---|
+| Superclasses | [Religious Structure](classes.md#religiousstructure) |
+| Disjoint with | [Stupa](classes.md#stupa) |
+
+### Chariot Festival
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ChariotFestival` · `heritageGraph:ChariotFestival`
+
+Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)
+
+| | |
+|---|---|
+| Superclasses | [Festival](classes.md#festival) |
+
+### Concept
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#Concept` · `skos:Concept`
+
+| | |
+|---|---|
+| Instances | [Abhisheka](concepts.md#abhisheka), [Appropriation](concepts.md#appropriation), [Bhajan](concepts.md#bhajan), [Century](concepts.md#century), [Chaitya style](concepts.md#chaitya), [Chariot Procession](concepts.md#chariotprocession), [Circa](concepts.md#circa), [Circumambulation](concepts.md#circumambulation), [Damaged](concepts.md#damaged), [Decade](concepts.md#decade), [Deinstallation Ritual](concepts.md#deinstallationritual), [Destroyed](concepts.md#destroyed), [Dome style](concepts.md#dome), [Equivalence](concepts.md#equivalence), [Exact](concepts.md#exact), [Extant](concepts.md#extant), [Fusion](concepts.md#fusion), [Good](concepts.md#good), [Historical](concepts.md#historical), [Homa](concepts.md#homa), [Hypothetical](concepts.md#hypothetical), [Installation Ritual](concepts.md#installationritual), [Jatra](concepts.md#jatra), [Jatra Guthi](concepts.md#jatraguthi), [Kamya Puja](concepts.md#kamyapuja), [Lost](concepts.md#lost), [Masked Performance](concepts.md#maskedperformance), [Naimittika Puja](concepts.md#naimittikapuja), [Nasha Guthi](concepts.md#nashaguthi), [Nitya Puja](concepts.md#nityapuja), [Pagoda style](concepts.md#pagoda), [Partially Extant](concepts.md#partiallyextant), [Procession Ritual](concepts.md#processionritual), [Processional Movement](concepts.md#processionalmovement), [Puja Guthi](concepts.md#pujaguthi), [Raj Guthi](concepts.md#rajguthi), [Relic Tour](concepts.md#relictour), [Restored](concepts.md#restored), [Returning Ritual](concepts.md#returningritual), [Ritual Consecration](concepts.md#ritualconsecration), [Ruined](concepts.md#ruined), [San Guthi](concepts.md#sanguthi), [Sana Guthi](concepts.md#sanaguthi), [Shikhara style](concepts.md#shikhara), [Si Guthi](concepts.md#siguthi), [Stupa style](concepts.md#stupa-2), [Temple Guthi](concepts.md#templeguthi), [Unknown](concepts.md#unknown), [Vrata](concepts.md#vrata), [Yagna](concepts.md#yagna), [Year](concepts.md#year) |
+
+### ConceptScheme
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#ConceptScheme` · `skos:ConceptScheme`
+
+| | |
+|---|---|
+| Instances | [Architectural Style (concept scheme)](concept-schemes.md#architecturalstyle), [Condition Type (concept scheme)](concept-schemes.md#conditiontype-2), [Date Precision (concept scheme)](concept-schemes.md#dateprecision), [Existence Status (concept scheme)](concept-schemes.md#existencestatus), [Guthi Type (concept scheme)](concept-schemes.md#guthitype-2), [HeritageGraph LinkML schema](concept-schemes.md#schema), [Ritual Type (concept scheme)](concept-schemes.md#ritualtype), [Syncretic Type (concept scheme)](concept-schemes.md#syncretictype) |
+
+### Condition Assessment
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment` · `crm:E14_Condition_Assessment`
+
+Event of evaluating the physical state of a heritage object or structure
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Used in | in range of [Condition assessments](object-properties.md#condition_assessments); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+| prov alignment note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Condition State
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State` · `crm:E3_Condition_State`
+
+A physical condition state of a heritage object
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [Condition states](object-properties.md#condition_states); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+
+### Condition Type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ConditionType` · `heritageGraph:ConditionType`
+
+Controlled vocabulary for the physical condition of heritage objects and structures.
+
+| | |
+|---|---|
+| Instances | [Damaged](concepts.md#damaged), [Good](concepts.md#good), [Restored](concepts.md#restored), [Ruined](concepts.md#ruined) |
+| Used in | in range of [Has condition type](object-properties.md#hasconditiontype) |
+| permissible_values | Damaged; Restored; Ruined; Good |
+
+### Consecration
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Consecration` · `heritageGraph:Consecration`
+
+Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Makes deity present](object-properties.md#makesdeitypresent) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Makes deity present](object-properties.md#makesdeitypresent) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Consecrated object](object-properties.md#p16_used_specific_object) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Consecrated object](object-properties.md#p16_used_specific_object) *only* [Murti](classes.md#murti); [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Consecrated object](object-properties.md#p16_used_specific_object) *max* `1`; [Makes deity present](object-properties.md#makesdeitypresent) *only* [Deity](classes.md#deity) |
+| Used in | in range of [Consecrated by event](object-properties.md#consecratedbyevent); in range of [Consecration events](object-properties.md#consecration_events); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Murti](classes.md#murti) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Container
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Container` · `heritageGraph:Container`
+
+Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in persons, not actors); broader collections exist for instances of the general classes only.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Religious traditions](object-properties.md#religious_traditions) *only* [Religious Tradition](classes.md#religioustradition); [assertions](object-properties.md#assertions) *min* `0`; [Kumari lifecycle events](object-properties.md#kumari_lifecycle_events) *min* `0`; [Syncretic relationships](object-properties.md#syncretic_relationships) *min* `0`; [materials](object-properties.md#materials) *only* [Material](classes.md#e57_material); [Time spans](object-properties.md#time_spans) *only* [Time Span](classes.md#e52_time-span); [Human made objects](object-properties.md#human_made_objects) *min* `0`; [Consecration events](object-properties.md#consecration_events) *only* [Consecration](classes.md#consecration); [Historical events](object-properties.md#historical_events) *only* [Historical Event](classes.md#historicalevent); [Custody events](object-properties.md#custody_events) *only* [Transfer Of Custody](classes.md#e10_transfer_of_custody); [Kumari roles](object-properties.md#kumari_roles) *min* `0`; [propositions](object-properties.md#propositions) *min* `0`; [Kumari tenures](object-properties.md#kumari_tenures) *min* `0`; [actors](object-properties.md#actors) *only* [Actor](classes.md#e39_actor); [deities](object-properties.md#deities) *min* `0`; [Condition assessments](object-properties.md#condition_assessments) *min* `0`; [Ritual events](object-properties.md#ritual_events) *only* [Ritual Event](classes.md#ritualevent); [assertions](object-properties.md#assertions) *only* [Assertion](classes.md#i2_belief); [structures](object-properties.md#structures) *min* `0`; [Data sources](object-properties.md#data_sources) *min* `0`; [Enshrinement events](object-properties.md#enshrinement_events) *only* [Enshrinement](classes.md#enshrinement); [Documentation activities](object-properties.md#documentation_activities) *only* [Documentation Activity](classes.md#documentationactivity); [Human made objects](object-properties.md#human_made_objects) *only* [Human Made Object](classes.md#e22_human-made_object); [festivals](object-properties.md#festivals) *min* `0`; [Condition states](object-properties.md#condition_states) *min* `0`; [techniques](object-properties.md#techniques) *only* [Technique](classes.md#e29_design_or_procedure); [has metadata](object-properties.md#metadata-2) *min* `0`; [Historical events](object-properties.md#historical_events) *min* `0`; [places](object-properties.md#places) *min* `0`; [Selection criteria](object-properties.md#selection_criteria) *min* `0`; [Data custodians](object-properties.md#data_custodians) *min* `0`; [Caste groups](object-properties.md#caste_groups) *only* [Caste Group](classes.md#castegroup); [materials](object-properties.md#materials) *min* `0`; [persons](object-properties.md#persons) *min* `0`; [Iconographic objects](object-properties.md#iconographic_objects) *only* [Iconographic Object](classes.md#iconographicobject); [Time spans](object-properties.md#time_spans) *min* `0`; [Production events](object-properties.md#production_events) *only* [Production](classes.md#e12_production); [Custody events](object-properties.md#custody_events) *min* `0`; [structures](object-properties.md#structures) *only* [Architectural Structure](classes.md#architecturalstructure); [Condition states](object-properties.md#condition_states) *only* [Condition State](classes.md#e3_condition_state); [Architectural elements](object-properties.md#architectural_elements) *min* `0`; [Calendar systems](object-properties.md#calendar_systems) *only* [Calendar System](classes.md#calendarsystem); [Data sources](object-properties.md#data_sources) *only* [Data Source](classes.md#datasource); [Architectural elements](object-properties.md#architectural_elements) *only* [Architectural Element](classes.md#architecturalelement); [Ritual assessments](object-properties.md#ritual_assessments) *only* [Ritual Assessment](classes.md#ritualassessment); [Condition assessments](object-properties.md#condition_assessments) *only* [Condition Assessment](classes.md#e14_condition_assessment); [Kumari tenures](object-properties.md#kumari_tenures) *only* [Kumari Tenure](classes.md#kumaritenure); [Religious traditions](object-properties.md#religious_traditions) *min* `0`; [Kumari roles](object-properties.md#kumari_roles) *only* [Kumari Role](classes.md#kumarirole); [has metadata](object-properties.md#metadata-2) *max* `1`; [Data custodians](object-properties.md#data_custodians) *only* [Data Custodian](classes.md#datacustodian); [Enshrinement events](object-properties.md#enshrinement_events) *min* `0`; [Iconographic objects](object-properties.md#iconographic_objects) *min* `0`; [Documentation activities](object-properties.md#documentation_activities) *min* `0`; [persons](object-properties.md#persons) *only* [Person](classes.md#e21_person); [Information objects](object-properties.md#information_objects) *only* [Information Object](classes.md#informationobject); [Physical heritage things](object-properties.md#physical_heritage_things) *min* `0`; [places](object-properties.md#places) *only* [Place](classes.md#e53_place); [Caste groups](object-properties.md#caste_groups) *min* `0`; [Production events](object-properties.md#production_events) *min* `0`; [guthis](object-properties.md#guthis) *only* [Guthi](classes.md#guthi); [Syncretic relationships](object-properties.md#syncretic_relationships) *only* [Syncretic Relationship](classes.md#syncreticrelationship); [has metadata](object-properties.md#metadata-2) *only* [Metadata](classes.md#metadata); [Kumari lifecycle events](object-properties.md#kumari_lifecycle_events) *only* [Kumari Lifecycle Event](classes.md#kumarilifecycleevent); [festivals](object-properties.md#festivals) *only* [Festival](classes.md#festival); [deities](object-properties.md#deities) *only* [Deity](classes.md#deity); [Ritual assessments](object-properties.md#ritual_assessments) *min* `0`; [Calendar systems](object-properties.md#calendar_systems) *min* `0`; [Consecration events](object-properties.md#consecration_events) *min* `0`; [guthis](object-properties.md#guthis) *min* `0`; [techniques](object-properties.md#techniques) *min* `0`; [Selection criteria](object-properties.md#selection_criteria) *only* [Selection Criterion](classes.md#selectioncriterion); [Ritual events](object-properties.md#ritual_events) *min* `0`; [Physical heritage things](object-properties.md#physical_heritage_things) *only* [Physical Heritage Thing](classes.md#physicalheritagething); [Information objects](object-properties.md#information_objects) *min* `0`; [propositions](object-properties.md#propositions) *only* [Proposition](classes.md#proposition); [actors](object-properties.md#actors) *min* `0` |
+| design note | Serialization construct, not a domain class: this is the LinkML tree_root that anchors JSON/YAML dataset serializations (its collection properties exist for data exchange only). Reasoners and domain queries should ignore it; RDF instance data does not need a Container node. |
+
+### Data Custodian
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DataCustodian` · `heritageGraph:DataCustodian`
+
+Institution or person currently responsible for stewarding heritage data.
+
+| | |
+|---|---|
+| Superclasses | [Actor](classes.md#e39_actor) |
+| Restrictions | [Custodian type](datatype-properties.md#custodiantype) *min* `0`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Custodian type](datatype-properties.md#custodiantype) *max* `1`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *max* `1`; [Custodian type](datatype-properties.md#custodiantype) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | in range of [Data custodians](object-properties.md#data_custodians); used in axioms of [Container](classes.md#container) |
+
+### Data Source
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DataSource` · `heritageGraph:DataSource`
+
+Original source from which heritage information was derived
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Datacite identifier type](datatype-properties.md#identifierscheme) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Datacite identifier type](datatype-properties.md#identifierscheme) *max* `1`; [Datacite creator](object-properties.md#sourcecreator) *only* [Actor](classes.md#e39_actor); [Source url](datatype-properties.md#sourceurl) *min* `0`; [Datacite identifier type](datatype-properties.md#identifierscheme) *min* `0`; [Datacite identifier](datatype-properties.md#persistentidentifier) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Source citation](datatype-properties.md#sourcecitation) *min* `0`; [Datacite resource type](datatype-properties.md#resourcetype) *min* `0`; [Source url](datatype-properties.md#sourceurl) *max* `1`; [Publication timespan](object-properties.md#publicationtimespan) *max* `1`; [Source language](datatype-properties.md#inlanguage) *min* `0`; [Datacite publisher](object-properties.md#sourcepublisher) *max* `1`; [Datacite resource type](datatype-properties.md#resourcetype) *max* `1`; [Source citation](datatype-properties.md#sourcecitation) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Source language](datatype-properties.md#inlanguage) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Publication timespan](object-properties.md#publicationtimespan) *min* `0`; [Datacite publisher](object-properties.md#sourcepublisher) *min* `0`; [Source url](datatype-properties.md#sourceurl) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Datacite identifier](datatype-properties.md#persistentidentifier) *min* `0`; [note](datatype-properties.md#p3_has_note) *max* `1`; [Datacite creator](object-properties.md#sourcecreator) *min* `0`; [Source language](datatype-properties.md#inlanguage) *max* `1`; [Datacite publisher](object-properties.md#sourcepublisher) *only* [Actor](classes.md#e39_actor); [Datacite identifier](datatype-properties.md#persistentidentifier) *max* `1`; [Datacite resource type](datatype-properties.md#resourcetype) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *min* `0`; [Publication timespan](object-properties.md#publicationtimespan) *only* [Time Span](classes.md#e52_time-span); [Source citation](datatype-properties.md#sourcecitation) *max* `1` |
+| Subclasses | [Archival Record](classes.md#archivalrecord), [Field Survey Dataset](classes.md#fieldsurveydataset), [Information Object](classes.md#informationobject), [Oral History Recording](classes.md#oralhistoryrecording) |
+| Used in | in range of [Data sources](object-properties.md#data_sources); in range of [Documented in source](object-properties.md#mentionedinsource); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Date Precision
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision` · `heritageGraph:DatePrecision`
+
+Controlled vocabulary for the temporal precision of recorded heritage dates.
+
+| | |
+|---|---|
+| Instances | [Century](concepts.md#century), [Circa](concepts.md#circa), [Decade](concepts.md#decade), [Exact](concepts.md#exact), [Year](concepts.md#year) |
+| Used in | in range of [has date precision](object-properties.md#dateprecision) |
+| permissible_values | Circa; Decade; Year; Exact; Century |
+
+### Deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Deity` · `heritageGraph:Deity`
+
+Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Is enshrined through event](object-properties.md#isenshrinedthroughevent) *min* `0`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Is depicted in](object-properties.md#p62i_is_depicted_by) *only* [Iconographic Object](classes.md#iconographicobject); [Is enshrined through event](object-properties.md#isenshrinedthroughevent) *only* [Enshrinement](classes.md#enshrinement); [Is depicted in](object-properties.md#p62i_is_depicted_by) *min* `0`; [Is invoked in ritual](object-properties.md#isinvokedinritual) *min* `0`; [Has religious tradition](object-properties.md#hasreligioustradition) *only* [Religious Tradition](classes.md#religioustradition); [Is invoked in ritual](object-properties.md#isinvokedinritual) *only* [Ritual Event](classes.md#ritualevent); [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *max* `1`; [Has religious tradition](object-properties.md#hasreligioustradition) *min* `0` |
+| Used in | in range of [deities](object-properties.md#deities); in range of [Embodied deity](object-properties.md#embodieddeity); in range of [Enshrined deity](object-properties.md#enshrineddeity); in range of [Invokes deity](object-properties.md#invokesdeity); in range of [Is about deity](object-properties.md#isaboutdeity); in range of [Makes deity present](object-properties.md#makesdeitypresent); in range of [Role deity](object-properties.md#roledeity); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Consecration](classes.md#consecration); used in axioms of [Container](classes.md#container); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Role](classes.md#kumarirole); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Murti](classes.md#murti); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Destruction Event
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E6_Destruction` · `crm:E6_Destruction`
+
+Event that destroyed or damaged a structure.
+
+| | |
+|---|---|
+| Used in | in range of [has destruction event](object-properties.md#destructionevent); used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### Dharmashala
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Dharmashala` · `heritageGraph:Dharmashala`
+
+Pilgrim lodge operated by a Guthi organization
+
+| | |
+|---|---|
+| Superclasses | [Rest House](classes.md#resthouse) |
+
+### Dhunge Dhara
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DhungeDhara` · `heritageGraph:DhungeDhara`
+
+Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply
+
+| | |
+|---|---|
+| Superclasses | [Water Structure](classes.md#waterstructure) |
+
+### Documentation Activity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DocumentationActivity` · `heritageGraph:DocumentationActivity`
+
+Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity.
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Used method](datatype-properties.md#usedmethod) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Was associated with](object-properties.md#wasassociatedwith) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [generated](object-properties.md#generated) *min* `0`; [Was associated with](object-properties.md#wasassociatedwith) *only* [Agent](classes.md#agent); [Used equipment](datatype-properties.md#usedequipment) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Used method](datatype-properties.md#usedmethod) *min* `0`; [documents](object-properties.md#documents) *min* `0`; [Used equipment](datatype-properties.md#usedequipment) *min* `0`; [generated](object-properties.md#generated) *only* [Entity](classes.md#entity); [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Used method](datatype-properties.md#usedmethod) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [documents](object-properties.md#documents) *only* [Assertion Subject](classes.md#assertionsubject) |
+| Subclasses | [Field Survey Activity](classes.md#fieldsurveyactivity), [Oral History Interview](classes.md#oralhistoryinterview), [Verification](classes.md#verification) |
+| Used in | in range of [Documentation activities](object-properties.md#documentation_activities); in range of [Was documented by](object-properties.md#documentedby); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Information Object](classes.md#informationobject); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Enshrinement
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Enshrinement` · `heritageGraph:Enshrinement`
+
+Event of installing a deity's murti or symbol within a temple sanctum
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Enshrined deity](object-properties.md#enshrineddeity) *only* [Deity](classes.md#deity); [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Enshrined in structure](object-properties.md#enshrinedinstructure) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Enshrined deity](object-properties.md#enshrineddeity) *max* `1`; [Enshrined deity](object-properties.md#enshrineddeity) *min* `0`; [Enshrined in structure](object-properties.md#enshrinedinstructure) *max* `1`; [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Enshrined in structure](object-properties.md#enshrinedinstructure) *only* [Temple](classes.md#temple); [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place) |
+| Used in | in range of [Enshrinement events](object-properties.md#enshrinement_events); in range of [Enshrines deity through event](object-properties.md#enshrinesdeitythroughevent); in range of [Is enshrined through event](object-properties.md#isenshrinedthroughevent); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Deity](classes.md#deity); used in axioms of [Temple](classes.md#temple) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Entity
+
+**IRI:** `http://www.w3.org/ns/prov#Entity` · `prov:Entity`
+
+Direct LinkML representation of prov:Entity. Applied to physical, digital, conceptual, and assertion-bearing things that participate in provenance relations. PROVENANCE SCOPE (design decision): for classes whose instances are real-world referents (structures, deities, places, actors), the provenance slots (was_derived_from, was_attributed_to, was_generated_by, generated_at_time) describe the DATA RECORD about the referent, not the referent itself -- a stupa is not generated by the survey that records it. Referent-level history is modelled through events (Production, DestructionEvent, etc.). RDF deployments SHOULD carry record-level provenance in named graphs or on InformationObject/Assertion nodes.
+
+| | |
+|---|---|
+| Subclasses | [Architectural Element](classes.md#architecturalelement), [Assertion](classes.md#i2_belief), [Calendar System](classes.md#calendarsystem), [Condition State](classes.md#e3_condition_state), [Container](classes.md#container), [Data Source](classes.md#datasource), [Deity](classes.md#deity), [Human Made Object](classes.md#e22_human-made_object), [Kumari Role](classes.md#kumarirole), [Kumari Tenure](classes.md#kumaritenure), [Material](classes.md#e57_material), [Metadata](classes.md#metadata), [Physical Heritage Thing](classes.md#physicalheritagething), [Place](classes.md#e53_place), [Proposition](classes.md#proposition), [Religious Tradition](classes.md#religioustradition), [Selection Criterion](classes.md#selectioncriterion), [Technique](classes.md#e29_design_or_procedure), [Time Span](classes.md#e52_time-span) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+| provenance_scope | record |
+
+### Existence Status
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus` · `heritageGraph:ExistenceStatus`
+
+Controlled vocabulary for whether a heritage structure still exists physically.
+
+| | |
+|---|---|
+| Instances | [Destroyed](concepts.md#destroyed), [Extant](concepts.md#extant), [Hypothetical](concepts.md#hypothetical), [Lost](concepts.md#lost), [Partially Extant](concepts.md#partiallyextant), [Unknown](concepts.md#unknown) |
+| Used in | in range of [has existence status](object-properties.md#existencestatus); used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+| permissible_values | Lost; Unknown; PartiallyExtant; Extant; Destroyed; Hypothetical |
+
+### Fearlessness Assessment
+
+**IRI:** `https://cair-nepal.org/heritagegraph/FearlessnessAssessment` · `heritageGraph:FearlessnessAssessment`
+
+The 'fearlessness test' popularly described (animal heads, masked dancers in darkness). Its historical and contemporary practice is DISPUTED -- some former Kumaris contest how it is described. Represented as an assessment whose accounts are source-attributed via has_assertion, NOT as a mandatory criterion.
+
+| | |
+|---|---|
+| Superclasses | [Ritual Assessment](classes.md#ritualassessment) |
+
+### Festival
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Festival` · `heritageGraph:Festival`
+
+Large-scale community ritual event (Jatra) involving processions, music, and collective participation
+
+| | |
+|---|---|
+| Superclasses | [Ritual Event](classes.md#ritualevent) |
+| Restrictions | [Includes ritual event](object-properties.md#p9_consists_of) *only* [Ritual Event](classes.md#ritualevent); [Includes ritual event](object-properties.md#p9_consists_of) *min* `0` |
+| Subclasses | [Chariot Festival](classes.md#chariotfestival), [Masked Dance](classes.md#maskeddance) |
+| Used in | in range of [festivals](object-properties.md#festivals); used in axioms of [Container](classes.md#container); used in axioms of [Ritual Event](classes.md#ritualevent) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Field Survey Activity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/FieldSurveyActivity` · `heritageGraph:FieldSurveyActivity`
+
+The activity of measuring, photographing, or assessing a site in person.
+
+| | |
+|---|---|
+| Superclasses | [Documentation Activity](classes.md#documentationactivity) |
+
+### Field Survey Dataset
+
+**IRI:** `https://cair-nepal.org/heritagegraph/FieldSurveyDataset` · `heritageGraph:FieldSurveyDataset`
+
+The structured data or report resulting from a field survey.
+
+| | |
+|---|---|
+| Superclasses | [Data Source](classes.md#datasource) |
+
+### Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Guthi` · `heritageGraph:Guthi`
+
+Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership
+
+| | |
+|---|---|
+| Superclasses | [Actor](classes.md#e39_actor) |
+| Restrictions | [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Has membership](object-properties.md#p107_has_current_or_former_member) *only* [Person](classes.md#e21_person); [Holds custody of](object-properties.md#p50i_is_current_keeper_of) *min* `0`; [Has membership](object-properties.md#p107_has_current_or_former_member) *min* `0`; [has guthi type](object-properties.md#guthitype) *only* [Guthi Type](classes.md#guthitype); [has guthi type](object-properties.md#guthitype) *max* `1`; [has guthi type](object-properties.md#guthitype) *min* `0`; [Holds custody of](object-properties.md#p50i_is_current_keeper_of) *only* [Architectural Structure](classes.md#architecturalstructure); [Performs ritual](object-properties.md#performsritual) *min* `0`; [note](datatype-properties.md#p3_has_note) *max* `1`; [Performs ritual](object-properties.md#performsritual) *only* [Ritual Event](classes.md#ritualevent); [note](datatype-properties.md#p3_has_note) *min* `0` |
+| Used in | in range of [guthis](object-properties.md#guthis); in range of [Managed by guthi](object-properties.md#managedbyguthi); in range of [Performed by group](object-properties.md#performedbygroup); in range of [Supported by institution](object-properties.md#supportedbyinstitution); in range of [Transferred to guthi](object-properties.md#transferredtoguthi); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Guthi Type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType` · `heritageGraph:GuthiType`
+
+Controlled vocabulary of Guthi functional types (CRM E55_Type)
+
+| | |
+|---|---|
+| Instances | [Jatra Guthi](concepts.md#jatraguthi), [Nasha Guthi](concepts.md#nashaguthi), [Puja Guthi](concepts.md#pujaguthi), [Raj Guthi](concepts.md#rajguthi), [San Guthi](concepts.md#sanguthi), [Sana Guthi](concepts.md#sanaguthi), [Si Guthi](concepts.md#siguthi), [Temple Guthi](concepts.md#templeguthi) |
+| Used in | in range of [has guthi type](object-properties.md#guthitype); used in axioms of [Guthi](classes.md#guthi) |
+| permissible_values | TempleGuthi; PujaGuthi; SanaGuthi; JatraGuthi; NashaGuthi; Raj Guthi; SiGuthi; SanGuthi |
+
+### Historical Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/HistoricalEvent` · `heritageGraph:HistoricalEvent`
+
+Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood).
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Includes ritual event](object-properties.md#p9_consists_of) *only* [Ritual Event](classes.md#ritualevent); [Architectural structures](object-properties.md#architecturalstructures) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Includes ritual event](object-properties.md#p9_consists_of) *min* `0`; [Architectural structures](object-properties.md#architecturalstructures) *only* [Architectural Structure](classes.md#architecturalstructure); [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [note](datatype-properties.md#p3_has_note) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [note](datatype-properties.md#p3_has_note) *min* `0` |
+| Used in | in range of [Historical events](object-properties.md#historical_events); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Horoscope Compatibility Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/HoroscopeCompatibilityCriterion` · `heritageGraph:HoroscopeCompatibilityCriterion`
+
+Candidate's horoscope must be compatible with the city and ruling authority.
+
+| | |
+|---|---|
+| Superclasses | [Selection Criterion](classes.md#selectioncriterion) |
+
+### Human Made Object
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object` · `crm:E22_Human-Made_Object`
+
+Physical objects created by human activity
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Subclasses | [Architectural Structure](classes.md#architecturalstructure), [Iconographic Object](classes.md#iconographicobject) |
+| Used in | in range of [Human made objects](object-properties.md#human_made_objects); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+
+### Iconographic Object
+
+**IRI:** `https://cair-nepal.org/heritagegraph/IconographicObject` · `heritageGraph:IconographicObject`
+
+Sacred visual art objects that depict or embody deities through iconographic conventions
+
+| | |
+|---|---|
+| Superclasses | [Human Made Object](classes.md#e22_human-made_object) |
+| Restrictions | [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Was produced by event](object-properties.md#p108i_was_produced_by) *only* [Production](classes.md#e12_production); [Depicts deity](object-properties.md#p62_depicts) *only* [Deity](classes.md#deity); [note](datatype-properties.md#p3_has_note) *min* `0`; [note](datatype-properties.md#p3_has_note) *max* `1`; [Depicts deity](object-properties.md#p62_depicts) *min* `0`; [Has current location](object-properties.md#p55_has_current_location) *min* `0`; [Was produced by event](object-properties.md#p108i_was_produced_by) *max* `1`; [Has current location](object-properties.md#p55_has_current_location) *only* [Place](classes.md#e53_place); [Participates in ritual](object-properties.md#participatesinritual) *min* `0`; [Was produced by event](object-properties.md#p108i_was_produced_by) *min* `0`; [Used by](object-properties.md#usedby) *only* [Actor](classes.md#e39_actor); [Participates in ritual](object-properties.md#participatesinritual) *only* [Ritual Event](classes.md#ritualevent); [Has current location](object-properties.md#p55_has_current_location) *max* `1`; [Used by](object-properties.md#usedby) *min* `0` |
+| Subclasses | [Murti](classes.md#murti), [Paubha](classes.md#paubha) |
+| Used in | in range of [Iconographic objects](object-properties.md#iconographic_objects); used in axioms of [Container](classes.md#container); used in axioms of [Deity](classes.md#deity); used in axioms of [Physical Heritage Thing](classes.md#physicalheritagething) |
+
+### Information Object
+
+**IRI:** `https://cair-nepal.org/heritagegraph/InformationObject` · `heritageGraph:InformationObject`
+
+A recorded piece of information about heritage
+
+| | |
+|---|---|
+| Superclasses | [Data Source](classes.md#datasource) |
+| Restrictions | [Was generated by](object-properties.md#wasgeneratedby) *only* [Activity](classes.md#activity); [Source language](datatype-properties.md#inlanguage) *max* `1`; [Is about](object-properties.md#p129_is_about) *only* [Assertion Subject](classes.md#assertionsubject); [Source language](datatype-properties.md#inlanguage) *min* `0`; [Was generated by](object-properties.md#wasgeneratedby) *max* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Source language](datatype-properties.md#inlanguage) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Was generated by](object-properties.md#wasgeneratedby) *min* `0`; [Was documented by](object-properties.md#documentedby) *min* `0`; [Is about](object-properties.md#p129_is_about) *min* `0` |
+| Used in | in range of [Information objects](object-properties.md#information_objects); used in axioms of [Container](classes.md#container) |
+
+### Kumari Enthronement Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariEnthronementEvent` · `heritageGraph:KumariEnthronementEvent`
+
+Ritual installing a selected girl into the Kumari role and residence, activating the tenure (distinct from selection, which chooses her, and retirement, which ends it).
+
+| | |
+|---|---|
+| Superclasses | [Kumari Lifecycle Event](classes.md#kumarilifecycleevent) |
+| Restrictions | [Enthroned person](object-properties.md#enthronedperson) *min* `1`; [Bounds tenure](object-properties.md#boundstenure) *max* `1`; [Confers role](object-properties.md#confersrole) *min* `1`; [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Confers role](object-properties.md#confersrole) *only* [Kumari Role](classes.md#kumarirole); [Has assertion](object-properties.md#hasassertion) *min* `0`; [Confers role](object-properties.md#confersrole) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Was documented by](object-properties.md#documentedby) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Enthroned person](object-properties.md#enthronedperson) *max* `1`; [Enthroned person](object-properties.md#enthronedperson) *only* [Person](classes.md#e21_person); [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Bounds tenure](object-properties.md#boundstenure) *min* `1`; [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [Bounds tenure](object-properties.md#boundstenure) *only* [Kumari Tenure](classes.md#kumaritenure) |
+| Used in | in range of [Enthroned through](object-properties.md#enthronedthrough); used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Kumari House
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariHouse` · `heritageGraph:KumariHouse`
+
+God-house residence of a Kumari during tenure (e.g., Kumari Ghar, Kathmandu). Specialised ReligiousStructure.
+
+| | |
+|---|---|
+| Superclasses | [Religious Structure](classes.md#religiousstructure) |
+
+### Kumari Lifecycle Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariLifecycleEvent` · `heritageGraph:KumariLifecycleEvent`
+
+Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Each concrete subclass requires exactly one tenure edge via slot_usage: initiated_tenure (selection), ended_tenure_of (retirement), or bounds_tenure itself (enthronement).
+
+| | |
+|---|---|
+| Superclasses | [Ritual Event](classes.md#ritualevent) |
+| Restrictions | [Bounds tenure](object-properties.md#boundstenure) *min* `0`; [Bounds tenure](object-properties.md#boundstenure) *only* [Kumari Tenure](classes.md#kumaritenure); [Bounds tenure](object-properties.md#boundstenure) *max* `1` |
+| Subclasses | [Kumari Enthronement Event](classes.md#kumarienthronementevent), [Kumari Retirement Event](classes.md#kumariretirementevent), [Kumari Selection Event](classes.md#kumariselectionevent) |
+| Used in | in range of [Kumari lifecycle events](object-properties.md#kumari_lifecycle_events); used in axioms of [Container](classes.md#container) |
+
+### Kumari Retirement Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariRetirementEvent` · `heritageGraph:KumariRetirementEvent`
+
+Ritual or administrative event that formally ends a Living Goddess tenure, returning the person to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.
+
+| | |
+|---|---|
+| Superclasses | [Kumari Lifecycle Event](classes.md#kumarilifecycleevent) |
+| Restrictions | [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Has timespan](object-properties.md#p4_has_time-span) *min* `1`; [Was documented by](object-properties.md#documentedby) *min* `0`; [Ended tenure of](object-properties.md#endedtenureof) *min* `1`; [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [Performed by group](object-properties.md#performedbygroup) *only* (([Guthi](classes.md#guthi) *or* [Caste Group](classes.md#castegroup)) *and* [Actor](classes.md#e39_actor)); [note](datatype-properties.md#p3_has_note) *min* `0`; [Performed by group](object-properties.md#performedbygroup) *min* `0`; [Ended tenure of](object-properties.md#endedtenureof) *only* [Kumari Tenure](classes.md#kumaritenure); [Ended tenure of](object-properties.md#endedtenureof) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [note](datatype-properties.md#p3_has_note) *max* `1`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Has assertion](object-properties.md#hasassertion) *min* `0` |
+| Used in | in range of [Retired through](object-properties.md#retiredthrough); used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Kumari Role
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariRole` · `heritageGraph:KumariRole`
+
+The role/office of Kumari (living-goddess embodiment) that a person assumes for the duration of a KumariTenure. The role is the type; the tenure is the time-bounded holding of it; the person is the holder.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Role deity](object-properties.md#roledeity) *min* `0`; [Role deity](object-properties.md#roledeity) *only* [Deity](classes.md#deity); [Role deity](object-properties.md#roledeity) *max* `1` |
+| Used in | in range of [Assumes role](object-properties.md#assumesrole); in range of [Confers role](object-properties.md#confersrole); in range of [Kumari roles](object-properties.md#kumari_roles); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Kumari Selection Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariSelectionEvent` · `heritageGraph:KumariSelectionEvent`
+
+Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee of Vajracharya priests, royal priest (Raj Jyotish), and astrologer.
+
+| | |
+|---|---|
+| Superclasses | [Kumari Lifecycle Event](classes.md#kumarilifecycleevent) |
+| Restrictions | [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [Has criterion](object-properties.md#hascriterion) *only* [Selection Criterion](classes.md#selectioncriterion); [Selected person](object-properties.md#selectedperson) *only* [Person](classes.md#e21_person); [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Selected person](object-properties.md#selectedperson) *max* `1`; [Confers role](object-properties.md#confersrole) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Initiated tenure](object-properties.md#initiatedtenure) *only* [Kumari Tenure](classes.md#kumaritenure); [Confers role](object-properties.md#confersrole) *only* [Kumari Role](classes.md#kumarirole); [Performed by group](object-properties.md#performedbygroup) *min* `0`; [Is critical for festival](datatype-properties.md#iscriticalforfestival) *max* `1`; [Has criterion](object-properties.md#hascriterion) *min* `0`; [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Has assertion](object-properties.md#hasassertion) *min* `0`; [Initiated tenure](object-properties.md#initiatedtenure) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Selected person](object-properties.md#selectedperson) *min* `1`; [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Is critical for festival](datatype-properties.md#iscriticalforfestival) *min* `0`; [Performed by group](object-properties.md#performedbygroup) *only* (([Guthi](classes.md#guthi) *or* [Caste Group](classes.md#castegroup)) *and* [Actor](classes.md#e39_actor)); [Confers role](object-properties.md#confersrole) *max* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Initiated tenure](object-properties.md#initiatedtenure) *min* `1`; [Is critical for festival](datatype-properties.md#iscriticalforfestival) *only* [xsd:boolean](http://www.w3.org/2001/XMLSchema#boolean); [Was documented by](object-properties.md#documentedby) *min* `0` |
+| Used in | in range of [Part of selection](object-properties.md#partofselection); in range of [Selected through](object-properties.md#selectedthrough); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Kumari Tenure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/KumariTenure` · `heritageGraph:KumariTenure`
+
+Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Enthroned through](object-properties.md#enthronedthrough) *min* `0`; [Residence structure](object-properties.md#residencestructure) *only* [Architectural Structure](classes.md#architecturalstructure); [Retired through](object-properties.md#retiredthrough) *max* `1`; [Selected through](object-properties.md#selectedthrough) *only* [Kumari Selection Event](classes.md#kumariselectionevent); [Enthroned through](object-properties.md#enthronedthrough) *max* `1`; [Residence structure](object-properties.md#residencestructure) *max* `1`; [Embodied deity](object-properties.md#embodieddeity) *max* `1`; [Had participant](object-properties.md#hadparticipant) *only* [Person](classes.md#e21_person); [Residence structure](object-properties.md#residencestructure) *min* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Assumes role](object-properties.md#assumesrole) *min* `0`; [Selected through](object-properties.md#selectedthrough) *min* `0`; [Had participant](object-properties.md#hadparticipant) *min* `1`; [Embodied deity](object-properties.md#embodieddeity) *min* `1`; [Assumes role](object-properties.md#assumesrole) *only* [Kumari Role](classes.md#kumarirole); [Retired through](object-properties.md#retiredthrough) *only* [Kumari Retirement Event](classes.md#kumariretirementevent); [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Enthroned through](object-properties.md#enthronedthrough) *only* [Kumari Enthronement Event](classes.md#kumarienthronementevent); [Supported by institution](object-properties.md#supportedbyinstitution) *min* `0`; [Retired through](object-properties.md#retiredthrough) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Supported by institution](object-properties.md#supportedbyinstitution) *only* [Guthi](classes.md#guthi); [Has timespan](object-properties.md#p4_has_time-span) *min* `1`; [Selected through](object-properties.md#selectedthrough) *max* `1`; [Was documented by](object-properties.md#documentedby) *min* `0`; [Embodied deity](object-properties.md#embodieddeity) *only* [Deity](classes.md#deity); [Assumes role](object-properties.md#assumesrole) *max* `1` |
+| Used in | in range of [Bounds tenure](object-properties.md#boundstenure); in range of [Ended tenure of](object-properties.md#endedtenureof); in range of [Initiated tenure](object-properties.md#initiatedtenure); in range of [Kumari tenures](object-properties.md#kumari_tenures); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Lifecycle Event](classes.md#kumarilifecycleevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Lineage Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/LineageCriterion` · `heritageGraph:LineageCriterion`
+
+Candidate must belong to an eligible lineage (Shakya / Vajracharya Newar Buddhist family).
+
+| | |
+|---|---|
+| Superclasses | [Selection Criterion](classes.md#selectioncriterion) |
+
+### Masked Dance
+
+**IRI:** `https://cair-nepal.org/heritagegraph/MaskedDance` · `heritageGraph:MaskedDance`
+
+Festival featuring masked dancers embodying deities (e.g., Kartik Naach)
+
+| | |
+|---|---|
+| Superclasses | [Festival](classes.md#festival) |
+
+### Material
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E57_Material` · `crm:E57_Material`
+
+Physical substance used in construction or crafting
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [materials](object-properties.md#materials); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Metadata
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Metadata` · `heritageGraph:Metadata`
+
+Dataset metadata information
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [license](datatype-properties.md#license-2) *min* `0`; [curator](datatype-properties.md#curator) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Schema version](datatype-properties.md#schema_version) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Generated date](datatype-properties.md#generated_date) *max* `1`; [curator](datatype-properties.md#curator) *min* `0`; [Dataset version](datatype-properties.md#dataset_version) *max* `1`; [Dataset name](datatype-properties.md#dataset_name) *max* `1`; [license](datatype-properties.md#license-2) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Schema version](datatype-properties.md#schema_version) *min* `0`; [license](datatype-properties.md#license-2) *max* `1`; [Dataset version](datatype-properties.md#dataset_version) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [curator](datatype-properties.md#curator) *max* `1`; [Generated date](datatype-properties.md#generated_date) *min* `0`; [Schema version](datatype-properties.md#schema_version) *max* `1`; [Dataset name](datatype-properties.md#dataset_name) *min* `0`; [Dataset name](datatype-properties.md#dataset_name) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Dataset version](datatype-properties.md#dataset_version) *min* `0`; [Generated date](datatype-properties.md#generated_date) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | in range of [has metadata](object-properties.md#metadata-2); used in axioms of [Container](classes.md#container) |
+
+### Murti
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Murti` · `heritageGraph:Murti`
+
+Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)
+
+| | |
+|---|---|
+| Superclasses | [Iconographic Object](classes.md#iconographicobject) |
+| Restrictions | [Consecrated by event](object-properties.md#consecratedbyevent) *max* `1`; [Consecrated by event](object-properties.md#consecratedbyevent) *only* [Consecration](classes.md#consecration); [Is about deity](object-properties.md#isaboutdeity) *min* `0`; [Is about deity](object-properties.md#isaboutdeity) *max* `1`; [Consecrated by event](object-properties.md#consecratedbyevent) *min* `0`; [Is about deity](object-properties.md#isaboutdeity) *only* [Deity](classes.md#deity) |
+| Used in | used in axioms of [Consecration](classes.md#consecration) |
+
+### Oral History Interview
+
+**IRI:** `https://cair-nepal.org/heritagegraph/OralHistoryInterview` · `heritageGraph:OralHistoryInterview`
+
+The interaction event between a researcher and a knowledge holder.
+
+| | |
+|---|---|
+| Superclasses | [Documentation Activity](classes.md#documentationactivity) |
+
+### Oral History Recording
+
+**IRI:** `https://cair-nepal.org/heritagegraph/OralHistoryRecording` · `heritageGraph:OralHistoryRecording`
+
+The recording or transcript of an oral history interview.
+
+| | |
+|---|---|
+| Superclasses | [Data Source](classes.md#datasource) |
+
+### Pati
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Pati` · `heritageGraph:Pati`
+
+Open-air pavilion for resting travelers
+
+| | |
+|---|---|
+| Superclasses | [Rest House](classes.md#resthouse) |
+
+### Paubha
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Paubha` · `heritageGraph:Paubha`
+
+Traditional Newari scroll painting (thangka) with mandala and deity iconography
+
+| | |
+|---|---|
+| Superclasses | [Iconographic Object](classes.md#iconographicobject) |
+
+### Person
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E21_Person` · `crm:E21_Person`
+
+Individual person who performs, commissions, documents, or verifies heritage activities
+
+| | |
+|---|---|
+| Superclasses | [Actor](classes.md#e39_actor) |
+| Used in | in range of [Assesses candidate](object-properties.md#assessescandidate); in range of [Enthroned person](object-properties.md#enthronedperson); in range of [persons](object-properties.md#persons); in range of [Selected person](object-properties.md#selectedperson); in range of [Verified by expert](object-properties.md#verifiedbyexpert); used in axioms of [Container](classes.md#container); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Verification](classes.md#verification) |
+
+### Physical Heritage Thing
+
+**IRI:** `https://cair-nepal.org/heritagegraph/PhysicalHeritageThing` · `heritageGraph:PhysicalHeritageThing`
+
+Union of the tangible heritage classes: architectural structures, iconographic objects, and standalone architectural elements. Used as the range of slots that apply to any physical heritage thing (production, custody, condition assessment).
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Equivalent to | [Architectural Structure](classes.md#architecturalstructure) *or* [Iconographic Object](classes.md#iconographicobject) *or* [Architectural Element](classes.md#architecturalelement) |
+| Used in | in range of [Physical heritage things](object-properties.md#physical_heritage_things); used in axioms of [Container](classes.md#container); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Physical Integrity Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/PhysicalIntegrityCriterion` · `heritageGraph:PhysicalIntegrityCriterion`
+
+Candidate must have an unblemished body with no scars, wounds, or loss of blood/teeth.
+
+| | |
+|---|---|
+| Superclasses | [Selection Criterion](classes.md#selectioncriterion) |
+
+### Place
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E53_Place` · `crm:E53_Place`
+
+Defined geographic location where events occur and structures exist
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [End place](object-properties.md#endplace); in range of [Hypothesized location](object-properties.md#hypothesizedlocation); in range of [places](object-properties.md#places); in range of [Route places](object-properties.md#routeplaces); in range of [Start place](object-properties.md#startplace); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Consecration](classes.md#consecration); used in axioms of [Container](classes.md#container); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Pokhari
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Pokhari` · `heritageGraph:Pokhari`
+
+Pond or tank for water storage, ritual bathing, and ecological management
+
+| | |
+|---|---|
+| Superclasses | [Water Structure](classes.md#waterstructure) |
+
+### Production
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E12_Production` · `crm:E12_Production`
+
+Event of creating an architectural structure, murti, or paubha
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Used in | in range of [Production events](object-properties.md#production_events); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Proposition
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Proposition` · `heritageGraph:Proposition`
+
+A single machine-readable proposition (subject - predicate - object) held true by an Assertion. Modelled as a singleton proposition set (CRMinf I4); the predicate is a URI/CURIE, the object either a heritage entity or a literal.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [Proposition subject](object-properties.md#propositionsubject) *only* [Assertion Subject](classes.md#assertionsubject); [Proposition object literal](datatype-properties.md#propositionliteralvalue) *max* `1`; [Proposition predicate](datatype-properties.md#propositionpredicate) *max* `1`; [Proposition object literal](datatype-properties.md#propositionliteralvalue) *min* `0`; [Proposition subject](object-properties.md#propositionsubject) *min* `1`; [Proposition predicate](datatype-properties.md#propositionpredicate) *only* [xsd:anyURI](http://www.w3.org/2001/XMLSchema#anyURI); [Proposition object entity](object-properties.md#propositionobjectentity) *only* [Assertion Subject](classes.md#assertionsubject); [Proposition object literal](datatype-properties.md#propositionliteralvalue) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Proposition predicate](datatype-properties.md#propositionpredicate) *min* `1`; [Proposition subject](object-properties.md#propositionsubject) *max* `1`; [Proposition object entity](object-properties.md#propositionobjectentity) *max* `1`; [Proposition object entity](object-properties.md#propositionobjectentity) *min* `0` |
+| Used in | in range of [propositions](object-properties.md#propositions); used in axioms of [Container](classes.md#container) |
+
+### Religious Structure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ReligiousStructure` · `heritageGraph:ReligiousStructure`
+
+Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).
+
+| | |
+|---|---|
+| Superclasses | [Architectural Structure](classes.md#architecturalstructure) |
+| Restrictions | [Has religious tradition](object-properties.md#hasreligioustradition) *only* [Religious Tradition](classes.md#religioustradition); [Has religious tradition](object-properties.md#hasreligioustradition) *min* `0` |
+| Subclasses | [Chaitya](classes.md#chaitya-2), [Kumari House](classes.md#kumarihouse), [Stupa](classes.md#stupa), [Temple](classes.md#temple) |
+
+### Religious Tradition
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ReligiousTradition` · `heritageGraph:ReligiousTradition`
+
+Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Restrictions | [note](datatype-properties.md#p3_has_note) *min* `0`; [note](datatype-properties.md#p3_has_note) *max* `1`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | in range of [Has religious tradition](object-properties.md#hasreligioustradition); in range of [Is primary for tradition](object-properties.md#isprimaryfortradition); in range of [Religious traditions](object-properties.md#religious_traditions); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Calendar System](classes.md#calendarsystem); used in axioms of [Container](classes.md#container); used in axioms of [Deity](classes.md#deity); used in axioms of [Religious Structure](classes.md#religiousstructure) |
+
+### Rest House
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RestHouse` · `heritageGraph:RestHouse`
+
+Community structures for travelers and pilgrims, maintained by Guthi organizations
+
+| | |
+|---|---|
+| Superclasses | [Architectural Structure](classes.md#architecturalstructure) |
+| Subclasses | [Dharmashala](classes.md#dharmashala), [Pati](classes.md#pati), [Sattal](classes.md#sattal) |
+
+### Ritual Assessment
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualAssessment` · `heritageGraph:RitualAssessment`
+
+A performed assessment carried out during Kumari selection. Modelled as an event (not a hard criterion) so that source-specific, possibly conflicting accounts of whether/how it was conducted attach as provenanced Assertions rather than being asserted as fact.
+
+| | |
+|---|---|
+| Superclasses | [Ritual Event](classes.md#ritualevent) |
+| Restrictions | [Assesses candidate](object-properties.md#assessescandidate) *max* `1`; [Has assertion](object-properties.md#hasassertion) *min* `0`; [Assesses candidate](object-properties.md#assessescandidate) *only* [Person](classes.md#e21_person); [Assesses candidate](object-properties.md#assessescandidate) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Part of selection](object-properties.md#partofselection) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [Part of selection](object-properties.md#partofselection) *only* [Kumari Selection Event](classes.md#kumariselectionevent); [Was documented by](object-properties.md#documentedby) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Part of selection](object-properties.md#partofselection) *max* `1` |
+| Subclasses | [Fearlessness Assessment](classes.md#fearlessnessassessment) |
+| Used in | in range of [Ritual assessments](object-properties.md#ritual_assessments); used in axioms of [Container](classes.md#container) |
+
+### Ritual Event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualEvent` · `heritageGraph:RitualEvent`
+
+Intentional ritual activity that activates sacred space, invokes deities, and binds social groups
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Carried out by](object-properties.md#p14_carried_out_by) *min* `0`; [Managed by guthi](object-properties.md#managedbyguthi) *min* `0`; [Used materials](object-properties.md#p125_used_object_of_type) *only* [Material](classes.md#e57_material); [End place](object-properties.md#endplace) *max* `1`; [Performed by group](object-properties.md#performedbygroup) *min* `0`; [has ritual type](object-properties.md#ritualtype) *min* `0`; [Start place](object-properties.md#startplace) *max* `1`; [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Has timespan](object-properties.md#p4_has_time-span) *only* [Time Span](classes.md#e52_time-span); [Is part of festival](object-properties.md#p9i_forms_part_of) *min* `0`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Is part of festival](object-properties.md#p9i_forms_part_of) *only* [Festival](classes.md#festival); [Route places](object-properties.md#routeplaces) *min* `0`; [Ritual on structure](object-properties.md#p8_took_place_on_or_within) *max* `1`; [Lunar date tithi](datatype-properties.md#lunardatetithi) *min* `0`; [Route description](datatype-properties.md#routedescription) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Recurrence pattern](datatype-properties.md#recurrencepattern) *min* `0`; [Route description](datatype-properties.md#routedescription) *max* `1`; [Ritual on structure](object-properties.md#p8_took_place_on_or_within) *min* `0`; [End place](object-properties.md#endplace) *min* `0`; [Has assertion](object-properties.md#hasassertion) *only* [Assertion](classes.md#i2_belief); [Performed by group](object-properties.md#performedbygroup) *only* (([Guthi](classes.md#guthi) *or* [Caste Group](classes.md#castegroup)) *and* [Actor](classes.md#e39_actor)); [End place](object-properties.md#endplace) *only* [Place](classes.md#e53_place); [Ritual on structure](object-properties.md#p8_took_place_on_or_within) *only* [Physical Heritage Thing](classes.md#physicalheritagething); [Managed by guthi](object-properties.md#managedbyguthi) *only* [Guthi](classes.md#guthi); [Occurs after](object-properties.md#p183i_starts_after_the_end_of) *max* `1`; [Has assertion](object-properties.md#hasassertion) *min* `0`; [Has timespan](object-properties.md#p4_has_time-span) *max* `1`; [Start place](object-properties.md#startplace) *only* [Place](classes.md#e53_place); [Took place at](object-properties.md#p7_took_place_at) *max* `1`; [Invokes deity](object-properties.md#invokesdeity) *min* `0`; [Lunar date tithi](datatype-properties.md#lunardatetithi) *max* `1`; [Recurrence pattern](datatype-properties.md#recurrencepattern) *max* `1`; [Has timespan](object-properties.md#p4_has_time-span) *min* `0`; [Occurs before](object-properties.md#p183_ends_before_the_start_of) *min* `0`; [Had participant](object-properties.md#hadparticipant) *only* [Actor](classes.md#e39_actor); [Is part of festival](object-properties.md#p9i_forms_part_of) *max* `1`; [Occurs before](object-properties.md#p183_ends_before_the_start_of) *max* `1`; [Took place at](object-properties.md#p7_took_place_at) *min* `0`; [Start place](object-properties.md#startplace) *min* `0`; [Route description](datatype-properties.md#routedescription) *min* `0`; [Used materials](object-properties.md#p125_used_object_of_type) *min* `0`; [Carried out by](object-properties.md#p14_carried_out_by) *only* [Actor](classes.md#e39_actor); [Occurs after](object-properties.md#p183i_starts_after_the_end_of) *only* [Ritual Event](classes.md#ritualevent); [note](datatype-properties.md#p3_has_note) *max* `1`; [Occurs after](object-properties.md#p183i_starts_after_the_end_of) *min* `0`; [Recurrence pattern](datatype-properties.md#recurrencepattern) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Occurs before](object-properties.md#p183_ends_before_the_start_of) *only* [Ritual Event](classes.md#ritualevent); [Invokes deity](object-properties.md#invokesdeity) *only* [Deity](classes.md#deity); [has ritual type](object-properties.md#ritualtype) *only* [Ritual Type](classes.md#ritualtype-2); [Route places](object-properties.md#routeplaces) *only* [Place](classes.md#e53_place); [Took place at](object-properties.md#p7_took_place_at) *only* [Place](classes.md#e53_place); [Lunar date tithi](datatype-properties.md#lunardatetithi) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Had participant](object-properties.md#hadparticipant) *min* `0`; [has ritual type](object-properties.md#ritualtype) *max* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [Was documented by](object-properties.md#documentedby) *min* `0` |
+| Subclasses | [Festival](classes.md#festival), [Kumari Lifecycle Event](classes.md#kumarilifecycleevent), [Ritual Assessment](classes.md#ritualassessment) |
+| Used in | in range of [Is invoked in ritual](object-properties.md#isinvokedinritual); in range of [Participates in ritual](object-properties.md#participatesinritual); in range of [Performs ritual](object-properties.md#performsritual); in range of [Ritual events](object-properties.md#ritual_events); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Deity](classes.md#deity); used in axioms of [Festival](classes.md#festival); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Ritual Type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType` · `heritageGraph:RitualType`
+
+Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.
+
+| | |
+|---|---|
+| Instances | [Abhisheka](concepts.md#abhisheka), [Bhajan](concepts.md#bhajan), [Chariot Procession](concepts.md#chariotprocession), [Circumambulation](concepts.md#circumambulation), [Deinstallation Ritual](concepts.md#deinstallationritual), [Homa](concepts.md#homa), [Installation Ritual](concepts.md#installationritual), [Jatra](concepts.md#jatra), [Kamya Puja](concepts.md#kamyapuja), [Masked Performance](concepts.md#maskedperformance), [Naimittika Puja](concepts.md#naimittikapuja), [Nitya Puja](concepts.md#nityapuja), [Procession Ritual](concepts.md#processionritual), [Processional Movement](concepts.md#processionalmovement), [Relic Tour](concepts.md#relictour), [Returning Ritual](concepts.md#returningritual), [Ritual Consecration](concepts.md#ritualconsecration), [Vrata](concepts.md#vrata), [Yagna](concepts.md#yagna) |
+| Used in | in range of [has ritual type](object-properties.md#ritualtype); used in axioms of [Ritual Event](classes.md#ritualevent) |
+| design_note | RitualType currently mixes three orthogonal axes: worship-frequency (NityaPuja/NaimittikaPuja/KamyaPuja), ritual form (Homa/Jatra/MaskedPerformance), and lifecycle (InstallationRitual/ReturningRitual). Consider splitting into RitualFrequency + RitualForm. Also: Circumambulation/ProcessionalMovement/ProcessionRitual/RelicTour overlap with RitualEvent.route_places/start_place/end_place/route_description -- pick one canonical mechanism for moving rituals. |
+| permissible_values | NityaPuja; RitualConsecration; ReturningRitual; Installation Ritual; NaimittikaPuja; DeinstallationRitual; Homa; MaskedPerformance; KamyaPuja; ProcessionRitual; Bhajan; Chariot Procession; Yagna; Circumambulation; Processional Movement; Vrata; Relic Tour; Jatra; Abhisheka |
+
+### Sattal
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Sattal` · `heritageGraph:Sattal`
+
+Multi-story rest house (3-5 floors) with ritual and social functions
+
+| | |
+|---|---|
+| Superclasses | [Rest House](classes.md#resthouse) |
+
+### Selection Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SelectionCriterion` · `heritageGraph:SelectionCriterion`
+
+An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Subclasses | [Age Criterion](classes.md#agecriterion), [Horoscope Compatibility Criterion](classes.md#horoscopecompatibilitycriterion), [Lineage Criterion](classes.md#lineagecriterion), [Physical Integrity Criterion](classes.md#physicalintegritycriterion), [Thirty Two Perfections Criterion](classes.md#thirtytwoperfectionscriterion) |
+| Used in | in range of [Has criterion](object-properties.md#hascriterion); in range of [Selection criteria](object-properties.md#selection_criteria); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Stupa
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Stupa` · `heritageGraph:Stupa`
+
+Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath, Swayambhunath).
+
+| | |
+|---|---|
+| Superclasses | [Religious Structure](classes.md#religiousstructure) |
+| Disjoint with | [Chaitya](classes.md#chaitya-2) |
+
+### Syncretic Relationship
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticRelationship` · `heritageGraph:SyncreticRelationship`
+
+Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance.
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Restrictions | [Was documented by](object-properties.md#documentedby) *min* `0`; [used](object-properties.md#used) *min* `0`; [has syncretic type](object-properties.md#syncretictype) *max* `1`; [used](object-properties.md#used) *only* [Entity](classes.md#entity); [Assigned equivalent](object-properties.md#p141_assigned) *min* `1`; [Documented in source](object-properties.md#mentionedinsource) *min* `0`; [Assigned to deity](object-properties.md#p140_assigned_attribute_to) *max* `1`; [Assigned to deity](object-properties.md#p140_assigned_attribute_to) *min* `1`; [note](datatype-properties.md#p3_has_note) *min* `0`; [Assigned to deity](object-properties.md#p140_assigned_attribute_to) *only* [Deity](classes.md#deity); [has syncretic type](object-properties.md#syncretictype) *min* `0`; [Assigned equivalent](object-properties.md#p141_assigned) *only* [Deity](classes.md#deity); [has syncretic type](object-properties.md#syncretictype) *only* [Syncretic Type](classes.md#syncretictype-2); [Documented in source](object-properties.md#mentionedinsource) *only* [Data Source](classes.md#datasource); [note](datatype-properties.md#p3_has_note) *max* `1`; [Was documented by](object-properties.md#documentedby) *only* [Documentation Activity](classes.md#documentationactivity); [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | in range of [Syncretic relationships](object-properties.md#syncretic_relationships); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+
+### Syncretic Type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticType` · `heritageGraph:SyncreticType`
+
+Controlled vocabulary for kinds of syncretic theological relationships between deities.
+
+| | |
+|---|---|
+| Instances | [Appropriation](concepts.md#appropriation), [Equivalence](concepts.md#equivalence), [Fusion](concepts.md#fusion), [Historical](concepts.md#historical) |
+| Used in | in range of [has syncretic type](object-properties.md#syncretictype); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+| permissible_values | Appropriation; Historical; Equivalence; Fusion |
+
+### Technique
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure` · `crm:E29_Design_or_Procedure`
+
+Method or craft process used in production or ritual
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [techniques](object-properties.md#techniques); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+
+### Temple
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Temple` · `heritageGraph:Temple`
+
+Religious structure characterized by deity enshrinement and ritual activation. Legal designation (e.g. 'Ancient Monument' under Nepal law) is recorded per-instance via a governance assertion, not as a class criterion.
+
+| | |
+|---|---|
+| Superclasses | [Religious Structure](classes.md#religiousstructure) |
+| Restrictions | [Has architectural style](object-properties.md#hasarchitecturalstyle) *min* `1`; [Enshrines deity through event](object-properties.md#enshrinesdeitythroughevent) *min* `0`; [Has architectural style](object-properties.md#hasarchitecturalstyle) *only* [Architectural Style](classes.md#architecturalstyle-2); [Has architectural style](object-properties.md#hasarchitecturalstyle) *max* `1`; [Enshrines deity through event](object-properties.md#enshrinesdeitythroughevent) *only* [Enshrinement](classes.md#enshrinement) |
+| Used in | in range of [Enshrined in structure](object-properties.md#enshrinedinstructure); used in axioms of [Enshrinement](classes.md#enshrinement) |
+
+### Thirty Two Perfections Criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ThirtyTwoPerfectionsCriterion` · `heritageGraph:ThirtyTwoPerfectionsCriterion`
+
+Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).
+
+| | |
+|---|---|
+| Superclasses | [Selection Criterion](classes.md#selectioncriterion) |
+
+### Time Span
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span` · `crm:E52_Time-Span`
+
+Temporal extent of an event or period
+
+| | |
+|---|---|
+| Superclasses | [Entity](classes.md#entity) |
+| Used in | in range of [Birth timespan](object-properties.md#birthtimespan); in range of [Death timespan](object-properties.md#deathtimespan); in range of [Publication timespan](object-properties.md#publicationtimespan); in range of [Time spans](object-properties.md#time_spans); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Consecration](classes.md#consecration); used in axioms of [Container](classes.md#container); used in axioms of [Data Source](classes.md#datasource); used in axioms of [Documentation Activity](classes.md#documentationactivity); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Transfer Of Custody
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody` · `crm:E10_Transfer_of_Custody`
+
+Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship
+
+| | |
+|---|---|
+| Superclasses | [Activity](classes.md#activity) |
+| Used in | in range of [Custody events](object-properties.md#custody_events); used in axioms of [Assertion Subject](classes.md#assertionsubject); used in axioms of [Container](classes.md#container) |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Verification
+
+**IRI:** `https://cair-nepal.org/heritagegraph/Verification` · `heritageGraph:Verification`
+
+Process of cross-checking heritage claims against multiple sources
+
+| | |
+|---|---|
+| Superclasses | [Documentation Activity](classes.md#documentationactivity) |
+| Restrictions | [Verification method](datatype-properties.md#verificationmethod) *max* `1`; [note](datatype-properties.md#p3_has_note) *max* `1`; [Verified assertion](object-properties.md#verifiedassertion) *only* [Assertion](classes.md#i2_belief); [note](datatype-properties.md#p3_has_note) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [note](datatype-properties.md#p3_has_note) *min* `0`; [Verification method](datatype-properties.md#verificationmethod) *min* `0`; [Verified by expert](object-properties.md#verifiedbyexpert) *only* [Person](classes.md#e21_person); [Verification method](datatype-properties.md#verificationmethod) *only* [xsd:string](http://www.w3.org/2001/XMLSchema#string); [Verified assertion](object-properties.md#verifiedassertion) *min* `0`; [Verified by expert](object-properties.md#verifiedbyexpert) *min* `0` |
+| prov_alignment_note | prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally. |
+
+### Water Structure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/WaterStructure` · `heritageGraph:WaterStructure`
+
+Engineered water supply systems with ritual and civic significance
+
+| | |
+|---|---|
+| Superclasses | [Architectural Structure](classes.md#architecturalstructure) |
+| Subclasses | [Dhunge Dhara](classes.md#dhungedhara), [Pokhari](classes.md#pokhari) |
+
+---
+
+# Object properties
+
+### Acted on behalf of
+
+**IRI:** `http://www.w3.org/ns/prov#actedOnBehalfOf` · `prov:actedOnBehalfOf`
+
+Agent on whose behalf this agent acted.
+
+### actors
+
+**IRI:** `https://cair-nepal.org/heritagegraph/actors` · `heritageGraph:actors`
+
+Collection of generic Actor instances
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Architectural elements
+
+**IRI:** `https://cair-nepal.org/heritagegraph/architectural_elements` · `heritageGraph:architectural_elements`
+
+Collection of ArchitecturalElement instances
+
+| | |
+|---|---|
+| Range | [Architectural Element](classes.md#architecturalelement) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Architectural structures
+
+**IRI:** `https://cair-nepal.org/heritagegraph/architecturalStructures` · `heritageGraph:architecturalStructures`
+
+Heritage structures affected by or present during this historical event
+
+| | |
+|---|---|
+| Super-properties | [Occurred in presence of](object-properties.md#p12_occurred_in_the_presence_of) |
+| Range | [Architectural Structure](classes.md#architecturalstructure) |
+| Used in | used in axioms of [Historical Event](classes.md#historicalevent) |
+
+### assertions
+
+**IRI:** `https://cair-nepal.org/heritagegraph/assertions` · `heritageGraph:assertions`
+
+Collection of Assertion instances
+
+| | |
+|---|---|
+| Range | [Assertion](classes.md#i2_belief) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Asserts about
+
+**IRI:** `https://cair-nepal.org/heritagegraph/assertsAbout` · `heritageGraph:assertsAbout`
+
+Heritage entity or event that is the subject of this assertion.
+
+| | |
+|---|---|
+| Range | [Assertion Subject](classes.md#assertionsubject) |
+| Inverse of | [Has assertion](object-properties.md#hasassertion) |
+
+### Asserts proposition
+
+**IRI:** `http://www.cidoc-crm.org/extensions/crminf/J4_that` · `crminf:J4_that`
+
+Machine-readable proposition(s) this assertion holds to be true (CRMinf J4 that). Complements the free-text assertion_content.
+
+### Assessed condition state
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P35_has_identified` · `crm:P35_has_identified`
+
+Condition state identified by the assessment
+
+### Assessed object
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P34_concerned` · `crm:P34_concerned`
+
+Object assessed for condition
+
+### Assesses candidate
+
+**IRI:** `https://cair-nepal.org/heritagegraph/assessesCandidate` · `heritageGraph:assessesCandidate`
+
+Candidate being assessed.
+
+| | |
+|---|---|
+| Range | [Person](classes.md#e21_person) |
+| Used in | used in axioms of [Ritual Assessment](classes.md#ritualassessment) |
+
+### Assigned equivalent
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P141_assigned` · `crm:P141_assigned`
+
+The deity or sacred figure being identified as equivalent to the primary deity.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Assigned to deity
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to` · `crm:P140_assigned_attribute_to`
+
+The deity instance that is the subject of the syncretic claim.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Assumes role
+
+**IRI:** `https://cair-nepal.org/heritagegraph/assumesRole` · `heritageGraph:assumesRole`
+
+KumariRole held during this tenure.
+
+| | |
+|---|---|
+| Range | [Kumari Role](classes.md#kumarirole) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Birth timespan
+
+**IRI:** `https://cair-nepal.org/heritagegraph/birthTimespan` · `heritageGraph:birthTimespan`
+
+Person's birth timespan
+
+| | |
+|---|---|
+| Super-properties | [Has timespan](object-properties.md#p4_has_time-span) |
+| Range | [Time Span](classes.md#e52_time-span) |
+
+### Bounds tenure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/boundsTenure` · `heritageGraph:boundsTenure`
+
+The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement).
+
+| | |
+|---|---|
+| Sub-properties | [Ended tenure of](object-properties.md#endedtenureof), [Initiated tenure](object-properties.md#initiatedtenure) |
+| Range | [Kumari Tenure](classes.md#kumaritenure) |
+| Used in | used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Lifecycle Event](classes.md#kumarilifecycleevent) |
+
+### Calendar systems
+
+**IRI:** `https://cair-nepal.org/heritagegraph/calendar_systems` · `heritageGraph:calendar_systems`
+
+Collection of CalendarSystem instances
+
+| | |
+|---|---|
+| Range | [Calendar System](classes.md#calendarsystem) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Carried out activity
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P14i_performed` · `crm:P14i_performed`
+
+Activities performed by this actor
+
+| | |
+|---|---|
+| Sub-properties | [Performs ritual](object-properties.md#performsritual) |
+
+### Carried out by
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by` · `crm:P14_carried_out_by`
+
+Actor(s) who performed this event
+
+| | |
+|---|---|
+| Sub-properties | [Performed by group](object-properties.md#performedbygroup), [Verified by expert](object-properties.md#verifiedbyexpert) |
+| Used in | used in axioms of [Consecration](classes.md#consecration); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Caste groups
+
+**IRI:** `https://cair-nepal.org/heritagegraph/caste_groups` · `heritageGraph:caste_groups`
+
+Collection of CasteGroup instances
+
+| | |
+|---|---|
+| Range | [Caste Group](classes.md#castegroup) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Commissioned by
+
+**IRI:** `https://cair-nepal.org/heritagegraph/commissionedBy` · `heritageGraph:commissionedBy`
+
+Person or group who commissioned production
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+
+### Condition assessments
+
+**IRI:** `https://cair-nepal.org/heritagegraph/condition_assessments` · `heritageGraph:condition_assessments`
+
+Collection of ConditionAssessment instances
+
+| | |
+|---|---|
+| Range | [Condition Assessment](classes.md#e14_condition_assessment) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Condition states
+
+**IRI:** `https://cair-nepal.org/heritagegraph/condition_states` · `heritageGraph:condition_states`
+
+Collection of ConditionState instances
+
+| | |
+|---|---|
+| Range | [Condition State](classes.md#e3_condition_state) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Confers role
+
+**IRI:** `https://cair-nepal.org/heritagegraph/confersRole` · `heritageGraph:confersRole`
+
+KumariRole conferred by this selection or enthronement event.
+
+| | |
+|---|---|
+| Range | [Kumari Role](classes.md#kumarirole) |
+| Used in | used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Consecrated by event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/consecratedByEvent` · `heritageGraph:consecratedByEvent`
+
+Consecration event that activated this murti
+
+| | |
+|---|---|
+| Range | [Consecration](classes.md#consecration) |
+| Inverse of | [Consecrated object](object-properties.md#p16_used_specific_object) |
+| Used in | used in axioms of [Murti](classes.md#murti) |
+
+### Consecrated object
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object` · `crm:P16_used_specific_object`
+
+Murti employed in (and transformed by) the consecration ritual
+
+| | |
+|---|---|
+| Inverse of | [Consecrated by event](object-properties.md#consecratedbyevent) |
+| Used in | used in axioms of [Consecration](classes.md#consecration) |
+
+### Consecration events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/consecration_events` · `heritageGraph:consecration_events`
+
+Collection of Consecration event instances
+
+| | |
+|---|---|
+| Range | [Consecration](classes.md#consecration) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Contains structure
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of` · `crm:P53i_is_former_or_current_location_of`
+
+Structures located in this place
+
+### Custody events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/custody_events` · `heritageGraph:custody_events`
+
+Collection of TransferOfCustody event instances
+
+| | |
+|---|---|
+| Range | [Transfer Of Custody](classes.md#e10_transfer_of_custody) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Data custodians
+
+**IRI:** `https://cair-nepal.org/heritagegraph/data_custodians` · `heritageGraph:data_custodians`
+
+Collection of DataCustodian instances
+
+| | |
+|---|---|
+| Range | [Data Custodian](classes.md#datacustodian) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Data sources
+
+**IRI:** `https://cair-nepal.org/heritagegraph/data_sources` · `heritageGraph:data_sources`
+
+Collection of DataSource instances
+
+| | |
+|---|---|
+| Range | [Data Source](classes.md#datasource) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Datacite creator
+
+**IRI:** `https://cair-nepal.org/heritagegraph/sourceCreator` · `heritageGraph:sourceCreator`
+
+Person or organization primarily responsible for creating the source
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Datacite publisher
+
+**IRI:** `https://cair-nepal.org/heritagegraph/sourcePublisher` · `heritageGraph:sourcePublisher`
+
+Entity responsible for making the source available
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Death timespan
+
+**IRI:** `https://cair-nepal.org/heritagegraph/deathTimespan` · `heritageGraph:deathTimespan`
+
+Person's death timespan
+
+| | |
+|---|---|
+| Super-properties | [Has timespan](object-properties.md#p4_has_time-span) |
+| Range | [Time Span](classes.md#e52_time-span) |
+
+### deities
+
+**IRI:** `https://cair-nepal.org/heritagegraph/deities` · `heritageGraph:deities`
+
+Collection of Deity instances
+
+| | |
+|---|---|
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Depicts deity
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P62_depicts` · `crm:P62_depicts`
+
+Deity depicted iconographically (not cultic presence)
+
+| | |
+|---|---|
+| Sub-properties | [Is about deity](object-properties.md#isaboutdeity) |
+| Used in | used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+
+### Documentation activities
+
+**IRI:** `https://cair-nepal.org/heritagegraph/documentation_activities` · `heritageGraph:documentation_activities`
+
+Collection of DocumentationActivity instances
+
+| | |
+|---|---|
+| Range | [Documentation Activity](classes.md#documentationactivity) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Documented in source
+
+**IRI:** `https://cair-nepal.org/heritagegraph/mentionedInSource` · `heritageGraph:mentionedInSource`
+
+Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.
+
+| | |
+|---|---|
+| Range | [Data Source](classes.md#datasource) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+| prov_alignment | prov:wasInfluencedBy |
+
+### documents
+
+**IRI:** `https://cair-nepal.org/heritagegraph/documents` · `heritageGraph:documents`
+
+Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).
+
+| | |
+|---|---|
+| Range | [Assertion Subject](classes.md#assertionsubject) |
+| Inverse of | [Was documented by](object-properties.md#documentedby) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### Embodied deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/embodiedDeity` · `heritageGraph:embodiedDeity`
+
+Deity role embodied by participant
+
+| | |
+|---|---|
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### End place
+
+**IRI:** `https://cair-nepal.org/heritagegraph/endPlace` · `heritageGraph:endPlace`
+
+Ending location of movement ritual
+
+| | |
+|---|---|
+| Range | [Place](classes.md#e53_place) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Ended tenure of
+
+**IRI:** `https://cair-nepal.org/heritagegraph/endedTenureOf` · `heritageGraph:endedTenureOf`
+
+Points from a KumariRetirementEvent to the tenure that it terminated. Enables reconstruction of the complete Kumari lifecycle.
+
+| | |
+|---|---|
+| Super-properties | [Bounds tenure](object-properties.md#boundstenure) |
+| Range | [Kumari Tenure](classes.md#kumaritenure) |
+| Inverse of | [Retired through](object-properties.md#retiredthrough) |
+| Used in | used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent) |
+
+### Enshrined deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enshrinedDeity` · `heritageGraph:enshrinedDeity`
+
+Deity installed through enshrinement
+
+| | |
+|---|---|
+| Super-properties | [Occurred in presence of](object-properties.md#p12_occurred_in_the_presence_of) |
+| Range | [Deity](classes.md#deity) |
+| Inverse of | [Is enshrined through event](object-properties.md#isenshrinedthroughevent) |
+| Used in | used in axioms of [Enshrinement](classes.md#enshrinement) |
+
+### Enshrined in structure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enshrinedInStructure` · `heritageGraph:enshrinedInStructure`
+
+Temple where deity was enshrined
+
+| | |
+|---|---|
+| Super-properties | [Ritual on structure](object-properties.md#p8_took_place_on_or_within) |
+| Range | [Temple](classes.md#temple) |
+| Inverse of | [Enshrines deity through event](object-properties.md#enshrinesdeitythroughevent) |
+| Used in | used in axioms of [Enshrinement](classes.md#enshrinement) |
+
+### Enshrinement events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enshrinement_events` · `heritageGraph:enshrinement_events`
+
+Collection of Enshrinement event instances
+
+| | |
+|---|---|
+| Range | [Enshrinement](classes.md#enshrinement) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Enshrines deity through event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enshrinesDeityThroughEvent` · `heritageGraph:enshrinesDeityThroughEvent`
+
+Enshrinement event that installed deity in temple
+
+| | |
+|---|---|
+| Range | [Enshrinement](classes.md#enshrinement) |
+| Inverse of | [Enshrined in structure](object-properties.md#enshrinedinstructure) |
+| Used in | used in axioms of [Temple](classes.md#temple) |
+
+### Enthroned person
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enthronedPerson` · `heritageGraph:enthronedPerson`
+
+Girl enthroned as Kumari by this enthronement event.
+
+| | |
+|---|---|
+| Range | [Person](classes.md#e21_person) |
+| Used in | used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent) |
+
+### Enthroned through
+
+**IRI:** `https://cair-nepal.org/heritagegraph/enthronedThrough` · `heritageGraph:enthronedThrough`
+
+Enthronement event that activated this tenure.
+
+| | |
+|---|---|
+| Range | [Kumari Enthronement Event](classes.md#kumarienthronementevent) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### festivals
+
+**IRI:** `https://cair-nepal.org/heritagegraph/festivals` · `heritageGraph:festivals`
+
+Collection of Festival instances
+
+| | |
+|---|---|
+| Range | [Festival](classes.md#festival) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### generated
+
+**IRI:** `http://www.w3.org/ns/prov#generated` · `prov:generated`
+
+Entity generated by this activity.
+
+| | |
+|---|---|
+| Inverse of | [Was generated by](object-properties.md#wasgeneratedby) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### guthis
+
+**IRI:** `https://cair-nepal.org/heritagegraph/guthis` · `heritageGraph:guthis`
+
+Collection of Guthi instances
+
+| | |
+|---|---|
+| Range | [Guthi](classes.md#guthi) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Had participant
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hadParticipant` · `heritageGraph:hadParticipant`
+
+Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl holding a Kumari tenure, or the Kumari in a chariot procession).
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Has architectural style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hasArchitecturalStyle` · `heritageGraph:hasArchitecturalStyle`
+
+Architectural style classification
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Architectural Style](classes.md#architecturalstyle-2) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
+
+### Has assertion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hasAssertion` · `heritageGraph:hasAssertion`
+
+Provenance-bearing assertion made about this entity or event.
+
+| | |
+|---|---|
+| Range | [Assertion](classes.md#i2_belief) |
+| Inverse of | [Asserts about](object-properties.md#assertsabout) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### has calendar system
+
+**IRI:** `https://cair-nepal.org/heritagegraph/calendarSystem` · `heritageGraph:calendarSystem`
+
+Calendar system used for date representation
+
+| | |
+|---|---|
+| Range | [Calendar System](classes.md#calendarsystem) |
+
+### Has component
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of` · `crm:P46_is_composed_of`
+
+Architectural elements composing structure
+
+| | |
+|---|---|
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### Has condition assessment
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by` · `crm:P34i_was_assessed_by`
+
+Condition assessment events for this structure
+
+| | |
+|---|---|
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### Has condition type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hasConditionType` · `heritageGraph:hasConditionType`
+
+Categorization of the condition state
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Condition Type](classes.md#conditiontype) |
+
+### Has criterion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hasCriterion` · `heritageGraph:hasCriterion`
+
+Eligibility criterion applied in this selection.
+
+| | |
+|---|---|
+| Range | [Selection Criterion](classes.md#selectioncriterion) |
+| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Has current location
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location` · `crm:P55_has_current_location`
+
+Current location of object or structure
+
+| | |
+|---|---|
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+
+### Has custody event
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through` · `crm:P30i_custody_transferred_through`
+
+Custody transfer events for this structure
+
+### has date precision
+
+**IRI:** `https://cair-nepal.org/heritagegraph/datePrecision` · `heritageGraph:datePrecision`
+
+The level of precision for a recorded date.
+
+| | |
+|---|---|
+| Range | [Date Precision](classes.md#dateprecision-2) |
+
+### has destruction event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/destructionEvent` · `heritageGraph:destructionEvent`
+
+Event that destroyed this structure (if known)
+
+| | |
+|---|---|
+| Range | [Destruction Event](classes.md#e6_destruction) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### has existence status
+
+**IRI:** `https://cair-nepal.org/heritagegraph/existenceStatus` · `heritageGraph:existenceStatus`
+
+Current physical status of the structure
+
+| | |
+|---|---|
+| Range | [Existence Status](classes.md#existencestatus-2) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### has guthi type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/guthiType` · `heritageGraph:guthiType`
+
+Type of Guthi (Si, Jatra, Temple)
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Guthi Type](classes.md#guthitype) |
+| Used in | used in axioms of [Guthi](classes.md#guthi) |
+
+### Has membership
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member` · `crm:P107_has_current_or_former_member`
+
+Members of Guthi organization
+
+| | |
+|---|---|
+| Used in | used in axioms of [Guthi](classes.md#guthi) |
+
+### has metadata
+
+**IRI:** `https://cair-nepal.org/heritagegraph/metadata` · `heritageGraph:metadata`
+
+Dataset metadata
+
+| | |
+|---|---|
+| Range | [Metadata](classes.md#metadata) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Has religious tradition
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hasReligiousTradition` · `heritageGraph:hasReligiousTradition`
+
+Religious tradition(s) within which this deity is venerated, or which use this religious structure
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Religious Tradition](classes.md#religioustradition) |
+| Used in | used in axioms of [Deity](classes.md#deity); used in axioms of [Religious Structure](classes.md#religiousstructure) |
+
+### has ritual type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ritualType` · `heritageGraph:ritualType`
+
+Classification of ritual (puja, jatra, consecration)
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Ritual Type](classes.md#ritualtype-2) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### has syncretic type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/syncreticType` · `heritageGraph:syncreticType`
+
+The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity).
+
+| | |
+|---|---|
+| Super-properties | [Has type](object-properties.md#p2_has_type) |
+| Range | [Syncretic Type](classes.md#syncretictype-2) |
+| Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Has timespan
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span` · `crm:P4_has_time-span`
+
+Links event to its temporal extent
+
+| | |
+|---|---|
+| Sub-properties | [Birth timespan](object-properties.md#birthtimespan), [Death timespan](object-properties.md#deathtimespan), [Publication timespan](object-properties.md#publicationtimespan) |
+| Used in | used in axioms of [Consecration](classes.md#consecration); used in axioms of [Documentation Activity](classes.md#documentationactivity); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Has type
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P2_has_type` · `crm:P2_has_type`
+
+Generic CRM typing property (P2 has type). Canonical holder of the CRM predicate; use the specific typing slots below in data.
+
+| | |
+|---|---|
+| Sub-properties | [Has architectural style](object-properties.md#hasarchitecturalstyle), [Has condition type](object-properties.md#hasconditiontype), [has guthi type](object-properties.md#guthitype), [Has religious tradition](object-properties.md#hasreligioustradition), [has ritual type](object-properties.md#ritualtype), [has syncretic type](object-properties.md#syncretictype) |
+
+### Historical events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/historical_events` · `heritageGraph:historical_events`
+
+Collection of HistoricalEvent (incl. DestructionEvent) instances
+
+| | |
+|---|---|
+| Range | [Historical Event](classes.md#historicalevent) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Holds custody of
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P50i_is_current_keeper_of` · `crm:P50i_is_current_keeper_of`
+
+Structures under Guthi custodianship
+
+| | |
+|---|---|
+| Used in | used in axioms of [Guthi](classes.md#guthi) |
+
+### Human made objects
+
+**IRI:** `https://cair-nepal.org/heritagegraph/human_made_objects` · `heritageGraph:human_made_objects`
+
+Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)
+
+| | |
+|---|---|
+| Range | [Human Made Object](classes.md#e22_human-made_object) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Hypothesized location
+
+**IRI:** `https://cair-nepal.org/heritagegraph/hypothesizedLocation` · `heritageGraph:hypothesizedLocation`
+
+Possible locations if the structure is lost
+
+| | |
+|---|---|
+| Range | [Place](classes.md#e53_place) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### Iconographic objects
+
+**IRI:** `https://cair-nepal.org/heritagegraph/iconographic_objects` · `heritageGraph:iconographic_objects`
+
+Collection of IconographicObject instances (incl. Murti, Paubha)
+
+| | |
+|---|---|
+| Range | [Iconographic Object](classes.md#iconographicobject) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Includes ritual event
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P9_consists_of` · `crm:P9_consists_of`
+
+Component rituals of festival
+
+| | |
+|---|---|
+| Used in | used in axioms of [Festival](classes.md#festival); used in axioms of [Historical Event](classes.md#historicalevent) |
+
+### Information objects
+
+**IRI:** `https://cair-nepal.org/heritagegraph/information_objects` · `heritageGraph:information_objects`
+
+Collection of InformationObject instances
+
+| | |
+|---|---|
+| Range | [Information Object](classes.md#informationobject) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Initiated tenure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/initiatedTenure` · `heritageGraph:initiatedTenure`
+
+Kumari tenure that was initiated by this selection event
+
+| | |
+|---|---|
+| Super-properties | [Bounds tenure](object-properties.md#boundstenure) |
+| Range | [Kumari Tenure](classes.md#kumaritenure) |
+| Inverse of | [Selected through](object-properties.md#selectedthrough) |
+| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Invokes deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/invokesDeity` · `heritageGraph:invokesDeity`
+
+Deity invoked or made present through ritual
+
+| | |
+|---|---|
+| Super-properties | [Occurred in presence of](object-properties.md#p12_occurred_in_the_presence_of) |
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Is about
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P129_is_about` · `crm:P129_is_about`
+
+Heritage entity or event described by this information object.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Information Object](classes.md#informationobject) |
+
+### Is about deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isAboutDeity` · `heritageGraph:isAboutDeity`
+
+Deity represented and ritually associated with the Murti
+
+| | |
+|---|---|
+| Super-properties | [Depicts deity](object-properties.md#p62_depicts) |
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Murti](classes.md#murti) |
+
+### Is component of
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of` · `crm:P46i_forms_part_of`
+
+Larger structure that this element is part of
+
+| | |
+|---|---|
+| Used in | used in axioms of [Architectural Element](classes.md#architecturalelement) |
+
+### Is depicted in
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by` · `crm:P62i_is_depicted_by`
+
+Iconographic objects (murti, paubha) in which this deity is depicted.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Deity](classes.md#deity) |
+
+### Is enshrined through event
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isEnshrinedThroughEvent` · `heritageGraph:isEnshrinedThroughEvent`
+
+Events where this deity was enshrined
+
+| | |
+|---|---|
+| Range | [Enshrinement](classes.md#enshrinement) |
+| Inverse of | [Enshrined deity](object-properties.md#enshrineddeity) |
+| Used in | used in axioms of [Deity](classes.md#deity) |
+
+### Is invoked in ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isInvokedInRitual` · `heritageGraph:isInvokedInRitual`
+
+Rituals where this deity is invoked
+
+| | |
+|---|---|
+| Super-properties | [Was present at](object-properties.md#p12i_was_present_at) |
+| Range | [Ritual Event](classes.md#ritualevent) |
+| Used in | used in axioms of [Deity](classes.md#deity) |
+
+### Is part of festival
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of` · `crm:P9i_forms_part_of`
+
+Larger festival this ritual is part of
+
+| | |
+|---|---|
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Is primary for tradition
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isPrimaryForTradition` · `heritageGraph:isPrimaryForTradition`
+
+Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)
+
+| | |
+|---|---|
+| Range | [Religious Tradition](classes.md#religioustradition) |
+| Used in | used in axioms of [Calendar System](classes.md#calendarsystem) |
+
+### Kumari lifecycle events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/kumari_lifecycle_events` · `heritageGraph:kumari_lifecycle_events`
+
+Collection of Kumari lifecycle events (selection, enthronement, retirement)
+
+| | |
+|---|---|
+| Range | [Kumari Lifecycle Event](classes.md#kumarilifecycleevent) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Kumari roles
+
+**IRI:** `https://cair-nepal.org/heritagegraph/kumari_roles` · `heritageGraph:kumari_roles`
+
+Collection of KumariRole instances
+
+| | |
+|---|---|
+| Range | [Kumari Role](classes.md#kumarirole) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Kumari tenures
+
+**IRI:** `https://cair-nepal.org/heritagegraph/kumari_tenures` · `heritageGraph:kumari_tenures`
+
+Collection of KumariTenure instances
+
+| | |
+|---|---|
+| Range | [Kumari Tenure](classes.md#kumaritenure) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Makes deity present
+
+**IRI:** `https://cair-nepal.org/heritagegraph/makesDeityPresent` · `heritageGraph:makesDeityPresent`
+
+Deity made present through consecration
+
+| | |
+|---|---|
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Consecration](classes.md#consecration) |
+
+### Managed by guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/managedByGuthi` · `heritageGraph:managedByGuthi`
+
+Guthi organization managing this structure or ritual
+
+| | |
+|---|---|
+| Range | [Guthi](classes.md#guthi) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### materials
+
+**IRI:** `https://cair-nepal.org/heritagegraph/materials` · `heritageGraph:materials`
+
+Collection of Material instances
+
+| | |
+|---|---|
+| Range | [Material](classes.md#e57_material) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Member of group
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of` · `crm:P107i_is_current_or_former_member_of`
+
+Groups this person belongs to
+
+### Occurred in presence of
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of` · `crm:P12_occurred_in_the_presence_of`
+
+Generic CRM presence relation (P12): entity present at an event. Canonical holder of the CRM predicate; use the specific presence slots in data.
+
+| | |
+|---|---|
+| Sub-properties | [Architectural structures](object-properties.md#architecturalstructures), [Enshrined deity](object-properties.md#enshrineddeity), [Invokes deity](object-properties.md#invokesdeity) |
+
+### Occurs after
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of` · `crm:P183i_starts_after_the_end_of`
+
+Points to the prerequisite ritual.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Occurs before
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of` · `crm:P183_ends_before_the_start_of`
+
+Points to the next ritual in the canonical sequence.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Part of selection
+
+**IRI:** `https://cair-nepal.org/heritagegraph/partOfSelection` · `heritageGraph:partOfSelection`
+
+Selection event this assessment is part of.
+
+| | |
+|---|---|
+| Range | [Kumari Selection Event](classes.md#kumariselectionevent) |
+| Used in | used in axioms of [Ritual Assessment](classes.md#ritualassessment) |
+
+### Participates in ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/participatesInRitual` · `heritageGraph:participatesInRitual`
+
+Rituals in which this structure participates
+
+| | |
+|---|---|
+| Super-properties | [Was present at](object-properties.md#p12i_was_present_at) |
+| Range | [Ritual Event](classes.md#ritualevent) |
+| Used in | used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+
+### Performed by group
+
+**IRI:** `https://cair-nepal.org/heritagegraph/performedByGroup` · `heritageGraph:performedByGroup`
+
+Group (Guthi, caste) responsible for ritual
+
+| | |
+|---|---|
+| Super-properties | [Carried out by](object-properties.md#p14_carried_out_by) |
+| Range | ([Guthi](classes.md#guthi) *or* [Caste Group](classes.md#castegroup)) *and* [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Performs ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/performsRitual` · `heritageGraph:performsRitual`
+
+Rituals performed by this Guthi
+
+| | |
+|---|---|
+| Super-properties | [Carried out activity](object-properties.md#p14i_performed) |
+| Range | [Ritual Event](classes.md#ritualevent) |
+| Used in | used in axioms of [Guthi](classes.md#guthi) |
+
+### persons
+
+**IRI:** `https://cair-nepal.org/heritagegraph/persons` · `heritageGraph:persons`
+
+Collection of Person instances
+
+| | |
+|---|---|
+| Range | [Person](classes.md#e21_person) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Physical heritage things
+
+**IRI:** `https://cair-nepal.org/heritagegraph/physical_heritage_things` · `heritageGraph:physical_heritage_things`
+
+Collection of all physical heritage objects
+
+| | |
+|---|---|
+| Range | [Physical Heritage Thing](classes.md#physicalheritagething) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### places
+
+**IRI:** `https://cair-nepal.org/heritagegraph/places` · `heritageGraph:places`
+
+Collection of Place instances
+
+| | |
+|---|---|
+| Range | [Place](classes.md#e53_place) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Produced object
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P108_has_produced` · `crm:P108_has_produced`
+
+Object produced by this production event
+
+### Production events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/production_events` · `heritageGraph:production_events`
+
+Collection of Production event instances
+
+| | |
+|---|---|
+| Range | [Production](classes.md#e12_production) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Proposition object entity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionObjectEntity` · `heritageGraph:propositionObjectEntity`
+
+Object of the proposition when it is a heritage entity (plays the role of rdf:object).
+
+| | |
+|---|---|
+| Range | [Assertion Subject](classes.md#assertionsubject) |
+| Used in | used in axioms of [Proposition](classes.md#proposition) |
+
+### Proposition subject
+
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionSubject` · `heritageGraph:propositionSubject`
+
+Entity the proposition is about (plays the role of rdf:subject).
+
+| | |
+|---|---|
+| Range | [Assertion Subject](classes.md#assertionsubject) |
+| Used in | used in axioms of [Proposition](classes.md#proposition) |
+
+### propositions
+
+**IRI:** `https://cair-nepal.org/heritagegraph/propositions` · `heritageGraph:propositions`
+
+Collection of Proposition instances referenced by assertions
+
+| | |
+|---|---|
+| Range | [Proposition](classes.md#proposition) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Publication timespan
+
+**IRI:** `https://cair-nepal.org/heritagegraph/publicationTimespan` · `heritageGraph:publicationTimespan`
+
+When source was published
+
+| | |
+|---|---|
+| Super-properties | [Has timespan](object-properties.md#p4_has_time-span) |
+| Range | [Time Span](classes.md#e52_time-span) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Religious traditions
+
+**IRI:** `https://cair-nepal.org/heritagegraph/religious_traditions` · `heritageGraph:religious_traditions`
+
+Collection of ReligiousTradition instances
+
+| | |
+|---|---|
+| Range | [Religious Tradition](classes.md#religioustradition) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Residence structure
+
+**IRI:** `https://cair-nepal.org/heritagegraph/residenceStructure` · `heritageGraph:residenceStructure`
+
+Structure where a person resides during a specific period. For Living Goddess, this is typically a Kumari Ghar (god-house).
+
+| | |
+|---|---|
+| Range | [Architectural Structure](classes.md#architecturalstructure) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Retired through
+
+**IRI:** `https://cair-nepal.org/heritagegraph/retiredThrough` · `heritageGraph:retiredThrough`
+
+Retirement/desanctification event that ended this tenure.
+
+| | |
+|---|---|
+| Range | [Kumari Retirement Event](classes.md#kumariretirementevent) |
+| Inverse of | [Ended tenure of](object-properties.md#endedtenureof) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Ritual assessments
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ritual_assessments` · `heritageGraph:ritual_assessments`
+
+Collection of RitualAssessment (e.g. FearlessnessAssessment) instances
+
+| | |
+|---|---|
+| Range | [Ritual Assessment](classes.md#ritualassessment) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Ritual events
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ritual_events` · `heritageGraph:ritual_events`
+
+Collection of RitualEvent instances
+
+| | |
+|---|---|
+| Range | [Ritual Event](classes.md#ritualevent) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Ritual on structure
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within` · `crm:P8_took_place_on_or_within`
+
+Ritual occurs at specific temple or monument
+
+| | |
+|---|---|
+| Sub-properties | [Enshrined in structure](object-properties.md#enshrinedinstructure) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Role deity
+
+**IRI:** `https://cair-nepal.org/heritagegraph/roleDeity` · `heritageGraph:roleDeity`
+
+Deity embodied by whoever holds this role (e.g., Taleju).
+
+| | |
+|---|---|
+| Range | [Deity](classes.md#deity) |
+| Used in | used in axioms of [Kumari Role](classes.md#kumarirole) |
+
+### Route places
+
+**IRI:** `https://cair-nepal.org/heritagegraph/routePlaces` · `heritageGraph:routePlaces`
+
+Ordered list of places visited during movement ritual
+
+| | |
+|---|---|
+| Super-properties | [Took place at](object-properties.md#p7_took_place_at) |
+| Range | [Place](classes.md#e53_place) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Selected person
+
+**IRI:** `https://cair-nepal.org/heritagegraph/selectedPerson` · `heritageGraph:selectedPerson`
+
+Person selected through a ritual selection process to assume a sacred role or office
+
+| | |
+|---|---|
+| Range | [Person](classes.md#e21_person) |
+| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Selected through
+
+**IRI:** `https://cair-nepal.org/heritagegraph/selectedThrough` · `heritageGraph:selectedThrough`
+
+Selection event that initiated this tenure.
+
+| | |
+|---|---|
+| Range | [Kumari Selection Event](classes.md#kumariselectionevent) |
+| Inverse of | [Initiated tenure](object-properties.md#initiatedtenure) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Selection criteria
+
+**IRI:** `https://cair-nepal.org/heritagegraph/selection_criteria` · `heritageGraph:selection_criteria`
+
+Collection of SelectionCriterion instances
+
+| | |
+|---|---|
+| Range | [Selection Criterion](classes.md#selectioncriterion) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Start place
+
+**IRI:** `https://cair-nepal.org/heritagegraph/startPlace` · `heritageGraph:startPlace`
+
+Starting location of movement ritual
+
+| | |
+|---|---|
+| Range | [Place](classes.md#e53_place) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### structures
+
+**IRI:** `https://cair-nepal.org/heritagegraph/structures` · `heritageGraph:structures`
+
+Collection of ArchitecturalStructure instances (incl. subclasses)
+
+| | |
+|---|---|
+| Range | [Architectural Structure](classes.md#architecturalstructure) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Supersedes assertion
+
+**IRI:** `http://www.w3.org/ns/prov#wasRevisionOf` · `prov:wasRevisionOf`
+
+Previous assertion that this one revises (version chain A1->A2->A3). Uses prov:wasRevisionOf (a derivation between entities); the latest assertion is the one with no incoming wasRevisionOf. NOTE: prov:invalidated was incorrect here (it is an Activity->Entity relation, not Entity->Entity).
+
+### Supported by institution
+
+**IRI:** `https://cair-nepal.org/heritagegraph/supportedByInstitution` · `heritageGraph:supportedByInstitution`
+
+Institution(s) providing economic support (stipend, land endowment) or ritual support (priest salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support.
+
+| | |
+|---|---|
+| Range | [Guthi](classes.md#guthi) |
+| Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure) |
+
+### Syncretic relationships
+
+**IRI:** `https://cair-nepal.org/heritagegraph/syncretic_relationships` · `heritageGraph:syncretic_relationships`
+
+Collection of SyncreticRelationship instances
+
+| | |
+|---|---|
+| Range | [Syncretic Relationship](classes.md#syncreticrelationship) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### techniques
+
+**IRI:** `https://cair-nepal.org/heritagegraph/techniques` · `heritageGraph:techniques`
+
+Collection of Technique instances
+
+| | |
+|---|---|
+| Range | [Technique](classes.md#e29_design_or_procedure) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Time spans
+
+**IRI:** `https://cair-nepal.org/heritagegraph/time_spans` · `heritageGraph:time_spans`
+
+Collection of TimeSpan instances
+
+| | |
+|---|---|
+| Range | [Time Span](classes.md#e52_time-span) |
+| Used in | used in axioms of [Container](classes.md#container) |
+
+### Took place at
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at` · `crm:P7_took_place_at`
+
+Place where the event occurred
+
+| | |
+|---|---|
+| Sub-properties | [Route places](object-properties.md#routeplaces) |
+| Used in | used in axioms of [Consecration](classes.md#consecration); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Transferred from actor
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by` · `crm:P28_custody_surrendered_by`
+
+Previous custodian
+
+### Transferred object
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of` · `crm:P30_transferred_custody_of`
+
+Object transferred in custody event
+
+### Transferred to actor
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by` · `crm:P29_custody_received_by`
+
+New custodian (person or group)
+
+| | |
+|---|---|
+| Sub-properties | [Transferred to guthi](object-properties.md#transferredtoguthi) |
+
+### Transferred to guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/transferredToGuthi` · `heritageGraph:transferredToGuthi`
+
+New custodian (Guthi)
+
+| | |
+|---|---|
+| Super-properties | [Transferred to actor](object-properties.md#p29_custody_received_by) |
+| Range | [Guthi](classes.md#guthi) |
+
+### used
+
+**IRI:** `http://www.w3.org/ns/prov#used` · `prov:used`
+
+Entity used by this activity.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+
+### Used by
+
+**IRI:** `https://cair-nepal.org/heritagegraph/usedBy` · `heritageGraph:usedBy`
+
+Actor(s) who use, handle, or are responsible for this object in ritual contexts
+
+| | |
+|---|---|
+| Range | [Actor](classes.md#e39_actor) |
+| Used in | used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+
+### Used materials
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type` · `crm:P125_used_object_of_type`
+
+Ephemeral materials consumed during the ritual (e.g., oil, rice).
+
+| | |
+|---|---|
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Used technique
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique` · `crm:P33_used_specific_technique`
+
+Craft technique used in production
+
+### Verified assertion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/verifiedAssertion` · `heritageGraph:verifiedAssertion`
+
+Assertions verified by this activity
+
+| | |
+|---|---|
+| Range | [Assertion](classes.md#i2_belief) |
+| Used in | used in axioms of [Verification](classes.md#verification) |
+
+### Verified by expert
+
+**IRI:** `https://cair-nepal.org/heritagegraph/verifiedByExpert` · `heritageGraph:verifiedByExpert`
+
+Expert who performed verification
+
+| | |
+|---|---|
+| Super-properties | [Carried out by](object-properties.md#p14_carried_out_by) |
+| Range | [Person](classes.md#e21_person) |
+| Used in | used in axioms of [Verification](classes.md#verification) |
+
+### Was associated with
+
+**IRI:** `http://www.w3.org/ns/prov#wasAssociatedWith` · `prov:wasAssociatedWith`
+
+Agent associated with responsibility for this activity.
+
+| | |
+|---|---|
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### Was attributed to
+
+**IRI:** `http://www.w3.org/ns/prov#wasAttributedTo` · `prov:wasAttributedTo`
+
+Agent to whom responsibility for this entity is attributed.
+
+### Was derived from
+
+**IRI:** `http://www.w3.org/ns/prov#wasDerivedFrom` · `prov:wasDerivedFrom`
+
+Entity from which this entity was derived.
+
+### Was documented by
+
+**IRI:** `https://cair-nepal.org/heritagegraph/documentedBy` · `heritageGraph:documentedBy`
+
+Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.
+
+| | |
+|---|---|
+| Super-properties | [Was influenced by](object-properties.md#wasinfluencedby) |
+| Range | [Documentation Activity](classes.md#documentationactivity) |
+| Inverse of | [documents](object-properties.md#documents) |
+| Used in | used in axioms of [Information Object](classes.md#informationobject); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
+| prov_alignment | prov:wasInfluencedBy |
+
+### Was generated by
+
+**IRI:** `http://www.w3.org/ns/prov#wasGeneratedBy` · `prov:wasGeneratedBy`
+
+Activity that generated this entity.
+
+| | |
+|---|---|
+| Inverse of | [generated](object-properties.md#generated) |
+| Used in | used in axioms of [Information Object](classes.md#informationobject) |
+
+### Was influenced by
+
+**IRI:** `http://www.w3.org/ns/prov#wasInfluencedBy` · `prov:wasInfluencedBy`
+
+General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.
+
+| | |
+|---|---|
+| Sub-properties | [Was documented by](object-properties.md#documentedby) |
+
+### Was informed by
+
+**IRI:** `http://www.w3.org/ns/prov#wasInformedBy` · `prov:wasInformedBy`
+
+Activity that informed this activity; PROV-O uses this when the intervening generated and used entity is unknown or omitted.
+
+### Was present at
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at` · `crm:P12i_was_present_at`
+
+Generic CRM presence relation (P12i): event this entity was present at. Canonical holder of the CRM predicate; use the specific slots in data.
+
+| | |
+|---|---|
+| Sub-properties | [Is invoked in ritual](object-properties.md#isinvokedinritual), [Participates in ritual](object-properties.md#participatesinritual) |
+
+### Was produced by event
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by` · `crm:P108i_was_produced_by`
+
+Event that created this object or structure
+
+| | |
+|---|---|
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Iconographic Object](classes.md#iconographicobject) |
+
+---
+
+# Datatype properties
+
+### Assertion content
+
+**IRI:** `http://www.w3.org/ns/prov#value` · `prov:value`
+
+The factual claim being asserted
+
+### Confidence score
+
+**IRI:** `https://cair-nepal.org/heritagegraph/confidenceScore` · `heritageGraph:confidenceScore`
+
+Reliability score for assertion (0.0-1.0)
+
+| | |
+|---|---|
+| Range | [xsd:decimal](http://www.w3.org/2001/XMLSchema#decimal)[*>=* `0.0`, *<=* `1.0`] |
+
+### curator
+
+**IRI:** `https://cair-nepal.org/heritagegraph/curator` · `heritageGraph:curator`
+
+Person or organization curating the dataset.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### Custodian type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/custodianType` · `heritageGraph:custodianType`
+
+Type of custodian (government, academic, community), free text
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Custodian](classes.md#datacustodian) |
+
+### Data quality note
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataQualityNote` · `heritageGraph:dataQualityNote`
+
+Notes on data quality, completeness, or uncertainty
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Datacite identifier
+
+**IRI:** `https://cair-nepal.org/heritagegraph/persistentIdentifier` · `heritageGraph:persistentIdentifier`
+
+Persistent identifier for the source (DOI, archive ID, catalog number)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Datacite identifier type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/identifierScheme` · `heritageGraph:identifierScheme`
+
+Type of identifier (DOI, ISBN, Handle, LocalArchiveID)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Datacite resource type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/resourceType` · `heritageGraph:resourceType`
+
+High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Dataset name
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataset_name` · `heritageGraph:dataset_name`
+
+Human-readable name of the dataset.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### Dataset version
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataset_version` · `heritageGraph:dataset_version`
+
+Version identifier of the dataset instance.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### Date earliest
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin` · `crm:P82a_begin_of_the_begin`
+
+Earliest possible date (for uncertain dates)
+
+### Date latest
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end` · `crm:P82b_end_of_the_end`
+
+Latest possible date (for uncertain dates)
+
+### Ended at time
+
+**IRI:** `http://www.w3.org/ns/prov#endedAtTime` · `prov:endedAtTime`
+
+Time at which this activity ended.
+
+### Epoch date gregorian
+
+**IRI:** `https://cair-nepal.org/heritagegraph/epochDateGregorian` · `heritageGraph:epochDateGregorian`
+
+The start date of this calendar era in Gregorian ISO format.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Calendar System](classes.md#calendarsystem) |
+
+### Expertise area
+
+**IRI:** `https://cair-nepal.org/heritagegraph/expertiseArea` · `heritageGraph:expertiseArea`
+
+Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Generated at time
+
+**IRI:** `http://www.w3.org/ns/prov#generatedAtTime` · `prov:generatedAtTime`
+
+Time at which this entity was generated (ISO 8601).
+
+### Generated date
+
+**IRI:** `https://cair-nepal.org/heritagegraph/generated_date` · `heritageGraph:generated_date`
+
+Date the dataset serialization was generated (ISO 8601).
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### ID
+
+**IRI:** `http://purl.org/dc/terms/identifier` · `dcterms:identifier`
+
+Globally unique URI identifier
+
+### Institutional affiliation
+
+**IRI:** `https://cair-nepal.org/heritagegraph/institutionalAffiliation` · `heritageGraph:institutionalAffiliation`
+
+Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Is critical for festival
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isCriticalForFestival` · `heritageGraph:isCriticalForFestival`
+
+Whether this ritual is essential for the festival's completion
+
+| | |
+|---|---|
+| Range | [xsd:boolean](http://www.w3.org/2001/XMLSchema#boolean) |
+| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+
+### Last known existence date
+
+**IRI:** `https://cair-nepal.org/heritagegraph/lastKnownExistenceDate` · `heritageGraph:lastKnownExistenceDate`
+
+Latest date when this structure is documented as existing (ISO 8601)
+
+| | |
+|---|---|
+| Range | [xsd:dateTime](http://www.w3.org/2001/XMLSchema#dateTime) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+
+### license
+
+**IRI:** `https://cair-nepal.org/heritagegraph/license` · `heritageGraph:license`
+
+License under which the dataset is released.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### Lunar date tithi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/lunarDateTithi` · `heritageGraph:lunarDateTithi`
+
+Lunar day (Tithi) for ritual timing
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### note
+
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P3_has_note` · `crm:P3_has_note`
+
+Free-text note (description, reason, verification notes)
+
+| | |
+|---|---|
+| Sub-properties | [Source citation](datatype-properties.md#sourcecitation) |
+| Used in | used in axioms of [Architectural Element](classes.md#architecturalelement); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Calendar System](classes.md#calendarsystem); used in axioms of [Caste Group](classes.md#castegroup); used in axioms of [Data Custodian](classes.md#datacustodian); used in axioms of [Data Source](classes.md#datasource); used in axioms of [Deity](classes.md#deity); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Religious Tradition](classes.md#religioustradition); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship); used in axioms of [Verification](classes.md#verification) |
+
+### obsolete selection criteria met ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/selectionCriteriaMet` · `heritageGraph:selectionCriteriaMet`
+
+DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Place coordinates
+
+**IRI:** `http://www.opengis.net/ont/geosparql#asWKT` · `geo:asWKT`
+
+Coordinates as WKT literal
+
+### Place type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/placeType` · `heritageGraph:placeType`
+
+Type of place (city, village, region), free text
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Proposition object literal
+
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionLiteralValue` · `heritageGraph:propositionLiteralValue`
+
+Object of the proposition when it is a literal value (e.g. a date).
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Proposition](classes.md#proposition) |
+
+### Proposition predicate
+
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionPredicate` · `heritageGraph:propositionPredicate`
+
+Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by (plays the role of rdf:predicate).
+
+| | |
+|---|---|
+| Range | [xsd:anyURI](http://www.w3.org/2001/XMLSchema#anyURI) |
+| Used in | used in axioms of [Proposition](classes.md#proposition) |
+
+### Reconciliation status
+
+**IRI:** `https://cair-nepal.org/heritagegraph/reconciliationStatus` · `heritageGraph:reconciliationStatus`
+
+Status of multi-source reconciliation (confirmed, conflicting, unverified)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Recurrence pattern
+
+**IRI:** `https://cair-nepal.org/heritagegraph/recurrencePattern` · `heritageGraph:recurrencePattern`
+
+Frequency of recurring ritual (e.g., annual, monthly)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Route description
+
+**IRI:** `https://cair-nepal.org/heritagegraph/routeDescription` · `heritageGraph:routeDescription`
+
+Text description of the procession route
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+
+### Schema version
+
+**IRI:** `https://cair-nepal.org/heritagegraph/schema_version` · `heritageGraph:schema_version`
+
+HeritageGraph schema version the dataset conforms to.
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Metadata](classes.md#metadata) |
+
+### Source citation
+
+**IRI:** `https://cair-nepal.org/heritagegraph/sourceCitation` · `heritageGraph:sourceCitation`
+
+Formal citation of source
+
+| | |
+|---|---|
+| Super-properties | [note](datatype-properties.md#p3_has_note) |
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Source language
+
+**IRI:** `http://schema.org/inLanguage` · `schema1:inLanguage`
+
+Language of the source material
+
+| | |
+|---|---|
+| Used in | used in axioms of [Data Source](classes.md#datasource); used in axioms of [Information Object](classes.md#informationobject) |
+
+### Source url
+
+**IRI:** `https://cair-nepal.org/heritagegraph/sourceUrl` · `heritageGraph:sourceUrl`
+
+URL or digital identifier for source
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+
+### Started at time
+
+**IRI:** `http://www.w3.org/ns/prov#startedAtTime` · `prov:startedAtTime`
+
+Time at which this activity started.
+
+### Traditional role
+
+**IRI:** `https://cair-nepal.org/heritagegraph/traditionalRole` · `heritageGraph:traditionalRole`
+
+Hereditary occupation or ritual duty
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Caste Group](classes.md#castegroup) |
+
+### Used equipment
+
+**IRI:** `https://cair-nepal.org/heritagegraph/usedEquipment` · `heritageGraph:usedEquipment`
+
+Equipment used in documentation
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### Used method
+
+**IRI:** `https://cair-nepal.org/heritagegraph/usedMethod` · `heritageGraph:usedMethod`
+
+Documentation method used
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+
+### Verification method
+
+**IRI:** `https://cair-nepal.org/heritagegraph/verificationMethod` · `heritageGraph:verificationMethod`
+
+Method used for verification (cross-check, expert review, field visit)
+
+| | |
+|---|---|
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Verification](classes.md#verification) |
+
+### Year offset from gregorian
+
+**IRI:** `https://cair-nepal.org/heritagegraph/yearOffsetFromGregorian` · `heritageGraph:yearOffsetFromGregorian`
+
+Mathematical offset to convert to Common Era (e.g., +57 for BS).
+
+| | |
+|---|---|
+| Range | [xsd:integer](http://www.w3.org/2001/XMLSchema#integer) |
+| Used in | used in axioms of [Calendar System](classes.md#calendarsystem) |
+
+---
+
+# Annotation properties
+
+### altLabel
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#altLabel` · `skos:altLabel`
+
+### bibliographicCitation
+
+**IRI:** `http://purl.org/dc/terms/bibliographicCitation` · `dcterms:bibliographicCitation`
+
+### broadMatch
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#broadMatch` · `skos:broadMatch`
+
+### closeMatch
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#closeMatch` · `skos:closeMatch`
+
+### created
+
+**IRI:** `http://purl.org/dc/terms/created` · `dcterms:created`
+
+### creator
+
+**IRI:** `http://purl.org/dc/terms/creator` · `dcterms:creator`
+
+### crminf pattern
+
+**IRI:** `https://cair-nepal.org/heritagegraph/crminf_pattern` · `heritageGraph:crminf_pattern`
+
+Editorial note naming the CRMinf pattern that a class instantiates.
+
+### date
+
+**IRI:** `http://purl.org/dc/terms/date` · `dcterms:date`
+
+### definition
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#definition` · `skos:definition`
+
+### deprecated
+
+**IRI:** `http://www.w3.org/2002/07/owl#deprecated` · `owl:deprecated`
+
+### description
+
+**IRI:** `http://purl.org/dc/terms/description` · `dcterms:description`
+
+### design note
+
+**IRI:** `https://cair-nepal.org/heritagegraph/design_note` · `heritageGraph:design_note`
+
+Editorial note recording a modelling decision about a term.
+
+### doi
+
+**IRI:** `http://purl.org/ontology/bibo/doi` · `bibo:doi`
+
+### exactMatch
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#exactMatch` · `skos:exactMatch`
+
+### inScheme
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#inScheme` · `skos:inScheme`
+
+### isReplacedBy
+
+**IRI:** `http://purl.org/dc/terms/isReplacedBy` · `dcterms:isReplacedBy`
+
+### issued
+
+**IRI:** `http://purl.org/dc/terms/issued` · `dcterms:issued`
+
+### label
+
+**IRI:** `http://www.w3.org/2000/01/rdf-schema#label` · `rdfs:label`
+
+### license
+
+**IRI:** `http://purl.org/dc/terms/license` · `dcterms:license`
+
+### modified
+
+**IRI:** `http://purl.org/dc/terms/modified` · `dcterms:modified`
+
+### narrowMatch
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#narrowMatch` · `skos:narrowMatch`
+
+### permissible_values
+
+**IRI:** `https://w3id.org/linkml/permissible_values` · `linkml:permissible_values`
+
+### preferredNamespacePrefix
+
+**IRI:** `http://purl.org/vocab/vann/preferredNamespacePrefix` · `vann:preferredNamespacePrefix`
+
+### preferredNamespaceUri
+
+**IRI:** `http://purl.org/vocab/vann/preferredNamespaceUri` · `vann:preferredNamespaceUri`
+
+### prefLabel
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#prefLabel` · `skos:prefLabel`
+
+### priorVersion
+
+**IRI:** `http://www.w3.org/2002/07/owl#priorVersion` · `owl:priorVersion`
+
+### prov alignment
+
+**IRI:** `https://cair-nepal.org/heritagegraph/prov_alignment` · `heritageGraph:prov_alignment`
+
+Editorial note naming the PROV-O term that a slot is aligned with.
+
+### prov alignment note
+
+**IRI:** `https://cair-nepal.org/heritagegraph/prov_alignment_note` · `heritageGraph:prov_alignment_note`
+
+Editorial note explaining the status of a class's PROV-O alignment.
+
+### provenance scope
+
+**IRI:** `https://cair-nepal.org/heritagegraph/provenance_scope` · `heritageGraph:provenance_scope`
+
+States whether a class's provenance slots describe the data record or the real-world referent.
+
+### publisher
+
+**IRI:** `http://purl.org/dc/terms/publisher` · `dcterms:publisher`
+
+### relatedMatch
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#relatedMatch` · `skos:relatedMatch`
+
+### scopeNote
+
+**IRI:** `http://www.w3.org/2004/02/skos/core#scopeNote` · `skos:scopeNote`
+
+### source
+
+**IRI:** `http://purl.org/dc/terms/source` · `dcterms:source`
+
+### status
+
+**IRI:** `http://purl.org/ontology/bibo/status` · `bibo:status`
+
+### title
+
+**IRI:** `http://purl.org/dc/terms/title` · `dcterms:title`
+
+### version
+
+**IRI:** `http://purl.org/pav/version` · `pav:version`
+
+### versionInfo
+
+**IRI:** `http://www.w3.org/2002/07/owl#versionInfo` · `owl:versionInfo`
+
+---
+
+# Concept schemes
+
+### Architectural Style (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle`
+
+A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type.
+
+### Condition Type (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/ConditionType`
+
+Controlled vocabulary for the physical condition of heritage objects and structures.
+
+### Date Precision (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/DatePrecision`
+
+Controlled vocabulary for the temporal precision of recorded heritage dates.
+
+### Existence Status (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus`
+
+Controlled vocabulary for whether a heritage structure still exists physically.
+
+### Guthi Type (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/GuthiType`
+
+Controlled vocabulary of Guthi functional types (CRM E55_Type)
+
+### HeritageGraph LinkML schema
+
+**IRI:** `https://cair-nepal.org/heritagegraph/schema` · `heritageGraph:schema`
+
+The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it.
+
+### Ritual Type (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/RitualType`
+
+Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.
+
+### Syncretic Type (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/SyncreticType`
+
+Controlled vocabulary for kinds of syncretic theological relationships between deities.
+
+---
+
+# Concepts
+
+### Abhisheka
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Abhisheka`
+
+Ritual bathing/anointing of deity
+
+### Appropriation
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticType#Appropriation`
+
+Deity borrowed from one tradition into another
+
+### Bhajan
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Bhajan`
+
+Devotional singing ritual
+
+### Century
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision#Century`
+
+Within century range
+
+### Chaitya style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`
+
+Buddhist votive shrine style
+
+### Chariot Procession
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession`
+
+Ritual chariot pulling
+
+### Circa
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision#Circa`
+
+Approximate date
+
+### Circumambulation
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Circumambulation`
+
+Ritual circular movement around sacred site
+
+### Damaged
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ConditionType#Damaged`
+
+Partially damaged
+
+### Decade
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision#Decade`
+
+Within 10-year range
+
+### Deinstallation Ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual`
+
+De-installation/conclusion ritual
+
+### Destroyed
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#Destroyed`
+
+Known to have been destroyed; no physical remains
+
+### Dome style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome`
+
+Dome-based style (Mughal/Neo-classical influence)
+
+### Equivalence
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence`
+
+Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)
+
+### Exact
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision#Exact`
+
+Precise date known
+
+### Extant
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant`
+
+Currently exists in physical form
+
+### Fusion
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticType#Fusion`
+
+Intrinsically syncretic deity merging multiple traditions
+
+### Good
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ConditionType#Good`
+
+No significant damage
+
+### Historical
+
+**IRI:** `https://cair-nepal.org/heritagegraph/SyncreticType#Historical`
+
+Gradual syncretism over time
+
+### Homa
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Homa`
+
+Fire offering ritual
+
+### Hypothetical
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#Hypothetical`
+
+Reconstructed or theorized; never physically realized
+
+### Installation Ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual`
+
+Installation/enshrinement ritual
+
+### Jatra
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Jatra`
+
+Festival procession ritual
+
+### Jatra Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi`
+
+Festival organization trust
+
+### Kamya Puja
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja`
+
+Desire-based optional worship
+
+### Lost
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost`
+
+Existence documented but location/remains unknown
+
+### Masked Performance
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance`
+
+Ritual masked dance
+
+### Naimittika Puja
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja`
+
+Occasional/Festival worship
+
+### Nasha Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi`
+
+Music and dance trust
+
+### Nitya Puja
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#NityaPuja`
+
+Daily mandatory worship
+
+### Pagoda style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda`
+
+Multi-tiered roof style indigenous to Nepal
+
+### Partially Extant
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant`
+
+Fragments or ruins remain
+
+### Procession Ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual`
+
+Ritual procession/movement
+
+### Processional Movement
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement`
+
+General ritual movement between locations
+
+### Puja Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi`
+
+Daily worship trust
+
+### Raj Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi`
+
+Royal endowment trust
+
+### Relic Tour
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#RelicTour`
+
+Procession with sacred relics between sites
+
+### Restored
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ConditionType#Restored`
+
+Repaired and stabilized
+
+### Returning Ritual
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual`
+
+Return to normal state ritual
+
+### Ritual Consecration
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration`
+
+Consecration/activation ritual
+
+### Ruined
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ConditionType#Ruined`
+
+Severely damaged or collapsed
+
+### San Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`
+
+Life-cycle ritual trust
+
+### Sana Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi`
+
+Agricultural cooperative trust
+
+### Shikhara style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara`
+
+North Indian spire-shaped style
+
+### Si Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi`
+
+Funeral trust
+
+### Stupa style
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`
+
+Buddhist dome-shaped reliquary
+
+### Temple Guthi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi`
+
+Temple maintenance trust
+
+### Unknown
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown`
+
+Existence status uncertain
+
+### Vrata
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Vrata`
+
+Vow observance ritual
+
+### Yagna
+
+**IRI:** `https://cair-nepal.org/heritagegraph/RitualType#Yagna`
+
+Vedic sacrifice ritual
+
+### Year
+
+**IRI:** `https://cair-nepal.org/heritagegraph/DatePrecision#Year`
+
+Year-level precision only
