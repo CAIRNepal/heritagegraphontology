@@ -79,7 +79,7 @@ tr:target {{ background: #fff3bf; }}
 {chr(10).join(rows)}
 </tbody>
 </table>
-<p><a href="../#{html.escape(name)}">{html.escape(name)} in the HeritageGraph documentation</a></p>
+<p><a href="../classes.html#{html.escape(name)}">{html.escape(name)} in the HeritageGraph documentation</a></p>
 </body></html>
 """
         (out / f"{name}.html").write_text(page, encoding="utf-8")

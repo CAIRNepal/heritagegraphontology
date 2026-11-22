@@ -1,127 +1,2966 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" data-font="serif" data-width="wide">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="resources/primer.css" media="screen"/>
-<link rel="stylesheet" href="resources/rec.css" media="screen"/>
-<link rel="stylesheet" href="resources/extra.css" media="screen"/>
-<link rel="stylesheet" href="resources/owl.css" media="screen"/>
-<link rel="stylesheet" href="resources/dark.css" media="(prefers-color-scheme: dark)"/>
-<link rel="stylesheet" href="resources/light.css" media="(prefers-color-scheme: light)"/>
-<link rel="stylesheet" href="resources/slider.css" media="screen"/>
-<meta name="color-scheme" content="dark light">
-<script type="module" src="resources/dark-mode-toggle.mjs"></script><div class="darkmode">
-	<dark-mode-toggle class="slider"></dark-mode-toggle>
-</div>
-<link rel="icon" type="image/png" href="resources/rdf.icon"/> <title>HeritageGraph Ontology</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HeritageGraph Ontology</title>
+<meta name="description" content="HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities..."><meta name="generator" content="OntoReview 1.0.0">
+<link rel="canonical" href="https://cairnepal.github.io/heritagegraphontology/"><link rel="alternate" type="text/turtle" href="ontology.ttl" title="Turtle">
+<link rel="alternate" type="application/rdf+xml" href="ontology.owl" title="RDF/XML">
+<link rel="alternate" type="application/ld+json" href="ontology.jsonld" title="JSON-LD">
+<link rel="alternate" type="application/n-triples" href="ontology.nt" title="N-Triples">
+<link rel="alternate" type="text/markdown" href="index.md" title="Markdown">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt"><link rel="stylesheet" href="assets/ontoreview.css?v=6b02ffaf">
+<script>try{var m=localStorage.getItem("ontoreview-theme");if(m)document.documentElement.dataset.theme=m;var z=localStorage.getItem("ontoreview-textsize");if(z)document.documentElement.dataset.textsize=z}catch(e){}</script>
 
-
-<!-- SCHEMA.ORG METADATA -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"https://cair-nepal.org/heritagegraph/","image":"http://vowl.visualdataweb.org/webvowl/#iri=https://cair-nepal.org/heritagegraph/","name":"HeritageGraph Ontology", "headline":"Document describing the ontology https://cair-nepal.org/heritagegraph/", "dateReleased":"2025-11-23", "dateModified":"2026-10-22", "version":"1.0.1", "license":"https://creativecommons.org/licenses/by/4.0/", "author":[{"@type":"Person","name":"Anu Sapkota"},{"@type":"Person","name":"Nabin Oli"},{"@type":"Person","name":"Niraj Karki"},{"@type":"Person","name":"Semih Yumusak"},{"@type":"Person","name":"Tek Raj Chhetri"}]}</script>
-
-<script src="resources/jquery.js"></script> 
-<script src="resources/marked.min.js"></script> 
-    <script> 
-function loadHash() {
-  jQuery(".markdown").each(function(el){jQuery(this).after(marked.parse(jQuery(this).text())).remove()});
-	var hash = location.hash;
-	if($(hash).offset()!=null){
-	  $('html, body').animate({scrollTop: $(hash).offset().top}, 0);
-}
-	loadTOC();
-}
-function loadTOC(){
-	//process toc dynamically
-	  var t='<h2>Table of contents</h2><ul>';i = 1;j=0;
-	  jQuery(".list").each(function(){
-		if(jQuery(this).is('h2')){
-			if(j>0){
-				t+='</ul>';
-				j=0;
-			}
-			t+= '<li>'+i+'. <a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
-			i++;
-		}
-		if(jQuery(this).is('h3')){
-			if(j==0){
-				t+='<ul>';
-			}
-			j++;
-			t+= '<li>'+(i-1)+'.'+j+'. '+'<a href=#'+ jQuery(this).attr('id')+'>'+ jQuery(this).ignore("span").text()+'</a></li>';
-		}
-	  });
-	  t+='</ul>';
-	  $("#toc").html(t); 
-}
- $.fn.ignore = function(sel){
-        return this.clone().find(sel||">*").remove().end();
- };    $(function(){
-      $("#abstract").load("sections/abstract-en.html"); 
-      $("#introduction").load("sections/introduction-en.html"); 
-      $("#nstable").load("sections/ns-en.html"); 
-      $("#overview").load("sections/overview-en.html"); 
-      $("#description").load("sections/description-en.html"); 
-      $("#references").load("sections/references-en.html"); 
-      $("#crossref").load("sections/crossref-en.html", null, loadHash); 
-    });
-    </script> 
-  </head> 
-
+<script type="application/ld+json">{
+ "@context": "https://schema.org/",
+ "@type": "DefinedTermSet",
+ "@id": "https://cair-nepal.org/heritagegraph/ontology",
+ "name": "HeritageGraph Ontology",
+ "description": "HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities and institutions (notably the *Guthi*) that sustain them. Rather than attaching facts directly to objects, the model represents history as a web of events (production, ritual, custody transfer, documentation) so that spatial, temporal, and participatory relationships can be queried and reasoned over. Every assertion can carry its provenance and epistemic standing, allowing competing or multi-vocal sources to coexist. The ontology is generated from a LinkML schema, is an OWL 2 DL vocabulary that is logically consistent under the HermiT reasoner, and is aligned with CIDOC-CRM 7.1.3, CRMinf, CRMsci, and PROV-O, and through a companion module with Linked Art, to maximise interoperability with the wider cultural-heritage Linked Data cloud.",
+ "url": "https://cairnepal.github.io/heritagegraphontology/",
+ "version": "1.0.1",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "dateModified": "2026-11-22",
+ "dateCreated": "2025-11-23",
+ "datePublished": "2026-10-17",
+ "creator": [
+  {
+   "@type": "Person",
+   "name": "Anu Sapkota"
+  },
+  {
+   "@type": "Person",
+   "name": "Nabin Oli"
+  },
+  {
+   "@type": "Person",
+   "name": "Niraj Karki"
+  },
+  {
+   "@type": "Person",
+   "name": "Semih Yumusak"
+  },
+  {
+   "@type": "Person",
+   "name": "Tek Raj Chhetri"
+  }
+ ],
+ "publisher": [
+  {
+   "@type": "Person",
+   "name": "CAIR-Nepal"
+  }
+ ],
+ "identifier": "https://doi.org/10.5281/zenodo.23435676",
+ "hasDefinedTerm": [
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/kumari_lifecycle_events",
+   "name": "Kumari lifecycle events",
+   "description": "Collection of Kumari lifecycle events (selection, enthronement, retirement)",
+   "termCode": "heritageGraph:kumari_lifecycle_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/issued",
+   "name": "issued",
+   "termCode": "dcterms:issued"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticType#Appropriation",
+   "name": "Appropriation",
+   "description": "Deity borrowed from one tradition into another"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/invokesDeity",
+   "name": "Invokes deity",
+   "description": "Deity invoked or made present through ritual",
+   "termCode": "heritageGraph:invokesDeity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/schema",
+   "name": "HeritageGraph LinkML schema",
+   "description": "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it.",
+   "termCode": "heritageGraph:schema"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DataCustodian",
+   "name": "Data Custodian",
+   "description": "Institution or person currently responsible for stewarding heritage data.",
+   "termCode": "heritageGraph:DataCustodian"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/usedBy",
+   "name": "Used by",
+   "description": "Actor(s) who use, handle, or are responsible for this object in ritual contexts",
+   "termCode": "heritageGraph:usedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Paubha",
+   "name": "Paubha",
+   "description": "Traditional Newari scroll painting (thangka) with mandala and deity iconography",
+   "termCode": "heritageGraph:Paubha"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DataSource",
+   "name": "Data Source",
+   "description": "Original source from which heritage information was derived",
+   "termCode": "heritageGraph:DataSource"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/identifierScheme",
+   "name": "Datacite identifier type",
+   "description": "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)",
+   "termCode": "heritageGraph:identifierScheme"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/selection_criteria",
+   "name": "Selection criteria",
+   "description": "Collection of SelectionCriterion instances",
+   "termCode": "heritageGraph:selection_criteria"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/condition_assessments",
+   "name": "Condition assessments",
+   "description": "Collection of ConditionAssessment instances",
+   "termCode": "heritageGraph:condition_assessments"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariEnthronementEvent",
+   "name": "Kumari Enthronement Event",
+   "description": "Ritual installing a selected girl into the Kumari role and residence, activating the tenure (distinct from selection, which chooses her, and retirement, which ends it).",
+   "termCode": "heritageGraph:KumariEnthronementEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi",
+   "name": "San Guthi",
+   "description": "Life-cycle ritual trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+   "name": "Is part of festival",
+   "description": "Larger festival this ritual is part of",
+   "termCode": "crm:P9i_forms_part_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasDerivedFrom",
+   "name": "Was derived from",
+   "description": "Entity from which this entity was derived.",
+   "termCode": "prov:wasDerivedFrom"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Bhajan",
+   "name": "Bhajan",
+   "description": "Devotional singing ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ConditionType#Good",
+   "name": "Good",
+   "description": "No significant damage"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/persons",
+   "name": "persons",
+   "description": "Collection of Person instances",
+   "termCode": "heritageGraph:persons"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration",
+   "name": "Ritual Consecration",
+   "description": "Consecration/activation ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/deities",
+   "name": "deities",
+   "description": "Collection of Deity instances",
+   "termCode": "heritageGraph:deities"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by",
+   "name": "Is depicted in",
+   "description": "Iconographic objects (murti, paubha) in which this deity is depicted.",
+   "termCode": "crm:P62i_is_depicted_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/structures",
+   "name": "structures",
+   "description": "Collection of ArchitecturalStructure instances (incl. subclasses)",
+   "termCode": "heritageGraph:structures"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+   "name": "prefLabel",
+   "termCode": "skos:prefLabel"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown",
+   "name": "Unknown",
+   "description": "Existence status uncertain"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/guthiType",
+   "name": "has guthi type",
+   "description": "Type of Guthi (Si, Jatra, Temple)",
+   "termCode": "heritageGraph:guthiType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+   "name": "Material",
+   "description": "Physical substance used in construction or crafting",
+   "termCode": "crm:E57_Material"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+   "name": "Was produced by event",
+   "description": "Event that created this object or structure",
+   "termCode": "crm:P108i_was_produced_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/identifier",
+   "name": "ID",
+   "description": "Globally unique URI identifier",
+   "termCode": "dcterms:identifier"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enthronedThrough",
+   "name": "Enthroned through",
+   "description": "Enthronement event that activated this tenure.",
+   "termCode": "heritageGraph:enthronedThrough"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/startPlace",
+   "name": "Start place",
+   "description": "Starting location of movement ritual",
+   "termCode": "heritageGraph:startPlace"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/religious_traditions",
+   "name": "Religious traditions",
+   "description": "Collection of ReligiousTradition instances",
+   "termCode": "heritageGraph:religious_traditions"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/historical_events",
+   "name": "Historical events",
+   "description": "Collection of HistoricalEvent (incl. DestructionEvent) instances",
+   "termCode": "heritageGraph:historical_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasAttributedTo",
+   "name": "Was attributed to",
+   "description": "Agent to whom responsibility for this entity is attributed.",
+   "termCode": "prov:wasAttributedTo"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi",
+   "name": "Temple Guthi",
+   "description": "Temple maintenance trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/schema_version",
+   "name": "Schema version",
+   "description": "HeritageGraph schema version the dataset conforms to.",
+   "termCode": "heritageGraph:schema_version"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#closeMatch",
+   "name": "closeMatch",
+   "termCode": "skos:closeMatch"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#definition",
+   "name": "definition",
+   "termCode": "skos:definition"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/performsRitual",
+   "name": "Performs ritual",
+   "description": "Rituals performed by this Guthi",
+   "termCode": "heritageGraph:performsRitual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/endedTenureOf",
+   "name": "Ended tenure of",
+   "description": "Points from a KumariRetirementEvent to the tenure that it terminated. Enables reconstruction of the complete Kumari lifecycle.",
+   "termCode": "heritageGraph:endedTenureOf"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P34_concerned",
+   "name": "Assessed object",
+   "description": "Object assessed for condition",
+   "termCode": "crm:P34_concerned"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ConditionType#Ruined",
+   "name": "Ruined",
+   "description": "Severely damaged or collapsed"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/MaskedDance",
+   "name": "Masked Dance",
+   "description": "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)",
+   "termCode": "heritageGraph:MaskedDance"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/endPlace",
+   "name": "End place",
+   "description": "Ending location of movement ritual",
+   "termCode": "heritageGraph:endPlace"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticRelationship",
+   "name": "Syncretic Relationship",
+   "description": "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance.",
+   "termCode": "heritageGraph:SyncreticRelationship"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#value",
+   "name": "Assertion content",
+   "description": "The factual claim being asserted",
+   "termCode": "prov:value"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Metadata",
+   "name": "Metadata",
+   "description": "Dataset metadata information",
+   "termCode": "heritageGraph:Metadata"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/verifiedByExpert",
+   "name": "Verified by expert",
+   "description": "Expert who performed verification",
+   "termCode": "heritageGraph:verifiedByExpert"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+   "name": "Condition Assessment",
+   "description": "Event of evaluating the physical state of a heritage object or structure",
+   "termCode": "crm:E14_Condition_Assessment"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual",
+   "name": "Procession Ritual",
+   "description": "Ritual procession/movement"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/selectedThrough",
+   "name": "Selected through",
+   "description": "Selection event that initiated this tenure.",
+   "termCode": "heritageGraph:selectedThrough"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/techniques",
+   "name": "techniques",
+   "description": "Collection of Technique instances",
+   "termCode": "heritageGraph:techniques"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision#Circa",
+   "name": "Circa",
+   "description": "Approximate date"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision#Exact",
+   "name": "Exact",
+   "description": "Precise date known"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of",
+   "name": "Occurred in presence of",
+   "description": "Generic CRM presence relation (P12): entity present at an event. Canonical holder of the CRM predicate; use the specific presence slots in data.",
+   "termCode": "crm:P12_occurred_in_the_presence_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/routeDescription",
+   "name": "Route description",
+   "description": "Text description of the procession route",
+   "termCode": "heritageGraph:routeDescription"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/FieldSurveyActivity",
+   "name": "Field Survey Activity",
+   "description": "The activity of measuring, photographing, or assessing a site in person.",
+   "termCode": "heritageGraph:FieldSurveyActivity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision#Year",
+   "name": "Year",
+   "description": "Year-level precision only"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hadParticipant",
+   "name": "Had participant",
+   "description": "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl holding a Kumari tenure, or the Kumari in a chariot procession).",
+   "termCode": "heritageGraph:hadParticipant"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object",
+   "name": "Human Made Object",
+   "description": "Physical objects created by human activity",
+   "termCode": "crm:E22_Human-Made_Object"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/calendarSystem",
+   "name": "has calendar system",
+   "description": "Calendar system used for date representation",
+   "termCode": "heritageGraph:calendarSystem"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+   "name": "Includes ritual event",
+   "description": "Component rituals of festival",
+   "termCode": "crm:P9_consists_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/assertions",
+   "name": "assertions",
+   "description": "Collection of Assertion instances",
+   "termCode": "heritageGraph:assertions"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/transferredToGuthi",
+   "name": "Transferred to guthi",
+   "description": "New custodian (Guthi)",
+   "termCode": "heritageGraph:transferredToGuthi"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+   "name": "Has condition assessment",
+   "description": "Condition assessment events for this structure",
+   "termCode": "crm:P34i_was_assessed_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/production_events",
+   "name": "Production events",
+   "description": "Collection of Production event instances",
+   "termCode": "heritageGraph:production_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+   "name": "Transfer Of Custody",
+   "description": "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship",
+   "termCode": "crm:E10_Transfer_of_Custody"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance",
+   "name": "Masked Performance",
+   "description": "Ritual masked dance"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#endedAtTime",
+   "name": "Ended at time",
+   "description": "Time at which this activity ended.",
+   "termCode": "prov:endedAtTime"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+   "name": "Time Span",
+   "description": "Temporal extent of an event or period",
+   "termCode": "crm:E52_Time-Span"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Vrata",
+   "name": "Vrata",
+   "description": "Vow observance ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#altLabel",
+   "name": "altLabel",
+   "termCode": "skos:altLabel"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Chaitya",
+   "name": "Chaitya",
+   "description": "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley.",
+   "termCode": "heritageGraph:Chaitya"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/assertsAbout",
+   "name": "Asserts about",
+   "description": "Heritage entity or event that is the subject of this assertion.",
+   "termCode": "heritageGraph:assertsAbout"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Pokhari",
+   "name": "Pokhari",
+   "description": "Pond or tank for water storage, ritual bathing, and ecological management",
+   "termCode": "heritageGraph:Pokhari"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/OralHistoryInterview",
+   "name": "Oral History Interview",
+   "description": "The interaction event between a researcher and a knowledge holder.",
+   "termCode": "heritageGraph:OralHistoryInterview"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/deathTimespan",
+   "name": "Death timespan",
+   "description": "Person's death timespan",
+   "termCode": "heritageGraph:deathTimespan"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/creator",
+   "name": "creator",
+   "termCode": "dcterms:creator"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enshrinedDeity",
+   "name": "Enshrined deity",
+   "description": "Deity installed through enshrinement",
+   "termCode": "heritageGraph:enshrinedDeity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Yagna",
+   "name": "Yagna",
+   "description": "Vedic sacrifice ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/consecration_events",
+   "name": "Consecration events",
+   "description": "Collection of Consecration event instances",
+   "termCode": "heritageGraph:consecration_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#NityaPuja",
+   "name": "Nitya Puja",
+   "description": "Daily mandatory worship"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hasReligiousTradition",
+   "name": "Has religious tradition",
+   "description": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
+   "termCode": "heritageGraph:hasReligiousTradition"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/managedByGuthi",
+   "name": "Managed by guthi",
+   "description": "Guthi organization managing this structure or ritual",
+   "termCode": "heritageGraph:managedByGuthi"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#Agent",
+   "name": "Agent",
+   "description": "Direct LinkML representation of prov:Agent. Agents bear responsibility for activities or entities. PROV-O permits an individual agent also to be typed as an Entity, but does not define every Agent as a subclass of Entity.",
+   "termCode": "prov:Agent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/recurrencePattern",
+   "name": "Recurrence pattern",
+   "description": "Frequency of recurring ritual (e.g., annual, monthly)",
+   "termCode": "heritageGraph:recurrencePattern"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariHouse",
+   "name": "Kumari House",
+   "description": "God-house residence of a Kumari during tenure (e.g., Kumari Ghar, Kathmandu). Specialised ReligiousStructure.",
+   "termCode": "heritageGraph:KumariHouse"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/places",
+   "name": "places",
+   "description": "Collection of Place instances",
+   "termCode": "heritageGraph:places"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/GuthiType",
+   "name": "Guthi Type (concept scheme)",
+   "description": "Controlled vocabulary of Guthi functional types (CRM E55_Type)"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/license",
+   "name": "license",
+   "description": "License under which the dataset is released.",
+   "termCode": "heritageGraph:license"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus",
+   "name": "Existence Status",
+   "description": "Controlled vocabulary for whether a heritage structure still exists physically.",
+   "termCode": "heritageGraph:ExistenceStatus"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/commissionedBy",
+   "name": "Commissioned by",
+   "description": "Person or group who commissioned production",
+   "termCode": "heritageGraph:commissionedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/pav/version",
+   "name": "version",
+   "termCode": "pav:version"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P141_assigned",
+   "name": "Assigned equivalent",
+   "description": "The deity or sacred figure being identified as equivalent to the primary deity.",
+   "termCode": "crm:P141_assigned"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enshrinesDeityThroughEvent",
+   "name": "Enshrines deity through event",
+   "description": "Enshrinement event that installed deity in temple",
+   "termCode": "heritageGraph:enshrinesDeityThroughEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/placeType",
+   "name": "Place type",
+   "description": "Type of place (city, village, region), free text",
+   "termCode": "heritageGraph:placeType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/FearlessnessAssessment",
+   "name": "Fearlessness Assessment",
+   "description": "The 'fearlessness test' popularly described (animal heads, masked dancers in darkness). Its historical and contemporary practice is DISPUTED -- some former Kumaris contest how it is described. Represented as an assessment whose accounts are source-attributed via has_assertion, NOT as a mandatory criterion.",
+   "termCode": "heritageGraph:FearlessnessAssessment"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ConditionType#Restored",
+   "name": "Restored",
+   "description": "Repaired and stabilized"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#Activity",
+   "name": "Activity",
+   "description": "Direct LinkML representation of prov:Activity. Applied to events and processes that use, transform, generate, document, assess, or verify entities.",
+   "termCode": "prov:Activity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/verifiedAssertion",
+   "name": "Verified assertion",
+   "description": "Assertions verified by this activity",
+   "termCode": "heritageGraph:verifiedAssertion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P108_has_produced",
+   "name": "Produced object",
+   "description": "Object produced by this production event",
+   "termCode": "crm:P108_has_produced"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/datePrecision",
+   "name": "has date precision",
+   "description": "The level of precision for a recorded date.",
+   "termCode": "heritageGraph:datePrecision"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+   "name": "ConceptScheme",
+   "termCode": "skos:ConceptScheme"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus",
+   "name": "Existence Status (concept scheme)",
+   "description": "Controlled vocabulary for whether a heritage structure still exists physically."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Jatra",
+   "name": "Jatra",
+   "description": "Festival procession ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/title",
+   "name": "title",
+   "termCode": "dcterms:title"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/IconographicObject",
+   "name": "Iconographic Object",
+   "description": "Sacred visual art objects that depict or embody deities through iconographic conventions",
+   "termCode": "heritageGraph:IconographicObject"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+   "name": "Has timespan",
+   "description": "Links event to its temporal extent",
+   "termCode": "crm:P4_has_time-span"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/reconciliationStatus",
+   "name": "Reconciliation status",
+   "description": "Status of multi-source reconciliation (confirmed, conflicting, unverified)",
+   "termCode": "heritageGraph:reconciliationStatus"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/caste_groups",
+   "name": "Caste groups",
+   "description": "Collection of CasteGroup instances",
+   "termCode": "heritageGraph:caste_groups"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/institutionalAffiliation",
+   "name": "Institutional affiliation",
+   "description": "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)",
+   "termCode": "heritageGraph:institutionalAffiliation"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of",
+   "name": "Occurs before",
+   "description": "Points to the next ritual in the canonical sequence.",
+   "termCode": "crm:P183_ends_before_the_start_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#startedAtTime",
+   "name": "Started at time",
+   "description": "Time at which this activity started.",
+   "termCode": "prov:startedAtTime"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Proposition",
+   "name": "Proposition",
+   "description": "A single machine-readable proposition (subject - predicate - object) held true by an Assertion. Modelled as a singleton proposition set (CRMinf I4); the predicate is a URI/CURIE, the object either a heritage entity or a literal.",
+   "termCode": "heritageGraph:Proposition"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/isPrimaryForTradition",
+   "name": "Is primary for tradition",
+   "description": "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)",
+   "termCode": "heritageGraph:isPrimaryForTradition"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/ontology/bibo/status",
+   "name": "status",
+   "termCode": "bibo:status"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+   "name": "Place",
+   "description": "Defined geographic location where events occur and structures exist",
+   "termCode": "crm:E53_Place"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ritual_events",
+   "name": "Ritual events",
+   "description": "Collection of RitualEvent instances",
+   "termCode": "heritageGraph:ritual_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+   "name": "Assertion",
+   "description": "A provenance-bearing belief or claim about a heritage entity or event. The assertion is represented as CRMinf I2 Belief and as a prov:Entity, allowing source, attribution, generation time, revision, confidence, and reconciliation status to be recorded explicitly.",
+   "termCode": "crminf:I2_Belief"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enthronedPerson",
+   "name": "Enthroned person",
+   "description": "Girl enthroned as Kumari by this enthronement event.",
+   "termCode": "heritageGraph:enthronedPerson"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/lastKnownExistenceDate",
+   "name": "Last known existence date",
+   "description": "Latest date when this structure is documented as existing (ISO 8601)",
+   "termCode": "heritageGraph:lastKnownExistenceDate"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/publicationTimespan",
+   "name": "Publication timespan",
+   "description": "When source was published",
+   "termCode": "heritageGraph:publicationTimespan"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/RitualType",
+   "name": "Ritual Type (concept scheme)",
+   "description": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+   "name": "Actor",
+   "description": "General actor (person or group) responsible for events",
+   "termCode": "crm:E39_Actor"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/retiredThrough",
+   "name": "Retired through",
+   "description": "Retirement/desanctification event that ended this tenure.",
+   "termCode": "heritageGraph:retiredThrough"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/participatesInRitual",
+   "name": "Participates in ritual",
+   "description": "Rituals in which this structure participates",
+   "termCode": "heritageGraph:participatesInRitual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+   "name": "Took place at",
+   "description": "Place where the event occurred",
+   "termCode": "crm:P7_took_place_at"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual",
+   "name": "Returning Ritual",
+   "description": "Return to normal state ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/guthis",
+   "name": "guthis",
+   "description": "Collection of Guthi instances",
+   "termCode": "heritageGraph:guthis"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P62_depicts",
+   "name": "Depicts deity",
+   "description": "Deity depicted iconographically (not cultic presence)",
+   "termCode": "crm:P62_depicts"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticType",
+   "name": "Syncretic Type",
+   "description": "Controlled vocabulary for kinds of syncretic theological relationships between deities.",
+   "termCode": "heritageGraph:SyncreticType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasAssociatedWith",
+   "name": "Was associated with",
+   "description": "Agent associated with responsibility for this activity.",
+   "termCode": "prov:wasAssociatedWith"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/bibliographicCitation",
+   "name": "bibliographicCitation",
+   "termCode": "dcterms:bibliographicCitation"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/PhysicalIntegrityCriterion",
+   "name": "Physical Integrity Criterion",
+   "description": "Candidate must have an unblemished body with no scars, wounds, or loss of blood/teeth.",
+   "termCode": "heritageGraph:PhysicalIntegrityCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/created",
+   "name": "created",
+   "termCode": "dcterms:created"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Festival",
+   "name": "Festival",
+   "description": "Large-scale community ritual event (Jatra) involving processions, music, and collective participation",
+   "termCode": "heritageGraph:Festival"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/mentionedInSource",
+   "name": "Documented in source",
+   "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+   "termCode": "heritageGraph:mentionedInSource"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/sourceCreator",
+   "name": "Datacite creator",
+   "description": "Person or organization primarily responsible for creating the source",
+   "termCode": "heritageGraph:sourceCreator"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasInformedBy",
+   "name": "Was informed by",
+   "description": "Activity that informed this activity; PROV-O uses this when the intervening generated and used entity is unknown or omitted.",
+   "termCode": "prov:wasInformedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType",
+   "name": "Ritual Type",
+   "description": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.",
+   "termCode": "heritageGraph:RitualType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ReligiousTradition",
+   "name": "Religious Tradition",
+   "description": "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)",
+   "termCode": "heritageGraph:ReligiousTradition"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/partOfSelection",
+   "name": "Part of selection",
+   "description": "Selection event this assessment is part of.",
+   "termCode": "heritageGraph:partOfSelection"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ChariotFestival",
+   "name": "Chariot Festival",
+   "description": "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)",
+   "termCode": "heritageGraph:ChariotFestival"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/isCriticalForFestival",
+   "name": "Is critical for festival",
+   "description": "Whether this ritual is essential for the festival's completion",
+   "termCode": "heritageGraph:isCriticalForFestival"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+   "name": "Person",
+   "description": "Individual person who performs, commissions, documents, or verifies heritage activities",
+   "termCode": "crm:E21_Person"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Container",
+   "name": "Container",
+   "description": "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in persons, not actors); broader collections exist for instances of the general classes only.",
+   "termCode": "heritageGraph:Container"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasGeneratedBy",
+   "name": "Was generated by",
+   "description": "Activity that generated this entity.",
+   "termCode": "prov:wasGeneratedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/usedEquipment",
+   "name": "Used equipment",
+   "description": "Equipment used in documentation",
+   "termCode": "heritageGraph:usedEquipment"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/sourceCitation",
+   "name": "Source citation",
+   "description": "Formal citation of source",
+   "termCode": "heritageGraph:sourceCitation"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/kumari_tenures",
+   "name": "Kumari tenures",
+   "description": "Collection of KumariTenure instances",
+   "termCode": "heritageGraph:kumari_tenures"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/SyncreticType",
+   "name": "Syncretic Type (concept scheme)",
+   "description": "Controlled vocabulary for kinds of syncretic theological relationships between deities."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/usedMethod",
+   "name": "Used method",
+   "description": "Documentation method used",
+   "termCode": "heritageGraph:usedMethod"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin",
+   "name": "Date earliest",
+   "description": "Earliest possible date (for uncertain dates)",
+   "termCode": "crm:P82a_begin_of_the_begin"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Consecration",
+   "name": "Consecration",
+   "description": "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)",
+   "termCode": "heritageGraph:Consecration"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State",
+   "name": "Condition State",
+   "description": "A physical condition state of a heritage object",
+   "termCode": "crm:E3_Condition_State"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/dataset_version",
+   "name": "Dataset version",
+   "description": "Version identifier of the dataset instance.",
+   "termCode": "heritageGraph:dataset_version"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member",
+   "name": "Has membership",
+   "description": "Members of Guthi organization",
+   "termCode": "crm:P107_has_current_or_former_member"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/expertiseArea",
+   "name": "Expertise area",
+   "description": "Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)",
+   "termCode": "heritageGraph:expertiseArea"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/yearOffsetFromGregorian",
+   "name": "Year offset from gregorian",
+   "description": "Mathematical offset to convert to Common Era (e.g., +57 for BS).",
+   "termCode": "heritageGraph:yearOffsetFromGregorian"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/DatePrecision",
+   "name": "Date Precision (concept scheme)",
+   "description": "Controlled vocabulary for the temporal precision of recorded heritage dates."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariSelectionEvent",
+   "name": "Kumari Selection Event",
+   "description": "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee of Vajracharya priests, royal priest (Raj Jyotish), and astrologer.",
+   "termCode": "heritageGraph:KumariSelectionEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P35_has_identified",
+   "name": "Assessed condition state",
+   "description": "Condition state identified by the assessment",
+   "termCode": "crm:P35_has_identified"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariTenure",
+   "name": "Kumari Tenure",
+   "description": "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families.",
+   "termCode": "heritageGraph:KumariTenure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/date",
+   "name": "date",
+   "termCode": "dcterms:date"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/persistentIdentifier",
+   "name": "Datacite identifier",
+   "description": "Persistent identifier for the source (DOI, archive ID, catalog number)",
+   "termCode": "heritageGraph:persistentIdentifier"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Dharmashala",
+   "name": "Dharmashala",
+   "description": "Pilgrim lodge operated by a Guthi organization",
+   "termCode": "heritageGraph:Dharmashala"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Temple",
+   "name": "Temple",
+   "description": "Religious structure characterized by deity enshrinement and ritual activation. Legal designation (e.g. 'Ancient Monument' under Nepal law) is recorded per-instance via a governance assertion, not as a class criterion.",
+   "termCode": "heritageGraph:Temple"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at",
+   "name": "Was present at",
+   "description": "Generic CRM presence relation (P12i): event this entity was present at. Canonical holder of the CRM predicate; use the specific slots in data.",
+   "termCode": "crm:P12i_was_present_at"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hasConditionType",
+   "name": "Has condition type",
+   "description": "Categorization of the condition state",
+   "termCode": "heritageGraph:hasConditionType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/architectural_elements",
+   "name": "Architectural elements",
+   "description": "Collection of ArchitecturalElement instances",
+   "termCode": "heritageGraph:architectural_elements"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/destructionEvent",
+   "name": "has destruction event",
+   "description": "Event that destroyed this structure (if known)",
+   "termCode": "heritageGraph:destructionEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/source",
+   "name": "source",
+   "termCode": "dcterms:source"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/propositionPredicate",
+   "name": "Proposition predicate",
+   "description": "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by (plays the role of rdf:predicate).",
+   "termCode": "heritageGraph:propositionPredicate"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enshrinedInStructure",
+   "name": "Enshrined in structure",
+   "description": "Temple where deity was enshrined",
+   "termCode": "heritageGraph:enshrinedInStructure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi",
+   "name": "Raj Guthi",
+   "description": "Royal endowment trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/information_objects",
+   "name": "Information objects",
+   "description": "Collection of InformationObject instances",
+   "termCode": "heritageGraph:information_objects"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#inScheme",
+   "name": "inScheme",
+   "termCode": "skos:inScheme"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/publisher",
+   "name": "publisher",
+   "termCode": "dcterms:publisher"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/HistoricalEvent",
+   "name": "Historical Event",
+   "description": "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood).",
+   "termCode": "heritageGraph:HistoricalEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Guthi",
+   "name": "Guthi",
+   "description": "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership",
+   "termCode": "heritageGraph:Guthi"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+   "name": "Architectural Structure",
+   "description": "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation.",
+   "termCode": "heritageGraph:ArchitecturalStructure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/documentedBy",
+   "name": "Was documented by",
+   "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+   "termCode": "heritageGraph:documentedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+   "name": "Has custody event",
+   "description": "Custody transfer events for this structure",
+   "termCode": "crm:P30i_custody_transferred_through"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Hypothetical",
+   "name": "Hypothetical",
+   "description": "Reconstructed or theorized; never physically realized"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/roleDeity",
+   "name": "Role deity",
+   "description": "Deity embodied by whoever holds this role (e.g., Taleju).",
+   "termCode": "heritageGraph:roleDeity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle",
+   "name": "Architectural Style",
+   "description": "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type.",
+   "termCode": "heritageGraph:ArchitecturalStyle"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType",
+   "name": "Guthi Type",
+   "description": "Controlled vocabulary of Guthi functional types (CRM E55_Type)",
+   "termCode": "heritageGraph:GuthiType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/actors",
+   "name": "actors",
+   "description": "Collection of generic Actor instances",
+   "termCode": "heritageGraph:actors"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of",
+   "name": "Contains structure",
+   "description": "Structures located in this place",
+   "termCode": "crm:P53i_is_former_or_current_location_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/propositionSubject",
+   "name": "Proposition subject",
+   "description": "Entity the proposition is about (plays the role of rdf:subject).",
+   "termCode": "heritageGraph:propositionSubject"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/HoroscopeCompatibilityCriterion",
+   "name": "Horoscope Compatibility Criterion",
+   "description": "Candidate's horoscope must be compatible with the city and ruling authority.",
+   "termCode": "heritageGraph:HoroscopeCompatibilityCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/sourcePublisher",
+   "name": "Datacite publisher",
+   "description": "Entity responsible for making the source available",
+   "termCode": "heritageGraph:sourcePublisher"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P50i_is_current_keeper_of",
+   "name": "Holds custody of",
+   "description": "Structures under Guthi custodianship",
+   "termCode": "crm:P50i_is_current_keeper_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/description",
+   "name": "description",
+   "termCode": "dcterms:description"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#scopeNote",
+   "name": "scopeNote",
+   "termCode": "skos:scopeNote"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara",
+   "name": "Shikhara style",
+   "description": "North Indian spire-shaped style"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/festivals",
+   "name": "festivals",
+   "description": "Collection of Festival instances",
+   "termCode": "heritageGraph:festivals"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://schema.org/inLanguage",
+   "name": "Source language",
+   "description": "Language of the source material",
+   "termCode": "schema1:inLanguage"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchivalRecord",
+   "name": "Archival Record",
+   "description": "Government or institutional administrative record",
+   "termCode": "heritageGraph:ArchivalRecord"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique",
+   "name": "Used technique",
+   "description": "Craft technique used in production",
+   "termCode": "crm:P33_used_specific_technique"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hasAssertion",
+   "name": "Has assertion",
+   "description": "Provenance-bearing assertion made about this entity or event.",
+   "termCode": "heritageGraph:hasAssertion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DhungeDhara",
+   "name": "Dhunge Dhara",
+   "description": "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply",
+   "termCode": "heritageGraph:DhungeDhara"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi",
+   "name": "Sana Guthi",
+   "description": "Agricultural cooperative trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/isReplacedBy",
+   "name": "isReplacedBy",
+   "termCode": "dcterms:isReplacedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/propositionLiteralValue",
+   "name": "Proposition object literal",
+   "description": "Object of the proposition when it is a literal value (e.g. a date).",
+   "termCode": "heritageGraph:propositionLiteralValue"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+   "name": "Concept",
+   "termCode": "skos:Concept"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Abhisheka",
+   "name": "Abhisheka",
+   "description": "Ritual bathing/anointing of deity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ConditionType#Damaged",
+   "name": "Damaged",
+   "description": "Partially damaged"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/initiatedTenure",
+   "name": "Initiated tenure",
+   "description": "Kumari tenure that was initiated by this selection event",
+   "termCode": "heritageGraph:initiatedTenure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda",
+   "name": "Pagoda style",
+   "description": "Multi-tiered roof style indigenous to Nepal"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost",
+   "name": "Lost",
+   "description": "Existence documented but location/remains unknown"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by",
+   "name": "Transferred to actor",
+   "description": "New custodian (person or group)",
+   "termCode": "crm:P29_custody_received_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariRetirementEvent",
+   "name": "Kumari Retirement Event",
+   "description": "Ritual or administrative event that formally ends a Living Goddess tenure, returning the person to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.",
+   "termCode": "heritageGraph:KumariRetirementEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/architecturalStructures",
+   "name": "Architectural structures",
+   "description": "Heritage structures affected by or present during this historical event",
+   "termCode": "heritageGraph:architecturalStructures"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Verification",
+   "name": "Verification",
+   "description": "Process of cross-checking heritage claims against multiple sources",
+   "termCode": "heritageGraph:Verification"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/confersRole",
+   "name": "Confers role",
+   "description": "KumariRole conferred by this selection or enthronement event.",
+   "termCode": "heritageGraph:confersRole"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/data_custodians",
+   "name": "Data custodians",
+   "description": "Collection of DataCustodian instances",
+   "termCode": "heritageGraph:data_custodians"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://w3id.org/linkml/permissible_values",
+   "name": "permissible_values",
+   "termCode": "linkml:permissible_values"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/birthTimespan",
+   "name": "Birth timespan",
+   "description": "Person's birth timespan",
+   "termCode": "heritageGraph:birthTimespan"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by",
+   "name": "Transferred from actor",
+   "description": "Previous custodian",
+   "termCode": "crm:P28_custody_surrendered_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+   "name": "Used materials",
+   "description": "Ephemeral materials consumed during the ritual (e.g., oil, rice).",
+   "termCode": "crm:P125_used_object_of_type"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P14i_performed",
+   "name": "Carried out activity",
+   "description": "Activities performed by this actor",
+   "termCode": "crm:P14i_performed"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
+   "name": "Is component of",
+   "description": "Larger structure that this element is part of",
+   "termCode": "crm:P46i_forms_part_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/data_sources",
+   "name": "Data sources",
+   "description": "Collection of DataSource instances",
+   "termCode": "heritageGraph:data_sources"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/vocab/vann/preferredNamespaceUri",
+   "name": "preferredNamespaceUri",
+   "termCode": "vann:preferredNamespaceUri"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualAssessment",
+   "name": "Ritual Assessment",
+   "description": "A performed assessment carried out during Kumari selection. Modelled as an event (not a hard criterion) so that source-specific, possibly conflicting accounts of whether/how it was conducted attach as provenanced Assertions rather than being asserted as fact.",
+   "termCode": "heritageGraph:RitualAssessment"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to",
+   "name": "Assigned to deity",
+   "description": "The deity instance that is the subject of the syncretic claim.",
+   "termCode": "crm:P140_assigned_attribute_to"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/vocab/vann/preferredNamespacePrefix",
+   "name": "preferredNamespacePrefix",
+   "termCode": "vann:preferredNamespacePrefix"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#narrowMatch",
+   "name": "narrowMatch",
+   "termCode": "skos:narrowMatch"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualEvent",
+   "name": "Ritual Event",
+   "description": "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups",
+   "termCode": "heritageGraph:RitualEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+   "name": "Destruction Event",
+   "description": "Event that destroyed or damaged a structure.",
+   "termCode": "crm:E6_Destruction"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/kumari_roles",
+   "name": "Kumari roles",
+   "description": "Collection of KumariRole instances",
+   "termCode": "heritageGraph:kumari_roles"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/consecratedByEvent",
+   "name": "Consecrated by event",
+   "description": "Consecration event that activated this murti",
+   "termCode": "heritageGraph:consecratedByEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/embodiedDeity",
+   "name": "Embodied deity",
+   "description": "Deity role embodied by participant",
+   "termCode": "heritageGraph:embodiedDeity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+   "name": "Has component",
+   "description": "Architectural elements composing structure",
+   "termCode": "crm:P46_is_composed_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/sourceUrl",
+   "name": "Source url",
+   "description": "URL or digital identifier for source",
+   "termCode": "heritageGraph:sourceUrl"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/performedByGroup",
+   "name": "Performed by group",
+   "description": "Group (Guthi, caste) responsible for ritual",
+   "termCode": "heritageGraph:performedByGroup"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/CasteGroup",
+   "name": "Caste Group",
+   "description": "Hereditary social group (Jati) with specific ritual roles and occupational duties",
+   "termCode": "heritageGraph:CasteGroup"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi",
+   "name": "Puja Guthi",
+   "description": "Daily worship trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
+   "name": "Chaitya style",
+   "description": "Buddhist votive shrine style"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/residenceStructure",
+   "name": "Residence structure",
+   "description": "Structure where a person resides during a specific period. For Living Goddess, this is typically a Kumari Ghar (god-house).",
+   "termCode": "heritageGraph:residenceStructure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/OralHistoryRecording",
+   "name": "Oral History Recording",
+   "description": "The recording or transcript of an oral history interview.",
+   "termCode": "heritageGraph:OralHistoryRecording"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#broadMatch",
+   "name": "broadMatch",
+   "termCode": "skos:broadMatch"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/FieldSurveyDataset",
+   "name": "Field Survey Dataset",
+   "description": "The structured data or report resulting from a field survey.",
+   "termCode": "heritageGraph:FieldSurveyDataset"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/iconographic_objects",
+   "name": "Iconographic objects",
+   "description": "Collection of IconographicObject instances (incl. Murti, Paubha)",
+   "termCode": "heritageGraph:iconographic_objects"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+   "name": "note",
+   "description": "Free-text note (description, reason, verification notes)",
+   "termCode": "crm:P3_has_note"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/assumesRole",
+   "name": "Assumes role",
+   "description": "KumariRole held during this tenure.",
+   "termCode": "heritageGraph:assumesRole"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/ConditionType",
+   "name": "Condition Type (concept scheme)",
+   "description": "Controlled vocabulary for the physical condition of heritage objects and structures."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#generated",
+   "name": "generated",
+   "description": "Entity generated by this activity.",
+   "termCode": "prov:generated"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/time_spans",
+   "name": "Time spans",
+   "description": "Collection of TimeSpan instances",
+   "termCode": "heritageGraph:time_spans"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasInfluencedBy",
+   "name": "Was influenced by",
+   "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+   "termCode": "prov:wasInfluencedBy"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticType#Historical",
+   "name": "Historical",
+   "description": "Gradual syncretism over time"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+   "name": "Production",
+   "description": "Event of creating an architectural structure, murti, or paubha",
+   "termCode": "crm:E12_Production"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of",
+   "name": "Occurs after",
+   "description": "Points to the prerequisite ritual.",
+   "termCode": "crm:P183i_starts_after_the_end_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Destroyed",
+   "name": "Destroyed",
+   "description": "Known to have been destroyed; no physical remains"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/custody_events",
+   "name": "Custody events",
+   "description": "Collection of TransferOfCustody event instances",
+   "termCode": "heritageGraph:custody_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ThirtyTwoPerfectionsCriterion",
+   "name": "Thirty Two Perfections Criterion",
+   "description": "Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).",
+   "termCode": "heritageGraph:ThirtyTwoPerfectionsCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/isAboutDeity",
+   "name": "Is about deity",
+   "description": "Deity represented and ritually associated with the Murti",
+   "termCode": "heritageGraph:isAboutDeity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of",
+   "name": "Member of group",
+   "description": "Groups this person belongs to",
+   "termCode": "crm:P107i_is_current_or_former_member_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/traditionalRole",
+   "name": "Traditional role",
+   "description": "Hereditary occupation or ritual duty",
+   "termCode": "heritageGraph:traditionalRole"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type",
+   "name": "Has type",
+   "description": "Generic CRM typing property (P2 has type). Canonical holder of the CRM predicate; use the specific typing slots below in data.",
+   "termCode": "crm:P2_has_type"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/physical_heritage_things",
+   "name": "Physical heritage things",
+   "description": "Collection of all physical heritage objects",
+   "termCode": "heritageGraph:physical_heritage_things"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+   "name": "Documentation Activity",
+   "description": "Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity.",
+   "termCode": "heritageGraph:DocumentationActivity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#Entity",
+   "name": "Entity",
+   "description": "Direct LinkML representation of prov:Entity. Applied to physical, digital, conceptual, and assertion-bearing things that participate in provenance relations. PROVENANCE SCOPE (design decision): for classes whose instances are real-world referents (structures, deities, places, actors), the provenance slots (was_derived_from, was_attributed_to, was_generated_by, generated_at_time) describe the DATA RECORD about the referent, not the referent itself -- a stupa is not generated by the survey that re",
+   "termCode": "prov:Entity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja",
+   "name": "Naimittika Puja",
+   "description": "Occasional/Festival worship"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/lunarDateTithi",
+   "name": "Lunar date tithi",
+   "description": "Lunar day (Tithi) for ritual timing",
+   "termCode": "heritageGraph:lunarDateTithi"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SelectionCriterion",
+   "name": "Selection Criterion",
+   "description": "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.",
+   "termCode": "heritageGraph:SelectionCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+   "name": "Physical Heritage Thing",
+   "description": "Union of the tangible heritage classes: architectural structures, iconographic objects, and standalone architectural elements. Used as the range of slots that apply to any physical heritage thing (production, custody, condition assessment).",
+   "termCode": "heritageGraph:PhysicalHeritageThing"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ritual_assessments",
+   "name": "Ritual assessments",
+   "description": "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances",
+   "termCode": "heritageGraph:ritual_assessments"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ConditionType",
+   "name": "Condition Type",
+   "description": "Controlled vocabulary for the physical condition of heritage objects and structures.",
+   "termCode": "heritageGraph:ConditionType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+   "name": "Ritual on structure",
+   "description": "Ritual occurs at specific temple or monument",
+   "termCode": "crm:P8_took_place_on_or_within"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/dataset_name",
+   "name": "Dataset name",
+   "description": "Human-readable name of the dataset.",
+   "termCode": "heritageGraph:dataset_name"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Homa",
+   "name": "Homa",
+   "description": "Fire offering ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/existenceStatus",
+   "name": "has existence status",
+   "description": "Current physical status of the structure",
+   "termCode": "heritageGraph:existenceStatus"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/isInvokedInRitual",
+   "name": "Is invoked in ritual",
+   "description": "Rituals where this deity is invoked",
+   "termCode": "heritageGraph:isInvokedInRitual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RestHouse",
+   "name": "Rest House",
+   "description": "Community structures for travelers and pilgrims, maintained by Guthi organizations",
+   "termCode": "heritageGraph:RestHouse"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/routePlaces",
+   "name": "Route places",
+   "description": "Ordered list of places visited during movement ritual",
+   "termCode": "heritageGraph:routePlaces"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/design_note",
+   "name": "design note",
+   "description": "Editorial note recording a modelling decision about a term.",
+   "termCode": "heritageGraph:design_note"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#generatedAtTime",
+   "name": "Generated at time",
+   "description": "Time at which this entity was generated (ISO 8601).",
+   "termCode": "prov:generatedAtTime"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja",
+   "name": "Kamya Puja",
+   "description": "Desire-based optional worship"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariLifecycleEvent",
+   "name": "Kumari Lifecycle Event",
+   "description": "Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Each concrete subclass requires exactly one tenure edge via slot_usage: initiated_tenure (selection), ended_tenure_of (retirement), or bounds_tenure itself (enthronement).",
+   "termCode": "heritageGraph:KumariLifecycleEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/makesDeityPresent",
+   "name": "Makes deity present",
+   "description": "Deity made present through consecration",
+   "termCode": "heritageGraph:makesDeityPresent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/prov_alignment_note",
+   "name": "prov alignment note",
+   "description": "Editorial note explaining the status of a class's PROV-O alignment.",
+   "termCode": "heritageGraph:prov_alignment_note"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/syncreticType",
+   "name": "has syncretic type",
+   "description": "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity).",
+   "termCode": "heritageGraph:syncreticType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#actedOnBehalfOf",
+   "name": "Acted on behalf of",
+   "description": "Agent on whose behalf this agent acted.",
+   "termCode": "prov:actedOnBehalfOf"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/selectedPerson",
+   "name": "Selected person",
+   "description": "Person selected through a ritual selection process to assume a sacred role or office",
+   "termCode": "heritageGraph:selectedPerson"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Murti",
+   "name": "Murti",
+   "description": "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)",
+   "termCode": "heritageGraph:Murti"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/WaterStructure",
+   "name": "Water Structure",
+   "description": "Engineered water supply systems with ritual and civic significance",
+   "termCode": "heritageGraph:WaterStructure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi",
+   "name": "Si Guthi",
+   "description": "Funeral trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#exactMatch",
+   "name": "exactMatch",
+   "termCode": "skos:exactMatch"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual",
+   "name": "Deinstallation Ritual",
+   "description": "De-installation/conclusion ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hasCriterion",
+   "name": "Has criterion",
+   "description": "Eligibility criterion applied in this selection.",
+   "termCode": "heritageGraph:hasCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/epochDateGregorian",
+   "name": "Epoch date gregorian",
+   "description": "The start date of this calendar era in Gregorian ISO format.",
+   "termCode": "heritageGraph:epochDateGregorian"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/confidenceScore",
+   "name": "Confidence score",
+   "description": "Reliability score for assertion (0.0-1.0)",
+   "termCode": "heritageGraph:confidenceScore"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
+   "name": "Stupa style",
+   "description": "Buddhist dome-shaped reliquary"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/enshrinement_events",
+   "name": "Enshrinement events",
+   "description": "Collection of Enshrinement event instances",
+   "termCode": "heritageGraph:enshrinement_events"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hasArchitecturalStyle",
+   "name": "Has architectural style",
+   "description": "Architectural style classification",
+   "termCode": "heritageGraph:hasArchitecturalStyle"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ReligiousStructure",
+   "name": "Religious Structure",
+   "description": "Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).",
+   "termCode": "heritageGraph:ReligiousStructure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/supportedByInstitution",
+   "name": "Supported by institution",
+   "description": "Institution(s) providing economic support (stipend, land endowment) or ritual support (priest salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support.",
+   "termCode": "heritageGraph:supportedByInstitution"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+   "name": "Has current location",
+   "description": "Current location of object or structure",
+   "termCode": "crm:P55_has_current_location"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2004/02/skos/core#relatedMatch",
+   "name": "relatedMatch",
+   "termCode": "skos:relatedMatch"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of",
+   "name": "Transferred object",
+   "description": "Object transferred in custody event",
+   "termCode": "crm:P30_transferred_custody_of"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#used",
+   "name": "used",
+   "description": "Entity used by this activity.",
+   "termCode": "prov:used"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/generated_date",
+   "name": "Generated date",
+   "description": "Date the dataset serialization was generated (ISO 8601).",
+   "termCode": "heritageGraph:generated_date"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/provenance_scope",
+   "name": "provenance scope",
+   "description": "States whether a class's provenance slots describe the data record or the real-world referent.",
+   "termCode": "heritageGraph:provenance_scope"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision",
+   "name": "Date Precision",
+   "description": "Controlled vocabulary for the temporal precision of recorded heritage dates.",
+   "termCode": "heritageGraph:DatePrecision"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Sattal",
+   "name": "Sattal",
+   "description": "Multi-story rest house (3-5 floors) with ritual and social functions",
+   "termCode": "heritageGraph:Sattal"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi",
+   "name": "Nasha Guthi",
+   "description": "Music and dance trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Enshrinement",
+   "name": "Enshrinement",
+   "description": "Event of installing a deity's murti or symbol within a temple sanctum",
+   "termCode": "heritageGraph:Enshrinement"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/license",
+   "name": "license",
+   "termCode": "dcterms:license"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/AgeCriterion",
+   "name": "Age Criterion",
+   "description": "Candidate must be within the prescribed pre-pubescent age range.",
+   "termCode": "heritageGraph:AgeCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision#Decade",
+   "name": "Decade",
+   "description": "Within 10-year range"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual",
+   "name": "Installation Ritual",
+   "description": "Installation/enshrinement ritual"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/documents",
+   "name": "documents",
+   "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
+   "termCode": "heritageGraph:documents"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/dc/terms/modified",
+   "name": "modified",
+   "termCode": "dcterms:modified"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure",
+   "name": "Technique",
+   "description": "Method or craft process used in production or ritual",
+   "termCode": "crm:E29_Design_or_Procedure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/verificationMethod",
+   "name": "Verification method",
+   "description": "Method used for verification (cross-check, expert review, field visit)",
+   "termCode": "heritageGraph:verificationMethod"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/crminf_pattern",
+   "name": "crminf pattern",
+   "description": "Editorial note naming the CRMinf pattern that a class instantiates.",
+   "termCode": "heritageGraph:crminf_pattern"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Stupa",
+   "name": "Stupa",
+   "description": "Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath, Swayambhunath).",
+   "termCode": "heritageGraph:Stupa"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement",
+   "name": "Processional Movement",
+   "description": "General ritual movement between locations"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/prov_alignment",
+   "name": "prov alignment",
+   "description": "Editorial note naming the PROV-O term that a slot is aligned with.",
+   "termCode": "heritageGraph:prov_alignment"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle",
+   "name": "Architectural Style (concept scheme)",
+   "description": "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Pati",
+   "name": "Pati",
+   "description": "Open-air pavilion for resting travelers",
+   "termCode": "heritageGraph:Pati"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/CalendarSystem",
+   "name": "Calendar System",
+   "description": "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning",
+   "termCode": "heritageGraph:CalendarSystem"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/InformationObject",
+   "name": "Information Object",
+   "description": "A recorded piece of information about heritage",
+   "termCode": "heritageGraph:InformationObject"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/curator",
+   "name": "curator",
+   "description": "Person or organization curating the dataset.",
+   "termCode": "heritageGraph:curator"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/condition_states",
+   "name": "Condition states",
+   "description": "Collection of ConditionState instances",
+   "termCode": "heritageGraph:condition_states"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ritualType",
+   "name": "has ritual type",
+   "description": "Classification of ritual (puja, jatra, consecration)",
+   "termCode": "heritageGraph:ritualType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome",
+   "name": "Dome style",
+   "description": "Dome-based style (Mughal/Neo-classical influence)"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/DatePrecision#Century",
+   "name": "Century",
+   "description": "Within century range"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object",
+   "name": "Consecrated object",
+   "description": "Murti employed in (and transformed by) the consecration ritual",
+   "termCode": "crm:P16_used_specific_object"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/human_made_objects",
+   "name": "Human made objects",
+   "description": "Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)",
+   "termCode": "heritageGraph:human_made_objects"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/KumariRole",
+   "name": "Kumari Role",
+   "description": "The role/office of Kumari (living-goddess embodiment) that a person assumes for the duration of a KumariTenure. The role is the type; the tenure is the time-bounded holding of it; the person is the holder.",
+   "termCode": "heritageGraph:KumariRole"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/custodianType",
+   "name": "Custodian type",
+   "description": "Type of custodian (government, academic, community), free text",
+   "termCode": "heritageGraph:custodianType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+   "name": "Carried out by",
+   "description": "Actor(s) who performed this event",
+   "termCode": "crm:P14_carried_out_by"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/isEnshrinedThroughEvent",
+   "name": "Is enshrined through event",
+   "description": "Events where this deity was enshrined",
+   "termCode": "heritageGraph:isEnshrinedThroughEvent"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/extensions/crminf/J4_that",
+   "name": "Asserts proposition",
+   "description": "Machine-readable proposition(s) this assertion holds to be true (CRMinf J4 that). Complements the free-text assertion_content.",
+   "termCode": "crminf:J4_that"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P129_is_about",
+   "name": "Is about",
+   "description": "Heritage entity or event described by this information object.",
+   "termCode": "crm:P129_is_about"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/propositions",
+   "name": "propositions",
+   "description": "Collection of Proposition instances referenced by assertions",
+   "termCode": "heritageGraph:propositions"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/boundsTenure",
+   "name": "Bounds tenure",
+   "description": "The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement).",
+   "termCode": "heritageGraph:boundsTenure"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession",
+   "name": "Chariot Procession",
+   "description": "Ritual chariot pulling"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/AssertionSubject",
+   "name": "Assertion Subject",
+   "description": "Any HeritageGraph entity or event that may be the subject of an assertion.",
+   "termCode": "heritageGraph:AssertionSubject"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi",
+   "name": "Jatra Guthi",
+   "description": "Festival organization trust"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant",
+   "name": "Partially Extant",
+   "description": "Fragments or ruins remain"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/documentation_activities",
+   "name": "Documentation activities",
+   "description": "Collection of DocumentationActivity instances",
+   "termCode": "heritageGraph:documentation_activities"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/materials",
+   "name": "materials",
+   "description": "Collection of Material instances",
+   "termCode": "heritageGraph:materials"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+   "name": "Place coordinates",
+   "description": "Coordinates as WKT literal",
+   "termCode": "geo:asWKT"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/syncretic_relationships",
+   "name": "Syncretic relationships",
+   "description": "Collection of SyncreticRelationship instances",
+   "termCode": "heritageGraph:syncretic_relationships"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/propositionObjectEntity",
+   "name": "Proposition object entity",
+   "description": "Object of the proposition when it is a heritage entity (plays the role of rdf:object).",
+   "termCode": "heritageGraph:propositionObjectEntity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end",
+   "name": "Date latest",
+   "description": "Latest possible date (for uncertain dates)",
+   "termCode": "crm:P82b_end_of_the_end"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/Deity",
+   "name": "Deity",
+   "description": "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences.",
+   "termCode": "heritageGraph:Deity"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/metadata",
+   "name": "has metadata",
+   "description": "Dataset metadata",
+   "termCode": "heritageGraph:metadata"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/ns/prov#wasRevisionOf",
+   "name": "Supersedes assertion",
+   "description": "Previous assertion that this one revises (version chain A1->A2->A3). Uses prov:wasRevisionOf (a derivation between entities); the latest assertion is the one with no incoming wasRevisionOf. NOTE: prov:invalidated was incorrect here (it is an Activity->Entity relation, not Entity->Entity).",
+   "termCode": "prov:wasRevisionOf"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticType#Fusion",
+   "name": "Fusion",
+   "description": "Intrinsically syncretic deity merging multiple traditions"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://purl.org/ontology/bibo/doi",
+   "name": "doi",
+   "termCode": "bibo:doi"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#RelicTour",
+   "name": "Relic Tour",
+   "description": "Procession with sacred relics between sites"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/hypothesizedLocation",
+   "name": "Hypothesized location",
+   "description": "Possible locations if the structure is lost",
+   "termCode": "heritageGraph:hypothesizedLocation"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/selectionCriteriaMet",
+   "name": "obsolete selection criteria met",
+   "description": "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility.",
+   "termCode": "heritageGraph:selectionCriteriaMet"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/RitualType#Circumambulation",
+   "name": "Circumambulation",
+   "description": "Ritual circular movement around sacred site"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/assessesCandidate",
+   "name": "Assesses candidate",
+   "description": "Candidate being assessed.",
+   "termCode": "heritageGraph:assessesCandidate"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/calendar_systems",
+   "name": "Calendar systems",
+   "description": "Collection of CalendarSystem instances",
+   "termCode": "heritageGraph:calendar_systems"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/dataQualityNote",
+   "name": "Data quality note",
+   "description": "Notes on data quality, completeness, or uncertainty",
+   "termCode": "heritageGraph:dataQualityNote"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence",
+   "name": "Equivalence",
+   "description": "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/resourceType",
+   "name": "Datacite resource type",
+   "description": "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)",
+   "termCode": "heritageGraph:resourceType"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ArchitecturalElement",
+   "name": "Architectural Element",
+   "description": "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)",
+   "termCode": "heritageGraph:ArchitecturalElement"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant",
+   "name": "Extant",
+   "description": "Currently exists in physical form"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://cair-nepal.org/heritagegraph/LineageCriterion",
+   "name": "Lineage Criterion",
+   "description": "Candidate must belong to an eligible lineage (Shakya / Vajracharya Newar Buddhist family).",
+   "termCode": "heritageGraph:LineageCriterion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+   "name": "label",
+   "termCode": "rdfs:label"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2002/07/owl#deprecated",
+   "name": "deprecated",
+   "termCode": "owl:deprecated"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2002/07/owl#priorVersion",
+   "name": "priorVersion",
+   "termCode": "owl:priorVersion"
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "http://www.w3.org/2002/07/owl#versionInfo",
+   "name": "versionInfo",
+   "termCode": "owl:versionInfo"
+  }
+ ]
+}</script></head>
 <body>
-<div class="container">
-<div class="head">
-<div style="float:right">language <a href="index-en.html"><b>en</b></a> </div>
-<h1>HeritageGraph Ontology</h1>
-<h2>Version 1.0.1</h2>
+<a class="skip" href="#main">Skip to content</a>
+<div id="a11y-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
+<header class="mobilebar">
+  <button class="textbtn" data-action="menu" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="mobilebar-title" href="index.html">HeritageGraph Ontology</a>
+  <button class="textbtn" data-action="search">Search</button>
+</header>
 
-<dl>
-<dt>Modified on: 2026-10-22</dt>
-<dt>This version:</dt>
-<dd><a href="https://cair-nepal.org/heritagegraph/ontology/1.0.1">https://cair-nepal.org/heritagegraph/ontology/1.0.1</a></dd>
-<dt>Previous version:</dt>
-<dd><a href="https://cair-nepal.org/heritagegraph/ontology/1.0.0">https://cair-nepal.org/heritagegraph/ontology/1.0.0</a></dd>
-<dt>Revision:</dt>
-<dd>1.0.1</dd>
-<dt>Issued on:</dt>
-<dd>2026-10-17</dd>
-<dt>Authors:</dt>
-<dd>Niraj Karki</dd><dd>Nabin Oli</dd><dd>Anu Sapkota</dd><dd>Semih Yumusak</dd><dd>Tek Raj Chhetri</dd>
+<div class="layout">
+  <aside class="toc" id="sidebar">
+<div class="toc-inner">
+  <a class="toc-title" href="index.html">HeritageGraph Ontology</a>
+<div class="toc-version">Version 1.0.1</div>
+  <button class="toc-search" data-action="search" aria-label="Search">
+    <span>Search…</span><span class="toc-key">/</span>
+  </button>
 
-<dt>Publisher:</dt>
-<dd>CAIR-Nepal</dd>
-<dt>Source:</dt>
-<dd><a href="https://github.com/CAIRNepal/heritagegraphontology">https://github.com/CAIRNepal/heritagegraphontology</a></dd>
+  <nav aria-label="Contents">
+    <ol class="toc-list">
+      <li>
+        <a href="#introduction" data-section="introduction"><span class="secno">1</span><span class="toc-label">Introduction</span></a>
+      </li>
+      <li>
+        <a href="#description" data-section="description"><span class="secno">2</span><span class="toc-label">Description</span></a>
+      </li>
+      <li>
+        <a href="#overview" data-section="overview"><span class="secno">3</span><span class="toc-label">Overview</span></a>
+      </li>
+      <li>
+        <a href="graph.html#graph" data-section="graph"><span class="secno">4</span><span class="toc-label">Visualization</span></a>
+      </li>
+      <li>
+        <a href="#namespaces" data-section="namespaces"><span class="secno">5</span><span class="toc-label">Namespaces</span></a>
+      </li>
+      <li>
+        <a href="classes.html#classes" data-section="classes"><span class="secno">6</span><span class="toc-label">Terms</span></a>
+        <ol>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="classes.html#classes" data-section="classes"><span class="secno">6.1</span><span class="toc-label">Classes</span><span class="toc-count">84</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><details><summary><a href="classes.html#Activity" class="ref" title="prov:Activity">Activity</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#E14_Condition_Assessment" class="ref" title="crm:E14_Condition_Assessment">Condition Assessment</a></span></li><li><span class="leaf"><a href="classes.html#Consecration" class="ref" title="heritageGraph:Consecration">Consecration</a></span></li><li><details><summary><a href="classes.html#DocumentationActivity" class="ref" title="heritageGraph:DocumentationActivity">Documentation Activity</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#FieldSurveyActivity" class="ref" title="heritageGraph:FieldSurveyActivity">Field Survey Activity</a></span></li><li><span class="leaf"><a href="classes.html#OralHistoryInterview" class="ref" title="heritageGraph:OralHistoryInterview">Oral History Interview</a></span></li><li><span class="leaf"><a href="classes.html#Verification" class="ref" title="heritageGraph:Verification">Verification</a></span></li></ul></details></li><li><span class="leaf"><a href="classes.html#Enshrinement" class="ref" title="heritageGraph:Enshrinement">Enshrinement</a></span></li><li><span class="leaf"><a href="classes.html#HistoricalEvent" class="ref" title="heritageGraph:HistoricalEvent">Historical Event</a></span></li><li><span class="leaf"><a href="classes.html#E12_Production" class="ref" title="crm:E12_Production">Production</a></span></li><li><details><summary><a href="classes.html#RitualEvent" class="ref" title="heritageGraph:RitualEvent">Ritual Event</a></summary><ul class="tree"><li><details><summary><a href="classes.html#Festival" class="ref" title="heritageGraph:Festival">Festival</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#ChariotFestival" class="ref" title="heritageGraph:ChariotFestival">Chariot Festival</a></span></li><li><span class="leaf"><a href="classes.html#MaskedDance" class="ref" title="heritageGraph:MaskedDance">Masked Dance</a></span></li></ul></details></li><li><details><summary><a href="classes.html#KumariLifecycleEvent" class="ref" title="heritageGraph:KumariLifecycleEvent">Kumari Lifecycle Event</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#KumariEnthronementEvent" class="ref" title="heritageGraph:KumariEnthronementEvent">Kumari Enthronement Event</a></span></li><li><span class="leaf"><a href="classes.html#KumariRetirementEvent" class="ref" title="heritageGraph:KumariRetirementEvent">Kumari Retirement Event</a></span></li><li><span class="leaf"><a href="classes.html#KumariSelectionEvent" class="ref" title="heritageGraph:KumariSelectionEvent">Kumari Selection Event</a></span></li></ul></details></li><li><details><summary><a href="classes.html#RitualAssessment" class="ref" title="heritageGraph:RitualAssessment">Ritual Assessment</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#FearlessnessAssessment" class="ref" title="heritageGraph:FearlessnessAssessment">Fearlessness Assessment</a></span></li></ul></details></li></ul></details></li><li><span class="leaf"><a href="classes.html#SyncreticRelationship" class="ref" title="heritageGraph:SyncreticRelationship">Syncretic Relationship</a></span></li><li><span class="leaf"><a href="classes.html#E10_Transfer_of_Custody" class="ref" title="crm:E10_Transfer_of_Custody">Transfer Of Custody</a></span></li></ul></details></li><li><details><summary><a href="classes.html#Agent" class="ref" title="prov:Agent">Agent</a></summary><ul class="tree"><li><details><summary><a href="classes.html#E39_Actor" class="ref" title="crm:E39_Actor">Actor</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#CasteGroup" class="ref" title="heritageGraph:CasteGroup">Caste Group</a></span></li><li><span class="leaf"><a href="classes.html#DataCustodian" class="ref" title="heritageGraph:DataCustodian">Data Custodian</a></span></li><li><span class="leaf"><a href="classes.html#Guthi" class="ref" title="heritageGraph:Guthi">Guthi</a></span></li><li><span class="leaf"><a href="classes.html#E21_Person" class="ref" title="crm:E21_Person">Person</a></span></li></ul></details></li></ul></details></li><li><span class="leaf"><a href="classes.html#ArchitecturalStyle" class="ref" title="heritageGraph:ArchitecturalStyle">Architectural Style</a></span></li><li><span class="leaf"><a href="classes.html#AssertionSubject" class="ref" title="heritageGraph:AssertionSubject">Assertion Subject</a></span></li><li><span class="leaf"><a href="classes.html#Concept" class="ref" title="skos:Concept">Concept</a></span></li><li><span class="leaf"><a href="classes.html#ConceptScheme" class="ref" title="skos:ConceptScheme">ConceptScheme</a></span></li><li><span class="leaf"><a href="classes.html#ConditionType-2" class="ref" title="heritageGraph:ConditionType">Condition Type</a></span></li><li><span class="leaf"><a href="classes.html#DatePrecision-2" class="ref" title="heritageGraph:DatePrecision">Date Precision</a></span></li><li><span class="leaf"><a href="classes.html#E6_Destruction" class="ref" title="crm:E6_Destruction">Destruction Event</a></span></li><li><details><summary><a href="classes.html#Entity" class="ref" title="prov:Entity">Entity</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#ArchitecturalElement" class="ref" title="heritageGraph:ArchitecturalElement">Architectural Element</a></span></li><li><span class="leaf"><a href="classes.html#I2_Belief" class="ref" title="crminf:I2_Belief">Assertion</a></span></li><li><span class="leaf"><a href="classes.html#CalendarSystem" class="ref" title="heritageGraph:CalendarSystem">Calendar System</a></span></li><li><span class="leaf"><a href="classes.html#E3_Condition_State" class="ref" title="crm:E3_Condition_State">Condition State</a></span></li><li><span class="leaf"><a href="classes.html#Container" class="ref" title="heritageGraph:Container">Container</a></span></li><li><details><summary><a href="classes.html#DataSource" class="ref" title="heritageGraph:DataSource">Data Source</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#ArchivalRecord" class="ref" title="heritageGraph:ArchivalRecord">Archival Record</a></span></li><li><span class="leaf"><a href="classes.html#FieldSurveyDataset" class="ref" title="heritageGraph:FieldSurveyDataset">Field Survey Dataset</a></span></li><li><span class="leaf"><a href="classes.html#InformationObject" class="ref" title="heritageGraph:InformationObject">Information Object</a></span></li><li><span class="leaf"><a href="classes.html#OralHistoryRecording" class="ref" title="heritageGraph:OralHistoryRecording">Oral History Recording</a></span></li></ul></details></li><li><span class="leaf"><a href="classes.html#Deity" class="ref" title="heritageGraph:Deity">Deity</a></span></li><li><details><summary><a href="classes.html#E22_Human-Made_Object" class="ref" title="crm:E22_Human-Made_Object">Human Made Object</a></summary><ul class="tree"><li><details><summary><a href="classes.html#ArchitecturalStructure" class="ref" title="heritageGraph:ArchitecturalStructure">Architectural Structure</a></summary><ul class="tree"><li><details><summary><a href="classes.html#ReligiousStructure" class="ref" title="heritageGraph:ReligiousStructure">Religious Structure</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#Chaitya" class="ref" title="heritageGraph:Chaitya">Chaitya</a></span></li><li><span class="leaf"><a href="classes.html#KumariHouse" class="ref" title="heritageGraph:KumariHouse">Kumari House</a></span></li><li><span class="leaf"><a href="classes.html#Stupa-2" class="ref" title="heritageGraph:Stupa">Stupa</a></span></li><li><span class="leaf"><a href="classes.html#Temple" class="ref" title="heritageGraph:Temple">Temple</a></span></li></ul></details></li><li><details><summary><a href="classes.html#RestHouse" class="ref" title="heritageGraph:RestHouse">Rest House</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#Dharmashala" class="ref" title="heritageGraph:Dharmashala">Dharmashala</a></span></li><li><span class="leaf"><a href="classes.html#Pati" class="ref" title="heritageGraph:Pati">Pati</a></span></li><li><span class="leaf"><a href="classes.html#Sattal" class="ref" title="heritageGraph:Sattal">Sattal</a></span></li></ul></details></li><li><details><summary><a href="classes.html#WaterStructure" class="ref" title="heritageGraph:WaterStructure">Water Structure</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#DhungeDhara" class="ref" title="heritageGraph:DhungeDhara">Dhunge Dhara</a></span></li><li><span class="leaf"><a href="classes.html#Pokhari" class="ref" title="heritageGraph:Pokhari">Pokhari</a></span></li></ul></details></li></ul></details></li><li><details><summary><a href="classes.html#IconographicObject" class="ref" title="heritageGraph:IconographicObject">Iconographic Object</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#Murti" class="ref" title="heritageGraph:Murti">Murti</a></span></li><li><span class="leaf"><a href="classes.html#Paubha" class="ref" title="heritageGraph:Paubha">Paubha</a></span></li></ul></details></li></ul></details></li><li><span class="leaf"><a href="classes.html#KumariRole" class="ref" title="heritageGraph:KumariRole">Kumari Role</a></span></li><li><span class="leaf"><a href="classes.html#KumariTenure" class="ref" title="heritageGraph:KumariTenure">Kumari Tenure</a></span></li><li><span class="leaf"><a href="classes.html#E57_Material" class="ref" title="crm:E57_Material">Material</a></span></li><li><span class="leaf"><a href="classes.html#Metadata" class="ref" title="heritageGraph:Metadata">Metadata</a></span></li><li><span class="leaf"><a href="classes.html#PhysicalHeritageThing" class="ref" title="heritageGraph:PhysicalHeritageThing">Physical Heritage Thing</a></span></li><li><span class="leaf"><a href="classes.html#E53_Place" class="ref" title="crm:E53_Place">Place</a></span></li><li><span class="leaf"><a href="classes.html#Proposition" class="ref" title="heritageGraph:Proposition">Proposition</a></span></li><li><span class="leaf"><a href="classes.html#ReligiousTradition" class="ref" title="heritageGraph:ReligiousTradition">Religious Tradition</a></span></li><li><details><summary><a href="classes.html#SelectionCriterion" class="ref" title="heritageGraph:SelectionCriterion">Selection Criterion</a></summary><ul class="tree"><li><span class="leaf"><a href="classes.html#AgeCriterion" class="ref" title="heritageGraph:AgeCriterion">Age Criterion</a></span></li><li><span class="leaf"><a href="classes.html#HoroscopeCompatibilityCriterion" class="ref" title="heritageGraph:HoroscopeCompatibilityCriterion">Horoscope Compatibility Criterion</a></span></li><li><span class="leaf"><a href="classes.html#LineageCriterion" class="ref" title="heritageGraph:LineageCriterion">Lineage Criterion</a></span></li><li><span class="leaf"><a href="classes.html#PhysicalIntegrityCriterion" class="ref" title="heritageGraph:PhysicalIntegrityCriterion">Physical Integrity Criterion</a></span></li><li><span class="leaf"><a href="classes.html#ThirtyTwoPerfectionsCriterion" class="ref" title="heritageGraph:ThirtyTwoPerfectionsCriterion">Thirty Two Perfections Criterion</a></span></li></ul></details></li><li><span class="leaf"><a href="classes.html#E29_Design_or_Procedure" class="ref" title="crm:E29_Design_or_Procedure">Technique</a></span></li><li><span class="leaf"><a href="classes.html#E52_Time-Span" class="ref" title="crm:E52_Time-Span">Time Span</a></span></li></ul></details></li><li><span class="leaf"><a href="classes.html#ExistenceStatus" class="ref" title="heritageGraph:ExistenceStatus">Existence Status</a></span></li><li><span class="leaf"><a href="classes.html#GuthiType-2" class="ref" title="heritageGraph:GuthiType">Guthi Type</a></span></li><li><span class="leaf"><a href="classes.html#RitualType-2" class="ref" title="heritageGraph:RitualType">Ritual Type</a></span></li><li><span class="leaf"><a href="classes.html#SyncreticType" class="ref" title="heritageGraph:SyncreticType">Syncretic Type</a></span></li></ul></div>
+            </details>
+          </li>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="object-properties.html#object-properties" data-section="object-properties"><span class="secno">6.2</span><span class="toc-label">Object properties</span><span class="toc-count">149</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><span class="leaf"><a href="object-properties.html#actedOnBehalfOf" class="ref" title="prov:actedOnBehalfOf">Acted on behalf of</a></span></li><li><span class="leaf"><a href="object-properties.html#actors" class="ref" title="heritageGraph:actors">actors</a></span></li><li><span class="leaf"><a href="object-properties.html#architectural_elements" class="ref" title="heritageGraph:architectural_elements">Architectural elements</a></span></li><li><span class="leaf"><a href="object-properties.html#assertions" class="ref" title="heritageGraph:assertions">assertions</a></span></li><li><span class="leaf"><a href="object-properties.html#assertsAbout" class="ref" title="heritageGraph:assertsAbout">Asserts about</a></span></li><li><span class="leaf"><a href="object-properties.html#J4_that" class="ref" title="crminf:J4_that">Asserts proposition</a></span></li><li><span class="leaf"><a href="object-properties.html#P35_has_identified" class="ref" title="crm:P35_has_identified">Assessed condition state</a></span></li><li><span class="leaf"><a href="object-properties.html#P34_concerned" class="ref" title="crm:P34_concerned">Assessed object</a></span></li><li><span class="leaf"><a href="object-properties.html#assessesCandidate" class="ref" title="heritageGraph:assessesCandidate">Assesses candidate</a></span></li><li><span class="leaf"><a href="object-properties.html#P141_assigned" class="ref" title="crm:P141_assigned">Assigned equivalent</a></span></li><li><span class="leaf"><a href="object-properties.html#P140_assigned_attribute_to" class="ref" title="crm:P140_assigned_attribute_to">Assigned to deity</a></span></li><li><span class="leaf"><a href="object-properties.html#assumesRole" class="ref" title="heritageGraph:assumesRole">Assumes role</a></span></li><li><details><summary><a href="object-properties.html#boundsTenure" class="ref" title="heritageGraph:boundsTenure">Bounds tenure</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#endedTenureOf" class="ref" title="heritageGraph:endedTenureOf">Ended tenure of</a></span></li><li><span class="leaf"><a href="object-properties.html#initiatedTenure" class="ref" title="heritageGraph:initiatedTenure">Initiated tenure</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#calendar_systems" class="ref" title="heritageGraph:calendar_systems">Calendar systems</a></span></li><li><details><summary><a href="object-properties.html#P14i_performed" class="ref" title="crm:P14i_performed">Carried out activity</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#performsRitual" class="ref" title="heritageGraph:performsRitual">Performs ritual</a></span></li></ul></details></li><li><details><summary><a href="object-properties.html#P14_carried_out_by" class="ref" title="crm:P14_carried_out_by">Carried out by</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#performedByGroup" class="ref" title="heritageGraph:performedByGroup">Performed by group</a></span></li><li><span class="leaf"><a href="object-properties.html#verifiedByExpert" class="ref" title="heritageGraph:verifiedByExpert">Verified by expert</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#caste_groups" class="ref" title="heritageGraph:caste_groups">Caste groups</a></span></li><li><span class="leaf"><a href="object-properties.html#commissionedBy" class="ref" title="heritageGraph:commissionedBy">Commissioned by</a></span></li><li><span class="leaf"><a href="object-properties.html#condition_assessments" class="ref" title="heritageGraph:condition_assessments">Condition assessments</a></span></li><li><span class="leaf"><a href="object-properties.html#condition_states" class="ref" title="heritageGraph:condition_states">Condition states</a></span></li><li><span class="leaf"><a href="object-properties.html#confersRole" class="ref" title="heritageGraph:confersRole">Confers role</a></span></li><li><span class="leaf"><a href="object-properties.html#consecratedByEvent" class="ref" title="heritageGraph:consecratedByEvent">Consecrated by event</a></span></li><li><span class="leaf"><a href="object-properties.html#P16_used_specific_object" class="ref" title="crm:P16_used_specific_object">Consecrated object</a></span></li><li><span class="leaf"><a href="object-properties.html#consecration_events" class="ref" title="heritageGraph:consecration_events">Consecration events</a></span></li><li><span class="leaf"><a href="object-properties.html#P53i_is_former_or_current_location_of" class="ref" title="crm:P53i_is_former_or_current_location_of">Contains structure</a></span></li><li><span class="leaf"><a href="object-properties.html#custody_events" class="ref" title="heritageGraph:custody_events">Custody events</a></span></li><li><span class="leaf"><a href="object-properties.html#data_custodians" class="ref" title="heritageGraph:data_custodians">Data custodians</a></span></li><li><span class="leaf"><a href="object-properties.html#data_sources" class="ref" title="heritageGraph:data_sources">Data sources</a></span></li><li><span class="leaf"><a href="object-properties.html#sourceCreator" class="ref" title="heritageGraph:sourceCreator">Datacite creator</a></span></li><li><span class="leaf"><a href="object-properties.html#sourcePublisher" class="ref" title="heritageGraph:sourcePublisher">Datacite publisher</a></span></li><li><span class="leaf"><a href="object-properties.html#deities" class="ref" title="heritageGraph:deities">deities</a></span></li><li><details><summary><a href="object-properties.html#P62_depicts" class="ref" title="crm:P62_depicts">Depicts deity</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#isAboutDeity" class="ref" title="heritageGraph:isAboutDeity">Is about deity</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#documentation_activities" class="ref" title="heritageGraph:documentation_activities">Documentation activities</a></span></li><li><span class="leaf"><a href="object-properties.html#mentionedInSource" class="ref" title="heritageGraph:mentionedInSource">Documented in source</a></span></li><li><span class="leaf"><a href="object-properties.html#documents" class="ref" title="heritageGraph:documents">documents</a></span></li><li><span class="leaf"><a href="object-properties.html#embodiedDeity" class="ref" title="heritageGraph:embodiedDeity">Embodied deity</a></span></li><li><span class="leaf"><a href="object-properties.html#endPlace" class="ref" title="heritageGraph:endPlace">End place</a></span></li><li><span class="leaf"><a href="object-properties.html#enshrinement_events" class="ref" title="heritageGraph:enshrinement_events">Enshrinement events</a></span></li><li><span class="leaf"><a href="object-properties.html#enshrinesDeityThroughEvent" class="ref" title="heritageGraph:enshrinesDeityThroughEvent">Enshrines deity through event</a></span></li><li><span class="leaf"><a href="object-properties.html#enthronedPerson" class="ref" title="heritageGraph:enthronedPerson">Enthroned person</a></span></li><li><span class="leaf"><a href="object-properties.html#enthronedThrough" class="ref" title="heritageGraph:enthronedThrough">Enthroned through</a></span></li><li><span class="leaf"><a href="object-properties.html#festivals" class="ref" title="heritageGraph:festivals">festivals</a></span></li><li><span class="leaf"><a href="object-properties.html#generated" class="ref" title="prov:generated">generated</a></span></li><li><span class="leaf"><a href="object-properties.html#guthis" class="ref" title="heritageGraph:guthis">guthis</a></span></li><li><span class="leaf"><a href="object-properties.html#hadParticipant" class="ref" title="heritageGraph:hadParticipant">Had participant</a></span></li><li><span class="leaf"><a href="object-properties.html#hasAssertion" class="ref" title="heritageGraph:hasAssertion">Has assertion</a></span></li><li><span class="leaf"><a href="object-properties.html#calendarSystem" class="ref" title="heritageGraph:calendarSystem">has calendar system</a></span></li><li><span class="leaf"><a href="object-properties.html#P46_is_composed_of" class="ref" title="crm:P46_is_composed_of">Has component</a></span></li><li><span class="leaf"><a href="object-properties.html#P34i_was_assessed_by" class="ref" title="crm:P34i_was_assessed_by">Has condition assessment</a></span></li><li><span class="leaf"><a href="object-properties.html#hasCriterion" class="ref" title="heritageGraph:hasCriterion">Has criterion</a></span></li><li><span class="leaf"><a href="object-properties.html#P55_has_current_location" class="ref" title="crm:P55_has_current_location">Has current location</a></span></li><li><span class="leaf"><a href="object-properties.html#P30i_custody_transferred_through" class="ref" title="crm:P30i_custody_transferred_through">Has custody event</a></span></li><li><span class="leaf"><a href="object-properties.html#datePrecision" class="ref" title="heritageGraph:datePrecision">has date precision</a></span></li><li><span class="leaf"><a href="object-properties.html#destructionEvent" class="ref" title="heritageGraph:destructionEvent">has destruction event</a></span></li><li><span class="leaf"><a href="object-properties.html#existenceStatus" class="ref" title="heritageGraph:existenceStatus">has existence status</a></span></li><li><span class="leaf"><a href="object-properties.html#P107_has_current_or_former_member" class="ref" title="crm:P107_has_current_or_former_member">Has membership</a></span></li><li><span class="leaf"><a href="object-properties.html#metadata-2" class="ref" title="heritageGraph:metadata">has metadata</a></span></li><li><details><summary><a href="object-properties.html#P4_has_time-span" class="ref" title="crm:P4_has_time-span">Has timespan</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#birthTimespan" class="ref" title="heritageGraph:birthTimespan">Birth timespan</a></span></li><li><span class="leaf"><a href="object-properties.html#deathTimespan" class="ref" title="heritageGraph:deathTimespan">Death timespan</a></span></li><li><span class="leaf"><a href="object-properties.html#publicationTimespan" class="ref" title="heritageGraph:publicationTimespan">Publication timespan</a></span></li></ul></details></li><li><details><summary><a href="object-properties.html#P2_has_type" class="ref" title="crm:P2_has_type">Has type</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#hasArchitecturalStyle" class="ref" title="heritageGraph:hasArchitecturalStyle">Has architectural style</a></span></li><li><span class="leaf"><a href="object-properties.html#hasConditionType" class="ref" title="heritageGraph:hasConditionType">Has condition type</a></span></li><li><span class="leaf"><a href="object-properties.html#guthiType" class="ref" title="heritageGraph:guthiType">has guthi type</a></span></li><li><span class="leaf"><a href="object-properties.html#hasReligiousTradition" class="ref" title="heritageGraph:hasReligiousTradition">Has religious tradition</a></span></li><li><span class="leaf"><a href="object-properties.html#ritualType" class="ref" title="heritageGraph:ritualType">has ritual type</a></span></li><li><span class="leaf"><a href="object-properties.html#syncreticType" class="ref" title="heritageGraph:syncreticType">has syncretic type</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#historical_events" class="ref" title="heritageGraph:historical_events">Historical events</a></span></li><li><span class="leaf"><a href="object-properties.html#P50i_is_current_keeper_of" class="ref" title="crm:P50i_is_current_keeper_of">Holds custody of</a></span></li><li><span class="leaf"><a href="object-properties.html#human_made_objects" class="ref" title="heritageGraph:human_made_objects">Human made objects</a></span></li><li><span class="leaf"><a href="object-properties.html#hypothesizedLocation" class="ref" title="heritageGraph:hypothesizedLocation">Hypothesized location</a></span></li><li><span class="leaf"><a href="object-properties.html#iconographic_objects" class="ref" title="heritageGraph:iconographic_objects">Iconographic objects</a></span></li><li><span class="leaf"><a href="object-properties.html#P9_consists_of" class="ref" title="crm:P9_consists_of">Includes ritual event</a></span></li><li><span class="leaf"><a href="object-properties.html#information_objects" class="ref" title="heritageGraph:information_objects">Information objects</a></span></li><li><span class="leaf"><a href="object-properties.html#P129_is_about" class="ref" title="crm:P129_is_about">Is about</a></span></li><li><span class="leaf"><a href="object-properties.html#P46i_forms_part_of" class="ref" title="crm:P46i_forms_part_of">Is component of</a></span></li><li><span class="leaf"><a href="object-properties.html#P62i_is_depicted_by" class="ref" title="crm:P62i_is_depicted_by">Is depicted in</a></span></li><li><span class="leaf"><a href="object-properties.html#isEnshrinedThroughEvent" class="ref" title="heritageGraph:isEnshrinedThroughEvent">Is enshrined through event</a></span></li><li><span class="leaf"><a href="object-properties.html#P9i_forms_part_of" class="ref" title="crm:P9i_forms_part_of">Is part of festival</a></span></li><li><span class="leaf"><a href="object-properties.html#isPrimaryForTradition" class="ref" title="heritageGraph:isPrimaryForTradition">Is primary for tradition</a></span></li><li><span class="leaf"><a href="object-properties.html#kumari_lifecycle_events" class="ref" title="heritageGraph:kumari_lifecycle_events">Kumari lifecycle events</a></span></li><li><span class="leaf"><a href="object-properties.html#kumari_roles" class="ref" title="heritageGraph:kumari_roles">Kumari roles</a></span></li><li><span class="leaf"><a href="object-properties.html#kumari_tenures" class="ref" title="heritageGraph:kumari_tenures">Kumari tenures</a></span></li><li><span class="leaf"><a href="object-properties.html#makesDeityPresent" class="ref" title="heritageGraph:makesDeityPresent">Makes deity present</a></span></li><li><span class="leaf"><a href="object-properties.html#managedByGuthi" class="ref" title="heritageGraph:managedByGuthi">Managed by guthi</a></span></li><li><span class="leaf"><a href="object-properties.html#materials" class="ref" title="heritageGraph:materials">materials</a></span></li><li><span class="leaf"><a href="object-properties.html#P107i_is_current_or_former_member_of" class="ref" title="crm:P107i_is_current_or_former_member_of">Member of group</a></span></li><li><details><summary><a href="object-properties.html#P12_occurred_in_the_presence_of" class="ref" title="crm:P12_occurred_in_the_presence_of">Occurred in presence of</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#architecturalStructures" class="ref" title="heritageGraph:architecturalStructures">Architectural structures</a></span></li><li><span class="leaf"><a href="object-properties.html#enshrinedDeity" class="ref" title="heritageGraph:enshrinedDeity">Enshrined deity</a></span></li><li><span class="leaf"><a href="object-properties.html#invokesDeity" class="ref" title="heritageGraph:invokesDeity">Invokes deity</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#P183i_starts_after_the_end_of" class="ref" title="crm:P183i_starts_after_the_end_of">Occurs after</a></span></li><li><span class="leaf"><a href="object-properties.html#P183_ends_before_the_start_of" class="ref" title="crm:P183_ends_before_the_start_of">Occurs before</a></span></li><li><span class="leaf"><a href="object-properties.html#partOfSelection" class="ref" title="heritageGraph:partOfSelection">Part of selection</a></span></li><li><span class="leaf"><a href="object-properties.html#persons" class="ref" title="heritageGraph:persons">persons</a></span></li><li><span class="leaf"><a href="object-properties.html#physical_heritage_things" class="ref" title="heritageGraph:physical_heritage_things">Physical heritage things</a></span></li><li><span class="leaf"><a href="object-properties.html#places" class="ref" title="heritageGraph:places">places</a></span></li><li><span class="leaf"><a href="object-properties.html#P108_has_produced" class="ref" title="crm:P108_has_produced">Produced object</a></span></li><li><span class="leaf"><a href="object-properties.html#production_events" class="ref" title="heritageGraph:production_events">Production events</a></span></li><li><span class="leaf"><a href="object-properties.html#propositionObjectEntity" class="ref" title="heritageGraph:propositionObjectEntity">Proposition object entity</a></span></li><li><span class="leaf"><a href="object-properties.html#propositionSubject" class="ref" title="heritageGraph:propositionSubject">Proposition subject</a></span></li><li><span class="leaf"><a href="object-properties.html#propositions" class="ref" title="heritageGraph:propositions">propositions</a></span></li><li><span class="leaf"><a href="object-properties.html#religious_traditions" class="ref" title="heritageGraph:religious_traditions">Religious traditions</a></span></li><li><span class="leaf"><a href="object-properties.html#residenceStructure" class="ref" title="heritageGraph:residenceStructure">Residence structure</a></span></li><li><span class="leaf"><a href="object-properties.html#retiredThrough" class="ref" title="heritageGraph:retiredThrough">Retired through</a></span></li><li><span class="leaf"><a href="object-properties.html#ritual_assessments" class="ref" title="heritageGraph:ritual_assessments">Ritual assessments</a></span></li><li><span class="leaf"><a href="object-properties.html#ritual_events" class="ref" title="heritageGraph:ritual_events">Ritual events</a></span></li><li><details><summary><a href="object-properties.html#P8_took_place_on_or_within" class="ref" title="crm:P8_took_place_on_or_within">Ritual on structure</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#enshrinedInStructure" class="ref" title="heritageGraph:enshrinedInStructure">Enshrined in structure</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#roleDeity" class="ref" title="heritageGraph:roleDeity">Role deity</a></span></li><li><span class="leaf"><a href="object-properties.html#selectedPerson" class="ref" title="heritageGraph:selectedPerson">Selected person</a></span></li><li><span class="leaf"><a href="object-properties.html#selectedThrough" class="ref" title="heritageGraph:selectedThrough">Selected through</a></span></li><li><span class="leaf"><a href="object-properties.html#selection_criteria" class="ref" title="heritageGraph:selection_criteria">Selection criteria</a></span></li><li><span class="leaf"><a href="object-properties.html#startPlace" class="ref" title="heritageGraph:startPlace">Start place</a></span></li><li><span class="leaf"><a href="object-properties.html#structures" class="ref" title="heritageGraph:structures">structures</a></span></li><li><span class="leaf"><a href="object-properties.html#wasRevisionOf" class="ref" title="prov:wasRevisionOf">Supersedes assertion</a></span></li><li><span class="leaf"><a href="object-properties.html#supportedByInstitution" class="ref" title="heritageGraph:supportedByInstitution">Supported by institution</a></span></li><li><span class="leaf"><a href="object-properties.html#syncretic_relationships" class="ref" title="heritageGraph:syncretic_relationships">Syncretic relationships</a></span></li><li><span class="leaf"><a href="object-properties.html#techniques" class="ref" title="heritageGraph:techniques">techniques</a></span></li><li><span class="leaf"><a href="object-properties.html#time_spans" class="ref" title="heritageGraph:time_spans">Time spans</a></span></li><li><details><summary><a href="object-properties.html#P7_took_place_at" class="ref" title="crm:P7_took_place_at">Took place at</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#routePlaces" class="ref" title="heritageGraph:routePlaces">Route places</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#P28_custody_surrendered_by" class="ref" title="crm:P28_custody_surrendered_by">Transferred from actor</a></span></li><li><span class="leaf"><a href="object-properties.html#P30_transferred_custody_of" class="ref" title="crm:P30_transferred_custody_of">Transferred object</a></span></li><li><details><summary><a href="object-properties.html#P29_custody_received_by" class="ref" title="crm:P29_custody_received_by">Transferred to actor</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#transferredToGuthi" class="ref" title="heritageGraph:transferredToGuthi">Transferred to guthi</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#used" class="ref" title="prov:used">used</a></span></li><li><span class="leaf"><a href="object-properties.html#usedBy" class="ref" title="heritageGraph:usedBy">Used by</a></span></li><li><span class="leaf"><a href="object-properties.html#P125_used_object_of_type" class="ref" title="crm:P125_used_object_of_type">Used materials</a></span></li><li><span class="leaf"><a href="object-properties.html#P33_used_specific_technique" class="ref" title="crm:P33_used_specific_technique">Used technique</a></span></li><li><span class="leaf"><a href="object-properties.html#verifiedAssertion" class="ref" title="heritageGraph:verifiedAssertion">Verified assertion</a></span></li><li><span class="leaf"><a href="object-properties.html#wasAssociatedWith" class="ref" title="prov:wasAssociatedWith">Was associated with</a></span></li><li><span class="leaf"><a href="object-properties.html#wasAttributedTo" class="ref" title="prov:wasAttributedTo">Was attributed to</a></span></li><li><span class="leaf"><a href="object-properties.html#wasDerivedFrom" class="ref" title="prov:wasDerivedFrom">Was derived from</a></span></li><li><span class="leaf"><a href="object-properties.html#wasGeneratedBy" class="ref" title="prov:wasGeneratedBy">Was generated by</a></span></li><li><details><summary><a href="object-properties.html#wasInfluencedBy" class="ref" title="prov:wasInfluencedBy">Was influenced by</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#documentedBy" class="ref" title="heritageGraph:documentedBy">Was documented by</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#wasInformedBy" class="ref" title="prov:wasInformedBy">Was informed by</a></span></li><li><details><summary><a href="object-properties.html#P12i_was_present_at" class="ref" title="crm:P12i_was_present_at">Was present at</a></summary><ul class="tree"><li><span class="leaf"><a href="object-properties.html#isInvokedInRitual" class="ref" title="heritageGraph:isInvokedInRitual">Is invoked in ritual</a></span></li><li><span class="leaf"><a href="object-properties.html#participatesInRitual" class="ref" title="heritageGraph:participatesInRitual">Participates in ritual</a></span></li></ul></details></li><li><span class="leaf"><a href="object-properties.html#P108i_was_produced_by" class="ref" title="crm:P108i_was_produced_by">Was produced by event</a></span></li></ul></div>
+            </details>
+          </li>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="datatype-properties.html#datatype-properties" data-section="datatype-properties"><span class="secno">6.3</span><span class="toc-label">Datatype properties</span><span class="toc-count">42</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><span class="leaf"><a href="datatype-properties.html#value" class="ref" title="prov:value">Assertion content</a></span></li><li><span class="leaf"><a href="datatype-properties.html#confidenceScore" class="ref" title="heritageGraph:confidenceScore">Confidence score</a></span></li><li><span class="leaf"><a href="datatype-properties.html#curator" class="ref" title="heritageGraph:curator">curator</a></span></li><li><span class="leaf"><a href="datatype-properties.html#custodianType" class="ref" title="heritageGraph:custodianType">Custodian type</a></span></li><li><span class="leaf"><a href="datatype-properties.html#dataQualityNote" class="ref" title="heritageGraph:dataQualityNote">Data quality note</a></span></li><li><span class="leaf"><a href="datatype-properties.html#persistentIdentifier" class="ref" title="heritageGraph:persistentIdentifier">Datacite identifier</a></span></li><li><span class="leaf"><a href="datatype-properties.html#identifierScheme" class="ref" title="heritageGraph:identifierScheme">Datacite identifier type</a></span></li><li><span class="leaf"><a href="datatype-properties.html#resourceType" class="ref" title="heritageGraph:resourceType">Datacite resource type</a></span></li><li><span class="leaf"><a href="datatype-properties.html#dataset_name" class="ref" title="heritageGraph:dataset_name">Dataset name</a></span></li><li><span class="leaf"><a href="datatype-properties.html#dataset_version" class="ref" title="heritageGraph:dataset_version">Dataset version</a></span></li><li><span class="leaf"><a href="datatype-properties.html#P82a_begin_of_the_begin" class="ref" title="crm:P82a_begin_of_the_begin">Date earliest</a></span></li><li><span class="leaf"><a href="datatype-properties.html#P82b_end_of_the_end" class="ref" title="crm:P82b_end_of_the_end">Date latest</a></span></li><li><span class="leaf"><a href="datatype-properties.html#endedAtTime" class="ref" title="prov:endedAtTime">Ended at time</a></span></li><li><span class="leaf"><a href="datatype-properties.html#epochDateGregorian" class="ref" title="heritageGraph:epochDateGregorian">Epoch date gregorian</a></span></li><li><span class="leaf"><a href="datatype-properties.html#expertiseArea" class="ref" title="heritageGraph:expertiseArea">Expertise area</a></span></li><li><span class="leaf"><a href="datatype-properties.html#generatedAtTime" class="ref" title="prov:generatedAtTime">Generated at time</a></span></li><li><span class="leaf"><a href="datatype-properties.html#generated_date" class="ref" title="heritageGraph:generated_date">Generated date</a></span></li><li><span class="leaf"><a href="datatype-properties.html#identifier" class="ref" title="dcterms:identifier">ID</a></span></li><li><span class="leaf"><a href="datatype-properties.html#institutionalAffiliation" class="ref" title="heritageGraph:institutionalAffiliation">Institutional affiliation</a></span></li><li><span class="leaf"><a href="datatype-properties.html#isCriticalForFestival" class="ref" title="heritageGraph:isCriticalForFestival">Is critical for festival</a></span></li><li><span class="leaf"><a href="datatype-properties.html#lastKnownExistenceDate" class="ref" title="heritageGraph:lastKnownExistenceDate">Last known existence date</a></span></li><li><span class="leaf"><a href="datatype-properties.html#license" class="ref" title="heritageGraph:license">license</a></span></li><li><span class="leaf"><a href="datatype-properties.html#lunarDateTithi" class="ref" title="heritageGraph:lunarDateTithi">Lunar date tithi</a></span></li><li><details><summary><a href="datatype-properties.html#P3_has_note" class="ref" title="crm:P3_has_note">note</a></summary><ul class="tree"><li><span class="leaf"><a href="datatype-properties.html#sourceCitation" class="ref" title="heritageGraph:sourceCitation">Source citation</a></span></li></ul></details></li><li><span class="leaf"><a href="datatype-properties.html#selectionCriteriaMet" class="ref" title="heritageGraph:selectionCriteriaMet">obsolete selection criteria met</a></span></li><li><span class="leaf"><a href="datatype-properties.html#asWKT" class="ref" title="geo:asWKT">Place coordinates</a></span></li><li><span class="leaf"><a href="datatype-properties.html#placeType" class="ref" title="heritageGraph:placeType">Place type</a></span></li><li><span class="leaf"><a href="datatype-properties.html#propositionLiteralValue" class="ref" title="heritageGraph:propositionLiteralValue">Proposition object literal</a></span></li><li><span class="leaf"><a href="datatype-properties.html#propositionPredicate" class="ref" title="heritageGraph:propositionPredicate">Proposition predicate</a></span></li><li><span class="leaf"><a href="datatype-properties.html#reconciliationStatus" class="ref" title="heritageGraph:reconciliationStatus">Reconciliation status</a></span></li><li><span class="leaf"><a href="datatype-properties.html#recurrencePattern" class="ref" title="heritageGraph:recurrencePattern">Recurrence pattern</a></span></li><li><span class="leaf"><a href="datatype-properties.html#routeDescription" class="ref" title="heritageGraph:routeDescription">Route description</a></span></li><li><span class="leaf"><a href="datatype-properties.html#schema_version" class="ref" title="heritageGraph:schema_version">Schema version</a></span></li><li><span class="leaf"><a href="datatype-properties.html#inLanguage" class="ref" title="schema1:inLanguage">Source language</a></span></li><li><span class="leaf"><a href="datatype-properties.html#sourceUrl" class="ref" title="heritageGraph:sourceUrl">Source url</a></span></li><li><span class="leaf"><a href="datatype-properties.html#startedAtTime" class="ref" title="prov:startedAtTime">Started at time</a></span></li><li><span class="leaf"><a href="datatype-properties.html#traditionalRole" class="ref" title="heritageGraph:traditionalRole">Traditional role</a></span></li><li><span class="leaf"><a href="datatype-properties.html#usedEquipment" class="ref" title="heritageGraph:usedEquipment">Used equipment</a></span></li><li><span class="leaf"><a href="datatype-properties.html#usedMethod" class="ref" title="heritageGraph:usedMethod">Used method</a></span></li><li><span class="leaf"><a href="datatype-properties.html#verificationMethod" class="ref" title="heritageGraph:verificationMethod">Verification method</a></span></li><li><span class="leaf"><a href="datatype-properties.html#yearOffsetFromGregorian" class="ref" title="heritageGraph:yearOffsetFromGregorian">Year offset from gregorian</a></span></li></ul></div>
+            </details>
+          </li>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="annotation-properties.html#annotation-properties" data-section="annotation-properties"><span class="secno">6.4</span><span class="toc-label">Annotation properties</span><span class="toc-count">37</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><span class="leaf"><a href="annotation-properties.html#altLabel" class="ref" title="skos:altLabel">altLabel</a></span></li><li><span class="leaf"><a href="annotation-properties.html#bibliographicCitation" class="ref" title="dcterms:bibliographicCitation">bibliographicCitation</a></span></li><li><span class="leaf"><a href="annotation-properties.html#broadMatch" class="ref" title="skos:broadMatch">broadMatch</a></span></li><li><span class="leaf"><a href="annotation-properties.html#closeMatch" class="ref" title="skos:closeMatch">closeMatch</a></span></li><li><span class="leaf"><a href="annotation-properties.html#created" class="ref" title="dcterms:created">created</a></span></li><li><span class="leaf"><a href="annotation-properties.html#creator" class="ref" title="dcterms:creator">creator</a></span></li><li><span class="leaf"><a href="annotation-properties.html#crminf_pattern" class="ref" title="heritageGraph:crminf_pattern">crminf pattern</a></span></li><li><span class="leaf"><a href="annotation-properties.html#date" class="ref" title="dcterms:date">date</a></span></li><li><span class="leaf"><a href="annotation-properties.html#definition" class="ref" title="skos:definition">definition</a></span></li><li><span class="leaf"><a href="annotation-properties.html#deprecated" class="ref" title="owl:deprecated">deprecated</a></span></li><li><span class="leaf"><a href="annotation-properties.html#description" class="ref" title="dcterms:description">description</a></span></li><li><span class="leaf"><a href="annotation-properties.html#design_note" class="ref" title="heritageGraph:design_note">design note</a></span></li><li><span class="leaf"><a href="annotation-properties.html#doi" class="ref" title="bibo:doi">doi</a></span></li><li><span class="leaf"><a href="annotation-properties.html#exactMatch" class="ref" title="skos:exactMatch">exactMatch</a></span></li><li><span class="leaf"><a href="annotation-properties.html#inScheme" class="ref" title="skos:inScheme">inScheme</a></span></li><li><span class="leaf"><a href="annotation-properties.html#isReplacedBy" class="ref" title="dcterms:isReplacedBy">isReplacedBy</a></span></li><li><span class="leaf"><a href="annotation-properties.html#issued" class="ref" title="dcterms:issued">issued</a></span></li><li><span class="leaf"><a href="annotation-properties.html#label" class="ref" title="rdfs:label">label</a></span></li><li><span class="leaf"><a href="annotation-properties.html#license-2" class="ref" title="dcterms:license">license</a></span></li><li><span class="leaf"><a href="annotation-properties.html#modified" class="ref" title="dcterms:modified">modified</a></span></li><li><span class="leaf"><a href="annotation-properties.html#narrowMatch" class="ref" title="skos:narrowMatch">narrowMatch</a></span></li><li><span class="leaf"><a href="annotation-properties.html#permissible_values" class="ref" title="linkml:permissible_values">permissible_values</a></span></li><li><span class="leaf"><a href="annotation-properties.html#preferredNamespacePrefix" class="ref" title="vann:preferredNamespacePrefix">preferredNamespacePrefix</a></span></li><li><span class="leaf"><a href="annotation-properties.html#preferredNamespaceUri" class="ref" title="vann:preferredNamespaceUri">preferredNamespaceUri</a></span></li><li><span class="leaf"><a href="annotation-properties.html#prefLabel" class="ref" title="skos:prefLabel">prefLabel</a></span></li><li><span class="leaf"><a href="annotation-properties.html#priorVersion" class="ref" title="owl:priorVersion">priorVersion</a></span></li><li><span class="leaf"><a href="annotation-properties.html#prov_alignment" class="ref" title="heritageGraph:prov_alignment">prov alignment</a></span></li><li><span class="leaf"><a href="annotation-properties.html#prov_alignment_note" class="ref" title="heritageGraph:prov_alignment_note">prov alignment note</a></span></li><li><span class="leaf"><a href="annotation-properties.html#provenance_scope" class="ref" title="heritageGraph:provenance_scope">provenance scope</a></span></li><li><span class="leaf"><a href="annotation-properties.html#publisher" class="ref" title="dcterms:publisher">publisher</a></span></li><li><span class="leaf"><a href="annotation-properties.html#relatedMatch" class="ref" title="skos:relatedMatch">relatedMatch</a></span></li><li><span class="leaf"><a href="annotation-properties.html#scopeNote" class="ref" title="skos:scopeNote">scopeNote</a></span></li><li><span class="leaf"><a href="annotation-properties.html#source" class="ref" title="dcterms:source">source</a></span></li><li><span class="leaf"><a href="annotation-properties.html#status" class="ref" title="bibo:status">status</a></span></li><li><span class="leaf"><a href="annotation-properties.html#title" class="ref" title="dcterms:title">title</a></span></li><li><span class="leaf"><a href="annotation-properties.html#version" class="ref" title="pav:version">version</a></span></li><li><span class="leaf"><a href="annotation-properties.html#versionInfo" class="ref" title="owl:versionInfo">versionInfo</a></span></li></ul></div>
+            </details>
+          </li>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="concept-schemes.html#concept-schemes" data-section="concept-schemes"><span class="secno">6.5</span><span class="toc-label">Concept schemes</span><span class="toc-count">8</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><span class="leaf"><a href="concept-schemes.html#ArchitecturalStyle-2" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle">Architectural Style (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#ConditionType" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/ConditionType">Condition Type (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#DatePrecision" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/DatePrecision">Date Precision (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#ExistenceStatus-2" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus">Existence Status (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#GuthiType" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/GuthiType">Guthi Type (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#schema" class="ref" title="heritageGraph:schema">HeritageGraph LinkML schema</a></span></li><li><span class="leaf"><a href="concept-schemes.html#RitualType" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/RitualType">Ritual Type (concept scheme)</a></span></li><li><span class="leaf"><a href="concept-schemes.html#SyncreticType-2" class="ref" title="https://cair-nepal.org/heritagegraph/scheme/SyncreticType">Syncretic Type (concept scheme)</a></span></li></ul></div>
+            </details>
+          </li>
+          <li class="toc-kind">
+            <details>
+              <summary><a href="concepts.html#concepts" data-section="concepts"><span class="secno">6.6</span><span class="toc-label">Concepts</span><span class="toc-count">51</span></a><span class="toc-toggle" title="Expand" aria-hidden="true"></span></summary>
+              <div class="toc-tree"><ul class="tree"><li><span class="leaf"><a href="concepts.html#Abhisheka" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Abhisheka">Abhisheka</a></span></li><li><span class="leaf"><a href="concepts.html#Appropriation" class="ref" title="https://cair-nepal.org/heritagegraph/SyncreticType#Appropriation">Appropriation</a></span></li><li><span class="leaf"><a href="concepts.html#Bhajan" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Bhajan">Bhajan</a></span></li><li><span class="leaf"><a href="concepts.html#Century" class="ref" title="https://cair-nepal.org/heritagegraph/DatePrecision#Century">Century</a></span></li><li><span class="leaf"><a href="concepts.html#Chaitya-2" class="ref" title="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya">Chaitya style</a></span></li><li><span class="leaf"><a href="concepts.html#ChariotProcession" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession">Chariot Procession</a></span></li><li><span class="leaf"><a href="concepts.html#Circa" class="ref" title="https://cair-nepal.org/heritagegraph/DatePrecision#Circa">Circa</a></span></li><li><span class="leaf"><a href="concepts.html#Circumambulation" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Circumambulation">Circumambulation</a></span></li><li><span class="leaf"><a href="concepts.html#Damaged" class="ref" title="https://cair-nepal.org/heritagegraph/ConditionType#Damaged">Damaged</a></span></li><li><span class="leaf"><a href="concepts.html#Decade" class="ref" title="https://cair-nepal.org/heritagegraph/DatePrecision#Decade">Decade</a></span></li><li><span class="leaf"><a href="concepts.html#DeinstallationRitual" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual">Deinstallation Ritual</a></span></li><li><span class="leaf"><a href="concepts.html#Destroyed" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#Destroyed">Destroyed</a></span></li><li><span class="leaf"><a href="concepts.html#Dome" class="ref" title="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome">Dome style</a></span></li><li><span class="leaf"><a href="concepts.html#Equivalence" class="ref" title="https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence">Equivalence</a></span></li><li><span class="leaf"><a href="concepts.html#Exact" class="ref" title="https://cair-nepal.org/heritagegraph/DatePrecision#Exact">Exact</a></span></li><li><span class="leaf"><a href="concepts.html#Extant" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant">Extant</a></span></li><li><span class="leaf"><a href="concepts.html#Fusion" class="ref" title="https://cair-nepal.org/heritagegraph/SyncreticType#Fusion">Fusion</a></span></li><li><span class="leaf"><a href="concepts.html#Good" class="ref" title="https://cair-nepal.org/heritagegraph/ConditionType#Good">Good</a></span></li><li><span class="leaf"><a href="concepts.html#Historical" class="ref" title="https://cair-nepal.org/heritagegraph/SyncreticType#Historical">Historical</a></span></li><li><span class="leaf"><a href="concepts.html#Homa" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Homa">Homa</a></span></li><li><span class="leaf"><a href="concepts.html#Hypothetical" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#Hypothetical">Hypothetical</a></span></li><li><span class="leaf"><a href="concepts.html#InstallationRitual" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual">Installation Ritual</a></span></li><li><span class="leaf"><a href="concepts.html#Jatra" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Jatra">Jatra</a></span></li><li><span class="leaf"><a href="concepts.html#JatraGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi">Jatra Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#KamyaPuja" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja">Kamya Puja</a></span></li><li><span class="leaf"><a href="concepts.html#Lost" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost">Lost</a></span></li><li><span class="leaf"><a href="concepts.html#MaskedPerformance" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance">Masked Performance</a></span></li><li><span class="leaf"><a href="concepts.html#NaimittikaPuja" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja">Naimittika Puja</a></span></li><li><span class="leaf"><a href="concepts.html#NashaGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi">Nasha Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#NityaPuja" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#NityaPuja">Nitya Puja</a></span></li><li><span class="leaf"><a href="concepts.html#Pagoda" class="ref" title="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda">Pagoda style</a></span></li><li><span class="leaf"><a href="concepts.html#PartiallyExtant" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant">Partially Extant</a></span></li><li><span class="leaf"><a href="concepts.html#ProcessionRitual" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual">Procession Ritual</a></span></li><li><span class="leaf"><a href="concepts.html#ProcessionalMovement" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement">Processional Movement</a></span></li><li><span class="leaf"><a href="concepts.html#PujaGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi">Puja Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#RajGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi">Raj Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#RelicTour" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#RelicTour">Relic Tour</a></span></li><li><span class="leaf"><a href="concepts.html#Restored" class="ref" title="https://cair-nepal.org/heritagegraph/ConditionType#Restored">Restored</a></span></li><li><span class="leaf"><a href="concepts.html#ReturningRitual" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual">Returning Ritual</a></span></li><li><span class="leaf"><a href="concepts.html#RitualConsecration" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration">Ritual Consecration</a></span></li><li><span class="leaf"><a href="concepts.html#Ruined" class="ref" title="https://cair-nepal.org/heritagegraph/ConditionType#Ruined">Ruined</a></span></li><li><span class="leaf"><a href="concepts.html#SanGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi">San Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#SanaGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi">Sana Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#Shikhara" class="ref" title="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara">Shikhara style</a></span></li><li><span class="leaf"><a href="concepts.html#SiGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi">Si Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#Stupa" class="ref" title="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa">Stupa style</a></span></li><li><span class="leaf"><a href="concepts.html#TempleGuthi" class="ref" title="https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi">Temple Guthi</a></span></li><li><span class="leaf"><a href="concepts.html#Unknown" class="ref" title="https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown">Unknown</a></span></li><li><span class="leaf"><a href="concepts.html#Vrata" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Vrata">Vrata</a></span></li><li><span class="leaf"><a href="concepts.html#Yagna" class="ref" title="https://cair-nepal.org/heritagegraph/RitualType#Yagna">Yagna</a></span></li><li><span class="leaf"><a href="concepts.html#Year" class="ref" title="https://cair-nepal.org/heritagegraph/DatePrecision#Year">Year</a></span></li></ul></div>
+            </details>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <a href="#references" data-section="references"><span class="secno">7</span><span class="toc-label">References</span></a>
+      </li>
+      <li>
+        <a href="changelog.html#changelog" data-section="changelog"><span class="secno">8</span><span class="toc-label">Changelog</span></a>
+      </li>
+      <li>
+        <a href="quality.html#quality" data-section="quality"><span class="secno">9</span><span class="toc-label">Quality report</span></a>
+        <ol class="toc-quality">
+          <li><a href="quality.html#quality-builtin"><span class="secno">9.1</span><span class="toc-label">OntoReview checks</span><span class="toc-count">146</span></a></li>
+          <li><a href="quality.html#quality-robot"><span class="secno">9.2</span><span class="toc-label">ROBOT</span><span class="toc-count">288</span></a></li>
+          <li><a href="quality.html#quality-logical-consistency"><span class="secno">9.3</span><span class="toc-label">Logical consistency</span></a></li>
+          <li><a href="quality.html#quality-iri-checks"><span class="secno">9.4</span><span class="toc-label">IRI checks</span><span class="toc-count">3</span></a></li>
+          <li><a href="quality.html#quality-ontocheck"><span class="secno">9.5</span><span class="toc-label">OntoCheck</span><span class="toc-count">477</span></a></li>
+          <li><a href="quality.html#quality-cross-domain-interoperability"><span class="secno">9.6</span><span class="toc-label">Cross-domain interoperability</span><span class="toc-count">134</span></a></li>
+          <li><a href="quality.html#quality-scientific-interoperability"><span class="secno">9.7</span><span class="toc-label">Scientific interoperability</span><span class="toc-count" title="Not computed: needs the generality score Gen (definition generality needs a language model: pip install &#39;ontoreview[cdi]&#39;).">!</span></a></li>
+          <li><a href="quality.html#quality-oops"><span class="secno">9.8</span><span class="toc-label">OOPS!</span><span class="toc-count">196</span></a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#downloads" data-section="downloads"><span class="secno">10</span><span class="toc-label">Download</span></a>
+      </li>
+      <li>
+        <a href="#llm" data-section="llm"><span class="secno">11</span><span class="toc-label">For LLMs and agents</span></a>
+      </li>
+      <li>
+        <a href="#citation" data-section="citation"><span class="secno">12</span><span class="toc-label">How to cite</span></a>
+      </li>
+      <li>
+        <a href="#provenance" data-section="provenance"><span class="secno">13</span><span class="toc-label">Provenance</span></a>
+      </li>
+    </ol>
+  </nav>
 
-<dt>Download serialization:</dt><dd><span><a href="ontology.jsonld" target="_blank"><img src="https://img.shields.io/badge/Format-JSON_LD-blue.svg" alt="JSON-LD" /></a> </span><span><a href="ontology.owl" target="_blank"><img src="https://img.shields.io/badge/Format-RDF/XML-blue.svg" alt="RDF/XML" /></a> </span><span><a href="ontology.nt" target="_blank"><img src="https://img.shields.io/badge/Format-N_Triples-blue.svg" alt="N-Triples" /></a> </span><span><a href="ontology.ttl" target="_blank"><img src="https://img.shields.io/badge/Format-TTL-blue.svg" alt="TTL" /></a> </span></dd><dt>License:</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img src="https://img.shields.io/badge/License-CC--BY--4.0-blue.svg" alt="https://creativecommons.org/licenses/by/4.0/" /></a>
-</dd><dt>Visualization:</dt><dd><a href="webvowl/index.html#" target="_blank"><img src="https://img.shields.io/badge/Visualize_with-WebVowl-blue.svg" alt="Visualize with WebVowl" /></a></dd>
-<!-- <dt>Evaluation:</dt><dd><a href="OOPSevaluation/oopsEval.html#" target="_blank"><img src="https://img.shields.io/badge/Evaluate_with-OOPS! (OntOlogy Pitfall Scanner!)-blue.svg" alt="Evaluate with OOPS!" /></a></dd> --><dt>Cite as:</dt>
-<dd>Karki, N., Oli, N., Sapkota, A., Yumusak, S., & Chhetri, T. R. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676</dd>
-<dt>DOI:</dt>
-<dd><a href="http://dx.doi.org/10.5281/zenodo.23435676"><img src ="https://img.shields.io/badge/DOI-10.5281/zenodo.23435676-blue.svg" alt="10.5281/zenodo.23435676" /></a></dd>
-</dl>
-
-<a href="provenance/provenance-en.html" target="_blank">Provenance of this page</a><hr/>
+  <div class="toc-foot">
+    <button class="textbtn" data-action="theme" data-dark="Dark" data-light="Light" aria-pressed="false">Dark</button>
+    <button class="textbtn" data-action="textsize" aria-label="Text size" title="Text size"><span aria-hidden="true">A</span><span class="textsize-val">100%</span></button>
+  </div>
+</div>  </aside>
+  <main class="main" id="main" tabindex="-1">
+<header class="doc-header" id="top">
+  <p class="kicker">Ontology specification · Published</p>
+  <h1 class="doc-title">HeritageGraph Ontology</h1>
+<div class="lede"><p>HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities and institutions (notably the <em>Guthi</em>) that sustain them. Rather than attaching facts directly to objects, the model represents history as a web of events (production, ritual, custody transfer, documentation) so that spatial, temporal, and participatory relationships can be queried and reasoned over. Every assertion can carry its provenance and epistemic standing, allowing competing or multi-vocal sources to coexist. The ontology is generated from a LinkML schema, is an OWL 2 DL vocabulary that is logically consistent under the HermiT reasoner, and is aligned with CIDOC-CRM 7.1.3, CRMinf, CRMsci, and PROV-O, and through a companion module with Linked Art, to maximise interoperability with the wider cultural-heritage Linked Data cloud.</p>
 </div>
-<div class="status">
-<div>
-<span>Published</span>
+  <div class="doc-meta">
+    <dl class="meta-table">
+<div><dt>IRI</dt><dd><code>https://cair-nepal.org/heritagegraph/ontology</code> <button class="copy" data-copy="https://cair-nepal.org/heritagegraph/ontology">copy</button></dd></div><div><dt>Version</dt><dd>1.0.1 · <a href="https://cair-nepal.org/heritagegraph/ontology/1.0.1">https://cair-nepal.org/heritagegraph/ontology/1.0.1</a></dd></div><div><dt>Previous version</dt><dd><a href="https://cair-nepal.org/heritagegraph/ontology/1.0.0">https://cair-nepal.org/heritagegraph/ontology/1.0.0</a></dd></div><div><dt>Namespace</dt><dd><code>https://cair-nepal.org/heritagegraph/</code> &nbsp;<span class="muted">Prefix</span> <code>heritageGraph:</code></dd></div><div><dt>Authors</dt><dd><span class="agent">Anu Sapkota</span>; <span class="agent">Nabin Oli</span>; <span class="agent">Niraj Karki</span>; <span class="agent">Semih Yumusak</span>; <span class="agent">Tek Raj Chhetri</span></dd></div><div><dt>Publisher</dt><dd><span class="agent">CAIR-Nepal</span></dd></div><div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></dd></div><div><dt>Last modified</dt><dd>2026-11-22 <span class="muted">(created 2025-11-23)</span></dd></div><div><dt>DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.23435676">https://doi.org/10.5281/zenodo.23435676</a></dd></div>    </dl>
+    <aside class="doc-downloads">
+      <h2 class="label">Download</h2>
+      <ul>
+<li><a href="ontology.ttl" download="ontology.ttl">Turtle</a> <span class="muted">ttl, 178.5 KB</span></li><li><a href="ontology.owl" download="ontology.owl">RDF/XML</a> <span class="muted">owl, 444.9 KB</span></li><li><a href="ontology.jsonld" download="ontology.jsonld">JSON-LD</a> <span class="muted">jsonld, 548.8 KB</span></li><li><a href="ontology.nt" download="ontology.nt">N-Triples</a> <span class="muted">nt, 608.4 KB</span></li>      </ul>
+<p><a href="#citation">Cite →</a></p><p><a href="#llm">For LLMs and agents →</a></p>    </aside>
+  </div>
+
+  <details class="more-meta">
+    <summary>More metadata</summary>
+    <dl class="meta-table">
+<div><dt>Source</dt><dd><a href="https://github.com/CAIRNepal/heritagegraphontology">https://github.com/CAIRNepal/heritagegraphontology</a></dd></div>    </dl>
+  </details>
+</header><section class="section" id="introduction">
+  <h2><span class="secno">1</span> Introduction</h2>
+  <div class="prose"><p>Nepal's cultural heritage is overwhelmingly <em>living</em>: temples are not merely
+monuments but active ritual sites, deities are periodically re-consecrated and
+processioned, and stewardship is mediated by centuries-old socio-religious trusts
+called <em>Guthi</em>. Documenting this heritage requires more than a catalogue of
+objects — it requires modelling the <strong>events</strong>, <strong>agents</strong>, <strong>time-spans</strong>, and
+<strong>sources</strong> that give the objects their meaning, and doing so in a way that
+records <em>who said what, on what basis</em>.</p>
+<h3>Motivation</h3>
+<p>General cultural-heritage models capture objects and their attributes well, but
+they struggle with three features that are central to Nepalese living heritage:</p>
+<ol>
+<li><strong>Event-centric ritual practice</strong> — the same shrine participates in recurring
+festivals, chariot processions, masked dances, and the selection and retirement
+of living goddesses (<em>Kumari</em>); these are temporal, sequenced activities, not
+static properties.</li>
+<li><strong>Institutional stewardship</strong> — <em>Guthi</em> trusts mediate the relationship between
+temples, rituals, land, and communities and must be first-class entities.</li>
+<li><strong>Contested, multi-source knowledge</strong> — construction dates, attributions, and
+syncretic Hindu–Buddhist identities are frequently disputed across oral
+histories, archival records, and field surveys, so the model must keep
+assertion-level provenance and epistemic stance.</li>
+</ol>
+<h3>State of the art</h3>
+<p>HeritageGraph builds on, and stays interoperable with, the established standards
+of the domain: <strong>CIDOC-CRM</strong> (event-centric documentation), <strong>CRMinf</strong>
+(argumentation and belief), <strong>CRMsci</strong> (observation), and <strong>PROV-O</strong>
+(provenance). It complements CIDOC-CRM extensions such as CRMba
+and CRMsoc by adding the Nepal-specific notions of Guthi-mediated stewardship,
+ritual activation of sacred space, multi-calendar dating, and multi-source
+reconciliation.</p>
+<h3>Goals</h3>
+<p>The ontology is designed to answer concrete <strong>competency questions</strong> across four
+dimensions — <em>structural</em> (architecture, typology, location), <em>ritual/festival</em>
+(activities, sequences, materials), <em>institutional/syncretic</em> (Guthi, multi-tradition
+relationships), and <em>living-goddess</em> (Kumari selection, tenure, retirement) — while
+remaining a clean, reusable OWL vocabulary published under a permanent
+<code>https://cair-nepal.org/heritagegraph/</code> identifier.</p>
 </div>
-</div>     <div id="abstract"></div>
-<div id="toc"></div>     <div id="introduction"></div>
-	  <div id="nstable"></div>
-     <div id="overview"></div>
-     <div id="description"></div>
-     <div id="crossref"></div>
-     <div id="references"></div>
-     <div id="changelog"></div>
-<div id="acknowledgments">
-<h2 id="ack" class="list">Acknowledgments <span class="backlink"> back to <a href="#toc">ToC</a></span></h2>
-<p>
-The authors would like to thank <a href="http://www.essepuntato.it/">Silvio Peroni</a> for developing <a href="http://www.essepuntato.it/lode">LODE</a>, a Live OWL Documentation Environment, which is used for representing the Cross Referencing Section of this document and <a href="https://w3id.org/people/dgarijo">Daniel Garijo</a> for developing <a href="https://github.com/dgarijo/Widoco">Widoco</a>, the program used to create the template used in this documentation.</p>
+</section><section class="section" id="description">
+  <h2><span class="secno">2</span> Description</h2>
+  <div class="prose"><p>HeritageGraph follows an <strong>event-centric</strong> modelling pattern inherited from
+CIDOC-CRM: instead of linking attributes directly to a heritage object, the
+ontology connects objects, places, agents, and time-spans <em>through events</em>. This
+makes provenance, sequence, and participation explicit and queryable. The schema
+contains <strong>84 classes</strong> (66 newly minted plus 18 reused from CIDOC-CRM, CRMinf,
+PROV-O, and SKOS that carry local axioms), <strong>149 object properties</strong>, <strong>42
+datatype properties</strong>, and <strong>7 enumerations</strong> published as SKOS concept schemes
+(<strong>51</strong> controlled-vocabulary concepts). It is generated from a LinkML source of
+truth (<code>HeritageGraph.yaml</code>).</p>
+<h3>Core building blocks</h3>
+<ul>
+<li><strong>Physical heritage things</strong> — <code>PhysicalHeritageThing</code> (a union of
+<code>ArchitecturalStructure</code>, <code>IconographicObject</code>, and <code>ArchitecturalElement</code>)
+covers temples (<code>Temple</code>, <code>Stupa</code>, <code>Chaitya</code>, <code>ReligiousStructure</code>),
+<em>murti</em>/<em>paubha</em> icons (<code>Murti</code>, <code>Paubha</code>), water structures (<code>WaterStructure</code>,
+<code>DhungeDhara</code>, <code>Pokhari</code>), and rest houses (<code>RestHouse</code>, <code>Pati</code>, <code>Sattal</code>,
+<code>Dharmashala</code>).</li>
+<li><strong>Events</strong> — heritage change is represented through typed events:
+production (via CIDOC-CRM <code>crm:E12_Production</code>), <code>Consecration</code>, <code>Enshrinement</code>,
+custody transfer, <code>RitualEvent</code> (e.g. <code>ChariotFestival</code>, <code>MaskedDance</code>) grouped
+by <code>Festival</code>, <code>HistoricalEvent</code>, and the living-goddess lifecycle
+(<code>KumariSelectionEvent</code>, <code>KumariEnthronementEvent</code>, <code>KumariTenure</code>,
+<code>KumariRetirementEvent</code>, generalised by <code>KumariLifecycleEvent</code>).</li>
+<li><strong>Actors &amp; institutions</strong> — actors and persons (via CIDOC-CRM <code>crm:E39_Actor</code> /
+<code>crm:E21_Person</code>), <code>CasteGroup</code>, <code>DataCustodian</code>, and the institution central to
+Nepalese heritage, <code>Guthi</code> (typed by the <code>GuthiType</code> enumeration).</li>
+<li><strong>Places &amp; time</strong> — places and time-spans (via <code>crm:E53_Place</code> /
+<code>crm:E52_Time-Span</code>) and <code>CalendarSystem</code> support multi-calendar dating
+(e.g. Bikram Sambat, Nepal Sambat, Gregorian) with explicit <code>DatePrecision</code>.</li>
+<li><strong>Knowledge &amp; provenance</strong> — assertions and beliefs (aligned with CRMinf
+<code>I2_Belief</code> / <code>Proposition</code> and PROV-O), <code>DataSource</code> (<code>ArchivalRecord</code>,
+<code>OralHistoryRecording</code>, <code>FieldSurveyDataset</code>), <code>DocumentationActivity</code>,
+<code>FieldSurveyActivity</code>, and <code>Verification</code> capture <em>who asserted what, from which
+source, and with what confidence</em>, so competing sources can coexist.</li>
+<li><strong>Syncretism</strong> — <code>SyncreticRelationship</code> links <code>Deity</code> instances that bridge
+Hindu and Buddhist traditions (<code>ReligiousTradition</code>), typed by the
+<code>SyncreticType</code> enumeration — as a provenance-qualified interpretive assertion
+rather than semantic identity (<code>owl:sameAs</code>).</li>
+</ul>
+<h3>How the pieces relate</h3>
+<p>A typical pattern looks like this: an <code>ArchitecturalStructure</code> was produced by a
+production event (<code>crm:E12_Production</code>) that took place at a place
+(<code>crm:E53_Place</code>), occurred during a time-span (<code>crm:E52_Time-Span</code>), and had a
+<code>Person</code> or <code>Guthi</code> as participant. A <code>RitualEvent</code> activates the same structure
+during a <code>Festival</code>, following a canonical sequence. Each fact can be recorded as
+a source-attributed belief (CRMinf <code>I2_Belief</code>) that was derived from a
+<code>DataSource</code> and checked by a <code>Verification</code>, so contradictory claims (e.g. two
+construction dates) coexist with their evidence and epistemic standing.</p>
+<h3>Interoperability modules</h3>
+<p>The core vocabulary carries its external alignments <strong>inline</strong> (SKOS
+<code>exactMatch</code> / <code>closeMatch</code> / <code>broadMatch</code>, <code>rdfs:subClassOf</code>, and
+<code>rdfs:subPropertyOf</code>) to CIDOC-CRM, CRMinf, PROV-O, Getty AAT, schema.org,
+and Wikidata. Companion artefacts:</p>
+<ul>
+<li><code>ontology/HeritageGraph.shacl.ttl</code> — SHACL validation shapes for the core vocabulary
+(75 node shapes).</li>
+<li><code>heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl</code> — a
+bridge to Yale's LUX / Linked Art (part of the HeritageGraph–LUX migration),
+with its shapes in <code>ontology/lux/HeritageGraph-lux.shacl.ttl</code> (33 node shapes).</li>
+<li><code>examples/kathmandu-mini-abox.ttl</code> — a small worked instance dataset (the
+demonstrator ABox) that exercises every modelling pattern.</li>
+</ul>
+<h3>Quality at a glance</h3>
+<p>The ontology is logically consistent under the HermiT reasoner — <strong>0</strong>
+unsatisfiable classes, both standalone and when merged with CIDOC-CRM 7.1.3,
+CRMinf, CRMsci, and PROV-O — and answers all <strong>32/32</strong> competency questions as SPARQL queries
+over the demonstrator ABox (expected-versus-actual exact match). Its external
+alignment spans mapping axioms to <strong>11</strong> external vocabularies. See the
+<a href="https://github.com/CAIRNepal/heritagegraphontology/tree/main/evaluation">evaluation suite</a>
+for reproducible reports.</p>
+<p>The <strong>Visualization</strong> section of this documentation shows the connected class graph.</p>
+</div>
+</section><section class="section" id="overview">
+  <h2><span class="secno">3</span> Overview</h2>
+  <ul class="stats">
+    <li class="stat"><a class="stat-body" href="classes.html#classes"><span class="stat-num">84</span><span class="stat-label">Classes</span></a></li>
+    <li class="stat"><a class="stat-body" href="object-properties.html#object-properties"><span class="stat-num">149</span><span class="stat-label">Object properties</span></a></li>
+    <li class="stat"><a class="stat-body" href="datatype-properties.html#datatype-properties"><span class="stat-num">42</span><span class="stat-label">Datatype properties</span></a></li>
+    <li class="stat"><a class="stat-body" href="annotation-properties.html#annotation-properties"><span class="stat-num">37</span><span class="stat-label">Annotation properties</span></a></li>
+    <li class="stat"><a class="stat-body" href="concept-schemes.html#concept-schemes"><span class="stat-num">8</span><span class="stat-label">Concept schemes</span></a></li>
+    <li class="stat"><a class="stat-body" href="concepts.html#concepts"><span class="stat-num">51</span><span class="stat-label">Concepts</span></a></li>
+    <li class="stat stat-quality"><a class="stat-body" href="quality.html#quality"><span class="stat-num">7</span><span class="stat-label">quality checks run</span></a></li>
+  </ul>
+
+</section><section class="section" id="namespaces">
+  <h2><span class="secno">5</span> Namespaces</h2>
+  <table class="plain">
+    <thead><tr><th>Prefix</th><th>Namespace</th></tr></thead>
+    <tbody>
+<tr><td><code>aat</code></td><td><code>http://vocab.getty.edu/aat/</code></td></tr><tr><td><code>bibo</code></td><td><code>http://purl.org/ontology/bibo/</code></td></tr><tr><td><code>crm</code></td><td><code>http://www.cidoc-crm.org/cidoc-crm/</code></td></tr><tr><td><code>crminf</code></td><td><code>http://www.cidoc-crm.org/extensions/crminf/</code></td></tr><tr><td><code>crmsci</code></td><td><code>http://www.cidoc-crm.org/extensions/crmsci/</code></td></tr><tr><td><code>dbo</code></td><td><code>http://dbpedia.org/ontology/</code></td></tr><tr><td><code>dcterms</code></td><td><code>http://purl.org/dc/terms/</code></td></tr><tr><td><code>geo</code></td><td><code>http://www.opengis.net/ont/geosparql#</code></td></tr><tr><td><code>heritageGraph</code></td><td><code>https://cair-nepal.org/heritagegraph/</code></td></tr><tr><td><code>linkml</code></td><td><code>https://w3id.org/linkml/</code></td></tr><tr><td><code>owl</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr><tr><td><code>pav</code></td><td><code>http://purl.org/pav/</code></td></tr><tr><td><code>prov</code></td><td><code>http://www.w3.org/ns/prov#</code></td></tr><tr><td><code>rdf</code></td><td><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></td></tr><tr><td><code>rdfs</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr><tr><td><code>rico</code></td><td><code>https://www.ica.org/standards/RiC/ontology#</code></td></tr><tr><td><code>schema1</code></td><td><code>http://schema.org/</code></td></tr><tr><td><code>skos</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr><tr><td><code>time</code></td><td><code>http://www.w3.org/2006/time#</code></td></tr><tr><td><code>vann</code></td><td><code>http://purl.org/vocab/vann/</code></td></tr><tr><td><code>wikidata</code></td><td><code>http://www.wikidata.org/entity/</code></td></tr><tr><td><code>xsd</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>    </tbody>
+  </table>
+</section><section class="section" id="references">
+  <h2><span class="secno">7</span> References</h2>
+  <div class="prose"><ul>
+<li>Doerr, M. (2003). The CIDOC Conceptual Reference Module: An Ontological Approach to Semantic Interoperability of Metadata. <em>AI Magazine</em>, 24(3), 75–92.</li>
+<li>CIDOC CRM Special Interest Group. <em>Definition of the CIDOC Conceptual Reference Model</em>, version 7.1.3 (RDFS: &lt;a href=&quot;https://cidoc-crm.org/rdfs/7.1.3/CIDOC_CRM_v7.1.3.rdf&quot;&gt;https://cidoc-crm.org/rdfs/7.1.3/CIDOC_CRM_v7.1.3.rdf&lt;/a&gt;). &lt;a href=&quot;https://www.cidoc-crm.org/&quot;&gt;https://www.cidoc-crm.org/&lt;/a&gt;</li>
+<li>Lebo, T., Sahoo, S., &amp; McGuinness, D. (Eds.). (2013). <em>PROV-O: The PROV Ontology</em>. W3C Recommendation. &lt;a href=&quot;https://www.w3.org/TR/prov-o/&quot;&gt;https://www.w3.org/TR/prov-o/&lt;/a&gt;</li>
+<li>CIDOC CRM Special Interest Group. (2023). <em>CRMinf: The Argumentation Model. An Extension of CIDOC CRM to Support Argumentation</em>, version 1.0. &lt;a href=&quot;https://cidoc-crm.org/crminf&quot;&gt;https://cidoc-crm.org/crminf&lt;/a&gt;</li>
+<li>CIDOC CRM Special Interest Group. <em>CRMsci: The Scientific Observation Model</em>, version 2.0. &lt;a href=&quot;https://cidoc-crm.org/crmsci&quot;&gt;https://cidoc-crm.org/crmsci&lt;/a&gt;</li>
+<li>Moxon, S. A. T., Solbrig, H., Unni, D. R., Jiao, D., Bruskiewich, R., Balhoff, J. P., et al. (2021). The Linked Data Modeling Language (LinkML): A general-purpose data modeling framework grounded in machine-readable semantics. <em>Proceedings of the International Conference on Biomedical Ontologies (ICBO)</em>.</li>
+<li>Getty Research Institute. (2024). <em>Art &amp; Architecture Thesaurus (AAT) Online</em>. &lt;a href=&quot;https://www.getty.edu/research/tools/vocabularies/aat/&quot;&gt;https://www.getty.edu/research/tools/vocabularies/aat/&lt;/a&gt;</li>
+<li>Yale University. (2023). <em>LUX: Yale Collections Discovery</em> &amp; the <em>Linked Art</em> data model. &lt;a href=&quot;https://lux.collections.yale.edu/&quot;&gt;https://lux.collections.yale.edu/&lt;/a&gt; · &lt;a href=&quot;https://linked.art/&quot;&gt;https://linked.art/&lt;/a&gt;</li>
+<li>Poveda-Villalón, M., Gómez-Pérez, A., &amp; Suárez-Figueroa, M. C. (2014). OOPS! (OntOlogy Pitfall Scanner!): An On-line Tool for Ontology Evaluation. <em>International Journal on Semantic Web and Information Systems</em>, 10(2), 7–34.</li>
+<li>Chhetri, T. R. <em>OntoReview: ontology quality assessment and documentation for OWL, RDFS, SKOS, and LinkML</em>, version 1.0.0. &lt;a href=&quot;https://pypi.org/project/ontoreview/&quot;&gt;https://pypi.org/project/ontoreview/&lt;/a&gt; (used to generate this documentation).</li>
+</ul>
+</div>
+</section><section class="section" id="downloads">
+  <h2><span class="secno">10</span> Download</h2>
+  <p class="prose">Download the ontology in your preferred format:</p>
+  <table class="plain">
+    <thead><tr><th>Format</th><th>File</th><th>Media type</th><th class="num">Size</th><th></th></tr></thead>
+    <tbody>
+    <tr><td><a href="ontology.ttl" download="ontology.ttl">Turtle</a></td><td><code>ontology.ttl</code></td><td><code>text/turtle</code></td><td class="num">178.5 KB</td><td><button class="copy" data-copy-href="ontology.ttl">copy link</button></td></tr>
+    <tr><td><a href="ontology.owl" download="ontology.owl">RDF/XML</a></td><td><code>ontology.owl</code></td><td><code>application/rdf+xml</code></td><td class="num">444.9 KB</td><td><button class="copy" data-copy-href="ontology.owl">copy link</button></td></tr>
+    <tr><td><a href="ontology.jsonld" download="ontology.jsonld">JSON-LD</a></td><td><code>ontology.jsonld</code></td><td><code>application/ld+json</code></td><td class="num">548.8 KB</td><td><button class="copy" data-copy-href="ontology.jsonld">copy link</button></td></tr>
+    <tr><td><a href="ontology.nt" download="ontology.nt">N-Triples</a></td><td><code>ontology.nt</code></td><td><code>application/n-triples</code></td><td class="num">608.4 KB</td><td><button class="copy" data-copy-href="ontology.nt">copy link</button></td></tr>
+    </tbody>
+  </table>
+<p class="small muted">The ontology IRI supports content negotiation when deployed with the generated server configuration.</p></section><section class="section" id="llm">
+  <h2><span class="secno">11</span> For LLMs and agents</h2>
+  <p class="prose">Plain-text and JSON versions of this document, generated with it, for language models, agents and other tools. They contain the same terms, definitions and axioms as the pages above.</p>
+  <table class="plain">
+    <thead><tr><th>File</th><th>Purpose</th><th class="num">Size</th><th></th></tr></thead>
+    <tbody>
+    <tr><td><a href="llms.txt">llms.txt</a></td><td>Index for language models (llmstxt.org): summary and links to the Markdown pages</td><td class="num">2.7 KB</td><td><button class="copy" data-copy-href="llms.txt">copy link</button></td></tr>
+    <tr><td><a href="llms-full.txt">llms-full.txt</a></td><td>The complete documentation as a single Markdown file</td><td class="num">177.1 KB</td><td><button class="copy" data-copy-href="llms-full.txt">copy link</button></td></tr>
+    <tr><td><a href="ontology.json">ontology.json</a></td><td>Every term as JSON: IRI, CURIE, label, definition, hierarchy, domain and range</td><td class="num">135.4 KB</td><td><button class="copy" data-copy-href="ontology.json">copy link</button></td></tr>
+    </tbody>
+  </table>
+  <h3 class="subhead">Markdown pages</h3>
+  <ul class="index-cols">
+<li><a href="index.md">index.md</a> <span class="muted small">1.7 KB</span></li><li><a href="classes.md">classes.md</a> <span class="muted small">101.0 KB</span></li><li><a href="object-properties.md">object-properties.md</a> <span class="muted small">50.2 KB</span></li><li><a href="datatype-properties.md">datatype-properties.md</a> <span class="muted small">12.8 KB</span></li><li><a href="annotation-properties.md">annotation-properties.md</a> <span class="muted small">3.8 KB</span></li><li><a href="concept-schemes.md">concept-schemes.md</a> <span class="muted small">1.5 KB</span></li><li><a href="concepts.md">concepts.md</a> <span class="muted small">6.0 KB</span></li>  </ul>
+  <h3 class="subhead">Using these files with an agent</h3>
+  <div class="prose">
+    <p>Give the agent the address of llms.txt; it links to everything else. For code that needs exact identifiers, ontology.json lists every term with its IRI and relations. The instruction below can be pasted into a prompt or a system message.</p>
+  </div>
+  <pre id="llm-prompt"><code>Read https://cairnepal.github.io/heritagegraphontology/llms.txt for HeritageGraph Ontology (prefix heritageGraph:). Use only terms defined there; look up IRIs, definitions, domains and ranges in ontology.json before writing SPARQL or RDF.</code></pre>
+  <p class="small"><button class="copy" data-copy-target="llm-prompt">copy instruction</button></p>
+</section><section class="section" id="citation">
+  <h2><span class="secno">12</span> How to cite</h2>
+  <p>Please cite this ontology as:</p>
+  <blockquote class="cite" id="cite-text">Karki, N., Oli, N., Sapkota, A., Yumusak, S., &amp; Chhetri, T. R. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676</blockquote>
+  <p class="small"><button class="copy" data-copy-target="cite-text">copy</button> &middot; <a href="CITATION.cff">CITATION.cff</a></p>
+  <pre id="cite-bib"><code>@misc{heritageGraph2026,
+  title = {HeritageGraph Ontology},
+  author = {Anu Sapkota and Nabin Oli and Niraj Karki and Semih Yumusak and Tek Raj Chhetri},
+  year = {2026},
+  version = {1.0.1},
+  url = {https://cair-nepal.org/heritagegraph/ontology},
+  doi = {10.5281/zenodo.23435676},
+  publisher = {CAIR-Nepal},
+  note = {Ontology}
+}</code></pre>
+  <p class="small"><button class="copy" data-copy-target="cite-bib">copy BibTeX</button></p>
+</section><section class="section" id="provenance">
+  <h2><span class="secno">13</span> Provenance</h2>
+  <table class="rel">
+    <tbody>
+<tr><th scope="row">Authors</th><td><span class="agent">Anu Sapkota</span>; <span class="agent">Nabin Oli</span>; <span class="agent">Niraj Karki</span>; <span class="agent">Semih Yumusak</span>; <span class="agent">Tek Raj Chhetri</span></td></tr><tr><th scope="row">Created</th><td>2025-11-23</td></tr><tr><th scope="row">Published</th><td>2026-10-17</td></tr><tr><th scope="row">Last modified</th><td>2026-11-22</td></tr><tr><th scope="row">This version</th><td><a href="https://cair-nepal.org/heritagegraph/ontology/1.0.1">https://cair-nepal.org/heritagegraph/ontology/1.0.1</a></td></tr><tr><th scope="row">Previous version</th><td><a href="https://cair-nepal.org/heritagegraph/ontology/1.0.0">https://cair-nepal.org/heritagegraph/ontology/1.0.0</a></td></tr>    </tbody>
+  </table>
+
+  <h3 class="subhead" id="provenance-timeline">Timeline</h3>
+  <ol class="prov-timeline">
+    <li class="prov-ev prov-ontology">
+      <time datetime="2025-11-23">2025-11-23</time>
+      <div class="prov-what"><span class="prov-title">Ontology created</span></div>
+    </li>
+    <li class="prov-ev prov-ontology">
+      <time datetime="2026-10-17">2026-10-17</time>
+      <div class="prov-what"><span class="prov-title">Version 1.0.1 published</span></div>
+    </li>
+    <li class="prov-ev prov-ontology">
+      <time datetime="2026-11-22">2026-11-22</time>
+      <div class="prov-what"><span class="prov-title">Ontology last modified</span></div>
+    </li>
+    <li class="prov-ev prov-build">
+      <time datetime="2026-11-22T14:41:16+00:00">2026-11-22 14:41:16 UTC</time>
+      <div class="prov-what"><span class="prov-title">Documentation build started</span><span class="prov-detail">From HeritageGraph.ttl</span></div>
+    </li>
+    <li class="prov-ev prov-check">
+      <time datetime="2026-11-22T14:41:18+00:00">2026-11-22 14:41:18 UTC</time>
+      <div class="prov-what"><span class="prov-title">IRI checks run</span><span class="prov-detail">Verified against 8 reference releases</span></div>
+    </li>
+    <li class="prov-ev prov-check">
+      <time datetime="2026-11-22T14:41:33+00:00">2026-11-22 14:41:33 UTC</time>
+      <div class="prov-what"><span class="prov-title">Cross-domain interoperability run</span><span class="prov-detail">Verified against 10 reference releases</span></div>
+    </li>
+    <li class="prov-ev prov-build">
+      <time datetime="2026-11-22T14:43:59+00:00">2026-11-22 14:43:59 UTC</time>
+      <div class="prov-what"><span class="prov-title">Documentation generated</span><span class="prov-detail">OntoReview 1.0.0; checks: OntoReview checks, ROBOT, Logical consistency, IRI checks, OntoCheck, Cross-domain interoperability, OOPS!</span></div>
+    </li>
+  </ol>
+
+  <h3 class="subhead" id="provenance-build">This build</h3>
+  <table class="rel">
+    <tbody>
+<tr><th scope="row">Source file</th><td>HeritageGraph.ttl (178.7 KB)</td></tr><tr><th scope="row">SHA-256</th><td><code class="small">14a6e0ff104bcb259d881ad907c5b5aa660bb16b980fc70e12676e093418c678</code></td></tr>    <tr><th scope="row">Generated by</th><td>OntoReview 1.0.0</td></tr>
+    <tr><th scope="row">Started</th><td><time datetime="2026-11-22T14:41:16+00:00">2026-11-22 14:41:16 UTC</time></td></tr>
+    <tr><th scope="row">Finished</th><td><time datetime="2026-11-22T14:43:59+00:00">2026-11-22 14:43:59 UTC</time> <span class="muted">(163.4 s)</span></td></tr>
+<tr><th scope="row">Checks run</th><td>OntoReview checks, ROBOT, Logical consistency, IRI checks, OntoCheck, Cross-domain interoperability, OOPS!</td></tr>    </tbody>
+  </table>
+  <p class="small muted">This documentation was generated from the ontology source with OntoReview 1.0.0. Machine-readable: <a href="provenance.ttl">provenance.ttl</a> (W3C PROV-O).</p>
+</section>    <footer class="colophon">
+      Generated with <a href="https://github.com/CAIRNepal/ontoreview">OntoReview</a> 1.0.0. License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+    </footer>
+  </main>
 </div>
 
-
+<div class="search-modal" id="search-modal" hidden>
+  <div class="search-backdrop" data-action="close-search"></div>
+  <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+    <input id="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="Search classes, properties, individuals…"
+      role="combobox" aria-label="Search" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false">
+    <ul id="search-results" class="search-results" role="listbox" aria-label="Search"></ul>
+    <p id="search-count" class="sr-only" role="status" aria-live="polite"></p>
+  </div>
 </div>
+
+<script src="ontoreview-data.js?v=6b02ffaf"></script>
+<script src="assets/vendor/minisearch.min.js"></script>
+<script src="assets/ontoreview.js?v=6b02ffaf"></script>
 </body>
 </html>

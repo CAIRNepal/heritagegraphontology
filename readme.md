@@ -140,7 +140,7 @@ ontology/                     LinkML source and generated OWL, SHACL and JSON Sc
 examples/                     Demonstrator data and the 32 competency queries
 evaluation/                   Evaluation scripts and results (see evaluation/README.md)
 heritagegraph-lux-migration/  Linked Art alignment module and Yale LUX migration tooling
-docs/                         Generated documentation (WIDOCO, WebVOWL)
+docs/                         Generated documentation (OntoReview)
 deploy/nginx/                 Content-negotiation configuration for cair-nepal.org
 scripts/                      Build pipeline
 ```
@@ -155,7 +155,7 @@ pip install -r requirements.txt -r evaluation/requirements.txt
 make artefacts   # regenerate OWL, SHACL and JSON Schema from the LinkML source
 make check       # release checks: source/artefact sync, declared terms, OWL 2 DL and
                  # HermiT consistency with every example, no changes to reused vocabularies
-make docs        # regenerate the documentation (requires Docker)
+make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.0)
 ```
 
 The evaluation reported in the accompanying paper (competency questions, SHACL tests,

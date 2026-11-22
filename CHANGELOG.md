@@ -1,5 +1,19 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed (documentation generated with OntoReview)
+- The documentation site (GitHub Pages) is generated with OntoReview 1.0.0 (`ontoreview build`, configured
+  by `ontoreview.toml`) instead of WIDOCO: term pages, class graph, a quality report (HermiT consistency,
+  ROBOT, OOPS!, OntoCheck, IRI checks, cross-domain interoperability) and a changelog against the
+  previous release (from `owl:priorVersion`). The abstract, introduction, description and references are
+  kept as Markdown in `docs-src/`.
+- `scripts/build.sh` still publishes the immutable release copies (`docs/releases/<version>/`), the
+  enumeration-value pages and the JSON-LD context; OntoReview's self-hosting files (Docker, nginx, Pages
+  workflow) are left out. CI installs OntoReview in its own environment.
+- Removed the WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
+  `scripts/declutter_webvowl.py`; `make webvowl` is now `make serve`.
+
 ## [1.0.1] - 2026-10-20
 
 ### Added

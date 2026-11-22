@@ -1,20 +1,20 @@
 # HeritageGraph — top-level build targets.
 # The ontology lives in ontology/ ; generated docs live in docs/ (never hand-edit).
 
-.PHONY: help docs preview webvowl artefacts check robot conneg clean
+.PHONY: help docs preview serve artefacts check robot conneg clean
 
 help:                ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 	  awk 'BEGIN{FS=":.*?## "}{printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-docs:                ## regenerate the WIDOCO docs + WebVOWL for the core ontology into docs/
+docs:                ## regenerate the OntoReview documentation (terms, graph, quality report) into docs/
 	scripts/build.sh
 
 preview:             ## same, but into /tmp/hg-preview (leaves docs/ untouched)
 	scripts/build.sh /tmp/hg-preview
 
-webvowl: docs        ## regenerate, then serve the visualization at :8000
-	@echo "open http://localhost:8000/webvowl/" && cd docs && python3 -m http.server 8000
+serve: docs          ## regenerate, then serve the documentation at :8000
+	@echo "open http://localhost:8000/" && cd docs && python3 -m http.server 8000
 
 ROBOT_VERSION ?= 1.9.8
 ROBOT_JAR     ?= .tools/robot-$(ROBOT_VERSION).jar

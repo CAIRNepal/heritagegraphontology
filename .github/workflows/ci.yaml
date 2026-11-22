@@ -72,11 +72,12 @@ jobs:
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py
 
-      - name: Generate documentation (Widoco + WebVOWL) from the modular ontology
-        run: bash scripts/build.sh "${GITHUB_WORKSPACE}/docs"
-
-      - name: Refresh docs metadata from release TTL
-        run: python3 scripts/refresh_docs_metadata.py
+      - name: Generate documentation with OntoReview (term pages, graph, quality report, changelog)
+        run: |
+          # own environment, so OntoReview's dependencies cannot change the pinned build toolchain
+          python3 -m venv .ontoreview
+          .ontoreview/bin/pip install ontoreview==1.0.0 certifi
+          ONTOREVIEW=.ontoreview/bin/ontoreview ROBOT_JAR=.tools/robot.jar bash scripts/build.sh "${GITHUB_WORKSPACE}/docs"
 
       - name: Add .nojekyll
         run: touch docs/.nojekyll

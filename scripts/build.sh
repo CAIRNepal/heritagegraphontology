@@ -1,148 +1,90 @@
 #!/usr/bin/env bash
 #
-# build.sh — regenerate the HeritageGraph documentation + WebVOWL visualization
-# (WIDOCO) for the CORE ontology in ontology/HeritageGraph.ttl.
+# build.sh — regenerate the HeritageGraph documentation site with OntoReview
+# (https://pypi.org/project/ontoreview/) for the CORE ontology in
+# ontology/HeritageGraph.ttl, configured by ontoreview.toml.
 #
 # Run this after ANY change to the core ontology:
 #     scripts/build.sh              # writes ./docs (the published site)
 #     scripts/build.sh /tmp/preview # writes a throwaway preview, leaves docs/ alone
 #
 # What it does:
-#   1. loads ontology/HeritageGraph.ttl (the OWL release generated from the
-#      LinkML source HeritageGraph.yaml) and strips owl:imports so WIDOCO does
-#      not try to dereference CIDOC-CRM / PROV-O / EDM / etc. while documenting
-#      the local HeritageGraph terms.
-#   2. runs WIDOCO (owl2vowl runs inside the container — no local Java needed)
-#   3. publishes a single, fresh docs site (HTML + RDF serializations + WebVOWL)
+#   1. runs `ontoreview build`: term pages, class graph, quality report
+#      (HermiT consistency, ROBOT, OOPS!, OntoCheck, IRI checks, cross-domain
+#      interoperability), changelog against the previous release, and the
+#      ontology in TTL / RDF/XML / JSON-LD / N-Triples;
+#   2. publishes the site to OUT, keeping releases/ (the immutable per-version
+#      copies served at the version IRIs), and adds the enumeration-value pages
+#      and the JSON-LD @context.
 #
 # The LUX alignment (heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl) is a SEPARATE
 # module and is intentionally NOT documented here.
 #
-# Requirements: docker, python3 with rdflib (e.g. the repo venv).
+# Requirements: ontoreview (ONTOREVIEW=<path to the executable>, default `ontoreview`),
+# python3 with rdflib (e.g. the repo venv), and for the ROBOT report and HermiT
+# check either ROBOT_JAR=<robot.jar> with Java, a `robot` on PATH, or Docker.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-ONT="$ROOT/ontology"
 OUT="${1:-$ROOT/docs}"
-WIDOCO="ghcr.io/dgarijo/widoco:v1.4.23"
 PY="${PYTHON:-$ROOT/venv/bin/python}"; command -v "$PY" >/dev/null 2>&1 || PY="python3"
-BUILD="$ONT/HeritageGraph.build.ttl"   # gitignored build artifact (imports stripped)
+ONTOREVIEW="${ONTOREVIEW:-ontoreview}"
+command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install ontoreview==1.0.0, or set ONTOREVIEW)" >&2; exit 1; }
 
-echo "▶ 1/3  preparing core ontology (imports stripped) → $BUILD"
-"$PY" - "$ONT/HeritageGraph.ttl" "$BUILD" <<'PY'
-import sys
-from rdflib import Graph, OWL
-g = Graph()
-g.parse(sys.argv[1], format="turtle")
-for t in list(g.triples((None, OWL.imports, None))):
-    g.remove(t)                       # drop imports so WIDOCO documents local terms only
-g.serialize(destination=sys.argv[-1], format="turtle")
-print(f"   prepared {len(g)} triples from the core ontology")
-PY
+WORK="$(mktemp -d)"; trap 'rm -rf "$WORK" 2>/dev/null || true' EXIT
+ARGS=(--config "$ROOT/ontoreview.toml" --output "$WORK/site")
 
-# Apple Silicon: the Widoco image is amd64-only → run under emulation
-PLATFORM=""
-case "$(uname -m)" in arm64|aarch64) PLATFORM="--platform linux/amd64" ;; esac
-
-TMP="$(mktemp -d)"; WORK="$(mktemp -d)"
-# WIDOCO runs as root inside Docker; on Linux its output is root-owned, so the
-# cleanup must tolerate files the calling user cannot delete.
-trap 'rm -rf "$TMP" "$WORK" 2>/dev/null || true' EXIT
-chmod 777 "$TMP"
-
-echo "▶ 2/3  running WIDOCO (owl2vowl) on the core ontology"
-docker run --rm -u 0 $PLATFORM \
-  -v "$BUILD":/input/ontology.ttl \
-  -v "$TMP":/output \
-  "$WIDOCO" \
-  -ontFile /input/ontology.ttl \
-  -outFolder /output \
-  -lang en -rewriteAll -webVowl
-
-# Work on a copy owned by the calling user: on a Linux CI runner the files
-# WIDOCO wrote as root are readable but not writable, and the steps below patch
-# them in place (Docker Desktop on macOS maps ownership, so this never showed locally).
-cp -R "$TMP"/. "$WORK"/
-
-# Widoco may nest everything under a doc/ subfolder depending on version
-GEN="$WORK"; [ -d "$WORK/doc" ] && GEN="$WORK/doc"
-[ -f "$GEN/index-en.html" ] && mv -f "$GEN/index-en.html" "$GEN/index.html" || true
-
-# Declutter the WebVOWL graph: drop the external CIDOC-CRM/PROV alignment
-# super-properties (rdfs:subPropertyOf parents) that owl2vowl pins to a generic
-# owl:Thing node, producing a detached "star" disconnected from the real classes.
-# Only the visualization JSON is touched — ontology / RDF / HTML are unaffected.
-WEBVOWL_JSON="$GEN/webvowl/data/ontology.json"
-[ -f "$WEBVOWL_JSON" ] && "$PY" "$ROOT/scripts/declutter_webvowl.py" "$WEBVOWL_JSON"
-
-# Overlay authored narrative sections (abstract / introduction / description /
-# references) over WIDOCO's placeholders. WIDOCO regenerates sections on every
-# run (-rewriteAll), so the hand-written content is kept in docs-src/sections/
-# and re-applied here to survive rebuilds.
-SECT_SRC="$ROOT/docs-src/sections"
-if [ -d "$SECT_SRC" ] && [ -d "$GEN/sections" ]; then
-  echo "   overlaying authored sections from docs-src/sections/"
-  for f in "$SECT_SRC"/*.html; do
-    [ -e "$f" ] && cp -f "$f" "$GEN/sections/$(basename "$f")"
-  done
+# ROBOT for the ROBOT report and the HermiT check: a jar (CI), a robot on PATH, or OntoReview's Docker fallback
+if [ -n "${ROBOT_JAR:-}" ] && [ -f "$ROBOT_JAR" ]; then
+  JAVA_BIN="${JAVA_HOME:+$JAVA_HOME/bin/}java"
+  printf '#!/usr/bin/env bash\nexec %q -jar %q "$@"\n' "$JAVA_BIN" "$(cd "$(dirname "$ROBOT_JAR")" && pwd)/$(basename "$ROBOT_JAR")" > "$WORK/robot"
+  chmod +x "$WORK/robot"
+  ARGS+=(--robot "$WORK/robot")
 fi
 
-# Tidy the WIDOCO license badge: by default it embeds the full license URL in
-# the shields.io label (License-https://.../by/4.0/-blue.svg). Render the human
-# CC-BY-4.0 label instead, keeping the link target unchanged.
-INDEX="$GEN/index.html"
-if [ -f "$INDEX" ]; then
-  "$PY" - "$INDEX" "$ONT/HeritageGraph.yaml" <<'PY'
+# changelog against the previous release (owl:priorVersion → docs/releases/<version>/ontology.ttl)
+PRIOR="$("$PY" - "$ROOT/ontology/HeritageGraph.ttl" <<'PY'
 import sys
-p = sys.argv[1]
-html = open(p, encoding="utf-8").read()
-html = html.replace(
-    "https://img.shields.io/badge/License-https://creativecommons.org/licenses/by/4.0/-blue.svg",
-    "https://img.shields.io/badge/License-CC--BY--4.0-blue.svg",
-)
-# WIDOCO titles the page "Release: <dcterms:created>", which reads as a 2025
-# release; show the version instead (the dates are listed below the heading).
-import re
-m = re.search(r"<dt>Revision:</dt>\s*<dd>([^<]+)</dd>", html)
-if m:
-    html = re.sub(r"<h2>Release: [^<]*</h2>", f"<h2>Version {m.group(1).strip()}</h2>", html, count=1)
-# RDF has no order, so WIDOCO lists the creators alphabetically; list them in
-# the author order of the schema header (dcterms:creator, "; "-separated).
-mc = re.search(r'^\s*dcterms:creator:\s*"([^"]+)"', open(sys.argv[2], encoding="utf-8").read(), re.M)
-if mc:
-    order = [c.strip() for c in mc.group(1).split(";") if c.strip()]
-    ma = re.search(r"(<dt>Authors:</dt>\s*)((?:<dd>[^<]*</dd>)+)", html)
-    if ma and sorted(re.findall(r"<dd>([^<]*)</dd>", ma.group(2))) == sorted(order):
-        html = html[:ma.start(2)] + "".join(f"<dd>{c}</dd>" for c in order) + html[ma.end(2):]
-open(p, "w", encoding="utf-8").write(html)
+from rdflib import Graph, OWL, RDF
+g = Graph(); g.parse(sys.argv[1], format="turtle")
+ont = next(g.subjects(RDF.type, OWL.Ontology))
+p = g.value(ont, OWL.priorVersion)
+print(str(p).rstrip("/").rsplit("/", 1)[-1] if p else "")
 PY
+)"
+if [ -n "$PRIOR" ] && [ -f "$ROOT/docs/releases/$PRIOR/ontology.ttl" ]; then
+  ARGS+=(--previous "$ROOT/docs/releases/$PRIOR/ontology.ttl")
 fi
 
-echo "▶ 3/3  publishing fresh site → $OUT"
+# python.org builds of Python on macOS ship without CA certificates; OntoReview's
+# network checks (OOPS!, OLS) then fail, so point them at certifi when available
+ORPY="$(dirname "$(command -v "$ONTOREVIEW")")/python"
+if [ -z "${SSL_CERT_FILE:-}" ] && [ -x "$ORPY" ]; then
+  CA="$("$ORPY" -c 'import certifi; print(certifi.where())' 2>/dev/null || true)"
+  [ -n "$CA" ] && export SSL_CERT_FILE="$CA" REQUESTS_CA_BUNDLE="$CA"
+fi
+
+echo "▶ 1/2  ontoreview build (previous release: ${PRIOR:-none})"
+"$ONTOREVIEW" build "$ROOT/ontology/HeritageGraph.ttl" "${ARGS[@]}"
+
+# OntoReview also writes self-hosting scaffolding (Docker, nginx, its own Pages
+# workflow); the site is deployed by this repository's CI and served by
+# deploy/nginx, so those files are left out of the published folder
+SITE="$WORK/site"
+rm -rf "$SITE/.github" "$SITE/deploy" "$SITE/Dockerfile" "$SITE/docker-compose.yml" \
+       "$SITE/.dockerignore" "$SITE/DEPLOY.md" "$SITE/nginx.conf.example" "$SITE/w3id.htaccess" \
+       "$SITE/.ontoreview-build"
+
+echo "▶ 2/2  publishing site → $OUT"
 mkdir -p "$OUT"
 if command -v rsync >/dev/null 2>&1; then
   # releases/ holds the immutable per-version copies served at version IRIs
-  rsync -a --delete --exclude releases/ "$GEN"/ "$OUT"/
+  rsync -a --delete --exclude releases/ "$SITE"/ "$OUT"/
 else
-  find "$OUT" -mindepth 1 -maxdepth 1 ! -name releases -exec rm -rf {} + && cp -R "$GEN"/. "$OUT"/
+  find "$OUT" -mindepth 1 -maxdepth 1 ! -name releases -exec rm -rf {} + && cp -R "$SITE"/. "$OUT"/
 fi
 "$PY" "$ROOT/scripts/publish_release.py" "$OUT"
 "$PY" "$ROOT/scripts/gen_enum_pages.py" "$OUT"
-
-# Overwrite the bundled WebVOWL MIT license with the ontology's CC BY 4.0 license.
-# WIDOCO copies webvowl_1.1.7_patched (which ships the MIT text) on every run;
-# this step runs after rsync so the correct license always ends up in the published site.
-cat > "$OUT/webvowl/license.txt" <<'LICENSE'
-# License
-
-This ontology is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
-
-Copyright (c) 2026 CAIR-Nepal
-
-To view a copy of this license, visit:
-
-https://creativecommons.org/licenses/by/4.0/
-LICENSE
 
 # Linked-Art-style JSON-LD term context for compact HeritageGraph JSON-LD.
 echo "   generating JSON-LD @context → $OUT/context.jsonld"
@@ -150,5 +92,6 @@ echo "   generating JSON-LD @context → $OUT/context.jsonld"
 
 # Ship content-negotiation rules alongside the published RDF serializations.
 [ -f "$ROOT/.htaccess" ] && cp -f "$ROOT/.htaccess" "$OUT/.htaccess"
+touch "$OUT/.nojekyll"
 
-echo "✓ done. Open:  $OUT/index.html  (docs) ·  $OUT/webvowl/  (visualization)"
+echo "✓ done. Open:  $OUT/index.html"
