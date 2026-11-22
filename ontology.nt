@@ -10,7 +10,7 @@
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/description> "An event-centric LinkML schema for representing cultural heritage information, aligned with CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking and ritual-spatial-temporal reasoning."@en .
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/issued> "2026-10-17"^^<http://www.w3.org/2001/XMLSchema#date> .
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> .
-<https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/modified> "2026-10-24"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/modified> "2026-11-22"^^<http://www.w3.org/2001/XMLSchema#date> .
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/publisher> "CAIR-Nepal" .
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/source> <https://github.com/CAIRNepal/heritagegraphontology> .
 <https://cair-nepal.org/heritagegraph/ontology> <http://purl.org/dc/terms/title> "HeritageGraph Ontology"@en .
@@ -46,6 +46,9 @@
 # 
 # http://purl.org/dc/terms/description
 <http://purl.org/dc/terms/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+# 
+# http://purl.org/dc/terms/isReplacedBy
+<http://purl.org/dc/terms/isReplacedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
 # 
 # http://purl.org/dc/terms/issued
 <http://purl.org/dc/terms/issued> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
@@ -112,18 +115,28 @@
 # 
 # https://cair-nepal.org/heritagegraph/crminf_pattern
 <https://cair-nepal.org/heritagegraph/crminf_pattern> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://cair-nepal.org/heritagegraph/crminf_pattern> <http://www.w3.org/2000/01/rdf-schema#label> "crminf pattern"@en .
+<https://cair-nepal.org/heritagegraph/crminf_pattern> <http://www.w3.org/2004/02/skos/core#definition> "Editorial note naming the CRMinf pattern that a class instantiates."@en .
 # 
 # https://cair-nepal.org/heritagegraph/design_note
 <https://cair-nepal.org/heritagegraph/design_note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://cair-nepal.org/heritagegraph/design_note> <http://www.w3.org/2000/01/rdf-schema#label> "design note"@en .
+<https://cair-nepal.org/heritagegraph/design_note> <http://www.w3.org/2004/02/skos/core#definition> "Editorial note recording a modelling decision about a term."@en .
 # 
 # https://cair-nepal.org/heritagegraph/prov_alignment
 <https://cair-nepal.org/heritagegraph/prov_alignment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://cair-nepal.org/heritagegraph/prov_alignment> <http://www.w3.org/2000/01/rdf-schema#label> "prov alignment"@en .
+<https://cair-nepal.org/heritagegraph/prov_alignment> <http://www.w3.org/2004/02/skos/core#definition> "Editorial note naming the PROV-O term that a slot is aligned with."@en .
 # 
 # https://cair-nepal.org/heritagegraph/prov_alignment_note
 <https://cair-nepal.org/heritagegraph/prov_alignment_note> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://cair-nepal.org/heritagegraph/prov_alignment_note> <http://www.w3.org/2000/01/rdf-schema#label> "prov alignment note"@en .
+<https://cair-nepal.org/heritagegraph/prov_alignment_note> <http://www.w3.org/2004/02/skos/core#definition> "Editorial note explaining the status of a class's PROV-O alignment."@en .
 # 
 # https://cair-nepal.org/heritagegraph/provenance_scope
 <https://cair-nepal.org/heritagegraph/provenance_scope> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
+<https://cair-nepal.org/heritagegraph/provenance_scope> <http://www.w3.org/2000/01/rdf-schema#label> "provenance scope"@en .
+<https://cair-nepal.org/heritagegraph/provenance_scope> <http://www.w3.org/2004/02/skos/core#definition> "States whether a class's provenance slots describe the data record or the real-world referent."@en .
 # 
 # https://w3id.org/linkml/permissible_values
 <https://w3id.org/linkml/permissible_values> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty> .
@@ -501,7 +514,8 @@
 # https://cair-nepal.org/heritagegraph/calendarSystem
 <https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/CalendarSystem> .
-<https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/2000/01/rdf-schema#label> "Calendar system"@en .
+<https://cair-nepal.org/heritagegraph/calendarSystem> <http://purl.org/dc/terms/title> "has calendar system"@en .
+<https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/2000/01/rdf-schema#label> "has calendar system"@en .
 <https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/2004/02/skos/core#definition> "Calendar system used for date representation"@en .
 <https://cair-nepal.org/heritagegraph/calendarSystem> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -586,7 +600,8 @@
 # https://cair-nepal.org/heritagegraph/datePrecision
 <https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/DatePrecision> .
-<https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/2000/01/rdf-schema#label> "Date precision"@en .
+<https://cair-nepal.org/heritagegraph/datePrecision> <http://purl.org/dc/terms/title> "has date precision"@en .
+<https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/2000/01/rdf-schema#label> "has date precision"@en .
 <https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/2004/02/skos/core#definition> "The level of precision for a recorded date."@en .
 <https://cair-nepal.org/heritagegraph/datePrecision> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -608,7 +623,8 @@
 # https://cair-nepal.org/heritagegraph/destructionEvent
 <https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> .
-<https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/2000/01/rdf-schema#label> "Destruction event"@en .
+<https://cair-nepal.org/heritagegraph/destructionEvent> <http://purl.org/dc/terms/title> "has destruction event"@en .
+<https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/2000/01/rdf-schema#label> "has destruction event"@en .
 <https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/2004/02/skos/core#definition> "Event that destroyed this structure (if known)"@en .
 <https://cair-nepal.org/heritagegraph/destructionEvent> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -708,7 +724,8 @@
 # https://cair-nepal.org/heritagegraph/existenceStatus
 <https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/ExistenceStatus> .
-<https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/2000/01/rdf-schema#label> "Existence status"@en .
+<https://cair-nepal.org/heritagegraph/existenceStatus> <http://purl.org/dc/terms/title> "has existence status"@en .
+<https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/2000/01/rdf-schema#label> "has existence status"@en .
 <https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/2004/02/skos/core#definition> "Current physical status of the structure"@en .
 <https://cair-nepal.org/heritagegraph/existenceStatus> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -723,7 +740,8 @@
 <https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> .
 <https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/GuthiType> .
-<https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2000/01/rdf-schema#label> "Guthi type"@en .
+<https://cair-nepal.org/heritagegraph/guthiType> <http://purl.org/dc/terms/title> "has guthi type"@en .
+<https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2000/01/rdf-schema#label> "has guthi type"@en .
 <https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2004/02/skos/core#definition> "Type of Guthi (Si, Jatra, Temple)"@en .
 <https://cair-nepal.org/heritagegraph/guthiType> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -914,7 +932,8 @@
 # https://cair-nepal.org/heritagegraph/metadata
 <https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/Metadata> .
-<https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/2000/01/rdf-schema#label> "metadata"@en .
+<https://cair-nepal.org/heritagegraph/metadata> <http://purl.org/dc/terms/title> "has metadata"@en .
+<https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/2000/01/rdf-schema#label> "has metadata"@en .
 <https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/2004/02/skos/core#definition> "Dataset metadata"@en .
 <https://cair-nepal.org/heritagegraph/metadata> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -1047,7 +1066,8 @@ _:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/19
 <https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> .
 <https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/RitualType> .
-<https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2000/01/rdf-schema#label> "Ritual type"@en .
+<https://cair-nepal.org/heritagegraph/ritualType> <http://purl.org/dc/terms/title> "has ritual type"@en .
+<https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2000/01/rdf-schema#label> "has ritual type"@en .
 <https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2004/02/skos/core#definition> "Classification of ritual (puja, jatra, consecration)"@en .
 <https://cair-nepal.org/heritagegraph/ritualType> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -1142,7 +1162,8 @@ _:genid6 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/19
 <https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> .
 <https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2000/01/rdf-schema#range> <https://cair-nepal.org/heritagegraph/SyncreticType> .
-<https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2000/01/rdf-schema#label> "Syncretic type"@en .
+<https://cair-nepal.org/heritagegraph/syncreticType> <http://purl.org/dc/terms/title> "has syncretic type"@en .
+<https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2000/01/rdf-schema#label> "has syncretic type"@en .
 <https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2004/02/skos/core#definition> "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity)."@en .
 <https://cair-nepal.org/heritagegraph/syncreticType> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 # 
@@ -1449,7 +1470,8 @@ _:genid7 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/20
 # https://cair-nepal.org/heritagegraph/selectionCriteriaMet
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2000/01/rdf-schema#label> "Selection criteria met"@en .
+<https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://purl.org/dc/terms/isReplacedBy> <https://cair-nepal.org/heritagegraph/hasCriterion> .
+<https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2000/01/rdf-schema#label> "obsolete selection criteria met"@en .
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2002/07/owl#deprecated> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2004/02/skos/core#definition> "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility."@en .
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
@@ -4632,54 +4654,65 @@ _:genid637 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 # #################################################################
 # 
 # 
+# https://cair-nepal.org/heritagegraph/schema
+<https://cair-nepal.org/heritagegraph/schema> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
+<https://cair-nepal.org/heritagegraph/schema> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://cair-nepal.org/heritagegraph/schema> <http://www.w3.org/2000/01/rdf-schema#label> "HeritageGraph LinkML schema"@en .
+<https://cair-nepal.org/heritagegraph/schema> <http://www.w3.org/2004/02/skos/core#definition> "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it."@en .
+# 
 # https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2000/01/rdf-schema#label> "Chaitya"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://purl.org/dc/terms/title> "Chaitya style"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2000/01/rdf-schema#label> "Chaitya style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300007562> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2004/02/skos/core#prefLabel> "Chaitya"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <http://www.w3.org/2004/02/skos/core#prefLabel> "Chaitya style"@en .
 # 
 # https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2000/01/rdf-schema#label> "Dome"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://purl.org/dc/terms/title> "Dome style"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2000/01/rdf-schema#label> "Dome style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2004/02/skos/core#definition> "Dome-based style (Mughal/Neo-classical influence)"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2004/02/skos/core#prefLabel> "Dome"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2004/02/skos/core#prefLabel> "Dome style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <http://www.w3.org/2004/02/skos/core#relatedMatch> <http://vocab.getty.edu/aat/300001280> .
 # 
 # https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2000/01/rdf-schema#label> "Pagoda"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://purl.org/dc/terms/title> "Pagoda style"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2000/01/rdf-schema#label> "Pagoda style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300004829> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2004/02/skos/core#definition> "Multi-tiered roof style indigenous to Nepal"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pagoda"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <http://www.w3.org/2004/02/skos/core#prefLabel> "Pagoda style"@en .
 # 
 # https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2000/01/rdf-schema#label> "Shikhara"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://purl.org/dc/terms/title> "Shikhara style"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2000/01/rdf-schema#label> "Shikhara style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2004/02/skos/core#definition> "North Indian spire-shaped style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2004/02/skos/core#prefLabel> "Shikhara"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <http://www.w3.org/2004/02/skos/core#prefLabel> "Shikhara style"@en .
 # 
 # https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2000/01/rdf-schema#label> "Stupa"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://purl.org/dc/terms/title> "Stupa style"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2000/01/rdf-schema#label> "Stupa style"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300007576> .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2004/02/skos/core#definition> "Buddhist dome-shaped reliquary"@en .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> .
-<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2004/02/skos/core#prefLabel> "Stupa"@en .
+<https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> <http://www.w3.org/2004/02/skos/core#prefLabel> "Stupa style"@en .
 # 
 # https://cair-nepal.org/heritagegraph/ConditionType#Damaged
 <https://cair-nepal.org/heritagegraph/ConditionType#Damaged> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
@@ -5101,48 +5134,48 @@ _:genid637 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/
 <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> <http://www.w3.org/2000/01/rdf-schema#label> "Architectural Style (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#definition> "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."@en .
-<https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#prefLabel> "Architectural Style"@en .
+<https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> <http://www.w3.org/2004/02/skos/core#prefLabel> "Architectural Style (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/ConditionType
 <https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/2000/01/rdf-schema#label> "Condition Type (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for the physical condition of heritage objects and structures."@en .
-<https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Condition Type"@en .
+<https://cair-nepal.org/heritagegraph/scheme/ConditionType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Condition Type (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/DatePrecision
 <https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/2000/01/rdf-schema#label> "Date Precision (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for the temporal precision of recorded heritage dates."@en .
-<https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/2004/02/skos/core#prefLabel> "Date Precision"@en .
+<https://cair-nepal.org/heritagegraph/scheme/DatePrecision> <http://www.w3.org/2004/02/skos/core#prefLabel> "Date Precision (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus
 <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/2000/01/rdf-schema#label> "Existence Status (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for whether a heritage structure still exists physically."@en .
-<https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/2004/02/skos/core#prefLabel> "Existence Status"@en .
+<https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus> <http://www.w3.org/2004/02/skos/core#prefLabel> "Existence Status (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/GuthiType
 <https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/2000/01/rdf-schema#label> "Guthi Type (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary of Guthi functional types (CRM E55_Type)"@en .
-<https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Guthi Type"@en .
+<https://cair-nepal.org/heritagegraph/scheme/GuthiType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Guthi Type (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/RitualType
 <https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/2000/01/rdf-schema#label> "Ritual Type (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."@en .
-<https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ritual Type"@en .
+<https://cair-nepal.org/heritagegraph/scheme/RitualType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ritual Type (concept scheme)"@en .
 # 
 # https://cair-nepal.org/heritagegraph/scheme/SyncreticType
 <https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
 <https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/2000/01/rdf-schema#label> "Syncretic Type (concept scheme)"@en .
 <https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for kinds of syncretic theological relationships between deities."@en .
-<https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Syncretic Type"@en .
+<https://cair-nepal.org/heritagegraph/scheme/SyncreticType> <http://www.w3.org/2004/02/skos/core#prefLabel> "Syncretic Type (concept scheme)"@en .
 # 
 # Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

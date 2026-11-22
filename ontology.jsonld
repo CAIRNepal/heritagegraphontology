@@ -5341,6 +5341,9 @@
     "@id" : "https://cair-nepal.org/heritagegraph/schema"
   } ]
 }, {
+  "@id" : "http://purl.org/dc/terms/isReplacedBy",
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+}, {
   "@id" : "http://purl.org/dc/terms/issued",
   "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
 }, {
@@ -6667,6 +6670,10 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "Chaitya style"
+  } ],
   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
     "@id" : "http://www.w3.org/2004/02/skos/core#Concept"
   }, {
@@ -6674,7 +6681,7 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Chaitya"
+    "@value" : "Chaitya style"
   } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300007562"
@@ -6688,11 +6695,15 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Chaitya"
+    "@value" : "Chaitya style"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "Dome style"
+  } ],
   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
     "@id" : "http://www.w3.org/2004/02/skos/core#Concept"
   }, {
@@ -6700,7 +6711,7 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Dome"
+    "@value" : "Dome style"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@language" : "en",
@@ -6711,7 +6722,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Dome"
+    "@value" : "Dome style"
   } ],
   "http://www.w3.org/2004/02/skos/core#relatedMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300001280"
@@ -6719,6 +6730,10 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "Pagoda style"
+  } ],
   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
     "@id" : "http://www.w3.org/2004/02/skos/core#Concept"
   }, {
@@ -6726,7 +6741,7 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Pagoda"
+    "@value" : "Pagoda style"
   } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300004829"
@@ -6740,11 +6755,15 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Pagoda"
+    "@value" : "Pagoda style"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "Shikhara style"
+  } ],
   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
     "@id" : "http://www.w3.org/2004/02/skos/core#Concept"
   }, {
@@ -6752,7 +6771,7 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Shikhara"
+    "@value" : "Shikhara style"
   } ],
   "http://www.w3.org/2004/02/skos/core#definition" : [ {
     "@language" : "en",
@@ -6763,11 +6782,15 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Shikhara"
+    "@value" : "Shikhara style"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
   "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "Stupa style"
+  } ],
   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
     "@id" : "http://www.w3.org/2004/02/skos/core#Concept"
   }, {
@@ -6775,7 +6798,7 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Stupa"
+    "@value" : "Stupa style"
   } ],
   "http://www.w3.org/2004/02/skos/core#closeMatch" : [ {
     "@id" : "http://vocab.getty.edu/aat/300007576"
@@ -6789,7 +6812,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Stupa"
+    "@value" : "Stupa style"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ArchivalRecord",
@@ -10377,9 +10400,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/calendarSystem",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has calendar system"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Calendar system"
+    "@value" : "has calendar system"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/CalendarSystem"
@@ -10549,7 +10576,15 @@
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/crminf_pattern",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "crminf pattern"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "Editorial note naming the CRMinf pattern that a class instantiates."
+  } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/curator",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
@@ -10689,9 +10724,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/datePrecision",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has date precision"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Date precision"
+    "@value" : "has date precision"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/DatePrecision"
@@ -10742,13 +10781,25 @@
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/design_note",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "design note"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "Editorial note recording a modelling decision about a term."
+  } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/destructionEvent",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has destruction event"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Destruction event"
+    "@value" : "has destruction event"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction"
@@ -11011,9 +11062,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/existenceStatus",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has existence status"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Existence status"
+    "@value" : "has existence status"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/ExistenceStatus"
@@ -11079,9 +11134,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/guthiType",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has guthi type"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Guthi type"
+    "@value" : "has guthi type"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/GuthiType"
@@ -11653,9 +11712,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/metadata",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has metadata"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "metadata"
+    "@value" : "has metadata"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/Metadata"
@@ -11701,7 +11764,7 @@
   } ],
   "http://purl.org/dc/terms/modified" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#date",
-    "@value" : "2026-10-24"
+    "@value" : "2026-11-22"
   } ],
   "http://purl.org/dc/terms/publisher" : [ {
     "@value" : "CAIR-Nepal"
@@ -12011,13 +12074,37 @@
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/prov_alignment",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "prov alignment"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "Editorial note naming the PROV-O term that a slot is aligned with."
+  } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/prov_alignment_note",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "prov alignment note"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "Editorial note explaining the status of a class's PROV-O alignment."
+  } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/provenance_scope",
-  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ]
+  "@type" : [ "http://www.w3.org/2002/07/owl#AnnotationProperty" ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "provenance scope"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "States whether a class's provenance slots describe the data record or the real-world referent."
+  } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/publicationTimespan",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
@@ -12143,9 +12230,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/ritualType",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has ritual type"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Ritual type"
+    "@value" : "has ritual type"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/RitualType"
@@ -12249,6 +12340,20 @@
     "@id" : "https://cair-nepal.org/heritagegraph/schema"
   } ]
 }, {
+  "@id" : "https://cair-nepal.org/heritagegraph/schema",
+  "@type" : [ "http://www.w3.org/2002/07/owl#NamedIndividual" ],
+  "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ {
+    "@id" : "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#label" : [ {
+    "@language" : "en",
+    "@value" : "HeritageGraph LinkML schema"
+  } ],
+  "http://www.w3.org/2004/02/skos/core#definition" : [ {
+    "@language" : "en",
+    "@value" : "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it."
+  } ]
+}, {
   "@id" : "https://cair-nepal.org/heritagegraph/schema_version",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
@@ -12281,7 +12386,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Architectural Style"
+    "@value" : "Architectural Style (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/ConditionType",
@@ -12299,7 +12404,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Condition Type"
+    "@value" : "Condition Type (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/DatePrecision",
@@ -12317,7 +12422,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Date Precision"
+    "@value" : "Date Precision (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus",
@@ -12335,7 +12440,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Existence Status"
+    "@value" : "Existence Status (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/GuthiType",
@@ -12353,7 +12458,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Guthi Type"
+    "@value" : "Guthi Type (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/RitualType",
@@ -12371,7 +12476,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Ritual Type"
+    "@value" : "Ritual Type (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/scheme/SyncreticType",
@@ -12389,7 +12494,7 @@
   } ],
   "http://www.w3.org/2004/02/skos/core#prefLabel" : [ {
     "@language" : "en",
-    "@value" : "Syncretic Type"
+    "@value" : "Syncretic Type (concept scheme)"
   } ]
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/selectedPerson",
@@ -12428,9 +12533,12 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/selectionCriteriaMet",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
+  "http://purl.org/dc/terms/isReplacedBy" : [ {
+    "@id" : "https://cair-nepal.org/heritagegraph/hasCriterion"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Selection criteria met"
+    "@value" : "obsolete selection criteria met"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "http://www.w3.org/2001/XMLSchema#string"
@@ -12594,9 +12702,13 @@
 }, {
   "@id" : "https://cair-nepal.org/heritagegraph/syncreticType",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
+  "http://purl.org/dc/terms/title" : [ {
+    "@language" : "en",
+    "@value" : "has syncretic type"
+  } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@language" : "en",
-    "@value" : "Syncretic type"
+    "@value" : "has syncretic type"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
     "@id" : "https://cair-nepal.org/heritagegraph/SyncreticType"

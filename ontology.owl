@@ -25,7 +25,7 @@
         <terms:description xml:lang="en">An event-centric LinkML schema for representing cultural heritage information, aligned with CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking and ritual-spatial-temporal reasoning.</terms:description>
         <terms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-10-17</terms:issued>
         <terms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
-        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-10-24</terms:modified>
+        <terms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2026-11-22</terms:modified>
         <terms:publisher>CAIR-Nepal</terms:publisher>
         <terms:source rdf:resource="https://github.com/CAIRNepal/heritagegraphontology"/>
         <terms:title xml:lang="en">HeritageGraph Ontology</terms:title>
@@ -86,6 +86,13 @@
 
 
     <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/description"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/isReplacedBy -->
+
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/isReplacedBy"/>
     
 
 
@@ -239,35 +246,50 @@
     <!-- https://cair-nepal.org/heritagegraph/crminf_pattern -->
 
 
-    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/crminf_pattern"/>
+    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/crminf_pattern">
+        <rdfs:label xml:lang="en">crminf pattern</rdfs:label>
+        <skos:definition xml:lang="en">Editorial note naming the CRMinf pattern that a class instantiates.</skos:definition>
+    </owl:AnnotationProperty>
     
 
 
     <!-- https://cair-nepal.org/heritagegraph/design_note -->
 
 
-    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/design_note"/>
+    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/design_note">
+        <rdfs:label xml:lang="en">design note</rdfs:label>
+        <skos:definition xml:lang="en">Editorial note recording a modelling decision about a term.</skos:definition>
+    </owl:AnnotationProperty>
     
 
 
     <!-- https://cair-nepal.org/heritagegraph/prov_alignment -->
 
 
-    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/prov_alignment"/>
+    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/prov_alignment">
+        <rdfs:label xml:lang="en">prov alignment</rdfs:label>
+        <skos:definition xml:lang="en">Editorial note naming the PROV-O term that a slot is aligned with.</skos:definition>
+    </owl:AnnotationProperty>
     
 
 
     <!-- https://cair-nepal.org/heritagegraph/prov_alignment_note -->
 
 
-    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/prov_alignment_note"/>
+    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/prov_alignment_note">
+        <rdfs:label xml:lang="en">prov alignment note</rdfs:label>
+        <skos:definition xml:lang="en">Editorial note explaining the status of a class&apos;s PROV-O alignment.</skos:definition>
+    </owl:AnnotationProperty>
     
 
 
     <!-- https://cair-nepal.org/heritagegraph/provenance_scope -->
 
 
-    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/provenance_scope"/>
+    <owl:AnnotationProperty rdf:about="https://cair-nepal.org/heritagegraph/provenance_scope">
+        <rdfs:label xml:lang="en">provenance scope</rdfs:label>
+        <skos:definition xml:lang="en">States whether a class&apos;s provenance slots describe the data record or the real-world referent.</skos:definition>
+    </owl:AnnotationProperty>
     
 
 
@@ -943,7 +965,8 @@
 
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/calendarSystem">
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/CalendarSystem"/>
-        <rdfs:label xml:lang="en">Calendar system</rdfs:label>
+        <terms:title xml:lang="en">has calendar system</terms:title>
+        <rdfs:label xml:lang="en">has calendar system</rdfs:label>
         <skos:definition xml:lang="en">Calendar system used for date representation</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1088,7 +1111,8 @@
 
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/datePrecision">
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/DatePrecision"/>
-        <rdfs:label xml:lang="en">Date precision</rdfs:label>
+        <terms:title xml:lang="en">has date precision</terms:title>
+        <rdfs:label xml:lang="en">has date precision</rdfs:label>
         <skos:definition xml:lang="en">The level of precision for a recorded date.</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1125,7 +1149,8 @@
 
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/destructionEvent">
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E6_Destruction"/>
-        <rdfs:label xml:lang="en">Destruction event</rdfs:label>
+        <terms:title xml:lang="en">has destruction event</terms:title>
+        <rdfs:label xml:lang="en">has destruction event</rdfs:label>
         <skos:definition xml:lang="en">Event that destroyed this structure (if known)</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1290,7 +1315,8 @@
 
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/existenceStatus">
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/ExistenceStatus"/>
-        <rdfs:label xml:lang="en">Existence status</rdfs:label>
+        <terms:title xml:lang="en">has existence status</terms:title>
+        <rdfs:label xml:lang="en">has existence status</rdfs:label>
         <skos:definition xml:lang="en">Current physical status of the structure</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1315,7 +1341,8 @@
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/guthiType">
         <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P2_has_type"/>
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/GuthiType"/>
-        <rdfs:label xml:lang="en">Guthi type</rdfs:label>
+        <terms:title xml:lang="en">has guthi type</terms:title>
+        <rdfs:label xml:lang="en">has guthi type</rdfs:label>
         <skos:definition xml:lang="en">Type of Guthi (Si, Jatra, Temple)</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1636,7 +1663,8 @@
 
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/metadata">
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/Metadata"/>
-        <rdfs:label xml:lang="en">metadata</rdfs:label>
+        <terms:title xml:lang="en">has metadata</terms:title>
+        <rdfs:label xml:lang="en">has metadata</rdfs:label>
         <skos:definition xml:lang="en">Dataset metadata</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -1845,7 +1873,8 @@
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/ritualType">
         <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P2_has_type"/>
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/RitualType"/>
-        <rdfs:label xml:lang="en">Ritual type</rdfs:label>
+        <terms:title xml:lang="en">has ritual type</terms:title>
+        <rdfs:label xml:lang="en">has ritual type</rdfs:label>
         <skos:definition xml:lang="en">Classification of ritual (puja, jatra, consecration)</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -2005,7 +2034,8 @@
     <owl:ObjectProperty rdf:about="https://cair-nepal.org/heritagegraph/syncreticType">
         <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P2_has_type"/>
         <rdfs:range rdf:resource="https://cair-nepal.org/heritagegraph/SyncreticType"/>
-        <rdfs:label xml:lang="en">Syncretic type</rdfs:label>
+        <terms:title xml:lang="en">has syncretic type</terms:title>
+        <rdfs:label xml:lang="en">has syncretic type</rdfs:label>
         <skos:definition xml:lang="en">The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity).</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
     </owl:ObjectProperty>
@@ -2526,7 +2556,8 @@
 
     <owl:DatatypeProperty rdf:about="https://cair-nepal.org/heritagegraph/selectionCriteriaMet">
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:label xml:lang="en">Selection criteria met</rdfs:label>
+        <terms:isReplacedBy rdf:resource="https://cair-nepal.org/heritagegraph/hasCriterion"/>
+        <rdfs:label xml:lang="en">obsolete selection criteria met</rdfs:label>
         <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
         <skos:definition xml:lang="en">DEPRECATED free-text list; use has_criterion -&gt; SelectionCriterion subclasses instead. Retained for backward compatibility.</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/schema"/>
@@ -7068,17 +7099,29 @@
     
 
 
+    <!-- https://cair-nepal.org/heritagegraph/schema -->
+
+
+    <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/schema">
+        <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+        <rdfs:label xml:lang="en">HeritageGraph LinkML schema</rdfs:label>
+        <skos:definition xml:lang="en">The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it.</skos:definition>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya -->
 
 
     <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://cair-nepal.org/heritagegraph/ArchitecturalStyle"/>
-        <rdfs:label xml:lang="en">Chaitya</rdfs:label>
+        <terms:title xml:lang="en">Chaitya style</terms:title>
+        <rdfs:label xml:lang="en">Chaitya style</rdfs:label>
         <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300007562"/>
         <skos:definition xml:lang="en">Buddhist votive shrine style</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle"/>
-        <skos:prefLabel xml:lang="en">Chaitya</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Chaitya style</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7089,10 +7132,11 @@
     <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://cair-nepal.org/heritagegraph/ArchitecturalStyle"/>
-        <rdfs:label xml:lang="en">Dome</rdfs:label>
+        <terms:title xml:lang="en">Dome style</terms:title>
+        <rdfs:label xml:lang="en">Dome style</rdfs:label>
         <skos:definition xml:lang="en">Dome-based style (Mughal/Neo-classical influence)</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle"/>
-        <skos:prefLabel xml:lang="en">Dome</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Dome style</skos:prefLabel>
         <skos:relatedMatch rdf:resource="http://vocab.getty.edu/aat/300001280"/>
     </owl:NamedIndividual>
     
@@ -7104,11 +7148,12 @@
     <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://cair-nepal.org/heritagegraph/ArchitecturalStyle"/>
-        <rdfs:label xml:lang="en">Pagoda</rdfs:label>
+        <terms:title xml:lang="en">Pagoda style</terms:title>
+        <rdfs:label xml:lang="en">Pagoda style</rdfs:label>
         <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300004829"/>
         <skos:definition xml:lang="en">Multi-tiered roof style indigenous to Nepal</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle"/>
-        <skos:prefLabel xml:lang="en">Pagoda</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Pagoda style</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7119,10 +7164,11 @@
     <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://cair-nepal.org/heritagegraph/ArchitecturalStyle"/>
-        <rdfs:label xml:lang="en">Shikhara</rdfs:label>
+        <terms:title xml:lang="en">Shikhara style</terms:title>
+        <rdfs:label xml:lang="en">Shikhara style</rdfs:label>
         <skos:definition xml:lang="en">North Indian spire-shaped style</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle"/>
-        <skos:prefLabel xml:lang="en">Shikhara</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Shikhara style</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7133,11 +7179,12 @@
     <owl:NamedIndividual rdf:about="https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa">
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
         <rdf:type rdf:resource="https://cair-nepal.org/heritagegraph/ArchitecturalStyle"/>
-        <rdfs:label xml:lang="en">Stupa</rdfs:label>
+        <terms:title xml:lang="en">Stupa style</terms:title>
+        <rdfs:label xml:lang="en">Stupa style</rdfs:label>
         <skos:closeMatch rdf:resource="http://vocab.getty.edu/aat/300007576"/>
         <skos:definition xml:lang="en">Buddhist dome-shaped reliquary</skos:definition>
         <skos:inScheme rdf:resource="https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle"/>
-        <skos:prefLabel xml:lang="en">Stupa</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Stupa style</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7794,7 +7841,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Architectural Style (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type.</skos:definition>
-        <skos:prefLabel xml:lang="en">Architectural Style</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Architectural Style (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7806,7 +7853,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Condition Type (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary for the physical condition of heritage objects and structures.</skos:definition>
-        <skos:prefLabel xml:lang="en">Condition Type</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Condition Type (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7818,7 +7865,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Date Precision (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary for the temporal precision of recorded heritage dates.</skos:definition>
-        <skos:prefLabel xml:lang="en">Date Precision</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Date Precision (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7830,7 +7877,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Existence Status (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary for whether a heritage structure still exists physically.</skos:definition>
-        <skos:prefLabel xml:lang="en">Existence Status</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Existence Status (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7842,7 +7889,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Guthi Type (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary of Guthi functional types (CRM E55_Type)</skos:definition>
-        <skos:prefLabel xml:lang="en">Guthi Type</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Guthi Type (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7854,7 +7901,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Ritual Type (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.</skos:definition>
-        <skos:prefLabel xml:lang="en">Ritual Type</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Ritual Type (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
     
 
@@ -7866,7 +7913,7 @@
         <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
         <rdfs:label xml:lang="en">Syncretic Type (concept scheme)</rdfs:label>
         <skos:definition xml:lang="en">Controlled vocabulary for kinds of syncretic theological relationships between deities.</skos:definition>
-        <skos:prefLabel xml:lang="en">Syncretic Type</skos:prefLabel>
+        <skos:prefLabel xml:lang="en">Syncretic Type (concept scheme)</skos:prefLabel>
     </owl:NamedIndividual>
 </rdf:RDF>
 

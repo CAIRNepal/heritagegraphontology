@@ -18,7 +18,7 @@
                                                  <http://purl.org/dc/terms/description> "An event-centric LinkML schema for representing cultural heritage information, aligned with CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking and ritual-spatial-temporal reasoning."@en ;
                                                  <http://purl.org/dc/terms/issued> "2026-10-17"^^xsd:date ;
                                                  <http://purl.org/dc/terms/license> <https://creativecommons.org/licenses/by/4.0/> ;
-                                                 <http://purl.org/dc/terms/modified> "2026-10-24"^^xsd:date ;
+                                                 <http://purl.org/dc/terms/modified> "2026-11-22"^^xsd:date ;
                                                  <http://purl.org/dc/terms/publisher> "CAIR-Nepal" ;
                                                  <http://purl.org/dc/terms/source> <https://github.com/CAIRNepal/heritagegraphontology> ;
                                                  <http://purl.org/dc/terms/title> "HeritageGraph Ontology"@en ;
@@ -54,6 +54,10 @@
 
 ###  http://purl.org/dc/terms/description
 <http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/isReplacedBy
+<http://purl.org/dc/terms/isReplacedBy> rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/dc/terms/issued
@@ -141,23 +145,33 @@
 
 
 ###  https://cair-nepal.org/heritagegraph/crminf_pattern
-<https://cair-nepal.org/heritagegraph/crminf_pattern> rdf:type owl:AnnotationProperty .
+<https://cair-nepal.org/heritagegraph/crminf_pattern> rdf:type owl:AnnotationProperty ;
+                                                      rdfs:label "crminf pattern"@en ;
+                                                      <http://www.w3.org/2004/02/skos/core#definition> "Editorial note naming the CRMinf pattern that a class instantiates."@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/design_note
-<https://cair-nepal.org/heritagegraph/design_note> rdf:type owl:AnnotationProperty .
+<https://cair-nepal.org/heritagegraph/design_note> rdf:type owl:AnnotationProperty ;
+                                                   rdfs:label "design note"@en ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "Editorial note recording a modelling decision about a term."@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/prov_alignment
-<https://cair-nepal.org/heritagegraph/prov_alignment> rdf:type owl:AnnotationProperty .
+<https://cair-nepal.org/heritagegraph/prov_alignment> rdf:type owl:AnnotationProperty ;
+                                                      rdfs:label "prov alignment"@en ;
+                                                      <http://www.w3.org/2004/02/skos/core#definition> "Editorial note naming the PROV-O term that a slot is aligned with."@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/prov_alignment_note
-<https://cair-nepal.org/heritagegraph/prov_alignment_note> rdf:type owl:AnnotationProperty .
+<https://cair-nepal.org/heritagegraph/prov_alignment_note> rdf:type owl:AnnotationProperty ;
+                                                           rdfs:label "prov alignment note"@en ;
+                                                           <http://www.w3.org/2004/02/skos/core#definition> "Editorial note explaining the status of a class's PROV-O alignment."@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/provenance_scope
-<https://cair-nepal.org/heritagegraph/provenance_scope> rdf:type owl:AnnotationProperty .
+<https://cair-nepal.org/heritagegraph/provenance_scope> rdf:type owl:AnnotationProperty ;
+                                                        rdfs:label "provenance scope"@en ;
+                                                        <http://www.w3.org/2004/02/skos/core#definition> "States whether a class's provenance slots describe the data record or the real-world referent."@en .
 
 
 ###  https://w3id.org/linkml/permissible_values
@@ -584,7 +598,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/calendarSystem
 <https://cair-nepal.org/heritagegraph/calendarSystem> rdf:type owl:ObjectProperty ;
                                                       rdfs:range <https://cair-nepal.org/heritagegraph/CalendarSystem> ;
-                                                      rdfs:label "Calendar system"@en ;
+                                                      <http://purl.org/dc/terms/title> "has calendar system"@en ;
+                                                      rdfs:label "has calendar system"@en ;
                                                       <http://www.w3.org/2004/02/skos/core#definition> "Calendar system used for date representation"@en ;
                                                       <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -681,7 +696,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/datePrecision
 <https://cair-nepal.org/heritagegraph/datePrecision> rdf:type owl:ObjectProperty ;
                                                      rdfs:range <https://cair-nepal.org/heritagegraph/DatePrecision> ;
-                                                     rdfs:label "Date precision"@en ;
+                                                     <http://purl.org/dc/terms/title> "has date precision"@en ;
+                                                     rdfs:label "has date precision"@en ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "The level of precision for a recorded date."@en ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -706,7 +722,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/destructionEvent
 <https://cair-nepal.org/heritagegraph/destructionEvent> rdf:type owl:ObjectProperty ;
                                                         rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E6_Destruction> ;
-                                                        rdfs:label "Destruction event"@en ;
+                                                        <http://purl.org/dc/terms/title> "has destruction event"@en ;
+                                                        rdfs:label "has destruction event"@en ;
                                                         <http://www.w3.org/2004/02/skos/core#definition> "Event that destroyed this structure (if known)"@en ;
                                                         <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -819,7 +836,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/existenceStatus
 <https://cair-nepal.org/heritagegraph/existenceStatus> rdf:type owl:ObjectProperty ;
                                                        rdfs:range <https://cair-nepal.org/heritagegraph/ExistenceStatus> ;
-                                                       rdfs:label "Existence status"@en ;
+                                                       <http://purl.org/dc/terms/title> "has existence status"@en ;
+                                                       rdfs:label "has existence status"@en ;
                                                        <http://www.w3.org/2004/02/skos/core#definition> "Current physical status of the structure"@en ;
                                                        <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -836,7 +854,8 @@ xsd:date rdf:type rdfs:Datatype .
 <https://cair-nepal.org/heritagegraph/guthiType> rdf:type owl:ObjectProperty ;
                                                  rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                  rdfs:range <https://cair-nepal.org/heritagegraph/GuthiType> ;
-                                                 rdfs:label "Guthi type"@en ;
+                                                 <http://purl.org/dc/terms/title> "has guthi type"@en ;
+                                                 rdfs:label "has guthi type"@en ;
                                                  <http://www.w3.org/2004/02/skos/core#definition> "Type of Guthi (Si, Jatra, Temple)"@en ;
                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -1053,7 +1072,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/metadata
 <https://cair-nepal.org/heritagegraph/metadata> rdf:type owl:ObjectProperty ;
                                                 rdfs:range <https://cair-nepal.org/heritagegraph/Metadata> ;
-                                                rdfs:label "metadata"@en ;
+                                                <http://purl.org/dc/terms/title> "has metadata"@en ;
+                                                rdfs:label "has metadata"@en ;
                                                 <http://www.w3.org/2004/02/skos/core#definition> "Dataset metadata"@en ;
                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -1194,7 +1214,8 @@ xsd:date rdf:type rdfs:Datatype .
 <https://cair-nepal.org/heritagegraph/ritualType> rdf:type owl:ObjectProperty ;
                                                   rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                   rdfs:range <https://cair-nepal.org/heritagegraph/RitualType> ;
-                                                  rdfs:label "Ritual type"@en ;
+                                                  <http://purl.org/dc/terms/title> "has ritual type"@en ;
+                                                  rdfs:label "has ritual type"@en ;
                                                   <http://www.w3.org/2004/02/skos/core#definition> "Classification of ritual (puja, jatra, consecration)"@en ;
                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -1302,7 +1323,8 @@ xsd:date rdf:type rdfs:Datatype .
 <https://cair-nepal.org/heritagegraph/syncreticType> rdf:type owl:ObjectProperty ;
                                                      rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P2_has_type> ;
                                                      rdfs:range <https://cair-nepal.org/heritagegraph/SyncreticType> ;
-                                                     rdfs:label "Syncretic type"@en ;
+                                                     <http://purl.org/dc/terms/title> "has syncretic type"@en ;
+                                                     rdfs:label "has syncretic type"@en ;
                                                      <http://www.w3.org/2004/02/skos/core#definition> "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity)."@en ;
                                                      <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
 
@@ -1642,7 +1664,8 @@ xsd:date rdf:type rdfs:Datatype .
 ###  https://cair-nepal.org/heritagegraph/selectionCriteriaMet
 <https://cair-nepal.org/heritagegraph/selectionCriteriaMet> rdf:type owl:DatatypeProperty ;
                                                             rdfs:range xsd:string ;
-                                                            rdfs:label "Selection criteria met"@en ;
+                                                            <http://purl.org/dc/terms/isReplacedBy> <https://cair-nepal.org/heritagegraph/hasCriterion> ;
+                                                            rdfs:label "obsolete selection criteria met"@en ;
                                                             owl:deprecated "true"^^xsd:boolean ;
                                                             <http://www.w3.org/2004/02/skos/core#definition> "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility."@en ;
                                                             <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/schema> .
@@ -4725,25 +4748,34 @@ xsd:date rdf:type rdfs:Datatype .
 #    Individuals
 #################################################################
 
+###  https://cair-nepal.org/heritagegraph/schema
+<https://cair-nepal.org/heritagegraph/schema> rdf:type owl:NamedIndividual ,
+                                                       <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
+                                              rdfs:label "HeritageGraph LinkML schema"@en ;
+                                              <http://www.w3.org/2004/02/skos/core#definition> "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it."@en .
+
+
 ###  https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> rdf:type owl:NamedIndividual ,
                                                                            <http://www.w3.org/2004/02/skos/core#Concept> ,
                                                                            <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> ;
-                                                                  rdfs:label "Chaitya"@en ;
+                                                                  <http://purl.org/dc/terms/title> "Chaitya style"@en ;
+                                                                  rdfs:label "Chaitya style"@en ;
                                                                   <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300007562> ;
                                                                   <http://www.w3.org/2004/02/skos/core#definition> "Buddhist votive shrine style"@en ;
                                                                   <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-                                                                  <http://www.w3.org/2004/02/skos/core#prefLabel> "Chaitya"@en .
+                                                                  <http://www.w3.org/2004/02/skos/core#prefLabel> "Chaitya style"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> rdf:type owl:NamedIndividual ,
                                                                         <http://www.w3.org/2004/02/skos/core#Concept> ,
                                                                         <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> ;
-                                                               rdfs:label "Dome"@en ;
+                                                               <http://purl.org/dc/terms/title> "Dome style"@en ;
+                                                               rdfs:label "Dome style"@en ;
                                                                <http://www.w3.org/2004/02/skos/core#definition> "Dome-based style (Mughal/Neo-classical influence)"@en ;
                                                                <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-                                                               <http://www.w3.org/2004/02/skos/core#prefLabel> "Dome"@en ;
+                                                               <http://www.w3.org/2004/02/skos/core#prefLabel> "Dome style"@en ;
                                                                <http://www.w3.org/2004/02/skos/core#relatedMatch> <http://vocab.getty.edu/aat/300001280> .
 
 
@@ -4751,32 +4783,35 @@ xsd:date rdf:type rdfs:Datatype .
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> rdf:type owl:NamedIndividual ,
                                                                           <http://www.w3.org/2004/02/skos/core#Concept> ,
                                                                           <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> ;
-                                                                 rdfs:label "Pagoda"@en ;
+                                                                 <http://purl.org/dc/terms/title> "Pagoda style"@en ;
+                                                                 rdfs:label "Pagoda style"@en ;
                                                                  <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300004829> ;
                                                                  <http://www.w3.org/2004/02/skos/core#definition> "Multi-tiered roof style indigenous to Nepal"@en ;
                                                                  <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-                                                                 <http://www.w3.org/2004/02/skos/core#prefLabel> "Pagoda"@en .
+                                                                 <http://www.w3.org/2004/02/skos/core#prefLabel> "Pagoda style"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> rdf:type owl:NamedIndividual ,
                                                                             <http://www.w3.org/2004/02/skos/core#Concept> ,
                                                                             <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> ;
-                                                                   rdfs:label "Shikhara"@en ;
+                                                                   <http://purl.org/dc/terms/title> "Shikhara style"@en ;
+                                                                   rdfs:label "Shikhara style"@en ;
                                                                    <http://www.w3.org/2004/02/skos/core#definition> "North Indian spire-shaped style"@en ;
                                                                    <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-                                                                   <http://www.w3.org/2004/02/skos/core#prefLabel> "Shikhara"@en .
+                                                                   <http://www.w3.org/2004/02/skos/core#prefLabel> "Shikhara style"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> rdf:type owl:NamedIndividual ,
                                                                          <http://www.w3.org/2004/02/skos/core#Concept> ,
                                                                          <https://cair-nepal.org/heritagegraph/ArchitecturalStyle> ;
-                                                                rdfs:label "Stupa"@en ;
+                                                                <http://purl.org/dc/terms/title> "Stupa style"@en ;
+                                                                rdfs:label "Stupa style"@en ;
                                                                 <http://www.w3.org/2004/02/skos/core#closeMatch> <http://vocab.getty.edu/aat/300007576> ;
                                                                 <http://www.w3.org/2004/02/skos/core#definition> "Buddhist dome-shaped reliquary"@en ;
                                                                 <http://www.w3.org/2004/02/skos/core#inScheme> <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-                                                                <http://www.w3.org/2004/02/skos/core#prefLabel> "Stupa"@en .
+                                                                <http://www.w3.org/2004/02/skos/core#prefLabel> "Stupa style"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/ConditionType#Damaged
@@ -5245,7 +5280,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                           <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                                  rdfs:label "Architectural Style (concept scheme)"@en ;
                                                                  <http://www.w3.org/2004/02/skos/core#definition> "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."@en ;
-                                                                 <http://www.w3.org/2004/02/skos/core#prefLabel> "Architectural Style"@en .
+                                                                 <http://www.w3.org/2004/02/skos/core#prefLabel> "Architectural Style (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/ConditionType
@@ -5253,7 +5288,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                      <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                             rdfs:label "Condition Type (concept scheme)"@en ;
                                                             <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for the physical condition of heritage objects and structures."@en ;
-                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Condition Type"@en .
+                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Condition Type (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/DatePrecision
@@ -5261,7 +5296,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                      <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                             rdfs:label "Date Precision (concept scheme)"@en ;
                                                             <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for the temporal precision of recorded heritage dates."@en ;
-                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Date Precision"@en .
+                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Date Precision (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus
@@ -5269,7 +5304,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                        <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                               rdfs:label "Existence Status (concept scheme)"@en ;
                                                               <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for whether a heritage structure still exists physically."@en ;
-                                                              <http://www.w3.org/2004/02/skos/core#prefLabel> "Existence Status"@en .
+                                                              <http://www.w3.org/2004/02/skos/core#prefLabel> "Existence Status (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/GuthiType
@@ -5277,7 +5312,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                  <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                         rdfs:label "Guthi Type (concept scheme)"@en ;
                                                         <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary of Guthi functional types (CRM E55_Type)"@en ;
-                                                        <http://www.w3.org/2004/02/skos/core#prefLabel> "Guthi Type"@en .
+                                                        <http://www.w3.org/2004/02/skos/core#prefLabel> "Guthi Type (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/RitualType
@@ -5285,7 +5320,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                   <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                          rdfs:label "Ritual Type (concept scheme)"@en ;
                                                          <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."@en ;
-                                                         <http://www.w3.org/2004/02/skos/core#prefLabel> "Ritual Type"@en .
+                                                         <http://www.w3.org/2004/02/skos/core#prefLabel> "Ritual Type (concept scheme)"@en .
 
 
 ###  https://cair-nepal.org/heritagegraph/scheme/SyncreticType
@@ -5293,7 +5328,7 @@ xsd:date rdf:type rdfs:Datatype .
                                                                      <http://www.w3.org/2004/02/skos/core#ConceptScheme> ;
                                                             rdfs:label "Syncretic Type (concept scheme)"@en ;
                                                             <http://www.w3.org/2004/02/skos/core#definition> "Controlled vocabulary for kinds of syncretic theological relationships between deities."@en ;
-                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Syncretic Type"@en .
+                                                            <http://www.w3.org/2004/02/skos/core#prefLabel> "Syncretic Type (concept scheme)"@en .
 
 
 ###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/
