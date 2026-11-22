@@ -1,0 +1,4072 @@
+{
+ "title": "HeritageGraph Ontology",
+ "iri": "https://cair-nepal.org/heritagegraph/ontology",
+ "version": "1.0.1",
+ "namespace": "https://cair-nepal.org/heritagegraph/",
+ "prefix": "heritageGraph",
+ "description": "HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities and institutions (notably the *Guthi*) that sustain them. Rather than attaching facts directly to objects, the model represents history as a web of events (production, ritual, custody transfer, documentation) so that spatial, temporal, and participatory relationships can be queried and reasoned over. Every assertion can carry its provenance and epistemic standing, allowing competing or multi-vocal sources to coexist. The ontology is generated from a LinkML schema, is an OWL 2 DL vocabulary that is logically consistent under the HermiT reasoner, and is aligned with CIDOC-CRM 7.1.3, CRMinf, CRMsci, and PROV-O, and through a companion module with Linked Art, to maximise interoperability with the wider cultural-heritage Linked Data cloud.",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
+ "creators": [
+  "Niraj Karki",
+  "Nabin Oli",
+  "Anu Sapkota",
+  "Tek Raj Chhetri",
+  "Semih Yumusak"
+ ],
+ "prefixes": {
+  "aat": "http://vocab.getty.edu/aat/",
+  "bibo": "http://purl.org/ontology/bibo/",
+  "crm": "http://www.cidoc-crm.org/cidoc-crm/",
+  "crminf": "http://www.cidoc-crm.org/extensions/crminf/",
+  "crmsci": "http://www.cidoc-crm.org/extensions/crmsci/",
+  "dbo": "http://dbpedia.org/ontology/",
+  "dcterms": "http://purl.org/dc/terms/",
+  "geo": "http://www.opengis.net/ont/geosparql#",
+  "heritageGraph": "https://cair-nepal.org/heritagegraph/",
+  "linkml": "https://w3id.org/linkml/",
+  "owl": "http://www.w3.org/2002/07/owl#",
+  "pav": "http://purl.org/pav/",
+  "prov": "http://www.w3.org/ns/prov#",
+  "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+  "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+  "rico": "https://www.ica.org/standards/RiC/ontology#",
+  "schema1": "http://schema.org/",
+  "skos": "http://www.w3.org/2004/02/skos/core#",
+  "time": "http://www.w3.org/2006/time#",
+  "vann": "http://purl.org/vocab/vann/",
+  "wikidata": "http://www.wikidata.org/entity/",
+  "xsd": "http://www.w3.org/2001/XMLSchema#"
+ },
+ "counts": {
+  "class": 84,
+  "object_property": 149,
+  "datatype_property": 42,
+  "annotation_property": 37,
+  "concept_scheme": 8,
+  "concept": 51,
+  "triples": 4269
+ },
+ "terms": [
+  {
+   "iri": "http://www.w3.org/ns/prov#Activity",
+   "curie": "prov:Activity",
+   "kind": "class",
+   "label": "Activity",
+   "definition": "Direct LinkML representation of prov:Activity. Applied to events and processes that use, transform, generate, document, assess, or verify entities.",
+   "subclasses": [
+    "crm:E14_Condition_Assessment",
+    "heritageGraph:Consecration",
+    "heritageGraph:DocumentationActivity",
+    "heritageGraph:Enshrinement",
+    "heritageGraph:HistoricalEvent",
+    "crm:E12_Production",
+    "heritageGraph:RitualEvent",
+    "heritageGraph:SyncreticRelationship",
+    "crm:E10_Transfer_of_Custody"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E39_Actor",
+   "curie": "crm:E39_Actor",
+   "kind": "class",
+   "label": "Actor",
+   "definition": "General actor (person or group) responsible for events",
+   "superclasses": [
+    "prov:Agent"
+   ],
+   "subclasses": [
+    "heritageGraph:CasteGroup",
+    "heritageGraph:DataCustodian",
+    "heritageGraph:Guthi",
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/AgeCriterion",
+   "curie": "heritageGraph:AgeCriterion",
+   "kind": "class",
+   "label": "Age Criterion",
+   "definition": "Candidate must be within the prescribed pre-pubescent age range.",
+   "superclasses": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#Agent",
+   "curie": "prov:Agent",
+   "kind": "class",
+   "label": "Agent",
+   "definition": "Direct LinkML representation of prov:Agent. Agents bear responsibility for activities or entities. PROV-O permits an individual agent also to be typed as an Entity, but does not define every Agent as a subclass of Entity.",
+   "subclasses": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalElement",
+   "curie": "heritageGraph:ArchitecturalElement",
+   "kind": "class",
+   "label": "Architectural Element",
+   "definition": "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "crm:P3_has_note min 0",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note only xsd:string",
+    "crm:P46i_forms_part_of only heritageGraph:ArchitecturalStructure",
+    "crm:P46i_forms_part_of max 1",
+    "crm:P46i_forms_part_of min 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStructure",
+   "curie": "heritageGraph:ArchitecturalStructure",
+   "kind": "class",
+   "label": "Architectural Structure",
+   "definition": "Physical structures built for religious, social, or civic purposes. Links to events of production, use, custody, and documentation.",
+   "superclasses": [
+    "crm:E22_Human-Made_Object"
+   ],
+   "subclasses": [
+    "heritageGraph:ReligiousStructure",
+    "heritageGraph:RestHouse",
+    "heritageGraph:WaterStructure"
+   ],
+   "restrictions": [
+    "heritageGraph:existenceStatus max 1",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:existenceStatus min 0",
+    "heritageGraph:hasArchitecturalStyle min 0",
+    "crm:P108i_was_produced_by max 1",
+    "heritageGraph:existenceStatus only heritageGraph:ExistenceStatus",
+    "crm:P46_is_composed_of min 0",
+    "heritageGraph:destructionEvent max 1",
+    "heritageGraph:managedByGuthi only heritageGraph:Guthi",
+    "heritageGraph:mentionedInSource only heritageGraph:DataSource",
+    "heritageGraph:hasAssertion min 0",
+    "crm:P55_has_current_location max 1",
+    "crm:P55_has_current_location min 0",
+    "heritageGraph:lastKnownExistenceDate max 1",
+    "heritageGraph:destructionEvent min 0",
+    "heritageGraph:hasArchitecturalStyle max 1",
+    "heritageGraph:mentionedInSource min 0",
+    "crm:P108i_was_produced_by only crm:E12_Production",
+    "crm:P46_is_composed_of only heritageGraph:ArchitecturalElement",
+    "heritageGraph:destructionEvent only crm:E6_Destruction",
+    "heritageGraph:hypothesizedLocation min 0",
+    "crm:P3_has_note max 1",
+    "heritageGraph:lastKnownExistenceDate only xsd:dateTime",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "crm:P55_has_current_location only crm:E53_Place",
+    "crm:P3_has_note min 0",
+    "heritageGraph:hasArchitecturalStyle only heritageGraph:ArchitecturalStyle",
+    "crm:P34i_was_assessed_by min 0",
+    "crm:P108i_was_produced_by min 0",
+    "crm:P34i_was_assessed_by only crm:E14_Condition_Assessment",
+    "heritageGraph:managedByGuthi min 0",
+    "heritageGraph:hypothesizedLocation only crm:E53_Place",
+    "heritageGraph:lastKnownExistenceDate min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle",
+   "curie": "heritageGraph:ArchitecturalStyle",
+   "kind": "class",
+   "label": "Architectural Style",
+   "definition": "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchivalRecord",
+   "curie": "heritageGraph:ArchivalRecord",
+   "kind": "class",
+   "label": "Archival Record",
+   "definition": "Government or institutional administrative record",
+   "superclasses": [
+    "heritageGraph:DataSource"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/extensions/crminf/I2_Belief",
+   "curie": "crminf:I2_Belief",
+   "kind": "class",
+   "label": "Assertion",
+   "definition": "A provenance-bearing belief or claim about a heritage entity or event. The assertion is represented as CRMinf I2 Belief and as a prov:Entity, allowing source, attribution, generation time, revision, confidence, and reconciliation status to be recorded explicitly.",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/AssertionSubject",
+   "curie": "heritageGraph:AssertionSubject",
+   "kind": "class",
+   "label": "Assertion Subject",
+   "definition": "Any HeritageGraph entity or event that may be the subject of an assertion.",
+   "restrictions": [
+    "crm:E22_Human-Made_Object or heritageGraph:ArchitecturalElement or heritageGraph:Deity or heritageGraph:ReligiousTradition or heritageGraph:HistoricalEvent or heritageGraph:RitualEvent or crm:E12_Production or heritageGraph:Consecration or heritageGraph:Enshrinement or crm:E10_Transfer_of_Custody or crm:E14_Condition_Assessment or crm:E3_Condition_State or crm:E39_Actor or crm:E53_Place or crm:E52_Time-Span or heritageGraph:DataSource or heritageGraph:DocumentationActivity or heritageGraph:SyncreticRelationship or heritageGraph:KumariTenure or crm:E29_Design_or_Procedure or crm:E57_Material or heritageGraph:KumariRole or heritageGraph:SelectionCriterion or crminf:I2_Belief or heritageGraph:CalendarSystem"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/CalendarSystem",
+   "curie": "heritageGraph:CalendarSystem",
+   "kind": "class",
+   "label": "Calendar System",
+   "definition": "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:yearOffsetFromGregorian min 0",
+    "heritageGraph:epochDateGregorian max 1",
+    "heritageGraph:yearOffsetFromGregorian max 1",
+    "heritageGraph:epochDateGregorian min 0",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note min 0",
+    "heritageGraph:yearOffsetFromGregorian only xsd:integer",
+    "heritageGraph:epochDateGregorian only xsd:string",
+    "heritageGraph:isPrimaryForTradition only heritageGraph:ReligiousTradition",
+    "heritageGraph:isPrimaryForTradition min 0",
+    "crm:P3_has_note only xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/CasteGroup",
+   "curie": "heritageGraph:CasteGroup",
+   "kind": "class",
+   "label": "Caste Group",
+   "definition": "Hereditary social group (Jati) with specific ritual roles and occupational duties",
+   "superclasses": [
+    "crm:E39_Actor"
+   ],
+   "restrictions": [
+    "heritageGraph:traditionalRole min 0",
+    "heritageGraph:traditionalRole max 1",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:traditionalRole only xsd:string",
+    "crm:P3_has_note min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Chaitya",
+   "curie": "heritageGraph:Chaitya",
+   "kind": "class",
+   "label": "Chaitya",
+   "definition": "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley.",
+   "superclasses": [
+    "heritageGraph:ReligiousStructure"
+   ],
+   "disjoint_with": [
+    "heritageGraph:Stupa"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ChariotFestival",
+   "curie": "heritageGraph:ChariotFestival",
+   "kind": "class",
+   "label": "Chariot Festival",
+   "definition": "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)",
+   "superclasses": [
+    "heritageGraph:Festival"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#Concept",
+   "curie": "skos:Concept",
+   "kind": "class",
+   "label": "Concept"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#ConceptScheme",
+   "curie": "skos:ConceptScheme",
+   "kind": "class",
+   "label": "ConceptScheme"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E14_Condition_Assessment",
+   "curie": "crm:E14_Condition_Assessment",
+   "kind": "class",
+   "label": "Condition Assessment",
+   "definition": "Event of evaluating the physical state of a heritage object or structure",
+   "superclasses": [
+    "prov:Activity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E3_Condition_State",
+   "curie": "crm:E3_Condition_State",
+   "kind": "class",
+   "label": "Condition State",
+   "definition": "A physical condition state of a heritage object",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ConditionType",
+   "curie": "heritageGraph:ConditionType",
+   "kind": "class",
+   "label": "Condition Type",
+   "definition": "Controlled vocabulary for the physical condition of heritage objects and structures."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Consecration",
+   "curie": "heritageGraph:Consecration",
+   "kind": "class",
+   "label": "Consecration",
+   "definition": "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "restrictions": [
+    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P16_used_specific_object min 0",
+    "crm:P7_took_place_at min 0",
+    "crm:P16_used_specific_object max 1",
+    "heritageGraph:makesDeityPresent min 0",
+    "crm:P16_used_specific_object only heritageGraph:Murti",
+    "heritageGraph:makesDeityPresent only heritageGraph:Deity",
+    "crm:P7_took_place_at max 1",
+    "heritageGraph:makesDeityPresent max 1",
+    "crm:P14_carried_out_by min 0",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P4_has_time-span max 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P4_has_time-span min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Container",
+   "curie": "heritageGraph:Container",
+   "kind": "class",
+   "label": "Container",
+   "definition": "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in persons, not actors); broader collections exist for instances of the general classes only.",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:time_spans min 0",
+    "heritageGraph:selection_criteria min 0",
+    "heritageGraph:caste_groups min 0",
+    "heritageGraph:ritual_assessments only heritageGraph:RitualAssessment",
+    "heritageGraph:architectural_elements only heritageGraph:ArchitecturalElement",
+    "heritageGraph:actors min 0",
+    "heritageGraph:time_spans only crm:E52_Time-Span",
+    "heritageGraph:condition_states only crm:E3_Condition_State",
+    "heritageGraph:data_sources only heritageGraph:DataSource",
+    "heritageGraph:ritual_events min 0",
+    "heritageGraph:consecration_events only heritageGraph:Consecration",
+    "heritageGraph:syncretic_relationships min 0",
+    "heritageGraph:religious_traditions only heritageGraph:ReligiousTradition",
+    "heritageGraph:propositions min 0",
+    "heritageGraph:consecration_events min 0",
+    "heritageGraph:historical_events min 0",
+    "heritageGraph:iconographic_objects only heritageGraph:IconographicObject",
+    "heritageGraph:guthis only heritageGraph:Guthi",
+    "heritageGraph:calendar_systems min 0",
+    "heritageGraph:assertions only crminf:I2_Belief",
+    "heritageGraph:metadata min 0",
+    "heritageGraph:persons min 0",
+    "heritageGraph:information_objects only heritageGraph:InformationObject",
+    "heritageGraph:physical_heritage_things only heritageGraph:PhysicalHeritageThing",
+    "heritageGraph:custody_events min 0",
+    "heritageGraph:ritual_events only heritageGraph:RitualEvent",
+    "heritageGraph:ritual_assessments min 0",
+    "heritageGraph:kumari_lifecycle_events only heritageGraph:KumariLifecycleEvent",
+    "heritageGraph:architectural_elements min 0",
+    "heritageGraph:calendar_systems only heritageGraph:CalendarSystem",
+    "heritageGraph:materials min 0",
+    "heritageGraph:metadata only heritageGraph:Metadata",
+    "heritageGraph:caste_groups only heritageGraph:CasteGroup",
+    "heritageGraph:propositions only heritageGraph:Proposition",
+    "heritageGraph:places only crm:E53_Place",
+    "heritageGraph:enshrinement_events min 0",
+    "heritageGraph:enshrinement_events only heritageGraph:Enshrinement",
+    "heritageGraph:places min 0",
+    "heritageGraph:production_events min 0",
+    "heritageGraph:human_made_objects min 0",
+    "heritageGraph:documentation_activities min 0",
+    "heritageGraph:materials only crm:E57_Material",
+    "heritageGraph:kumari_roles only heritageGraph:KumariRole",
+    "heritageGraph:structures min 0",
+    "heritageGraph:structures only heritageGraph:ArchitecturalStructure",
+    "heritageGraph:condition_states min 0",
+    "heritageGraph:custody_events only crm:E10_Transfer_of_Custody",
+    "heritageGraph:historical_events only heritageGraph:HistoricalEvent",
+    "heritageGraph:deities only heritageGraph:Deity",
+    "heritageGraph:data_custodians min 0",
+    "heritageGraph:kumari_roles min 0",
+    "heritageGraph:guthis min 0",
+    "heritageGraph:techniques min 0",
+    "heritageGraph:physical_heritage_things min 0",
+    "heritageGraph:festivals only heritageGraph:Festival",
+    "heritageGraph:religious_traditions min 0",
+    "heritageGraph:syncretic_relationships only heritageGraph:SyncreticRelationship",
+    "heritageGraph:selection_criteria only heritageGraph:SelectionCriterion",
+    "heritageGraph:persons only crm:E21_Person",
+    "heritageGraph:kumari_tenures only heritageGraph:KumariTenure",
+    "heritageGraph:data_sources min 0",
+    "heritageGraph:techniques only crm:E29_Design_or_Procedure",
+    "heritageGraph:deities min 0",
+    "heritageGraph:festivals min 0",
+    "heritageGraph:metadata max 1",
+    "heritageGraph:documentation_activities only heritageGraph:DocumentationActivity",
+    "heritageGraph:actors only crm:E39_Actor",
+    "heritageGraph:data_custodians only heritageGraph:DataCustodian",
+    "heritageGraph:information_objects min 0",
+    "heritageGraph:human_made_objects only crm:E22_Human-Made_Object",
+    "heritageGraph:production_events only crm:E12_Production",
+    "heritageGraph:condition_assessments only crm:E14_Condition_Assessment",
+    "heritageGraph:condition_assessments min 0",
+    "heritageGraph:kumari_lifecycle_events min 0",
+    "heritageGraph:kumari_tenures min 0",
+    "heritageGraph:assertions min 0",
+    "heritageGraph:iconographic_objects min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DataCustodian",
+   "curie": "heritageGraph:DataCustodian",
+   "kind": "class",
+   "label": "Data Custodian",
+   "definition": "Institution or person currently responsible for stewarding heritage data.",
+   "superclasses": [
+    "crm:E39_Actor"
+   ],
+   "restrictions": [
+    "crm:P3_has_note min 0",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:custodianType only xsd:string",
+    "crm:P3_has_note max 1",
+    "heritageGraph:custodianType max 1",
+    "heritageGraph:custodianType min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DataSource",
+   "curie": "heritageGraph:DataSource",
+   "kind": "class",
+   "label": "Data Source",
+   "definition": "Original source from which heritage information was derived",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "subclasses": [
+    "heritageGraph:ArchivalRecord",
+    "heritageGraph:FieldSurveyDataset",
+    "heritageGraph:InformationObject",
+    "heritageGraph:OralHistoryRecording"
+   ],
+   "restrictions": [
+    "heritageGraph:resourceType min 0",
+    "heritageGraph:sourcePublisher max 1",
+    "heritageGraph:sourceCreator only crm:E39_Actor",
+    "schema1:inLanguage max 1",
+    "heritageGraph:identifierScheme min 0",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:sourceUrl only xsd:string",
+    "crm:P3_has_note max 1",
+    "heritageGraph:persistentIdentifier only xsd:string",
+    "heritageGraph:sourceCitation only xsd:string",
+    "heritageGraph:sourcePublisher min 0",
+    "heritageGraph:identifierScheme only xsd:string",
+    "heritageGraph:publicationTimespan max 1",
+    "heritageGraph:persistentIdentifier max 1",
+    "heritageGraph:sourcePublisher only crm:E39_Actor",
+    "heritageGraph:sourceCreator min 0",
+    "heritageGraph:resourceType max 1",
+    "schema1:inLanguage only xsd:string",
+    "schema1:inLanguage min 0",
+    "heritageGraph:resourceType only xsd:string",
+    "heritageGraph:sourceUrl min 0",
+    "heritageGraph:identifierScheme max 1",
+    "heritageGraph:persistentIdentifier min 0",
+    "heritageGraph:publicationTimespan only crm:E52_Time-Span",
+    "heritageGraph:sourceCitation max 1",
+    "heritageGraph:sourceCitation min 0",
+    "heritageGraph:publicationTimespan min 0",
+    "heritageGraph:sourceUrl max 1",
+    "crm:P3_has_note min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision",
+   "curie": "heritageGraph:DatePrecision",
+   "kind": "class",
+   "label": "Date Precision",
+   "definition": "Controlled vocabulary for the temporal precision of recorded heritage dates."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Deity",
+   "curie": "heritageGraph:Deity",
+   "kind": "class",
+   "label": "Deity",
+   "definition": "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences.",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:hasReligiousTradition min 0",
+    "heritageGraph:isEnshrinedThroughEvent only heritageGraph:Enshrinement",
+    "crm:P3_has_note max 1",
+    "crm:P62i_is_depicted_by only heritageGraph:IconographicObject",
+    "heritageGraph:isInvokedInRitual min 0",
+    "crm:P62i_is_depicted_by min 0",
+    "heritageGraph:hasReligiousTradition only heritageGraph:ReligiousTradition",
+    "heritageGraph:isInvokedInRitual only heritageGraph:RitualEvent",
+    "crm:P3_has_note min 0",
+    "heritageGraph:isEnshrinedThroughEvent min 0"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction",
+   "curie": "crm:E6_Destruction",
+   "kind": "class",
+   "label": "Destruction Event",
+   "definition": "Event that destroyed or damaged a structure."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Dharmashala",
+   "curie": "heritageGraph:Dharmashala",
+   "kind": "class",
+   "label": "Dharmashala",
+   "definition": "Pilgrim lodge operated by a Guthi organization",
+   "superclasses": [
+    "heritageGraph:RestHouse"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DhungeDhara",
+   "curie": "heritageGraph:DhungeDhara",
+   "kind": "class",
+   "label": "Dhunge Dhara",
+   "definition": "Stone spout (hiti) with carved imagery, used for ritual bathing and daily water supply",
+   "synonyms": [
+    "Hiti"
+   ],
+   "superclasses": [
+    "heritageGraph:WaterStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DocumentationActivity",
+   "curie": "heritageGraph:DocumentationActivity",
+   "kind": "class",
+   "label": "Documentation Activity",
+   "definition": "Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity.",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "subclasses": [
+    "heritageGraph:FieldSurveyActivity",
+    "heritageGraph:OralHistoryInterview",
+    "heritageGraph:Verification"
+   ],
+   "restrictions": [
+    "prov:generated only prov:Entity",
+    "heritageGraph:usedEquipment only xsd:string",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:documents only heritageGraph:AssertionSubject",
+    "heritageGraph:usedEquipment min 0",
+    "crm:P4_has_time-span min 0",
+    "prov:wasAssociatedWith min 0",
+    "heritageGraph:usedMethod min 0",
+    "heritageGraph:usedMethod max 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "prov:generated min 0",
+    "heritageGraph:usedMethod only xsd:string",
+    "prov:wasAssociatedWith only prov:Agent",
+    "heritageGraph:documents min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Enshrinement",
+   "curie": "heritageGraph:Enshrinement",
+   "kind": "class",
+   "label": "Enshrinement",
+   "definition": "Event of installing a deity's murti or symbol within a temple sanctum",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "restrictions": [
+    "crm:P4_has_time-span min 0",
+    "heritageGraph:enshrinedInStructure min 0",
+    "crm:P4_has_time-span max 1",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P7_took_place_at max 1",
+    "heritageGraph:enshrinedInStructure max 1",
+    "heritageGraph:enshrinedDeity only heritageGraph:Deity",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "heritageGraph:enshrinedDeity min 0",
+    "heritageGraph:enshrinedDeity max 1",
+    "heritageGraph:enshrinedInStructure only heritageGraph:Temple",
+    "crm:P7_took_place_at min 0",
+    "crm:P14_carried_out_by min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#Entity",
+   "curie": "prov:Entity",
+   "kind": "class",
+   "label": "Entity",
+   "definition": "Direct LinkML representation of prov:Entity. Applied to physical, digital, conceptual, and assertion-bearing things that participate in provenance relations. PROVENANCE SCOPE (design decision): for classes whose instances are real-world referents (structures, deities, places, actors), the provenance slots (was_derived_from, was_attributed_to, was_generated_by, generated_at_time) describe the DATA RECORD about the referent, not the referent itself -- a stupa is not generated by the survey that records it. Referent-level history is modelled through events (Production, DestructionEvent, etc.). RDF deployments SHOULD carry record-level provenance in named graphs or on InformationObject/Assertion nodes.",
+   "subclasses": [
+    "heritageGraph:ArchitecturalElement",
+    "crminf:I2_Belief",
+    "heritageGraph:CalendarSystem",
+    "crm:E3_Condition_State",
+    "heritageGraph:Container",
+    "heritageGraph:DataSource",
+    "heritageGraph:Deity",
+    "crm:E22_Human-Made_Object",
+    "heritageGraph:KumariRole",
+    "heritageGraph:KumariTenure",
+    "crm:E57_Material",
+    "heritageGraph:Metadata",
+    "heritageGraph:PhysicalHeritageThing",
+    "crm:E53_Place",
+    "heritageGraph:Proposition",
+    "heritageGraph:ReligiousTradition",
+    "heritageGraph:SelectionCriterion",
+    "crm:E29_Design_or_Procedure",
+    "crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus",
+   "curie": "heritageGraph:ExistenceStatus",
+   "kind": "class",
+   "label": "Existence Status",
+   "definition": "Controlled vocabulary for whether a heritage structure still exists physically."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/FearlessnessAssessment",
+   "curie": "heritageGraph:FearlessnessAssessment",
+   "kind": "class",
+   "label": "Fearlessness Assessment",
+   "definition": "The 'fearlessness test' popularly described (animal heads, masked dancers in darkness). Its historical and contemporary practice is DISPUTED -- some former Kumaris contest how it is described. Represented as an assessment whose accounts are source-attributed via has_assertion, NOT as a mandatory criterion.",
+   "superclasses": [
+    "heritageGraph:RitualAssessment"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Festival",
+   "curie": "heritageGraph:Festival",
+   "kind": "class",
+   "label": "Festival",
+   "definition": "Large-scale community ritual event (Jatra) involving processions, music, and collective participation",
+   "synonyms": [
+    "Jatra"
+   ],
+   "superclasses": [
+    "heritageGraph:RitualEvent"
+   ],
+   "subclasses": [
+    "heritageGraph:ChariotFestival",
+    "heritageGraph:MaskedDance"
+   ],
+   "restrictions": [
+    "crm:P9_consists_of min 0",
+    "crm:P9_consists_of only heritageGraph:RitualEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/FieldSurveyActivity",
+   "curie": "heritageGraph:FieldSurveyActivity",
+   "kind": "class",
+   "label": "Field Survey Activity",
+   "definition": "The activity of measuring, photographing, or assessing a site in person.",
+   "superclasses": [
+    "heritageGraph:DocumentationActivity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/FieldSurveyDataset",
+   "curie": "heritageGraph:FieldSurveyDataset",
+   "kind": "class",
+   "label": "Field Survey Dataset",
+   "definition": "The structured data or report resulting from a field survey.",
+   "superclasses": [
+    "heritageGraph:DataSource"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Guthi",
+   "curie": "heritageGraph:Guthi",
+   "kind": "class",
+   "label": "Guthi",
+   "definition": "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership",
+   "superclasses": [
+    "crm:E39_Actor"
+   ],
+   "restrictions": [
+    "heritageGraph:performsRitual only heritageGraph:RitualEvent",
+    "crm:P107_has_current_or_former_member min 0",
+    "heritageGraph:guthiType min 0",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note only xsd:string",
+    "crm:P50i_is_current_keeper_of only heritageGraph:ArchitecturalStructure",
+    "crm:P3_has_note min 0",
+    "crm:P107_has_current_or_former_member only crm:E21_Person",
+    "heritageGraph:performsRitual min 0",
+    "heritageGraph:guthiType only heritageGraph:GuthiType",
+    "crm:P50i_is_current_keeper_of min 0",
+    "heritageGraph:guthiType max 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType",
+   "curie": "heritageGraph:GuthiType",
+   "kind": "class",
+   "label": "Guthi Type",
+   "definition": "Controlled vocabulary of Guthi functional types (CRM E55_Type)"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/HistoricalEvent",
+   "curie": "heritageGraph:HistoricalEvent",
+   "kind": "class",
+   "label": "Historical Event",
+   "definition": "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood).",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "restrictions": [
+    "crm:P7_took_place_at max 1",
+    "crm:P4_has_time-span max 1",
+    "crm:P9_consists_of min 0",
+    "heritageGraph:architecturalStructures only heritageGraph:ArchitecturalStructure",
+    "crm:P9_consists_of only heritageGraph:RitualEvent",
+    "heritageGraph:architecturalStructures min 0",
+    "crm:P7_took_place_at min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P4_has_time-span min 0",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note only xsd:string",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P3_has_note min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/HoroscopeCompatibilityCriterion",
+   "curie": "heritageGraph:HoroscopeCompatibilityCriterion",
+   "kind": "class",
+   "label": "Horoscope Compatibility Criterion",
+   "definition": "Candidate's horoscope must be compatible with the city and ruling authority.",
+   "superclasses": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object",
+   "curie": "crm:E22_Human-Made_Object",
+   "kind": "class",
+   "label": "Human Made Object",
+   "definition": "Physical objects created by human activity",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "subclasses": [
+    "heritageGraph:ArchitecturalStructure",
+    "heritageGraph:IconographicObject"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/IconographicObject",
+   "curie": "heritageGraph:IconographicObject",
+   "kind": "class",
+   "label": "Iconographic Object",
+   "definition": "Sacred visual art objects that depict or embody deities through iconographic conventions",
+   "superclasses": [
+    "crm:E22_Human-Made_Object"
+   ],
+   "subclasses": [
+    "heritageGraph:Murti",
+    "heritageGraph:Paubha"
+   ],
+   "restrictions": [
+    "heritageGraph:usedBy only crm:E39_Actor",
+    "crm:P108i_was_produced_by max 1",
+    "crm:P62_depicts min 0",
+    "heritageGraph:participatesInRitual only heritageGraph:RitualEvent",
+    "crm:P55_has_current_location only crm:E53_Place",
+    "crm:P3_has_note min 0",
+    "crm:P108i_was_produced_by only crm:E12_Production",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:participatesInRitual min 0",
+    "crm:P55_has_current_location max 1",
+    "crm:P3_has_note max 1",
+    "crm:P62_depicts only heritageGraph:Deity",
+    "crm:P108i_was_produced_by min 0",
+    "crm:P55_has_current_location min 0",
+    "heritageGraph:usedBy min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/InformationObject",
+   "curie": "heritageGraph:InformationObject",
+   "kind": "class",
+   "label": "Information Object",
+   "definition": "A recorded piece of information about heritage",
+   "superclasses": [
+    "heritageGraph:DataSource"
+   ],
+   "restrictions": [
+    "prov:wasGeneratedBy only prov:Activity",
+    "heritageGraph:documentedBy min 0",
+    "prov:wasGeneratedBy max 1",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "schema1:inLanguage max 1",
+    "crm:P129_is_about only heritageGraph:AssertionSubject",
+    "schema1:inLanguage min 0",
+    "crm:P129_is_about min 0",
+    "schema1:inLanguage only xsd:string",
+    "prov:wasGeneratedBy min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariEnthronementEvent",
+   "curie": "heritageGraph:KumariEnthronementEvent",
+   "kind": "class",
+   "label": "Kumari Enthronement Event",
+   "definition": "Ritual installing a selected girl into the Kumari role and residence, activating the tenure (distinct from selection, which chooses her, and retirement, which ends it).",
+   "superclasses": [
+    "heritageGraph:KumariLifecycleEvent"
+   ],
+   "restrictions": [
+    "heritageGraph:documentedBy min 0",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "heritageGraph:confersRole only heritageGraph:KumariRole",
+    "heritageGraph:confersRole min 1",
+    "crm:P7_took_place_at min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:enthronedPerson max 1",
+    "heritageGraph:confersRole max 1",
+    "heritageGraph:hasAssertion min 0",
+    "heritageGraph:boundsTenure min 1",
+    "heritageGraph:enthronedPerson min 1",
+    "heritageGraph:enthronedPerson only crm:E21_Person",
+    "heritageGraph:boundsTenure max 1",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "crm:P7_took_place_at max 1",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P14_carried_out_by min 0",
+    "crm:P4_has_time-span min 0",
+    "heritageGraph:boundsTenure only heritageGraph:KumariTenure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariHouse",
+   "curie": "heritageGraph:KumariHouse",
+   "kind": "class",
+   "label": "Kumari House",
+   "definition": "God-house residence of a Kumari during tenure (e.g., Kumari Ghar, Kathmandu). Specialised ReligiousStructure.",
+   "synonyms": [
+    "Kumari Ghar"
+   ],
+   "superclasses": [
+    "heritageGraph:ReligiousStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariLifecycleEvent",
+   "curie": "heritageGraph:KumariLifecycleEvent",
+   "kind": "class",
+   "label": "Kumari Lifecycle Event",
+   "definition": "Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Each concrete subclass requires exactly one tenure edge via slot_usage: initiated_tenure (selection), ended_tenure_of (retirement), or bounds_tenure itself (enthronement).",
+   "superclasses": [
+    "heritageGraph:RitualEvent"
+   ],
+   "subclasses": [
+    "heritageGraph:KumariEnthronementEvent",
+    "heritageGraph:KumariRetirementEvent",
+    "heritageGraph:KumariSelectionEvent"
+   ],
+   "restrictions": [
+    "heritageGraph:boundsTenure min 0",
+    "heritageGraph:boundsTenure only heritageGraph:KumariTenure",
+    "heritageGraph:boundsTenure max 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariRetirementEvent",
+   "curie": "heritageGraph:KumariRetirementEvent",
+   "kind": "class",
+   "label": "Kumari Retirement Event",
+   "definition": "Ritual or administrative event that formally ends a Living Goddess tenure, returning the person to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.",
+   "superclasses": [
+    "heritageGraph:KumariLifecycleEvent"
+   ],
+   "restrictions": [
+    "crm:P7_took_place_at min 0",
+    "heritageGraph:endedTenureOf min 1",
+    "crm:P7_took_place_at max 1",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P3_has_note max 1",
+    "heritageGraph:performedByGroup min 0",
+    "heritageGraph:documentedBy min 0",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P3_has_note only xsd:string",
+    "crm:P4_has_time-span min 1",
+    "crm:P14_carried_out_by min 0",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "heritageGraph:endedTenureOf max 1",
+    "crm:P3_has_note min 0",
+    "heritageGraph:performedByGroup only ((heritageGraph:Guthi or heritageGraph:CasteGroup) and crm:E39_Actor)",
+    "heritageGraph:hasAssertion min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "heritageGraph:endedTenureOf only heritageGraph:KumariTenure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariRole",
+   "curie": "heritageGraph:KumariRole",
+   "kind": "class",
+   "label": "Kumari Role",
+   "definition": "The role/office of Kumari (living-goddess embodiment) that a person assumes for the duration of a KumariTenure. The role is the type; the tenure is the time-bounded holding of it; the person is the holder.",
+   "synonyms": [
+    "Living Goddess",
+    "Royal Kumari"
+   ],
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:roleDeity only heritageGraph:Deity",
+    "heritageGraph:roleDeity min 0",
+    "heritageGraph:roleDeity max 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariSelectionEvent",
+   "curie": "heritageGraph:KumariSelectionEvent",
+   "kind": "class",
+   "label": "Kumari Selection Event",
+   "definition": "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee of Vajracharya priests, royal priest (Raj Jyotish), and astrologer.",
+   "superclasses": [
+    "heritageGraph:KumariLifecycleEvent"
+   ],
+   "restrictions": [
+    "heritageGraph:performedByGroup min 0",
+    "heritageGraph:hasCriterion min 0",
+    "heritageGraph:initiatedTenure only heritageGraph:KumariTenure",
+    "heritageGraph:documentedBy min 0",
+    "heritageGraph:initiatedTenure min 1",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "heritageGraph:hasAssertion min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P14_carried_out_by min 0",
+    "crm:P7_took_place_at min 0",
+    "heritageGraph:confersRole max 1",
+    "heritageGraph:isCriticalForFestival min 0",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "heritageGraph:selectedPerson max 1",
+    "heritageGraph:selectedPerson min 1",
+    "heritageGraph:isCriticalForFestival only xsd:boolean",
+    "heritageGraph:performedByGroup only ((heritageGraph:Guthi or heritageGraph:CasteGroup) and crm:E39_Actor)",
+    "heritageGraph:initiatedTenure max 1",
+    "heritageGraph:hasCriterion only heritageGraph:SelectionCriterion",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "heritageGraph:confersRole only heritageGraph:KumariRole",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "crm:P7_took_place_at max 1",
+    "heritageGraph:selectedPerson only crm:E21_Person",
+    "heritageGraph:isCriticalForFestival max 1",
+    "crm:P4_has_time-span min 0",
+    "heritageGraph:confersRole min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/KumariTenure",
+   "curie": "heritageGraph:KumariTenure",
+   "kind": "class",
+   "label": "Kumari Tenure",
+   "definition": "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families.",
+   "synonyms": [
+    "Living Goddess Tenure"
+   ],
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:retiredThrough max 1",
+    "heritageGraph:assumesRole only heritageGraph:KumariRole",
+    "heritageGraph:assumesRole min 0",
+    "heritageGraph:enthronedThrough min 0",
+    "heritageGraph:embodiedDeity min 1",
+    "heritageGraph:residenceStructure only heritageGraph:ArchitecturalStructure",
+    "heritageGraph:assumesRole max 1",
+    "crm:P4_has_time-span min 1",
+    "heritageGraph:enthronedThrough max 1",
+    "heritageGraph:retiredThrough min 0",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "heritageGraph:selectedThrough max 1",
+    "heritageGraph:residenceStructure max 1",
+    "heritageGraph:embodiedDeity max 1",
+    "heritageGraph:enthronedThrough only heritageGraph:KumariEnthronementEvent",
+    "heritageGraph:residenceStructure min 1",
+    "heritageGraph:retiredThrough only heritageGraph:KumariRetirementEvent",
+    "heritageGraph:selectedThrough only heritageGraph:KumariSelectionEvent",
+    "heritageGraph:supportedByInstitution min 0",
+    "heritageGraph:hadParticipant min 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "heritageGraph:supportedByInstitution only heritageGraph:Guthi",
+    "heritageGraph:selectedThrough min 0",
+    "heritageGraph:embodiedDeity only heritageGraph:Deity",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:documentedBy min 0",
+    "heritageGraph:hadParticipant only crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/LineageCriterion",
+   "curie": "heritageGraph:LineageCriterion",
+   "kind": "class",
+   "label": "Lineage Criterion",
+   "definition": "Candidate must belong to an eligible lineage (Shakya / Vajracharya Newar Buddhist family).",
+   "superclasses": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/MaskedDance",
+   "curie": "heritageGraph:MaskedDance",
+   "kind": "class",
+   "label": "Masked Dance",
+   "definition": "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)",
+   "superclasses": [
+    "heritageGraph:Festival"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E57_Material",
+   "curie": "crm:E57_Material",
+   "kind": "class",
+   "label": "Material",
+   "definition": "Physical substance used in construction or crafting",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Metadata",
+   "curie": "heritageGraph:Metadata",
+   "kind": "class",
+   "label": "Metadata",
+   "definition": "Dataset metadata information",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:license only xsd:string",
+    "heritageGraph:curator max 1",
+    "heritageGraph:schema_version min 0",
+    "heritageGraph:generated_date max 1",
+    "heritageGraph:dataset_name min 0",
+    "heritageGraph:generated_date only xsd:string",
+    "heritageGraph:license max 1",
+    "heritageGraph:schema_version max 1",
+    "heritageGraph:generated_date min 0",
+    "heritageGraph:license min 0",
+    "heritageGraph:curator only xsd:string",
+    "heritageGraph:dataset_name max 1",
+    "heritageGraph:dataset_version min 0",
+    "heritageGraph:dataset_name only xsd:string",
+    "heritageGraph:curator min 0",
+    "heritageGraph:dataset_version max 1",
+    "heritageGraph:schema_version only xsd:string",
+    "heritageGraph:dataset_version only xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Murti",
+   "curie": "heritageGraph:Murti",
+   "kind": "class",
+   "label": "Murti",
+   "definition": "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)",
+   "superclasses": [
+    "heritageGraph:IconographicObject"
+   ],
+   "restrictions": [
+    "heritageGraph:consecratedByEvent min 0",
+    "heritageGraph:isAboutDeity max 1",
+    "heritageGraph:isAboutDeity only heritageGraph:Deity",
+    "heritageGraph:isAboutDeity min 0",
+    "heritageGraph:consecratedByEvent max 1",
+    "heritageGraph:consecratedByEvent only heritageGraph:Consecration"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/OralHistoryInterview",
+   "curie": "heritageGraph:OralHistoryInterview",
+   "kind": "class",
+   "label": "Oral History Interview",
+   "definition": "The interaction event between a researcher and a knowledge holder.",
+   "superclasses": [
+    "heritageGraph:DocumentationActivity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/OralHistoryRecording",
+   "curie": "heritageGraph:OralHistoryRecording",
+   "kind": "class",
+   "label": "Oral History Recording",
+   "definition": "The recording or transcript of an oral history interview.",
+   "superclasses": [
+    "heritageGraph:DataSource"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Pati",
+   "curie": "heritageGraph:Pati",
+   "kind": "class",
+   "label": "Pati",
+   "definition": "Open-air pavilion for resting travelers",
+   "synonyms": [
+    "Phalcha"
+   ],
+   "superclasses": [
+    "heritageGraph:RestHouse"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Paubha",
+   "curie": "heritageGraph:Paubha",
+   "kind": "class",
+   "label": "Paubha",
+   "definition": "Traditional Newari scroll painting (thangka) with mandala and deity iconography",
+   "superclasses": [
+    "heritageGraph:IconographicObject"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E21_Person",
+   "curie": "crm:E21_Person",
+   "kind": "class",
+   "label": "Person",
+   "definition": "Individual person who performs, commissions, documents, or verifies heritage activities",
+   "superclasses": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/PhysicalHeritageThing",
+   "curie": "heritageGraph:PhysicalHeritageThing",
+   "kind": "class",
+   "label": "Physical Heritage Thing",
+   "definition": "Union of the tangible heritage classes: architectural structures, iconographic objects, and standalone architectural elements. Used as the range of slots that apply to any physical heritage thing (production, custody, condition assessment).",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "equivalent_to": [
+    "heritageGraph:ArchitecturalStructure or heritageGraph:IconographicObject or heritageGraph:ArchitecturalElement"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/PhysicalIntegrityCriterion",
+   "curie": "heritageGraph:PhysicalIntegrityCriterion",
+   "kind": "class",
+   "label": "Physical Integrity Criterion",
+   "definition": "Candidate must have an unblemished body with no scars, wounds, or loss of blood/teeth.",
+   "superclasses": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E53_Place",
+   "curie": "crm:E53_Place",
+   "kind": "class",
+   "label": "Place",
+   "definition": "Defined geographic location where events occur and structures exist",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Pokhari",
+   "curie": "heritageGraph:Pokhari",
+   "kind": "class",
+   "label": "Pokhari",
+   "definition": "Pond or tank for water storage, ritual bathing, and ecological management",
+   "superclasses": [
+    "heritageGraph:WaterStructure"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E12_Production",
+   "curie": "crm:E12_Production",
+   "kind": "class",
+   "label": "Production",
+   "definition": "Event of creating an architectural structure, murti, or paubha",
+   "superclasses": [
+    "prov:Activity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Proposition",
+   "curie": "heritageGraph:Proposition",
+   "kind": "class",
+   "label": "Proposition",
+   "definition": "A single machine-readable proposition (subject - predicate - object) held true by an Assertion. Modelled as a singleton proposition set (CRMinf I4); the predicate is a URI/CURIE, the object either a heritage entity or a literal.",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "heritageGraph:propositionSubject min 1",
+    "heritageGraph:propositionObjectEntity min 0",
+    "heritageGraph:propositionLiteralValue min 0",
+    "heritageGraph:propositionObjectEntity only heritageGraph:AssertionSubject",
+    "heritageGraph:propositionPredicate only xsd:anyURI",
+    "heritageGraph:propositionObjectEntity max 1",
+    "heritageGraph:propositionLiteralValue max 1",
+    "heritageGraph:propositionLiteralValue only xsd:string",
+    "heritageGraph:propositionSubject only heritageGraph:AssertionSubject",
+    "heritageGraph:propositionSubject max 1",
+    "heritageGraph:propositionPredicate max 1",
+    "heritageGraph:propositionPredicate min 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ReligiousStructure",
+   "curie": "heritageGraph:ReligiousStructure",
+   "kind": "class",
+   "label": "Religious Structure",
+   "definition": "Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).",
+   "superclasses": [
+    "heritageGraph:ArchitecturalStructure"
+   ],
+   "subclasses": [
+    "heritageGraph:Chaitya",
+    "heritageGraph:KumariHouse",
+    "heritageGraph:Stupa",
+    "heritageGraph:Temple"
+   ],
+   "restrictions": [
+    "heritageGraph:hasReligiousTradition min 0",
+    "heritageGraph:hasReligiousTradition only heritageGraph:ReligiousTradition"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ReligiousTradition",
+   "curie": "heritageGraph:ReligiousTradition",
+   "kind": "class",
+   "label": "Religious Tradition",
+   "definition": "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "restrictions": [
+    "crm:P3_has_note min 0",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note only xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RestHouse",
+   "curie": "heritageGraph:RestHouse",
+   "kind": "class",
+   "label": "Rest House",
+   "definition": "Community structures for travelers and pilgrims, maintained by Guthi organizations",
+   "superclasses": [
+    "heritageGraph:ArchitecturalStructure"
+   ],
+   "subclasses": [
+    "heritageGraph:Dharmashala",
+    "heritageGraph:Pati",
+    "heritageGraph:Sattal"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualAssessment",
+   "curie": "heritageGraph:RitualAssessment",
+   "kind": "class",
+   "label": "Ritual Assessment",
+   "definition": "A performed assessment carried out during Kumari selection. Modelled as an event (not a hard criterion) so that source-specific, possibly conflicting accounts of whether/how it was conducted attach as provenanced Assertions rather than being asserted as fact.",
+   "superclasses": [
+    "heritageGraph:RitualEvent"
+   ],
+   "subclasses": [
+    "heritageGraph:FearlessnessAssessment"
+   ],
+   "restrictions": [
+    "heritageGraph:partOfSelection only heritageGraph:KumariSelectionEvent",
+    "heritageGraph:partOfSelection min 0",
+    "heritageGraph:assessesCandidate max 1",
+    "crm:P4_has_time-span min 0",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:hasAssertion min 0",
+    "heritageGraph:assessesCandidate min 0",
+    "heritageGraph:documentedBy min 0",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "heritageGraph:partOfSelection max 1",
+    "crm:P14_carried_out_by min 0",
+    "heritageGraph:assessesCandidate only crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualEvent",
+   "curie": "heritageGraph:RitualEvent",
+   "kind": "class",
+   "label": "Ritual Event",
+   "definition": "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "subclasses": [
+    "heritageGraph:Festival",
+    "heritageGraph:KumariLifecycleEvent",
+    "heritageGraph:RitualAssessment"
+   ],
+   "restrictions": [
+    "heritageGraph:endPlace min 0",
+    "heritageGraph:recurrencePattern only xsd:string",
+    "crm:P7_took_place_at max 1",
+    "heritageGraph:hadParticipant min 0",
+    "heritageGraph:hasAssertion min 0",
+    "heritageGraph:performedByGroup only ((heritageGraph:Guthi or heritageGraph:CasteGroup) and crm:E39_Actor)",
+    "crm:P8_took_place_on_or_within only heritageGraph:PhysicalHeritageThing",
+    "crm:P8_took_place_on_or_within max 1",
+    "heritageGraph:ritualType max 1",
+    "crm:P183_ends_before_the_start_of only heritageGraph:RitualEvent",
+    "heritageGraph:routeDescription min 0",
+    "crm:P14_carried_out_by min 0",
+    "heritageGraph:ritualType min 0",
+    "crm:P3_has_note only xsd:string",
+    "crm:P9i_forms_part_of only heritageGraph:Festival",
+    "heritageGraph:invokesDeity min 0",
+    "heritageGraph:endPlace max 1",
+    "crm:P183i_starts_after_the_end_of only heritageGraph:RitualEvent",
+    "heritageGraph:recurrencePattern max 1",
+    "heritageGraph:routePlaces only crm:E53_Place",
+    "crm:P9i_forms_part_of min 0",
+    "heritageGraph:lunarDateTithi min 0",
+    "crm:P125_used_object_of_type only crm:E57_Material",
+    "heritageGraph:performedByGroup min 0",
+    "heritageGraph:hasAssertion only crminf:I2_Belief",
+    "crm:P125_used_object_of_type min 0",
+    "heritageGraph:startPlace max 1",
+    "heritageGraph:lunarDateTithi only xsd:string",
+    "heritageGraph:routeDescription only xsd:string",
+    "heritageGraph:startPlace min 0",
+    "heritageGraph:lunarDateTithi max 1",
+    "heritageGraph:invokesDeity only heritageGraph:Deity",
+    "heritageGraph:ritualType only heritageGraph:RitualType",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "crm:P7_took_place_at min 0",
+    "heritageGraph:managedByGuthi only heritageGraph:Guthi",
+    "crm:P3_has_note min 0",
+    "crm:P183_ends_before_the_start_of max 1",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P183i_starts_after_the_end_of min 0",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P8_took_place_on_or_within min 0",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P4_has_time-span max 1",
+    "heritageGraph:managedByGuthi min 0",
+    "heritageGraph:routePlaces min 0",
+    "heritageGraph:documentedBy min 0",
+    "crm:P183_ends_before_the_start_of min 0",
+    "heritageGraph:recurrencePattern min 0",
+    "heritageGraph:routeDescription max 1",
+    "crm:P9i_forms_part_of max 1",
+    "crm:P183i_starts_after_the_end_of max 1",
+    "heritageGraph:startPlace only crm:E53_Place",
+    "crm:P4_has_time-span min 0",
+    "heritageGraph:endPlace only crm:E53_Place",
+    "heritageGraph:hadParticipant only crm:E39_Actor",
+    "crm:P3_has_note max 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType",
+   "curie": "heritageGraph:RitualType",
+   "kind": "class",
+   "label": "Ritual Type",
+   "definition": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Sattal",
+   "curie": "heritageGraph:Sattal",
+   "kind": "class",
+   "label": "Sattal",
+   "definition": "Multi-story rest house (3-5 floors) with ritual and social functions",
+   "superclasses": [
+    "heritageGraph:RestHouse"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SelectionCriterion",
+   "curie": "heritageGraph:SelectionCriterion",
+   "kind": "class",
+   "label": "Selection Criterion",
+   "definition": "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.",
+   "superclasses": [
+    "prov:Entity"
+   ],
+   "subclasses": [
+    "heritageGraph:AgeCriterion",
+    "heritageGraph:HoroscopeCompatibilityCriterion",
+    "heritageGraph:LineageCriterion",
+    "heritageGraph:PhysicalIntegrityCriterion",
+    "heritageGraph:ThirtyTwoPerfectionsCriterion"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Stupa",
+   "curie": "heritageGraph:Stupa",
+   "kind": "class",
+   "label": "Stupa",
+   "definition": "Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath, Swayambhunath).",
+   "superclasses": [
+    "heritageGraph:ReligiousStructure"
+   ],
+   "disjoint_with": [
+    "heritageGraph:Chaitya"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticRelationship",
+   "curie": "heritageGraph:SyncreticRelationship",
+   "kind": "class",
+   "label": "Syncretic Relationship",
+   "definition": "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance.",
+   "superclasses": [
+    "prov:Activity"
+   ],
+   "restrictions": [
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:mentionedInSource min 0",
+    "heritageGraph:mentionedInSource only heritageGraph:DataSource",
+    "heritageGraph:documentedBy only heritageGraph:DocumentationActivity",
+    "heritageGraph:syncreticType only heritageGraph:SyncreticType",
+    "crm:P140_assigned_attribute_to min 1",
+    "heritageGraph:syncreticType max 1",
+    "crm:P140_assigned_attribute_to only heritageGraph:Deity",
+    "crm:P141_assigned min 1",
+    "crm:P3_has_note min 0",
+    "crm:P141_assigned only heritageGraph:Deity",
+    "heritageGraph:syncreticType min 0",
+    "prov:used min 0",
+    "crm:P3_has_note max 1",
+    "heritageGraph:documentedBy min 0",
+    "prov:used only prov:Entity",
+    "crm:P140_assigned_attribute_to max 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticType",
+   "curie": "heritageGraph:SyncreticType",
+   "kind": "class",
+   "label": "Syncretic Type",
+   "definition": "Controlled vocabulary for kinds of syncretic theological relationships between deities."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E29_Design_or_Procedure",
+   "curie": "crm:E29_Design_or_Procedure",
+   "kind": "class",
+   "label": "Technique",
+   "definition": "Method or craft process used in production or ritual",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Temple",
+   "curie": "heritageGraph:Temple",
+   "kind": "class",
+   "label": "Temple",
+   "definition": "Religious structure characterized by deity enshrinement and ritual activation. Legal designation (e.g. 'Ancient Monument' under Nepal law) is recorded per-instance via a governance assertion, not as a class criterion.",
+   "synonyms": [
+    "Mandir"
+   ],
+   "superclasses": [
+    "heritageGraph:ReligiousStructure"
+   ],
+   "restrictions": [
+    "heritageGraph:enshrinesDeityThroughEvent min 0",
+    "heritageGraph:enshrinesDeityThroughEvent only heritageGraph:Enshrinement",
+    "heritageGraph:hasArchitecturalStyle max 1",
+    "heritageGraph:hasArchitecturalStyle only heritageGraph:ArchitecturalStyle",
+    "heritageGraph:hasArchitecturalStyle min 1"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ThirtyTwoPerfectionsCriterion",
+   "curie": "heritageGraph:ThirtyTwoPerfectionsCriterion",
+   "kind": "class",
+   "label": "Thirty Two Perfections Criterion",
+   "definition": "Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).",
+   "synonyms": [
+    "Battis Lakshana"
+   ],
+   "superclasses": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span",
+   "curie": "crm:E52_Time-Span",
+   "kind": "class",
+   "label": "Time Span",
+   "definition": "Temporal extent of an event or period",
+   "superclasses": [
+    "prov:Entity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
+   "curie": "crm:E10_Transfer_of_Custody",
+   "kind": "class",
+   "label": "Transfer Of Custody",
+   "definition": "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship",
+   "superclasses": [
+    "prov:Activity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/Verification",
+   "curie": "heritageGraph:Verification",
+   "kind": "class",
+   "label": "Verification",
+   "definition": "Process of cross-checking heritage claims against multiple sources",
+   "superclasses": [
+    "heritageGraph:DocumentationActivity"
+   ],
+   "restrictions": [
+    "heritageGraph:verifiedByExpert only crm:E21_Person",
+    "heritageGraph:verificationMethod only xsd:string",
+    "heritageGraph:verifiedAssertion min 0",
+    "crm:P3_has_note only xsd:string",
+    "heritageGraph:verificationMethod max 1",
+    "crm:P3_has_note max 1",
+    "crm:P3_has_note min 0",
+    "heritageGraph:verificationMethod min 0",
+    "heritageGraph:verifiedAssertion only crminf:I2_Belief",
+    "heritageGraph:verifiedByExpert min 0"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/WaterStructure",
+   "curie": "heritageGraph:WaterStructure",
+   "kind": "class",
+   "label": "Water Structure",
+   "definition": "Engineered water supply systems with ritual and civic significance",
+   "superclasses": [
+    "heritageGraph:ArchitecturalStructure"
+   ],
+   "subclasses": [
+    "heritageGraph:DhungeDhara",
+    "heritageGraph:Pokhari"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#actedOnBehalfOf",
+   "curie": "prov:actedOnBehalfOf",
+   "kind": "object_property",
+   "label": "Acted on behalf of",
+   "definition": "Agent on whose behalf this agent acted."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/actors",
+   "curie": "heritageGraph:actors",
+   "kind": "object_property",
+   "label": "actors",
+   "definition": "Collection of generic Actor instances",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/architectural_elements",
+   "curie": "heritageGraph:architectural_elements",
+   "kind": "object_property",
+   "label": "Architectural elements",
+   "definition": "Collection of ArchitecturalElement instances",
+   "range": [
+    "heritageGraph:ArchitecturalElement"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/architecturalStructures",
+   "curie": "heritageGraph:architecturalStructures",
+   "kind": "object_property",
+   "label": "Architectural structures",
+   "definition": "Heritage structures affected by or present during this historical event",
+   "super_properties": [
+    "crm:P12_occurred_in_the_presence_of"
+   ],
+   "range": [
+    "heritageGraph:ArchitecturalStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/assertions",
+   "curie": "heritageGraph:assertions",
+   "kind": "object_property",
+   "label": "assertions",
+   "definition": "Collection of Assertion instances",
+   "range": [
+    "crminf:I2_Belief"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/assertsAbout",
+   "curie": "heritageGraph:assertsAbout",
+   "kind": "object_property",
+   "label": "Asserts about",
+   "definition": "Heritage entity or event that is the subject of this assertion.",
+   "range": [
+    "heritageGraph:AssertionSubject"
+   ],
+   "inverse_of": [
+    "heritageGraph:hasAssertion"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/extensions/crminf/J4_that",
+   "curie": "crminf:J4_that",
+   "kind": "object_property",
+   "label": "Asserts proposition",
+   "definition": "Machine-readable proposition(s) this assertion holds to be true (CRMinf J4 that). Complements the free-text assertion_content."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P35_has_identified",
+   "curie": "crm:P35_has_identified",
+   "kind": "object_property",
+   "label": "Assessed condition state",
+   "definition": "Condition state identified by the assessment"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P34_concerned",
+   "curie": "crm:P34_concerned",
+   "kind": "object_property",
+   "label": "Assessed object",
+   "definition": "Object assessed for condition"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/assessesCandidate",
+   "curie": "heritageGraph:assessesCandidate",
+   "kind": "object_property",
+   "label": "Assesses candidate",
+   "definition": "Candidate being assessed.",
+   "range": [
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P141_assigned",
+   "curie": "crm:P141_assigned",
+   "kind": "object_property",
+   "label": "Assigned equivalent",
+   "definition": "The deity or sacred figure being identified as equivalent to the primary deity."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P140_assigned_attribute_to",
+   "curie": "crm:P140_assigned_attribute_to",
+   "kind": "object_property",
+   "label": "Assigned to deity",
+   "definition": "The deity instance that is the subject of the syncretic claim."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/assumesRole",
+   "curie": "heritageGraph:assumesRole",
+   "kind": "object_property",
+   "label": "Assumes role",
+   "definition": "KumariRole held during this tenure.",
+   "range": [
+    "heritageGraph:KumariRole"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/birthTimespan",
+   "curie": "heritageGraph:birthTimespan",
+   "kind": "object_property",
+   "label": "Birth timespan",
+   "definition": "Person's birth timespan",
+   "super_properties": [
+    "crm:P4_has_time-span"
+   ],
+   "range": [
+    "crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/boundsTenure",
+   "curie": "heritageGraph:boundsTenure",
+   "kind": "object_property",
+   "label": "Bounds tenure",
+   "definition": "The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement).",
+   "sub_properties": [
+    "heritageGraph:endedTenureOf",
+    "heritageGraph:initiatedTenure"
+   ],
+   "range": [
+    "heritageGraph:KumariTenure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/calendar_systems",
+   "curie": "heritageGraph:calendar_systems",
+   "kind": "object_property",
+   "label": "Calendar systems",
+   "definition": "Collection of CalendarSystem instances",
+   "range": [
+    "heritageGraph:CalendarSystem"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P14i_performed",
+   "curie": "crm:P14i_performed",
+   "kind": "object_property",
+   "label": "Carried out activity",
+   "definition": "Activities performed by this actor",
+   "sub_properties": [
+    "heritageGraph:performsRitual"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P14_carried_out_by",
+   "curie": "crm:P14_carried_out_by",
+   "kind": "object_property",
+   "label": "Carried out by",
+   "definition": "Actor(s) who performed this event",
+   "sub_properties": [
+    "heritageGraph:performedByGroup",
+    "heritageGraph:verifiedByExpert"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/caste_groups",
+   "curie": "heritageGraph:caste_groups",
+   "kind": "object_property",
+   "label": "Caste groups",
+   "definition": "Collection of CasteGroup instances",
+   "range": [
+    "heritageGraph:CasteGroup"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/commissionedBy",
+   "curie": "heritageGraph:commissionedBy",
+   "kind": "object_property",
+   "label": "Commissioned by",
+   "definition": "Person or group who commissioned production",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/condition_assessments",
+   "curie": "heritageGraph:condition_assessments",
+   "kind": "object_property",
+   "label": "Condition assessments",
+   "definition": "Collection of ConditionAssessment instances",
+   "range": [
+    "crm:E14_Condition_Assessment"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/condition_states",
+   "curie": "heritageGraph:condition_states",
+   "kind": "object_property",
+   "label": "Condition states",
+   "definition": "Collection of ConditionState instances",
+   "range": [
+    "crm:E3_Condition_State"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/confersRole",
+   "curie": "heritageGraph:confersRole",
+   "kind": "object_property",
+   "label": "Confers role",
+   "definition": "KumariRole conferred by this selection or enthronement event.",
+   "range": [
+    "heritageGraph:KumariRole"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/consecratedByEvent",
+   "curie": "heritageGraph:consecratedByEvent",
+   "kind": "object_property",
+   "label": "Consecrated by event",
+   "definition": "Consecration event that activated this murti",
+   "range": [
+    "heritageGraph:Consecration"
+   ],
+   "inverse_of": [
+    "crm:P16_used_specific_object"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object",
+   "curie": "crm:P16_used_specific_object",
+   "kind": "object_property",
+   "label": "Consecrated object",
+   "definition": "Murti employed in (and transformed by) the consecration ritual",
+   "inverse_of": [
+    "heritageGraph:consecratedByEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/consecration_events",
+   "curie": "heritageGraph:consecration_events",
+   "kind": "object_property",
+   "label": "Consecration events",
+   "definition": "Collection of Consecration event instances",
+   "range": [
+    "heritageGraph:Consecration"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P53i_is_former_or_current_location_of",
+   "curie": "crm:P53i_is_former_or_current_location_of",
+   "kind": "object_property",
+   "label": "Contains structure",
+   "definition": "Structures located in this place"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/custody_events",
+   "curie": "heritageGraph:custody_events",
+   "kind": "object_property",
+   "label": "Custody events",
+   "definition": "Collection of TransferOfCustody event instances",
+   "range": [
+    "crm:E10_Transfer_of_Custody"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/data_custodians",
+   "curie": "heritageGraph:data_custodians",
+   "kind": "object_property",
+   "label": "Data custodians",
+   "definition": "Collection of DataCustodian instances",
+   "range": [
+    "heritageGraph:DataCustodian"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/data_sources",
+   "curie": "heritageGraph:data_sources",
+   "kind": "object_property",
+   "label": "Data sources",
+   "definition": "Collection of DataSource instances",
+   "range": [
+    "heritageGraph:DataSource"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/sourceCreator",
+   "curie": "heritageGraph:sourceCreator",
+   "kind": "object_property",
+   "label": "Datacite creator",
+   "definition": "Person or organization primarily responsible for creating the source",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/sourcePublisher",
+   "curie": "heritageGraph:sourcePublisher",
+   "kind": "object_property",
+   "label": "Datacite publisher",
+   "definition": "Entity responsible for making the source available",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/deathTimespan",
+   "curie": "heritageGraph:deathTimespan",
+   "kind": "object_property",
+   "label": "Death timespan",
+   "definition": "Person's death timespan",
+   "super_properties": [
+    "crm:P4_has_time-span"
+   ],
+   "range": [
+    "crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/deities",
+   "curie": "heritageGraph:deities",
+   "kind": "object_property",
+   "label": "deities",
+   "definition": "Collection of Deity instances",
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P62_depicts",
+   "curie": "crm:P62_depicts",
+   "kind": "object_property",
+   "label": "Depicts deity",
+   "definition": "Deity depicted iconographically (not cultic presence)",
+   "sub_properties": [
+    "heritageGraph:isAboutDeity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/documentation_activities",
+   "curie": "heritageGraph:documentation_activities",
+   "kind": "object_property",
+   "label": "Documentation activities",
+   "definition": "Collection of DocumentationActivity instances",
+   "range": [
+    "heritageGraph:DocumentationActivity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/mentionedInSource",
+   "curie": "heritageGraph:mentionedInSource",
+   "kind": "object_property",
+   "label": "Documented in source",
+   "definition": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+   "range": [
+    "heritageGraph:DataSource"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/documents",
+   "curie": "heritageGraph:documents",
+   "kind": "object_property",
+   "label": "documents",
+   "definition": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
+   "range": [
+    "heritageGraph:AssertionSubject"
+   ],
+   "inverse_of": [
+    "heritageGraph:documentedBy"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/embodiedDeity",
+   "curie": "heritageGraph:embodiedDeity",
+   "kind": "object_property",
+   "label": "Embodied deity",
+   "definition": "Deity role embodied by participant",
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/endPlace",
+   "curie": "heritageGraph:endPlace",
+   "kind": "object_property",
+   "label": "End place",
+   "definition": "Ending location of movement ritual",
+   "range": [
+    "crm:E53_Place"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/endedTenureOf",
+   "curie": "heritageGraph:endedTenureOf",
+   "kind": "object_property",
+   "label": "Ended tenure of",
+   "definition": "Points from a KumariRetirementEvent to the tenure that it terminated. Enables reconstruction of the complete Kumari lifecycle.",
+   "super_properties": [
+    "heritageGraph:boundsTenure"
+   ],
+   "range": [
+    "heritageGraph:KumariTenure"
+   ],
+   "inverse_of": [
+    "heritageGraph:retiredThrough"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enshrinedDeity",
+   "curie": "heritageGraph:enshrinedDeity",
+   "kind": "object_property",
+   "label": "Enshrined deity",
+   "definition": "Deity installed through enshrinement",
+   "super_properties": [
+    "crm:P12_occurred_in_the_presence_of"
+   ],
+   "range": [
+    "heritageGraph:Deity"
+   ],
+   "inverse_of": [
+    "heritageGraph:isEnshrinedThroughEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enshrinedInStructure",
+   "curie": "heritageGraph:enshrinedInStructure",
+   "kind": "object_property",
+   "label": "Enshrined in structure",
+   "definition": "Temple where deity was enshrined",
+   "super_properties": [
+    "crm:P8_took_place_on_or_within"
+   ],
+   "range": [
+    "heritageGraph:Temple"
+   ],
+   "inverse_of": [
+    "heritageGraph:enshrinesDeityThroughEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enshrinement_events",
+   "curie": "heritageGraph:enshrinement_events",
+   "kind": "object_property",
+   "label": "Enshrinement events",
+   "definition": "Collection of Enshrinement event instances",
+   "range": [
+    "heritageGraph:Enshrinement"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enshrinesDeityThroughEvent",
+   "curie": "heritageGraph:enshrinesDeityThroughEvent",
+   "kind": "object_property",
+   "label": "Enshrines deity through event",
+   "definition": "Enshrinement event that installed deity in temple",
+   "range": [
+    "heritageGraph:Enshrinement"
+   ],
+   "inverse_of": [
+    "heritageGraph:enshrinedInStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enthronedPerson",
+   "curie": "heritageGraph:enthronedPerson",
+   "kind": "object_property",
+   "label": "Enthroned person",
+   "definition": "Girl enthroned as Kumari by this enthronement event.",
+   "range": [
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/enthronedThrough",
+   "curie": "heritageGraph:enthronedThrough",
+   "kind": "object_property",
+   "label": "Enthroned through",
+   "definition": "Enthronement event that activated this tenure.",
+   "range": [
+    "heritageGraph:KumariEnthronementEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/festivals",
+   "curie": "heritageGraph:festivals",
+   "kind": "object_property",
+   "label": "festivals",
+   "definition": "Collection of Festival instances",
+   "range": [
+    "heritageGraph:Festival"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#generated",
+   "curie": "prov:generated",
+   "kind": "object_property",
+   "label": "generated",
+   "definition": "Entity generated by this activity.",
+   "inverse_of": [
+    "prov:wasGeneratedBy"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/guthis",
+   "curie": "heritageGraph:guthis",
+   "kind": "object_property",
+   "label": "guthis",
+   "definition": "Collection of Guthi instances",
+   "range": [
+    "heritageGraph:Guthi"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hadParticipant",
+   "curie": "heritageGraph:hadParticipant",
+   "kind": "object_property",
+   "label": "Had participant",
+   "definition": "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl holding a Kumari tenure, or the Kumari in a chariot procession).",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hasArchitecturalStyle",
+   "curie": "heritageGraph:hasArchitecturalStyle",
+   "kind": "object_property",
+   "label": "Has architectural style",
+   "definition": "Architectural style classification",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:ArchitecturalStyle"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hasAssertion",
+   "curie": "heritageGraph:hasAssertion",
+   "kind": "object_property",
+   "label": "Has assertion",
+   "definition": "Provenance-bearing assertion made about this entity or event.",
+   "range": [
+    "crminf:I2_Belief"
+   ],
+   "inverse_of": [
+    "heritageGraph:assertsAbout"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/calendarSystem",
+   "curie": "heritageGraph:calendarSystem",
+   "kind": "object_property",
+   "label": "has calendar system",
+   "definition": "Calendar system used for date representation",
+   "range": [
+    "heritageGraph:CalendarSystem"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P46_is_composed_of",
+   "curie": "crm:P46_is_composed_of",
+   "kind": "object_property",
+   "label": "Has component",
+   "definition": "Architectural elements composing structure"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P34i_was_assessed_by",
+   "curie": "crm:P34i_was_assessed_by",
+   "kind": "object_property",
+   "label": "Has condition assessment",
+   "definition": "Condition assessment events for this structure"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hasConditionType",
+   "curie": "heritageGraph:hasConditionType",
+   "kind": "object_property",
+   "label": "Has condition type",
+   "definition": "Categorization of the condition state",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:ConditionType"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hasCriterion",
+   "curie": "heritageGraph:hasCriterion",
+   "kind": "object_property",
+   "label": "Has criterion",
+   "definition": "Eligibility criterion applied in this selection.",
+   "range": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location",
+   "curie": "crm:P55_has_current_location",
+   "kind": "object_property",
+   "label": "Has current location",
+   "definition": "Current location of object or structure"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P30i_custody_transferred_through",
+   "curie": "crm:P30i_custody_transferred_through",
+   "kind": "object_property",
+   "label": "Has custody event",
+   "definition": "Custody transfer events for this structure"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/datePrecision",
+   "curie": "heritageGraph:datePrecision",
+   "kind": "object_property",
+   "label": "has date precision",
+   "definition": "The level of precision for a recorded date.",
+   "range": [
+    "heritageGraph:DatePrecision"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/destructionEvent",
+   "curie": "heritageGraph:destructionEvent",
+   "kind": "object_property",
+   "label": "has destruction event",
+   "definition": "Event that destroyed this structure (if known)",
+   "range": [
+    "crm:E6_Destruction"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/existenceStatus",
+   "curie": "heritageGraph:existenceStatus",
+   "kind": "object_property",
+   "label": "has existence status",
+   "definition": "Current physical status of the structure",
+   "range": [
+    "heritageGraph:ExistenceStatus"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/guthiType",
+   "curie": "heritageGraph:guthiType",
+   "kind": "object_property",
+   "label": "has guthi type",
+   "definition": "Type of Guthi (Si, Jatra, Temple)",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:GuthiType"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member",
+   "curie": "crm:P107_has_current_or_former_member",
+   "kind": "object_property",
+   "label": "Has membership",
+   "definition": "Members of Guthi organization"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/metadata",
+   "curie": "heritageGraph:metadata",
+   "kind": "object_property",
+   "label": "has metadata",
+   "definition": "Dataset metadata",
+   "range": [
+    "heritageGraph:Metadata"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hasReligiousTradition",
+   "curie": "heritageGraph:hasReligiousTradition",
+   "kind": "object_property",
+   "label": "Has religious tradition",
+   "definition": "Religious tradition(s) within which this deity is venerated, or which use this religious structure",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:ReligiousTradition"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ritualType",
+   "curie": "heritageGraph:ritualType",
+   "kind": "object_property",
+   "label": "has ritual type",
+   "definition": "Classification of ritual (puja, jatra, consecration)",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:RitualType"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/syncreticType",
+   "curie": "heritageGraph:syncreticType",
+   "kind": "object_property",
+   "label": "has syncretic type",
+   "definition": "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity).",
+   "super_properties": [
+    "crm:P2_has_type"
+   ],
+   "range": [
+    "heritageGraph:SyncreticType"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
+   "curie": "crm:P4_has_time-span",
+   "kind": "object_property",
+   "label": "Has timespan",
+   "definition": "Links event to its temporal extent",
+   "sub_properties": [
+    "heritageGraph:birthTimespan",
+    "heritageGraph:deathTimespan",
+    "heritageGraph:publicationTimespan"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type",
+   "curie": "crm:P2_has_type",
+   "kind": "object_property",
+   "label": "Has type",
+   "definition": "Generic CRM typing property (P2 has type). Canonical holder of the CRM predicate; use the specific typing slots below in data.",
+   "sub_properties": [
+    "heritageGraph:hasArchitecturalStyle",
+    "heritageGraph:hasConditionType",
+    "heritageGraph:guthiType",
+    "heritageGraph:hasReligiousTradition",
+    "heritageGraph:ritualType",
+    "heritageGraph:syncreticType"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/historical_events",
+   "curie": "heritageGraph:historical_events",
+   "kind": "object_property",
+   "label": "Historical events",
+   "definition": "Collection of HistoricalEvent (incl. DestructionEvent) instances",
+   "range": [
+    "heritageGraph:HistoricalEvent"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P50i_is_current_keeper_of",
+   "curie": "crm:P50i_is_current_keeper_of",
+   "kind": "object_property",
+   "label": "Holds custody of",
+   "definition": "Structures under Guthi custodianship"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/human_made_objects",
+   "curie": "heritageGraph:human_made_objects",
+   "kind": "object_property",
+   "label": "Human made objects",
+   "definition": "Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)",
+   "range": [
+    "crm:E22_Human-Made_Object"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/hypothesizedLocation",
+   "curie": "heritageGraph:hypothesizedLocation",
+   "kind": "object_property",
+   "label": "Hypothesized location",
+   "definition": "Possible locations if the structure is lost",
+   "range": [
+    "crm:E53_Place"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/iconographic_objects",
+   "curie": "heritageGraph:iconographic_objects",
+   "kind": "object_property",
+   "label": "Iconographic objects",
+   "definition": "Collection of IconographicObject instances (incl. Murti, Paubha)",
+   "range": [
+    "heritageGraph:IconographicObject"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P9_consists_of",
+   "curie": "crm:P9_consists_of",
+   "kind": "object_property",
+   "label": "Includes ritual event",
+   "definition": "Component rituals of festival"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/information_objects",
+   "curie": "heritageGraph:information_objects",
+   "kind": "object_property",
+   "label": "Information objects",
+   "definition": "Collection of InformationObject instances",
+   "range": [
+    "heritageGraph:InformationObject"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/initiatedTenure",
+   "curie": "heritageGraph:initiatedTenure",
+   "kind": "object_property",
+   "label": "Initiated tenure",
+   "definition": "Kumari tenure that was initiated by this selection event",
+   "super_properties": [
+    "heritageGraph:boundsTenure"
+   ],
+   "range": [
+    "heritageGraph:KumariTenure"
+   ],
+   "inverse_of": [
+    "heritageGraph:selectedThrough"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/invokesDeity",
+   "curie": "heritageGraph:invokesDeity",
+   "kind": "object_property",
+   "label": "Invokes deity",
+   "definition": "Deity invoked or made present through ritual",
+   "super_properties": [
+    "crm:P12_occurred_in_the_presence_of"
+   ],
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P129_is_about",
+   "curie": "crm:P129_is_about",
+   "kind": "object_property",
+   "label": "Is about",
+   "definition": "Heritage entity or event described by this information object."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/isAboutDeity",
+   "curie": "heritageGraph:isAboutDeity",
+   "kind": "object_property",
+   "label": "Is about deity",
+   "definition": "Deity represented and ritually associated with the Murti",
+   "super_properties": [
+    "crm:P62_depicts"
+   ],
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
+   "curie": "crm:P46i_forms_part_of",
+   "kind": "object_property",
+   "label": "Is component of",
+   "definition": "Larger structure that this element is part of"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P62i_is_depicted_by",
+   "curie": "crm:P62i_is_depicted_by",
+   "kind": "object_property",
+   "label": "Is depicted in",
+   "definition": "Iconographic objects (murti, paubha) in which this deity is depicted."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/isEnshrinedThroughEvent",
+   "curie": "heritageGraph:isEnshrinedThroughEvent",
+   "kind": "object_property",
+   "label": "Is enshrined through event",
+   "definition": "Events where this deity was enshrined",
+   "range": [
+    "heritageGraph:Enshrinement"
+   ],
+   "inverse_of": [
+    "heritageGraph:enshrinedDeity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/isInvokedInRitual",
+   "curie": "heritageGraph:isInvokedInRitual",
+   "kind": "object_property",
+   "label": "Is invoked in ritual",
+   "definition": "Rituals where this deity is invoked",
+   "super_properties": [
+    "crm:P12i_was_present_at"
+   ],
+   "range": [
+    "heritageGraph:RitualEvent"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+   "curie": "crm:P9i_forms_part_of",
+   "kind": "object_property",
+   "label": "Is part of festival",
+   "definition": "Larger festival this ritual is part of"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/isPrimaryForTradition",
+   "curie": "heritageGraph:isPrimaryForTradition",
+   "kind": "object_property",
+   "label": "Is primary for tradition",
+   "definition": "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)",
+   "range": [
+    "heritageGraph:ReligiousTradition"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/kumari_lifecycle_events",
+   "curie": "heritageGraph:kumari_lifecycle_events",
+   "kind": "object_property",
+   "label": "Kumari lifecycle events",
+   "definition": "Collection of Kumari lifecycle events (selection, enthronement, retirement)",
+   "range": [
+    "heritageGraph:KumariLifecycleEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/kumari_roles",
+   "curie": "heritageGraph:kumari_roles",
+   "kind": "object_property",
+   "label": "Kumari roles",
+   "definition": "Collection of KumariRole instances",
+   "range": [
+    "heritageGraph:KumariRole"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/kumari_tenures",
+   "curie": "heritageGraph:kumari_tenures",
+   "kind": "object_property",
+   "label": "Kumari tenures",
+   "definition": "Collection of KumariTenure instances",
+   "range": [
+    "heritageGraph:KumariTenure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/makesDeityPresent",
+   "curie": "heritageGraph:makesDeityPresent",
+   "kind": "object_property",
+   "label": "Makes deity present",
+   "definition": "Deity made present through consecration",
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/managedByGuthi",
+   "curie": "heritageGraph:managedByGuthi",
+   "kind": "object_property",
+   "label": "Managed by guthi",
+   "definition": "Guthi organization managing this structure or ritual",
+   "range": [
+    "heritageGraph:Guthi"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/materials",
+   "curie": "heritageGraph:materials",
+   "kind": "object_property",
+   "label": "materials",
+   "definition": "Collection of Material instances",
+   "range": [
+    "crm:E57_Material"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P107i_is_current_or_former_member_of",
+   "curie": "crm:P107i_is_current_or_former_member_of",
+   "kind": "object_property",
+   "label": "Member of group",
+   "definition": "Groups this person belongs to"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of",
+   "curie": "crm:P12_occurred_in_the_presence_of",
+   "kind": "object_property",
+   "label": "Occurred in presence of",
+   "definition": "Generic CRM presence relation (P12): entity present at an event. Canonical holder of the CRM predicate; use the specific presence slots in data.",
+   "sub_properties": [
+    "heritageGraph:architecturalStructures",
+    "heritageGraph:enshrinedDeity",
+    "heritageGraph:invokesDeity"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P183i_starts_after_the_end_of",
+   "curie": "crm:P183i_starts_after_the_end_of",
+   "kind": "object_property",
+   "label": "Occurs after",
+   "definition": "Points to the prerequisite ritual."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P183_ends_before_the_start_of",
+   "curie": "crm:P183_ends_before_the_start_of",
+   "kind": "object_property",
+   "label": "Occurs before",
+   "definition": "Points to the next ritual in the canonical sequence."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/partOfSelection",
+   "curie": "heritageGraph:partOfSelection",
+   "kind": "object_property",
+   "label": "Part of selection",
+   "definition": "Selection event this assessment is part of.",
+   "range": [
+    "heritageGraph:KumariSelectionEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/participatesInRitual",
+   "curie": "heritageGraph:participatesInRitual",
+   "kind": "object_property",
+   "label": "Participates in ritual",
+   "definition": "Rituals in which this structure participates",
+   "super_properties": [
+    "crm:P12i_was_present_at"
+   ],
+   "range": [
+    "heritageGraph:RitualEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/performedByGroup",
+   "curie": "heritageGraph:performedByGroup",
+   "kind": "object_property",
+   "label": "Performed by group",
+   "definition": "Group (Guthi, caste) responsible for ritual",
+   "super_properties": [
+    "crm:P14_carried_out_by"
+   ],
+   "range": [
+    "(heritageGraph:Guthi or heritageGraph:CasteGroup) and crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/performsRitual",
+   "curie": "heritageGraph:performsRitual",
+   "kind": "object_property",
+   "label": "Performs ritual",
+   "definition": "Rituals performed by this Guthi",
+   "super_properties": [
+    "crm:P14i_performed"
+   ],
+   "range": [
+    "heritageGraph:RitualEvent"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/persons",
+   "curie": "heritageGraph:persons",
+   "kind": "object_property",
+   "label": "persons",
+   "definition": "Collection of Person instances",
+   "range": [
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/physical_heritage_things",
+   "curie": "heritageGraph:physical_heritage_things",
+   "kind": "object_property",
+   "label": "Physical heritage things",
+   "definition": "Collection of all physical heritage objects",
+   "range": [
+    "heritageGraph:PhysicalHeritageThing"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/places",
+   "curie": "heritageGraph:places",
+   "kind": "object_property",
+   "label": "places",
+   "definition": "Collection of Place instances",
+   "range": [
+    "crm:E53_Place"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P108_has_produced",
+   "curie": "crm:P108_has_produced",
+   "kind": "object_property",
+   "label": "Produced object",
+   "definition": "Object produced by this production event"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/production_events",
+   "curie": "heritageGraph:production_events",
+   "kind": "object_property",
+   "label": "Production events",
+   "definition": "Collection of Production event instances",
+   "range": [
+    "crm:E12_Production"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/propositionObjectEntity",
+   "curie": "heritageGraph:propositionObjectEntity",
+   "kind": "object_property",
+   "label": "Proposition object entity",
+   "definition": "Object of the proposition when it is a heritage entity (plays the role of rdf:object).",
+   "range": [
+    "heritageGraph:AssertionSubject"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/propositionSubject",
+   "curie": "heritageGraph:propositionSubject",
+   "kind": "object_property",
+   "label": "Proposition subject",
+   "definition": "Entity the proposition is about (plays the role of rdf:subject).",
+   "range": [
+    "heritageGraph:AssertionSubject"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/propositions",
+   "curie": "heritageGraph:propositions",
+   "kind": "object_property",
+   "label": "propositions",
+   "definition": "Collection of Proposition instances referenced by assertions",
+   "range": [
+    "heritageGraph:Proposition"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/publicationTimespan",
+   "curie": "heritageGraph:publicationTimespan",
+   "kind": "object_property",
+   "label": "Publication timespan",
+   "definition": "When source was published",
+   "super_properties": [
+    "crm:P4_has_time-span"
+   ],
+   "range": [
+    "crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/religious_traditions",
+   "curie": "heritageGraph:religious_traditions",
+   "kind": "object_property",
+   "label": "Religious traditions",
+   "definition": "Collection of ReligiousTradition instances",
+   "range": [
+    "heritageGraph:ReligiousTradition"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/residenceStructure",
+   "curie": "heritageGraph:residenceStructure",
+   "kind": "object_property",
+   "label": "Residence structure",
+   "definition": "Structure where a person resides during a specific period. For Living Goddess, this is typically a Kumari Ghar (god-house).",
+   "range": [
+    "heritageGraph:ArchitecturalStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/retiredThrough",
+   "curie": "heritageGraph:retiredThrough",
+   "kind": "object_property",
+   "label": "Retired through",
+   "definition": "Retirement/desanctification event that ended this tenure.",
+   "range": [
+    "heritageGraph:KumariRetirementEvent"
+   ],
+   "inverse_of": [
+    "heritageGraph:endedTenureOf"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ritual_assessments",
+   "curie": "heritageGraph:ritual_assessments",
+   "kind": "object_property",
+   "label": "Ritual assessments",
+   "definition": "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances",
+   "range": [
+    "heritageGraph:RitualAssessment"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ritual_events",
+   "curie": "heritageGraph:ritual_events",
+   "kind": "object_property",
+   "label": "Ritual events",
+   "definition": "Collection of RitualEvent instances",
+   "range": [
+    "heritageGraph:RitualEvent"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within",
+   "curie": "crm:P8_took_place_on_or_within",
+   "kind": "object_property",
+   "label": "Ritual on structure",
+   "definition": "Ritual occurs at specific temple or monument",
+   "sub_properties": [
+    "heritageGraph:enshrinedInStructure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/roleDeity",
+   "curie": "heritageGraph:roleDeity",
+   "kind": "object_property",
+   "label": "Role deity",
+   "definition": "Deity embodied by whoever holds this role (e.g., Taleju).",
+   "range": [
+    "heritageGraph:Deity"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/routePlaces",
+   "curie": "heritageGraph:routePlaces",
+   "kind": "object_property",
+   "label": "Route places",
+   "definition": "Ordered list of places visited during movement ritual",
+   "super_properties": [
+    "crm:P7_took_place_at"
+   ],
+   "range": [
+    "crm:E53_Place"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/selectedPerson",
+   "curie": "heritageGraph:selectedPerson",
+   "kind": "object_property",
+   "label": "Selected person",
+   "definition": "Person selected through a ritual selection process to assume a sacred role or office",
+   "range": [
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/selectedThrough",
+   "curie": "heritageGraph:selectedThrough",
+   "kind": "object_property",
+   "label": "Selected through",
+   "definition": "Selection event that initiated this tenure.",
+   "range": [
+    "heritageGraph:KumariSelectionEvent"
+   ],
+   "inverse_of": [
+    "heritageGraph:initiatedTenure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/selection_criteria",
+   "curie": "heritageGraph:selection_criteria",
+   "kind": "object_property",
+   "label": "Selection criteria",
+   "definition": "Collection of SelectionCriterion instances",
+   "range": [
+    "heritageGraph:SelectionCriterion"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/startPlace",
+   "curie": "heritageGraph:startPlace",
+   "kind": "object_property",
+   "label": "Start place",
+   "definition": "Starting location of movement ritual",
+   "range": [
+    "crm:E53_Place"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/structures",
+   "curie": "heritageGraph:structures",
+   "kind": "object_property",
+   "label": "structures",
+   "definition": "Collection of ArchitecturalStructure instances (incl. subclasses)",
+   "range": [
+    "heritageGraph:ArchitecturalStructure"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasRevisionOf",
+   "curie": "prov:wasRevisionOf",
+   "kind": "object_property",
+   "label": "Supersedes assertion",
+   "definition": "Previous assertion that this one revises (version chain A1->A2->A3). Uses prov:wasRevisionOf (a derivation between entities); the latest assertion is the one with no incoming wasRevisionOf. NOTE: prov:invalidated was incorrect here (it is an Activity->Entity relation, not Entity->Entity)."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/supportedByInstitution",
+   "curie": "heritageGraph:supportedByInstitution",
+   "kind": "object_property",
+   "label": "Supported by institution",
+   "definition": "Institution(s) providing economic support (stipend, land endowment) or ritual support (priest salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support.",
+   "range": [
+    "heritageGraph:Guthi"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/syncretic_relationships",
+   "curie": "heritageGraph:syncretic_relationships",
+   "kind": "object_property",
+   "label": "Syncretic relationships",
+   "definition": "Collection of SyncreticRelationship instances",
+   "range": [
+    "heritageGraph:SyncreticRelationship"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/techniques",
+   "curie": "heritageGraph:techniques",
+   "kind": "object_property",
+   "label": "techniques",
+   "definition": "Collection of Technique instances",
+   "range": [
+    "crm:E29_Design_or_Procedure"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/time_spans",
+   "curie": "heritageGraph:time_spans",
+   "kind": "object_property",
+   "label": "Time spans",
+   "definition": "Collection of TimeSpan instances",
+   "range": [
+    "crm:E52_Time-Span"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at",
+   "curie": "crm:P7_took_place_at",
+   "kind": "object_property",
+   "label": "Took place at",
+   "definition": "Place where the event occurred",
+   "sub_properties": [
+    "heritageGraph:routePlaces"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P28_custody_surrendered_by",
+   "curie": "crm:P28_custody_surrendered_by",
+   "kind": "object_property",
+   "label": "Transferred from actor",
+   "definition": "Previous custodian"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P30_transferred_custody_of",
+   "curie": "crm:P30_transferred_custody_of",
+   "kind": "object_property",
+   "label": "Transferred object",
+   "definition": "Object transferred in custody event"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P29_custody_received_by",
+   "curie": "crm:P29_custody_received_by",
+   "kind": "object_property",
+   "label": "Transferred to actor",
+   "definition": "New custodian (person or group)",
+   "sub_properties": [
+    "heritageGraph:transferredToGuthi"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/transferredToGuthi",
+   "curie": "heritageGraph:transferredToGuthi",
+   "kind": "object_property",
+   "label": "Transferred to guthi",
+   "definition": "New custodian (Guthi)",
+   "super_properties": [
+    "crm:P29_custody_received_by"
+   ],
+   "range": [
+    "heritageGraph:Guthi"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#used",
+   "curie": "prov:used",
+   "kind": "object_property",
+   "label": "used",
+   "definition": "Entity used by this activity."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/usedBy",
+   "curie": "heritageGraph:usedBy",
+   "kind": "object_property",
+   "label": "Used by",
+   "definition": "Actor(s) who use, handle, or are responsible for this object in ritual contexts",
+   "range": [
+    "crm:E39_Actor"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P125_used_object_of_type",
+   "curie": "crm:P125_used_object_of_type",
+   "kind": "object_property",
+   "label": "Used materials",
+   "definition": "Ephemeral materials consumed during the ritual (e.g., oil, rice)."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P33_used_specific_technique",
+   "curie": "crm:P33_used_specific_technique",
+   "kind": "object_property",
+   "label": "Used technique",
+   "definition": "Craft technique used in production"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/verifiedAssertion",
+   "curie": "heritageGraph:verifiedAssertion",
+   "kind": "object_property",
+   "label": "Verified assertion",
+   "definition": "Assertions verified by this activity",
+   "range": [
+    "crminf:I2_Belief"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/verifiedByExpert",
+   "curie": "heritageGraph:verifiedByExpert",
+   "kind": "object_property",
+   "label": "Verified by expert",
+   "definition": "Expert who performed verification",
+   "super_properties": [
+    "crm:P14_carried_out_by"
+   ],
+   "range": [
+    "crm:E21_Person"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasAssociatedWith",
+   "curie": "prov:wasAssociatedWith",
+   "kind": "object_property",
+   "label": "Was associated with",
+   "definition": "Agent associated with responsibility for this activity."
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasAttributedTo",
+   "curie": "prov:wasAttributedTo",
+   "kind": "object_property",
+   "label": "Was attributed to",
+   "definition": "Agent to whom responsibility for this entity is attributed."
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasDerivedFrom",
+   "curie": "prov:wasDerivedFrom",
+   "kind": "object_property",
+   "label": "Was derived from",
+   "definition": "Entity from which this entity was derived."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/documentedBy",
+   "curie": "heritageGraph:documentedBy",
+   "kind": "object_property",
+   "label": "Was documented by",
+   "definition": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+   "super_properties": [
+    "prov:wasInfluencedBy"
+   ],
+   "range": [
+    "heritageGraph:DocumentationActivity"
+   ],
+   "inverse_of": [
+    "heritageGraph:documents"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasGeneratedBy",
+   "curie": "prov:wasGeneratedBy",
+   "kind": "object_property",
+   "label": "Was generated by",
+   "definition": "Activity that generated this entity.",
+   "inverse_of": [
+    "prov:generated"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasInfluencedBy",
+   "curie": "prov:wasInfluencedBy",
+   "kind": "object_property",
+   "label": "Was influenced by",
+   "definition": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+   "sub_properties": [
+    "heritageGraph:documentedBy"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#wasInformedBy",
+   "curie": "prov:wasInformedBy",
+   "kind": "object_property",
+   "label": "Was informed by",
+   "definition": "Activity that informed this activity; PROV-O uses this when the intervening generated and used entity is unknown or omitted."
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P12i_was_present_at",
+   "curie": "crm:P12i_was_present_at",
+   "kind": "object_property",
+   "label": "Was present at",
+   "definition": "Generic CRM presence relation (P12i): event this entity was present at. Canonical holder of the CRM predicate; use the specific slots in data.",
+   "sub_properties": [
+    "heritageGraph:isInvokedInRitual",
+    "heritageGraph:participatesInRitual"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P108i_was_produced_by",
+   "curie": "crm:P108i_was_produced_by",
+   "kind": "object_property",
+   "label": "Was produced by event",
+   "definition": "Event that created this object or structure"
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#value",
+   "curie": "prov:value",
+   "kind": "datatype_property",
+   "label": "Assertion content",
+   "definition": "The factual claim being asserted"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/confidenceScore",
+   "curie": "heritageGraph:confidenceScore",
+   "kind": "datatype_property",
+   "label": "Confidence score",
+   "definition": "Reliability score for assertion (0.0-1.0)",
+   "range": [
+    "xsd:decimal[>= 0.0, <= 1.0]"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/curator",
+   "curie": "heritageGraph:curator",
+   "kind": "datatype_property",
+   "label": "curator",
+   "definition": "Person or organization curating the dataset.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/custodianType",
+   "curie": "heritageGraph:custodianType",
+   "kind": "datatype_property",
+   "label": "Custodian type",
+   "definition": "Type of custodian (government, academic, community), free text",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/dataQualityNote",
+   "curie": "heritageGraph:dataQualityNote",
+   "kind": "datatype_property",
+   "label": "Data quality note",
+   "definition": "Notes on data quality, completeness, or uncertainty",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/persistentIdentifier",
+   "curie": "heritageGraph:persistentIdentifier",
+   "kind": "datatype_property",
+   "label": "Datacite identifier",
+   "definition": "Persistent identifier for the source (DOI, archive ID, catalog number)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/identifierScheme",
+   "curie": "heritageGraph:identifierScheme",
+   "kind": "datatype_property",
+   "label": "Datacite identifier type",
+   "definition": "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/resourceType",
+   "curie": "heritageGraph:resourceType",
+   "kind": "datatype_property",
+   "label": "Datacite resource type",
+   "definition": "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/dataset_name",
+   "curie": "heritageGraph:dataset_name",
+   "kind": "datatype_property",
+   "label": "Dataset name",
+   "definition": "Human-readable name of the dataset.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/dataset_version",
+   "curie": "heritageGraph:dataset_version",
+   "kind": "datatype_property",
+   "label": "Dataset version",
+   "definition": "Version identifier of the dataset instance.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin",
+   "curie": "crm:P82a_begin_of_the_begin",
+   "kind": "datatype_property",
+   "label": "Date earliest",
+   "definition": "Earliest possible date (for uncertain dates)"
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end",
+   "curie": "crm:P82b_end_of_the_end",
+   "kind": "datatype_property",
+   "label": "Date latest",
+   "definition": "Latest possible date (for uncertain dates)"
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#endedAtTime",
+   "curie": "prov:endedAtTime",
+   "kind": "datatype_property",
+   "label": "Ended at time",
+   "definition": "Time at which this activity ended."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/epochDateGregorian",
+   "curie": "heritageGraph:epochDateGregorian",
+   "kind": "datatype_property",
+   "label": "Epoch date gregorian",
+   "definition": "The start date of this calendar era in Gregorian ISO format.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/expertiseArea",
+   "curie": "heritageGraph:expertiseArea",
+   "kind": "datatype_property",
+   "label": "Expertise area",
+   "definition": "Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#generatedAtTime",
+   "curie": "prov:generatedAtTime",
+   "kind": "datatype_property",
+   "label": "Generated at time",
+   "definition": "Time at which this entity was generated (ISO 8601)."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/generated_date",
+   "curie": "heritageGraph:generated_date",
+   "kind": "datatype_property",
+   "label": "Generated date",
+   "definition": "Date the dataset serialization was generated (ISO 8601).",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://purl.org/dc/terms/identifier",
+   "curie": "dcterms:identifier",
+   "kind": "datatype_property",
+   "label": "ID",
+   "definition": "Globally unique URI identifier"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/institutionalAffiliation",
+   "curie": "heritageGraph:institutionalAffiliation",
+   "kind": "datatype_property",
+   "label": "Institutional affiliation",
+   "definition": "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/isCriticalForFestival",
+   "curie": "heritageGraph:isCriticalForFestival",
+   "kind": "datatype_property",
+   "label": "Is critical for festival",
+   "definition": "Whether this ritual is essential for the festival's completion",
+   "range": [
+    "xsd:boolean"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/lastKnownExistenceDate",
+   "curie": "heritageGraph:lastKnownExistenceDate",
+   "kind": "datatype_property",
+   "label": "Last known existence date",
+   "definition": "Latest date when this structure is documented as existing (ISO 8601)",
+   "range": [
+    "xsd:dateTime"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/license",
+   "curie": "heritageGraph:license",
+   "kind": "datatype_property",
+   "label": "license",
+   "definition": "License under which the dataset is released.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/lunarDateTithi",
+   "curie": "heritageGraph:lunarDateTithi",
+   "kind": "datatype_property",
+   "label": "Lunar date tithi",
+   "definition": "Lunar day (Tithi) for ritual timing",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+   "curie": "crm:P3_has_note",
+   "kind": "datatype_property",
+   "label": "note",
+   "definition": "Free-text note (description, reason, verification notes)",
+   "sub_properties": [
+    "heritageGraph:sourceCitation"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/selectionCriteriaMet",
+   "curie": "heritageGraph:selectionCriteriaMet",
+   "kind": "datatype_property",
+   "label": "obsolete selection criteria met",
+   "definition": "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility.",
+   "deprecated": true,
+   "range": [
+    "xsd:string"
+   ],
+   "replaced_by": [
+    "heritageGraph:hasCriterion"
+   ]
+  },
+  {
+   "iri": "http://www.opengis.net/ont/geosparql#asWKT",
+   "curie": "geo:asWKT",
+   "kind": "datatype_property",
+   "label": "Place coordinates",
+   "definition": "Coordinates as WKT literal"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/placeType",
+   "curie": "heritageGraph:placeType",
+   "kind": "datatype_property",
+   "label": "Place type",
+   "definition": "Type of place (city, village, region), free text",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/propositionLiteralValue",
+   "curie": "heritageGraph:propositionLiteralValue",
+   "kind": "datatype_property",
+   "label": "Proposition object literal",
+   "definition": "Object of the proposition when it is a literal value (e.g. a date).",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/propositionPredicate",
+   "curie": "heritageGraph:propositionPredicate",
+   "kind": "datatype_property",
+   "label": "Proposition predicate",
+   "definition": "Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by (plays the role of rdf:predicate).",
+   "range": [
+    "xsd:anyURI"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/reconciliationStatus",
+   "curie": "heritageGraph:reconciliationStatus",
+   "kind": "datatype_property",
+   "label": "Reconciliation status",
+   "definition": "Status of multi-source reconciliation (confirmed, conflicting, unverified)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/recurrencePattern",
+   "curie": "heritageGraph:recurrencePattern",
+   "kind": "datatype_property",
+   "label": "Recurrence pattern",
+   "definition": "Frequency of recurring ritual (e.g., annual, monthly)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/routeDescription",
+   "curie": "heritageGraph:routeDescription",
+   "kind": "datatype_property",
+   "label": "Route description",
+   "definition": "Text description of the procession route",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/schema_version",
+   "curie": "heritageGraph:schema_version",
+   "kind": "datatype_property",
+   "label": "Schema version",
+   "definition": "HeritageGraph schema version the dataset conforms to.",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/sourceCitation",
+   "curie": "heritageGraph:sourceCitation",
+   "kind": "datatype_property",
+   "label": "Source citation",
+   "definition": "Formal citation of source",
+   "super_properties": [
+    "crm:P3_has_note"
+   ],
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://schema.org/inLanguage",
+   "curie": "schema1:inLanguage",
+   "kind": "datatype_property",
+   "label": "Source language",
+   "definition": "Language of the source material"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/sourceUrl",
+   "curie": "heritageGraph:sourceUrl",
+   "kind": "datatype_property",
+   "label": "Source url",
+   "definition": "URL or digital identifier for source",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/ns/prov#startedAtTime",
+   "curie": "prov:startedAtTime",
+   "kind": "datatype_property",
+   "label": "Started at time",
+   "definition": "Time at which this activity started."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/traditionalRole",
+   "curie": "heritageGraph:traditionalRole",
+   "kind": "datatype_property",
+   "label": "Traditional role",
+   "definition": "Hereditary occupation or ritual duty",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/usedEquipment",
+   "curie": "heritageGraph:usedEquipment",
+   "kind": "datatype_property",
+   "label": "Used equipment",
+   "definition": "Equipment used in documentation",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/usedMethod",
+   "curie": "heritageGraph:usedMethod",
+   "kind": "datatype_property",
+   "label": "Used method",
+   "definition": "Documentation method used",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/verificationMethod",
+   "curie": "heritageGraph:verificationMethod",
+   "kind": "datatype_property",
+   "label": "Verification method",
+   "definition": "Method used for verification (cross-check, expert review, field visit)",
+   "range": [
+    "xsd:string"
+   ]
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/yearOffsetFromGregorian",
+   "curie": "heritageGraph:yearOffsetFromGregorian",
+   "kind": "datatype_property",
+   "label": "Year offset from gregorian",
+   "definition": "Mathematical offset to convert to Common Era (e.g., +57 for BS).",
+   "range": [
+    "xsd:integer"
+   ]
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#altLabel",
+   "curie": "skos:altLabel",
+   "kind": "annotation_property",
+   "label": "altLabel"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/bibliographicCitation",
+   "curie": "dcterms:bibliographicCitation",
+   "kind": "annotation_property",
+   "label": "bibliographicCitation"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#broadMatch",
+   "curie": "skos:broadMatch",
+   "kind": "annotation_property",
+   "label": "broadMatch"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#closeMatch",
+   "curie": "skos:closeMatch",
+   "kind": "annotation_property",
+   "label": "closeMatch"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/created",
+   "curie": "dcterms:created",
+   "kind": "annotation_property",
+   "label": "created"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/creator",
+   "curie": "dcterms:creator",
+   "kind": "annotation_property",
+   "label": "creator"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/crminf_pattern",
+   "curie": "heritageGraph:crminf_pattern",
+   "kind": "annotation_property",
+   "label": "crminf pattern",
+   "definition": "Editorial note naming the CRMinf pattern that a class instantiates."
+  },
+  {
+   "iri": "http://purl.org/dc/terms/date",
+   "curie": "dcterms:date",
+   "kind": "annotation_property",
+   "label": "date"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#definition",
+   "curie": "skos:definition",
+   "kind": "annotation_property",
+   "label": "definition"
+  },
+  {
+   "iri": "http://www.w3.org/2002/07/owl#deprecated",
+   "curie": "owl:deprecated",
+   "kind": "annotation_property",
+   "label": "deprecated"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/description",
+   "curie": "dcterms:description",
+   "kind": "annotation_property",
+   "label": "description"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/design_note",
+   "curie": "heritageGraph:design_note",
+   "kind": "annotation_property",
+   "label": "design note",
+   "definition": "Editorial note recording a modelling decision about a term."
+  },
+  {
+   "iri": "http://purl.org/ontology/bibo/doi",
+   "curie": "bibo:doi",
+   "kind": "annotation_property",
+   "label": "doi"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#exactMatch",
+   "curie": "skos:exactMatch",
+   "kind": "annotation_property",
+   "label": "exactMatch"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#inScheme",
+   "curie": "skos:inScheme",
+   "kind": "annotation_property",
+   "label": "inScheme"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/isReplacedBy",
+   "curie": "dcterms:isReplacedBy",
+   "kind": "annotation_property",
+   "label": "isReplacedBy"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/issued",
+   "curie": "dcterms:issued",
+   "kind": "annotation_property",
+   "label": "issued"
+  },
+  {
+   "iri": "http://www.w3.org/2000/01/rdf-schema#label",
+   "curie": "rdfs:label",
+   "kind": "annotation_property",
+   "label": "label"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/license",
+   "curie": "dcterms:license",
+   "kind": "annotation_property",
+   "label": "license"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/modified",
+   "curie": "dcterms:modified",
+   "kind": "annotation_property",
+   "label": "modified"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#narrowMatch",
+   "curie": "skos:narrowMatch",
+   "kind": "annotation_property",
+   "label": "narrowMatch"
+  },
+  {
+   "iri": "https://w3id.org/linkml/permissible_values",
+   "curie": "linkml:permissible_values",
+   "kind": "annotation_property",
+   "label": "permissible_values"
+  },
+  {
+   "iri": "http://purl.org/vocab/vann/preferredNamespacePrefix",
+   "curie": "vann:preferredNamespacePrefix",
+   "kind": "annotation_property",
+   "label": "preferredNamespacePrefix"
+  },
+  {
+   "iri": "http://purl.org/vocab/vann/preferredNamespaceUri",
+   "curie": "vann:preferredNamespaceUri",
+   "kind": "annotation_property",
+   "label": "preferredNamespaceUri"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#prefLabel",
+   "curie": "skos:prefLabel",
+   "kind": "annotation_property",
+   "label": "prefLabel"
+  },
+  {
+   "iri": "http://www.w3.org/2002/07/owl#priorVersion",
+   "curie": "owl:priorVersion",
+   "kind": "annotation_property",
+   "label": "priorVersion"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/prov_alignment",
+   "curie": "heritageGraph:prov_alignment",
+   "kind": "annotation_property",
+   "label": "prov alignment",
+   "definition": "Editorial note naming the PROV-O term that a slot is aligned with."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/prov_alignment_note",
+   "curie": "heritageGraph:prov_alignment_note",
+   "kind": "annotation_property",
+   "label": "prov alignment note",
+   "definition": "Editorial note explaining the status of a class's PROV-O alignment."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/provenance_scope",
+   "curie": "heritageGraph:provenance_scope",
+   "kind": "annotation_property",
+   "label": "provenance scope",
+   "definition": "States whether a class's provenance slots describe the data record or the real-world referent."
+  },
+  {
+   "iri": "http://purl.org/dc/terms/publisher",
+   "curie": "dcterms:publisher",
+   "kind": "annotation_property",
+   "label": "publisher"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#relatedMatch",
+   "curie": "skos:relatedMatch",
+   "kind": "annotation_property",
+   "label": "relatedMatch"
+  },
+  {
+   "iri": "http://www.w3.org/2004/02/skos/core#scopeNote",
+   "curie": "skos:scopeNote",
+   "kind": "annotation_property",
+   "label": "scopeNote"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/source",
+   "curie": "dcterms:source",
+   "kind": "annotation_property",
+   "label": "source"
+  },
+  {
+   "iri": "http://purl.org/ontology/bibo/status",
+   "curie": "bibo:status",
+   "kind": "annotation_property",
+   "label": "status"
+  },
+  {
+   "iri": "http://purl.org/dc/terms/title",
+   "curie": "dcterms:title",
+   "kind": "annotation_property",
+   "label": "title"
+  },
+  {
+   "iri": "http://purl.org/pav/version",
+   "curie": "pav:version",
+   "kind": "annotation_property",
+   "label": "version"
+  },
+  {
+   "iri": "http://www.w3.org/2002/07/owl#versionInfo",
+   "curie": "owl:versionInfo",
+   "kind": "annotation_property",
+   "label": "versionInfo"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle",
+   "kind": "concept_scheme",
+   "label": "Architectural Style (concept scheme)",
+   "definition": "A vocabulary of architectural styles for South Asian heritage, mapped to CIDOC E55 Type."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/ConditionType",
+   "kind": "concept_scheme",
+   "label": "Condition Type (concept scheme)",
+   "definition": "Controlled vocabulary for the physical condition of heritage objects and structures."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/DatePrecision",
+   "kind": "concept_scheme",
+   "label": "Date Precision (concept scheme)",
+   "definition": "Controlled vocabulary for the temporal precision of recorded heritage dates."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus",
+   "kind": "concept_scheme",
+   "label": "Existence Status (concept scheme)",
+   "definition": "Controlled vocabulary for whether a heritage structure still exists physically."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/GuthiType",
+   "kind": "concept_scheme",
+   "label": "Guthi Type (concept scheme)",
+   "definition": "Controlled vocabulary of Guthi functional types (CRM E55_Type)"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/schema",
+   "curie": "heritageGraph:schema",
+   "kind": "concept_scheme",
+   "label": "HeritageGraph LinkML schema",
+   "definition": "The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/RitualType",
+   "kind": "concept_scheme",
+   "label": "Ritual Type (concept scheme)",
+   "definition": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/scheme/SyncreticType",
+   "kind": "concept_scheme",
+   "label": "Syncretic Type (concept scheme)",
+   "definition": "Controlled vocabulary for kinds of syncretic theological relationships between deities."
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Abhisheka",
+   "kind": "concept",
+   "label": "Abhisheka",
+   "definition": "Ritual bathing/anointing of deity"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticType#Appropriation",
+   "kind": "concept",
+   "label": "Appropriation",
+   "definition": "Deity borrowed from one tradition into another"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Bhajan",
+   "kind": "concept",
+   "label": "Bhajan",
+   "definition": "Devotional singing ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision#Century",
+   "kind": "concept",
+   "label": "Century",
+   "definition": "Within century range"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
+   "kind": "concept",
+   "label": "Chaitya style",
+   "definition": "Buddhist votive shrine style"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession",
+   "kind": "concept",
+   "label": "Chariot Procession",
+   "definition": "Ritual chariot pulling"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision#Circa",
+   "kind": "concept",
+   "label": "Circa",
+   "definition": "Approximate date"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Circumambulation",
+   "kind": "concept",
+   "label": "Circumambulation",
+   "definition": "Ritual circular movement around sacred site"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ConditionType#Damaged",
+   "kind": "concept",
+   "label": "Damaged",
+   "definition": "Partially damaged"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision#Decade",
+   "kind": "concept",
+   "label": "Decade",
+   "definition": "Within 10-year range"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual",
+   "kind": "concept",
+   "label": "Deinstallation Ritual",
+   "definition": "De-installation/conclusion ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Destroyed",
+   "kind": "concept",
+   "label": "Destroyed",
+   "definition": "Known to have been destroyed; no physical remains"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome",
+   "kind": "concept",
+   "label": "Dome style",
+   "definition": "Dome-based style (Mughal/Neo-classical influence)"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence",
+   "kind": "concept",
+   "label": "Equivalence",
+   "definition": "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision#Exact",
+   "kind": "concept",
+   "label": "Exact",
+   "definition": "Precise date known"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant",
+   "kind": "concept",
+   "label": "Extant",
+   "definition": "Currently exists in physical form"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticType#Fusion",
+   "kind": "concept",
+   "label": "Fusion",
+   "definition": "Intrinsically syncretic deity merging multiple traditions"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ConditionType#Good",
+   "kind": "concept",
+   "label": "Good",
+   "definition": "No significant damage"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/SyncreticType#Historical",
+   "kind": "concept",
+   "label": "Historical",
+   "definition": "Gradual syncretism over time"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Homa",
+   "kind": "concept",
+   "label": "Homa",
+   "definition": "Fire offering ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Hypothetical",
+   "kind": "concept",
+   "label": "Hypothetical",
+   "definition": "Reconstructed or theorized; never physically realized"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual",
+   "kind": "concept",
+   "label": "Installation Ritual",
+   "definition": "Installation/enshrinement ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Jatra",
+   "kind": "concept",
+   "label": "Jatra",
+   "definition": "Festival procession ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi",
+   "kind": "concept",
+   "label": "Jatra Guthi",
+   "definition": "Festival organization trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja",
+   "kind": "concept",
+   "label": "Kamya Puja",
+   "definition": "Desire-based optional worship"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost",
+   "kind": "concept",
+   "label": "Lost",
+   "definition": "Existence documented but location/remains unknown"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance",
+   "kind": "concept",
+   "label": "Masked Performance",
+   "definition": "Ritual masked dance"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja",
+   "kind": "concept",
+   "label": "Naimittika Puja",
+   "definition": "Occasional/Festival worship"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi",
+   "kind": "concept",
+   "label": "Nasha Guthi",
+   "definition": "Music and dance trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#NityaPuja",
+   "kind": "concept",
+   "label": "Nitya Puja",
+   "definition": "Daily mandatory worship"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda",
+   "kind": "concept",
+   "label": "Pagoda style",
+   "definition": "Multi-tiered roof style indigenous to Nepal"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant",
+   "kind": "concept",
+   "label": "Partially Extant",
+   "definition": "Fragments or ruins remain"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual",
+   "kind": "concept",
+   "label": "Procession Ritual",
+   "definition": "Ritual procession/movement"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement",
+   "kind": "concept",
+   "label": "Processional Movement",
+   "definition": "General ritual movement between locations"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi",
+   "kind": "concept",
+   "label": "Puja Guthi",
+   "definition": "Daily worship trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi",
+   "kind": "concept",
+   "label": "Raj Guthi",
+   "definition": "Royal endowment trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#RelicTour",
+   "kind": "concept",
+   "label": "Relic Tour",
+   "definition": "Procession with sacred relics between sites"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ConditionType#Restored",
+   "kind": "concept",
+   "label": "Restored",
+   "definition": "Repaired and stabilized"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual",
+   "kind": "concept",
+   "label": "Returning Ritual",
+   "definition": "Return to normal state ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration",
+   "kind": "concept",
+   "label": "Ritual Consecration",
+   "definition": "Consecration/activation ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ConditionType#Ruined",
+   "kind": "concept",
+   "label": "Ruined",
+   "definition": "Severely damaged or collapsed"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi",
+   "kind": "concept",
+   "label": "San Guthi",
+   "definition": "Life-cycle ritual trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi",
+   "kind": "concept",
+   "label": "Sana Guthi",
+   "definition": "Agricultural cooperative trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara",
+   "kind": "concept",
+   "label": "Shikhara style",
+   "definition": "North Indian spire-shaped style"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi",
+   "kind": "concept",
+   "label": "Si Guthi",
+   "definition": "Funeral trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
+   "kind": "concept",
+   "label": "Stupa style",
+   "definition": "Buddhist dome-shaped reliquary"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi",
+   "kind": "concept",
+   "label": "Temple Guthi",
+   "definition": "Temple maintenance trust"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown",
+   "kind": "concept",
+   "label": "Unknown",
+   "definition": "Existence status uncertain"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Vrata",
+   "kind": "concept",
+   "label": "Vrata",
+   "definition": "Vow observance ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/RitualType#Yagna",
+   "kind": "concept",
+   "label": "Yagna",
+   "definition": "Vedic sacrifice ritual"
+  },
+  {
+   "iri": "https://cair-nepal.org/heritagegraph/DatePrecision#Year",
+   "kind": "concept",
+   "label": "Year",
+   "definition": "Year-level precision only"
+  }
+ ],
+ "competency_questions": []
+}

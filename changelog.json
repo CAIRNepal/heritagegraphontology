@@ -1,0 +1,751 @@
+{
+  "old_version": "1.0.0",
+  "new_version": "1.0.1",
+  "added": [
+    {
+      "iri": "http://purl.org/ontology/bibo/doi",
+      "label": "doi",
+      "kind": "annotation_property",
+      "curie": "bibo:doi",
+      "anchor": "doi",
+      "added": [],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/schema",
+      "label": "HeritageGraph LinkML schema",
+      "kind": "concept_scheme",
+      "curie": "heritageGraph:schema",
+      "anchor": "schema",
+      "added": [],
+      "removed": []
+    },
+    {
+      "iri": "http://purl.org/dc/terms/isReplacedBy",
+      "label": "isReplacedBy",
+      "kind": "annotation_property",
+      "curie": "dcterms:isReplacedBy",
+      "anchor": "isReplacedBy",
+      "added": [],
+      "removed": []
+    },
+    {
+      "iri": "http://purl.org/dc/terms/issued",
+      "label": "issued",
+      "kind": "annotation_property",
+      "curie": "dcterms:issued",
+      "anchor": "issued",
+      "added": [],
+      "removed": []
+    }
+  ],
+  "removed": [],
+  "modified": [
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle",
+      "label": "Architectural Style (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "ArchitecturalStyle",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Architectural Style (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Architectural Style\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
+      "label": "Chaitya style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Chaitya-2",
+      "added": [
+        [
+          "dcterms:title",
+          "\"Chaitya style\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"Chaitya style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Chaitya style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Chaitya\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Chaitya\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/ConditionType",
+      "label": "Condition Type (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "ConditionType",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Condition Type (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Condition Type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/crminf_pattern",
+      "label": "crminf pattern",
+      "kind": "annotation_property",
+      "curie": "heritageGraph:crminf_pattern",
+      "anchor": "crminf_pattern",
+      "added": [
+        [
+          "rdfs:label",
+          "\"crminf pattern\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Editorial note naming the CRMinf pattern that a class instantiates.\"@en"
+        ]
+      ],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/DatePrecision",
+      "label": "Date Precision (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "DatePrecision",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Date Precision (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Date Precision\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/design_note",
+      "label": "design note",
+      "kind": "annotation_property",
+      "curie": "heritageGraph:design_note",
+      "anchor": "design_note",
+      "added": [
+        [
+          "rdfs:label",
+          "\"design note\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Editorial note recording a modelling decision about a term.\"@en"
+        ]
+      ],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome",
+      "label": "Dome style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Dome",
+      "added": [
+        [
+          "dcterms:title",
+          "\"Dome style\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"Dome style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Dome style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Dome\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Dome\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus",
+      "label": "Existence Status (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "ExistenceStatus-2",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Existence Status (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Existence Status\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/GuthiType",
+      "label": "Guthi Type (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "GuthiType",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Guthi Type (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Guthi Type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/calendarSystem",
+      "label": "has calendar system",
+      "kind": "object_property",
+      "curie": "heritageGraph:calendarSystem",
+      "anchor": "calendarSystem",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has calendar system\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has calendar system\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Calendar system\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/datePrecision",
+      "label": "has date precision",
+      "kind": "object_property",
+      "curie": "heritageGraph:datePrecision",
+      "anchor": "datePrecision",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has date precision\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has date precision\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Date precision\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/destructionEvent",
+      "label": "has destruction event",
+      "kind": "object_property",
+      "curie": "heritageGraph:destructionEvent",
+      "anchor": "destructionEvent",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has destruction event\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has destruction event\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Destruction event\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/existenceStatus",
+      "label": "has existence status",
+      "kind": "object_property",
+      "curie": "heritageGraph:existenceStatus",
+      "anchor": "existenceStatus",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has existence status\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has existence status\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Existence status\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/guthiType",
+      "label": "has guthi type",
+      "kind": "object_property",
+      "curie": "heritageGraph:guthiType",
+      "anchor": "guthiType",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has guthi type\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has guthi type\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Guthi type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/metadata",
+      "label": "has metadata",
+      "kind": "object_property",
+      "curie": "heritageGraph:metadata",
+      "anchor": "metadata-2",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has metadata\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has metadata\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"metadata\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ritualType",
+      "label": "has ritual type",
+      "kind": "object_property",
+      "curie": "heritageGraph:ritualType",
+      "anchor": "ritualType",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has ritual type\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has ritual type\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Ritual type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/syncreticType",
+      "label": "has syncretic type",
+      "kind": "object_property",
+      "curie": "heritageGraph:syncreticType",
+      "anchor": "syncreticType",
+      "added": [
+        [
+          "dcterms:title",
+          "\"has syncretic type\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"has syncretic type\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Syncretic type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/KumariRetirementEvent",
+      "label": "Kumari Retirement Event",
+      "kind": "class",
+      "curie": "heritageGraph:KumariRetirementEvent",
+      "anchor": "KumariRetirementEvent",
+      "added": [
+        [
+          "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E21_Person"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/selectionCriteriaMet",
+      "label": "obsolete selection criteria met",
+      "kind": "datatype_property",
+      "curie": "heritageGraph:selectionCriteriaMet",
+      "anchor": "selectionCriteriaMet",
+      "added": [
+        [
+          "dcterms:isReplacedBy",
+          "heritageGraph:hasCriterion"
+        ],
+        [
+          "rdfs:label",
+          "\"obsolete selection criteria met\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Selection criteria met\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda",
+      "label": "Pagoda style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Pagoda",
+      "added": [
+        [
+          "dcterms:title",
+          "\"Pagoda style\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"Pagoda style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Pagoda style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Pagoda\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Pagoda\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/prov_alignment",
+      "label": "prov alignment",
+      "kind": "annotation_property",
+      "curie": "heritageGraph:prov_alignment",
+      "anchor": "prov_alignment",
+      "added": [
+        [
+          "rdfs:label",
+          "\"prov alignment\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Editorial note naming the PROV-O term that a slot is aligned with.\"@en"
+        ]
+      ],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/prov_alignment_note",
+      "label": "prov alignment note",
+      "kind": "annotation_property",
+      "curie": "heritageGraph:prov_alignment_note",
+      "anchor": "prov_alignment_note",
+      "added": [
+        [
+          "rdfs:label",
+          "\"prov alignment note\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Editorial note explaining the status of a class's PROV-O alignment.\"@en"
+        ]
+      ],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/provenance_scope",
+      "label": "provenance scope",
+      "kind": "annotation_property",
+      "curie": "heritageGraph:provenance_scope",
+      "anchor": "provenance_scope",
+      "added": [
+        [
+          "rdfs:label",
+          "\"provenance scope\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"States whether a class's provenance slots describe the data record or the real-world referent.\"@en"
+        ]
+      ],
+      "removed": []
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/RitualType",
+      "label": "Ritual Type (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "RitualType-2",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Ritual Type (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Ritual Type\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara",
+      "label": "Shikhara style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Shikhara",
+      "added": [
+        [
+          "dcterms:title",
+          "\"Shikhara style\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"Shikhara style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Shikhara style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Shikhara\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Shikhara\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
+      "label": "Stupa style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Stupa-2",
+      "added": [
+        [
+          "dcterms:title",
+          "\"Stupa style\"@en"
+        ],
+        [
+          "rdfs:label",
+          "\"Stupa style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Stupa style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Stupa\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Stupa\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/scheme/SyncreticType",
+      "label": "Syncretic Type (concept scheme)",
+      "kind": "concept_scheme",
+      "curie": null,
+      "anchor": "SyncreticType",
+      "added": [
+        [
+          "skos:prefLabel",
+          "\"Syncretic Type (concept scheme)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "skos:prefLabel",
+          "\"Syncretic Type\"@en"
+        ]
+      ]
+    }
+  ],
+  "metadata_changes": [
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ontology",
+      "label": "Ontology metadata",
+      "kind": "ontology",
+      "curie": null,
+      "anchor": null,
+      "added": [
+        [
+          "bibo:doi",
+          "\"10.5281/zenodo.23435676\""
+        ],
+        [
+          "bibo:status",
+          "\"Published\""
+        ],
+        [
+          "dcterms:bibliographicCitation",
+          "\"Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Anu Sapkota\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Nabin Oli\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Niraj Karki\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Semih Yumusak\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Tek Raj Chhetri\""
+        ],
+        [
+          "dcterms:issued",
+          "\"2026-10-17\"^^xsd:date"
+        ],
+        [
+          "dcterms:modified",
+          "\"2026-11-22\"^^xsd:date"
+        ],
+        [
+          "owl:priorVersion",
+          "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
+        ],
+        [
+          "owl:versionIRI",
+          "https://cair-nepal.org/heritagegraph/ontology/1.0.1"
+        ],
+        [
+          "owl:versionInfo",
+          "\"1.0.1\""
+        ],
+        [
+          "pav:version",
+          "\"1.0.1\""
+        ]
+      ],
+      "removed": [
+        [
+          "bibo:status",
+          "\"Pre-release specification draft (alpha)\""
+        ],
+        [
+          "dcterms:bibliographicCitation",
+          "\"CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology\""
+        ],
+        [
+          "dcterms:creator",
+          "\"CAIR-Nepal\""
+        ],
+        [
+          "dcterms:modified",
+          "\"2026-10-17\"^^xsd:date"
+        ],
+        [
+          "owl:versionIRI",
+          "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
+        ],
+        [
+          "owl:versionInfo",
+          "\"1.0.0\""
+        ],
+        [
+          "pav:version",
+          "\"1.0.0\""
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "added": 4,
+    "removed": 0,
+    "modified": 27
+  }
+}

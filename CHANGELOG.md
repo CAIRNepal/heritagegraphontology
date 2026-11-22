@@ -1,0 +1,141 @@
+# Changelog: 1.0.0 → 1.0.1
+
+## Added (4)
+
+- **doi** (`bibo:doi`, annotation property)
+- **HeritageGraph LinkML schema** (`heritageGraph:schema`, concept scheme)
+- **isReplacedBy** (`dcterms:isReplacedBy`, annotation property)
+- **issued** (`dcterms:issued`, annotation property)
+
+## Removed (0)
+
+
+## Modified (28)
+
+- **Ontology metadata** (`https://cair-nepal.org/heritagegraph/ontology`, ontology)
+  - ➕ bibo:doi: "10.5281/zenodo.23435676"
+  - ➕ bibo:status: "Published"
+  - ➕ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
+  - ➕ dcterms:creator: "Anu Sapkota"
+  - ➕ dcterms:creator: "Nabin Oli"
+  - ➕ dcterms:creator: "Niraj Karki"
+  - ➕ dcterms:creator: "Semih Yumusak"
+  - ➕ dcterms:creator: "Tek Raj Chhetri"
+  - ➕ dcterms:issued: "2026-10-17"^^xsd:date
+  - ➕ dcterms:modified: "2026-11-22"^^xsd:date
+  - ➕ owl:priorVersion: https://cair-nepal.org/heritagegraph/ontology/1.0.0
+  - ➕ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.0.1
+  - ➕ owl:versionInfo: "1.0.1"
+  - ➕ pav:version: "1.0.1"
+  - ➖ bibo:status: "Pre-release specification draft (alpha)"
+  - ➖ dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology"
+  - ➖ dcterms:creator: "CAIR-Nepal"
+  - ➖ dcterms:modified: "2026-10-17"^^xsd:date
+  - ➖ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.0.0
+  - ➖ owl:versionInfo: "1.0.0"
+  - ➖ pav:version: "1.0.0"
+- **Architectural Style (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle`, concept scheme)
+  - ➕ skos:prefLabel: "Architectural Style (concept scheme)"@en
+  - ➖ skos:prefLabel: "Architectural Style"@en
+- **Chaitya style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`, concept)
+  - ➕ dcterms:title: "Chaitya style"@en
+  - ➕ rdfs:label: "Chaitya style"@en
+  - ➕ skos:prefLabel: "Chaitya style"@en
+  - ➖ rdfs:label: "Chaitya"@en
+  - ➖ skos:prefLabel: "Chaitya"@en
+- **Condition Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ConditionType`, concept scheme)
+  - ➕ skos:prefLabel: "Condition Type (concept scheme)"@en
+  - ➖ skos:prefLabel: "Condition Type"@en
+- **crminf pattern** (`heritageGraph:crminf_pattern`, annotation property)
+  - ➕ rdfs:label: "crminf pattern"@en
+  - ➕ skos:definition: "Editorial note naming the CRMinf pattern that a class instantiates."@en
+- **Date Precision (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/DatePrecision`, concept scheme)
+  - ➕ skos:prefLabel: "Date Precision (concept scheme)"@en
+  - ➖ skos:prefLabel: "Date Precision"@en
+- **design note** (`heritageGraph:design_note`, annotation property)
+  - ➕ rdfs:label: "design note"@en
+  - ➕ skos:definition: "Editorial note recording a modelling decision about a term."@en
+- **Dome style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome`, concept)
+  - ➕ dcterms:title: "Dome style"@en
+  - ➕ rdfs:label: "Dome style"@en
+  - ➕ skos:prefLabel: "Dome style"@en
+  - ➖ rdfs:label: "Dome"@en
+  - ➖ skos:prefLabel: "Dome"@en
+- **Existence Status (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus`, concept scheme)
+  - ➕ skos:prefLabel: "Existence Status (concept scheme)"@en
+  - ➖ skos:prefLabel: "Existence Status"@en
+- **Guthi Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/GuthiType`, concept scheme)
+  - ➕ skos:prefLabel: "Guthi Type (concept scheme)"@en
+  - ➖ skos:prefLabel: "Guthi Type"@en
+- **has calendar system** (`heritageGraph:calendarSystem`, object property)
+  - ➕ dcterms:title: "has calendar system"@en
+  - ➕ rdfs:label: "has calendar system"@en
+  - ➖ rdfs:label: "Calendar system"@en
+- **has date precision** (`heritageGraph:datePrecision`, object property)
+  - ➕ dcterms:title: "has date precision"@en
+  - ➕ rdfs:label: "has date precision"@en
+  - ➖ rdfs:label: "Date precision"@en
+- **has destruction event** (`heritageGraph:destructionEvent`, object property)
+  - ➕ dcterms:title: "has destruction event"@en
+  - ➕ rdfs:label: "has destruction event"@en
+  - ➖ rdfs:label: "Destruction event"@en
+- **has existence status** (`heritageGraph:existenceStatus`, object property)
+  - ➕ dcterms:title: "has existence status"@en
+  - ➕ rdfs:label: "has existence status"@en
+  - ➖ rdfs:label: "Existence status"@en
+- **has guthi type** (`heritageGraph:guthiType`, object property)
+  - ➕ dcterms:title: "has guthi type"@en
+  - ➕ rdfs:label: "has guthi type"@en
+  - ➖ rdfs:label: "Guthi type"@en
+- **has metadata** (`heritageGraph:metadata`, object property)
+  - ➕ dcterms:title: "has metadata"@en
+  - ➕ rdfs:label: "has metadata"@en
+  - ➖ rdfs:label: "metadata"@en
+- **has ritual type** (`heritageGraph:ritualType`, object property)
+  - ➕ dcterms:title: "has ritual type"@en
+  - ➕ rdfs:label: "has ritual type"@en
+  - ➖ rdfs:label: "Ritual type"@en
+- **has syncretic type** (`heritageGraph:syncreticType`, object property)
+  - ➕ dcterms:title: "has syncretic type"@en
+  - ➕ rdfs:label: "has syncretic type"@en
+  - ➖ rdfs:label: "Syncretic type"@en
+- **Kumari Retirement Event** (`heritageGraph:KumariRetirementEvent`, class)
+  - ➕ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E21_Person
+- **obsolete selection criteria met** (`heritageGraph:selectionCriteriaMet`, datatype property)
+  - ➕ dcterms:isReplacedBy: heritageGraph:hasCriterion
+  - ➕ rdfs:label: "obsolete selection criteria met"@en
+  - ➖ rdfs:label: "Selection criteria met"@en
+- **Pagoda style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda`, concept)
+  - ➕ dcterms:title: "Pagoda style"@en
+  - ➕ rdfs:label: "Pagoda style"@en
+  - ➕ skos:prefLabel: "Pagoda style"@en
+  - ➖ rdfs:label: "Pagoda"@en
+  - ➖ skos:prefLabel: "Pagoda"@en
+- **prov alignment** (`heritageGraph:prov_alignment`, annotation property)
+  - ➕ rdfs:label: "prov alignment"@en
+  - ➕ skos:definition: "Editorial note naming the PROV-O term that a slot is aligned with."@en
+- **prov alignment note** (`heritageGraph:prov_alignment_note`, annotation property)
+  - ➕ rdfs:label: "prov alignment note"@en
+  - ➕ skos:definition: "Editorial note explaining the status of a class's PROV-O alignment."@en
+- **provenance scope** (`heritageGraph:provenance_scope`, annotation property)
+  - ➕ rdfs:label: "provenance scope"@en
+  - ➕ skos:definition: "States whether a class's provenance slots describe the data record or the real-world referent."@en
+- **Ritual Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/RitualType`, concept scheme)
+  - ➕ skos:prefLabel: "Ritual Type (concept scheme)"@en
+  - ➖ skos:prefLabel: "Ritual Type"@en
+- **Shikhara style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara`, concept)
+  - ➕ dcterms:title: "Shikhara style"@en
+  - ➕ rdfs:label: "Shikhara style"@en
+  - ➕ skos:prefLabel: "Shikhara style"@en
+  - ➖ rdfs:label: "Shikhara"@en
+  - ➖ skos:prefLabel: "Shikhara"@en
+- **Stupa style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`, concept)
+  - ➕ dcterms:title: "Stupa style"@en
+  - ➕ rdfs:label: "Stupa style"@en
+  - ➕ skos:prefLabel: "Stupa style"@en
+  - ➖ rdfs:label: "Stupa"@en
+  - ➖ skos:prefLabel: "Stupa"@en
+- **Syncretic Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/SyncreticType`, concept scheme)
+  - ➕ skos:prefLabel: "Syncretic Type (concept scheme)"@en
+  - ➖ skos:prefLabel: "Syncretic Type"@en
