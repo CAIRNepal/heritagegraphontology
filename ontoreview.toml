@@ -24,6 +24,36 @@ iri_checks = "on"
 [metadata]
 abstract = """HeritageGraph is an event-centric OWL ontology for describing Nepalese living heritage — its tangible objects, sacred places, deities, rituals, festivals, and the communities and institutions (notably the *Guthi*) that sustain them. Rather than attaching facts directly to objects, the model represents history as a web of events (production, ritual, custody transfer, documentation) so that spatial, temporal, and participatory relationships can be queried and reasoned over. Every assertion can carry its provenance and epistemic standing, allowing competing or multi-vocal sources to coexist. The ontology is generated from a LinkML schema, is an OWL 2 DL vocabulary that is logically consistent under the HermiT reasoner, and is aligned with CIDOC-CRM 7.1.3, CRMinf, CRMsci, and PROV-O, and through a companion module with Linked Art, to maximise interoperability with the wider cultural-heritage Linked Data cloud."""
 
+# author order as in the paper (RDF has no order, so OntoReview would sort them)
+[[metadata.creators]]
+name = "Niraj Karki"
+iri = "https://orcid.org/0009-0000-7679-0107"
+affiliation = "Center for Artificial Intelligence Research Nepal (CAIR-Nepal)"
+
+[[metadata.creators]]
+name = "Nabin Oli"
+iri = "https://orcid.org/0009-0007-3770-4668"
+affiliation = "Center for Artificial Intelligence Research Nepal (CAIR-Nepal)"
+
+[[metadata.creators]]
+name = "Anu Sapkota"
+iri = "https://orcid.org/0009-0004-5297-5990"
+affiliation = "Center for Artificial Intelligence Research Nepal (CAIR-Nepal)"
+
+[[metadata.creators]]
+name = "Tek Raj Chhetri"
+iri = "https://orcid.org/0000-0002-3905-7878"
+affiliation = "Center for Artificial Intelligence Research Nepal (CAIR-Nepal)"
+
+[[metadata.creators]]
+name = "Semih Yumusak"
+iri = "https://orcid.org/0000-0002-8878-4991"
+affiliation = "Center for Artificial Intelligence Research Nepal (CAIR-Nepal)"
+
+[[metadata.publishers]]
+name = "CAIR-Nepal"
+iri = "https://cair-nepal.org"
+
 [[custom_sections]]
 title = "Description"
 file = "docs-src/description.md"

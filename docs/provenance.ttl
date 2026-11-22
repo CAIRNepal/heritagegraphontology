@@ -5,7 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:ontoreview:documentation> a prov:Entity ;
-    prov:generatedAtTime "2026-11-22T14:43:59+00:00"^^xsd:dateTime ;
+    prov:generatedAtTime "2026-11-22T15:00:47+00:00"^^xsd:dateTime ;
     prov:wasDerivedFrom <https://cair-nepal.org/heritagegraph/ontology/1.0.1> ;
     prov:wasGeneratedBy <urn:ontoreview:build> .
 
@@ -45,7 +45,22 @@
     dcterms:modified "2026-11-22" ;
     dcterms:title "HeritageGraph Ontology" ;
     prov:generatedAtTime "2026-10-17" ;
+    prov:wasAttributedTo <https://orcid.org/0000-0002-3905-7878>,
+        <https://orcid.org/0000-0002-8878-4991>,
+        <https://orcid.org/0009-0000-7679-0107>,
+        <https://orcid.org/0009-0004-5297-5990>,
+        <https://orcid.org/0009-0007-3770-4668> ;
     prov:wasRevisionOf <https://cair-nepal.org/heritagegraph/ontology/1.0.0> .
+
+<https://orcid.org/0000-0002-3905-7878> a prov:Agent .
+
+<https://orcid.org/0000-0002-8878-4991> a prov:Agent .
+
+<https://orcid.org/0009-0000-7679-0107> a prov:Agent .
+
+<https://orcid.org/0009-0004-5297-5990> a prov:Agent .
+
+<https://orcid.org/0009-0007-3770-4668> a prov:Agent .
 
 <https://w3id.org/biopragmatics/resources/mesh/2025/mesh.ofn> a prov:Entity ;
     dcterms:date "2026-11-22T04:51:28Z"^^xsd:string ;
@@ -55,8 +70,8 @@
     rdfs:comment "Reference release used for the cross-domain interoperability score (8 correspondence(s), via ols)." .
 
 <urn:ontoreview:build> a prov:Activity ;
-    prov:endedAtTime "2026-11-22T14:43:59+00:00"^^xsd:dateTime ;
-    prov:startedAtTime "2026-11-22T14:41:16+00:00"^^xsd:dateTime ;
+    prov:endedAtTime "2026-11-22T15:00:47+00:00"^^xsd:dateTime ;
+    prov:startedAtTime "2026-11-22T14:58:09+00:00"^^xsd:dateTime ;
     prov:used <http://purl.obolibrary.org/obo/gsso/releases/2.0.11/gsso.owl>,
         <http://purl.obolibrary.org/obo/ncit/releases/2026-03-19/ncit.owl>,
         <http://www.cidoc-crm.org/extensions/crminf/1.2.1/>,
@@ -65,12 +80,12 @@
         <urn:ontoreview:release:867519f9e6f267ae>,
         <urn:ontoreview:release:b451a2ca4ec20503>,
         <urn:ontoreview:release:d210957a6449a574>,
-        <urn:sha256:14a6e0ff104bcb259d881ad907c5b5aa660bb16b980fc70e12676e093418c678>,
         <urn:sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310>,
         <urn:sha256:57ae3992768f56430ab26e32a6530be9bce1e3a8e414cac1044d585583c8de99>,
         <urn:sha256:667fd01d1584f092b9e31b2bfa84b524736d6a4ec77a6a89d7a476a5a279292f>,
         <urn:sha256:74d6e82afaa91eeb70e8e38f6c6a9255907d843459fb32fca10aa7a3902d9136>,
         <urn:sha256:7b645a0e1b0379b6f24ed719797f26f0f2b7a8f6ece6861fa159ffbf70a9e904>,
+        <urn:sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7>,
         <urn:sha256:c70b0d1c843c0047e4c98e0a89392e46a05752ff6365bda7f7f55303905a0392>,
         <urn:sha256:c905b9c3760653eda5a3fc4f9aefb2b0dac0cb374cc10ff7847d1e0bd121f551>,
         <urn:sha256:ddd9159098c46f5e9c79010e8b09b092e94b7e617fced634bfad08d510e3f75f>,
@@ -172,10 +187,6 @@
     dcterms:date "2026-11-21T00:09:02.747865110"^^xsd:string ;
     rdfs:comment "Release used to verify 4 external term(s) (via ols)." .
 
-<urn:sha256:14a6e0ff104bcb259d881ad907c5b5aa660bb16b980fc70e12676e093418c678> a prov:Entity ;
-    dcterms:identifier "sha256:14a6e0ff104bcb259d881ad907c5b5aa660bb16b980fc70e12676e093418c678" ;
-    dcterms:title "HeritageGraph.ttl" .
-
 <urn:sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310> a prov:Entity ;
     dcterms:date "2026-11-22T04:45:47.718834+00:00"^^xsd:string ;
     dcterms:identifier "sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310" ;
@@ -210,6 +221,10 @@
     dcterms:isVersionOf <http://schema.org/> ;
     dcterms:title "ols:schemaorg_http" ;
     rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via ols)." .
+
+<urn:sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7> a prov:Entity ;
+    dcterms:identifier "sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7" ;
+    dcterms:title "HeritageGraph.ttl" .
 
 <urn:sha256:c70b0d1c843c0047e4c98e0a89392e46a05752ff6365bda7f7f55303905a0392> a prov:Entity ;
     dcterms:date "2026-11-18T01:08:30.672748+00:00"^^xsd:string ;

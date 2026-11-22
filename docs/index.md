@@ -4,7 +4,7 @@
 
 **Version:** 1.0.1
 
-**Authors:** Anu Sapkota, Nabin Oli, Niraj Karki, Semih Yumusak, Tek Raj Chhetri
+**Authors:** Niraj Karki, Nabin Oli, Anu Sapkota, Tek Raj Chhetri, Semih Yumusak
 
 **License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 

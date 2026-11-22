@@ -15,7 +15,7 @@
 - **Ontology metadata** (`https://cair-nepal.org/heritagegraph/ontology`, ontology)
   - ➕ bibo:doi: "10.5281/zenodo.23435676"
   - ➕ bibo:status: "Published"
-  - ➕ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Yumusak, S., & Chhetri, T. R. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
+  - ➕ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
   - ➕ dcterms:creator: "Anu Sapkota"
   - ➕ dcterms:creator: "Nabin Oli"
   - ➕ dcterms:creator: "Niraj Karki"

@@ -553,7 +553,7 @@ Architectural style classification
 | | |
 |---|---|
 | Super-properties | [Has type](object-properties.md#p2_has_type) |
-| Range | [Architectural Style](classes.md#architecturalstyle) |
+| Range | [Architectural Style](classes.md#architecturalstyle-2) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
 
 ### Has assertion
@@ -607,7 +607,7 @@ Categorization of the condition state
 | | |
 |---|---|
 | Super-properties | [Has type](object-properties.md#p2_has_type) |
-| Range | [Condition Type](classes.md#conditiontype-2) |
+| Range | [Condition Type](classes.md#conditiontype) |
 
 ### Has criterion
 
@@ -665,7 +665,7 @@ Current physical status of the structure
 
 | | |
 |---|---|
-| Range | [Existence Status](classes.md#existencestatus) |
+| Range | [Existence Status](classes.md#existencestatus-2) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
 
 ### has guthi type
@@ -677,7 +677,7 @@ Type of Guthi (Si, Jatra, Temple)
 | | |
 |---|---|
 | Super-properties | [Has type](object-properties.md#p2_has_type) |
-| Range | [Guthi Type](classes.md#guthitype-2) |
+| Range | [Guthi Type](classes.md#guthitype) |
 | Used in | used in axioms of [Guthi](classes.md#guthi) |
 
 ### Has membership
@@ -734,7 +734,7 @@ The typological nature of the syncretism (e.g., Ontological Identity, Functional
 | | |
 |---|---|
 | Super-properties | [Has type](object-properties.md#p2_has_type) |
-| Range | [Syncretic Type](classes.md#syncretictype) |
+| Range | [Syncretic Type](classes.md#syncretictype-2) |
 | Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
 
 ### Has timespan

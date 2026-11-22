@@ -169,7 +169,7 @@ cd evaluation && make all
 
 ```bibtex
 @software{heritagegraph_2026,
-  author    = {Karki, Niraj and Oli, Nabin and Sapkota, Anu and Yumusak, Semih and Chhetri, Tek Raj},
+  author    = {Karki, Niraj and Oli, Nabin and Sapkota, Anu and Chhetri, Tek Raj and Yumusak, Semih},
   title     = {{HeritageGraph Ontology}},
   version   = {1.0.1},
   year      = {2026},
