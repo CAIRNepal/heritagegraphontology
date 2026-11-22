@@ -5,7 +5,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:ontoreview:documentation> a prov:Entity ;
-    prov:generatedAtTime "2026-11-22T15:00:47+00:00"^^xsd:dateTime ;
+    prov:generatedAtTime "2026-11-22T15:28:50+00:00"^^xsd:dateTime ;
     prov:wasDerivedFrom <https://cair-nepal.org/heritagegraph/ontology/1.0.1> ;
     prov:wasGeneratedBy <urn:ontoreview:build> .
 
@@ -70,8 +70,8 @@
     rdfs:comment "Reference release used for the cross-domain interoperability score (8 correspondence(s), via ols)." .
 
 <urn:ontoreview:build> a prov:Activity ;
-    prov:endedAtTime "2026-11-22T15:00:47+00:00"^^xsd:dateTime ;
-    prov:startedAtTime "2026-11-22T14:58:09+00:00"^^xsd:dateTime ;
+    prov:endedAtTime "2026-11-22T15:28:50+00:00"^^xsd:dateTime ;
+    prov:startedAtTime "2026-11-22T15:26:24+00:00"^^xsd:dateTime ;
     prov:used <http://purl.obolibrary.org/obo/gsso/releases/2.0.11/gsso.owl>,
         <http://purl.obolibrary.org/obo/ncit/releases/2026-03-19/ncit.owl>,
         <http://www.cidoc-crm.org/extensions/crminf/1.2.1/>,
@@ -91,7 +91,7 @@
         <urn:sha256:ddd9159098c46f5e9c79010e8b09b092e94b7e617fced634bfad08d510e3f75f>,
         <urn:sha256:e79633b8d0564816cee8a99f5c9acf9a0e6fc7257c7209acd684ecad53a89dd6>,
         "HeritageGraph.ttl" ;
-    prov:wasAssociatedWith <https://w3id.org/ontoreview#v1.0.0> .
+    prov:wasAssociatedWith <https://w3id.org/ontoreview#v1.0.1> .
 
 <urn:ontoreview:release:867519f9e6f267ae> a prov:Entity ;
     dcterms:date "2026-11-21T00:09:03.193403165"^^xsd:string ;
