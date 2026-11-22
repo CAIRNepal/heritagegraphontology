@@ -3,7 +3,7 @@
 ## [Unreleased]
 
 ### Changed (documentation generated with OntoReview)
-- The documentation site (GitHub Pages) is generated with OntoReview 1.0.0 (`ontoreview build`, configured
+- The documentation site (GitHub Pages) is generated with OntoReview 1.0.1 (`ontoreview build`, configured
   by `ontoreview.toml`) instead of WIDOCO: term pages, class graph, a quality report (HermiT consistency,
   ROBOT, OOPS!, OntoCheck, IRI checks, cross-domain interoperability) and a changelog against the
   previous release (from `owl:priorVersion`). The abstract, introduction, description and references are

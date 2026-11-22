@@ -155,7 +155,7 @@ pip install -r requirements.txt -r evaluation/requirements.txt
 make artefacts   # regenerate OWL, SHACL and JSON Schema from the LinkML source
 make check       # release checks: source/artefact sync, declared terms, OWL 2 DL and
                  # HermiT consistency with every example, no changes to reused vocabularies
-make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.0)
+make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.1)
 ```
 
 The evaluation reported in the accompanying paper (competency questions, SHACL tests,

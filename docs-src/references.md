@@ -7,4 +7,4 @@
 - Getty Research Institute. (2024). *Art & Architecture Thesaurus (AAT) Online*. <a href="https://www.getty.edu/research/tools/vocabularies/aat/">https://www.getty.edu/research/tools/vocabularies/aat/</a>
 - Yale University. (2023). *LUX: Yale Collections Discovery* & the *Linked Art* data model. <a href="https://lux.collections.yale.edu/">https://lux.collections.yale.edu/</a> · <a href="https://linked.art/">https://linked.art/</a>
 - Poveda-Villalón, M., Gómez-Pérez, A., & Suárez-Figueroa, M. C. (2014). OOPS! (OntOlogy Pitfall Scanner!): An On-line Tool for Ontology Evaluation. *International Journal on Semantic Web and Information Systems*, 10(2), 7–34.
-- Chhetri, T. R. *OntoReview: ontology quality assessment and documentation for OWL, RDFS, SKOS, and LinkML*, version 1.0.0. <a href="https://pypi.org/project/ontoreview/">https://pypi.org/project/ontoreview/</a> (used to generate this documentation).
+- Chhetri, T. R. *OntoReview: ontology quality assessment and documentation for OWL, RDFS, SKOS, and LinkML*, version 1.0.1. <a href="https://pypi.org/project/ontoreview/">https://pypi.org/project/ontoreview/</a> (used to generate this documentation).

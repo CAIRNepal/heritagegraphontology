@@ -29,7 +29,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${1:-$ROOT/docs}"
 PY="${PYTHON:-$ROOT/venv/bin/python}"; command -v "$PY" >/dev/null 2>&1 || PY="python3"
 ONTOREVIEW="${ONTOREVIEW:-ontoreview}"
-command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install ontoreview==1.0.0, or set ONTOREVIEW)" >&2; exit 1; }
+command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install ontoreview==1.0.1, or set ONTOREVIEW)" >&2; exit 1; }
 
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK" 2>/dev/null || true' EXIT
 ARGS=(--config "$ROOT/ontoreview.toml" --output "$WORK/site")
@@ -83,8 +83,6 @@ if command -v rsync >/dev/null 2>&1; then
 else
   find "$OUT" -mindepth 1 -maxdepth 1 ! -name releases -exec rm -rf {} + && cp -R "$SITE"/. "$OUT"/
 fi
-# OntoReview's graph leaves enumeration values unconnected; link each to its class
-"$PY" "$ROOT/scripts/link_enum_values.py" "$OUT"
 "$PY" "$ROOT/scripts/publish_release.py" "$OUT"
 "$PY" "$ROOT/scripts/gen_enum_pages.py" "$OUT"
 
