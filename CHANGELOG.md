@@ -29,6 +29,13 @@
   and `Metadata ⊑ hg:InformationObject` removed (new subsumptions between core classes).
 
 ### Fixed
+- Quality findings from an OntoReview 1.0.0 run (`ontoreview evaluate`): the style values are labelled
+  "Pagoda style", "Stupa style", … (they shared "stupa"/"chaitya" with the `Stupa`/`Chaitya` classes, a ROBOT
+  duplicate-label error); enum-valued properties carry distinct labels from their slot titles ("has ritual
+  type", "has guthi type", …, "has calendar system", "has metadata"); each SKOS concept scheme has one English
+  label; the deprecated `selectionCriteriaMet` is labelled "obsolete selection criteria met" and points to
+  `hasCriterion` (`dcterms:isReplacedBy`); the schema's editorial annotation properties have labels and
+  definitions; the LinkML schema IRI used by `skos:inScheme` is declared.
 - CI: the build toolchain is pinned (`requirements-build.txt`: LinkML 1.9.6, rdflib 7.6.0, owlrl 7.1.4,
   pySHACL 0.31.0, …). Unpinned installs pulled LinkML 1.12, whose SHACL generator emits different shapes
   for `uriorcurie` slots, so the regenerate step failed its own SHACL self-check and every later step
