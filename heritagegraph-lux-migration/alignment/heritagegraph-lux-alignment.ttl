@@ -162,8 +162,9 @@ heritageGraph:RitualType rdfs:subClassOf crm:E55_Type .
 heritageGraph:SyncreticType rdfs:subClassOf crm:E55_Type .
 
 # ---- Container / metadata ---------------------------------------------------
-# heritageGraph:Container has no LUX equivalent (LinkML construct).
-heritageGraph:Metadata rdfs:subClassOf crm:E73_Information_Object .
+# HeritageGraph 1.1.0 deprecates heritageGraph:Container and heritageGraph:Metadata:
+# they are LinkML serialization constructs for JSON/YAML data files (defined only in
+# HeritageGraph-container.yaml), not domain classes, so the module maps neither.
 
 #####################################################################
 # Conservativity (October 2026): loaded with CIDOC-CRM, a mapping must not give
@@ -354,7 +355,7 @@ heritageGraph:SyncreticRelationship rdfs:subClassOf heritageGraph:AttributeAssig
 
 heritageGraph:Period a owl:Class ;
     rdfs:label "Period"@en ;
-    rdfs:comment "Generic historical period (Lichhavi, Malla, Shah, Rana). LUX alias: 'Period'."@en ;
+    rdfs:comment "Generic historical period (Licchavi, Malla, Shah, Rana). LUX alias: 'Period'."@en ;
     rdfs:subClassOf crm:E4_Period .
 
 heritageGraph:KumariTenure rdfs:subClassOf heritageGraph:Period .
@@ -463,7 +464,8 @@ heritageGraph:DigitalObject rdfs:subClassOf heritageGraph:InformationObject .
 heritageGraph:LinguisticObject rdfs:subClassOf heritageGraph:InformationObject .
 heritageGraph:PropositionalObject rdfs:subClassOf heritageGraph:InformationObject .
 # Metadata ⊑ hg:InformationObject removed: the core has InformationObject ⊑ DataSource, so it made all
-# metadata a DataSource (a new subsumption between core classes). Metadata ⊑ crm:E73 is kept (§1).
+# metadata a DataSource (a new subsumption between core classes). Metadata ⊑ crm:E73 was removed too
+# when the core deprecated Metadata (1.1.0, §1).
 
 # ---- 4.5  Curated holding / set -------------------------------------------
 
@@ -658,8 +660,9 @@ heritageGraph:aboutProposition a owl:ObjectProperty ;
 
 heritageGraph:hasMetadata a owl:ObjectProperty ;
     rdfs:label "has metadata"@en ;
+    rdfs:comment "Range is crm:E73_Information_Object: the core's heritageGraph:Metadata is deprecated in HeritageGraph 1.1.0 (a JSON/YAML serialization construct)."@en ;
     rdfs:domain heritageGraph:AssertionSubject ;
-    rdfs:range heritageGraph:Metadata ;
+    rdfs:range crm:E73_Information_Object ;
     rdfs:subPropertyOf crm:P67i_is_referred_to_by .
 
 # --- DataCustodian role ----------------------------------------------------
@@ -670,10 +673,7 @@ heritageGraph:hasDataCustodian a owl:ObjectProperty ;
     rdfs:range heritageGraph:DataCustodian ;
     skos:closeMatch crm:P109_has_current_or_former_curator .  # P109 domain E78 would make a DataSource a physical holding
 
-# --- Container (LinkML construct, kept as InformationObject child) ---------
-
-heritageGraph:Container rdfs:subClassOf heritageGraph:InformationObject ;
-    rdfs:comment "LinkML container construct; no LUX equivalent. Treated as a structural InformationObject for navigation."@en .
+# --- Container: not mapped (deprecated LinkML serialization construct, HeritageGraph 1.1.0) ---
 
 #####################################################################
 # 5. COVERAGE & TAXONOMY COMPLETION (July 2026 gap audit)
@@ -710,9 +710,8 @@ heritageGraph:Concept a owl:Class ;
 
 heritageGraph:Appellation a owl:Class ;
     rdfs:label "Appellation"@en ;
-    rdfs:comment "Names, identifiers and other appellations. LUX alias: 'Appellation' → crm:E41. Internal parent hg:Metadata is pragmatic (appellations are record-level metadata in HG), not CRM-derived."@en ;
-    rdfs:subClassOf crm:E41_Appellation ;
-    rdfs:subClassOf heritageGraph:Metadata .
+    rdfs:comment "Names, identifiers and other appellations. LUX alias: 'Appellation' → crm:E41."@en ;
+    rdfs:subClassOf crm:E41_Appellation .
 
 heritageGraph:Creation a owl:Class ;
     rdfs:label "Creation"@en ;

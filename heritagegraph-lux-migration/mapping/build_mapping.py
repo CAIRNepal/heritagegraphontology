@@ -104,8 +104,8 @@ CLASS_ROWS = [
     ('CalendarSystem', '(none)', '(no LUX alias)', 'crm:E29_Designated_Reference_System', 'dropped in v1.0.0', 'time:Calendar exact match retained.'),
 
     # ---- Containers / metadata ----
-    ("Container",                  "(none)",                       "(no direct match)", "(none)",                          "no_direct_match", "LinkML container; LUX has no analogue."),
-    ("Metadata",                   "(none)",                       "InformationObject", "crm:E73_Information_Object",      "subClassOf",      "Map at instance level via Identifier / Name."),
+    ("Container",                  "(none)",                       "(not mapped)",      "(none)",                          "deprecated",      "Deprecated in HeritageGraph 1.1.0: LinkML serialization construct for JSON/YAML data files (HeritageGraph-container.yaml), not a domain class."),
+    ("Metadata",                   "(none)",                       "(not mapped)",      "(none)",                          "deprecated",      "Deprecated in HeritageGraph 1.1.0: dataset header of the JSON/YAML Container, not a domain class; hasMetadata ranges over crm:E73_Information_Object."),
     ("PhysicalHeritageThing",      "(none)",                       "HumanMadeObject",   "crm:E22_Human-Made_Object",       "closeMatch",      "Union class — LUX equivalent is HumanMadeObject (closeMatch)."),
 
     # ---- Enums (treated as concept schemes / Type instances in LUX) ----
@@ -217,7 +217,7 @@ MISSING_ROWS = [
     ("hg:Inscription",        "Inscription",          "crm:E34_Inscription",          "Stone/metal/manuscript inscriptions."),
     ("hg:Title",              "Title",                "crm:E35_Title",                "Titled name of a work or object."),
     # ---- Time / period ----
-    ("hg:Period",             "Period",               "crm:E4_Period",                "Generic period (Lichhavi, Malla, Shah, Rana). KumariTenure becomes its subclass."),
+    ("hg:Period",             "Period",               "crm:E4_Period",                "Generic period (Licchavi, Malla, Shah, Rana). KumariTenure becomes its subclass."),
     # ---- Event / activity branch ----
     ("hg:Birth",              "Birth",                "crm:E67_Birth",                "First-class person life event — LUX exposes 'born' for Person records."),
     ("hg:Death",              "Death",                "crm:E69_Death",                "Mirror of Birth — 'died' on Person records."),
