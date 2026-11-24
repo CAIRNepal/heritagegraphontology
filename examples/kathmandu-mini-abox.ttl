@@ -1,5 +1,5 @@
 # HeritageGraph demonstrator ABox — Kathmandu Valley exemplar.
-# Maintained by hand against HeritageGraph 1.0.0, and extended with the
+# Maintained by hand against HeritageGraph 1.1.0, and extended with the
 # CITED GOLD-STANDARD LAYER at the end of this file (owl:sameAs links to Wikidata
 # + dcterms:source attribution to published ethnographic scholarship).
 # Hand-authored to exercise all four modelling patterns + the provenance and
@@ -26,8 +26,10 @@
 ex:KathmanduDurbarSquare a crm:E53_Place ; rdfs:label "Kathmandu Durbar Square" .
 ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra (annual, Bhadra)" .
 
-# --- tangible heritage: a temple + its construction (event-mediated) ---
-ex:Kasthamandap a hg:Temple ;
+# --- tangible heritage: a sacred pavilion + its construction (event-mediated) ---
+# Kasthamandap ("Maru Satta") is a multi-tiered public pavilion (sattal) housing
+# a Gorakhnath shrine, not a temple (Kathmandu Post 2018, Src_KP_MaruSatta).
+ex:Kasthamandap a hg:Sattal ;
     rdfs:label "Kasthamandap" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/site/kasthamandap"^^xsd:anyURI ;
     hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
@@ -42,7 +44,7 @@ ex:LicchaviBuilders a crm:E39_Actor ; rdfs:label "Builders (tradition)" .
 # condition history via an assessment event
 ex:CA_2015 a crm:E14_Condition_Assessment ;
     rdfs:label "Post-2015-earthquake assessment of Kasthamandap" .
-ex:CS_Damaged a crm:E3_Condition_State ; rdfs:label "Damaged" .
+ex:CS_Ruined a crm:E3_Condition_State ; rdfs:label "Collapsed in the 2015 earthquake" .
 
 # --- institutional layer: a Guthi custodian ---
 ex:KasthamandapGuthi a hg:Guthi ;
@@ -76,7 +78,13 @@ ex:KumariPerson a crm:E21_Person ; rdfs:label "Kumari (incumbent)" .
 ex:Tenure_2017 a hg:KumariTenure ;
     rdfs:label "Royal Kumari tenure (2017--2025)" ;
     hg:embodiedDeity ex:Taleju ;
-    hg:supportedByInstitution ex:KasthamandapGuthi .
+    hg:supportedByInstitution ex:GuthiSansthan .
+# the Kathmandu Guthi Office (Guthi Sansthan) bears the Kumari's lodging, food,
+# daily worship and festival costs during her stay (Src_Republica_Kumari)
+ex:GuthiSansthan a hg:Guthi ;
+    rdfs:label "Guthi Sansthan (Kathmandu Guthi Office)" ;
+    crm:P3_has_note "Public corporation established in 1964 CE (VS 2021) to take over the administration of guthi land." ;
+    dcterms:source ex:Src_KP_GuthiBill , ex:Src_Republica_Kumari .
 ex:Sel_2017 a hg:KumariSelectionEvent ;
     rdfs:label "Selection event" ; hg:initiatedTenure ex:Tenure_2017 .
 ex:Ret_2025 a hg:KumariRetirementEvent ;
@@ -121,7 +129,7 @@ ex:Kasthamandap hg:participatesInRitual ex:IndraJatra ;
     hg:hasAssertion ex:Assert_BuildA , ex:Assert_BuildB ;
     hg:hasReligiousTradition ex:Hindu , ex:Buddhist .
 
-ex:CA_2015 crm:P35_has_identified ex:CS_Damaged .
+ex:CA_2015 crm:P35_has_identified ex:CS_Ruined .
 
 ex:KathmanduDurbarSquare crm:P53i_is_former_or_current_location_of ex:Kasthamandap , ex:TalejuTemple .
 
@@ -239,7 +247,9 @@ ex:Prod_Kasthamandap hg:commissionedBy ex:KingLakshmiNarasimhaMalla .
 
 # --- syncretism evidence + Kumari syncretism (CQ25, CQ27, CQ28) ---
 ex:Syn_Karunamaya hg:mentionedInSource ex:Src_Slusser .
-ex:Taleju hg:hasReligiousTradition ex:Hindu , ex:Buddhist .
+# Taleju keeps one primary affiliation (Hindu); her Buddhist veneration as
+# Vajradevi is the reified syncretic relationship Syn_Taleju below.
+ex:Taleju hg:hasReligiousTradition ex:Hindu .
 ex:Vajradevi a hg:Deity ; rdfs:label "Vajradevi" ;
     hg:hasReligiousTradition ex:Buddhist .
 ex:Syn_Taleju a hg:SyncreticRelationship ;
@@ -262,9 +272,10 @@ ex:KumariNityaPuja a hg:RitualEvent ;
     hg:ritualType <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:KumariGhar ;
     hg:recurrencePattern "daily" .
-ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "2025" .
+ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "30 September 2025 (successor installed)" .
 ex:Ret_2025 crm:P4_has_time-span ex:TS_Ret2025 ;
-    crm:P3_has_note "Tenure ended at first menstruation, per tradition." .
+    crm:P3_has_note "Tenure ended on reaching puberty, per tradition; the successor was installed on 30 September 2025." ;
+    dcterms:source ex:Src_AP_Kumari2025 .
 
 # --- documented ritual transformation (CQ17) ---
 ex:Assert_RouteChange a crminf:I2_Belief ;
@@ -285,8 +296,9 @@ ex:Assert_RouteChange a crminf:I2_Belief ;
 # begin dates for existing time-spans
 ex:TS_Festival crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
 ex:TS_2015 crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime .
-ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime .
-ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-06-01T00:00:00"^^xsd:dateTime .
+ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
+ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-09-30T00:00:00"^^xsd:dateTime .
 
 # shared time-spans for recurring and historical events
 ex:TS_Construction a crm:E52_Time-Span ; rdfs:label "Construction period (contested)" ;
@@ -303,7 +315,7 @@ ex:Prod_Kasthamandap crm:P4_has_time-span ex:TS_Construction .
 ex:CA_2015 crm:P4_has_time-span ex:TS_2015 ;
     crm:P34_concerned ex:Kasthamandap .
 ex:Ensh_Taleju crm:P4_has_time-span ex:TS_Construction .
-ex:Sel_2017 crm:P4_has_time-span ex:TS_Tenure2017 ;
+ex:Sel_2017 crm:P4_has_time-span ex:TS_Sel2017 ;
     hg:selectedPerson ex:KumariPerson .
 ex:YosinErection crm:P4_has_time-span ex:TS_Festival .
 ex:KumariProcession crm:P4_has_time-span ex:TS_Festival .
@@ -337,7 +349,7 @@ ex:Syn_Karunamaya prov:wasDerivedFrom ex:Src_Slusser .
 ex:Syn_Taleju prov:wasDerivedFrom ex:Src_Slusser .
 
 # condition-state typing
-ex:CS_Damaged hg:hasConditionType <https://cair-nepal.org/heritagegraph/ConditionType#Damaged> .
+ex:CS_Ruined hg:hasConditionType <https://cair-nepal.org/heritagegraph/ConditionType#Ruined> .
 
 # =====================================================================
 # CITED GOLD-STANDARD LAYER
@@ -361,7 +373,9 @@ ex:Taleju              owl:sameAs wd:Q9355345 .
 ex:BungadyahJatra      owl:sameAs wd:Q16971988 .
 ex:KathmanduDurbarSquare owl:sameAs wd:Q6122177 .
 ex:Earthquake2015      owl:sameAs wd:Q19830062 .
-ex:Matsyendranath      rdfs:seeAlso wd:Q1420753 .
+# ex:Matsyendranath: no link. wd:Q1420753 (previously linked) is the Nath guru
+# Matsyendranath, not the deity Bunga Dyah / Rato Machhindranath, for whom
+# Wikidata has no item (searched 2026-11-24); the festival link is BungadyahJatra.
 ex:TalejuTemple        rdfs:seeAlso wd:Q12947124 .
 
 # --- canonical scholarship as bibliographic sources ---
@@ -415,3 +429,200 @@ ex:Assert_KumariSyncretism a crminf:I2_Belief ;
     prov:wasAttributedTo ex:Allen ;
     hg:confidenceScore "0.9"^^xsd:decimal ;
     prov:generatedAtTime "2026-07-25T00:00:00"^^xsd:dateTime .
+
+# =====================================================================
+# 1.1.0 EXTENSION: enthronement, Guthi endowments, a hereditary office and
+# a dated custody period. Every fact is attributed to a published source
+# (news reports of record, DANAM monument reports citing inscriptions).
+# =====================================================================
+
+# --- sources ---
+ex:Src_KP_Kumari2017 a hg:DataSource ; rdfs:label "Kathmandu Post, 27-28 September 2017" ;
+    dcterms:creator "The Kathmandu Post" ; dcterms:date "2017" ;
+    dcterms:bibliographicCitation "The Kathmandu Post (2017, 27 September). 3-yr-old Trishna Shakya picked as Kathmandu's new Kumari; (2017, 28 September). New Kumari takes reign as living goddess. https://kathmandupost.com/national/2017/09/28/new-kumari-trishna-shakya-takes-reign-as-living-goddess-in-photos" .
+ex:Src_AP_Kumari2025 a hg:DataSource ; rdfs:label "Associated Press, 30 September 2025" ;
+    dcterms:creator "Associated Press" ; dcterms:date "2025" ;
+    dcterms:bibliographicCitation "Associated Press (2025, 30 September). Nepal chooses a 2-year-old girl as new living goddess worshipped by both Hindus and Buddhists. https://www.arabnews.com/node/2617273/offbeat" .
+ex:Src_Republica_Kumari a hg:DataSource ; rdfs:label "myRepublica, No accounting of offerings made to Kumari" ;
+    dcterms:creator "myRepublica" ;
+    dcterms:bibliographicCitation "myRepublica (n.d., 9 March). No accounting of offerings made to Kumari. https://myrepublica.nagariknetwork.com/news/no-accounting-of-offerings-made-to-kumari" .
+ex:Src_KP_GuthiBill a hg:DataSource ; rdfs:label "Kathmandu Post, 14 June 2019 (Guthi Bill)" ;
+    dcterms:creator "The Kathmandu Post" ; dcterms:date "2019" ;
+    dcterms:bibliographicCitation "The Kathmandu Post (2019, 14 June). Everything you need to know about the Guthi Bill. https://kathmandupost.com/valley/2019/06/14/everything-you-need-to-know-about-the-guthi-bill" .
+ex:Src_NT_Barahi a hg:DataSource ; rdfs:label "Nepali Times, Makers of Machhindranath" ;
+    dcterms:creator "Nepali Times" ;
+    dcterms:bibliographicCitation "Nepali Times. Makers of Machhindranath. https://nepalitimes.com/makers-of-machhindranath" .
+ex:Src_KP_MaruSatta a hg:DataSource ; rdfs:label "Kathmandu Post, 30 December 2018 (Maru Satta)" ;
+    dcterms:creator "The Kathmandu Post" ; dcterms:date "2018" ;
+    dcterms:bibliographicCitation "The Kathmandu Post (2018, 30 December). Restoring Maru Satta: Kasthamandap. https://kathmandupost.com/special-supplement/2018/12/30/restoring-maru-satta-kasthamandap-20181230125548" .
+ex:Src_HT_Kasthamandap2022 a hg:DataSource ; rdfs:label "Himalayan Times, 4 April 2022" ;
+    dcterms:creator "The Himalayan Times" ; dcterms:date "2022" ;
+    dcterms:bibliographicCitation "The Himalayan Times (2022, 4 April). President Bhandari inaugurates reconstructed Kashthamandap temple. https://thehimalayantimes.com/nepal/president-bhandari-inaugurates-reconstructed-kashthamandap-temple" .
+ex:Src_DANAM_BKT0030 a hg:DataSource ; rdfs:label "DANAM report BKT0030 (Bhavanishankar Mandira, Bhaktapur)" ;
+    dcterms:creator "DANAM, Heidelberg Academy of Sciences and Humanities" ;
+    dcterms:bibliographicCitation "Digital Archive of Nepalese Arts and Monuments (DANAM). Bhavanishankara Mandira (BKT0030). https://danam.cats.uni-heidelberg.de/report/01e4455d-8f3c-47de-8003-2d1c6f5c5368" .
+ex:Src_DANAM_SKH0510 a hg:DataSource ; rdfs:label "DANAM report SKH0510 (Jogeshvara Mandira, Sankhu)" ;
+    dcterms:creator "DANAM, Heidelberg Academy of Sciences and Humanities" ;
+    dcterms:bibliographicCitation "Digital Archive of Nepalese Arts and Monuments (DANAM). Jogeshvara Mandira (SKH0510). https://danam.cats.uni-heidelberg.de/report/0077a8d9-2e9d-4626-8dd0-04272b780ea9" .
+
+ex:Kasthamandap dcterms:source ex:Src_KP_MaruSatta .
+ex:Tenure_2017 dcterms:source ex:Src_KP_Kumari2017 , ex:Src_AP_Kumari2025 , ex:Src_Republica_Kumari .
+
+# --- Living Goddess: selection date and the enthronement event ---
+ex:TS_Sel2017 a crm:E52_Time-Span ; rdfs:label "September 2017 (before Ashtami)" ;
+    crm:P82a_begin_of_the_begin "2017-09-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2017-09-27T00:00:00"^^xsd:dateTime .
+ex:TS_Enth2017 a crm:E52_Time-Span ; rdfs:label "28 September 2017 (Ashtami of Dashain)" ;
+    crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime .
+ex:RoyalKumariRole a hg:KumariRole ; rdfs:label "Royal Kumari of Kathmandu" ;
+    hg:roleDeity ex:Taleju .
+ex:Enth_2017 a hg:KumariEnthronementEvent ;
+    rdfs:label "Enthronement of the Royal Kumari (2017)" ;
+    hg:boundsTenure ex:Tenure_2017 ;
+    hg:enthronedPerson ex:KumariPerson ;
+    hg:confersRole ex:RoyalKumariRole ;
+    crm:P4_has_time-span ex:TS_Enth2017 ;
+    crm:P7_took_place_at ex:KathmanduDurbarSquare ;
+    dcterms:source ex:Src_KP_Kumari2017 .
+ex:Tenure_2017 hg:enthronedThrough ex:Enth_2017 ;
+    hg:assumesRole ex:RoyalKumariRole .
+
+# --- Guthi endowments (founding events from inscriptions recorded by DANAM) ---
+ex:Bhaktapur a crm:E53_Place ; rdfs:label "Khauma Tol, Bhaktapur" .
+ex:Sankhu a crm:E53_Place ; rdfs:label "Sankhu" .
+ex:BhavanishankarMandira a hg:Temple ;
+    rdfs:label "Bhavanishankara Mandira (Shiva-Parvati), Bhaktapur" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/site/bhavanishankara"^^xsd:anyURI ;
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
+    hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant> ;
+    crm:P55_has_current_location ex:Bhaktapur ;
+    crm:P3_has_note "Tiered temple; collapsed in the 1934 earthquake, only its plinth levels survive." ;
+    dcterms:source ex:Src_DANAM_BKT0030 .
+ex:JogeshvaraMandira a hg:Temple ;
+    rdfs:label "Jogeshvara Mandira (Gu Bahah), Sankhu" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/site/jogeshvara"^^xsd:anyURI ;
+    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
+    crm:P55_has_current_location ex:Sankhu ;
+    dcterms:source ex:Src_DANAM_SKH0510 .
+
+ex:TS_Bhavanishankar a crm:E52_Time-Span ; rdfs:label "1667 CE (NS 787), date of the recording inscription" ;
+    crm:P82a_begin_of_the_begin "1667-01-01T00:00:00"^^xsd:dateTime .
+ex:BhavanishankarRituals a hg:RitualEvent ;
+    rdfs:label "Daily and anniversary rituals at Bhavanishankara Mandira" ;
+    crm:P8_took_place_on_or_within ex:BhavanishankarMandira ;
+    hg:recurrencePattern "daily and annual" ;
+    crm:P4_has_time-span ex:TS_Bhavanishankar .
+ex:JagatprakashaMalla a crm:E21_Person ; rdfs:label "King Jagatprakasha Malla of Bhaktapur" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/jagatprakasha-malla"^^xsd:anyURI .
+ex:BhavanishankarGuthi a hg:Guthi ; rdfs:label "Guthi of Bhavanishankara Mandira" ;
+    hg:performsRitual ex:BhavanishankarRituals .
+ex:Endow_Bhavanishankar a hg:Endowment ;
+    rdfs:label "Land endowment for the rituals of Bhavanishankara Mandira" ;
+    crm:P105_right_held_by ex:BhavanishankarGuthi ;
+    hg:sustains ex:BhavanishankarRituals ;
+    dcterms:source ex:Src_DANAM_BKT0030 .
+ex:EE_Bhavanishankar_Founding a hg:EndowmentEvent ;
+    rdfs:label "Founding of the Bhavanishankara guthi by land endowment" ;
+    hg:concernsEndowment ex:Endow_Bhavanishankar ;
+    hg:endowmentEventType <https://cair-nepal.org/heritagegraph/EndowmentEventType#Founding> ;
+    hg:endowmentDonor ex:JagatprakashaMalla ;
+    hg:endowmentRecipient ex:BhavanishankarGuthi ;
+    crm:P4_has_time-span ex:TS_Bhavanishankar ;
+    crm:P3_has_note "Recorded by the trilingual (Sanskrit, Maithili, Newari) plinth inscription of 1667 CE (NS 787)." ;
+    dcterms:source ex:Src_DANAM_BKT0030 .
+
+ex:TS_Jogeshvara1849 a crm:E52_Time-Span ; rdfs:label "1849 CE (NS 969)" ;
+    crm:P82a_begin_of_the_begin "1849-01-01T00:00:00"^^xsd:dateTime .
+ex:Bhikhvadhana a crm:E21_Person ; rdfs:label "Bhikhvadhana (donor)" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/bhikhvadhana"^^xsd:anyURI .
+ex:Mayajudham a crm:E21_Person ; rdfs:label "Mayajudham (donor)" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/mayajudham"^^xsd:anyURI .
+ex:JogeshvaraLand a crm:E53_Place ; rdfs:label "Plots of land donated to the Jogeshvara guthi" .
+ex:JogeshvaraGuthi a hg:Guthi ; rdfs:label "Guthi of Jogeshvara Mandira" .
+ex:Endow_Jogeshvara a hg:Endowment ;
+    rdfs:label "Land endowment of the Jogeshvara Mandira guthi" ;
+    crm:P105_right_held_by ex:JogeshvaraGuthi ;
+    hg:endowedLand ex:JogeshvaraLand ;
+    hg:sustains ex:JogeshvaraMandira ;
+    dcterms:source ex:Src_DANAM_SKH0510 .
+ex:EE_Jogeshvara_Founding a hg:EndowmentEvent ;
+    rdfs:label "Founding of the Jogeshvara guthi by land donation (1849)" ;
+    hg:concernsEndowment ex:Endow_Jogeshvara ;
+    hg:endowmentEventType <https://cair-nepal.org/heritagegraph/EndowmentEventType#Founding> ;
+    hg:endowmentDonor ex:Bhikhvadhana , ex:Mayajudham ;
+    hg:endowmentRecipient ex:JogeshvaraGuthi ;
+    crm:P4_has_time-span ex:TS_Jogeshvara1849 ;
+    crm:P3_has_note "The temple was renovated and the guthi formed by Bhikhvadhana, his wife Mayajudham and other family members donating plots of land." ;
+    dcterms:source ex:Src_DANAM_SKH0510 .
+
+# --- nationalisation: guthi land under the Guthi Sansthan (1964 CE / VS 2021) ---
+ex:TS_1964 a crm:E52_Time-Span ; rdfs:label "1964 CE (VS 2021)" ;
+    crm:P82a_begin_of_the_begin "1964-01-01T00:00:00"^^xsd:dateTime .
+ex:Endow_GuthiSansthan a hg:Endowment ;
+    rdfs:label "Guthi land endowments administered by the Guthi Sansthan" ;
+    crm:P105_right_held_by ex:GuthiSansthan ;
+    hg:sustains ex:Tenure_2017 , ex:BungadyahJatra ;
+    dcterms:source ex:Src_Republica_Kumari , ex:Src_NT_Barahi .
+ex:EE_Nationalisation_1964 a hg:EndowmentEvent ;
+    rdfs:label "Guthi land brought under the Guthi Sansthan" ;
+    hg:concernsEndowment ex:Endow_GuthiSansthan ;
+    hg:endowmentEventType <https://cair-nepal.org/heritagegraph/EndowmentEventType#Nationalisation> ;
+    hg:endowmentRecipient ex:GuthiSansthan ;
+    crm:P4_has_time-span ex:TS_1964 ;
+    dcterms:source ex:Src_KP_GuthiBill .
+
+# --- hereditary office: the Barahi chariot builders of Bungadyah ---
+ex:HRT_BarahiChariot a hg:HereditaryRoleTenure ;
+    rdfs:label "Barahi office of building the Bungadyah chariot" ;
+    hg:roleHolder ex:Barahis ;
+    hg:roleDuty "search for, carve and assemble the wooden parts of the Bungadyah (Rato Machhindranath) chariot; rebuild it from scratch every 12 years" ;
+    hg:dutyFor ex:BungadyahJatra ;
+    hg:mandatedBy ex:GuthiSansthan ;
+    hg:successionRule "hereditary within the Barahi (Newar carpenter) community" ;
+    dcterms:source ex:Src_NT_Barahi , ex:Src_Owens .
+
+# --- dated custody period: Kasthamandap during its reconstruction (2018-2022) ---
+ex:KRC a crm:E39_Actor ; rdfs:label "Kasthamandap Reconstruction Committee" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/agent/kasthamandap-reconstruction-committee"^^xsd:anyURI .
+ex:TS_KRC2018 a crm:E52_Time-Span ; rdfs:label "May 2018" ;
+    crm:P82a_begin_of_the_begin "2018-05-01T00:00:00"^^xsd:dateTime .
+ex:TS_Reopen2022 a crm:E52_Time-Span ; rdfs:label "4 April 2022" ;
+    crm:P82a_begin_of_the_begin "2022-04-04T00:00:00"^^xsd:dateTime .
+ex:TS_KRCCustody a crm:E52_Time-Span ; rdfs:label "May 2018 -- 4 April 2022" ;
+    crm:P82a_begin_of_the_begin "2018-05-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2022-04-04T00:00:00"^^xsd:dateTime .
+ex:TOC_Kasthamandap2018 a crm:E10_Transfer_of_Custody ;
+    rdfs:label "Kasthamandap reconstruction taken over by the Reconstruction Committee" ;
+    crm:P30_transferred_custody_of ex:Kasthamandap ;
+    crm:P29_custody_received_by ex:KRC ;
+    crm:P4_has_time-span ex:TS_KRC2018 ;
+    dcterms:source ex:Src_KP_MaruSatta .
+ex:TOC_Kasthamandap2022 a crm:E10_Transfer_of_Custody ;
+    rdfs:label "Rebuilt Kasthamandap reopened (key handed to the President)" ;
+    crm:P30_transferred_custody_of ex:Kasthamandap ;
+    crm:P28_custody_surrendered_by ex:KRC ;
+    crm:P4_has_time-span ex:TS_Reopen2022 ;
+    dcterms:source ex:Src_HT_Kasthamandap2022 .
+ex:CP_Kasthamandap_KRC a hg:CustodyPeriod ;
+    rdfs:label "Custody of Kasthamandap by the Reconstruction Committee (2018-2022)" ;
+    hg:custodyHolder ex:KRC ;
+    hg:custodyObject ex:Kasthamandap ;
+    crm:P4_has_time-span ex:TS_KRCCustody ;
+    hg:custodyOpenedBy ex:TOC_Kasthamandap2018 ;
+    hg:custodyClosedBy ex:TOC_Kasthamandap2022 .
+ex:TS_Shuvarambha2018 a crm:E52_Time-Span ; rdfs:label "8 November 2018 (first day of Nepal Sambat 1139)" ;
+    crm:P82a_begin_of_the_begin "2018-11-08T00:00:00"^^xsd:dateTime .
+ex:ShuvarambhaPuja2018 a hg:RitualEvent ;
+    rdfs:label "Shuvarambha (commencement) puja for the Kasthamandap reconstruction" ;
+    crm:P8_took_place_on_or_within ex:Kasthamandap ;
+    crm:P14_carried_out_by ex:KRC ;
+    hg:recurrencePattern "once (commencement of reconstruction)" ;
+    crm:P4_has_time-span ex:TS_Shuvarambha2018 ;
+    dcterms:source ex:Src_KP_MaruSatta .
+ex:Prod_KasthamandapRebuild a crm:E12_Production ;
+    rdfs:label "Reconstruction of Kasthamandap (2018-2022)" ;
+    crm:P108_has_produced ex:Kasthamandap ;
+    crm:P14_carried_out_by ex:KRC ;
+    crm:P4_has_time-span ex:TS_KRCCustody ;
+    dcterms:source ex:Src_KP_MaruSatta , ex:Src_HT_Kasthamandap2022 .
+ex:Kasthamandap hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant> .

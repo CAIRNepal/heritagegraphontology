@@ -69,7 +69,7 @@
     "expected": [
       [
         "KathmanduDurbarSquare",
-        "Temple",
+        "Sattal",
         "Kasthamandap"
       ],
       [
@@ -87,6 +87,31 @@
       "style"
     ],
     "expected": [
+      [
+        "BhavanishankarMandira",
+        "JogeshvaraMandira",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "BhavanishankarMandira",
+        "Kasthamandap",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "BhavanishankarMandira",
+        "TalejuTemple",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "JogeshvaraMandira",
+        "Kasthamandap",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "JogeshvaraMandira",
+        "TalejuTemple",
+        "ArchitecturalStyle#Pagoda"
+      ],
       [
         "Kasthamandap",
         "TalejuTemple",
@@ -112,7 +137,7 @@
     ]
   },
   "CQ8": {
-    "question": "Among temples that conduct daily Nitya Puja, which are assessed as damaged/endangered?",
+    "question": "Among sacred structures that conduct daily Nitya Puja, which are assessed as damaged/endangered?",
     "vars": [
       "temple",
       "state",
@@ -121,8 +146,8 @@
     "expected": [
       [
         "Kasthamandap",
-        "CS_Damaged",
-        "ConditionType#Damaged"
+        "CS_Ruined",
+        "ConditionType#Ruined"
       ]
     ]
   },
@@ -236,32 +261,21 @@
     ]
   },
   "CQ16": {
-    "question": "What are the ritual obligations of participant groups, and how are their roles recorded?",
+    "question": "What hereditary ritual obligations do groups hold, for which festival, under which Guthi's mandate, and how do they pass on?",
     "vars": [
-      "ritual",
       "group",
-      "role"
+      "duty",
+      "festival",
+      "guthi",
+      "rule"
     ],
     "expected": [
       [
-        "BungadyahJatra",
         "Barahis",
-        "hereditary chariot carpenters"
-      ],
-      [
+        "search for, carve and assemble the wooden parts of the Bungadyah (Rato Machhindranath) chariot; rebuild it from scratch every 12 years",
         "BungadyahJatra",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
-      ],
-      [
-        "IndraJatra",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
-      ],
-      [
-        "KumariProcession",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
+        "GuthiSansthan",
+        "hereditary within the Barahi (Newar carpenter) community"
       ]
     ]
   },
@@ -303,19 +317,19 @@
     ]
   },
   "CQ19": {
-    "question": "Which organisations manage which heritage, perform which rituals, and hold custody?",
+    "question": "Which organisation held custody of a heritage structure when a given event took place there, and over which custody period?",
     "vars": [
-      "heritage",
-      "guthi",
-      "ritual",
-      "custody"
+      "event",
+      "structure",
+      "holder",
+      "period"
     ],
     "expected": [
       [
+        "ShuvarambhaPuja2018",
         "Kasthamandap",
-        "KasthamandapGuthi",
-        "IndraJatra",
-        "Kasthamandap"
+        "KRC",
+        "CP_Kasthamandap_KRC"
       ]
     ]
   },
@@ -335,15 +349,42 @@
     ]
   },
   "CQ21": {
-    "question": "Which institutions provide economic and ritual support for sites, rituals, or sacred figures?",
+    "question": "Which endowments sustain which sites, rituals or sacred offices, which Guthi holds them, and through which founding or nationalisation events?",
     "vars": [
-      "supported",
-      "institution"
+      "endowment",
+      "sustained",
+      "holder",
+      "event",
+      "type"
     ],
     "expected": [
       [
+        "Endow_Bhavanishankar",
+        "BhavanishankarRituals",
+        "BhavanishankarGuthi",
+        "EE_Bhavanishankar_Founding",
+        "EndowmentEventType#Founding"
+      ],
+      [
+        "Endow_GuthiSansthan",
+        "BungadyahJatra",
+        "GuthiSansthan",
+        "EE_Nationalisation_1964",
+        "EndowmentEventType#Nationalisation"
+      ],
+      [
+        "Endow_GuthiSansthan",
         "Tenure_2017",
-        "KasthamandapGuthi"
+        "GuthiSansthan",
+        "EE_Nationalisation_1964",
+        "EndowmentEventType#Nationalisation"
+      ],
+      [
+        "Endow_Jogeshvara",
+        "JogeshvaraMandira",
+        "JogeshvaraGuthi",
+        "EE_Jogeshvara_Founding",
+        "EndowmentEventType#Founding"
       ]
     ]
   },
@@ -447,11 +488,6 @@
       [
         "Tenure_2017",
         "Taleju",
-        "Buddhist"
-      ],
-      [
-        "Tenure_2017",
-        "Taleju",
         "Hindu"
       ]
     ]
@@ -520,7 +556,7 @@
     "expected": [
       [
         "Tenure_2017",
-        "KasthamandapGuthi"
+        "GuthiSansthan"
       ]
     ]
   },
@@ -537,7 +573,7 @@
         "Ret_2025",
         "Tenure_2017",
         "TS_Ret2025",
-        "Tenure ended at first menstruation, per tradition."
+        "Tenure ended on reaching puberty, per tradition; the successor was installed on 30 September 2025."
       ]
     ]
   }

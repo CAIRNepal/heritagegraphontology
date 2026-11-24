@@ -56,9 +56,10 @@ CQ5. Which architectural structures within a geographical area belong to a parti
 ASK WHERE {
   crm:E53_Place a owl:Class .
   crm:P53i_is_former_or_current_location_of a owl:ObjectProperty .
-  hg:Temple a owl:Class .
+  hg:ArchitecturalStructure a owl:Class .
 }
 ```
+External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ6. Which heritage shares a common architectural style?
 ```sparql
@@ -79,10 +80,10 @@ ASK WHERE {
 }
 ```
 
-CQ8. Among temples that conduct daily Nitya Puja, which are assessed as damaged/endangered?
+CQ8. Among sacred structures that conduct daily Nitya Puja, which are assessed as damaged/endangered?
 ```sparql
 ASK WHERE {
-  hg:Temple a owl:Class .
+  hg:ArchitecturalStructure a owl:Class .
   crm:P34i_was_assessed_by a owl:ObjectProperty .
   crm:P35_has_identified a owl:ObjectProperty .
   hg:hasConditionType a owl:ObjectProperty .
@@ -94,6 +95,7 @@ ASK WHERE {
   <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> a owl:NamedIndividual .
 }
 ```
+External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ9. Which caste groups have hereditary roles in rituals critical for a festival?
 ```sparql
@@ -158,11 +160,15 @@ ASK WHERE {
 }
 ```
 
-CQ16. What are the ritual obligations of participant groups, and how are their roles recorded?
+CQ16. What hereditary ritual obligations do groups hold, for which festival, under which Guthi's mandate, and how do they pass on?
 ```sparql
 ASK WHERE {
-  hg:performedByGroup a owl:ObjectProperty .
-  hg:traditionalRole a owl:DatatypeProperty .
+  hg:HereditaryRoleTenure a owl:Class .
+  hg:roleHolder a owl:ObjectProperty .
+  hg:roleDuty a owl:DatatypeProperty .
+  hg:dutyFor a owl:ObjectProperty .
+  hg:mandatedBy a owl:ObjectProperty .
+  hg:successionRule a owl:DatatypeProperty .
 }
 ```
 
@@ -187,12 +193,17 @@ ASK WHERE {
 
 **Institutional/Syncretic Questions**
 
-CQ19. Which organisations manage which heritage, perform which rituals, and hold custody?
+CQ19. Which organisation held custody of a heritage structure when a given event took place there, and over which custody period?
 ```sparql
 ASK WHERE {
-  hg:managedByGuthi a owl:ObjectProperty .
-  hg:performsRitual a owl:ObjectProperty .
-  crm:P50i_is_current_keeper_of a owl:ObjectProperty .
+  crm:P8_took_place_on_or_within a owl:ObjectProperty .
+  hg:architecturalStructures a owl:ObjectProperty .
+  crm:P4_has_time-span a owl:ObjectProperty .
+  crm:P82a_begin_of_the_begin a owl:DatatypeProperty .
+  hg:CustodyPeriod a owl:Class .
+  hg:custodyObject a owl:ObjectProperty .
+  hg:custodyHolder a owl:ObjectProperty .
+  crm:P82b_end_of_the_end a owl:DatatypeProperty .
 }
 ```
 
@@ -204,11 +215,15 @@ ASK WHERE {
 }
 ```
 
-CQ21. Which institutions provide economic and ritual support for sites, rituals, or sacred figures?
+CQ21. Which endowments sustain which sites, rituals or sacred offices, which Guthi holds them, and through which founding or nationalisation events?
 ```sparql
 ASK WHERE {
-  hg:supportedByInstitution a owl:ObjectProperty .
+  hg:Endowment a owl:Class .
+  crm:P105_right_held_by a owl:ObjectProperty .
+  hg:sustains a owl:ObjectProperty .
   hg:Guthi a owl:Class .
+  hg:concernsEndowment a owl:ObjectProperty .
+  hg:endowmentEventType a owl:ObjectProperty .
 }
 ```
 
@@ -227,9 +242,10 @@ CQ23. Which places or structures function as shared or contested sites for multi
 ```sparql
 ASK WHERE {
   hg:hasReligiousTradition a owl:ObjectProperty .
-  hg:Temple a owl:Class .
+  hg:ArchitecturalStructure a owl:Class .
 }
 ```
+External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ24. Which rituals at Hindu temples and Buddhist monuments invoke the same syncretic deity?
 ```sparql
