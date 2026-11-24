@@ -388,7 +388,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
         *[(DCTERMS.creator, Literal(c)) for c in creators],
         (DCTERMS.publisher, Literal(header.get("dcterms:publisher", "CAIR-Nepal"))),
         (BIBO.status, Literal(header.get("bibo:status", "Published"))),
-        (VANN.preferredNamespacePrefix, Literal("heritageGraph")),
+        (VANN.preferredNamespacePrefix, Literal(header.get("vann:preferredNamespacePrefix", "hg"))),
         (VANN.preferredNamespaceUri, Literal(HG_NS)),
     ]
     # release identifiers set in the schema header (dcterms:issued, bibo:doi)
@@ -496,12 +496,19 @@ def finalize_owl(sv: SchemaView) -> Graph:
         print(f"restored {restored} owl:inverseOf axiom(s)")
         if still:
             sys.exit("AXIOM SURVIVAL GUARD FAILED:\n  - " + "\n  - ".join(still[:20]))
+    bind_hg(g)
     g.serialize(destination=OWL_OUT, format="turtle")
     print(f"finalized {OWL_OUT.name} ({len(g)} triples)")
     return g
 
 
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
+
+
+def bind_hg(g: Graph) -> None:
+    """Serialize HeritageGraph IRIs with the short prefix hg: (the LinkML
+    source keeps heritageGraph: internally; IRIs are unchanged)."""
+    g.namespace_manager.bind("hg", HG_NS, override=True, replace=True)
 
 
 LINKML_PV = URIRef("https://w3id.org/linkml/permissible_values")
@@ -576,6 +583,11 @@ def add_deprecated_stubs(g: Graph) -> None:
             typ = OWL.ObjectProperty if (rng in cv.all_classes() or rng in cv.all_enums()) \
                 else OWL.DatatypeProperty
             stub(prop, typ, (a.title or humanize_name(an)).lower(), a.description, DEPRECATION_NOTE)
+            # a standard term now carries the field (e.g. license -> dcterms:license)
+            if a.slot_uri:
+                repl = URIRef(cv.expand_curie(str(a.slot_uri)))
+                if not str(repl).startswith(HG_NS):
+                    g.add((prop, DCTERMS.isReplacedBy, repl))
             n += 1
     for name, definition in ANNOTATION_DEFINITIONS.items():
         u = URIRef(HG_NS + name)
@@ -695,9 +707,9 @@ def drop_pattern_facets(g: Graph) -> None:
 
 
 def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
-    """HeritageGraph properties used only by classes whose IRI is an external
-    term (Assertion = crminf:I2_Belief, Person = crm:E21_Person, TimeSpan =
-    crm:E52_Time-Span, ...) end up attached to no class in the OWL: gen-owl
+    """HeritageGraph properties used by classes whose IRI is an external term
+    (Assertion = crminf:I2_Belief, Person = crm:E21_Person, TimeSpan =
+    crm:E52_Time-Span, ...) lose that class context in the OWL: gen-owl
     puts the restrictions on the external class, and repair_dl_profile (i)
     rightly removes axioms on terms HeritageGraph does not own. Restore the
     lost class context as rdfs:domain on the HeritageGraph property (an axiom
@@ -726,17 +738,16 @@ def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
         # inverse's range (e.g. hasAssertion, inverse of assertsAbout, has
         # domain AssertionSubject), never the union of declaring classes.
         inverses = set(g.objects(prop, OWL.inverseOf)) | set(g.subjects(OWL.inverseOf, prop))
-        if inverses:
-            rngs = {r for i in inverses for r in g.objects(i, RDFS.range)}
-            if len(rngs) == 1:
-                g.add((prop, RDFS.domain, next(iter(rngs))))
-                n += 1
+        rngs = {r for i in inverses for r in g.objects(i, RDFS.range)}
+        if len(rngs) == 1:
+            g.add((prop, RDFS.domain, next(iter(rngs))))
+            n += 1
             continue
-        # minimal covering set: drop a user class whose superclass also uses it
-        names = {URIRef(sv.get_uri(sv.get_class(cn), expand=True)): cn
-                 for cn in sv.all_classes()}
+        # minimal covering set: drop a user class whose superclass also uses it,
+        # but only through subclass links that exist in the OWL (crm:E6_Destruction
+        # is a HistoricalEvent in the YAML, but the OWL keeps no axiom on it)
         classes = {c for c in classes
-                   if not any(names.get(o) in sv.class_ancestors(names[c], reflexive=False)
+                   if not any(o in set(g.transitive_objects(c, RDFS.subClassOf)) - {c}
                               for o in classes if o != c)}
         if len(classes) == 1:
             g.add((prop, RDFS.domain, next(iter(classes))))
@@ -1114,6 +1125,8 @@ def finalize_shacl(sv: SchemaView) -> None:
     print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
     add_usage_names(g, sv)
     scope_shapes(g, sv)
+    add_timespan_rules(g)
+    bind_hg(g)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
 
@@ -1169,8 +1182,11 @@ def scope_shapes(g: Graph, sv: SchemaView) -> None:
     (1) Drop the node shapes of abstract or mixin classes with an external IRI:
         their property shapes are repeated in every concrete subclass's shape.
     (2) Rename the remaining externally named shapes to hg:<ClassName>Shape,
-        keeping their explicit sh:targetClass (HeritageGraph uses crm:E21_Person
-        etc. as its own Person class, so those targets stay)."""
+        keeping their explicit sh:targetClass.
+    Limit: HeritageGraph uses crm:E21_Person, crm:E39_Actor, ... as its own
+    classes, so those shapes still apply to any instance of them (and, with the
+    ontology mixed in, of their subclasses, e.g. crm:E74_Group via E74 ⊑ E39) in
+    a graph validated with these shapes; only the PROV mixins stop applying."""
     # Only the shape node's own triples move or go: the same IRI is also the
     # object of sh:class / sh:targetClass constraints elsewhere, which must stay.
     def rename(old: URIRef, new: URIRef) -> None:
@@ -1197,6 +1213,33 @@ def scope_shapes(g: Graph, sv: SchemaView) -> None:
             n_ren += 1
     print(f"shapes: dropped {n_drop} externally named shape(s) of abstract/mixin classes, "
           f"renamed {n_ren} to hg:<Class>Shape")
+
+
+def add_timespan_rules(g: Graph) -> None:
+    """Two time-span rules LinkML cannot express, added to the TimeSpan shape:
+    the earliest date is not after the latest (crm:P82a sh:lessThanOrEquals
+    crm:P82b), and a date recorded in a source calendar (hg:recordedDate)
+    names that calendar (hg:calendarSystem)."""
+    E52 = URIRef("http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span")
+    P82A = URIRef("http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin")
+    P82B = URIRef("http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end")
+    shape = next(iter(g.subjects(SH.targetClass, E52)), None)
+    if shape is None:
+        sys.exit("TimeSpan shape not found")
+    ps = BNode()
+    g.add((shape, SH.property, ps))
+    g.add((ps, SH.path, P82A))
+    g.add((ps, SH.lessThanOrEquals, P82B))
+    g.add((ps, SH.description, Literal("The earliest date is not after the latest date.")))
+    no_rec, has_cal = BNode(), BNode()
+    g.add((no_rec, SH.path, URIRef(HG_NS + "recordedDate")))
+    g.add((no_rec, SH.maxCount, Literal(0)))
+    g.add((has_cal, SH.path, URIRef(HG_NS + "calendarSystem")))
+    g.add((has_cal, SH.minCount, Literal(1)))
+    head = BNode()
+    Collection(g, head, [no_rec, has_cal])
+    g.add((shape, SH["or"], head))
+    print("time-span rules: P82a <= P82b; recordedDate requires calendarSystem")
 
 
 def run_pyshacl() -> None:

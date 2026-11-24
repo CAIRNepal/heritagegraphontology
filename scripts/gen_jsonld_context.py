@@ -24,7 +24,7 @@ OUT = ROOT / "docs" / "context.jsonld"
 HG = "https://cair-nepal.org/heritagegraph/"
 
 PREFIXES = OrderedDict([
-    ("heritageGraph", HG),
+    ("hg", HG),
     ("crm", "http://www.cidoc-crm.org/cidoc-crm/"),
     ("crminf", "http://www.cidoc-crm.org/extensions/crminf/"),
     ("crmsci", "http://www.cidoc-crm.org/extensions/crmsci/"),
@@ -69,7 +69,7 @@ def main() -> int:
                      if isinstance(s, URIRef) and str(s).startswith(HG)
                      and "/scheme/" not in str(s))
     for c in classes:
-        terms[local(c)] = f"heritageGraph:{local(c)}"
+        terms[local(c)] = f"hg:{local(c)}"
 
     def add_props(prop_type, is_object):
         props = sorted(str(s) for s in g.subjects(RDF.type, prop_type)
@@ -78,7 +78,7 @@ def main() -> int:
             name = local(p)
             if name in terms:
                 continue
-            entry = {"@id": f"heritageGraph:{name}"}
+            entry = {"@id": f"hg:{name}"}
             if is_object:
                 entry["@type"] = "@id"
             else:

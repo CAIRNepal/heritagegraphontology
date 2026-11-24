@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
-"""Competency questions answered only under reasoning (review C-3: what do the
-OWL axioms contribute beyond SHACL and JSON Schema?).
+"""Competency questions answered only with HeritageGraph's axioms (review C-3:
+what do the OWL axioms contribute beyond SHACL and JSON Schema?).
 
-Runs examples/queries/cq-inference.rq over the released ontology plus the
-demonstrator ABox twice: over the asserted triples and over their OWL 2 RL
-closure (owlrl), with answers counted modulo owl:sameAs. A query passes iff the closure's bindings equal the frozen
-expected set in evaluation/cq_inference_expected.json (exact match, as in
-run_abox_cq32.py) AND the asserted triples alone return strictly fewer rows,
-i.e. the answer depends on the ontology's axioms. Writes
+Runs examples/queries/cq-inference.rq over the demonstrator ABox three ways:
+  asserted    the ABox alone, no reasoning;
+  vocab-only  OWL 2 RL closure (owlrl) of ABox + the official CIDOC-CRM 7.1.3,
+              CRMinf 1.0 and PROV-O files (ontology/imports/);
+  with HG     OWL 2 RL closure of ABox + those vocabularies + HeritageGraph.
+Answers are counted modulo owl:sameAs (the demonstrator's Wikidata links). A
+query passes iff "with HG" equals its frozen expected set, "vocab-only" equals
+its frozen set (so a fact newly asserted in the ABox is noticed), and
+"vocab-only" has strictly fewer rows: the extra answers are due to
+HeritageGraph's own axioms, not to the reused vocabularies. Writes
 results/inference_cq_report.txt.
 
   python3 evaluation/run_inference_cq.py            # check
@@ -28,6 +32,8 @@ ROOT = Path(__file__).resolve().parents[1]
 QUERIES = ROOT / "examples" / "queries" / "cq-inference.rq"
 EXPECTED = Path(__file__).resolve().parent / "cq_inference_expected.json"
 RESULTS = Path(__file__).resolve().parent / "results"
+IMPORTS = ROOT / "ontology" / "imports"
+VOCABS = [("CIDOC_CRM_v7.1.3.rdf", "xml"), ("CRMinf_v1.0.rdf", "xml"), ("prov-o.ttl", "turtle")]
 PREFIXES = ["https://cair-nepal.org/heritagegraph/example/",
             "https://cair-nepal.org/heritagegraph/"]
 
@@ -47,46 +53,63 @@ def load_queries() -> list[tuple[str, str, str]]:
 
 
 def rows(g: Graph, q: str, alias: dict) -> list[tuple[str, ...]]:
-    """Bindings modulo owl:sameAs: the demonstrator links resources to Wikidata
-    with owl:sameAs, so the closure repeats each answer under the Wikidata IRI;
-    every alias is mapped back to its demonstrator resource."""
+    """Bindings modulo owl:sameAs: every Wikidata alias is mapped back to the
+    demonstrator resource it was asserted equal to (the map is built from the
+    asserted ABox only, so its direction is fixed)."""
     res = g.query(q)
     return sorted({tuple(short(alias.get(r[v], r[v])) for v in res.vars) for r in res})
+
+
+def closure(*graphs: Graph) -> Graph:
+    g = Graph()
+    for x in graphs:
+        g += x
+    g.remove((None, OWL.imports, None))
+    owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(g)
+    return g
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--freeze", action="store_true")
     args = ap.parse_args()
-    asserted = Graph()
-    asserted.parse(ROOT / "ontology" / "HeritageGraph.ttl", format="turtle")
-    asserted.parse(ROOT / "examples" / "kathmandu-mini-abox.ttl", format="turtle")
-    alias = {o: s_ for s_, o in asserted.subject_objects(OWL.sameAs)}
-    closure = Graph()
-    closure += asserted
-    owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(closure)
+    abox = Graph().parse(ROOT / "examples" / "kathmandu-mini-abox.ttl", format="turtle")
+    vocab = Graph()
+    for f, fmt in VOCABS:
+        vocab.parse(IMPORTS / f, format=fmt)
+    hg = Graph().parse(ROOT / "ontology" / "HeritageGraph.ttl", format="turtle")
+    alias = {o: s_ for s_, o in abox.subject_objects(OWL.sameAs)}
+    without_hg = closure(abox, vocab)
+    with_hg = closure(abox, vocab, hg)
     expected = {} if args.freeze or not EXPECTED.exists() else json.loads(EXPECTED.read_text())
-    out, ok = [f"Inference CQs: asserted {len(asserted)} triples, OWL 2 RL closure {len(closure)} triples"], True
-    frozen = {}
+    out = [f"Inference CQs: ABox {len(abox)} triples; vocab-only closure {len(without_hg)}; "
+           f"with-HG closure {len(with_hg)}"]
+    ok, frozen = True, {}
     for qid, question, sparql in load_queries():
-        a, c = rows(asserted, sparql, alias), rows(closure, sparql, alias)
-        frozen[qid] = {"question": question, "expected": [list(r) for r in c]}
-        exp = sorted(tuple(r) for r in expected.get(qid, {}).get("expected", []))
-        exact = args.freeze or c == exp
-        needs_reasoning = len(a) < len(c)
-        passed = exact and needs_reasoning
+        a = rows(abox, sparql, alias)
+        v = rows(without_hg, sparql, alias)
+        h = rows(with_hg, sparql, alias)
+        frozen[qid] = {"question": question, "expected": [list(r) for r in h],
+                       "expected_vocab_only": [list(r) for r in v]}
+        e = expected.get(qid, {})
+        exp_h = sorted(tuple(r) for r in e.get("expected", []))
+        exp_v = sorted(tuple(r) for r in e.get("expected_vocab_only", []))
+        exact = args.freeze or (h == exp_h and v == exp_v)
+        due_to_hg = len(v) < len(h) and len(a) <= len(v)
+        passed = exact and due_to_hg
         ok &= passed
-        out.append(f"{qid} [{'PASS' if passed else 'FAIL'}] asserted={len(a)} closure={len(c)} "
-                   f"expected={len(exp) if not args.freeze else len(c)}  {question}")
+        out.append(f"{qid} [{'PASS' if passed else 'FAIL'}] asserted={len(a)} vocab-only={len(v)} "
+                   f"with-HG={len(h)}  {question}")
         if not exact:
-            out.append(f"     missing={sorted(set(exp) - set(c))} unexpected={sorted(set(c) - set(exp))}")
-        if not needs_reasoning:
-            out.append("     the asserted triples already answer it: not reasoning-dependent")
+            out.append(f"     with-HG missing={sorted(set(exp_h) - set(h))} unexpected={sorted(set(h) - set(exp_h))}")
+            out.append(f"     vocab-only missing={sorted(set(exp_v) - set(v))} unexpected={sorted(set(v) - set(exp_v))}")
+        if not due_to_hg:
+            out.append("     HeritageGraph's axioms add no answer: not HG-dependent")
     if args.freeze:
         EXPECTED.write_text(json.dumps(frozen, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         out.append(f"froze {len(frozen)} expected answer sets to {EXPECTED.name}")
-    out.append("PASS: every inference CQ is answered exactly, and only under reasoning." if ok
-               else "FAIL: see above.")
+    out.append("PASS: every inference CQ is answered exactly, and only with HeritageGraph's axioms."
+               if ok else "FAIL: see above.")
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "inference_cq_report.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
     print("\n".join(out))

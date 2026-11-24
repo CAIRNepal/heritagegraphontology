@@ -641,7 +641,7 @@ ex:BikramSambat a hg:CalendarSystem ; rdfs:label "Bikram Sambat" ;
     hg:epochDateGregorian "-0056-04-14" ;      # 57 BCE, mid-April new year
     hg:yearOffsetFromGregorian 57 ;
     hg:isPrimaryForTradition ex:HinduTradition ;
-    crm:P3_has_note "Lunisolar civil calendar of Nepal; new year in mid-April (Baisakh 1)." .
+    crm:P3_has_note "Solar calendar of Nepal; new year at Mesh Sankranti (Baisakh 1, 13-15 April)." .
 ex:NepalSambat a hg:CalendarSystem ; rdfs:label "Nepal Sambat" ;
     hg:epochDateGregorian "0879-10-24" ;       # epoch 20 Oct 879 Julian = 24 Oct proleptic Gregorian
     hg:yearOffsetFromGregorian -879 ;
@@ -651,79 +651,118 @@ ex:GregorianCalendar a hg:CalendarSystem ; rdfs:label "Gregorian calendar" ;
     hg:epochDateGregorian "0001-01-01" ;
     hg:yearOffsetFromGregorian 0 .
 
-# --- The tithi-scheduled ritual and one documented occurrence -----------
+# --- Two dated occurrences, each documented in three calendars -----------
+# Each occurrence has its exact (Gregorian) time-span; each source record is
+# a time-span with the date as written (hg:recordedDate), its calendar, and its
+# converted Gregorian interval (crm:P82a/P82b). The exact time-span falls
+# within (crm:P86) each record's interval, which scopes the resolution query.
 ex:IndraJatra a hg:Festival ; rdfs:label "Indra Jatra" ;
     hg:lunarDateTithi "Bhadra Shukla Dwadashi" ;
+    hg:recurrencePattern "annual (lunar-tithi)" .
+ex:ShreePanchami a hg:Festival ; rdfs:label "Shree Panchami" ;
+    hg:lunarDateTithi "Magh Shukla Panchami" ;
     hg:recurrencePattern "annual (lunar-tithi)" .
 
 ex:IndraJatra_2015 a hg:RitualEvent ;
     rdfs:label "Indra Jatra, 2015 occurrence" ;
     crm:P9i_forms_part_of ex:IndraJatra ;
-    crm:P4_has_time-span ex:TS_IJ_Gregorian .
-
-# Three source records of the same occurrence, each in its own calendar.
-# hg:recordedDate keeps the date as the source writes it; crm:P82a/P82b hold
-# only its converted interval in the proleptic Gregorian calendar (a
-# calendar year is never put into an xsd:dateTime).
-ex:TS_IJ_Gregorian a crm:E52_Time-Span ;
-    rdfs:label "Indra Jatra start, Gregorian record" ;
-    hg:recordedDate "2015-09-25" ;
+    crm:P4_has_time-span ex:TS_IJ_Exact .
+ex:TS_IJ_Exact a crm:E52_Time-Span ;
+    rdfs:label "Indra Jatra 2015 start, Gregorian record" ;
+    hg:recordedDate "2015-09-25" ; hg:calendarSystem ex:GregorianCalendar ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> ;
     crm:P82a_begin_of_the_begin "2015-09-25T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2015-09-25T23:59:59"^^xsd:dateTime ;
-    hg:calendarSystem ex:GregorianCalendar ;
-    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> .
-ex:TS_IJ_BikramSambat a crm:E52_Time-Span ;
-    rdfs:label "Indra Jatra start, Bikram Sambat record (B.S. 2072)" ;
-    hg:recordedDate "2072" ;
+    crm:P86_falls_within ex:TS_IJ_BS , ex:TS_IJ_NS .
+ex:TS_IJ_BS a crm:E52_Time-Span ;
+    rdfs:label "Indra Jatra 2015, Bikram Sambat record (B.S. 2072)" ;
+    hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P82a_begin_of_the_begin "2015-04-14T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2016-04-12T23:59:59"^^xsd:dateTime ;
-    hg:calendarSystem ex:BikramSambat ;
+    crm:P3_has_note "B.S. 2072 runs from 1 Baisakh (14 April 2015) to the end of Chaitra (12 April 2016)." .
+ex:TS_IJ_NS a crm:E52_Time-Span ;
+    rdfs:label "Indra Jatra 2015, Nepal Sambat record (N.S. 1135)" ;
+    hg:recordedDate "1135" ; hg:calendarSystem ex:NepalSambat ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
-    crm:P3_has_note "Year-precision record; B.S. 2072 spans 2015-04-14 to 2016-04-12 CE." .
-ex:TS_IJ_NepalSambat a crm:E52_Time-Span ;
-    rdfs:label "Indra Jatra start, Nepal Sambat record (N.S. 1135)" ;
-    hg:recordedDate "1135" ;
     crm:P82a_begin_of_the_begin "2014-10-24T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2015-11-11T23:59:59"^^xsd:dateTime ;
-    hg:calendarSystem ex:NepalSambat ;
-    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
-    crm:P3_has_note "Year-precision record; N.S. 1135 runs from Mha Puja 2014 (24 October) to the day before Mha Puja 2015 (12 November)." .
+    crm:P3_has_note "N.S. 1135 runs from Mha Puja 2014 (24 October) to the day before Mha Puja 2015 (12 November)." .
 
-# The two calendar-specific records document the dated occurrence.
-ex:IndraJatra_2015 crm:P3_has_note
-    "Also recorded as B.S. 2072 (TS_IJ_BikramSambat) and N.S. 1135 (TS_IJ_NepalSambat)." .
+# Boundary case: a Magh date. B.S. 2072 - 57 = 2015, but the occurrence is in
+# 2016: only the two-year interval rule admits it.
+ex:ShreePanchami_2016 a hg:RitualEvent ;
+    rdfs:label "Shree Panchami, 2016 occurrence" ;
+    crm:P9i_forms_part_of ex:ShreePanchami ;
+    crm:P4_has_time-span ex:TS_SP_Exact .
+ex:TS_SP_Exact a crm:E52_Time-Span ;
+    rdfs:label "Shree Panchami 2016, Gregorian record" ;
+    hg:recordedDate "2016-02-12" ; hg:calendarSystem ex:GregorianCalendar ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> ;
+    crm:P82a_begin_of_the_begin "2016-02-12T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-02-12T23:59:59"^^xsd:dateTime ;
+    crm:P86_falls_within ex:TS_SP_BS , ex:TS_SP_NS , ex:TS_SP_BS_naive .
+ex:TS_SP_BS a crm:E52_Time-Span ;
+    rdfs:label "Shree Panchami 2016, Bikram Sambat record (B.S. 2072, Magh)" ;
+    hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2015-04-14T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-04-12T23:59:59"^^xsd:dateTime .
+ex:TS_SP_NS a crm:E52_Time-Span ;
+    rdfs:label "Shree Panchami 2016, Nepal Sambat record (N.S. 1136)" ;
+    hg:recordedDate "1136" ; hg:calendarSystem ex:NepalSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2015-11-12T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-10-30T23:59:59"^^xsd:dateTime .
+# Conversion-error case: the same B.S. year converted naively as one
+# Gregorian calendar year (Y - 57, 1 January to 31 December).
+ex:TS_SP_BS_naive a crm:E52_Time-Span ;
+    rdfs:label "Shree Panchami 2016, B.S. 2072 record converted naively (ERROR CASE)" ;
+    hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2015-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2015-12-31T23:59:59"^^xsd:dateTime .
 """
 
     QUERIES = {
-        "Q1 per-record resolution: source year -> Gregorian year interval":
+        "Q1 per-record conversion rule: recorded year -> Gregorian year interval":
             PFX + """SELECT ?record ?calendar ?srcYear ?ceLow ?ceHigh WHERE {
               ?record a crm:E52_Time-Span ;
                       hg:recordedDate ?rec ;
+                      hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
                       hg:calendarSystem ?cal .
               ?cal rdfs:label ?calendar ;
                    hg:yearOffsetFromGregorian ?off ;
                    hg:epochDateGregorian ?epoch .
-              BIND(xsd:integer(SUBSTR(?rec, 1, 4)) AS ?srcYear)
+              BIND(xsd:integer(?rec) AS ?srcYear)
               BIND(?srcYear - ?off AS ?ceLow)
               BIND(IF(STRENDS(?epoch, "-01-01"), ?ceLow, ?ceLow + 1) AS ?ceHigh)
-            } ORDER BY ?ceLow""",
-        "Q2 tithi ritual resolved: unique Gregorian year consistent with all records":
-            PFX + """SELECT ?ritual ?tithi ?ceYear ?gregorianDate WHERE {
-              ?occ crm:P9i_forms_part_of ?series ;
-                   crm:P4_has_time-span ?tsg .
-              ?series rdfs:label ?ritual ; hg:lunarDateTithi ?tithi .
-              ?tsg crm:P82a_begin_of_the_begin ?gregorianDate ;
-                   hg:calendarSystem [ hg:yearOffsetFromGregorian 0 ] .
-              BIND(YEAR(?gregorianDate) AS ?ceYear)
-              # Every calendared record's converted Gregorian interval must
-              # contain the dated occurrence.
-              FILTER NOT EXISTS {
-                ?other a crm:E52_Time-Span ;
-                       crm:P82a_begin_of_the_begin ?ob ;
-                       crm:P82b_end_of_the_end ?oe .
-                FILTER(?gregorianDate < ?ob || ?gregorianDate > ?oe)
+            } ORDER BY ?record""",
+        "Q2 resolution: each occurrence and the calendar records whose interval does NOT contain it":
+            PFX + """SELECT ?occurrence ?date ?conflicting WHERE {
+              ?occ rdfs:label ?occurrence ; crm:P4_has_time-span ?exact .
+              ?exact crm:P82a_begin_of_the_begin ?date .
+              OPTIONAL {
+                ?exact crm:P86_falls_within ?rec .
+                ?rec crm:P82a_begin_of_the_begin ?rb ; crm:P82b_end_of_the_end ?re .
+                FILTER(?date < ?rb || ?date > ?re)
+                BIND(?rec AS ?conflicting)
               }
-            }""",
+            } ORDER BY ?occurrence ?conflicting""",
+        "Q4 conversion check: records whose stored Gregorian bounds disagree with their recorded year":
+            PFX + """SELECT ?record ?srcYear ?storedFrom ?storedTo WHERE {
+              ?record hg:recordedDate ?rec ;
+                      hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+                      hg:calendarSystem ?cal ;
+                      crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
+              ?cal hg:yearOffsetFromGregorian ?off ; hg:epochDateGregorian ?epoch .
+              BIND(xsd:integer(?rec) AS ?srcYear)
+              BIND(?srcYear - ?off AS ?lo)
+              BIND(IF(STRENDS(?epoch, "-01-01"), ?lo, ?lo + 1) AS ?hi)
+              BIND(YEAR(?b) AS ?storedFrom)
+              BIND(YEAR(?e) AS ?storedTo)
+              FILTER(?storedFrom != ?lo || ?storedTo != ?hi)
+            } ORDER BY ?record""",
         "Q3 calendar catalogue: epoch, offset, primary tradition":
             PFX + """SELECT ?calendar ?epoch ?offset ?tradition WHERE {
               ?cal a hg:CalendarSystem ; rdfs:label ?calendar ;
@@ -752,7 +791,30 @@ ex:IndraJatra_2015 crm:P3_has_note
     print(f"SHACL conformance of the scenario: conforms={conforms}")
     if not conforms:
         print(report[:2000])
-    return 0
+
+    # --- expected results (the experiment fails if any differs) -----------
+    def res(name):
+        return [tuple(str(x).replace("https://cair-nepal.org/heritagegraph/example/", "")
+                      if x is not None else None for x in r)
+                for r in g.query(QUERIES[name])]
+    q1 = {(r[0], int(r[3]), int(r[4])) for r in res(next(k for k in QUERIES if k.startswith("Q1")))}
+    q2 = res(next(k for k in QUERIES if k.startswith("Q2")))
+    q4 = [r[0] for r in res(next(k for k in QUERIES if k.startswith("Q4")))]
+    checks = {
+        "Q1 BS 2072 -> 2015-2016, NS 1135 -> 2014-2015, NS 1136 -> 2015-2016":
+            {("TS_IJ_BS", 2015, 2016), ("TS_IJ_NS", 2014, 2015), ("TS_SP_NS", 2015, 2016)} <= q1,
+        "Q2 Indra Jatra 2015 is contained in every record":
+            [r[2] for r in q2 if r[0].startswith("Indra Jatra")] == [None],
+        "Q2 Shree Panchami 2016 conflicts only with the naive record":
+            [r[2] for r in q2 if r[0].startswith("Shree Panchami")] == ["TS_SP_BS_naive"],
+        "Q4 flags exactly the naively converted record": q4 == ["TS_SP_BS_naive"],
+        "boundary case: single-year conversion (Y - 57) misses Shree Panchami 2016":
+            2072 - 57 != 2016,
+        "SHACL conforms": bool(conforms),
+    }
+    for name, ok in checks.items():
+        print(f"  [{'PASS' if ok else 'FAIL'}] {name}")
+    return 0 if all(checks.values()) else 1
 
 
 EXPERIMENTS = {

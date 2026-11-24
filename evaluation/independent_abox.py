@@ -32,9 +32,10 @@ CQ = {
  PFX + """SELECT ?temple ?style ?place WHERE {
   ?p a crm:E12_Production ; crm:P108_has_produced ?temple .
   ?temple hg:hasArchitecturalStyle ?style ; crm:P55_has_current_location ?place . }""",
-"CQ-A3 Guthi custody + ritual":
+"CQ-A3 Guthi custody (+ ritual, where recorded)":
  PFX + """SELECT ?guthi ?asset ?ritual WHERE {
-  ?guthi a hg:Guthi ; crm:P50i_is_current_keeper_of ?asset ; hg:performsRitual ?ritual . }""",
+  ?guthi a hg:Guthi ; crm:P50i_is_current_keeper_of ?asset .
+  OPTIONAL { ?guthi hg:performsRitual ?ritual } }""",
 "CQ-A4 Kumari (Living-Goddess) tenure (deity + institution)":
  PFX + """SELECT ?tenure ?deity ?inst WHERE {
   ?tenure a hg:KumariTenure ; hg:embodiedDeity ?deity ;
@@ -136,6 +137,12 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
  "Provenance: reconciliationStatus outside confirmed|conflicting|unverified (sh:pattern)":
   ('ex:BadStatus a crminf:I2_Belief ; rdfs:label "x" ; hg:assertsAbout ex:D1 ; hg:reconciliationStatus "maybe" .\n'
    'ex:D1 a hg:Deity ; rdfs:label "d" .', "Pattern"),
+ "Calendar: time-span ends before it begins (sh:lessThanOrEquals)":
+  ('ex:BadSpan a crm:E52_Time-Span ; crm:P82a_begin_of_the_begin "2016-01-01T00:00:00"^^xsd:dateTime ;'
+   ' crm:P82b_end_of_the_end "2015-01-01T00:00:00"^^xsd:dateTime .', "LessThanOrEquals"),
+ "Calendar: recorded date without its calendar (sh:or)":
+  ('ex:BadRecord a crm:E52_Time-Span ; hg:recordedDate "2072" ;'
+   ' crm:P82a_begin_of_the_begin "2015-04-14T00:00:00"^^xsd:dateTime .', "Or"),
 }
 # The property each test must violate: a test counts as caught only when a
 # result has the expected constraint component ON THE EXPECTED PATH (a
@@ -155,6 +162,8 @@ EXPECTED_PATH = {
  "Ritual: ritual site given as an unidentified blank node (nodeKind IRI)": CRM_ + "P8_took_place_on_or_within",
  "Institutional: ritual performed by a person, not a Guthi or caste group (sh:or)": HG_ + "performedByGroup",
  "Provenance: reconciliationStatus outside confirmed|conflicting|unverified (sh:pattern)": HG_ + "reconciliationStatus",
+ "Calendar: time-span ends before it begins (sh:lessThanOrEquals)": CRM_ + "P82a_begin_of_the_begin",
+ "Calendar: recorded date without its calendar (sh:or)": "None",  # node-level sh:or: no result path
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0

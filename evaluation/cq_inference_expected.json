@@ -1,57 +1,114 @@
 {
   "IQ1": {
-    "question": "Which groups carry out which rituals, as a CIDOC-CRM-only client sees them?",
+    "question": "Which groups performed which rituals, as a CIDOC-CRM-only client sees them (crm:P14i)?",
     "expected": [
       [
-        "BungadyahJatra",
-        "Barahis"
+        "Barahis",
+        "BungadyahJatra"
       ],
       [
-        "BungadyahJatra",
-        "Manandhars"
+        "BhavanishankarGuthi",
+        "BhavanishankarRituals"
       ],
       [
-        "IndraJatra",
-        "Manandhars"
+        "Manandhars",
+        "BungadyahJatra"
       ],
       [
-        "KumariProcession",
-        "Manandhars"
+        "Manandhars",
+        "IndraJatra"
       ],
       [
-        "YosinErection",
-        "Manandhars"
+        "Manandhars",
+        "KumariProcession"
+      ],
+      [
+        "Manandhars",
+        "YosinErection"
       ]
-    ]
+    ],
+    "expected_vocab_only": []
   },
   "IQ2": {
-    "question": "Which entities were derived from which sources, as a PROV-O-only client sees them?",
+    "question": "Which PROV activities are recorded, as a PROV-O-only client sees them?",
     "expected": [
       [
-        "Assert_BuildA",
-        "Src_Slusser"
+        "BhavanishankarRituals"
       ],
       [
-        "Assert_BuildB",
-        "Src_DoA"
+        "BungadyahJatra"
       ],
       [
-        "Assert_KumariSyncretism",
-        "Src_Allen"
+        "BungadyahProcession"
       ],
       [
-        "Assert_RouteChange",
-        "Src_DoA"
+        "CA_2015"
       ],
       [
-        "Syn_Karunamaya",
-        "Src_Slusser"
+        "EE_Bhavanishankar_Founding"
       ],
       [
-        "Syn_Taleju",
-        "Src_Slusser"
+        "EE_Jogeshvara_Founding"
+      ],
+      [
+        "EE_Nationalisation_1964"
+      ],
+      [
+        "Earthquake2015"
+      ],
+      [
+        "Ensh_Taleju"
+      ],
+      [
+        "Enth_2017"
+      ],
+      [
+        "GunlaBajan"
+      ],
+      [
+        "IndraJatra"
+      ],
+      [
+        "KumariNityaPuja"
+      ],
+      [
+        "KumariProcession"
+      ],
+      [
+        "NityaPuja_Bungamati"
+      ],
+      [
+        "NityaPuja_KM"
+      ],
+      [
+        "Prod_Kasthamandap"
+      ],
+      [
+        "Prod_KasthamandapRebuild"
+      ],
+      [
+        "Ret_2025"
+      ],
+      [
+        "Sel_2017"
+      ],
+      [
+        "ShantiSwastiPuja"
+      ],
+      [
+        "ShuvarambhaPuja2018"
+      ],
+      [
+        "TOC_Kasthamandap2018"
+      ],
+      [
+        "TOC_Kasthamandap2022"
+      ],
+      [
+        "YosinErection"
       ]
-    ]
+    ],
+    "expected_vocab_only": []
   },
   "IQ3": {
     "question": "Which assertions are recorded about each heritage subject, seen from the subject?",
@@ -71,6 +128,16 @@
       [
         "Tenure_2017",
         "Assert_KumariSyncretism"
+      ]
+    ],
+    "expected_vocab_only": [
+      [
+        "Kasthamandap",
+        "Assert_BuildA"
+      ],
+      [
+        "Kasthamandap",
+        "Assert_BuildB"
       ]
     ]
   },
@@ -109,6 +176,7 @@
         "TalejuTemple",
         "KathmanduDurbarSquare"
       ]
-    ]
+    ],
+    "expected_vocab_only": []
   }
 }

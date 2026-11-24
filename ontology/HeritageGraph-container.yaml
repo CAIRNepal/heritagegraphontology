@@ -17,6 +17,7 @@ prefixes:
   linkml: "https://w3id.org/linkml/"
   heritageGraph: "https://cair-nepal.org/heritagegraph/"
   prov: "http://www.w3.org/ns/prov#"
+  dcterms: "http://purl.org/dc/terms/"
 
 default_prefix: heritageGraph
 default_range: string
@@ -375,6 +376,9 @@ classes:
         range: string
         description: "Date the dataset serialization was generated (ISO 8601)."
       license:
+        # the standard term; the 1.0.x OWL IRI heritageGraph:license is a
+        # deprecated stub pointing to it (dcterms:isReplacedBy)
+        slot_uri: dcterms:license
         range: string
         description: "License under which the dataset is released."
       curator:

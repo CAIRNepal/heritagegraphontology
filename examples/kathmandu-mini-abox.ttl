@@ -48,10 +48,10 @@ ex:CS_Ruined a crm:E3_Condition_State ; rdfs:label "Collapsed in the 2015 earthq
 
 # --- institutional layer: a Guthi custodian ---
 # The guthi responsible for conserving Kasthamandap (myRepublica). The earlier
-# statement that it performs Indra Jatra had no source and was removed.
+# statements that it performs Indra Jatra and is a temple guthi are not
+# supported by the cited sources and were removed (Kasthamandap is a sattal).
 ex:KasthamandapGuthi a hg:Guthi ;
     rdfs:label "Kasthamandap Guthi" ;
-    hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
     dcterms:source ex:Src_Republica_Kasthamandap .
 ex:Src_Republica_Kasthamandap a hg:DataSource ; rdfs:label "myRepublica, Kasthamandap losing its grandeur" ;
@@ -510,8 +510,23 @@ ex:JogeshvaraMandira a hg:Temple ;
     crm:P55_has_current_location ex:Sankhu ;
     dcterms:source ex:Src_DANAM_SKH0510 .
 
-ex:TS_Bhavanishankar a crm:E52_Time-Span ; rdfs:label "1667 CE (NS 787), date of the recording inscription" ;
-    crm:P82a_begin_of_the_begin "1667-01-01T00:00:00"^^xsd:dateTime .
+# Calendars of the dated records below (dates as written in the sources are
+# kept in hg:recordedDate; crm:P82a/P82b hold the converted Gregorian bounds).
+ex:BikramSambat a hg:CalendarSystem ; rdfs:label "Bikram Sambat" ;
+    hg:epochDateGregorian "-0056-04-14" ;
+    hg:yearOffsetFromGregorian 57 ;
+    crm:P3_has_note "Solar calendar of Nepal; new year at Mesh Sankranti (13-15 April)." .
+ex:NepalSambat a hg:CalendarSystem ; rdfs:label "Nepal Sambat" ;
+    hg:epochDateGregorian "0879-10-24" ;
+    hg:yearOffsetFromGregorian -879 ;
+    crm:P3_has_note "Lunisolar Newar calendar counted in elapsed years; new year at Mha Puja (Kartik Shukla Pratipada, late October to November)." .
+
+ex:TS_Bhavanishankar a crm:E52_Time-Span ; rdfs:label "NS 787 (late 1666 to late 1667 CE), date of the recording inscription" ;
+    hg:recordedDate "787" ;
+    hg:calendarSystem ex:NepalSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "1666-10-15T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1667-11-30T23:59:59"^^xsd:dateTime .
 ex:BhavanishankarRituals a hg:RitualEvent ;
     rdfs:label "Daily and anniversary rituals at Bhavanishankara Mandira" ;
     crm:P8_took_place_on_or_within ex:BhavanishankarMandira ;
@@ -536,8 +551,12 @@ ex:EE_Bhavanishankar_Founding a hg:EndowmentEvent ;
     crm:P3_has_note "Recorded by the trilingual (Sanskrit, Maithili, Newari) plinth inscription of 1667 CE (NS 787)." ;
     dcterms:source ex:Src_DANAM_BKT0030 .
 
-ex:TS_Jogeshvara1849 a crm:E52_Time-Span ; rdfs:label "1849 CE (NS 969)" ;
-    crm:P82a_begin_of_the_begin "1849-01-01T00:00:00"^^xsd:dateTime .
+ex:TS_Jogeshvara1849 a crm:E52_Time-Span ; rdfs:label "NS 969 (late 1848 to late 1849 CE)" ;
+    hg:recordedDate "969" ;
+    hg:calendarSystem ex:NepalSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "1848-10-15T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1849-11-30T23:59:59"^^xsd:dateTime .
 ex:Bhikhvadhana a crm:E21_Person ; rdfs:label "Bhikhvadhana (donor)" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/bhikhvadhana"^^xsd:anyURI .
 ex:Mayajudham a crm:E21_Person ; rdfs:label "Mayajudham (donor)" ;
@@ -561,8 +580,12 @@ ex:EE_Jogeshvara_Founding a hg:EndowmentEvent ;
     dcterms:source ex:Src_DANAM_SKH0510 .
 
 # --- nationalisation: guthi land under the Guthi Sansthan (1964 CE / VS 2021) ---
-ex:TS_1964 a crm:E52_Time-Span ; rdfs:label "1964 CE (VS 2021)" ;
-    crm:P82a_begin_of_the_begin "1964-01-01T00:00:00"^^xsd:dateTime .
+ex:TS_1964 a crm:E52_Time-Span ; rdfs:label "VS 2021 (mid-April 1964 to mid-April 1965 CE)" ;
+    hg:recordedDate "2021" ;
+    hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "1964-04-12T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1965-04-13T23:59:59"^^xsd:dateTime .
 ex:Endow_GuthiSansthan a hg:Endowment ;
     rdfs:label "Guthi land endowments administered by the Guthi Sansthan" ;
     crm:P105_right_held_by ex:GuthiSansthan ;

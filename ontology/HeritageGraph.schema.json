@@ -653,7 +653,7 @@
                     ]
                 },
                 "confidence_method": {
-                    "description": "IRI of the method by which the confidence score was assigned, described once elsewhere (e.g. a prov:Plan or skos:Concept for an expert 5-point scale mapped to 0-1, agreement between independent sources, or coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging, 0.5 explicitly uncertain, 0.3 disputed by the author).",
+                    "description": "The documented procedure (crm:E29 Design or Procedure) by which the confidence score was assigned, described once (e.g. an expert 5-point scale mapped to 0-1, agreement between independent sources, or coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging, 0.5 explicitly uncertain, 0.3 disputed by the author).",
                     "type": [
                         "string",
                         "null"
@@ -11539,6 +11539,16 @@
                 "date_precision": {
                     "$ref": "#/$defs/DatePrecision",
                     "description": "The level of precision for a recorded date."
+                },
+                "falls_within": {
+                    "description": "A time-span that contains this one: e.g. the exact time-span of an occurrence falls within the converted interval of each calendar record of it (a Bikram Sambat or Nepal Sambat year).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",

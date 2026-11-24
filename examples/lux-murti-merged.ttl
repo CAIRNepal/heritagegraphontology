@@ -56,7 +56,9 @@ ex:accno a hg:Identifier ;
 # ---- Inscription (textual content on the object) ----------------------------
 
 ex:inscription a hg:Inscription ;
-    rdfs:label "Donor inscription, Nepal Sambat 879" ;
+    rdfs:label "Donor inscription (illustrative)" ;
+    # the label said "Nepal Sambat 879" (= 1758/59 CE), which contradicts the
+    # object's 1640-1680 production time-span; no date is claimed now
     hg:hasLanguage ex:lang-newari .
 
 # ---- Iconographic content vs. physical carrier ------------------------------

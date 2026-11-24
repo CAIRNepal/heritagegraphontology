@@ -296,7 +296,7 @@ annotations:
   bibo:doi: "10.5281/zenodo.23435676"
   dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
   bibo:status: "Published"
-  vann:preferredNamespacePrefix: "heritageGraph"
+  vann:preferredNamespacePrefix: "hg"
   vann:preferredNamespaceUri: "https://cair-nepal.org/heritagegraph/"
   # CLEANUP (alpha.5): removed the owl:imports annotation -- it serialized as
   # one malformed space-separated literal, and alignment to CIDOC-CRM/PROV-O
@@ -976,6 +976,7 @@ classes:
       - calendar_system
       - date_precision
       - recorded_date
+      - falls_within
     slot_usage:
       calendar_system:
         range: CalendarSystem
@@ -1327,6 +1328,11 @@ classes:
 
 
 
+    annotations:
+      design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
+        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
+        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
+        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
     mixins:
       - Entity
   KumariLifecycleEvent:
@@ -1487,6 +1493,11 @@ classes:
         required: true
       role_duty:
         required: true
+    annotations:
+      design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
+        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
+        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
+        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
     mixins:
       - Entity
 
@@ -1513,6 +1524,11 @@ classes:
         required: true
       has_timespan:
         required: true
+    annotations:
+      design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
+        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
+        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
+        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
     mixins:
       - Entity
   # Container and Metadata (the LinkML tree_root and its dataset header) moved
@@ -1868,9 +1884,18 @@ slots:
   recorded_date:
     slot_uri: heritageGraph:recordedDate
     range: string
+    broad_mappings:
+      - crm:P3_has_note
     description: "The date as written in the source, in the calendar given by calendar_system (e.g. '2072' for a
       Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted
       Gregorian bounds go in date_earliest / date_latest."
+
+  falls_within:
+    slot_uri: crm:P86_falls_within
+    range: TimeSpan
+    multivalued: true
+    description: "A time-span that contains this one: e.g. the exact time-span of an occurrence falls within the
+      converted interval of each calendar record of it (a Bikram Sambat or Nepal Sambat year)."
 
   calendar_system:
     title: "has calendar system"
@@ -2566,13 +2591,14 @@ slots:
 
   confidence_method:
     slot_uri: heritageGraph:confidenceMethod
-    # an IRI, so a rubric is described once (as a prov:Plan, skos:Concept or
-    # document) instead of being repeated as text on every assertion
-    range: uriorcurie
-    description: "IRI of the method by which the confidence score was assigned, described once elsewhere (e.g. a
-      prov:Plan or skos:Concept for an expert 5-point scale mapped to 0-1, agreement between independent sources, or
-      coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging, 0.5 explicitly uncertain, 0.3 disputed
-      by the author)."
+    # a link to a documented procedure (crm:E29 Design or Procedure, the
+    # Technique class), so a rubric is described once instead of being
+    # repeated as text on every assertion
+    range: Technique
+    description: "The documented procedure (crm:E29 Design or Procedure) by which the confidence score was assigned,
+      described once (e.g. an expert 5-point scale mapped to 0-1, agreement between independent sources, or coding of
+      the source's hedging: 0.9 stated plainly, 0.7 mild hedging, 0.5 explicitly uncertain, 0.3 disputed by the
+      author)."
 
   data_quality_note:
     slot_uri: heritageGraph:dataQualityNote
