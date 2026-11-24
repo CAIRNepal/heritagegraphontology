@@ -1,0 +1,64 @@
+{
+  "id": "https://cair-nepal.org/heritagegraph/example/mljson/dataset",
+  "deities": [
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Deity",
+      "name": {
+        "en": "Taleju Bhawani",
+        "ne": "तलेजु भवानी"
+      },
+      "note": {
+        "en": [
+          "Test note one.",
+          "Test note two."
+        ],
+        "ne": "परीक्षण टिप्पणी"
+      }
+    }
+  ],
+  "places": [
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Pulchowk",
+      "name": {
+        "en": "Pulchowk",
+        "ne": "पुल्चोक"
+      }
+    },
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Lagankhel",
+      "name": "Lagankhel"
+    }
+  ],
+  "guthis": [
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Guthi",
+      "name": {
+        "en": "Test temple guthi",
+        "ne": "परीक्षण मन्दिर गुठी"
+      },
+      "guthi_type": "TempleGuthi"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Source",
+      "name": "Test source",
+      "source_citation": {
+        "en": "Test citation, p. 1.",
+        "ne": "परीक्षण उद्धरण, पृ. १"
+      },
+      "source_language": "ne",
+      "note": "A plain-string note, as in 1.0.x data."
+    }
+  ],
+  "assertions": [
+    {
+      "id": "https://cair-nepal.org/heritagegraph/example/mljson/Claim",
+      "asserts_about": "https://cair-nepal.org/heritagegraph/example/mljson/Deity",
+      "assertion_content": {
+        "en": "Test claim: the deity has two names.",
+        "ne": "परीक्षण दावी: देवताका दुई नाम छन्।"
+      }
+    }
+  ]
+}

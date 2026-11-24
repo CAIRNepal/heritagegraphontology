@@ -22,6 +22,7 @@ This script checks that property term by term, treating the YAML schema
                          entry; abstract classes (mixins, unions) are exempt
                          because instance payloads cannot instantiate them,
                          and no $defs entry lacks a YAML counterpart.
+  P  Prefixes            the JSON/YAML wrapper schema binds every core prefix.
   L  Language-tagged text in all three artefacts: a slot whose OWL range is
                          rdf:PlainLiteral (text that may carry a language tag)
                          accepts a JSON-LD language map in every JSON field
@@ -164,8 +165,22 @@ report("E concrete classes+enums in JSON Schema",
        len(expected) - len(missing_defs), len(expected), missing_defs)
 report("E' orphan JSON Schema defs", len(defs) - len(orphan_defs),
        len(defs), orphan_defs)
+# E''. Every "$ref" in the JSON Schema resolves to a $defs entry.
+import re as _re
+_txt = json.dumps(json_schema)
+_refs = sorted(set(_re.findall(r'"#/\$defs/([^"]+)"', _txt)))
+drift = [r for r in _refs if r not in defs]
+report("E'' JSON Schema $refs resolve", len(_refs) - len(drift), len(_refs), drift)
 print(f"       (abstract classes exempt from JSON Schema by design: "
       f"{len(abstract)}: {', '.join(sorted(abstract))})")
+
+# P. The serialization wrapper binds every prefix the core schema binds, to
+# the same IRI: LinkML takes prefixes from the root schema only, so a missing
+# binding makes linkml-convert write <crm:P3_has_note> as a literal IRI.
+core_px = {k: v.prefix_reference for k, v in sv.schema.prefixes.items()}
+wrap_px = {k: v.prefix_reference for k, v in cv.schema.prefixes.items()}
+drift = sorted(k for k, v in core_px.items() if wrap_px.get(k) != v)
+report("P container schema binds the core prefixes", len(core_px) - len(drift), len(core_px), drift)
 
 # L. Language-tagged text: OWL, SHACL and JSON Schema agree slot by slot.
 RDFNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -218,7 +233,41 @@ for s in slots.values():
     shapes, ok = shacl_accepts_langstring(u)
     if any(o != (kind == "text") for o in ok):
         drift.append(f"{s.name} SHACL ({kind})")
-report("L text vs code slots agree across OWL, SHACL, JSON", n - len(drift), n, drift)
+bad_slots = {d.split()[0] for d in drift}
+report("L text vs code slots agree across OWL, SHACL, JSON", n - len(bad_slots), n, drift)
+
+# L'' the other direction: every JSON field that accepts a language map is a
+# text slot (explicit range string, no any_of, not lexical_form code or
+# any_literal) whose RDF property is a datatype property or rdfs:label, and
+# whose SHACL shapes (if any) accept rdf:langString.
+RDFS_LABEL = URIRef("http://www.w3.org/2000/01/rdf-schema#label")
+drift, opened = [], set()
+for cname, cdef in defs.items():
+    if cname not in cv.all_classes():
+        continue
+    for pname, pdef in cdef.get("properties", {}).items():
+        if not json_has_langmap(pdef):
+            continue
+        opened.add(pname)
+        sl = cv.induced_slot(pname, cname)
+        anns = sl.annotations or {}
+        anns = anns if isinstance(anns, dict) else getattr(anns, "_as_dict", {})
+        form = getattr(anns.get("lexical_form"), "value", anns.get("lexical_form"))
+        form = form.get("value") if isinstance(form, dict) else form
+        u = URIRef(cv.get_uri(sl, expand=True)) if sl.slot_uri else None
+        why = []
+        if sl.range != "string" or sl.any_of or sl.exactly_one_of:
+            why.append("not a string slot")
+        if form in ("code", "any_literal"):
+            why.append(f"lexical_form {form}")
+        if u is not None and u != RDFS_LABEL and (u, RDF.type, OWL.ObjectProperty) in owl_g:
+            why.append("OWL object property")
+        if u is not None and False in shacl_accepts_langstring(u)[1]:
+            why.append("SHACL refuses rdf:langString")
+        if why:
+            drift.append(f"{cname}.{pname}: {', '.join(why)}")
+report("L'' every JSON language-map field is a text slot", len(opened) - len({d.split(':')[0].split('.')[1] for d in drift}),
+       len(opened), drift)
 
 try:
     import jsonschema

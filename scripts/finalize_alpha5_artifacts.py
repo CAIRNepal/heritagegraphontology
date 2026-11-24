@@ -1342,8 +1342,7 @@ def relax_shacl_text_and_cardinality(g: Graph) -> None:
             head = BNode(); Collection(g, head, alts)
             g.add((ps, SH["or"], head))
             n_text += 1
-            if p == RDFS.label or (str(p).startswith(HG_NS)
-                                   and (ps, SH.maxCount, None) in g):
+            if p == RDFS.label or (ps, SH.maxCount, None) in g:
                 g.remove((ps, SH.maxCount, None))
                 g.add((ps, SH.uniqueLang, Literal(True)))
                 q = BNode(); g.add((q, SH.datatype, XSD.string))
@@ -1532,6 +1531,54 @@ def sync_published() -> None:
                     str(docs)], check=True)
 
 
+def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
+    """gen-json-schema writes "$ref": "#/$defs/X" for a slot whose range X is
+    an abstract or union class without an identifier (AssertionSubject,
+    RitualAssessment, KumariLifecycleEvent), but writes no $defs entry for X:
+    the reference cannot be resolved and validation of any document using
+    the field fails. In a data object such a field holds a reference, as
+    every other object-valued field does: it becomes the referenced
+    instance's id (a string). In a Container collection, which holds the
+    instances themselves, it becomes any of X's concrete descendants."""
+    defs = js.get("$defs", {})
+
+    def concrete(x: str) -> list[str]:
+        c = sv.get_class(x)
+        names = set(sv.class_descendants(x)) | set(c.union_of or [])
+        for u in list(c.union_of or []):
+            names |= set(sv.class_descendants(u))
+        return sorted(n for n in names if n in defs and not sv.get_class(n).abstract)
+
+    fixed = []
+
+    def repair(holder, key, inlined: bool, where: str) -> None:
+        node = holder[key]
+        target = node.get("$ref", "").removeprefix("#/$defs/")
+        if not target or target in defs:
+            return
+        desc = node.get("description")
+        if inlined:
+            new = {"anyOf": [{"$ref": f"#/$defs/{n}"} for n in concrete(target)]}
+        else:
+            new = {"type": "string"}
+        if desc:
+            new = {"description": desc, **new}
+        holder[key] = new
+        fixed.append(f"{where} ({target})")
+
+    for owner, props, inlined in ([("Container", js.get("properties", {}), True)] +
+                                  [(c, d.get("properties", {}), False) for c, d in defs.items()]):
+        for pname, pdef in props.items():
+            if "$ref" in pdef:
+                repair(props, pname, inlined, f"{owner}.{pname}")
+            if isinstance(pdef.get("items"), dict) and "$ref" in pdef["items"]:
+                repair(pdef, "items", inlined, f"{owner}.{pname}")
+            for i, alt in enumerate(pdef.get("anyOf", [])):   # nullable form
+                if isinstance(alt, dict) and "$ref" in alt:
+                    repair(pdef["anyOf"], i, inlined, f"{owner}.{pname}")
+    print(f"JSON Schema: resolved {len(fixed)} reference(s) to classes with no $defs entry")
+
+
 # BCP 47 language tag (simplified: language, then subtags)
 BCP47 = "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
 
@@ -1559,7 +1606,10 @@ def allow_language_maps(js: dict, sv: SchemaView) -> None:
                 sl = sv.induced_slot(pname, cname)
             except ValueError:
                 continue
-            if (sl.range or sv.schema.default_range) != "string" or not sl.slot_uri:
+            # explicit string range only: a slot with any_of (was_influenced_by:
+            # Entity | Activity | Agent) has no range and falls back to the
+            # default string, but its values are references
+            if sl.range != "string" or sl.any_of or sl.exactly_one_of or not sl.slot_uri:
                 continue
             if uri_for(sv, str(sl.slot_uri)) in CODE_VALUED | ANY_LITERAL:
                 continue
@@ -1594,14 +1644,16 @@ def gen_json_schema() -> None:
     js = json.loads(res.stdout)
     core = yaml.safe_load(SCHEMA.read_text(encoding="utf-8"))
     js["$id"], js["title"] = core["id"], core["name"]
-    allow_language_maps(js, SchemaView(str(CONTAINER_SCHEMA)))
+    csv = SchemaView(str(CONTAINER_SCHEMA))
+    resolve_abstract_refs(js, csv)
+    allow_language_maps(js, csv)
     out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")
 
 
 def main() -> int:
     sv = SchemaView(str(SCHEMA))
-    load_lexical_forms(sv)
+    load_lexical_forms(SchemaView(str(CONTAINER_SCHEMA)))
     # PV FIX (alpha.6): without --default-permissible-value-type, gen-owl types
     # every permissible value as owl:Class (values became subclasses of their
     # enum). Enum values are individuals, not classes; owl:NamedIndividual

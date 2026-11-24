@@ -78,39 +78,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -165,39 +149,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -311,39 +279,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -602,39 +554,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -871,39 +807,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -939,8 +859,8 @@
                     ]
                 },
                 "asserts_about": {
-                    "$ref": "#/$defs/AssertionSubject",
-                    "description": "Heritage entity or event that is the subject of this assertion."
+                    "description": "Heritage entity or event that is the subject of this assertion.",
+                    "type": "string"
                 },
                 "asserts_proposition": {
                     "description": "Machine-readable proposition(s) this assertion holds to be true (CRMinf J4 that). Complements the free-text assertion_content.",
@@ -1045,39 +965,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -1206,39 +1110,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "year_offset_from_gregorian": {
@@ -1355,39 +1243,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -1644,39 +1516,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -2047,39 +1903,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -2207,39 +2047,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -2366,39 +2190,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -2534,39 +2342,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -2845,7 +2637,7 @@
                 "kumari_lifecycle_events": {
                     "description": "Collection of Kumari lifecycle events (selection, enthronement, retirement)",
                     "items": {
-                        "$ref": "#/$defs/KumariLifecycleEvent"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -2956,7 +2748,7 @@
                 "ritual_assessments": {
                     "description": "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances",
                     "items": {
-                        "$ref": "#/$defs/RitualAssessment"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -3052,39 +2844,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -3233,39 +3009,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -3377,39 +3137,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -3618,39 +3362,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -3815,39 +3543,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -4005,39 +3717,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -4304,39 +4000,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -4609,39 +4289,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -4674,7 +4338,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -4819,39 +4483,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -4969,21 +4617,7 @@
                 "sustains": {
                     "description": "Structure, ritual or festival, or sacred office whose upkeep or performance the endowment funds.",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject",
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            }
-                        ]
+                        "type": "string"
                     },
                     "type": "array"
                 },
@@ -5016,39 +4650,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -5221,39 +4839,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -5405,39 +5007,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -5819,39 +5405,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -6216,39 +5786,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -6275,7 +5829,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -6420,39 +5974,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -6671,39 +6209,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -6825,39 +6347,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -7077,39 +6583,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -7269,39 +6759,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -7366,39 +6840,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -7521,39 +6979,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -7740,39 +7182,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -7846,7 +7272,7 @@
                 "is_about": {
                     "description": "Heritage entity or event described by this information object.",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -8008,39 +7434,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -8397,39 +7807,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -8699,39 +8093,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -9097,39 +8475,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -9204,39 +8566,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -9617,39 +8963,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -9802,39 +9132,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -9894,39 +9208,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -10281,39 +9579,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -10436,39 +9718,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -10524,23 +9790,9 @@
                 },
                 "license": {
                     "description": "License under which the dataset is released.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "schema_version": {
@@ -10579,39 +9831,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -10808,39 +10044,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -10864,7 +10084,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -11009,39 +10229,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -11260,39 +10464,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -11549,39 +10737,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -11777,39 +10949,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -11996,39 +11152,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -12083,39 +11223,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -12170,39 +11294,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -12316,39 +11424,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -12605,39 +11697,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -12811,39 +11887,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -12882,7 +11942,7 @@
                 "proposition_object_entity": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AssertionSubject"
+                            "type": "string"
                         },
                         {
                             "type": "null"
@@ -12902,8 +11962,8 @@
                     "type": "string"
                 },
                 "proposition_subject": {
-                    "$ref": "#/$defs/AssertionSubject",
-                    "description": "Entity the proposition is about (plays the role of rdf:subject)."
+                    "description": "Entity the proposition is about (plays the role of rdf:subject).",
+                    "type": "string"
                 },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
@@ -12934,39 +11994,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -13225,39 +12269,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -13386,39 +12414,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -13675,39 +12687,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -14068,39 +13064,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -14393,39 +13373,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -14496,39 +13460,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -14785,39 +13733,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -14981,39 +13913,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -15139,39 +14055,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -15438,39 +14338,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -15541,39 +14425,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -15686,39 +14554,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 }
             },
@@ -15847,39 +14699,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -15906,7 +14742,7 @@
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
-                        "$ref": "#/$defs/AssertionSubject"
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -16129,39 +14965,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_informed_by": {
@@ -16428,39 +15248,23 @@
                 },
                 "was_influenced_by": {
                     "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
                                 "type": "string"
                             }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_produced_by_event": {
@@ -16748,7 +15552,17 @@
         "kumari_lifecycle_events": {
             "description": "Collection of Kumari lifecycle events (selection, enthronement, retirement)",
             "items": {
-                "$ref": "#/$defs/KumariLifecycleEvent"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/KumariEnthronementEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariRetirementEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariSelectionEvent"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -16859,7 +15673,11 @@
         "ritual_assessments": {
             "description": "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances",
             "items": {
-                "$ref": "#/$defs/RitualAssessment"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/FearlessnessAssessment"
+                    }
+                ]
             },
             "type": [
                 "array",

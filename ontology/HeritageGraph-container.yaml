@@ -5,7 +5,12 @@ description: "Serialization wrapper for HeritageGraph JSON/YAML data files. It i
   HeritageGraph schema and adds the LinkML tree_root (Container) with one collection per class,
   plus the dataset header (Metadata). It is used only to generate the JSON Schema
   (HeritageGraph.schema.json) and to validate JSON/YAML data; the OWL ontology and SHACL shapes are
-  generated from HeritageGraph.yaml alone. RDF instance data does not need a Container node."
+  generated from HeritageGraph.yaml alone. RDF instance data does not need a Container node.
+  Validate data against HeritageGraph.schema.json, which also accepts JSON-LD language maps
+  ({\"en\": ..., \"ne\": ...}) on text fields and a single string where a field is now
+  multivalued; linkml-validate on this file does not. Convert data to RDF with
+  scripts/json_to_rdf.py, which turns language maps into language-tagged literals and enum
+  values into the ontology's individuals; linkml-convert alone does neither."
 version: 1.0.1
 license: CC-BY-4.0
 
@@ -14,10 +19,31 @@ imports:
   - HeritageGraph
 
 prefixes:
+  # LinkML does not take prefixes from imported schemas when it writes RDF:
+  # without these, linkml-convert emitted <rdfs:label>, <crm:P3_has_note> as
+  # literal IRIs. Same bindings as HeritageGraph.yaml (checked by
+  # evaluation/artifact_lockstep.py).
   linkml: "https://w3id.org/linkml/"
   heritageGraph: "https://cair-nepal.org/heritagegraph/"
-  prov: "http://www.w3.org/ns/prov#"
+  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  rdfs: "http://www.w3.org/2000/01/rdf-schema#"
+  owl: "http://www.w3.org/2002/07/owl#"
+  xsd: "http://www.w3.org/2001/XMLSchema#"
+  skos: "http://www.w3.org/2004/02/skos/core#"
   dcterms: "http://purl.org/dc/terms/"
+  geo: "http://www.opengis.net/ont/geosparql#"
+  time: "http://www.w3.org/2006/time#"
+  aat: "http://vocab.getty.edu/aat/"
+  wikidata: "http://www.wikidata.org/entity/"
+  schema: "http://schema.org/"
+  dbo: "http://dbpedia.org/ontology/"
+  prov: "http://www.w3.org/ns/prov#"
+  crm: "http://www.cidoc-crm.org/cidoc-crm/"
+  crmsci: "http://www.cidoc-crm.org/extensions/crmsci/"
+  crminf: "http://www.cidoc-crm.org/extensions/crminf/"
+  rico: "https://www.ica.org/standards/RiC/ontology#"
+  bibo: "http://purl.org/ontology/bibo/"
+  vann: "http://purl.org/vocab/vann/"
 
 default_prefix: heritageGraph
 default_range: string
@@ -381,6 +407,8 @@ classes:
         slot_uri: dcterms:license
         range: string
         description: "License under which the dataset is released."
+        annotations:
+          lexical_form: code
       curator:
         range: string
         description: "Person or organization curating the dataset."
