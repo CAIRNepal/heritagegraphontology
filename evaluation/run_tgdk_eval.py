@@ -29,6 +29,7 @@ from linkml_runtime import SchemaView
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
+CONTAINER_SCHEMA = ROOT / "ontology" / "HeritageGraph-container.yaml"
 OWL_TTL = ROOT / "ontology" / "HeritageGraph.ttl"
 SHACL_TTL = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
@@ -53,9 +54,13 @@ def section_metrics(sv: SchemaView, g: rdflib.Graph) -> None:
       f"{sum(1 for o in classes.values() if o.mixin)} mixins)")
     w(f"Slots: {len(slots)}   Enums: {len(sv.all_enums())}   "
       f"Enum values: {sum(len(e.permissible_values or {}) for e in sv.all_enums().values())}")
-    obj_props = len(list(g.subjects(RDF.type, OWL.ObjectProperty)))
-    dt_props = len(list(g.subjects(RDF.type, OWL.DatatypeProperty)))
-    w(f"OWL export: {len(g)} triples, {obj_props} object properties, {dt_props} datatype properties")
+    # owl:deprecated stubs (1.0.x IRIs kept for backward compatibility) are
+    # not part of the active vocabulary and are not counted
+    dep = {s for s, o in g.subject_objects(OWL.deprecated) if str(o).lower() == "true"}
+    obj_props = len(set(g.subjects(RDF.type, OWL.ObjectProperty)) - dep)
+    dt_props = len(set(g.subjects(RDF.type, OWL.DatatypeProperty)) - dep)
+    w(f"OWL export: {len(g)} triples, {obj_props} object properties, {dt_props} datatype properties"
+      f" (excluding {len(dep)} deprecated)")
 
     # inheritance metrics over is_a
     depths = {}
@@ -142,7 +147,11 @@ def section_pitfalls(sv: SchemaView, g: rdflib.Graph) -> None:
         referenced.update(o.mixins or []); referenced.update(o.union_of or [])
     for s in slots.values():
         if s.range in classes: referenced.add(s.range)
-    for a in sv.get_class("Container").attributes.values():
+    # the data Container (serialization wrapper, JSON Schema only since 1.1.0)
+    # gives every class a collection; a class reachable only that way still
+    # counts as connected for the JSON/YAML interface
+    cv = SchemaView(str(CONTAINER_SCHEMA))
+    for a in cv.get_class("Container").attributes.values():
         if a.range in classes: referenced.add(a.range)
     # a class is connected if it or any ancestor is referenced (leaf
     # subclasses are reachable through their parent's ranges/collections)

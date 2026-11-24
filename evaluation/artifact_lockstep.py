@@ -51,6 +51,11 @@ owl_g = rdflib.Graph()
 owl_g.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
 shacl_g = rdflib.Graph()
 shacl_g.parse(ROOT / "ontology/HeritageGraph.shacl.ttl", format="turtle")
+# The JSON Schema is generated from the serialization wrapper (core schema +
+# the LinkML tree_root Container and its Metadata header, since 1.1.0), so its
+# $defs are compared against the wrapper's classes.
+cv = SchemaView(str(ROOT / "ontology/HeritageGraph-container.yaml"))
+wrapper_only = {n: c for n, c in cv.all_classes().items() if n not in classes}
 json_schema = json.loads((ROOT / "ontology/HeritageGraph.schema.json").read_text())
 defs = json_schema.get("$defs", json_schema.get("definitions", {}))
 
@@ -71,6 +76,26 @@ owl_classes = {s for s in owl_g.subjects(RDF.type, OWL.Class)
 drift = [c.name for c in classes.values()
          if URIRef(sv.get_uri(c, expand=True)) not in owl_classes]
 report("A classes in OWL", len(classes) - len(drift), len(classes), drift)
+
+# A'. No active (non-deprecated) HeritageGraph class in OWL without a YAML class
+#     or enum (enumerations are owl:oneOf classes).
+HG_NS = sv.schema.prefixes[sv.schema.default_prefix].prefix_reference
+deprecated = {s for s, o in owl_g.subject_objects(OWL.deprecated)
+              if str(o).lower() == "true"}
+yaml_class_uris = ({URIRef(sv.get_uri(c, expand=True)) for c in classes.values()}
+                   | {URIRef(sv.get_uri(e, expand=True)) for e in enums.values()})
+active_hg = {c for c in owl_classes if str(c).startswith(HG_NS) and c not in deprecated}
+drift = sorted(str(c) for c in active_hg - yaml_class_uris)
+report("A' active HG OWL classes in YAML", len(active_hg) - len(drift), len(active_hg), drift)
+
+# W. Wrapper-only terms (Container, Metadata and their attributes) appear in
+# OWL only as owl:deprecated stubs: they are JSON/YAML serialization devices.
+wterms = []
+for c in wrapper_only.values():
+    wterms.append(URIRef(cv.get_uri(c, expand=True)))
+    wterms += [URIRef(HG_NS + a) for a in (c.attributes or {})]
+drift = [str(u) for u in wterms if u not in deprecated]
+report("W wrapper-only terms deprecated in OWL", len(wterms) - len(drift), len(wterms), drift)
 
 # B. YAML slots -> OWL properties (declared, or used in an axiom).
 owl_props = set()
@@ -110,9 +135,10 @@ report("D' orphan SHACL targets", len(targets) - len(orphan_shapes),
        len(targets), orphan_shapes)
 
 # E. Concrete YAML classes + enums <-> JSON Schema $defs (both directions).
-concrete = [c for c in classes.values() if not c.abstract]
-abstract = [c.name for c in classes.values() if c.abstract]
-expected = {c.name for c in concrete} | set(enums)
+json_classes = cv.all_classes()
+concrete = [c for c in json_classes.values() if not c.abstract]
+abstract = [c.name for c in json_classes.values() if c.abstract]
+expected = {c.name for c in concrete} | set(cv.all_enums())
 missing_defs = sorted(expected - set(defs))
 orphan_defs = sorted(set(defs) - expected)
 report("E concrete classes+enums in JSON Schema",

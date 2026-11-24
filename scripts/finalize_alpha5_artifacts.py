@@ -30,6 +30,8 @@ from linkml_runtime import SchemaView
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = ROOT / "ontology" / "HeritageGraph.yaml"
+# serialization wrapper (LinkML tree_root Container + Metadata): JSON Schema only
+CONTAINER_SCHEMA = ROOT / "ontology" / "HeritageGraph-container.yaml"
 OWL_OUT = ROOT / "ontology" / "HeritageGraph.ttl"
 SHACL_OUT = ROOT / "ontology" / "HeritageGraph.shacl.ttl"
 ABOX = ROOT / "examples" / "kathmandu-mini-abox.ttl"
@@ -87,12 +89,21 @@ def humanize_name(name: str) -> str:
 
 
 # Editorial annotation predicates the LinkML schema uses on its own terms.
+# Since 1.1.0 their values are published as skos:editorialNote (prefixed with
+# EDITORIAL_PREFIX) and the hg: predicates remain only as deprecated stubs.
 ANNOTATION_DEFINITIONS = {
     "crminf_pattern": "Editorial note naming the CRMinf pattern that a class instantiates.",
     "design_note": "Editorial note recording a modelling decision about a term.",
     "prov_alignment": "Editorial note naming the PROV-O term that a slot is aligned with.",
     "prov_alignment_note": "Editorial note explaining the status of a class's PROV-O alignment.",
     "provenance_scope": "States whether a class's provenance slots describe the data record or the real-world referent.",
+}
+EDITORIAL_PREFIX = {
+    "crminf_pattern": "CRMinf pattern",
+    "design_note": "Design note",
+    "prov_alignment": "PROV-O alignment",
+    "prov_alignment_note": "PROV-O alignment note",
+    "provenance_scope": "Provenance scope",
 }
 
 
@@ -222,12 +233,6 @@ def finalize_owl(sv: SchemaView) -> Graph:
         "http://purl.org/pav/version",
         "http://purl.org/vocab/vann/preferredNamespacePrefix",
         "http://purl.org/vocab/vann/preferredNamespaceUri",
-        HG_NS + "crminf_pattern",
-        HG_NS + "design_note",
-        HG_NS + "prov_alignment",
-        HG_NS + "prov_alignment_note",
-        HG_NS + "provenance_scope",
-        "https://w3id.org/linkml/permissible_values",
     ]
     for ap in ANNOTATION_PREDICATES:
         u = URIRef(ap)
@@ -352,12 +357,10 @@ def finalize_owl(sv: SchemaView) -> Graph:
             n_title += 1
     print(f"labelled {n_title} property(ies) from their slot title")
 
-    # --- labels and definitions for the schema's own annotation predicates ---
-    for name, definition in ANNOTATION_DEFINITIONS.items():
-        u = URIRef(HG_NS + name)
-        if (u, RDF.type, OWL.AnnotationProperty) in g:
-            g.add((u, RDFS.label, Literal(humanize_name(name).lower(), lang="en")))
-            g.add((u, SKOS.definition, Literal(definition, lang="en")))
+    # --- LinkML serialization constructs out of the OWL (1.1.0) ---
+    strip_linkml_serialization(g)
+    add_deprecated_stubs(g)
+
     # the LinkML schema IRI, which gen-owl uses as every term's skos:inScheme
     schema_iri = URIRef(HG_NS + "schema")
     if (None, SKOS.inScheme, schema_iri) in g:
@@ -495,6 +498,88 @@ def finalize_owl(sv: SchemaView) -> Graph:
 
 
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
+
+
+LINKML_PV = URIRef("https://w3id.org/linkml/permissible_values")
+DEPRECATION_NOTE = (
+    "Deprecated in HeritageGraph 1.1.0: a LinkML serialization construct for "
+    "JSON/YAML data files, not a domain term. It is defined in "
+    "HeritageGraph-container.yaml and used only by the JSON Schema; RDF instance "
+    "data should not use it.")
+
+
+def strip_linkml_serialization(g: Graph) -> None:
+    """Remove LinkML-internal vocabulary from the OWL release.
+
+    (1) linkml:permissible_values: gen-owl lists each enum value on its enum
+        class with this LinkML predicate; the OWL already states the values
+        as owl:oneOf over named individuals (and the SKOS scheme lists them),
+        so the triples only add a non-OWL annotation property.
+    (2) The schema's editorial annotations (design_note, prov_alignment, ...)
+        become skos:editorialNote on HeritageGraph's own terms, prefixed with
+        the note kind so no information is lost; on external terms (reused
+        CIDOC-CRM / CRMinf / PROV-O IRIs) they are dropped, since
+        HeritageGraph does not annotate terms it does not own."""
+    n_pv = len(list(g.triples((None, LINKML_PV, None))))
+    g.remove((None, LINKML_PV, None))
+    g.remove((LINKML_PV, None, None))
+    n_own, n_ext = 0, 0
+    for name, prefix in EDITORIAL_PREFIX.items():
+        pred = URIRef(HG_NS + name)
+        for s, o in list(g.subject_objects(pred)):
+            g.remove((s, pred, o))
+            if isinstance(s, URIRef) and str(s).startswith(HG_NS):
+                g.add((s, SKOS.editorialNote, Literal(f"{prefix}: {o}", lang="en")))
+                n_own += 1
+            else:
+                n_ext += 1
+        g.remove((pred, None, None))
+    print(f"removed {n_pv} linkml:permissible_values triple(s); editorial notes: "
+          f"{n_own} -> skos:editorialNote, {n_ext} on external terms dropped")
+
+
+def add_deprecated_stubs(g: Graph) -> None:
+    """Keep every IRI that 1.0.x published for a LinkML-only construct as an
+    owl:deprecated stub (declaration + obsolete label + definition, no logical
+    axioms), so the change is backward compatible: the container classes and
+    their collection/header properties (read from the wrapper schema), and the
+    editorial annotation predicates (replaced by skos:editorialNote)."""
+    cv = SchemaView(str(CONTAINER_SCHEMA))
+    core = set(SchemaView(str(SCHEMA)).all_classes())
+    n = 0
+
+    def stub(u: URIRef, typ: URIRef, label: str, definition: str | None, note: str) -> None:
+        g.add((u, RDF.type, typ))
+        g.add((u, OWL.deprecated, Literal(True)))
+        g.remove((u, RDFS.label, None))
+        g.add((u, RDFS.label, Literal(f"obsolete {label}", lang="en")))
+        if definition:
+            g.add((u, SKOS.definition, Literal(definition, lang="en")))
+        g.add((u, SKOS.editorialNote, Literal(note, lang="en")))
+        g.add((u, SKOS.inScheme, URIRef(HG_NS + "schema")))
+
+    for cn, c in cv.all_classes(imports=False).items():
+        if cn in core:
+            continue
+        cls = URIRef(cv.get_uri(c, expand=True))
+        stub(cls, OWL.Class, humanize_name(cn), c.description, DEPRECATION_NOTE)
+        n += 1
+        for an, a in (c.attributes or {}).items():
+            prop = URIRef(HG_NS + an)
+            rng = a.range or "string"
+            typ = OWL.ObjectProperty if (rng in cv.all_classes() or rng in cv.all_enums()) \
+                else OWL.DatatypeProperty
+            stub(prop, typ, (a.title or humanize_name(an)).lower(), a.description, DEPRECATION_NOTE)
+            n += 1
+    for name, definition in ANNOTATION_DEFINITIONS.items():
+        u = URIRef(HG_NS + name)
+        stub(u, OWL.AnnotationProperty, humanize_name(name).lower(), definition,
+             "Deprecated in HeritageGraph 1.1.0: the note is published as "
+             f"skos:editorialNote with the prefix '{EDITORIAL_PREFIX[name]}: '.")
+        g.add((u, DCTERMS.isReplacedBy, SKOS.editorialNote))
+        n += 1
+    g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
+    print(f"kept {n} published LinkML-only IRI(s) as owl:deprecated stubs")
 
 
 def drop_vacuous_min_cardinality(g: Graph) -> None:
@@ -925,10 +1010,18 @@ def sync_published() -> None:
 
 def gen_json_schema() -> None:
     out = ROOT / "ontology" / "HeritageGraph.schema.json"
+    # generated from the serialization wrapper (core schema + Container/Metadata);
+    # $id and title stay those of the core schema so the published JSON Schema
+    # keeps its identity across 1.0.x -> 1.1.0 (its $defs are unchanged).
+    import json
+    import yaml
     res = subprocess.run(
-        ["linkml", "generate", "json-schema", str(SCHEMA)],
+        ["linkml", "generate", "json-schema", str(CONTAINER_SCHEMA)],
         cwd=ROOT, check=True, capture_output=True, text=True)
-    out.write_text(res.stdout, encoding="utf-8")
+    js = json.loads(res.stdout)
+    core = yaml.safe_load(SCHEMA.read_text(encoding="utf-8"))
+    js["$id"], js["title"] = core["id"], core["name"]
+    out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")
 
 

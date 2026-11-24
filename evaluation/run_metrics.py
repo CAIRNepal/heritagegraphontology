@@ -79,9 +79,17 @@ def run_evaluation():
     # ──────────────────────────────────────────────────────────────────
     log(section("§4.6  Ontology Metrics"))
 
+    # owl:deprecated stubs (1.0.x IRIs kept for backward compatibility, e.g.
+    # the LinkML Container/Metadata terms) are excluded from every count
+    deprecated = {s for s, o in g.subject_objects(OWL.deprecated)
+                  if str(o).lower() == "true"}
+    log(f"  Deprecated terms (excluded): {len(deprecated)}")
+    metric("deprecated_terms_excluded", len(deprecated))
+
     # Named classes (exclude BNodes)
     all_named_classes = sorted(
-        {s for s in g.subjects(RDF.type, OWL.Class) if isinstance(s, URIRef)},
+        {s for s in g.subjects(RDF.type, OWL.Class)
+         if isinstance(s, URIRef) and s not in deprecated},
         key=str
     )
     # HeritageGraph-namespace classes
@@ -98,7 +106,8 @@ def run_evaluation():
 
     # Object properties
     obj_props = sorted(
-        {s for s in g.subjects(RDF.type, OWL.ObjectProperty) if isinstance(s, URIRef)},
+        {s for s in g.subjects(RDF.type, OWL.ObjectProperty)
+         if isinstance(s, URIRef) and s not in deprecated},
         key=str
     )
     log(f"  Object properties          : {len(obj_props)}")
@@ -106,7 +115,8 @@ def run_evaluation():
 
     # Datatype properties
     dat_props = sorted(
-        {s for s in g.subjects(RDF.type, OWL.DatatypeProperty) if isinstance(s, URIRef)},
+        {s for s in g.subjects(RDF.type, OWL.DatatypeProperty)
+         if isinstance(s, URIRef) and s not in deprecated},
         key=str
     )
     log(f"  Datatype properties        : {len(dat_props)}")
@@ -146,7 +156,8 @@ def run_evaluation():
     metric("named_individuals", len(named_individuals))
 
     # Annotation properties
-    ann_props = {s for s in g.subjects(RDF.type, OWL.AnnotationProperty) if isinstance(s, URIRef)}
+    ann_props = {s for s in g.subjects(RDF.type, OWL.AnnotationProperty)
+                 if isinstance(s, URIRef) and s not in deprecated}
     log(f"  Annotation properties      : {len(ann_props)}")
     metric("annotation_properties", len(ann_props))
 
