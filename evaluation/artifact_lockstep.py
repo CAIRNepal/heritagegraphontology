@@ -90,11 +90,16 @@ report("A' active HG OWL classes in YAML", len(active_hg) - len(drift), len(acti
 
 # W. Wrapper-only terms (Container, Metadata and their attributes) appear in
 # OWL only as owl:deprecated stubs: they are JSON/YAML serialization devices.
-wterms = []
+wterms, absent = [], []
 for c in wrapper_only.values():
     wterms.append(URIRef(cv.get_uri(c, expand=True)))
-    wterms += [URIRef(HG_NS + a) for a in (c.attributes or {})]
+    wterms += [URIRef(HG_NS + n) for n, a in (c.attributes or {}).items()
+               if not (a.annotations and "since" in a.annotations)]
+    # collections added after 1.0.x were never OWL terms: they must stay out of the OWL
+    absent += [URIRef(HG_NS + n) for n, a in (c.attributes or {}).items()
+              if a.annotations and "since" in a.annotations]
 drift = [str(u) for u in wterms if u not in deprecated]
+drift += [f"{u} (new collection in OWL)" for u in absent if (u, None, None) in owl_g]
 report("W wrapper-only terms deprecated in OWL", len(wterms) - len(drift), len(wterms), drift)
 
 # B. YAML slots -> OWL properties (declared, or used in an axiom).

@@ -223,6 +223,23 @@ enums:
       RajGuthi:
         description: "Royal endowment trust"
 
+  EndowmentEventType:
+    description: "Controlled vocabulary for events in the life of a Guthi endowment."
+    permissible_values:
+      Founding:
+        title: "Founding of an endowment"
+        description: "Dedication of land or other property that creates an endowment (and usually its Guthi)."
+      Augmentation:
+        title: "Augmentation of an endowment"
+        description: "Addition of land or other property to an existing endowment."
+      Nationalisation:
+        title: "Nationalisation of an endowment"
+        description: "Transfer of an endowment to state administration (e.g. the Guthi Sansthan, established 1964 CE / VS 2021)."
+      Alienation:
+        title: "Alienation of an endowment"
+        description: "Loss of endowed property to private or other ownership (sale, encroachment, registration in a private name)."
+
+
 
 
 prefixes:
@@ -1001,6 +1018,12 @@ classes:
       # conversion claims can be provenanced like any other statement.
       - Assertion
       - CalendarSystem
+      # GUTHI PATTERN (1.1.0): endowments, their events, hereditary offices and
+      # custody periods can be the subject of provenance-bearing assertions.
+      - Endowment
+      - EndowmentEvent
+      - HereditaryRoleTenure
+      - CustodyPeriod
     # DL FIX (alpha.7): dropped the Entity mixin. It asserted
     # AssertionSubject rdfs:subClassOf prov:Entity, and because the union
     # contains activity classes (RitualEvent, Production, Consecration, ...)
@@ -1368,6 +1391,113 @@ classes:
     slots:
       - name
       - note
+    mixins:
+      - Entity
+  # GUTHI PATTERN (1.1.0): endowment and hereditary mandate, the two things a
+  # Guthi has that plain CIDOC-CRM groups (E74) and legal bodies (E40) do not
+  # capture; CustodyPeriod gives custody the same dated period pattern as
+  # KumariTenure, so "who held this structure when X happened" is answered
+  # from one node instead of being reconstructed from transfer-event chains.
+  Endowment:
+    class_uri: heritageGraph:Endowment
+    description: "Land, income or other property permanently dedicated to sustain a structure, a ritual or festival,
+      or a sacred office, and held by a Guthi. The endowment, not the membership, is what makes a Guthi a trust."
+    broad_mappings:
+      - crm:E72_Legal_Object
+    slots:
+      - name
+      - note
+      - endowment_holder
+      - endowed_land
+      - sustains
+      - has_assertion
+    slot_usage:
+      name:
+        required: true
+      endowment_holder:
+        required: true
+      sustains:
+        required: true
+    mixins:
+      - Entity
+
+  EndowmentEvent:
+    class_uri: heritageGraph:EndowmentEvent
+    description: "Event that founds, augments, nationalises or alienates a Guthi endowment, with its donor or
+      recipient and its date."
+    broad_mappings:
+      - crm:E7_Activity
+    slots:
+      - name
+      - note
+      - concerns_endowment
+      - endowment_event_type
+      - endowment_donor
+      - endowment_recipient
+      - has_timespan
+      - took_place_at
+      - has_assertion
+    slot_usage:
+      concerns_endowment:
+        required: true
+      endowment_event_type:
+        required: true
+      has_timespan:
+        required: true
+    mixins:
+      - Activity
+
+  HereditaryRoleTenure:
+    aliases:
+      - "Hereditary ritual office"
+    class_uri: heritageGraph:HereditaryRoleTenure
+    description: "Time-bounded holding of a hereditary ritual duty by a person or caste group, under the mandate of
+      a Guthi, with the rule by which the duty passes on. The same period pattern as KumariTenure, applied to
+      hereditary offices (priests, chariot builders, musicians)."
+    broad_mappings:
+      - crm:E4_Period
+    slots:
+      - name
+      - note
+      - role_holder
+      - role_duty
+      - duty_for
+      - mandated_by
+      - succession_rule
+      - succeeds
+      - has_timespan
+      - has_assertion
+    slot_usage:
+      role_holder:
+        required: true
+      role_duty:
+        required: true
+    mixins:
+      - Entity
+
+  CustodyPeriod:
+    class_uri: heritageGraph:CustodyPeriod
+    description: "Dated period during which an actor (typically a Guthi) holds custody of a heritage structure or
+      object, opened and closed by transfer-of-custody events. Unlike the untimed crm:P50i_is_current_keeper_of,
+      it answers who held custody at a given date."
+    broad_mappings:
+      - crm:E4_Period
+    slots:
+      - name
+      - note
+      - custody_holder
+      - custody_object
+      - has_timespan
+      - custody_opened_by
+      - custody_closed_by
+      - has_assertion
+    slot_usage:
+      custody_holder:
+        required: true
+      custody_object:
+        required: true
+      has_timespan:
+        required: true
     mixins:
       - Entity
   # Container and Metadata (the LinkML tree_root and its dataset header) moved
@@ -2596,3 +2726,90 @@ slots:
     range: AssertionSubject
     multivalued: true
     description: Heritage entity or event described by this information object.
+
+  # ---- Guthi pattern (1.1.0): endowment, hereditary mandate, custody period ----
+  endowment_holder:
+    slot_uri: crm:P105_right_held_by
+    range: Guthi
+    description: "Guthi that holds the endowment."
+  endowed_land:
+    slot_uri: heritageGraph:endowedLand
+    range: Place
+    multivalued: true
+    description: "Land (plots, fields) dedicated to the endowment."
+  sustains:
+    slot_uri: heritageGraph:sustains
+    # base range for a sound OWL range; any_of refines it (as performed_by_group)
+    range: AssertionSubject
+    any_of:
+      - range: ArchitecturalStructure
+      - range: RitualEvent
+      - range: KumariTenure
+      - range: HereditaryRoleTenure
+    multivalued: true
+    description: "Structure, ritual or festival, or sacred office whose upkeep or performance the endowment funds."
+  concerns_endowment:
+    slot_uri: heritageGraph:concernsEndowment
+    range: Endowment
+    description: "Endowment founded, augmented, nationalised or alienated by this event."
+  endowment_event_type:
+    slot_uri: heritageGraph:endowmentEventType
+    range: EndowmentEventType
+    description: "Kind of endowment event (founding, augmentation, nationalisation, alienation)."
+  endowment_donor:
+    slot_uri: heritageGraph:endowmentDonor
+    range: Actor
+    multivalued: true
+    broad_mappings:
+      - crm:P23_transferred_title_from
+    description: "Person or group who gave the property (the donor in a founding or augmentation)."
+  endowment_recipient:
+    slot_uri: heritageGraph:endowmentRecipient
+    range: Actor
+    broad_mappings:
+      - crm:P22_transferred_title_to
+    description: "Guthi or state body that received the property (e.g. the Guthi Sansthan in a nationalisation)."
+  role_holder:
+    slot_uri: heritageGraph:roleHolder
+    range: Actor
+    any_of:
+      - range: Person
+      - range: CasteGroup
+    description: "Person or caste group holding the hereditary duty during this tenure."
+  role_duty:
+    slot_uri: heritageGraph:roleDuty
+    range: string
+    description: "The ritual duty held (e.g. building the festival chariot, performing the daily worship)."
+  duty_for:
+    slot_uri: heritageGraph:dutyFor
+    range: RitualEvent
+    multivalued: true
+    description: "Ritual or festival the hereditary duty serves."
+  mandated_by:
+    slot_uri: heritageGraph:mandatedBy
+    range: Guthi
+    description: "Guthi that mandates (and usually funds) the hereditary duty."
+  succession_rule:
+    slot_uri: heritageGraph:successionRule
+    range: string
+    description: "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group)."
+  succeeds:
+    slot_uri: heritageGraph:succeeds
+    range: HereditaryRoleTenure
+    description: "Earlier tenure of the same hereditary office that this tenure succeeds."
+  custody_holder:
+    slot_uri: heritageGraph:custodyHolder
+    range: Actor
+    description: "Actor (typically a Guthi) holding custody during the period."
+  custody_object:
+    slot_uri: heritageGraph:custodyObject
+    range: PhysicalHeritageThing
+    description: "Structure or object in custody during the period."
+  custody_opened_by:
+    slot_uri: heritageGraph:custodyOpenedBy
+    range: TransferOfCustody
+    description: "Transfer of custody that began the period."
+  custody_closed_by:
+    slot_uri: heritageGraph:custodyClosedBy
+    range: TransferOfCustody
+    description: "Transfer of custody that ended the period."

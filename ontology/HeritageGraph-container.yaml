@@ -308,6 +308,46 @@ classes:
         inlined: true
         inlined_as_list: true
 
+      endowments:
+        description: "Collection of Endowment instances"
+        range: Endowment
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        # added after the OWL release stopped carrying container terms: no OWL IRI
+        annotations:
+          since: "1.1.0"
+
+      endowment_events:
+        description: "Collection of EndowmentEvent instances"
+        range: EndowmentEvent
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        # added after the OWL release stopped carrying container terms: no OWL IRI
+        annotations:
+          since: "1.1.0"
+
+      hereditary_role_tenures:
+        description: "Collection of HereditaryRoleTenure instances"
+        range: HereditaryRoleTenure
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        # added after the OWL release stopped carrying container terms: no OWL IRI
+        annotations:
+          since: "1.1.0"
+
+      custody_periods:
+        description: "Collection of CustodyPeriod instances"
+        range: CustodyPeriod
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        # added after the OWL release stopped carrying container terms: no OWL IRI
+        annotations:
+          since: "1.1.0"
+
       metadata:
         title: "has metadata"
         description: "Dataset metadata"

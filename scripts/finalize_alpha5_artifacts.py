@@ -567,6 +567,8 @@ def add_deprecated_stubs(g: Graph) -> None:
         stub(cls, OWL.Class, humanize_name(cn), c.description, DEPRECATION_NOTE)
         n += 1
         for an, a in (c.attributes or {}).items():
+            if a.annotations and "since" in a.annotations:
+                continue  # added after 1.0.x: never published in the OWL, no stub
             prop = URIRef(HG_NS + an)
             rng = a.range or "string"
             typ = OWL.ObjectProperty if (rng in cv.all_classes() or rng in cv.all_enums()) \

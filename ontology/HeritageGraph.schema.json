@@ -1915,6 +1915,16 @@
                         "null"
                     ]
                 },
+                "custody_periods": {
+                    "description": "Collection of CustodyPeriod instances",
+                    "items": {
+                        "$ref": "#/$defs/CustodyPeriod"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "data_custodians": {
                     "description": "Collection of DataCustodian instances",
                     "items": {
@@ -1955,6 +1965,26 @@
                         "null"
                     ]
                 },
+                "endowment_events": {
+                    "description": "Collection of EndowmentEvent instances",
+                    "items": {
+                        "$ref": "#/$defs/EndowmentEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "endowments": {
+                    "description": "Collection of Endowment instances",
+                    "items": {
+                        "$ref": "#/$defs/Endowment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "enshrinement_events": {
                     "description": "Collection of Enshrinement event instances",
                     "items": {
@@ -1987,6 +2017,16 @@
                     "description": "Collection of Guthi instances",
                     "items": {
                         "$ref": "#/$defs/Guthi"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "hereditary_role_tenures": {
+                    "description": "Collection of HereditaryRoleTenure instances",
+                    "items": {
+                        "$ref": "#/$defs/HereditaryRoleTenure"
                     },
                     "type": [
                         "array",
@@ -2271,6 +2311,130 @@
                 "id"
             ],
             "title": "Container",
+            "type": "object"
+        },
+        "CustodyPeriod": {
+            "additionalProperties": false,
+            "description": "Dated period during which an actor (typically a Guthi) holds custody of a heritage structure or object, opened and closed by transfer-of-custody events. Unlike the untimed crm:P50i_is_current_keeper_of, it answers who held custody at a given date.",
+            "properties": {
+                "custody_closed_by": {
+                    "description": "Transfer of custody that ended the period.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "custody_holder": {
+                    "description": "Actor (typically a Guthi) holding custody during the period.",
+                    "type": "string"
+                },
+                "custody_object": {
+                    "description": "Structure or object in custody during the period.",
+                    "type": "string"
+                },
+                "custody_opened_by": {
+                    "description": "Transfer of custody that began the period.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_timespan": {
+                    "description": "Links event to its temporal extent",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "custody_holder",
+                "custody_object",
+                "has_timespan",
+                "id"
+            ],
+            "title": "CustodyPeriod",
             "type": "object"
         },
         "DataCustodian": {
@@ -3370,6 +3534,302 @@
             ],
             "title": "DocumentationActivity",
             "type": "object"
+        },
+        "Endowment": {
+            "additionalProperties": false,
+            "description": "Land, income or other property permanently dedicated to sustain a structure, a ritual or festival, or a sacred office, and held by a Guthi. The endowment, not the membership, is what makes a Guthi a trust.",
+            "properties": {
+                "endowed_land": {
+                    "description": "Land (plots, fields) dedicated to the endowment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "endowment_holder": {
+                    "description": "Guthi that holds the endowment.",
+                    "type": "string"
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sustains": {
+                    "description": "Structure, ritual or festival, or sacred office whose upkeep or performance the endowment funds.",
+                    "items": {
+                        "$ref": "#/$defs/AssertionSubject",
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "endowment_holder",
+                "sustains",
+                "id"
+            ],
+            "title": "Endowment",
+            "type": "object"
+        },
+        "EndowmentEvent": {
+            "additionalProperties": false,
+            "description": "Event that founds, augments, nationalises or alienates a Guthi endowment, with its donor or recipient and its date.",
+            "properties": {
+                "concerns_endowment": {
+                    "description": "Endowment founded, augmented, nationalised or alienated by this event.",
+                    "type": "string"
+                },
+                "ended_at_time": {
+                    "description": "Time at which this activity ended.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "endowment_donor": {
+                    "description": "Person or group who gave the property (the donor in a founding or augmentation).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "endowment_event_type": {
+                    "$ref": "#/$defs/EndowmentEventType",
+                    "description": "Kind of endowment event (founding, augmentation, nationalisation, alienation)."
+                },
+                "endowment_recipient": {
+                    "description": "Guthi or state body that received the property (e.g. the Guthi Sansthan in a nationalisation).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "generated": {
+                    "description": "Entity generated by this activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_timespan": {
+                    "description": "Links event to its temporal extent",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "started_at_time": {
+                    "description": "Time at which this activity started.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "took_place_at": {
+                    "description": "Place where the event occurred",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "used": {
+                    "description": "Entity used by this activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_associated_with": {
+                    "description": "Agent associated with responsibility for this activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_informed_by": {
+                    "description": "Activity that informed this activity; PROV-O uses this when the intervening generated and used entity is unknown or omitted.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "concerns_endowment",
+                "endowment_event_type",
+                "has_timespan",
+                "id"
+            ],
+            "title": "EndowmentEvent",
+            "type": "object"
+        },
+        "EndowmentEventType": {
+            "description": "Controlled vocabulary for events in the life of a Guthi endowment.",
+            "enum": [
+                "Founding",
+                "Augmentation",
+                "Nationalisation",
+                "Alienation"
+            ],
+            "title": "EndowmentEventType",
+            "type": "string"
         },
         "Enshrinement": {
             "additionalProperties": false,
@@ -4510,6 +4970,157 @@
             ],
             "title": "GuthiType",
             "type": "string"
+        },
+        "HereditaryRoleTenure": {
+            "additionalProperties": false,
+            "description": "Time-bounded holding of a hereditary ritual duty by a person or caste group, under the mandate of a Guthi, with the rule by which the duty passes on. The same period pattern as KumariTenure, applied to hereditary offices (priests, chariot builders, musicians).",
+            "properties": {
+                "duty_for": {
+                    "description": "Ritual or festival the hereditary duty serves.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_timespan": {
+                    "description": "Links event to its temporal extent",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "mandated_by": {
+                    "description": "Guthi that mandates (and usually funds) the hereditary duty.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "role_duty": {
+                    "description": "The ritual duty held (e.g. building the festival chariot, performing the daily worship).",
+                    "type": "string"
+                },
+                "role_holder": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "description": "Person or caste group holding the hereditary duty during this tenure.",
+                    "type": "string"
+                },
+                "succeeds": {
+                    "description": "Earlier tenure of the same hereditary office that this tenure succeeds.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "succession_rule": {
+                    "description": "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "role_holder",
+                "role_duty",
+                "id"
+            ],
+            "title": "HereditaryRoleTenure",
+            "type": "object"
         },
         "HistoricalEvent": {
             "additionalProperties": false,
@@ -11579,6 +12190,16 @@
                 "null"
             ]
         },
+        "custody_periods": {
+            "description": "Collection of CustodyPeriod instances",
+            "items": {
+                "$ref": "#/$defs/CustodyPeriod"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "data_custodians": {
             "description": "Collection of DataCustodian instances",
             "items": {
@@ -11619,6 +12240,26 @@
                 "null"
             ]
         },
+        "endowment_events": {
+            "description": "Collection of EndowmentEvent instances",
+            "items": {
+                "$ref": "#/$defs/EndowmentEvent"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "endowments": {
+            "description": "Collection of Endowment instances",
+            "items": {
+                "$ref": "#/$defs/Endowment"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "enshrinement_events": {
             "description": "Collection of Enshrinement event instances",
             "items": {
@@ -11651,6 +12292,16 @@
             "description": "Collection of Guthi instances",
             "items": {
                 "$ref": "#/$defs/Guthi"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "hereditary_role_tenures": {
+            "description": "Collection of HereditaryRoleTenure instances",
+            "items": {
+                "$ref": "#/$defs/HereditaryRoleTenure"
             },
             "type": [
                 "array",
