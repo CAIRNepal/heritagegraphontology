@@ -28,6 +28,11 @@ Subcommands (default: all):
                   property-chain (non-simple) property, which would take the
                   merge outside OWL 2 DL.
 
+  core-crm-disjointness  Core + CIDOC-CRM must not type any subject or object
+                  of an HG property as both crm:E2 Temporal Entity and crm:E77
+                  Persistent Item; each CRM-path shortcut (property chain)
+                  must be inferred from data written the CRM way.
+
   no-external-superclass  Core + LUX module + CIDOC-CRM (+ CRMinf, CRMsci) must not give
                   an external class a HeritageGraph superclass, or an enumeration
                   individual an extra HeritageGraph type.
@@ -723,6 +728,123 @@ def run_merged_abox() -> int:
     return 0 if ok else 1
 
 
+def _core_crm_probe(core: Graph) -> tuple[Graph, dict]:
+    """One subject per (HG property, domain class) and one object typed with
+    the property's range, linked by the property."""
+    from rdflib.collection import Collection as _C
+    abox, where = Graph(), {}
+    props = sorted({p for t in (OWL.ObjectProperty, OWL.DatatypeProperty)
+                    for p in core.subjects(RDF.type, t)
+                    if isinstance(p, URIRef) and str(p).startswith(HG_NS)
+                    and (p, OWL.deprecated, None) not in core})
+
+    def named(c):
+        if isinstance(c, URIRef):
+            return [c]
+        u = core.value(c, OWL.unionOf)
+        return [m for m in _C(core, u) if isinstance(m, URIRef)] if u is not None else []
+
+    # classes that use each property: its rdfs:domain, and every class with a
+    # restriction on it (most HG properties carry no rdfs:domain)
+    users: dict = {}
+    for r in core.subjects(OWL.onProperty, None):
+        p = core.value(r, OWL.onProperty)
+        for c in core.subjects(RDFS.subClassOf, r):
+            if isinstance(c, URIRef):
+                users.setdefault(p, set()).add(c)
+    for i, p in enumerate(props):
+        doms = sorted({d for c in core.objects(p, RDFS.domain) for d in named(c)}
+                      | users.get(p, set()))
+        rngs = [r for c in core.objects(p, RDFS.range) for r in named(c)]
+        is_obj = (p, RDF.type, OWL.ObjectProperty) in core
+        for j, d in enumerate(doms):
+            x = URIRef(f"{PROBE_NS}core/{i}-{j}")
+            abox.add((x, RDF.type, d)); abox.add((x, RDF.type, OWL.NamedIndividual))
+            where[x] = f"{p.split('/')[-1]} subject ({d.split('/')[-1]})"
+            if is_obj:
+                y = URIRef(f"{PROBE_NS}core/{i}-{j}-o")
+                abox.add((y, RDF.type, OWL.NamedIndividual))
+                for r in rngs:
+                    abox.add((y, RDF.type, r))
+                abox.add((x, p, y))
+                where[y] = f"{p.split('/')[-1]} object"
+    return abox, where
+
+
+def _core_crm_violations(edit=None) -> tuple[list[str], int]:
+    vocabs = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3", "CRMinf v1.0", "CRMsci v2.0")]
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    if edit:
+        edit(core)
+    abox, where = _core_crm_probe(core)
+    types = _reason_types([core] + vocabs, abox)
+    out = [f"C1 {where[x]}: both crm:E2_Temporal_Entity and crm:E77_Persistent_Item"
+           for x, t in types.items() if x in where and E2 in t and E77 in t]
+    return sorted(set(out)), len(where)
+
+
+def run_core_crm_disjointness() -> int:
+    """Fail if the core with CIDOC-CRM (+ CRMinf, CRMsci) types any subject or
+    object of a HeritageGraph property as both crm:E2 Temporal Entity and
+    crm:E77 Persistent Item (disjoint by the E2 scope note). This is what
+    hg:birthTimespan ⊑ crm:P4_has_time-span did to every person with a birth
+    date (P4 has domain E2, a person is an E77); the negative control re-adds
+    that axiom and must be caught. Also checks that each CRM-path shortcut
+    (owl:propertyChainAxiom) is inferred from data written the CRM way."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    violations, n = _core_crm_violations()
+    print(f"core + CIDOC-CRM 7.1.3 + CRMinf + CRMsci, HermiT: {n} probe individuals "
+          f"(a subject per HG property and domain class, an object per range)")
+    for v in violations:
+        print("  VIOLATION:", v)
+    def _old_birth(g: Graph) -> None:   # the 1.0.x modelling
+        bt = URIRef(HG_NS + "birthTimespan")
+        g.remove((bt, OWL.propertyChainAxiom, None))
+        g.add((bt, RDFS.subPropertyOf, URIRef(CRM_NS + "P4_has_time-span")))
+    control, _ = _core_crm_violations(_old_birth)
+    caught = len(control) > len(violations)
+    print(f"negative control (1.0.x: birthTimespan ⊑ crm:P4_has_time-span, no chain): "
+          f"{len(control) - len(violations)} additional violation(s) -> {'caught' if caught else 'NOT caught'}")
+
+    # shortcuts: person -P98i-> E67 -P4-> ts must give person birthTimespan ts
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    vocabs = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3",)]
+    chains_ok = True
+    from rdflib.collection import Collection as _C
+    for prop, lst in core.subject_objects(OWL.propertyChainAxiom):
+        steps = list(_C(core, lst))
+        nodes = [URIRef(f"{PROBE_NS}chain/{prop.split('/')[-1]}/{k}") for k in range(len(steps) + 1)]
+        abox = Graph()
+        for k, st in enumerate(steps):
+            abox.add((nodes[k], st, nodes[k + 1]))
+        for x in nodes:
+            abox.add((x, RDF.type, OWL.NamedIndividual))
+        with tempfile.TemporaryDirectory() as td:
+            merged = Graph(); merged += core
+            for v in vocabs:
+                merged.parse(v)
+            merged += abox; merged.remove((None, OWL.imports, None))
+            src, out = Path(td) / "m.ttl", Path(td) / "r.ttl"
+            merged.serialize(src, format="turtle")
+            proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                                   "--axiom-generators", "PropertyAssertion",
+                                   "--input", str(src), "--output", str(out)],
+                                  capture_output=True, text=True)
+            got = False
+            if proc.returncode == 0:
+                r = Graph(); r.parse(out, format="turtle")
+                got = (nodes[0], prop, nodes[-1]) in r
+        chains_ok &= got
+        print(f"shortcut {prop.split('/')[-1]} from {' / '.join(x.split('/')[-1] for x in steps)}: "
+              f"{'inferred' if got else 'NOT inferred'}")
+    if violations or not caught or not chains_ok:
+        print("FAIL")
+        return 1
+    print("PASS: no HeritageGraph property makes a CRM persistent item a temporal entity, "
+          "and every CRM-path shortcut is inferred.")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
@@ -731,6 +853,7 @@ PROBES = {
     "no-external-superclass": run_no_external_superclass,
     "tenure-not-event": run_tenure_not_event,
     "lux-conservativity": run_lux_conservativity,
+    "core-crm-disjointness": run_core_crm_disjointness,
 }
 
 

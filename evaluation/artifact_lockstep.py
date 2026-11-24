@@ -22,6 +22,12 @@ This script checks that property term by term, treating the YAML schema
                          entry; abstract classes (mixins, unions) are exempt
                          because instance payloads cannot instantiate them,
                          and no $defs entry lacks a YAML counterpart.
+  L  Language-tagged text in all three artefacts: a slot whose OWL range is
+                         rdf:PlainLiteral (text that may carry a language tag)
+                         accepts a JSON-LD language map in every JSON field
+                         and xsd:string or rdf:langString in every SHACL
+                         shape; a code slot (xsd:string in OWL) accepts
+                         neither. Sample instances check the JSON side.
 
 Exit status is non-zero if any drift is found, so the audit can gate the
 release pipeline.
@@ -160,6 +166,84 @@ report("E' orphan JSON Schema defs", len(defs) - len(orphan_defs),
        len(defs), orphan_defs)
 print(f"       (abstract classes exempt from JSON Schema by design: "
       f"{len(abstract)}: {', '.join(sorted(abstract))})")
+
+# L. Language-tagged text: OWL, SHACL and JSON Schema agree slot by slot.
+RDFNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+XSD_STRING = URIRef("http://www.w3.org/2001/XMLSchema#string")
+PLAIN = URIRef(RDFNS + "PlainLiteral")
+LANGSTRING = URIRef(RDFNS + "langString")
+
+
+def owl_text_kind(u):
+    vals = set(owl_g.objects(u, rdflib.RDFS.range))
+    vals |= {owl_g.value(r, OWL.allValuesFrom) for r in owl_g.subjects(OWL.onProperty, u)}
+    if PLAIN in vals:
+        return "text"
+    if XSD_STRING in vals:
+        return "code"
+    return None
+
+
+def json_has_langmap(pdef):
+    alts = pdef.get("anyOf", [])
+    return any(a.get("type") == "object" and "propertyNames" in a for a in alts)
+
+
+def shacl_accepts_langstring(u):
+    shapes = [ps for ps in shacl_g.subjects(SH.path, u)]
+    ok = []
+    for ps in shapes:
+        dts = set(shacl_g.objects(ps, SH.datatype))
+        for lst in shacl_g.objects(ps, SH["or"]):
+            for m in Collection(shacl_g, lst):
+                dts |= set(shacl_g.objects(m, SH.datatype))
+        if dts:   # shapes with no datatype constraint (e.g. maxCount 0) are neutral
+            ok.append(LANGSTRING in dts)
+    return shapes, ok
+
+
+drift, n = [], 0
+for s in slots.values():
+    if not s.slot_uri:
+        continue
+    u = URIRef(sv.get_uri(s, expand=True))
+    kind = owl_text_kind(u)
+    if kind is None:
+        continue
+    n += 1
+    for cname, cdef in defs.items():
+        pdef = cdef.get("properties", {}).get(s.name)
+        if pdef is not None and json_has_langmap(pdef) != (kind == "text"):
+            drift.append(f"{s.name} JSON {cname} ({kind})")
+    shapes, ok = shacl_accepts_langstring(u)
+    if any(o != (kind == "text") for o in ok):
+        drift.append(f"{s.name} SHACL ({kind})")
+report("L text vs code slots agree across OWL, SHACL, JSON", n - len(drift), n, drift)
+
+try:
+    import jsonschema
+except ImportError:
+    jsonschema = None
+if jsonschema is not None:
+    def valid(cls, inst):
+        sch = {"$schema": json_schema["$schema"], "$defs": defs, "$ref": f"#/$defs/{cls}"}
+        return not list(jsonschema.Draft201909Validator(sch).iter_errors(inst))
+    samples = [
+        ("Deity, plain-string name", "Deity", {"id": "ex:d", "name": "Taleju"}, True),
+        ("Deity, name as language map", "Deity",
+         {"id": "ex:d", "name": {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}}, True),
+        ("Deity, name map with a bad language tag", "Deity",
+         {"id": "ex:d", "name": {"english!": "Taleju"}}, False),
+        ("Deity, several notes, per language", "Deity",
+         {"id": "ex:d", "note": {"en": ["first", "second"], "ne": "टिप्पणी"}}, True),
+        ("Deity, one note as a plain string (1.0.x form)", "Deity", {"id": "ex:d", "note": "x"}, True),
+        ("DataSource, source_url as a language map (code slot)", "DataSource",
+         {"id": "ex:s", "source_url": {"en": "https://example.org"}}, False),
+    ]
+    bad = [f"{name} (expected {'valid' if exp else 'invalid'})"
+           for name, cls, inst, exp in samples if valid(cls, inst) != exp]
+    report("L' JSON instances: language maps accepted on text, refused on codes",
+           len(samples) - len(bad), len(samples), bad)
 
 print()
 if failures:

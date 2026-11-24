@@ -1771,6 +1771,7 @@ slots:
   note:
     slot_uri: crm:P3_has_note
     range: string
+    multivalued: true
     description: "Free-text note (description, reason, verification notes)"
 
     # ============================================================================
@@ -1914,27 +1915,33 @@ slots:
     description: "Frequency of recurring ritual (e.g., annual, monthly)"
 
   birth_timespan:
-    # PREDICATE FIX (alpha.5): previously reused crm:P4_has_time-span, colliding
-    # with death_timespan/has_timespan (identical predicates in RDF, so birth and
-    # death dates were indistinguishable). Minted subproperty; is_a has_timespan
-    # emits rdfs:subPropertyOf crm:P4_has_time-span, preserving CRM compatibility.
+    # 1.1.0: no longer rdfs:subPropertyOf crm:P4_has_time-span. P4 belongs to
+    # temporal entities (E2), and a person is a persistent item (E77, disjoint
+    # from E2): the subproperty typed every person with a birth date as both,
+    # and gave a person with birth and death two P4 values where CRM allows one.
+    # It is a shortcut for the CRM path person -P98i-> E67 Birth -P4-> E52,
+    # stated as an OWL property chain, so data written the CRM way also
+    # answers queries on birthTimespan.
     slot_uri: heritageGraph:birthTimespan
-    is_a: has_timespan
     range: TimeSpan
-    description: "Person's birth timespan"
+    description: "Person's birth timespan (shortcut for crm:P98i_was_born / crm:P4_has_time-span)"
+    annotations:
+      owl_property_chain: crm:P98i_was_born crm:P4_has_time-span
 
   death_timespan:
-    # PREDICATE FIX (alpha.5): see birth_timespan.
+    # 1.1.0: see birth_timespan (CRM path person -P100i-> E69 Death -P4-> E52).
     slot_uri: heritageGraph:deathTimespan
-    is_a: has_timespan
     range: TimeSpan
-    description: "Person's death timespan"
+    description: "Person's death timespan (shortcut for crm:P100i_died_in / crm:P4_has_time-span)"
+    annotations:
+      owl_property_chain: crm:P100i_died_in crm:P4_has_time-span
 
   publication_timespan:
-    # PREDICATE FIX (alpha.5): previously reused crm:P4_has_time-span. Minted
-    # subproperty of has_timespan (rdfs:subPropertyOf crm:P4 via is_a).
+    # 1.1.0: no longer rdfs:subPropertyOf crm:P4_has_time-span: a source is an
+    # information object (E73, a persistent item), and P4 belongs to temporal
+    # entities (E2, disjoint from E77). CRM has no publication event class, so
+    # no property chain is stated; the time-span is that of the publication.
     slot_uri: heritageGraph:publicationTimespan
-    is_a: has_timespan
     range: TimeSpan
     description: "When source was published"
 
@@ -2393,6 +2400,8 @@ slots:
       season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November,
       lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose
       new year is 1 January, for which year conversion is exact."
+    annotations:
+      lexical_form: code
 
   year_offset_from_gregorian:
     slot_uri: heritageGraph:yearOffsetFromGregorian
@@ -2564,6 +2573,8 @@ slots:
     slot_uri: heritageGraph:propositionLiteralValue
     range: string
     description: "Object of the proposition when it is a literal value (e.g. a date)."
+    annotations:
+      lexical_form: any_literal
 
   source_language:
     # CRM D/R FIX (alpha.5): P72_has_language has domain E33 Linguistic Object
@@ -2572,6 +2583,8 @@ slots:
     slot_uri: schema:inLanguage
     range: string
     description: "Language of the source material"
+    annotations:
+      lexical_form: code
 
   confidence_score:
     slot_uri: heritageGraph:confidenceScore
@@ -2614,6 +2627,8 @@ slots:
     pattern: "^(confirmed|conflicting|unverified)$"
     description: "Status of multi-source reconciliation of the asserted value: confirmed (independent sources agree),
       conflicting (sources disagree; see the competing assertions), or unverified (single source, not yet checked)."
+    annotations:
+      lexical_form: code
 
   # --- VERIFICATION ---
 
@@ -2641,6 +2656,8 @@ slots:
     slot_uri: heritageGraph:sourceUrl
     range: string
     description: "URL or digital identifier for source"
+    annotations:
+      lexical_form: code
   custodian_type:
     # DL FIX (alpha.6): dropped is_a has_type (same rationale as place_type:
     # a string slot cannot be a subproperty of object property crm:P2).
@@ -2695,6 +2712,8 @@ slots:
     slot_uri: heritageGraph:persistentIdentifier
     range: string
     description: "Persistent identifier for the source (DOI, archive ID, catalog number)"
+    annotations:
+      lexical_form: code
 
   datacite_identifier_type:
     # URI FIX (alpha.5): datacite:identifierType does not exist in SPAR DataCite;
@@ -2703,6 +2722,8 @@ slots:
     slot_uri: heritageGraph:identifierScheme
     range: string
     description: "Type of identifier (DOI, ISBN, Handle, LocalArchiveID)"
+    annotations:
+      lexical_form: code
 
   datacite_creator:
     # URI FIX (alpha.5, revised): dcterms:creator is ALSO used as ontology-header
@@ -2733,6 +2754,8 @@ slots:
     slot_uri: heritageGraph:resourceType
     range: string
     description: "High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)"
+    annotations:
+      lexical_form: code
   documents:
     slot_uri: heritageGraph:documents
     range: AssertionSubject

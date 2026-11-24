@@ -409,6 +409,10 @@ def finalize_owl(sv: SchemaView) -> Graph:
     drop_pattern_facets(g)
     relax_text_ranges(g)
     relax_reused_max_cardinality(g)
+    add_property_chains(g, sv)
+    # schema build directives, not ontology content
+    for d in ("owl_property_chain", "lexical_form"):
+        g.remove((None, URIRef(HG_NS + d), None))
     add_external_class_domains(g, sv)
     drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
@@ -682,14 +686,29 @@ def apply_official_external_annotations(g: Graph) -> None:
 
 
 SCHEMA_INLANGUAGE = URIRef("http://schema.org/inLanguage")
-# string slots whose values are codes or identifiers, not human-language text:
-# a language tag on them would be meaningless, so they stay xsd:string
-CODE_VALUED = {URIRef(HG_NS + n) for n in (
-    "identifierScheme", "persistentIdentifier", "sourceUrl", "resourceType",
-    "epochDateGregorian", "reconciliationStatus")} | {SCHEMA_INLANGUAGE}
-# slots whose value may be any literal, e.g. a proposition's object given as
-# "1564"^^xsd:gYear
-ANY_LITERAL = {URIRef(HG_NS + "propositionLiteralValue")}
+# Lexical form of string slots, declared in the schema (annotation
+# lexical_form): "code" for codes and identifiers, where a language tag would
+# be meaningless (they stay xsd:string); "any_literal" for a slot whose value
+# may be any literal (e.g. a proposition's object "1564"^^xsd:gYear). Every
+# other string slot is human-language text. Filled by load_lexical_forms.
+CODE_VALUED: set[URIRef] = set()
+ANY_LITERAL: set[URIRef] = set()
+
+
+def load_lexical_forms(sv: SchemaView) -> None:
+    CODE_VALUED.clear(); ANY_LITERAL.clear()
+    for name, sl in sv.all_slots().items():
+        ann = sl.annotations.get("lexical_form") if sl.annotations else None
+        form = getattr(ann, "value", None)
+        if sl.pattern and form != "code":
+            sys.exit(f"slot {name} has a pattern but no 'lexical_form: code' annotation")
+        if form is None:
+            continue
+        if form not in ("code", "any_literal") or not sl.slot_uri:
+            sys.exit(f"slot {name}: bad lexical_form {form!r}")
+        (CODE_VALUED if form == "code" else ANY_LITERAL).add(uri_for(sv, str(sl.slot_uri)))
+
+
 RDF_LANGSTRING = RDF.langString
 
 
@@ -806,6 +825,36 @@ def relax_reused_max_cardinality(g: Graph) -> None:
         dropped[name] = dropped.get(name, 0) + 1
     print(f"B2: dropped max-1 on reused properties {dict(sorted(dropped.items()))}; "
           f"kept (CRM quantification max 1) {dict(sorted(kept.items()))}")
+
+
+def add_property_chains(g: Graph, sv: SchemaView) -> None:
+    """A slot annotated owl_property_chain "p1 p2" is a shortcut for that
+    path: emit SubObjectPropertyOf(ObjectPropertyChain(p1 p2) slot), so data
+    written the long way (person -P98i-> Birth -P4-> time-span) also has the
+    shortcut. A property with a chain axiom is non-simple and may not appear
+    in a cardinality restriction (OWL 2 DL), so any such restriction on it is
+    dropped; SHACL keeps the at-most-one check."""
+    n = 0
+    for name, sl in sv.all_slots().items():
+        ann = sl.annotations.get("owl_property_chain") if sl.annotations else None
+        if ann is None:
+            continue
+        prop = uri_for(sv, str(sl.slot_uri))
+        steps = [uri_for(sv, c) for c in str(ann.value).split()]
+        for st in steps:
+            if (st, RDF.type, OWL.ObjectProperty) not in g:
+                g.add((st, RDF.type, OWL.ObjectProperty))
+                g.add((st, RDFS.label, Literal(str(st))))  # replaced by the official label
+        head = BNode(); Collection(g, head, steps)
+        g.add((prop, OWL.propertyChainAxiom, head))
+        for r in list(g.subjects(OWL.onProperty, prop)):
+            if any((r, k, None) in g for k in (OWL.maxCardinality, OWL.minCardinality,
+                                                OWL.cardinality)):
+                for c in list(g.subjects(RDFS.subClassOf, r)):
+                    g.remove((c, RDFS.subClassOf, r))
+                g.remove((r, None, None))
+        n += 1
+    print(f"property chains: {n} shortcut propert(ies) stated as chains of CRM paths")
 
 
 def drop_pattern_facets(g: Graph) -> None:
@@ -1483,11 +1532,60 @@ def sync_published() -> None:
                     str(docs)], check=True)
 
 
+# BCP 47 language tag (simplified: language, then subtags)
+BCP47 = "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
+
+
+def allow_language_maps(js: dict, sv: SchemaView) -> None:
+    """B1 in JSON: a human-language text field (a string slot that is not
+    lexical_form code/any_literal) also accepts a JSON-LD language map,
+    {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}, the JSON form of RDF
+    language-tagged strings (JSON-LD 1.1, @container @language). A plain
+    string stays valid, so existing instances still validate. A multivalued
+    text field (note) takes a string, an array of strings, or a language map
+    whose values are a string or an array of strings."""
+    one = {"type": "object", "minProperties": 1, "propertyNames": {"pattern": BCP47},
+           "additionalProperties": {"type": "string"}}
+    many = {"type": "object", "minProperties": 1, "propertyNames": {"pattern": BCP47},
+            "additionalProperties": {"anyOf": [{"type": "string"},
+                                               {"type": "array", "items": {"type": "string"}}]}}
+    classes = sv.all_classes()
+    n = 0
+    for cname, cdef in js.get("$defs", {}).items():
+        if cname not in classes:
+            continue
+        for pname, pdef in cdef.get("properties", {}).items():
+            try:
+                sl = sv.induced_slot(pname, cname)
+            except ValueError:
+                continue
+            if (sl.range or sv.schema.default_range) != "string" or not sl.slot_uri:
+                continue
+            if uri_for(sv, str(sl.slot_uri)) in CODE_VALUED | ANY_LITERAL:
+                continue
+            desc = pdef.get("description")
+            if sl.multivalued:
+                alts = [{"type": "string"}, {"type": "array", "items": {"type": "string"}}, many]
+            else:
+                alts = [{"type": "string"}, one]
+            if sl.required:
+                new = {"anyOf": alts}
+            else:
+                new = {"anyOf": alts + [{"type": "null"}]}
+            if desc:
+                new = {"description": desc, **new}
+            cdef["properties"][pname] = new
+            n += 1
+    print(f"JSON Schema: {n} text field(s) also accept a JSON-LD language map")
+
+
 def gen_json_schema() -> None:
     out = ROOT / "ontology" / "HeritageGraph.schema.json"
     # generated from the serialization wrapper (core schema + Container/Metadata);
     # $id and title stay those of the core schema so the published JSON Schema
-    # keeps its identity across 1.0.x -> 1.1.0 (its $defs are unchanged).
+    # keeps its identity across 1.0.x -> 1.1.0. Its $defs change only
+    # additively: text fields also accept language maps, and note also an
+    # array, so every 1.0.x instance still validates.
     import json
     import yaml
     res = subprocess.run(
@@ -1496,12 +1594,14 @@ def gen_json_schema() -> None:
     js = json.loads(res.stdout)
     core = yaml.safe_load(SCHEMA.read_text(encoding="utf-8"))
     js["$id"], js["title"] = core["id"], core["name"]
+    allow_language_maps(js, SchemaView(str(CONTAINER_SCHEMA)))
     out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")
 
 
 def main() -> int:
     sv = SchemaView(str(SCHEMA))
+    load_lexical_forms(sv)
     # PV FIX (alpha.6): without --default-permissible-value-type, gen-owl types
     # every permissible value as owl:Class (values became subclasses of their
     # enum). Enum values are individuals, not classes; owl:NamedIndividual

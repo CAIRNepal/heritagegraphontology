@@ -38,6 +38,7 @@ check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, CQ class-p
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py no-external-superclass
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py tenure-not-event
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py lux-conservativity
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py core-crm-disjointness
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py merged-abox
 	python3 evaluation/run_inference_cq.py
 	python3 evaluation/pattern_experiments.py multicalendar
