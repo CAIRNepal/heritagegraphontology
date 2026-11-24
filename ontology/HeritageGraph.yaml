@@ -2380,7 +2380,10 @@ slots:
     slot_uri: heritageGraph:consecratedByEvent
     range: Consecration
     description: "Consecration event that activated this murti"
-    inverse: consecrated_object
+    # NO INVERSE (1.1.0): declaring this the inverse of consecrated_object
+    # (crm:P16_used_specific_object) entailed that every object used in any
+    # CIDOC-CRM activity was consecrated by that activity, changing CRM's
+    # meaning. The two slots are deliberately independent.
 
   consecrated_object:
     # CRM D/R FIX (alpha.5): P11_had_participant has range E39 Actor; a Murti
@@ -2389,7 +2392,6 @@ slots:
     slot_uri: crm:P16_used_specific_object
     range: Murti
     description: "Murti employed in (and transformed by) the consecration ritual"
-    inverse: consecrated_by_event
 
   makes_deity_present:
     slot_uri: heritageGraph:makesDeityPresent
