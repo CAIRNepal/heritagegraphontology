@@ -1,0 +1,114 @@
+{
+  "IQ1": {
+    "question": "Which groups carry out which rituals, as a CIDOC-CRM-only client sees them?",
+    "expected": [
+      [
+        "BungadyahJatra",
+        "Barahis"
+      ],
+      [
+        "BungadyahJatra",
+        "Manandhars"
+      ],
+      [
+        "IndraJatra",
+        "Manandhars"
+      ],
+      [
+        "KumariProcession",
+        "Manandhars"
+      ],
+      [
+        "YosinErection",
+        "Manandhars"
+      ]
+    ]
+  },
+  "IQ2": {
+    "question": "Which entities were derived from which sources, as a PROV-O-only client sees them?",
+    "expected": [
+      [
+        "Assert_BuildA",
+        "Src_Slusser"
+      ],
+      [
+        "Assert_BuildB",
+        "Src_DoA"
+      ],
+      [
+        "Assert_KumariSyncretism",
+        "Src_Allen"
+      ],
+      [
+        "Assert_RouteChange",
+        "Src_DoA"
+      ],
+      [
+        "Syn_Karunamaya",
+        "Src_Slusser"
+      ],
+      [
+        "Syn_Taleju",
+        "Src_Slusser"
+      ]
+    ]
+  },
+  "IQ3": {
+    "question": "Which assertions are recorded about each heritage subject, seen from the subject?",
+    "expected": [
+      [
+        "BungadyahProcession",
+        "Assert_RouteChange"
+      ],
+      [
+        "Kasthamandap",
+        "Assert_BuildA"
+      ],
+      [
+        "Kasthamandap",
+        "Assert_BuildB"
+      ],
+      [
+        "Tenure_2017",
+        "Assert_KumariSyncretism"
+      ]
+    ]
+  },
+  "IQ4": {
+    "question": "Which physical heritage things are located where?",
+    "expected": [
+      [
+        "BhavanishankarMandira",
+        "Bhaktapur"
+      ],
+      [
+        "BungamatiTemple",
+        "Bungamati"
+      ],
+      [
+        "JogeshvaraMandira",
+        "Sankhu"
+      ],
+      [
+        "Kasthamandap",
+        "KathmanduDurbarSquare"
+      ],
+      [
+        "KumariGhar",
+        "KathmanduDurbarSquare"
+      ],
+      [
+        "Murti_Taleju",
+        "KathmanduDurbarSquare"
+      ],
+      [
+        "SwayambhuMahachaitya",
+        "SwayambhuHill"
+      ],
+      [
+        "TalejuTemple",
+        "KathmanduDurbarSquare"
+      ]
+    ]
+  }
+}

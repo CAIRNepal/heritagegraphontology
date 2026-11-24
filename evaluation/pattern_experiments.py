@@ -610,7 +610,9 @@ ex:Prop_Date a hg:Proposition ;
 def run_multicalendar() -> int:
     """Multi-calendar experiment: resolve a tithi-scheduled ritual to Gregorian
     dates across Bikram Sambat, Nepal Sambat, and Gregorian records. Exercises
-    yearOffsetFromGregorian / epochDateGregorian / isPrimaryForTradition.
+    yearOffsetFromGregorian / epochDateGregorian / isPrimaryForTradition, and
+    the 1.1.0 separation of the recorded date (hg:recordedDate) from its
+    converted Gregorian bounds (crm:P82a / crm:P82b).
     Released, shape-conformant scenario, separate from the demonstrator.
     """
     from pyshacl import validate
@@ -660,23 +662,32 @@ ex:IndraJatra_2015 a hg:RitualEvent ;
     crm:P4_has_time-span ex:TS_IJ_Gregorian .
 
 # Three source records of the same occurrence, each in its own calendar.
+# hg:recordedDate keeps the date as the source writes it; crm:P82a/P82b hold
+# only its converted interval in the proleptic Gregorian calendar (a
+# calendar year is never put into an xsd:dateTime).
 ex:TS_IJ_Gregorian a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Gregorian record" ;
+    hg:recordedDate "2015-09-25" ;
     crm:P82a_begin_of_the_begin "2015-09-25T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2015-09-25T23:59:59"^^xsd:dateTime ;
     hg:calendarSystem ex:GregorianCalendar ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> .
 ex:TS_IJ_BikramSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Bikram Sambat record (B.S. 2072)" ;
-    crm:P82a_begin_of_the_begin "2072-01-01T00:00:00"^^xsd:dateTime ;
+    hg:recordedDate "2072" ;
+    crm:P82a_begin_of_the_begin "2015-04-14T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-04-12T23:59:59"^^xsd:dateTime ;
     hg:calendarSystem ex:BikramSambat ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P3_has_note "Year-precision record; B.S. 2072 spans 2015-04-14 to 2016-04-12 CE." .
 ex:TS_IJ_NepalSambat a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra start, Nepal Sambat record (N.S. 1135)" ;
-    crm:P82a_begin_of_the_begin "1135-01-01T00:00:00"^^xsd:dateTime ;
+    hg:recordedDate "1135" ;
+    crm:P82a_begin_of_the_begin "2014-10-24T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2015-11-11T23:59:59"^^xsd:dateTime ;
     hg:calendarSystem ex:NepalSambat ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
-    crm:P3_has_note "Year-precision record; N.S. 1135 spans Oct 2014 to Nov 2015 CE." .
+    crm:P3_has_note "Year-precision record; N.S. 1135 runs from Mha Puja 2014 (24 October) to the day before Mha Puja 2015 (12 November)." .
 
 # The two calendar-specific records document the dated occurrence.
 ex:IndraJatra_2015 crm:P3_has_note
@@ -687,12 +698,12 @@ ex:IndraJatra_2015 crm:P3_has_note
         "Q1 per-record resolution: source year -> Gregorian year interval":
             PFX + """SELECT ?record ?calendar ?srcYear ?ceLow ?ceHigh WHERE {
               ?record a crm:E52_Time-Span ;
-                      crm:P82a_begin_of_the_begin ?d ;
+                      hg:recordedDate ?rec ;
                       hg:calendarSystem ?cal .
               ?cal rdfs:label ?calendar ;
                    hg:yearOffsetFromGregorian ?off ;
                    hg:epochDateGregorian ?epoch .
-              BIND(YEAR(?d) AS ?srcYear)
+              BIND(xsd:integer(SUBSTR(?rec, 1, 4)) AS ?srcYear)
               BIND(?srcYear - ?off AS ?ceLow)
               BIND(IF(STRENDS(?epoch, "-01-01"), ?ceLow, ?ceLow + 1) AS ?ceHigh)
             } ORDER BY ?ceLow""",
@@ -704,16 +715,13 @@ ex:IndraJatra_2015 crm:P3_has_note
               ?tsg crm:P82a_begin_of_the_begin ?gregorianDate ;
                    hg:calendarSystem [ hg:yearOffsetFromGregorian 0 ] .
               BIND(YEAR(?gregorianDate) AS ?ceYear)
-              # Every calendared record of this occurrence must admit ?ceYear.
+              # Every calendared record's converted Gregorian interval must
+              # contain the dated occurrence.
               FILTER NOT EXISTS {
                 ?other a crm:E52_Time-Span ;
-                       crm:P82a_begin_of_the_begin ?od ;
-                       hg:calendarSystem ?ocal .
-                ?ocal hg:yearOffsetFromGregorian ?ooff ;
-                      hg:epochDateGregorian ?oepoch .
-                BIND(YEAR(?od) - ?ooff AS ?lo)
-                BIND(IF(SUBSTR(?oepoch, 6) = "01-01", ?lo, ?lo + 1) AS ?hi)
-                FILTER(?ceYear < ?lo || ?ceYear > ?hi)
+                       crm:P82a_begin_of_the_begin ?ob ;
+                       crm:P82b_end_of_the_end ?oe .
+                FILTER(?gregorianDate < ?ob || ?gregorianDate > ?oe)
               }
             }""",
         "Q3 calendar catalogue: epoch, offset, primary tradition":

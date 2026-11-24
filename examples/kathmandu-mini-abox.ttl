@@ -47,11 +47,16 @@ ex:CA_2015 a crm:E14_Condition_Assessment ;
 ex:CS_Ruined a crm:E3_Condition_State ; rdfs:label "Collapsed in the 2015 earthquake" .
 
 # --- institutional layer: a Guthi custodian ---
+# The guthi responsible for conserving Kasthamandap (myRepublica). The earlier
+# statement that it performs Indra Jatra had no source and was removed.
 ex:KasthamandapGuthi a hg:Guthi ;
-    rdfs:label "Kasthamandap Temple Guthi" ;
+    rdfs:label "Kasthamandap Guthi" ;
     hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> ;
     crm:P50i_is_current_keeper_of ex:Kasthamandap ;
-    hg:performsRitual ex:IndraJatra .
+    dcterms:source ex:Src_Republica_Kasthamandap .
+ex:Src_Republica_Kasthamandap a hg:DataSource ; rdfs:label "myRepublica, Kasthamandap losing its grandeur" ;
+    dcterms:creator "myRepublica" ;
+    dcterms:bibliographicCitation "myRepublica. Kasthamandap losing its grandeur. https://myrepublica.nagariknetwork.com/news/kasthamandap-losing-its-grandeur" .
 
 # --- ritual layer + multi-calendar recurrence ---
 ex:IndraJatra a hg:RitualEvent ;

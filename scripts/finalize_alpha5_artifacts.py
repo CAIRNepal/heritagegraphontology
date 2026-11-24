@@ -701,9 +701,10 @@ def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
     puts the restrictions on the external class, and repair_dl_profile (i)
     rightly removes axioms on terms HeritageGraph does not own. Restore the
     lost class context as rdfs:domain on the HeritageGraph property (an axiom
-    about our own term), derived from the YAML: the external class that uses
-    it, or the union when several do. Properties also used by a HeritageGraph
-    class keep their restrictions there and get no domain."""
+    about our own term), derived from the YAML: the class that uses it, or the
+    union of the classes when several do (reduced to the most general ones), for
+    every property used by at least one external-IRI class. Properties used only
+    by HeritageGraph classes keep their restrictions there and get no domain."""
     users: dict[URIRef, set[URIRef]] = {}
     for cn, c in sv.all_classes().items():
         if c.abstract or c.mixin:
@@ -718,8 +719,25 @@ def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
         if (not str(prop).startswith(HG_NS) or (prop, RDF.type, None) not in g
                 or (prop, OWL.deprecated, None) in g or (prop, RDFS.domain, None) in g):
             continue
-        if any(str(c).startswith(HG_NS) for c in classes):
+        if all(str(c).startswith(HG_NS) for c in classes):
+            continue  # restrictions on HeritageGraph classes carry the context
+        # A property with an inverse is entailed for every object of the
+        # inverse, whatever class declares the slot: its domain is the
+        # inverse's range (e.g. hasAssertion, inverse of assertsAbout, has
+        # domain AssertionSubject), never the union of declaring classes.
+        inverses = set(g.objects(prop, OWL.inverseOf)) | set(g.subjects(OWL.inverseOf, prop))
+        if inverses:
+            rngs = {r for i in inverses for r in g.objects(i, RDFS.range)}
+            if len(rngs) == 1:
+                g.add((prop, RDFS.domain, next(iter(rngs))))
+                n += 1
             continue
+        # minimal covering set: drop a user class whose superclass also uses it
+        names = {URIRef(sv.get_uri(sv.get_class(cn), expand=True)): cn
+                 for cn in sv.all_classes()}
+        classes = {c for c in classes
+                   if not any(names.get(o) in sv.class_ancestors(names[c], reflexive=False)
+                              for o in classes if o != c)}
         if len(classes) == 1:
             g.add((prop, RDFS.domain, next(iter(classes))))
         else:
@@ -729,7 +747,7 @@ def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
             g.add((expr, OWL.unionOf, head))
             g.add((prop, RDFS.domain, expr))
         n += 1
-    print(f"asserted rdfs:domain on {n} propert(ies) used only by external-IRI classes")
+    print(f"asserted rdfs:domain on {n} propert(ies) used by external-IRI classes")
 
 
 def drop_vacuous_min_cardinality(g: Graph) -> None:
@@ -1095,6 +1113,7 @@ def finalize_shacl(sv: SchemaView) -> None:
         n += 1
     print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
     add_usage_names(g, sv)
+    scope_shapes(g, sv)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
 
@@ -1138,6 +1157,46 @@ def add_usage_names(g: Graph, sv: SchemaView) -> None:
     print(f"usage names: sh:name on {n_prop} property shape(s) with an external path "
           f"and {n_node} node shape(s) targeting an external class"
           + (f"; unresolved: {sorted(set(unresolved))}" if unresolved else ""))
+
+
+def scope_shapes(g: Graph, sv: SchemaView) -> None:
+    """gen-shacl names each node shape after its class's IRI, so classes whose IRI
+    is an external term (crm:E21_Person, prov:Entity, ...) were typed sh:NodeShape
+    in the shapes graph, and the shapes of the abstract PROV/CRM superclasses
+    targeted every prov:Entity, prov:Activity, prov:Agent and crm:E74_Group in any
+    graph validated with HeritageGraph's shapes, imposing HeritageGraph's rules
+    (e.g. one dcterms:identifier of type xsd:anyURI) on third-party data.
+    (1) Drop the node shapes of abstract or mixin classes with an external IRI:
+        their property shapes are repeated in every concrete subclass's shape.
+    (2) Rename the remaining externally named shapes to hg:<ClassName>Shape,
+        keeping their explicit sh:targetClass (HeritageGraph uses crm:E21_Person
+        etc. as its own Person class, so those targets stay)."""
+    # Only the shape node's own triples move or go: the same IRI is also the
+    # object of sh:class / sh:targetClass constraints elsewhere, which must stay.
+    def rename(old: URIRef, new: URIRef) -> None:
+        for p_, o_ in list(g.predicate_objects(old)):
+            g.remove((old, p_, o_)); g.add((new, p_, o_))
+
+    def drop(shape: URIRef) -> None:
+        def purge_out(node) -> None:
+            for p_, o_ in list(g.predicate_objects(node)):
+                g.remove((node, p_, o_))
+                if isinstance(o_, BNode) and not any(g.subjects(None, o_)):
+                    purge_out(o_)
+        purge_out(shape)
+    n_drop = n_ren = 0
+    for cn, c in sv.all_classes().items():
+        cls = URIRef(sv.get_uri(c, expand=True))
+        if str(cls).startswith(HG_NS) or (cls, RDF.type, SH.NodeShape) not in g:
+            continue
+        if c.abstract or c.mixin:
+            drop(cls)
+            n_drop += 1
+        else:
+            rename(cls, URIRef(f"{HG_NS}{cn}Shape"))
+            n_ren += 1
+    print(f"shapes: dropped {n_drop} externally named shape(s) of abstract/mixin classes, "
+          f"renamed {n_ren} to hg:<Class>Shape")
 
 
 def run_pyshacl() -> None:

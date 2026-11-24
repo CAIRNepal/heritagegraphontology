@@ -404,6 +404,8 @@ classes:
       - has_condition_assessment
       - has_component
       - has_architectural_style
+      # shared or contested sacred sites (CQ23)
+      - has_religious_tradition
       - existence_status
       - last_known_existence_date
       - destruction_event
@@ -436,9 +438,8 @@ classes:
   ReligiousStructure:
     is_a: ArchitecturalStructure
     class_uri: heritageGraph:ReligiousStructure
-    slots:
-      # shared or contested sacred sites (CQ23)
-      - has_religious_tradition
+    # has_religious_tradition moved to ArchitecturalStructure (1.1.0): pavilions,
+    # rest houses and water spouts with shrines are also used by traditions.
     description: 'Architectural structure whose defining purpose is religious: enshrines a deity and/or is a locus
       of ritual activation. Abstract grouping for sacred structures across traditions (temple, stupa, chaitya).'
     # MAPPING AUDIT (alpha.5): aat:300007596 is the guide term '<temples by
@@ -889,6 +890,12 @@ classes:
       - has_condition_type
     mixins:
       - Entity
+  Group:
+    is_a: Actor
+    class_uri: crm:E74_Group
+    abstract: true
+    description: "Group of people acting together (CIDOC-CRM E74 Group): the common superclass of Guthi and
+      CasteGroup."
   Guthi:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.
@@ -907,13 +914,14 @@ classes:
         range: GuthiType
     broad_mappings:
       - prov:Organization
-      # URI POLICY (alpha.5): Guthi is narrower than crm:E74_Group.
-      - crm:E74_Group
 
   # CLEANUP (alpha.5): removed 40 lines of commented-out Guthi subclasses
   # (SiGuthi..RajGuthi) -- the GuthiType enum covers this typology.
 
-    is_a: Actor
+    # GROUP (1.1.0): a Guthi is a CIDOC-CRM E74 Group (stated, not only a broad
+    # match): has_membership is crm:P107, whose domain is E74, so every Guthi
+    # with members was entailed an E74 anyway.
+    is_a: Group
   CasteGroup:
     class_uri: heritageGraph:CasteGroup
     description: "Hereditary social group (Jati) with specific ritual roles and occupational duties"
@@ -922,11 +930,9 @@ classes:
       - note
       - traditional_role
     broad_mappings:
-      # URI POLICY (alpha.5): CasteGroup is narrower than crm:E74_Group;
-      # moved from exact_mappings.
-      - crm:E74_Group
       - prov:Organization
-    is_a: Actor
+    # GROUP (1.1.0): a caste group is a CIDOC-CRM E74 Group.
+    is_a: Group
   Person:
     class_uri: crm:E21_Person
     description: "Individual person who performs, commissions, documents, or verifies heritage activities"
@@ -969,6 +975,7 @@ classes:
       - date_latest
       - calendar_system
       - date_precision
+      - recorded_date
     slot_usage:
       calendar_system:
         range: CalendarSystem
@@ -1849,12 +1856,21 @@ slots:
   date_earliest:
     slot_uri: crm:P82a_begin_of_the_begin
     range: datetime
-    description: "Earliest possible date (for uncertain dates)"
+    description: "Earliest possible date, always in the proleptic Gregorian calendar (xsd:dateTime); for a date
+      recorded in another calendar, the start of its converted Gregorian interval (see recorded_date)."
 
   date_latest:
     slot_uri: crm:P82b_end_of_the_end
     range: datetime
-    description: "Latest possible date (for uncertain dates)"
+    description: "Latest possible date, always in the proleptic Gregorian calendar (xsd:dateTime); for a date
+      recorded in another calendar, the end of its converted Gregorian interval (see recorded_date)."
+
+  recorded_date:
+    slot_uri: heritageGraph:recordedDate
+    range: string
+    description: "The date as written in the source, in the calendar given by calendar_system (e.g. '2072' for a
+      Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted
+      Gregorian bounds go in date_earliest / date_latest."
 
   calendar_system:
     title: "has calendar system"
@@ -2088,7 +2104,8 @@ slots:
     is_a: has_type
     range: ReligiousTradition
     multivalued: true
-    description: "Religious tradition(s) within which this deity is venerated, or which use this religious structure"
+    description: "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple,
+      or a pavilion, rest house or water spout with a shrine)"
 
   includes_ritual_event:
     slot_uri: crm:P9_consists_of
@@ -2549,10 +2566,13 @@ slots:
 
   confidence_method:
     slot_uri: heritageGraph:confidenceMethod
-    range: string
-    description: "Who assigned the confidence score and how (e.g. expert judgement on a 5-point scale mapped to 0-1;
-      agreement between independent sources; coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging,
-      0.5 explicitly uncertain, 0.3 disputed by the author)."
+    # an IRI, so a rubric is described once (as a prov:Plan, skos:Concept or
+    # document) instead of being repeated as text on every assertion
+    range: uriorcurie
+    description: "IRI of the method by which the confidence score was assigned, described once elsewhere (e.g. a
+      prov:Plan or skos:Concept for an expert 5-point scale mapped to 0-1, agreement between independent sources, or
+      coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging, 0.5 explicitly uncertain, 0.3 disputed
+      by the author)."
 
   data_quality_note:
     slot_uri: heritageGraph:dataQualityNote

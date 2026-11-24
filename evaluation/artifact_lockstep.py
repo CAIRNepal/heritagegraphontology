@@ -131,11 +131,19 @@ report("C enums in OWL (member counts)", len(enums) - len(drift),
 targets = {t for t in shacl_g.objects(None, SH.targetClass)
            if isinstance(t, URIRef)}
 class_uris = {URIRef(sv.get_uri(c, expand=True)) for c in classes.values()}
+# abstract/mixin classes whose IRI is an external term (prov:Entity, crm:E74,
+# ...) have no shape of their own since 1.1.0: their property shapes are
+# repeated in every concrete subclass, and a shape would constrain all
+# third-party instances of the external class
+def _shape_exempt(c) -> bool:
+    return bool(c.abstract or c.mixin) and not sv.get_uri(c, expand=True).startswith(
+        sv.schema.prefixes[sv.schema.default_prefix].prefix_reference)
 missing_shape = [c.name for c in classes.values()
-                 if URIRef(sv.get_uri(c, expand=True)) not in targets]
+                 if URIRef(sv.get_uri(c, expand=True)) not in targets and not _shape_exempt(c)]
 orphan_shapes = sorted(str(t) for t in targets - class_uris)
-report("D classes with SHACL shape", len(classes) - len(missing_shape),
-       len(classes), missing_shape)
+n_shape = sum(1 for c in classes.values() if not _shape_exempt(c))
+report("D classes with SHACL shape", n_shape - len(missing_shape),
+       n_shape, missing_shape)
 report("D' orphan SHACL targets", len(targets) - len(orphan_shapes),
        len(targets), orphan_shapes)
 
