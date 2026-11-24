@@ -408,6 +408,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
     repair_dl_profile(g, sv)
     drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
+    # after humanizing: official labels are copied verbatim
+    apply_official_external_annotations(g)
 
     # --- axiom-survival guard ---
     missing: list[str] = []
@@ -580,6 +582,85 @@ def add_deprecated_stubs(g: Graph) -> None:
         n += 1
     g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
     print(f"kept {n} published LinkML-only IRI(s) as owl:deprecated stubs")
+
+
+IMPORTS = ROOT / "ontology" / "imports"
+PROV_DEFINITION = URIRef("http://www.w3.org/ns/prov#definition")
+# annotation predicates HeritageGraph must not write on terms it does not own
+OWNER_TEXT_PREDS = (RDFS.label, RDFS.comment, SKOS.definition, SKOS.inScheme,
+                    SKOS.prefLabel, SKOS.altLabel, SKOS.scopeNote,
+                    SKOS.editorialNote, DCTERMS.description)
+
+
+def _official_sources() -> list[tuple[str, Graph, URIRef]]:
+    """Load the committed official vocabulary snapshots (ontology/imports/),
+    verifying each file against the sha256 recorded in sources.json."""
+    import hashlib
+    import json
+    meta = json.loads((IMPORTS / "sources.json").read_text(encoding="utf-8"))
+    out = []
+    for src in meta["sources"]:
+        path = IMPORTS / src["file"]
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if digest != src["sha256"]:
+            sys.exit(f"official vocabulary snapshot changed: {src['file']} (sha256 {digest})")
+        vg = Graph()
+        vg.parse(path, format=src["format"])
+        out.append((src["namespace"], vg, URIRef(src["isDefinedBy"])))
+    return out
+
+
+def _english(literals) -> list[Literal]:
+    lits = [l for l in literals if isinstance(l, Literal)]
+    en = [l for l in lits if l.language == "en"]
+    return en or [l for l in lits if l.language is None]
+
+
+def apply_official_external_annotations(g: Graph) -> None:
+    """Option A' for reused external terms (CIDOC-CRM, CRMinf, PROV-O, ...).
+
+    gen-owl labels and defines every reused IRI with the LinkML element's
+    name and description ("Technique" on crm:E29_Design_or_Procedure,
+    "Depicts deity" on crm:P62_depicts) and puts it in HeritageGraph's
+    scheme. Published that way, HeritageGraph redefines terms it does not
+    own. Replace all of HeritageGraph's text on external subjects with the
+    owner's own: the official English rdfs:label, the official definition
+    (prov:definition for PROV-O, else rdfs:comment, e.g. the CIDOC-CRM scope
+    note) as skos:definition, and rdfs:isDefinedBy the source vocabulary.
+    HeritageGraph's usage wording moves to the SHACL shapes (finalize_shacl).
+    Aborts if any external term would be left without an official label."""
+    sources = _official_sources()
+    targets = sorted({s for p in OWNER_TEXT_PREDS for s in g.subjects(p, None)
+                      if isinstance(s, URIRef) and not str(s).startswith(HG_NS)
+                      and s != ONTOLOGY_IRI})
+    missing, n_removed = [], 0
+    for s in targets:
+        for p in OWNER_TEXT_PREDS:
+            for o in list(g.objects(s, p)):
+                g.remove((s, p, o)); n_removed += 1
+        src = next(((vg, idb) for ns, vg, idb in sources
+                    if str(s).startswith(ns) and (s, RDFS.label, None) in vg), None)
+        if src is None:
+            missing.append(str(s)); continue
+        vg, idb = src
+        labels = _english(vg.objects(s, RDFS.label))
+        if not labels:
+            missing.append(str(s)); continue
+        for l in labels:
+            g.add((s, RDFS.label, Literal(str(l).strip(), lang=l.language)))
+        defs = (_english(vg.objects(s, PROV_DEFINITION))
+                or _english(vg.objects(s, RDFS.comment))
+                or _english(vg.objects(s, SKOS.definition)))
+        if defs:
+            lang = defs[0].language
+            text = "\n\n".join(sorted(str(d).strip() for d in defs))
+            g.add((s, SKOS.definition, Literal(text, lang=lang)))
+        g.add((s, RDFS.isDefinedBy, next(vg.objects(s, RDFS.isDefinedBy), idb)))
+    if missing:
+        sys.exit("NO OFFICIAL LABEL for reused term(s) (add the vocabulary to "
+                 "ontology/imports/):\n  - " + "\n  - ".join(missing))
+    print(f"external terms: replaced {n_removed} HeritageGraph-written annotation(s) "
+          f"on {len(targets)} term(s) with official labels/definitions")
 
 
 def drop_vacuous_min_cardinality(g: Graph) -> None:
@@ -944,8 +1025,50 @@ def finalize_shacl(sv: SchemaView) -> None:
         g.add((ps, SH["in"], head))
         n += 1
     print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
+    add_usage_names(g, sv)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
+
+
+def add_usage_names(g: Graph, sv: SchemaView) -> None:
+    """HeritageGraph's usage wording for reused external terms lives in the
+    shapes, not on the external IRIs (whose OWL labels are the owners'):
+    sh:name on each property shape whose path is an external property (the
+    slot's title or humanized name, e.g. "Depicts deity" for crm:P62_depicts;
+    sh:description already carries the slot description), and on each node
+    shape that targets an external class (the LinkML class name, e.g.
+    "Technique" for crm:E29_Design_or_Procedure)."""
+    by_uri: dict[URIRef, list] = {}
+    for sn, sl in sv.all_slots().items():
+        if sl.slot_uri:
+            u = uri_for(sv, str(sl.slot_uri))
+            if u is not None and not str(u).startswith(HG_NS):
+                by_uri.setdefault(u, []).append(sl)
+    n_prop, unresolved = 0, []
+    for ps, path in list(g.subject_objects(SH.path)):
+        if path not in by_uri or (ps, SH.name, None) in g:
+            continue
+        cands = by_uri[path]
+        if len(cands) > 1:
+            desc = str(g.value(ps, SH.description) or "")
+            cands = [c for c in cands if str(c.description or "") == desc] or cands
+        if len({c.name for c in cands}) != 1:
+            unresolved.append(str(path)); continue
+        sl = cands[0]
+        g.add((ps, SH.name, Literal(str(sl.title) if sl.title else humanize_name(sl.name), lang="en")))
+        n_prop += 1
+    n_node = 0
+    for cn, c in sv.all_classes().items():
+        u = uri_for(sv, str(c.class_uri)) if c.class_uri else None
+        if u is None or str(u).startswith(HG_NS):
+            continue
+        for shape in set(g.subjects(SH.targetClass, u)):
+            if (shape, SH.name, None) not in g:
+                g.add((shape, SH.name, Literal(humanize_name(cn), lang="en")))
+                n_node += 1
+    print(f"usage names: sh:name on {n_prop} property shape(s) with an external path "
+          f"and {n_node} node shape(s) targeting an external class"
+          + (f"; unresolved: {sorted(set(unresolved))}" if unresolved else ""))
 
 
 def run_pyshacl() -> None:
