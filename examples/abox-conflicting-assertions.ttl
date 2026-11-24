@@ -77,6 +77,14 @@ ex:syncretic_link a hg:SyncreticRelationship ;
     crm:P140_assigned_attribute_to ex:Matsyendranath ;
     crm:P141_assigned              ex:Avalokiteshvara ;
     hg:syncreticType               <https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
+    prov:wasDerivedFrom            ex:oral_source .
+
+# Confidence and reconciliation status are properties of beliefs (CRMinf I2):
+# the confidence in the syncretic claim is an assertion about it.
+ex:assertion_syncretic_link a crminf:I2_Belief ;
+    rdfs:label "Belief in the syncretic equivalence claim (example)"@en ;
+    hg:assertsAbout                ex:syncretic_link ;
+    prov:value                     "Matsyendranath is identified with Avalokiteshvara" ;
     prov:wasDerivedFrom            ex:oral_source ;
     hg:confidenceScore             "0.80"^^xsd:decimal ;
     hg:reconciliationStatus        "conflicting" .

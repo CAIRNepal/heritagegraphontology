@@ -641,7 +641,7 @@ ex:BikramSambat a hg:CalendarSystem ; rdfs:label "Bikram Sambat" ;
     hg:isPrimaryForTradition ex:HinduTradition ;
     crm:P3_has_note "Lunisolar civil calendar of Nepal; new year in mid-April (Baisakh 1)." .
 ex:NepalSambat a hg:CalendarSystem ; rdfs:label "Nepal Sambat" ;
-    hg:epochDateGregorian "0879-10-20" ;       # epoch 20 Oct 879 CE
+    hg:epochDateGregorian "0879-10-24" ;       # epoch 20 Oct 879 Julian = 24 Oct proleptic Gregorian
     hg:yearOffsetFromGregorian -879 ;
     hg:isPrimaryForTradition ex:NewarBuddhistTradition ;
     crm:P3_has_note "Lunisolar Newar calendar; new year at Mha Puja (Oct/Nov)." .
@@ -694,7 +694,7 @@ ex:IndraJatra_2015 crm:P3_has_note
                    hg:epochDateGregorian ?epoch .
               BIND(YEAR(?d) AS ?srcYear)
               BIND(?srcYear - ?off AS ?ceLow)
-              BIND(IF(SUBSTR(?epoch, 6) = "01-01", ?ceLow, ?ceLow + 1) AS ?ceHigh)
+              BIND(IF(STRENDS(?epoch, "-01-01"), ?ceLow, ?ceLow + 1) AS ?ceHigh)
             } ORDER BY ?ceLow""",
         "Q2 tithi ritual resolved: unique Gregorian year consistent with all records":
             PFX + """SELECT ?ritual ?tithi ?ceYear ?gregorianDate WHERE {

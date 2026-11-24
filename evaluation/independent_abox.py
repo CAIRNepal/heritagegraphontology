@@ -133,6 +133,28 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
   ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P8_took_place_on_or_within [ a hg:Temple ; rdfs:label "t" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ] .', "NodeKind"),
  "Institutional: ritual performed by a person, not a Guthi or caste group (sh:or)":
   ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; hg:performedByGroup ex:P . ex:P a crm:E21_Person ; rdfs:label "p" .', "Or"),
+ "Provenance: reconciliationStatus outside confirmed|conflicting|unverified (sh:pattern)":
+  ('ex:BadStatus a crminf:I2_Belief ; rdfs:label "x" ; hg:assertsAbout ex:D1 ; hg:reconciliationStatus "maybe" .\n'
+   'ex:D1 a hg:Deity ; rdfs:label "d" .', "Pattern"),
+}
+# The property each test must violate: a test counts as caught only when a
+# result has the expected constraint component ON THE EXPECTED PATH (a
+# different, unintended violation of the same component does not count).
+HG_ = "https://cair-nepal.org/heritagegraph/"
+CRM_ = "http://www.cidoc-crm.org/cidoc-crm/"
+EXPECTED_PATH = {
+ "Event-mediated: CustodyPeriod missing custodyHolder (minCount)": HG_ + "custodyHolder",
+ "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)": "http://purl.org/dc/terms/identifier",
+ "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)": HG_ + "guthiType",
+ "Ritual: RitualEvent time-span not an E52_Time-Span (sh:class)": CRM_ + "P4_has_time-span",
+ "Syncretic: SyncreticRelationship missing assigned deity (minCount)": CRM_ + "P140_assigned_attribute_to",
+ "Provenance: Belief (HeritageAssertion) missing assertsAbout (minCount)": HG_ + "assertsAbout",
+ "Living Goddess: KumariTenure missing crm:P4_has_time-span (minCount)": CRM_ + "P4_has_time-span",
+ "Sibling separation: DocumentationActivity in a ritual-valued slot (sh:class)": HG_ + "performsRitual",
+ "Living Goddess: KumariTenure with two embodied deities (maxCount)": HG_ + "embodiedDeity",
+ "Ritual: ritual site given as an unidentified blank node (nodeKind IRI)": CRM_ + "P8_took_place_on_or_within",
+ "Institutional: ritual performed by a person, not a Guthi or caste group (sh:or)": HG_ + "performedByGroup",
+ "Provenance: reconciliationStatus outside confirmed|conflicting|unverified (sh:pattern)": HG_ + "reconciliationStatus",
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0
@@ -143,7 +165,10 @@ for name, (ttl, component) in tests.items():
                         inference="none", abort_on_first=False)
     comps = sorted({str(o)[len(SH_NS):].removesuffix("ConstraintComponent")
                     for o in rg.objects(None, URIRef(SH_NS + "sourceConstraintComponent"))})
-    hit = component in comps
+    hits = {(str(rg.value(r, URIRef(SH_NS + "sourceConstraintComponent")))[len(SH_NS):]
+             .removesuffix("ConstraintComponent"), str(rg.value(r, URIRef(SH_NS + "resultPath"))))
+            for r in rg.subjects(URIRef(SH_NS + "sourceConstraintComponent"), None)}
+    hit = (component, EXPECTED_PATH[name]) in hits
     caught += hit
     print(f"  [{'CAUGHT' if hit else 'MISSED'}] {name}  -> violated: {', '.join(comps) or 'none'}")
 print(f"Negative tests caught: {caught}/{len(tests)}")

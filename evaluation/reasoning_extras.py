@@ -696,9 +696,55 @@ def run_lux_conservativity() -> int:
     return 0
 
 
+def run_merged_abox() -> int:
+    """Each example ABox with HG + CIDOC-CRM + CRMinf + CRMsci + PROV-O.
+
+    merged-import classifies the TBoxes only; data can still clash with the
+    imported vocabularies' domains, ranges and disjointness (e.g. prov:
+    wasDerivedFrom, domain prov:Entity, on an individual of a class that HG
+    places under prov:Activity). Every example must be HermiT-consistent with
+    all vocabularies loaded. The graphs are combined in rdflib into ONE file
+    (not `robot merge`), so that data triples on properties the example does
+    not itself declare are read with the vocabularies' declarations rather
+    than as annotations. PROV-O's property chains are dropped, as in
+    merged-import (the documented DL-profile collision with HG cardinalities).
+    """
+    print("merged-abox: each example ABox + HG + CRM + CRMinf + CRMsci + PROV-O (chains dropped)")
+    paths = {name: _fetch(name, fname, url) for name, (fname, url) in VOCABS.items()}
+    prov = Graph()
+    prov.parse(paths["PROV-O"], format="turtle")
+    for s_, o_ in list(prov.subject_objects(OWL.propertyChainAxiom)):
+        prov.remove((s_, OWL.propertyChainAxiom, o_))
+    root = Path(__file__).resolve().parents[1]
+    ok = True
+    for ex in sorted((root / "examples").glob("*.ttl")):
+        g = Graph()
+        g.parse(root / "ontology" / "HeritageGraph.ttl", format="turtle")
+        for name, p in paths.items():
+            if name != "PROV-O":
+                g.parse(p, format="turtle")
+        g += prov
+        g.parse(ex, format="turtle")
+        g.remove((None, OWL.imports, None))
+        combined = CACHE / f"merged_abox_{ex.stem}.ttl"
+        g.serialize(combined, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--output", str(CACHE / f"merged_abox_{ex.stem}.reasoned.ttl"),
+                               "--input", str(combined)], capture_output=True, text=True)
+        good = proc.returncode == 0
+        ok &= good
+        verdict = "consistent" if good else (
+            "INCONSISTENT" if "inconsistent" in (proc.stdout + proc.stderr) else "FAILED")
+        print(f"  [{ex.name}] {verdict}")
+    print("PASS: every example ABox is consistent with HG and all aligned vocabularies."
+          if ok else "FAIL: an example ABox is inconsistent with the aligned vocabularies.")
+    return 0 if ok else 1
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
+    "merged-abox": run_merged_abox,
     "entailments": run_entailments,
     "no-external-superclass": run_no_external_superclass,
     "tenure-not-event": run_tenure_not_event,

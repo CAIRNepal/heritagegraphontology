@@ -717,9 +717,6 @@ classes:
     slot_usage:
       name:
         required: true
-      # needed with the offset to convert years across the new-year boundary
-      epoch_date_gregorian:
-        required: true
 
   # ========================================================================
   # EVENT CLASSES (CIDOC-CRM Event-Centric Core)
@@ -1263,11 +1260,15 @@ classes:
       - assigned_to_deity
       - assigned_equivalent
       - syncretic_type
-      - used
       - was_documented_by
       - documented_in_source
+    # PROV PLACEMENT (1.1.0): a prov:Entity (a reified claim whose sources are
+    # given with prov:wasDerivedFrom), not a prov:Activity. As an activity, every
+    # syncretic relationship with a source was inconsistent with PROV-O
+    # (prov:wasDerivedFrom has domain prov:Entity, disjoint with prov:Activity).
+    # crm:E13 stays a broad match only; prov:used (activity-only) is dropped.
     mixins:
-      - Activity
+      - Entity
   KumariTenure:
     # ALIASES (alpha.5): romanized alternate term.
     aliases:
@@ -1760,8 +1761,9 @@ slots:
     slot_uri: heritageGraph:hadParticipant
     range: Actor
     multivalued: true
-    # close, not sub-property: P11's domain is E5 Event, and this slot is also
-    # used on periods (KumariTenure)
+    # close, not sub-property or exact: P11's domain is E5 Event, and this slot
+    # is also used on periods (KumariTenure); and it excludes the actor who
+    # carries the event out, whom P11 includes (P14 is a subproperty of P11)
     close_mappings:
       - crm:P11_had_participant
     description: "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl
@@ -2343,9 +2345,12 @@ slots:
     slot_uri: heritageGraph:epochDateGregorian
     range: string
     pattern: "^-?[0-9]{4}-[0-9]{2}-[0-9]{2}$"
-    description: "Gregorian (proleptic, ISO 8601) date of the first day of year 1 of this calendar; its month and day
-      are also the calendar's new-year boundary (e.g. -0056-04-14 for Bikram Sambat, mid-April). Needed with
-      year_offset_from_gregorian to convert years correctly."
+    description: "Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the
+      era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14; Nepal Sambat counts elapsed years
+      from year 0, 0879-10-24 = 20 October 879 Julian). Its month and day only indicate the approximate new-year
+      season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November,
+      lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose
+      new year is 1 January, for which year conversion is exact."
 
   year_offset_from_gregorian:
     slot_uri: heritageGraph:yearOffsetFromGregorian
@@ -2536,15 +2541,18 @@ slots:
     # machine-enforced.
     minimum_value: 0
     maximum_value: 1
-    description: "Degree of belief, between 0 and 1, that the asserted value is correct, as judged by the agent the
-      assertion is attributed to (prov:wasAttributedTo): 1 = certain, 0.5 = undecided, 0 = believed false. Scores are
-      comparable across assertions only when they share an assessor or a stated method (confidence_method)."
+    description: "Degree of belief, between 0 and 1, that the asserted value is correct: 1 = certain, 0.5 = undecided,
+      0 = believed false. The assessor is either the agent the assertion is attributed to (prov:wasAttributedTo) or
+      the activity that generated the assertion (prov:wasGeneratedBy), e.g. an extraction that codes how firmly the
+      source states the claim; confidence_method says which, and by what rubric. Scores are comparable only when
+      they share an assessor or a method."
 
   confidence_method:
     slot_uri: heritageGraph:confidenceMethod
     range: string
-    description: "How the confidence score was assigned (e.g. expert judgement on a 5-point scale mapped to 0-1;
-      agreement between independent sources; source-reliability rubric)."
+    description: "Who assigned the confidence score and how (e.g. expert judgement on a 5-point scale mapped to 0-1;
+      agreement between independent sources; coding of the source's hedging: 0.9 stated plainly, 0.7 mild hedging,
+      0.5 explicitly uncertain, 0.3 disputed by the author)."
 
   data_quality_note:
     slot_uri: heritageGraph:dataQualityNote

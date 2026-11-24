@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constraint census for the published SHACL shapes.
 
-The negative-test suite (evaluation/independent_abox.py) injects eleven
+The negative-test suite (evaluation/independent_abox.py) injects twelve
 single violations; on its own that is an anecdote. This script supplies the
 systematic statement behind it: how many constraints of each SHACL component
 type the published shape graph carries, and which of those component types
@@ -28,7 +28,7 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 11 tests hitting it.
+# Negative-test coverage: component type -> number of the 12 tests hitting it.
 NEG_TESTS = {
     "sh:minCount": 4,   # missing custody holder / assigned deity / assertsAbout / time-span
     "sh:maxCount": 1,   # two embodied deities on one tenure
@@ -37,6 +37,7 @@ NEG_TESTS = {
     "sh:in": 1,         # guthiType outside the controlled vocabulary
     "sh:nodeKind": 1,   # ritual site given as a blank node
     "sh:or": 1,         # ritual performed by a person, not a Guthi or caste group
+    "sh:pattern": 1,    # reconciliationStatus outside confirmed|conflicting|unverified
 }
 
 direct = {
@@ -47,6 +48,7 @@ direct = {
     "sh:in": SH["in"],
     "sh:nodeKind": SH.nodeKind,
     "sh:or": SH["or"],
+    "sh:pattern": SH.pattern,
 }
 
 print(f"\n{'component':<14}{'occurrences':>12}{'negative tests':>16}")
