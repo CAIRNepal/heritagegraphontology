@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constraint census for the published SHACL shapes.
 
-The negative-test suite (evaluation/independent_abox.py) injects fourteen
+The negative-test suite (evaluation/independent_abox.py) injects seventeen
 single violations; on its own that is an anecdote. This script supplies the
 systematic statement behind it: how many constraints of each SHACL component
 type the published shape graph carries, and which of those component types
@@ -28,7 +28,7 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 14 tests hitting it.
+# Negative-test coverage: component type -> number of the 17 tests hitting it.
 NEG_TESTS = {
     "sh:minCount": 4,   # missing custody holder / assigned deity / assertsAbout / time-span
     "sh:maxCount": 1,   # two embodied deities on one tenure
@@ -36,9 +36,12 @@ NEG_TESTS = {
     "sh:class": 2,      # non-TimeSpan time-span; DocumentationActivity in ritual slot
     "sh:in": 1,         # guthiType outside the controlled vocabulary
     "sh:nodeKind": 1,   # ritual site given as a blank node
-    "sh:or": 2,         # ritual performed by a person; recorded date without its calendar
+    "sh:or": 3,         # ritual performed by a person; recorded date without its calendar;
+                        # a note that is not text (xsd:string or rdf:langString)
     "sh:pattern": 1,    # reconciliationStatus outside confirmed|conflicting|unverified
     "sh:lessThanOrEquals": 1,  # time-span ends before it begins
+    "sh:uniqueLang": 1,        # two English labels on one deity
+    "sh:qualifiedMaxCount": 1, # two untagged labels on one deity
 }
 
 direct = {
@@ -51,6 +54,8 @@ direct = {
     "sh:or": SH["or"],
     "sh:pattern": SH.pattern,
     "sh:lessThanOrEquals": SH.lessThanOrEquals,
+    "sh:uniqueLang": SH.uniqueLang,
+    "sh:qualifiedMaxCount": SH.qualifiedMaxCount,
 }
 
 print(f"\n{'component':<14}{'occurrences':>12}{'negative tests':>16}")

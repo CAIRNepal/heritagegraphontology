@@ -407,6 +407,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
     apply_attribute_ranges(g, sv)
     repair_dl_profile(g, sv)
     drop_pattern_facets(g)
+    relax_text_ranges(g)
+    relax_reused_max_cardinality(g)
     add_external_class_domains(g, sv)
     drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
@@ -677,6 +679,133 @@ def apply_official_external_annotations(g: Graph) -> None:
                  "ontology/imports/):\n  - " + "\n  - ".join(missing))
     print(f"external terms: replaced {n_removed} HeritageGraph-written annotation(s) "
           f"on {len(targets)} term(s) with official labels/definitions")
+
+
+SCHEMA_INLANGUAGE = URIRef("http://schema.org/inLanguage")
+# string slots whose values are codes or identifiers, not human-language text:
+# a language tag on them would be meaningless, so they stay xsd:string
+CODE_VALUED = {URIRef(HG_NS + n) for n in (
+    "identifierScheme", "persistentIdentifier", "sourceUrl", "resourceType",
+    "epochDateGregorian", "reconciliationStatus")} | {SCHEMA_INLANGUAGE}
+# slots whose value may be any literal, e.g. a proposition's object given as
+# "1564"^^xsd:gYear
+ANY_LITERAL = {URIRef(HG_NS + "propositionLiteralValue")}
+RDF_LANGSTRING = RDF.langString
+
+
+def text_valued_properties(g: Graph) -> set[URIRef]:
+    """Properties whose values are human-language text: every property with
+    an xsd:string range or xsd:string value restriction in the OWL, minus the
+    code/identifier slots (CODE_VALUED)."""
+    props = {p for p in g.subjects(RDFS.range, XSD.string)}
+    props |= {g.value(r, OWL.onProperty) for r in g.subjects(OWL.allValuesFrom, XSD.string)}
+    return {p for p in props if isinstance(p, URIRef) and p not in CODE_VALUED}
+
+
+def relax_text_ranges(g: Graph) -> set[URIRef]:
+    """B1: text in Nepali, Newari and Sanskrit is recorded with language tags
+    ("Taleju"@en, "तलेजु"@ne). RDF 1.1 gives "x"@ne the datatype rdf:langString,
+    which is disjoint from xsd:string, so an xsd:string range or ∀p.xsd:string
+    restriction makes every tagged value an OWL inconsistency. For the
+    free-text properties the OWL range becomes rdf:PlainLiteral, the OWL 2
+    datatype whose values are exactly the plain strings and the
+    language-tagged strings (so HermiT still rejects a note of 42); the
+    SHACL shapes say the same as xsd:string or rdf:langString. Code and
+    identifier properties keep xsd:string; ANY_LITERAL slots take rdfs:Literal."""
+    props = text_valued_properties(g)
+    n = 0
+    for p in props:
+        dt = RDFS.Literal if p in ANY_LITERAL else RDF.PlainLiteral
+        if (p, RDFS.range, XSD.string) in g:
+            g.remove((p, RDFS.range, XSD.string)); g.add((p, RDFS.range, dt)); n += 1
+    for r in list(g.subjects(OWL.allValuesFrom, XSD.string)):
+        p = g.value(r, OWL.onProperty)
+        if p in props:
+            dt = RDFS.Literal if p in ANY_LITERAL else RDF.PlainLiteral
+            g.remove((r, OWL.allValuesFrom, XSD.string)); g.add((r, OWL.allValuesFrom, dt)); n += 1
+    # "at most one" on a text property would forbid giving the same text in
+    # a second language ("Around the city"@en, "शहर परिक्रमा"@ne): the limit
+    # becomes one value per language tag, which only SHACL can state
+    n_max = 0
+    for r in list(g.subjects(OWL.maxCardinality, None)):
+        p = g.value(r, OWL.onProperty)
+        if p in props and p not in ANY_LITERAL:
+            for c in list(g.subjects(RDFS.subClassOf, r)):
+                g.remove((c, RDFS.subClassOf, r))
+            g.remove((r, None, None)); n_max += 1
+    print(f"B1: {n} xsd:string range/value restriction(s) on {len(props)} text propert(ies) "
+          f"-> rdf:PlainLiteral ({len(ANY_LITERAL & props)} -> rdfs:Literal); "
+          f"{n_max} max-1 on text properties -> one value per language (SHACL)")
+    return props
+
+
+CRM_NS = "http://www.cidoc-crm.org/cidoc-crm/"
+CRM_UNQUANTIFIED = {URIRef(CRM_NS + n) for n in (
+    "P81a_end_of_the_begin", "P81b_begin_of_the_end",
+    "P82a_begin_of_the_begin", "P82b_end_of_the_end")}
+
+
+def crm_max_one() -> dict[URIRef, bool]:
+    """For every CIDOC CRM property (and its inverse), whether the official
+    quantification allows at most one value per subject. CRM writes
+    "(a,b:c,d)": b is the maximum number of range instances per domain
+    instance (the forward property), d the maximum for the inverse.
+    Properties without a quantification (P82a, P82b) are absent."""
+    import re
+    crm = next(vg for ns, vg, _ in _official_sources() if ns == CRM_NS)
+    out: dict[URIRef, bool] = {}
+    for p in set(crm.subjects(RDF.type, RDF.Property)):
+        text = " ".join(str(c) for c in crm.objects(p, RDFS.comment))
+        m = re.search(r"\((\d),(\d|n):(\d),(\d|n)\)", text)
+        if not m:
+            continue
+        # an inverse property's comment quotes the forward quantification
+        mirrored = "Quantification of the inverse property" in text
+        out[p] = m.group(4 if mirrored else 2) == "1"
+    return out
+
+
+def reused_max_one_allowed(p: URIRef, crm: dict[URIRef, bool]) -> bool:
+    """B2: may HeritageGraph state "at most one value" for property p?
+    Its own properties: yes (a design decision). A CIDOC CRM property: only
+    where CRM's own quantification is at most one. Any other external
+    property (PROV-O, schema.org): no, the owner sets none."""
+    if str(p).startswith(HG_NS):
+        return True
+    if str(p).startswith(CRM_NS):
+        # P82a/P82b (the RDFS encoding of time-span bounds) have no
+        # quantification; each names a single instant, so the limit stays
+        if p not in crm and p not in CRM_UNQUANTIFIED:
+            print(f"WARNING: no CRM quantification for {p}; keeping its limit")
+        return crm.get(p, True)
+    return False
+
+
+def relax_reused_max_cardinality(g: Graph) -> None:
+    """B2: OWL has no unique-name assumption, so a max-1 restriction on a
+    property CRM declares many-valued does not reject a second value: it
+    merges the two values (owl:sameAs), or makes the data inconsistent when
+    they are known to differ. A note plus a citation (sourceCitation ⊑ P3),
+    a procession over two places (routePlaces ⊑ P7) and any third-party CRM
+    graph that uses the property as CRM allows were affected. Drop the max-1
+    restrictions on reused properties that CRM (or the owner) does not
+    limit; keep the ones CRM itself states, e.g. P4 has time-span (1,1)."""
+    crm = crm_max_one()
+    dropped, kept = {}, {}
+    for r in list(g.subjects(OWL.maxCardinality, None)):
+        p = g.value(r, OWL.onProperty)
+        if str(p).startswith(HG_NS):
+            continue
+        name = str(p).rsplit("/", 1)[-1].rsplit("#", 1)[-1]
+        if reused_max_one_allowed(p, crm):
+            kept[name] = kept.get(name, 0) + 1
+            continue
+        for s in list(g.subjects(RDFS.subClassOf, r)):
+            g.remove((s, RDFS.subClassOf, r))
+        g.remove((r, None, None))
+        dropped[name] = dropped.get(name, 0) + 1
+    print(f"B2: dropped max-1 on reused properties {dict(sorted(dropped.items()))}; "
+          f"kept (CRM quantification max 1) {dict(sorted(kept.items()))}")
 
 
 def drop_pattern_facets(g: Graph) -> None:
@@ -1123,12 +1252,64 @@ def finalize_shacl(sv: SchemaView) -> None:
         g.add((ps, SH["in"], head))
         n += 1
     print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
+    relax_shacl_text_and_cardinality(g)
     add_usage_names(g, sv)
     scope_shapes(g, sv)
     add_timespan_rules(g)
     bind_hg(g)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
+
+
+def relax_shacl_text_and_cardinality(g: Graph) -> None:
+    """The SHACL counterpart of relax_text_ranges and
+    relax_reused_max_cardinality (B1, B2).
+    B1: a free-text property shape (sh:datatype xsd:string, no sh:pattern,
+    not a code/identifier slot) accepts xsd:string or rdf:langString.
+    Labels, and HeritageGraph's single-valued text properties: at most one
+    value per language tag (sh:uniqueLang) and at most one untagged, so
+    "Taleju Bhawani"@en and "तलेजु भवानी"@ne may both be given but two
+    English names may not.
+    B2: sh:maxCount on a CIDOC CRM path is kept only where CRM's own
+    quantification allows at most one value (as in the OWL), so CRM data
+    with two notes, places or custodians validates. Limits on other
+    vocabularies' properties (one prov:generatedAtTime per record) stay: a
+    closed-world shape is HeritageGraph's application profile, not an axiom
+    about the property, and those owners state no cardinality to follow."""
+    crm = crm_max_one()
+    n_text = n_label = n_max = 0
+    for ps in list(g.subjects(SH.path, None)):
+        p = g.value(ps, SH.path)
+        if not isinstance(p, URIRef):
+            continue
+        if ((ps, SH.datatype, XSD.string) in g and (ps, SH.pattern, None) not in g
+                and p not in CODE_VALUED):
+            g.remove((ps, SH.datatype, XSD.string))
+            if p in ANY_LITERAL:      # sh:nodeKind sh:Literal remains
+                continue
+            alts = []
+            for dt in (XSD.string, RDF_LANGSTRING):
+                b = BNode(); g.add((b, SH.datatype, dt)); alts.append(b)
+            head = BNode(); Collection(g, head, alts)
+            g.add((ps, SH["or"], head))
+            n_text += 1
+            if p == RDFS.label or (str(p).startswith(HG_NS)
+                                   and (ps, SH.maxCount, None) in g):
+                g.remove((ps, SH.maxCount, None))
+                g.add((ps, SH.uniqueLang, Literal(True)))
+                q = BNode(); g.add((q, SH.datatype, XSD.string))
+                g.add((ps, SH.qualifiedValueShape, q))
+                g.add((ps, SH.qualifiedMaxCount, Literal(1)))
+                n_label += 1
+                continue
+        if (ps, SH.maxCount, None) in g and (
+                p == SCHEMA_INLANGUAGE   # one recording in Nepali and Newari
+                or (str(p).startswith(CRM_NS) and not reused_max_one_allowed(p, crm))):
+            g.remove((ps, SH.maxCount, None))
+            n_max += 1
+    print(f"B1: {n_text} text shape(s) accept xsd:string or rdf:langString "
+          f"({n_label} label/single-valued text shape(s): uniqueLang, one untagged); "
+          f"B2: dropped {n_max} sh:maxCount on reused many-valued paths (CRM per its quantification; schema:inLanguage)")
 
 
 def add_usage_names(g: Graph, sv: SchemaView) -> None:

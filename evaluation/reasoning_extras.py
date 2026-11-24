@@ -23,9 +23,10 @@ Subcommands (default: all):
   merged-import   Merged-vocabulary classification: HermiT over HeritageGraph +
                   the full CIDOC-CRM, CRMinf, CRMsci, and PROV-O vocabularies, closing
                   the threat that consistency was specific to the self-contained
-                  released axiom set. Reports the documented PROV-O property-
-                  chain vs. HG-cardinality DL collision and classifies under
-                  both minimal repairs.
+                  released axiom set. Every vocabulary is loaded unmodified;
+                  fails if an HG cardinality restriction names a PROV-O
+                  property-chain (non-simple) property, which would take the
+                  merge outside OWL 2 DL.
 
   no-external-superclass  Core + LUX module + CIDOC-CRM (+ CRMinf, CRMsci) must not give
                   an external class a HeritageGraph superclass, or an enumeration
@@ -288,11 +289,23 @@ def run_merged_import() -> int:
             continue
         ok &= _classify(f"HG + {name}", [hg, p])
 
-    # --- PROV-O: report the DL collision, then classify under both repairs ---
+    # --- PROV-O: no HG cardinality restriction may name a non-simple
+    # (property-chain) PROV-O property, or the merge leaves OWL 2 DL ---
     print("PROV-O: DL global-restrictions check:")
     prov_g = Graph()
     prov_g.parse(paths["PROV-O"], format="turtle")
+    # non-simple: a property with a chain axiom, any superproperty of one,
+    # and the inverses of all of these (OWL 2 structural spec, sec. 11.1)
     chains = {s for s in prov_g.subjects(OWL.propertyChainAxiom, None)}
+    while True:
+        grown = set(chains)
+        for p in chains:
+            grown |= set(prov_g.objects(p, RDFS.subPropertyOf))
+            grown |= set(prov_g.objects(p, OWL.inverseOf)) | set(prov_g.subjects(OWL.inverseOf, p))
+        grown = {x for x in grown if isinstance(x, URIRef)}
+        if grown == chains:
+            break
+        chains = grown
     hg_g = Graph()
     hg_g.parse(hg, format="turtle")
     constrained = set()
@@ -303,48 +316,24 @@ def run_merged_import() -> int:
                 if prop is not None and str(prop).startswith(PROV_NS):
                     constrained.add(prop)
     collide = sorted(str(p).split("#")[-1] for p in chains & constrained)
-    print(f"  PROV-O chain-axiom (non-simple) properties: {len(chains)}")
-    print(f"  of which under an HG cardinality restriction: {len(collide)}")
-    print(f"  collision set: {', '.join(collide)}")
-    print("  => merged graph is outside OWL 2 DL (non-simple property in a")
-    print("     cardinality restriction); HermiT rejects it on profile grounds.")
+    print(f"  PROV-O non-simple properties (chain axioms, their superproperties and inverses): {len(chains)}")
+    print(f"  of which under an HG cardinality restriction: {len(collide)}"
+          + (f" ({', '.join(collide)})" if collide else ""))
+    if collide:
+        print("  FAIL: the merge is outside OWL 2 DL (non-simple property in a "
+              "cardinality restriction)")
+        ok = False
+    ok &= _classify("HG + PROV-O (unmodified)", [hg, paths["PROV-O"]])
 
-    # Repair 1: drop PROV-O's chain axioms.
-    prov_nochain = CACHE / "prov.nochain.ttl"
-    g = Graph()
-    g.parse(paths["PROV-O"], format="turtle")
-    for s, o in list(g.subject_objects(OWL.propertyChainAxiom)):
-        g.remove((s, OWL.propertyChainAxiom, o))
-    g.serialize(prov_nochain, format="turtle")
-    ok &= _classify("HG + PROV-O (chain axioms dropped)", [hg, prov_nochain])
-
-    # Repair 2: drop HG's cardinality restrictions on the colliding properties.
-    hg_relaxed = CACHE / "hg.relaxed.ttl"
-    g = Graph()
-    g.parse(hg, format="turtle")
-    for r in list(g.subjects(RDF.type, OWL.Restriction)):
-        prop = next(g.objects(r, OWL.onProperty), None)
-        if prop in chains:
-            for kind in (OWL.maxCardinality, OWL.minCardinality, OWL.cardinality):
-                for v in list(g.objects(r, kind)):
-                    g.remove((r, kind, v))
-                    # neutralise the emptied restriction
-                    g.add((r, OWL.minCardinality, v.__class__("0", datatype=v.datatype)))
-    g.serialize(hg_relaxed, format="turtle")
-    ok &= _classify("HG (prov cardinalities relaxed) + PROV-O",
-                    [hg_relaxed, paths["PROV-O"]])
-
-    print("Full merge (chain axioms dropped from PROV-O):")
+    print("Full merge (all vocabularies unmodified):")
     ok &= _classify("HG + CRM + CRMinf + CRMsci + PROV-O",
                     [hg, paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
-                     paths["CRMsci v2.0"], prov_nochain])
+                     paths["CRMsci v2.0"], paths["PROV-O"]])
 
     if ok:
-        print("\nPASS: HermiT classifies every DL-admissible merged graph "
-              "consistent, with no unsatisfiable classes and no unintended class "
-              "equivalences; the one obstruction is the documented DL profile "
-              "collision between PROV-O's property chains and HG's cardinality "
-              "restrictions, not a semantic clash.")
+        print("\nPASS: HermiT classifies every merged graph, each vocabulary "
+              "unmodified, consistent, with no unsatisfiable classes and no "
+              "unintended class equivalences.")
         return 0
     print("\nFAIL: at least one merged classification did not come back clean.")
     return 1
@@ -706,24 +695,17 @@ def run_merged_abox() -> int:
     all vocabularies loaded. The graphs are combined in rdflib into ONE file
     (not `robot merge`), so that data triples on properties the example does
     not itself declare are read with the vocabularies' declarations rather
-    than as annotations. PROV-O's property chains are dropped, as in
-    merged-import (the documented DL-profile collision with HG cardinalities).
+    than as annotations. Every vocabulary is loaded unmodified.
     """
-    print("merged-abox: each example ABox + HG + CRM + CRMinf + CRMsci + PROV-O (chains dropped)")
+    print("merged-abox: each example ABox + HG + CRM + CRMinf + CRMsci + PROV-O (all unmodified)")
     paths = {name: _fetch(name, fname, url) for name, (fname, url) in VOCABS.items()}
-    prov = Graph()
-    prov.parse(paths["PROV-O"], format="turtle")
-    for s_, o_ in list(prov.subject_objects(OWL.propertyChainAxiom)):
-        prov.remove((s_, OWL.propertyChainAxiom, o_))
     root = Path(__file__).resolve().parents[1]
     ok = True
     for ex in sorted((root / "examples").glob("*.ttl")):
         g = Graph()
         g.parse(root / "ontology" / "HeritageGraph.ttl", format="turtle")
         for name, p in paths.items():
-            if name != "PROV-O":
-                g.parse(p, format="turtle")
-        g += prov
+            g.parse(p, format="turtle")
         g.parse(ex, format="turtle")
         g.remove((None, OWL.imports, None))
         combined = CACHE / f"merged_abox_{ex.stem}.ttl"

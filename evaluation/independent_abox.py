@@ -85,6 +85,16 @@ print(f"== SHACL conformance (minimal valid instance): conforms={conforms} ==")
 if not conforms:
     print(txt[:1500])
 
+# Conformance 3: multilingual text and many-valued CIDOC CRM properties
+# (language-tagged labels and notes, a note plus a citation, a procession over
+# two places, one production and one custody transfer of two objects).
+ml = Graph(); ml.parse(ROOT + "examples/kathmandu-multilingual.ttl", format="turtle")
+conforms_ml, _, txt = validate(ml, shacl_graph=shapes, ont_graph=ont,
+                               inference="none", abort_on_first=False)
+print(f"== SHACL conformance (multilingual, many-valued fixture): conforms={conforms_ml} ==")
+if not conforms_ml:
+    print(txt[:1500])
+
 # Negative tests: inject violations, expect non-conformance.
 # One test per modelling concern. The alpha lineage publishes OPEN shapes
 # (closedness is deliberately dropped by the pipeline), so the tests exercise
@@ -143,6 +153,14 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
  "Calendar: recorded date without its calendar (sh:or)":
   ('ex:BadRecord a crm:E52_Time-Span ; hg:recordedDate "2072" ;'
    ' crm:P82a_begin_of_the_begin "2015-04-14T00:00:00"^^xsd:dateTime .', "Or"),
+ # Labels may come in several languages, but one per language tag.
+ "Labels: two English labels on one deity (sh:uniqueLang)":
+  ('ex:BadDeity a hg:Deity ; rdfs:label "Taleju"@en , "Tulaja"@en .', "UniqueLang"),
+ "Labels: two untagged labels on one deity (sh:qualifiedMaxCount)":
+  ('ex:BadDeity a hg:Deity ; rdfs:label "Taleju" , "Tulaja" .', "QualifiedMaxCount"),
+ # Free text accepts xsd:string or rdf:langString, nothing else.
+ "Text: a note given as a number, not text (sh:or string|langString)":
+  ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P3_has_note 42 .', "Or"),
 }
 # The property each test must violate: a test counts as caught only when a
 # result has the expected constraint component ON THE EXPECTED PATH (a
@@ -164,6 +182,9 @@ EXPECTED_PATH = {
  "Provenance: reconciliationStatus outside confirmed|conflicting|unverified (sh:pattern)": HG_ + "reconciliationStatus",
  "Calendar: time-span ends before it begins (sh:lessThanOrEquals)": CRM_ + "P82a_begin_of_the_begin",
  "Calendar: recorded date without its calendar (sh:or)": "None",  # node-level sh:or: no result path
+ "Labels: two English labels on one deity (sh:uniqueLang)": "http://www.w3.org/2000/01/rdf-schema#label",
+ "Labels: two untagged labels on one deity (sh:qualifiedMaxCount)": "http://www.w3.org/2000/01/rdf-schema#label",
+ "Text: a note given as a number, not text (sh:or string|langString)": CRM_ + "P3_has_note",
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0
@@ -181,3 +202,5 @@ for name, (ttl, component) in tests.items():
     caught += hit
     print(f"  [{'CAUGHT' if hit else 'MISSED'}] {name}  -> violated: {', '.join(comps) or 'none'}")
 print(f"Negative tests caught: {caught}/{len(tests)}")
+if not (conforms_ml and caught == len(tests)):
+    raise SystemExit(1)

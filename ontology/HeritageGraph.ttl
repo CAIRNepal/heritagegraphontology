@@ -358,16 +358,10 @@ hg:Container a owl:Class ;
 hg:DataCustodian a owl:Class ;
     rdfs:label "Data Custodian"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:custodianType ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:custodianType ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         crm:E39_Actor ;
     skos:broadMatch prov:Agent ;
@@ -417,23 +411,17 @@ hg:HoroscopeCompatibilityCriterion a owl:Class ;
 hg:InformationObject a owl:Class ;
     rdfs:label "Information Object"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty prov:wasGeneratedBy ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty schema1:inLanguage ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom prov:Activity ;
-            owl:onProperty prov:wasGeneratedBy ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:AssertionSubject ;
             owl:onProperty crm:P129_is_about ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty schema1:inLanguage ],
+            owl:allValuesFrom prov:Activity ;
+            owl:onProperty prov:wasGeneratedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
         hg:DataSource ;
     skos:broadMatch crm:E73_Information_Object ;
     skos:definition "A recorded piece of information about heritage"@en ;
@@ -510,35 +498,35 @@ hg:Pokhari a owl:Class ;
 hg:Proposition a owl:Class ;
     rdfs:label "Proposition"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:propositionLiteralValue ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:propositionSubject ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:propositionObjectEntity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:propositionSubject ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:propositionObjectEntity ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:anyURI ;
             owl:onProperty hg:propositionPredicate ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:propositionSubject ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:propositionLiteralValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdfs:Literal ;
+            owl:onProperty hg:propositionLiteralValue ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:AssertionSubject ;
+            owl:onProperty hg:propositionObjectEntity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:propositionObjectEntity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:AssertionSubject ;
+            owl:onProperty hg:propositionSubject ],
+        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty hg:propositionPredicate ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:propositionPredicate ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty hg:propositionSubject ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:propositionLiteralValue ],
         prov:Entity ;
     skos:broadMatch crminf:I4_Proposition_Set ;
     skos:closeMatch rdf:Statement ;
@@ -573,20 +561,14 @@ hg:Verification a owl:Class ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:verifiedAssertion ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:verificationMethod ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E21_Person ;
             owl:onProperty hg:verifiedByExpert ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:verificationMethod ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:verificationMethod ],
         hg:DocumentationActivity ;
     skos:broadMatch prov:Activity ;
     skos:definition "Process of cross-checking heritage claims against multiple sources"@en ;
@@ -713,7 +695,7 @@ hg:custody_events a owl:ObjectProperty ;
 hg:dataQualityNote a owl:DatatypeProperty ;
     rdfs:label "Data quality note"@en ;
     rdfs:domain crminf:I2_Belief ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:definition "Notes on data quality, completeness, or uncertainty"@en ;
     skos:inScheme hg:schema .
 
@@ -793,7 +775,7 @@ hg:enshrinement_events a owl:ObjectProperty ;
 hg:expertiseArea a owl:DatatypeProperty ;
     rdfs:label "Expertise area"@en ;
     rdfs:domain crm:E21_Person ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:definition "Areas of expertise (e.g., Licchavi inscriptions, Sanskrit epigraphy, Newari archaeology)"@en ;
     skos:inScheme hg:schema .
 
@@ -857,7 +839,7 @@ hg:information_objects a owl:ObjectProperty ;
 hg:institutionalAffiliation a owl:DatatypeProperty ;
     rdfs:label "Institutional affiliation"@en ;
     rdfs:domain crm:E21_Person ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:definition "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)"@en ;
     skos:inScheme hg:schema .
 
@@ -947,7 +929,7 @@ hg:physical_heritage_things a owl:ObjectProperty ;
 hg:placeType a owl:DatatypeProperty ;
     rdfs:label "Place type"@en ;
     rdfs:domain crm:E53_Place ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:definition "Type of place (city, village, region), free text"@en ;
     skos:inScheme hg:schema .
 
@@ -1006,7 +988,7 @@ hg:reconciliationStatus a owl:DatatypeProperty ;
 hg:recordedDate a owl:DatatypeProperty ;
     rdfs:label "Recorded date"@en ;
     rdfs:domain crm:E52_Time-Span ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:broadMatch crm:P3_has_note ;
     skos:definition "The date as written in the source, in the calendar given by calendar_system (e.g. '2072' for a Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted Gregorian bounds go in date_earliest / date_latest."@en ;
     skos:inScheme hg:schema .
@@ -1042,7 +1024,7 @@ hg:schema_version a owl:DatatypeProperty ;
 hg:selectionCriteriaMet a owl:DatatypeProperty ;
     rdfs:label "obsolete selection criteria met"@en ;
     dcterms:isReplacedBy hg:hasCriterion ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     owl:deprecated true ;
     skos:definition "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility."@en ;
     skos:inScheme hg:schema .
@@ -1173,6 +1155,102 @@ In First Order Logic of the inverse property:
 - P14(x,y) ⇒ P11(x,y)
 - P14(x,y,z) ⇒ [P14(x,y) ∧ E55(z)]"""@en .
 
+crm:P16_used_specific_object a owl:ObjectProperty ;
+    rdfs:label "used specific object"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property describes the use of material or immaterial things in a way essential to the performance or the outcome of an instance of E7 Activity. 
+This property typically applies to tools, instruments, moulds, raw materials and items embedded in a product. It implies that the presence of the object in question was a necessary condition for the action. For example, the activity of writing this text required the use of a computer. An immaterial thing can be used if at least one of its carriers is present. For example, the software tools on a computer.
+Another example is the use of a particular name by a particular group of people over some span to identify a thing, such as a settlement. In this case, the physical carriers of this name are at least the people understanding its use.
+
+Examples:
+- The writing of the scope note of the CIDOC CRM property “P16 used specific object” contained in the CIDOC CRM version 4.1 (E7) used specific object Nicholas Crofts’ computer (E22) mode of use Typing Tool; Storage Medium (E55). [the original scope note was later extended in the CIDOC CRM version 4.3] 
+- The people of Iraq calling the place identified by TGN ‘7017998’ (E7) used specific object “Quyunjig” (E41) mode of use current; vernacular (E55).
+
+Properties:
+- P16.1 mode of use: E55 Type
+
+In First Order Logic:
+- P16(x,y) ⇒ E7(x)
+- P16(x,y) ⇒ E70(y)
+- P16(x,y) ⇒ P12(x,y)
+- P16(x,y) ⇒ P15(x,y)
+- P16(x,y,z) ⇒ [P16(x,y) ∧ E55(z)]"""@en .
+
+crm:P183_ends_before_the_start_of a owl:ObjectProperty ;
+    rdfs:label "ends before the start of"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property specifies that the temporal extent of the domain instance A of E2 Temporal Entity ends definitely before the start of the temporal extent of the range instance B of E2 Temporal Entity. 
+In other words, if A = [A(start), A(end)] and B = [B(start), B(end)], it means A(end) &lt; B(start) is true. 
+This property is part of the set of temporal primitives P173 – P176, P182 – P185.
+This property corresponds to the following Allen temporal relation (Allen, 1983) : {before}.
+This property is transitive. This property is asymmetric. 
+
+
+https://cidoc-crm.org/html/version_images/images_7.1.3/image_11.png
+
+
+Figure 18: Temporal entity A ends before the start of temporal entity B. Here A is longer than B
+
+
+https://cidoc-crm.org/html/version_images/images_7.1.3/image_12.png
+
+
+Figure 19: Temporal entity A ends before the start of temporal entity B. Here A is shorter than B
+
+Examples:
+- Gisle taking office as Bishop of Linköping 1139 AD (E7) ends before the start of The Guta saga composition (E65). (Peel, 1999)
+- Troy VII (E4) ends before the start of Troy VIII (E4). [uninhabited for some 200 years]
+- The use of the Tomb Four from Nikitopoulou group in Nihoria in the MHIII-LHI period (E4) ends before the start of the period of reuse of the Tomb Four from Nikitopoulou group in LHIIIA (E4). [“Of the six tombs excavated in the Nikitopoulou group […] the finds in Tomb Four are of MH II or MH III-LH I date, with the exception of the finds with the Northern group of material, which is uniformly dated to LHIIA2, end the ewer in the middle of the floor, dated LHIIIA1. […] The preserved evidence seems clearly to indicate use in the MHIII-LHI use in the MHIII-LHI period followed by a period of reuse in LHIIIA, a pattern matched at architecturally similar sites such as 13:Kaminia and 10:Gouvalári.”] (Boyd, 2002)
+
+In First Order Logic:
+- P183(x,y) ⇒ E2(x)
+- P183(x,y) ⇒ E2(y)
+- P183(x,y) ⇒ P182(x,y)
+- [P183(x,y) ∧ P183(y,z)] ⇒ P183(x,z)
+- P183(x,y) ⇒ ¬P183(y,x)"""@en .
+
+crm:P183i_starts_after_the_end_of a owl:ObjectProperty ;
+    rdfs:label "starts after the end of"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification of the inverse property: many to many (0,n:0,n)
+
+Scope note of the inverse property:
+This property specifies that the temporal extent of the domain instance A of E2 Temporal Entity ends definitely before the start of the temporal extent of the range instance B of E2 Temporal Entity. 
+In other words, if A = [A(start), A(end)] and B = [B(start), B(end)], it means A(end) &lt; B(start) is true. 
+This property is part of the set of temporal primitives P173 – P176, P182 – P185.
+This property corresponds to the following Allen temporal relation (Allen, 1983) : {before}.
+This property is transitive. This property is asymmetric. 
+
+
+https://cidoc-crm.org/html/version_images/images_7.1.3/image_11.png
+
+
+Figure 18: Temporal entity A ends before the start of temporal entity B. Here A is longer than B
+
+
+https://cidoc-crm.org/html/version_images/images_7.1.3/image_12.png
+
+
+Figure 19: Temporal entity A ends before the start of temporal entity B. Here A is shorter than B
+
+Examples of the inverse property:
+- Gisle taking office as Bishop of Linköping 1139 AD (E7) ends before the start of The Guta saga composition (E65). (Peel, 1999)
+- Troy VII (E4) ends before the start of Troy VIII (E4). [uninhabited for some 200 years]
+- The use of the Tomb Four from Nikitopoulou group in Nihoria in the MHIII-LHI period (E4) ends before the start of the period of reuse of the Tomb Four from Nikitopoulou group in LHIIIA (E4). [“Of the six tombs excavated in the Nikitopoulou group […] the finds in Tomb Four are of MH II or MH III-LH I date, with the exception of the finds with the Northern group of material, which is uniformly dated to LHIIA2, end the ewer in the middle of the floor, dated LHIIIA1. […] The preserved evidence seems clearly to indicate use in the MHIII-LHI use in the MHIII-LHI period followed by a period of reuse in LHIIIA, a pattern matched at architecturally similar sites such as 13:Kaminia and 10:Gouvalári.”] (Boyd, 2002)
+
+In First Order Logic of the inverse property:
+- P183(x,y) ⇒ E2(x)
+- P183(x,y) ⇒ E2(y)
+- P183(x,y) ⇒ P182(x,y)
+- [P183(x,y) ∧ P183(y,z)] ⇒ P183(x,z)
+- P183(x,y) ⇒ ¬P183(y,x)"""@en .
+
 crm:P29_custody_received_by a owl:ObjectProperty ;
     rdfs:label "custody received by"@en ;
     rdfs:isDefinedBy crm: ;
@@ -1271,6 +1349,25 @@ In First Order Logic of the inverse property:
 - P62(x,y) ⇒ E1(y) 
 - P62(x,y,z) ⇒ [P62(x,y) ∧ E55(z)]
 - P62(x,y) ⇐ (∃z) [E36(z) ˄ P65(x,z) ˄ P138(z,y)]"""@en .
+
+crm:P9i_forms_part_of a owl:ObjectProperty ;
+    rdfs:label "forms part of"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification of the inverse property: many to many (0,n:0,n)
+
+Scope note of the inverse property:
+This property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.
+This property is transitive and asymmetric.
+
+Examples of the inverse property:
+- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)
+
+In First Order Logic of the inverse property:
+- P9(x,y) ⇒ E4(x)
+- P9(x,y) ⇒ E4(y)
+- P9(x,y) ⇒ P10(y,x)
+- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)
+- P9(x,y) ⇒ ¬P9(y,x)"""@en .
 
 prov:wasAssociatedWith a owl:ObjectProperty ;
     rdfs:label "wasAssociatedWith" ;
@@ -1372,50 +1469,47 @@ hg:Chaitya a owl:Class ;
 hg:CustodyPeriod a owl:Class ;
     rdfs:label "Custody Period"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:custodyHolder ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:custodyObject ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:custodyHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E10_Transfer_of_Custody ;
+            owl:onProperty hg:custodyClosedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E10_Transfer_of_Custody ;
             owl:onProperty hg:custodyOpenedBy ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty hg:custodyObject ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:custodyHolder ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:PhysicalHeritageThing ;
-            owl:onProperty hg:custodyObject ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:custodyClosedBy ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:custodyHolder ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:custodyOpenedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:custodyClosedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E10_Transfer_of_Custody ;
-            owl:onProperty hg:custodyClosedBy ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom hg:PhysicalHeritageThing ;
             owl:onProperty hg:custodyObject ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:custodyHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
@@ -1468,23 +1562,8 @@ hg:CustodyPeriod a owl:Class ;
 hg:EndowmentEvent a owl:Class ;
     rdfs:label "Endowment Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:endowmentRecipient ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom hg:EndowmentEventType ;
+            owl:onProperty hg:endowmentEventType ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
@@ -1492,32 +1571,41 @@ hg:EndowmentEvent a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:endowmentEventType ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:endowmentDonor ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:EndowmentEventType ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:concernsEndowment ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty hg:endowmentEventType ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:concernsEndowment ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:endowmentRecipient ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty hg:concernsEndowment ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Endowment ;
             owl:onProperty hg:concernsEndowment ],
         [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:endowmentRecipient ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:endowmentDonor ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:endowmentEventType ],
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
     skos:definition "Event that founds, augments, nationalises or alienates a Guthi endowment, with its donor or recipient and its date."@en ;
@@ -1675,16 +1763,16 @@ hg:Murti a owl:Class ;
     rdfs:label "Murti"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:isAboutDeity ],
+            owl:onProperty hg:consecratedByEvent ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty hg:isAboutDeity ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:consecratedByEvent ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Consecration ;
             owl:onProperty hg:consecratedByEvent ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:isAboutDeity ],
         hg:IconographicObject ;
     skos:definition "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)"@en ;
     skos:exactMatch wikidata:Q1781039 ;
@@ -1693,17 +1781,20 @@ hg:Murti a owl:Class ;
 hg:RitualAssessment a owl:Class ;
     rdfs:label "Ritual Assessment"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariSelectionEvent ;
+            owl:onProperty hg:partOfSelection ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:partOfSelection ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty hg:assessesCandidate ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:assessesCandidate ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty crm:P14_carried_out_by ],
@@ -1711,14 +1802,11 @@ hg:RitualAssessment a owl:Class ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariSelectionEvent ;
-            owl:onProperty hg:partOfSelection ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
+            owl:maxCardinality 1 ;
             owl:onProperty hg:assessesCandidate ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         hg:RitualEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -1881,14 +1969,11 @@ hg:RitualAssessment a owl:Class ;
 hg:SyncreticRelationship a owl:Class ;
     rdfs:label "Syncretic Relationship"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty crm:P140_assigned_attribute_to ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:syncreticType ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty crm:P141_assigned ],
@@ -1902,17 +1987,14 @@ hg:SyncreticRelationship a owl:Class ;
             owl:minCardinality 1 ;
             owl:onProperty crm:P141_assigned ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty crm:P140_assigned_attribute_to ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P140_assigned_attribute_to ],
+            owl:onProperty hg:syncreticType ],
         prov:Entity ;
     skos:broadMatch crm:E13_Attribute_Assignment ;
     skos:definition "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance."@en ;
@@ -1967,6 +2049,12 @@ hg:assertsAbout a owl:ObjectProperty ;
     skos:definition "Heritage entity or event that is the subject of this assertion."@en ;
     skos:inScheme hg:schema .
 
+hg:custodianType a owl:DatatypeProperty ;
+    rdfs:label "Custodian type"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Type of custodian (government, academic, community), free text"@en ;
+    skos:inScheme hg:schema .
+
 hg:dutyFor a owl:ObjectProperty ;
     rdfs:label "Duty for"@en ;
     rdfs:range hg:RitualEvent ;
@@ -2012,6 +2100,12 @@ hg:isPrimaryForTradition a owl:ObjectProperty ;
     skos:definition "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu, Nepal Sambat for Newar Buddhist)"@en ;
     skos:inScheme hg:schema .
 
+hg:lunarDateTithi a owl:DatatypeProperty ;
+    rdfs:label "Lunar date tithi"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Lunar day (Tithi) for ritual timing"@en ;
+    skos:inScheme hg:schema .
+
 hg:participatesInRitual a owl:ObjectProperty ;
     rdfs:label "Participates in ritual"@en ;
     rdfs:domain crm:E22_Human-Made_Object ;
@@ -2027,11 +2121,30 @@ hg:performsRitual a owl:ObjectProperty ;
     skos:definition "Rituals performed by this Guthi"@en ;
     skos:inScheme hg:schema .
 
+hg:recurrencePattern a owl:DatatypeProperty ;
+    rdfs:label "Recurrence pattern"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Frequency of recurring ritual (e.g., annual, monthly)"@en ;
+    skos:inScheme hg:schema .
+
+hg:routeDescription a owl:DatatypeProperty ;
+    rdfs:label "Route description"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Text description of the procession route"@en ;
+    skos:inScheme hg:schema .
+
 hg:routePlaces a owl:ObjectProperty ;
     rdfs:label "Route places"@en ;
     rdfs:range crm:E53_Place ;
     rdfs:subPropertyOf crm:P7_took_place_at ;
     skos:definition "Ordered list of places visited during movement ritual"@en ;
+    skos:inScheme hg:schema .
+
+hg:sourceCitation a owl:DatatypeProperty ;
+    rdfs:label "Source citation"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    rdfs:subPropertyOf crm:P3_has_note ;
+    skos:definition "Formal citation of source"@en ;
     skos:inScheme hg:schema .
 
 hg:sourceCreator a owl:ObjectProperty ;
@@ -2041,10 +2154,22 @@ hg:sourceCreator a owl:ObjectProperty ;
     skos:exactMatch dcterms:creator ;
     skos:inScheme hg:schema .
 
+hg:successionRule a owl:DatatypeProperty ;
+    rdfs:label "Succession rule"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group)."@en ;
+    skos:inScheme hg:schema .
+
 hg:supportedByInstitution a owl:ObjectProperty ;
     rdfs:label "Supported by institution"@en ;
     rdfs:range hg:Guthi ;
     skos:definition "Institution(s) providing economic support (stipend, land endowment) or ritual support (priest salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support."@en ;
+    skos:inScheme hg:schema .
+
+hg:traditionalRole a owl:DatatypeProperty ;
+    rdfs:label "Traditional role"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Hereditary occupation or ritual duty"@en ;
     skos:inScheme hg:schema .
 
 hg:usedBy a owl:ObjectProperty ;
@@ -2055,8 +2180,20 @@ hg:usedBy a owl:ObjectProperty ;
 
 hg:usedEquipment a owl:DatatypeProperty ;
     rdfs:label "Used equipment"@en ;
-    rdfs:range xsd:string ;
+    rdfs:range rdf:PlainLiteral ;
     skos:definition "Equipment used in documentation"@en ;
+    skos:inScheme hg:schema .
+
+hg:usedMethod a owl:DatatypeProperty ;
+    rdfs:label "Used method"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Documentation method used"@en ;
+    skos:inScheme hg:schema .
+
+hg:verificationMethod a owl:DatatypeProperty ;
+    rdfs:label "Verification method"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "Method used for verification (cross-check, expert review, field visit)"@en ;
     skos:inScheme hg:schema .
 
 hg:verifiedAssertion a owl:ObjectProperty ;
@@ -2071,6 +2208,11 @@ hg:verifiedByExpert a owl:ObjectProperty ;
     rdfs:subPropertyOf crm:P14_carried_out_by ;
     skos:definition "Expert who performed verification"@en ;
     skos:inScheme hg:schema .
+
+schema1:inLanguage a owl:DatatypeProperty ;
+    rdfs:label "inLanguage" ;
+    rdfs:isDefinedBy schema1: ;
+    skos:definition "The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]]." .
 
 crm:E14_Condition_Assessment a owl:Class ;
     rdfs:label "Condition Assessment"@en ;
@@ -2175,6 +2317,24 @@ Examples:
 In First Order Logic:
 - E74(x) ⇒ E39(x)"""@en .
 
+crm:P105_right_held_by a owl:ObjectProperty ;
+    rdfs:label "right held by"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property identifies the instance of E39 Actor who holds the instances of E30 Right to an instance of E72 Legal Object.
+It is a superproperty of P52 has current owner (is current owner of) because ownership is a right that is held on the owned object.
+This property is a shortcut of the fully developed path from E72 Legal Object, P104 is subject to, E30 Right, P75i is possessed by to E39 Actor.
+
+Examples:
+- The Beatles back catalogue (E73) right held by Michael Jackson (E21). (Raga, 2016)
+
+In First Order Logic:
+- P105(x,y) ⇒ E72(x)
+- P105(x,y) ⇒ E39(y)
+- P105(x,y) ⇐ (∃z) [E30(z) ˄ P104(x,z) ˄ P75i(z,y)]"""@en .
+
 crm:P12i_was_present_at a owl:ObjectProperty ;
     rdfs:label "was present at"@en ;
     rdfs:isDefinedBy crm: ;
@@ -2190,6 +2350,24 @@ Examples of the inverse property:
 In First Order Logic of the inverse property:
 - P12(x,y) ⇒ E5(x)
 - P12(x,y) ⇒ E77(y)"""@en .
+
+crm:P140_assigned_attribute_to a owl:ObjectProperty ;
+    rdfs:label "assigned attribute to"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property associates an instance of E13 Attribute Assignment with the instance of E1 CRM Entity about which it made an attribution. The instance of E1 CRM Entity plays the role of the domain of the attribution. 
+The kind of attribution made should be documented using P177 assigned property of type (is type of property assigned).
+
+Examples:
+- The Current Ownership Assessment of Martin Doerr’s silver cup February 1997 (E13) assigned attribute to Martin Doerr’s silver cup (E22). (fictitious)
+- The Identifier Assignment on 1(st) June 1997 of the silver cup donated by Martin Doerr (E15) assigned attribute to silver cup 232 (E22). (fictitious)
+- The examination of MS Sinai Greek 418 (E13) assigned attribute to MS Sinai Greek 418 (E22). (Honey and Pickwoad, 2010)
+
+In First Order Logic:
+- P140(x,y) ⇒ E13(x)
+- P140(x,y) ⇒ E1(y)"""@en .
 
 crm:P141_assigned a owl:ObjectProperty ;
     rdfs:label "assigned"@en ;
@@ -2209,101 +2387,49 @@ In First Order Logic:
 - P141(x,y) ⇒ E13(x)
 - P141(x,y) ⇒ E1(y)"""@en .
 
-crm:P16_used_specific_object a owl:ObjectProperty ;
-    rdfs:label "used specific object"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property describes the use of material or immaterial things in a way essential to the performance or the outcome of an instance of E7 Activity. 
-This property typically applies to tools, instruments, moulds, raw materials and items embedded in a product. It implies that the presence of the object in question was a necessary condition for the action. For example, the activity of writing this text required the use of a computer. An immaterial thing can be used if at least one of its carriers is present. For example, the software tools on a computer.
-Another example is the use of a particular name by a particular group of people over some span to identify a thing, such as a settlement. In this case, the physical carriers of this name are at least the people understanding its use.
-
-Examples:
-- The writing of the scope note of the CIDOC CRM property “P16 used specific object” contained in the CIDOC CRM version 4.1 (E7) used specific object Nicholas Crofts’ computer (E22) mode of use Typing Tool; Storage Medium (E55). [the original scope note was later extended in the CIDOC CRM version 4.3] 
-- The people of Iraq calling the place identified by TGN ‘7017998’ (E7) used specific object “Quyunjig” (E41) mode of use current; vernacular (E55).
-
-Properties:
-- P16.1 mode of use: E55 Type
-
-In First Order Logic:
-- P16(x,y) ⇒ E7(x)
-- P16(x,y) ⇒ E70(y)
-- P16(x,y) ⇒ P12(x,y)
-- P16(x,y) ⇒ P15(x,y)
-- P16(x,y,z) ⇒ [P16(x,y) ∧ E55(z)]"""@en .
-
-crm:P183_ends_before_the_start_of a owl:ObjectProperty ;
-    rdfs:label "ends before the start of"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property specifies that the temporal extent of the domain instance A of E2 Temporal Entity ends definitely before the start of the temporal extent of the range instance B of E2 Temporal Entity. 
-In other words, if A = [A(start), A(end)] and B = [B(start), B(end)], it means A(end) &lt; B(start) is true. 
-This property is part of the set of temporal primitives P173 – P176, P182 – P185.
-This property corresponds to the following Allen temporal relation (Allen, 1983) : {before}.
-This property is transitive. This property is asymmetric. 
-
-
-https://cidoc-crm.org/html/version_images/images_7.1.3/image_11.png
-
-
-Figure 18: Temporal entity A ends before the start of temporal entity B. Here A is longer than B
-
-
-https://cidoc-crm.org/html/version_images/images_7.1.3/image_12.png
-
-
-Figure 19: Temporal entity A ends before the start of temporal entity B. Here A is shorter than B
-
-Examples:
-- Gisle taking office as Bishop of Linköping 1139 AD (E7) ends before the start of The Guta saga composition (E65). (Peel, 1999)
-- Troy VII (E4) ends before the start of Troy VIII (E4). [uninhabited for some 200 years]
-- The use of the Tomb Four from Nikitopoulou group in Nihoria in the MHIII-LHI period (E4) ends before the start of the period of reuse of the Tomb Four from Nikitopoulou group in LHIIIA (E4). [“Of the six tombs excavated in the Nikitopoulou group […] the finds in Tomb Four are of MH II or MH III-LH I date, with the exception of the finds with the Northern group of material, which is uniformly dated to LHIIA2, end the ewer in the middle of the floor, dated LHIIIA1. […] The preserved evidence seems clearly to indicate use in the MHIII-LHI use in the MHIII-LHI period followed by a period of reuse in LHIIIA, a pattern matched at architecturally similar sites such as 13:Kaminia and 10:Gouvalári.”] (Boyd, 2002)
-
-In First Order Logic:
-- P183(x,y) ⇒ E2(x)
-- P183(x,y) ⇒ E2(y)
-- P183(x,y) ⇒ P182(x,y)
-- [P183(x,y) ∧ P183(y,z)] ⇒ P183(x,z)
-- P183(x,y) ⇒ ¬P183(y,x)"""@en .
-
-crm:P183i_starts_after_the_end_of a owl:ObjectProperty ;
-    rdfs:label "starts after the end of"@en ;
+crm:P46i_forms_part_of a owl:ObjectProperty ;
+    rdfs:label "forms part of"@en ;
     rdfs:isDefinedBy crm: ;
     skos:definition """Quantification of the inverse property: many to many (0,n:0,n)
 
 Scope note of the inverse property:
-This property specifies that the temporal extent of the domain instance A of E2 Temporal Entity ends definitely before the start of the temporal extent of the range instance B of E2 Temporal Entity. 
-In other words, if A = [A(start), A(end)] and B = [B(start), B(end)], it means A(end) &lt; B(start) is true. 
-This property is part of the set of temporal primitives P173 – P176, P182 – P185.
-This property corresponds to the following Allen temporal relation (Allen, 1983) : {before}.
-This property is transitive. This property is asymmetric. 
-
-
-https://cidoc-crm.org/html/version_images/images_7.1.3/image_11.png
-
-
-Figure 18: Temporal entity A ends before the start of temporal entity B. Here A is longer than B
-
-
-https://cidoc-crm.org/html/version_images/images_7.1.3/image_12.png
-
-
-Figure 19: Temporal entity A ends before the start of temporal entity B. Here A is shorter than B
+This property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it. The spatial extent of the composing part is included in the spatial extent of the whole.
+Component elements, since they are themselves instances of E18 Physical Thing, may be further analysed into sub-components, thereby creating a hierarchy of part decomposition. An instance of E18 Physical Thing may be shared between multiple wholes, for example two buildings may share a common wall. This property does not specify when and for how long a component element resided in the respective whole. If a component is not part of a whole from the beginning of existence or until the end of existence of the whole, the classes E79 Part Addition and E90 Part Removal can be used to document when a component became part of a particular whole and/or when it stopped being a part of it. For the time-span of being part of the respective whole, the component is completely contained in the place the whole occupies.
+This property is intended to describe specific components that are individually documented, rather than general aspects. Overall descriptions of the structure of an instance of E18 Physical Thing are captured by the P3 has note property.
+The instances of E57 Material of which an instance of E18 Physical Thing is composed should be documented using P45 consists of (is incorporated in).
+This property is transitive and asymmetric.
 
 Examples of the inverse property:
-- Gisle taking office as Bishop of Linköping 1139 AD (E7) ends before the start of The Guta saga composition (E65). (Peel, 1999)
-- Troy VII (E4) ends before the start of Troy VIII (E4). [uninhabited for some 200 years]
-- The use of the Tomb Four from Nikitopoulou group in Nihoria in the MHIII-LHI period (E4) ends before the start of the period of reuse of the Tomb Four from Nikitopoulou group in LHIIIA (E4). [“Of the six tombs excavated in the Nikitopoulou group […] the finds in Tomb Four are of MH II or MH III-LH I date, with the exception of the finds with the Northern group of material, which is uniformly dated to LHIIA2, end the ewer in the middle of the floor, dated LHIIIA1. […] The preserved evidence seems clearly to indicate use in the MHIII-LHI use in the MHIII-LHI period followed by a period of reuse in LHIIIA, a pattern matched at architecturally similar sites such as 13:Kaminia and 10:Gouvalári.”] (Boyd, 2002)
+- The Royal carriage (E22) forms part of the Royal train (E22).
+- The “Hog’s Back” (E24) forms part of the “Fosseway” (E24).
 
 In First Order Logic of the inverse property:
-- P183(x,y) ⇒ E2(x)
-- P183(x,y) ⇒ E2(y)
-- P183(x,y) ⇒ P182(x,y)
-- [P183(x,y) ∧ P183(y,z)] ⇒ P183(x,z)
-- P183(x,y) ⇒ ¬P183(y,x)"""@en .
+- P46(x,y) ⇒ E18(x)
+- P46(x,y) ⇒ E18(y)
+- P46(x,y) ⇒ P132(x,y)
+- [P46(x,y) ∧ P46(y,z)] ⇒ P46(x,z)
+- P46(x,y) ⇒ (∃uzw)[E93(u) ∧ P195i (x,u) ∧ E52(z) ∧ P164(u,z) ∧ E93(w) ∧ P195i (w,y) ∧ P164(w,z) ∧ P10(w,u)] 
+- P46(x,y) ⇒ ¬P46(y,x)"""@en .
+
+crm:P55_has_current_location a owl:ObjectProperty ;
+    rdfs:label "has current location"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property records the location of an instance of E19 Physical Object at the time of validity of the record or database containing the statement that uses this property.
+This property is a specialisation of P53 has former or current location (is former or current location of). It indicates that the instance of E53 Place associated with the instance of E19 Physical Object is the current location of the object. The property does not allow any indication of how long the object has been at the current location. 
+This property is a shortcut. A more detailed representation can make use of the fully developed (i.e., indirect) path from E19 Physical Object, through, P25i moved by, E9 Move, P26 moved to to E53 Place if and only if this Move is the most recent.
+
+Examples:
+- Silver cup 232 (E22) has current location Display Cabinet 23, Room 4, British Museum (E53). (fictitious)
+
+In First Order Logic:
+- P55(x,y) ⇒ E19(x)
+- P55(x,y) ⇒ E53(y) 
+- P55(x,y) ⇒ P53(x,y)
+- P55(x,y) ⇐ (∃z) [ [E9(z) ˄ P25i(x,z) ˄ P26(z,y)]
+- ˄ ¬​ (∃w) [E9(w) ˄ P25i(x,w) ˄ P27(w,y)˄ P182(z,w)]]​"""@en .
 
 crm:P62_depicts a owl:ObjectProperty ;
     rdfs:label "depicts"@en ;
@@ -2327,6 +2453,25 @@ In First Order Logic:
 - P62(x,y,z) ⇒ [P62(x,y) ∧ E55(z)]
 - P62(x,y) ⇐ (∃z) [E36(z) ˄ P65(x,z) ˄ P138(z,y)]"""@en .
 
+crm:P8_took_place_on_or_within a owl:ObjectProperty ;
+    rdfs:label "took place on or within"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many (0,n:0,n)
+
+Scope note:
+This property describes the location of an instance of E4 Period with respect to an instance of E18 Physical Thing. 
+This property is a shortcut of the more fully developed path from E4 Period through P7 took place at, E53 Place, P156i is occupied by to E18 Physical Thing.
+It describes a period that can be located with respect to the space defined by an E19 Physical Object such as a ship or a building. The precise geographical location of the object during the period in question may be unknown or unimportant. 
+For example, the French and German armistice of 22(nd) June 1940 was signed in the same railway carriage as the armistice of 11(th) November 1918.
+
+Examples:
+- The coronation of Queen Elizabeth II (E7) took place on or within Westminster Abbey (E18). (Strong, 2005)
+
+In First Order Logic:
+- P8(x,y) ⇒ E4(x)
+- P8(x,y) ⇒ E18(y)
+- P8(x,y) ⇐ (∃z) [E53(z) ˄ P7(x,z) ˄ P156i(z,y)]"""@en .
+
 crm:P9_consists_of a owl:ObjectProperty ;
     rdfs:label "consists of"@en ;
     rdfs:isDefinedBy crm: ;
@@ -2346,53 +2491,36 @@ In First Order Logic:
 - [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)
 - P9(x,y) ⇒ ¬P9(y,x)"""@en .
 
-crm:P9i_forms_part_of a owl:ObjectProperty ;
-    rdfs:label "forms part of"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification of the inverse property: many to many (0,n:0,n)
-
-Scope note of the inverse property:
-This property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.
-This property is transitive and asymmetric.
-
-Examples of the inverse property:
-- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)
-
-In First Order Logic of the inverse property:
-- P9(x,y) ⇒ E4(x)
-- P9(x,y) ⇒ E4(y)
-- P9(x,y) ⇒ P10(y,x)
-- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)
-- P9(x,y) ⇒ ¬P9(y,x)"""@en .
-
 prov:generated a owl:ObjectProperty ;
     rdfs:label "generated" ;
     rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
     owl:inverseOf prov:wasGeneratedBy .
 
+prov:wasGeneratedBy a owl:ObjectProperty ;
+    rdfs:label "wasGeneratedBy" ;
+    rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
+    owl:inverseOf prov:generated .
+
 hg:CalendarSystem a owl:Class ;
     rdfs:label "Calendar System"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty hg:yearOffsetFromGregorian ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:epochDateGregorian ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ReligiousTradition ;
             owl:onProperty hg:isPrimaryForTradition ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:epochDateGregorian ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty hg:yearOffsetFromGregorian ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:yearOffsetFromGregorian ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty hg:epochDateGregorian ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         prov:Entity ;
     skos:broadMatch time:TRS ;
     skos:definition "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning"@en ;
@@ -2404,25 +2532,19 @@ hg:HistoricalEvent a owl:Class ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty crm:P9_consists_of ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:allValuesFrom hg:ArchitecturalStructure ;
+            owl:onProperty hg:architecturalStructures ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ArchitecturalStructure ;
-            owl:onProperty hg:architecturalStructures ],
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty crm:P9_consists_of ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         prov:Activity ;
     skos:broadMatch crm:E5_Event ;
@@ -2433,40 +2555,37 @@ hg:HistoricalEvent a owl:Class ;
 hg:KumariEnthronementEvent a owl:Class ;
     rdfs:label "Kumari Enthronement Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty hg:enthronedPerson ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:boundsTenure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariTenure ;
-            owl:onProperty hg:boundsTenure ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:confersRole ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:KumariRole ;
             owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty hg:enthronedPerson ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty hg:enthronedPerson ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:confersRole ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:boundsTenure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariTenure ;
             owl:onProperty hg:boundsTenure ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
@@ -2476,10 +2595,10 @@ hg:KumariEnthronementEvent a owl:Class ;
             owl:onProperty hg:enthronedPerson ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:enthronedPerson ],
+            owl:onProperty hg:boundsTenure ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -2489,47 +2608,41 @@ hg:KumariEnthronementEvent a owl:Class ;
 hg:KumariRetirementEvent a owl:Class ;
     rdfs:label "Kumari Retirement Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:endedTenureOf ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
             owl:onProperty hg:performedByGroup ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariTenure ;
-            owl:onProperty hg:endedTenureOf ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty hg:endedTenureOf ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
+            owl:allValuesFrom hg:KumariTenure ;
+            owl:onProperty hg:endedTenureOf ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:endedTenureOf ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -2581,12 +2694,6 @@ hg:consecratedByEvent a owl:ObjectProperty ;
     rdfs:label "Consecrated by event"@en ;
     rdfs:range hg:Consecration ;
     skos:definition "Consecration event that activated this murti"@en ;
-    skos:inScheme hg:schema .
-
-hg:custodianType a owl:DatatypeProperty ;
-    rdfs:label "Custodian type"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Type of custodian (government, academic, community), free text"@en ;
     skos:inScheme hg:schema .
 
 hg:custodyClosedBy a owl:ObjectProperty ;
@@ -2707,12 +2814,6 @@ hg:lastKnownExistenceDate a owl:DatatypeProperty ;
     skos:definition "Latest date when this structure is documented as existing (ISO 8601)"@en ;
     skos:inScheme hg:schema .
 
-hg:lunarDateTithi a owl:DatatypeProperty ;
-    rdfs:label "Lunar date tithi"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Lunar day (Tithi) for ritual timing"@en ;
-    skos:inScheme hg:schema .
-
 hg:makesDeityPresent a owl:ObjectProperty ;
     rdfs:label "Makes deity present"@en ;
     rdfs:range hg:Deity ;
@@ -2752,7 +2853,7 @@ hg:persistentIdentifier a owl:DatatypeProperty ;
 
 hg:propositionLiteralValue a owl:DatatypeProperty ;
     rdfs:label "Proposition object literal"@en ;
-    rdfs:range xsd:string ;
+    rdfs:range rdfs:Literal ;
     skos:definition "Object of the proposition when it is a literal value (e.g. a date)."@en ;
     skos:inScheme hg:schema .
 
@@ -2767,12 +2868,6 @@ hg:publicationTimespan a owl:ObjectProperty ;
     rdfs:range crm:E52_Time-Span ;
     rdfs:subPropertyOf crm:P4_has_time-span ;
     skos:definition "When source was published"@en ;
-    skos:inScheme hg:schema .
-
-hg:recurrencePattern a owl:DatatypeProperty ;
-    rdfs:label "Recurrence pattern"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Frequency of recurring ritual (e.g., annual, monthly)"@en ;
     skos:inScheme hg:schema .
 
 hg:resourceType a owl:DatatypeProperty ;
@@ -2795,17 +2890,10 @@ hg:roleDeity a owl:ObjectProperty ;
     skos:definition "Deity embodied by whoever holds this role (e.g., Taleju)."@en ;
     skos:inScheme hg:schema .
 
-hg:routeDescription a owl:DatatypeProperty ;
-    rdfs:label "Route description"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Text description of the procession route"@en ;
-    skos:inScheme hg:schema .
-
-hg:sourceCitation a owl:DatatypeProperty ;
-    rdfs:label "Source citation"@en ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf crm:P3_has_note ;
-    skos:definition "Formal citation of source"@en ;
+hg:roleDuty a owl:DatatypeProperty ;
+    rdfs:label "Role duty"@en ;
+    rdfs:range rdf:PlainLiteral ;
+    skos:definition "The ritual duty held (e.g. building the festival chariot, performing the daily worship)."@en ;
     skos:inScheme hg:schema .
 
 hg:sourcePublisher a owl:ObjectProperty ;
@@ -2833,12 +2921,6 @@ hg:succeeds a owl:ObjectProperty ;
     skos:definition "Earlier tenure of the same hereditary office that this tenure succeeds."@en ;
     skos:inScheme hg:schema .
 
-hg:successionRule a owl:DatatypeProperty ;
-    rdfs:label "Succession rule"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group)."@en ;
-    skos:inScheme hg:schema .
-
 hg:sustains a owl:ObjectProperty ;
     rdfs:label "sustains"@en ;
     rdfs:range [ owl:intersectionOf ( [ owl:unionOf ( hg:ArchitecturalStructure hg:RitualEvent hg:KumariTenure hg:HereditaryRoleTenure ) ] hg:AssertionSubject ) ] ;
@@ -2851,24 +2933,6 @@ hg:syncreticType a owl:ObjectProperty ;
     rdfs:range hg:SyncreticType ;
     rdfs:subPropertyOf crm:P2_has_type ;
     skos:definition "The typological nature of the syncretism (e.g., Ontological Identity, Functional Overlap, Iconographic Similarity)."@en ;
-    skos:inScheme hg:schema .
-
-hg:traditionalRole a owl:DatatypeProperty ;
-    rdfs:label "Traditional role"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Hereditary occupation or ritual duty"@en ;
-    skos:inScheme hg:schema .
-
-hg:usedMethod a owl:DatatypeProperty ;
-    rdfs:label "Used method"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Documentation method used"@en ;
-    skos:inScheme hg:schema .
-
-hg:verificationMethod a owl:DatatypeProperty ;
-    rdfs:label "Verification method"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "Method used for verification (cross-check, expert review, field visit)"@en ;
     skos:inScheme hg:schema .
 
 hg:yearOffsetFromGregorian a owl:DatatypeProperty ;
@@ -2896,24 +2960,6 @@ Examples:
 In First Order Logic:
 - E6(x) ⇒ E64(x)"""@en .
 
-crm:P105_right_held_by a owl:ObjectProperty ;
-    rdfs:label "right held by"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property identifies the instance of E39 Actor who holds the instances of E30 Right to an instance of E72 Legal Object.
-It is a superproperty of P52 has current owner (is current owner of) because ownership is a right that is held on the owned object.
-This property is a shortcut of the fully developed path from E72 Legal Object, P104 is subject to, E30 Right, P75i is possessed by to E39 Actor.
-
-Examples:
-- The Beatles back catalogue (E73) right held by Michael Jackson (E21). (Raga, 2016)
-
-In First Order Logic:
-- P105(x,y) ⇒ E72(x)
-- P105(x,y) ⇒ E39(y)
-- P105(x,y) ⇐ (∃z) [E30(z) ˄ P104(x,z) ˄ P75i(z,y)]"""@en .
-
 crm:P12_occurred_in_the_presence_of a owl:ObjectProperty ;
     rdfs:label "occurred in the presence of"@en ;
     rdfs:isDefinedBy crm: ;
@@ -2930,94 +2976,22 @@ In First Order Logic:
 - P12(x,y) ⇒ E5(x)
 - P12(x,y) ⇒ E77(y)"""@en .
 
-crm:P140_assigned_attribute_to a owl:ObjectProperty ;
-    rdfs:label "assigned attribute to"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property associates an instance of E13 Attribute Assignment with the instance of E1 CRM Entity about which it made an attribution. The instance of E1 CRM Entity plays the role of the domain of the attribution. 
-The kind of attribution made should be documented using P177 assigned property of type (is type of property assigned).
-
-Examples:
-- The Current Ownership Assessment of Martin Doerr’s silver cup February 1997 (E13) assigned attribute to Martin Doerr’s silver cup (E22). (fictitious)
-- The Identifier Assignment on 1(st) June 1997 of the silver cup donated by Martin Doerr (E15) assigned attribute to silver cup 232 (E22). (fictitious)
-- The examination of MS Sinai Greek 418 (E13) assigned attribute to MS Sinai Greek 418 (E22). (Honey and Pickwoad, 2010)
-
-In First Order Logic:
-- P140(x,y) ⇒ E13(x)
-- P140(x,y) ⇒ E1(y)"""@en .
-
-crm:P46i_forms_part_of a owl:ObjectProperty ;
-    rdfs:label "forms part of"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification of the inverse property: many to many (0,n:0,n)
-
-Scope note of the inverse property:
-This property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it. The spatial extent of the composing part is included in the spatial extent of the whole.
-Component elements, since they are themselves instances of E18 Physical Thing, may be further analysed into sub-components, thereby creating a hierarchy of part decomposition. An instance of E18 Physical Thing may be shared between multiple wholes, for example two buildings may share a common wall. This property does not specify when and for how long a component element resided in the respective whole. If a component is not part of a whole from the beginning of existence or until the end of existence of the whole, the classes E79 Part Addition and E90 Part Removal can be used to document when a component became part of a particular whole and/or when it stopped being a part of it. For the time-span of being part of the respective whole, the component is completely contained in the place the whole occupies.
-This property is intended to describe specific components that are individually documented, rather than general aspects. Overall descriptions of the structure of an instance of E18 Physical Thing are captured by the P3 has note property.
-The instances of E57 Material of which an instance of E18 Physical Thing is composed should be documented using P45 consists of (is incorporated in).
-This property is transitive and asymmetric.
-
-Examples of the inverse property:
-- The Royal carriage (E22) forms part of the Royal train (E22).
-- The “Hog’s Back” (E24) forms part of the “Fosseway” (E24).
-
-In First Order Logic of the inverse property:
-- P46(x,y) ⇒ E18(x)
-- P46(x,y) ⇒ E18(y)
-- P46(x,y) ⇒ P132(x,y)
-- [P46(x,y) ∧ P46(y,z)] ⇒ P46(x,z)
-- P46(x,y) ⇒ (∃uzw)[E93(u) ∧ P195i (x,u) ∧ E52(z) ∧ P164(u,z) ∧ E93(w) ∧ P195i (w,y) ∧ P164(w,z) ∧ P10(w,u)] 
-- P46(x,y) ⇒ ¬P46(y,x)"""@en .
-
-crm:P8_took_place_on_or_within a owl:ObjectProperty ;
-    rdfs:label "took place on or within"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property describes the location of an instance of E4 Period with respect to an instance of E18 Physical Thing. 
-This property is a shortcut of the more fully developed path from E4 Period through P7 took place at, E53 Place, P156i is occupied by to E18 Physical Thing.
-It describes a period that can be located with respect to the space defined by an E19 Physical Object such as a ship or a building. The precise geographical location of the object during the period in question may be unknown or unimportant. 
-For example, the French and German armistice of 22(nd) June 1940 was signed in the same railway carriage as the armistice of 11(th) November 1918.
-
-Examples:
-- The coronation of Queen Elizabeth II (E7) took place on or within Westminster Abbey (E18). (Strong, 2005)
-
-In First Order Logic:
-- P8(x,y) ⇒ E4(x)
-- P8(x,y) ⇒ E18(y)
-- P8(x,y) ⇐ (∃z) [E53(z) ˄ P7(x,z) ˄ P156i(z,y)]"""@en .
-
 prov:Agent a owl:Class ;
     rdfs:label "Agent" ;
     rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
     skos:definition "An agent is something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity."@en .
 
-prov:wasGeneratedBy a owl:ObjectProperty ;
-    rdfs:label "wasGeneratedBy" ;
-    rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
-    owl:inverseOf prov:generated .
-
 hg:ArchitecturalElement a owl:Class ;
     rdfs:label "Architectural Element"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty crm:P46i_forms_part_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ArchitecturalStructure ;
             owl:onProperty crm:P46i_forms_part_of ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty crm:P46i_forms_part_of ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         prov:Entity ;
     skos:broadMatch crm:E25_Human-Made_Feature ;
     skos:definition "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)"@en ;
@@ -3028,31 +3002,25 @@ hg:Consecration a owl:Class ;
     rdfs:label "Consecration"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Murti ;
             owl:onProperty crm:P16_used_specific_object ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty crm:P16_used_specific_object ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty hg:makesDeityPresent ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty hg:makesDeityPresent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
     skos:definition "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"@en ;
@@ -3062,32 +3030,26 @@ hg:Consecration a owl:Class ;
 hg:Endowment a owl:Class ;
     rdfs:label "Endowment"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:ArchitecturalStructure hg:RitualEvent hg:KumariTenure hg:HereditaryRoleTenure ) ] hg:AssertionSubject ) ] ;
+            owl:onProperty hg:sustains ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty crm:P105_right_held_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Guthi ;
+            owl:onProperty crm:P105_right_held_by ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty hg:endowedLand ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty hg:sustains ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P105_right_held_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:ArchitecturalStructure hg:RitualEvent hg:KumariTenure hg:HereditaryRoleTenure ) ] hg:AssertionSubject ) ] ;
-            owl:onProperty hg:sustains ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Guthi ;
-            owl:onProperty crm:P105_right_held_by ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty crm:P105_right_held_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
         prov:Entity ;
     skos:broadMatch crm:E72_Legal_Object ;
     skos:definition "Land, income or other property permanently dedicated to sustain a structure, a ritual or festival, or a sacred office, and held by a Guthi. The endowment, not the membership, is what makes a Guthi a trust."@en ;
@@ -3109,10 +3071,10 @@ hg:Festival a owl:Class ;
 hg:KumariLifecycleEvent a owl:Class ;
     rdfs:label "Kumari Lifecycle Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariTenure ;
+            owl:maxCardinality 1 ;
             owl:onProperty hg:boundsTenure ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom hg:KumariTenure ;
             owl:onProperty hg:boundsTenure ],
         hg:RitualEvent ;
     skos:broadMatch crm:E7_Activity,
@@ -3225,12 +3187,6 @@ hg:retiredThrough a owl:ObjectProperty ;
     skos:definition "Retirement/desanctification event that ended this tenure."@en ;
     skos:inScheme hg:schema .
 
-hg:roleDuty a owl:DatatypeProperty ;
-    rdfs:label "Role duty"@en ;
-    rdfs:range xsd:string ;
-    skos:definition "The ritual duty held (e.g. building the festival chariot, performing the daily worship)."@en ;
-    skos:inScheme hg:schema .
-
 hg:roleHolder a owl:ObjectProperty ;
     rdfs:label "Role holder"@en ;
     rdfs:range [ owl:intersectionOf ( [ owl:unionOf ( crm:E21_Person hg:CasteGroup ) ] crm:E39_Actor ) ] ;
@@ -3249,11 +3205,6 @@ hg:selectedThrough a owl:ObjectProperty ;
     owl:inverseOf hg:initiatedTenure ;
     skos:definition "Selection event that initiated this tenure."@en ;
     skos:inScheme hg:schema .
-
-schema1:inLanguage a owl:DatatypeProperty ;
-    rdfs:label "inLanguage" ;
-    rdfs:isDefinedBy schema1: ;
-    skos:definition "The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]]." .
 
 crm:E12_Production a owl:Class ;
     rdfs:label "Production"@en ;
@@ -3292,55 +3243,29 @@ In First Order Logic of the inverse property:
 - P108(x,y) ⇒ P31(x,y)
 - P108(x,y) ⇒ P92(x,y)"""@en .
 
-crm:P55_has_current_location a owl:ObjectProperty ;
-    rdfs:label "has current location"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many (0,n:0,n)
-
-Scope note:
-This property records the location of an instance of E19 Physical Object at the time of validity of the record or database containing the statement that uses this property.
-This property is a specialisation of P53 has former or current location (is former or current location of). It indicates that the instance of E53 Place associated with the instance of E19 Physical Object is the current location of the object. The property does not allow any indication of how long the object has been at the current location. 
-This property is a shortcut. A more detailed representation can make use of the fully developed (i.e., indirect) path from E19 Physical Object, through, P25i moved by, E9 Move, P26 moved to to E53 Place if and only if this Move is the most recent.
-
-Examples:
-- Silver cup 232 (E22) has current location Display Cabinet 23, Room 4, British Museum (E53). (fictitious)
-
-In First Order Logic:
-- P55(x,y) ⇒ E19(x)
-- P55(x,y) ⇒ E53(y) 
-- P55(x,y) ⇒ P53(x,y)
-- P55(x,y) ⇐ (∃z) [ [E9(z) ˄ P25i(x,z) ˄ P26(z,y)]
-- ˄ ¬​ (∃w) [E9(w) ˄ P25i(x,w) ˄ P27(w,y)˄ P182(z,w)]]​"""@en .
-
 hg:IconographicObject a owl:Class ;
     rdfs:label "Iconographic Object"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty crm:P62_depicts ],
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty hg:participatesInRitual ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P55_has_current_location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E12_Production ;
             owl:onProperty crm:P108i_was_produced_by ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P55_has_current_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:usedBy ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty hg:participatesInRitual ],
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty crm:P62_depicts ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P108i_was_produced_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P55_has_current_location ],
         crm:E22_Human-Made_Object ;
     skos:broadMatch dbo:Artwork,
         crm:E22_Human-Made_Object ;
@@ -3351,32 +3276,35 @@ hg:IconographicObject a owl:Class ;
 hg:KumariSelectionEvent a owl:Class ;
     rdfs:label "Kumari Selection Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:SelectionCriterion ;
-            owl:onProperty hg:hasCriterion ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:initiatedTenure ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRole ;
-            owl:onProperty hg:confersRole ],
+            owl:minCardinality 1 ;
+            owl:onProperty hg:selectedPerson ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty crm:P14_carried_out_by ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:isCriticalForFestival ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:allValuesFrom hg:SelectionCriterion ;
+            owl:onProperty hg:hasCriterion ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:initiatedTenure ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
             owl:onProperty hg:performedByGroup ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:initiatedTenure ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:isCriticalForFestival ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E21_Person ;
             owl:onProperty hg:selectedPerson ],
@@ -3384,20 +3312,11 @@ hg:KumariSelectionEvent a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:selectedPerson ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom hg:KumariTenure ;
             owl:onProperty hg:initiatedTenure ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:selectedPerson ],
+            owl:allValuesFrom hg:KumariRole ;
+            owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
@@ -3405,8 +3324,11 @@ hg:KumariSelectionEvent a owl:Class ;
             owl:allValuesFrom xsd:boolean ;
             owl:onProperty hg:isCriticalForFestival ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariTenure ;
-            owl:onProperty hg:initiatedTenure ],
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -3470,31 +3392,28 @@ hg:Enshrinement a owl:Class ;
     rdfs:label "Enshrinement"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:onProperty hg:enshrinedInStructure ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty crm:P14_carried_out_by ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Temple ;
             owl:onProperty hg:enshrinedInStructure ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:maxCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty hg:enshrinedDeity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:enshrinedInStructure ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty hg:enshrinedDeity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
     skos:definition "Event of installing a deity's murti or symbol within a temple sanctum"@en ;
@@ -3504,59 +3423,50 @@ hg:Enshrinement a owl:Class ;
 hg:HereditaryRoleTenure a owl:Class ;
     rdfs:label "Hereditary Role Tenure"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:succeeds ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:successionRule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( crm:E21_Person hg:CasteGroup ) ] crm:E39_Actor ) ] ;
+            owl:onProperty hg:roleHolder ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:roleHolder ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:mandatedBy ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:roleDuty ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Guthi ;
+            owl:onProperty hg:mandatedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty hg:roleHolder ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:roleHolder ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:successionRule ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:mandatedBy ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( crm:E21_Person hg:CasteGroup ) ] crm:E39_Actor ) ] ;
-            owl:onProperty hg:roleHolder ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:RitualEvent ;
             owl:onProperty hg:dutyFor ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:roleDuty ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Guthi ;
-            owl:onProperty hg:mandatedBy ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:successionRule ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:succeeds ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:roleDuty ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:HereditaryRoleTenure ;
             owl:onProperty hg:succeeds ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:roleDuty ],
         prov:Entity ;
     skos:altLabel "Hereditary ritual office"@en ;
     skos:broadMatch crm:E4_Period ;
@@ -3647,16 +3557,10 @@ In First Order Logic:
 hg:CasteGroup a owl:Class ;
     rdfs:label "Caste Group"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:traditionalRole ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:traditionalRole ],
         crm:E74_Group ;
     skos:broadMatch prov:Organization ;
@@ -3693,10 +3597,7 @@ hg:KumariRole a owl:Class ;
 hg:ReligiousTradition a owl:Class ;
     rdfs:label "Religious Tradition"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         prov:Entity ;
     skos:broadMatch crm:E55_Type ;
@@ -3731,62 +3632,53 @@ hg:ArchitecturalStyle a owl:Class ;
 hg:DataSource a owl:Class ;
     rdfs:label "Data Source"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:sourceCitation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty schema1:inLanguage ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:sourceCreator ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:publicationTimespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:persistentIdentifier ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:resourceType ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:sourcePublisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:identifierScheme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:identifierScheme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:resourceType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:sourceUrl ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:persistentIdentifier ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:sourceUrl ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty hg:publicationTimespan ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:resourceType ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:resourceType ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:sourceCitation ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty schema1:inLanguage ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty schema1:inLanguage ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:identifierScheme ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:sourcePublisher ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:sourceUrl ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:sourceUrl ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:persistentIdentifier ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:sourcePublisher ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:persistentIdentifier ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:sourceCitation ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:publicationTimespan ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:identifierScheme ],
         prov:Entity ;
     skos:broadMatch crm:E73_Information_Object ;
     skos:definition "Original source from which heritage information was derived"@en ;
@@ -3831,6 +3723,26 @@ In First Order Logic:
 - P14(x,y) ⇒ P11(x,y)
 - P14(x,y,z) ⇒ [P14(x,y) ∧ E55(z)]"""@en .
 
+crm:P7_took_place_at a owl:ObjectProperty ;
+    rdfs:label "took place at"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: many to many, necessary (1,n:0,n)
+
+Scope note:
+This property describes the spatial location of an instance of E4 Period. 
+The related instance of E53 Place should be seen as a wider approximation of the geometric area within which the phenomena that characterise the period in question occurred, see below. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth). For example, the period “Révolution française” can be said to have taken place in “France in 1789”; the “Victorian” period may be said to have taken place in “Britain from 1837-1901” and its colonies, as well as other parts of Europe and North America. An instance of E4 Period can take place at multiple non-contiguous, non-overlapping locations.
+Any place where something happened includes the spatial projection of the happening given in the same geometric reference system. For instance, HMS Victory, as place of Lord Nelson's dying, includes the location of his body relative to the hull of HMS Victory at his time of death as the most precise location of his death. By the definition of P161 has spatial projection, an instance of E4 Period takes place on all its spatial projections to respective reference systems, that is, instances of E53 Place. Therefore, this property implies the more fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within to E53 Place, where both places are defined in the same geometric reference system. The relation between an instance of E53 Place and its reference system can conveniently be documented via the property P157 is at rest relative to (provides reference space for).
+Something that has happened at a given place can also be considered to have happened at a smaller place within it: for example, it is reasonable to say Caesar’s murder took place in Rome, but also on the Forum Romanum, and more precisely in the Curia. It is characteristic for different historical sources to use varying precision in such statements, without being in contradiction with each other. This may be due to lack of knowledge or to the relevance of the precision for the purpose of the statement. In information integration, the more precise statement improves the overall knowledge.
+
+Examples:
+- The period “Révolution française” (E4) took place at the area covered by France in 1789 (E53). (Bertaud, 2004)
+
+In First Order Logic:
+- P7(x,y) ⇒ E4(x)
+- P7(x,y) ⇒ E53(y)
+- P7(x,y) ⇒ (∃z,u) [P157(y,u) ˄ P157(z,u) ˄ P161(x,z) ˄ P89(z,y)]
+- [E4(x) ˄ P157(y,u) ˄ P157(v,u) ˄ P7(x,y) ˄ P161(x,z) ˄ P89(z,v) ˄ P89(v,y)] ⇒ P7(x,v)"""@en .
+
 skos:ConceptScheme a owl:Class .
 
 hg:documentedBy a owl:ObjectProperty ;
@@ -3852,68 +3764,68 @@ hg:GuthiType a owl:Class ;
 hg:KumariTenure a owl:Class ;
     rdfs:label "Kumari Tenure"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:allValuesFrom hg:ArchitecturalStructure ;
+            owl:onProperty hg:residenceStructure ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:assumesRole ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:embodiedDeity ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:embodiedDeity ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:residenceStructure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRole ;
-            owl:onProperty hg:assumesRole ],
+            owl:allValuesFrom hg:Guthi ;
+            owl:onProperty hg:supportedByInstitution ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Deity ;
             owl:onProperty hg:embodiedDeity ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:retiredThrough ],
+            owl:onProperty hg:hadParticipant ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:enthronedThrough ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariSelectionEvent ;
-            owl:onProperty hg:selectedThrough ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ArchitecturalStructure ;
-            owl:onProperty hg:residenceStructure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Guthi ;
-            owl:onProperty hg:supportedByInstitution ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRetirementEvent ;
-            owl:onProperty hg:retiredThrough ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:residenceStructure ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:selectedThrough ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
-            owl:onProperty hg:embodiedDeity ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty hg:hadParticipant ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty hg:hadParticipant ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:KumariEnthronementEvent ;
             owl:onProperty hg:enthronedThrough ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:selectedThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariRole ;
+            owl:onProperty hg:assumesRole ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:assumesRole ],
+            owl:onProperty hg:retiredThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariRetirementEvent ;
+            owl:onProperty hg:retiredThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariSelectionEvent ;
+            owl:onProperty hg:selectedThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty hg:hadParticipant ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty hg:residenceStructure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         prov:Entity ;
     skos:altLabel "Living Goddess Tenure"@en ;
     skos:broadMatch crm:E4_Period ;
@@ -3932,68 +3844,62 @@ hg:hasAssertion a owl:ObjectProperty ;
 hg:ArchitecturalStructure a owl:Class ;
     rdfs:label "Architectural Structure"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:DataSource ;
-            owl:onProperty hg:mentionedInSource ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E14_Condition_Assessment ;
-            owl:onProperty crm:P34i_was_assessed_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ReligiousTradition ;
-            owl:onProperty hg:hasReligiousTradition ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E6_Destruction ;
-            owl:onProperty hg:destructionEvent ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:existenceStatus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ArchitecturalElement ;
-            owl:onProperty crm:P46_is_composed_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:dateTime ;
-            owl:onProperty hg:lastKnownExistenceDate ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ExistenceStatus ;
-            owl:onProperty hg:existenceStatus ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:hypothesizedLocation ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:lastKnownExistenceDate ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E12_Production ;
-            owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty crm:P55_has_current_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:hasArchitecturalStyle ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Guthi ;
             owl:onProperty hg:managedByGuthi ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:existenceStatus ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ArchitecturalStyle ;
             owl:onProperty hg:hasArchitecturalStyle ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty hg:hasArchitecturalStyle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E12_Production ;
+            owl:onProperty crm:P108i_was_produced_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E14_Condition_Assessment ;
+            owl:onProperty crm:P34i_was_assessed_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P108i_was_produced_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty hg:hypothesizedLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ArchitecturalElement ;
+            owl:onProperty crm:P46_is_composed_of ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ExistenceStatus ;
+            owl:onProperty hg:existenceStatus ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ReligiousTradition ;
+            owl:onProperty hg:hasReligiousTradition ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty hg:destructionEvent ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P55_has_current_location ],
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:lastKnownExistenceDate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DataSource ;
+            owl:onProperty hg:mentionedInSource ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty hg:lastKnownExistenceDate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E6_Destruction ;
+            owl:onProperty hg:destructionEvent ],
         crm:E22_Human-Made_Object ;
     skos:broadMatch crm:E22_Human-Made_Object ;
     skos:closeMatch schema1:Place ;
@@ -4012,29 +3918,26 @@ hg:AssertionSubject a owl:Class ;
 hg:DocumentationActivity a owl:Class ;
     rdfs:label "Documentation Activity"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:documents ],
-        [ a owl:Restriction ;
             owl:allValuesFrom prov:Entity ;
             owl:onProperty prov:generated ],
         [ a owl:Restriction ;
             owl:allValuesFrom prov:Agent ;
             owl:onProperty prov:wasAssociatedWith ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:usedEquipment ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:usedMethod ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:usedMethod ],
+            owl:allValuesFrom hg:AssertionSubject ;
+            owl:onProperty hg:documents ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
     skos:definition "Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity."@en ;
@@ -4044,26 +3947,23 @@ hg:DocumentationActivity a owl:Class ;
 hg:Guthi a owl:Class ;
     rdfs:label "Guthi"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:guthiType ],
+        [ a owl:Restriction ;
             owl:allValuesFrom hg:GuthiType ;
             owl:onProperty hg:guthiType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty crm:P107_has_current_or_former_member ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:RitualEvent ;
             owl:onProperty hg:performsRitual ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:guthiType ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ArchitecturalStructure ;
             owl:onProperty crm:P50i_is_current_keeper_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty crm:P107_has_current_or_former_member ],
         crm:E74_Group ;
     skos:broadMatch prov:Organization ;
     skos:definition "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership"@en ;
@@ -4090,23 +3990,20 @@ In First Order Logic:
 hg:Deity a owl:Class ;
     rdfs:label "Deity"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:ReligiousTradition ;
-            owl:onProperty hg:hasReligiousTradition ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Enshrinement ;
             owl:onProperty hg:isEnshrinedThroughEvent ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:IconographicObject ;
-            owl:onProperty crm:P62i_is_depicted_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:RitualEvent ;
             owl:onProperty hg:isInvokedInRitual ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ReligiousTradition ;
+            owl:onProperty hg:hasReligiousTradition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:IconographicObject ;
+            owl:onProperty crm:P62i_is_depicted_by ],
         prov:Entity ;
     skos:broadMatch crm:E28_Conceptual_Object ;
     skos:definition "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences."@en ;
@@ -4114,26 +4011,6 @@ hg:Deity a owl:Class ;
         aat:300343850,
         wikidata:Q178885 ;
     skos:inScheme hg:schema .
-
-crm:P7_took_place_at a owl:ObjectProperty ;
-    rdfs:label "took place at"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: many to many, necessary (1,n:0,n)
-
-Scope note:
-This property describes the spatial location of an instance of E4 Period. 
-The related instance of E53 Place should be seen as a wider approximation of the geometric area within which the phenomena that characterise the period in question occurred, see below. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth). For example, the period “Révolution française” can be said to have taken place in “France in 1789”; the “Victorian” period may be said to have taken place in “Britain from 1837-1901” and its colonies, as well as other parts of Europe and North America. An instance of E4 Period can take place at multiple non-contiguous, non-overlapping locations.
-Any place where something happened includes the spatial projection of the happening given in the same geometric reference system. For instance, HMS Victory, as place of Lord Nelson's dying, includes the location of his body relative to the hull of HMS Victory at his time of death as the most precise location of his death. By the definition of P161 has spatial projection, an instance of E4 Period takes place on all its spatial projections to respective reference systems, that is, instances of E53 Place. Therefore, this property implies the more fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within to E53 Place, where both places are defined in the same geometric reference system. The relation between an instance of E53 Place and its reference system can conveniently be documented via the property P157 is at rest relative to (provides reference space for).
-Something that has happened at a given place can also be considered to have happened at a smaller place within it: for example, it is reasonable to say Caesar’s murder took place in Rome, but also on the Forum Romanum, and more precisely in the Curia. It is characteristic for different historical sources to use varying precision in such statements, without being in contradiction with each other. This may be due to lack of knowledge or to the relevance of the precision for the purpose of the statement. In information integration, the more precise statement improves the overall knowledge.
-
-Examples:
-- The period “Révolution française” (E4) took place at the area covered by France in 1789 (E53). (Bertaud, 2004)
-
-In First Order Logic:
-- P7(x,y) ⇒ E4(x)
-- P7(x,y) ⇒ E53(y)
-- P7(x,y) ⇒ (∃z,u) [P157(y,u) ˄ P157(z,u) ˄ P161(x,z) ˄ P89(z,y)]
-- [E4(x) ˄ P157(y,u) ˄ P157(v,u) ˄ P7(x,y) ˄ P161(x,z) ˄ P89(z,v) ˄ P89(v,y)] ⇒ P7(x,v)"""@en .
 
 prov:Activity a owl:Class ;
     rdfs:label "Activity" ;
@@ -4143,110 +4020,83 @@ prov:Activity a owl:Class ;
 hg:RitualEvent a owl:Class ;
     rdfs:label "Ritual Event"@en ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P183_ends_before_the_start_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:routePlaces ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E57_Material ;
-            owl:onProperty crm:P125_used_object_of_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom hg:PhysicalHeritageThing ;
             owl:onProperty crm:P8_took_place_on_or_within ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualType ;
-            owl:onProperty hg:ritualType ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty hg:routeDescription ],
+            owl:onProperty hg:endPlace ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:startPlace ],
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty crm:P183i_starts_after_the_end_of ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:hadParticipant ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:Guthi ;
-            owl:onProperty hg:managedByGuthi ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:routeDescription ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:ritualType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty hg:startPlace ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:recurrencePattern ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
             owl:onProperty hg:performedByGroup ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:startPlace ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:lunarDateTithi ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:ritualType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:recurrencePattern ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P183i_starts_after_the_end_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:PhysicalHeritageThing ;
-            owl:onProperty crm:P8_took_place_on_or_within ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:lunarDateTithi ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:endPlace ],
+            owl:onProperty hg:routePlaces ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Festival ;
             owl:onProperty crm:P9i_forms_part_of ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty crm:P9i_forms_part_of ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty hg:invokesDeity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:routeDescription ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:recurrencePattern ],
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty hg:endPlace ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty hg:invokesDeity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:RitualType ;
+            owl:onProperty hg:ritualType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E57_Material ;
+            owl:onProperty crm:P125_used_object_of_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty hg:startPlace ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Guthi ;
+            owl:onProperty hg:managedByGuthi ],
+        [ a owl:Restriction ;
             owl:allValuesFrom hg:RitualEvent ;
             owl:onProperty crm:P183_ends_before_the_start_of ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty hg:endPlace ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty crm:P183i_starts_after_the_end_of ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:lunarDateTithi ],
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
     skos:definition "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"@en ;
@@ -4286,6 +4136,28 @@ Examples:
 
 In First Order Logic:
 - E52(x) ⇒ E1(x)"""@en .
+
+crm:P3_has_note a owl:DatatypeProperty ;
+    rdfs:label "has note"@en ;
+    rdfs:isDefinedBy crm: ;
+    skos:definition """Quantification: one to many (0,n:0,1)
+
+Scope note:
+This property is a container for all informal descriptions about an object that have not been expressed in terms of CIDOC CRM constructs. 
+In particular, it captures the characterisation of the item itself, its internal structures, appearance, etc.
+Like property P2 has type (is type of), this property is a consequence of the restricted focus of the CIDOC CRM. The aim is not to capture, in a structured form, everything that can be said about an item; indeed, the CIDOC CRM formalism is not regarded as sufficient to express everything that can be said. Good practice requires use of distinct note fields for different aspects of a characterisation. The P3.1 has type property of P3 has note allows differentiation of specific notes, e.g. “construction”, “decoration”, etc. 
+An item may have many notes, but a note is attached to a specific item.
+
+Examples:
+- Coffee mug – OXCMS:1983.1.1 (E19) has note “chipped at edge of handle” (E62) has type Condition (E55). (fictitious)
+
+Properties:
+- P3.1 has type: E55 Type
+
+In First Order Logic:
+- P3(x,y) ⇒ E1(x)
+- P3(x,y) ⇒ E62(y) 
+- P3(x,y,z) ⇒ [P3(x,y) ∧ E55(z)]"""@en .
 
 hg:RitualType a owl:Class ;
     rdfs:label "Ritual Type"@en ;
@@ -4347,28 +4219,6 @@ Examples:
 In First Order Logic:
 - P4(x,y) ⇒ E2(x)
 - P4(x,y) ⇒ E52(y)"""@en .
-
-crm:P3_has_note a owl:DatatypeProperty ;
-    rdfs:label "has note"@en ;
-    rdfs:isDefinedBy crm: ;
-    skos:definition """Quantification: one to many (0,n:0,1)
-
-Scope note:
-This property is a container for all informal descriptions about an object that have not been expressed in terms of CIDOC CRM constructs. 
-In particular, it captures the characterisation of the item itself, its internal structures, appearance, etc.
-Like property P2 has type (is type of), this property is a consequence of the restricted focus of the CIDOC CRM. The aim is not to capture, in a structured form, everything that can be said about an item; indeed, the CIDOC CRM formalism is not regarded as sufficient to express everything that can be said. Good practice requires use of distinct note fields for different aspects of a characterisation. The P3.1 has type property of P3 has note allows differentiation of specific notes, e.g. “construction”, “decoration”, etc. 
-An item may have many notes, but a note is attached to a specific item.
-
-Examples:
-- Coffee mug – OXCMS:1983.1.1 (E19) has note “chipped at edge of handle” (E62) has type Condition (E55). (fictitious)
-
-Properties:
-- P3.1 has type: E55 Type
-
-In First Order Logic:
-- P3(x,y) ⇒ E1(x)
-- P3(x,y) ⇒ E62(y) 
-- P3(x,y,z) ⇒ [P3(x,y) ∧ E55(z)]"""@en .
 
 skos:Concept a owl:Class .
 
