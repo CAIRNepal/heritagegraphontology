@@ -403,6 +403,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
 
     apply_attribute_ranges(g, sv)
     repair_dl_profile(g, sv)
+    drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
 
     # --- axiom-survival guard ---
@@ -494,6 +495,25 @@ def finalize_owl(sv: SchemaView) -> Graph:
 
 
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
+
+
+def drop_vacuous_min_cardinality(g: Graph) -> None:
+    """gen-owl emits `C ⊑ ≥0 p` for every optional slot. A minimum of 0 holds
+    for every individual, so the axiom constrains nothing; it only inflates
+    the axiom count. Remove each restriction whose sole constraint is
+    owl:minCardinality 0 (or the qualified form). Non-zero minimums and every
+    maximum are left untouched."""
+    structural = {RDF.type, OWL.onProperty, OWL.onClass, OWL.onDataRange}
+    n = 0
+    for pred in (OWL.minCardinality, OWL.minQualifiedCardinality):
+        for r, v in list(g.subject_objects(pred)):
+            if not isinstance(r, BNode) or int(str(v)) != 0:
+                continue
+            if any(p not in structural | {pred} for p in g.predicates(r)):
+                continue  # restriction carries another constraint: keep it
+            _purge_node(g, r)
+            n += 1
+    print(f"removed {n} vacuous owl:minCardinality 0 restriction(s)")
 
 
 def _purge_node(g: Graph, node) -> None:
