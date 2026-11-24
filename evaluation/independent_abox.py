@@ -106,8 +106,12 @@ TENURE_OK = ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:residenceSt
 ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .
 ex:TS a crm:E52_Time-Span .''')
 tests = {
- "Event-mediated: Temple missing hasArchitecturalStyle (minCount)":
-  ('ex:BadTemple a hg:Temple ; rdfs:label "x" .', "MinCount"),
+ # 1.1.0: hasArchitecturalStyle is no longer required (archives often record
+ # no style), so the event-mediated minCount test now targets the custody
+ # period's required holder.
+ "Event-mediated: CustodyPeriod missing custodyHolder (minCount)":
+  ('ex:BadCustody a hg:CustodyPeriod ; rdfs:label "x" ; hg:custodyObject ex:T ; crm:P4_has_time-span ex:TS .\n'
+   'ex:T a hg:Temple ; rdfs:label "t" . ex:TS a crm:E52_Time-Span .', "MinCount"),
  "Metadata: Temple dcterms:identifier not an xsd:anyURI (datatype)":
   ('ex:BadTemple a hg:Temple ; rdfs:label "x" ; hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ; dcterms:identifier "plain string" .', "Datatype"),
  "Institutional: Guthi guthiType outside controlled vocabulary (sh:in)":

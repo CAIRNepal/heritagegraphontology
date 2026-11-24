@@ -406,6 +406,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
 
     apply_attribute_ranges(g, sv)
     repair_dl_profile(g, sv)
+    drop_pattern_facets(g)
+    add_external_class_domains(g, sv)
     drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
     # after humanizing: official labels are copied verbatim
@@ -663,6 +665,71 @@ def apply_official_external_annotations(g: Graph) -> None:
                  "ontology/imports/):\n  - " + "\n  - ".join(missing))
     print(f"external terms: replaced {n_removed} HeritageGraph-written annotation(s) "
           f"on {len(targets)} term(s) with official labels/definitions")
+
+
+def drop_pattern_facets(g: Graph) -> None:
+    """LinkML `pattern` becomes an OWL datatype restriction xsd:string[pattern
+    "..."]. XSD regular expressions are implicitly anchored and treat ^ and $
+    as literal characters, while SHACL (SPARQL regex) and JSON Schema need the
+    anchors, so one pattern cannot be right in all three: under OWL the value
+    "conflicting" fails "^(confirmed|conflicting|unverified)$" and HermiT
+    declares valid data inconsistent. As with other checks OWL cannot carry
+    faithfully, the pattern stays in SHACL (sh:pattern) and JSON Schema; the
+    OWL range falls back to the base datatype."""
+    XSD_PATTERN = XSD.pattern
+    n = 0
+    for dt in list(g.subjects(OWL.onDatatype, None)):
+        if not isinstance(dt, BNode):
+            continue
+        lst = g.value(dt, OWL.withRestrictions)
+        facets = list(Collection(g, lst)) if lst is not None else []
+        if not facets or not all((f, XSD_PATTERN, None) in g for f in facets):
+            continue
+        base = g.value(dt, OWL.onDatatype)
+        for s, p in list(g.subject_predicates(dt)):
+            g.remove((s, p, dt))
+            g.add((s, p, base))
+        _purge_node(g, dt)
+        n += 1
+    print(f"DL: replaced {n} xsd:pattern datatype restriction(s) by their base datatype (SHACL keeps the pattern)")
+
+
+def add_external_class_domains(g: Graph, sv: SchemaView) -> None:
+    """HeritageGraph properties used only by classes whose IRI is an external
+    term (Assertion = crminf:I2_Belief, Person = crm:E21_Person, TimeSpan =
+    crm:E52_Time-Span, ...) end up attached to no class in the OWL: gen-owl
+    puts the restrictions on the external class, and repair_dl_profile (i)
+    rightly removes axioms on terms HeritageGraph does not own. Restore the
+    lost class context as rdfs:domain on the HeritageGraph property (an axiom
+    about our own term), derived from the YAML: the external class that uses
+    it, or the union when several do. Properties also used by a HeritageGraph
+    class keep their restrictions there and get no domain."""
+    users: dict[URIRef, set[URIRef]] = {}
+    for cn, c in sv.all_classes().items():
+        if c.abstract or c.mixin:
+            continue
+        cls = URIRef(sv.get_uri(c, expand=True))
+        for sn in sv.class_slots(cn):
+            su = sv.induced_slot(sn, cn).slot_uri
+            if su:
+                users.setdefault(URIRef(sv.expand_curie(str(su))), set()).add(cls)
+    n = 0
+    for prop, classes in sorted(users.items()):
+        if (not str(prop).startswith(HG_NS) or (prop, RDF.type, None) not in g
+                or (prop, OWL.deprecated, None) in g or (prop, RDFS.domain, None) in g):
+            continue
+        if any(str(c).startswith(HG_NS) for c in classes):
+            continue
+        if len(classes) == 1:
+            g.add((prop, RDFS.domain, next(iter(classes))))
+        else:
+            expr, head = BNode(), BNode()
+            Collection(g, head, sorted(classes))
+            g.add((expr, RDF.type, OWL.Class))
+            g.add((expr, OWL.unionOf, head))
+            g.add((prop, RDFS.domain, expr))
+        n += 1
+    print(f"asserted rdfs:domain on {n} propert(ies) used only by external-IRI classes")
 
 
 def drop_vacuous_min_cardinality(g: Graph) -> None:

@@ -642,8 +642,15 @@
                         "null"
                     ]
                 },
+                "confidence_method": {
+                    "description": "How the confidence score was assigned (e.g. expert judgement on a 5-point scale mapped to 0-1; agreement between independent sources; source-reliability rubric).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "confidence_score": {
-                    "description": "Reliability score for assertion (0.0-1.0)",
+                    "description": "Degree of belief, between 0 and 1, that the asserted value is correct, as judged by the agent the assertion is attributed to (prov:wasAttributedTo): 1 = certain, 0.5 = undecided, 0 = believed false. Scores are comparable across assertions only when they share an assessor or a stated method (confidence_method).",
                     "maximum": 1,
                     "minimum": 0,
                     "type": [
@@ -671,7 +678,8 @@
                     "type": "string"
                 },
                 "reconciliation_status": {
-                    "description": "Status of multi-source reconciliation (confirmed, conflicting, unverified)",
+                    "description": "Status of multi-source reconciliation of the asserted value: confirmed (independent sources agree), conflicting (sources disagree; see the competing assertions), or unverified (single source, not yet checked).",
+                    "pattern": "^(confirmed|conflicting|unverified)$",
                     "type": [
                         "string",
                         "null"
@@ -745,11 +753,9 @@
             "description": "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning",
             "properties": {
                 "epoch_date_gregorian": {
-                    "description": "The start date of this calendar era in Gregorian ISO format.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "Gregorian (proleptic, ISO 8601) date of the first day of year 1 of this calendar; its month and day are also the calendar's new-year boundary (e.g. -0056-04-14 for Bikram Sambat, mid-April). Needed with year_offset_from_gregorian to convert years correctly.",
+                    "pattern": "^-?[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                    "type": "string"
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
@@ -833,7 +839,7 @@
                     ]
                 },
                 "year_offset_from_gregorian": {
-                    "description": "Mathematical offset to convert to Common Era (e.g., +57 for BS).",
+                    "description": "Number of years this calendar runs ahead of the Gregorian (Common Era) year at the start of its year (e.g. 57 for Bikram Sambat, -879 for Nepal Sambat). Because the calendar's new year does not fall on 1 January (see epoch_date_gregorian), a year-precision date Y converts to the two-year interval [Y - offset, Y - offset + 1] CE; the single year Y - offset is correct only for dates between the calendar's new year and 31 December. A calendar whose new year is 1 January converts to Y - offset exactly.",
                     "type": [
                         "integer",
                         "null"
@@ -842,6 +848,7 @@
             },
             "required": [
                 "name",
+                "epoch_date_gregorian",
                 "id"
             ],
             "title": "CalendarSystem",
@@ -11366,7 +11373,6 @@
                 }
             },
             "required": [
-                "has_architectural_style",
                 "name",
                 "id"
             ],

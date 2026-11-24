@@ -30,7 +30,7 @@ print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
 
 # Negative-test coverage: component type -> number of the 11 tests hitting it.
 NEG_TESTS = {
-    "sh:minCount": 4,   # missing style / assigned deity / assertsAbout / time-span
+    "sh:minCount": 4,   # missing custody holder / assigned deity / assertsAbout / time-span
     "sh:maxCount": 1,   # two embodied deities on one tenure
     "sh:datatype": 1,   # dcterms:identifier not xsd:anyURI
     "sh:class": 2,      # non-TimeSpan time-span; DocumentationActivity in ritual slot
