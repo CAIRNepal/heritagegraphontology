@@ -16,8 +16,9 @@ ontology, so the evaluation is not only against the authors' own questions.
 3. **Gold answers.** For each question the expert gives the expected answer, with its source
    (publication, archive record, DANAM entry or their own fieldwork), independently of the
    demonstrator data.
-4. **Held out.** The authors may not change the ontology after seeing the questions until each
-   question is classified: (a) answerable with the current terms, (b) answerable with data that
+4. **Held out.** Commit `held_out_cqs.csv` as soon as the questions arrive, before any ontology
+   change, and cite that commit hash as the freeze. The authors may not change the ontology until
+   each question is classified, and a non-author (one of the experts) confirms each classification: (a) answerable with the current terms, (b) answerable with data that
    is missing, (c) not expressible. The paper reports the three counts and every (c).
 5. Record each question in `held_out_cqs.csv` with its elicitation provenance.
 

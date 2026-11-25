@@ -10,7 +10,8 @@ the published SSSOM set with both terms' labels and definitions.
 2. **Rater 2**, independently and without seeing rater 1's sheet, judges the rows marked
    `second_rater = yes` (a fixed 30% sample of the core mappings).
 3. Agreement: `python3 evaluation/rater_agreement.py rater1.csv rater2.csv` prints Cohen's kappa
-   and the disagreements. The raters resolve them together.
+   and the disagreements, and writes `evaluation/results/rater_agreement.json` (not tracked). The
+   raters resolve the disagreements together.
 4. Copy the resolved verdicts (columns `subject_id, predicate_id, object_id, verdict, rater, date,
    note`) to `evaluation/mapping_rater_verdicts.csv`, then run `python3 scripts/gen_sssom.py`
    (accepted mappings get the rater as SSSOM reviewer; rejected ones leave the set) and

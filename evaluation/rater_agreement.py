@@ -41,7 +41,9 @@ def cohen_kappa(pairs: list) -> tuple[float, float]:
 
 
 def interpret(k: float) -> str:
-    for bound, word in ((0.0, "poor"), (0.20, "slight"), (0.40, "fair"), (0.60, "moderate"),
+    if k < 0:
+        return "poor"
+    for bound, word in ((0.20, "slight"), (0.40, "fair"), (0.60, "moderate"),
                         (0.80, "substantial"), (1.01, "almost perfect")):
         if k <= bound:
             return word
@@ -59,6 +61,10 @@ def main(argv: list) -> int:
         return 1
     both = sorted(set(r1) & set(r2))
     pairs = [(r1[k], r2[k]) for k in both]
+    if not pairs:
+        print("The two sheets share no judged mapping: rater 2 judges the rows marked second_rater = yes.",
+              file=sys.stderr)
+        return 1
     po, kappa = cohen_kappa(pairs)
     print(f"Mappings judged by both raters: {len(both)}")
     print(f"Observed agreement: {po:.3f}")

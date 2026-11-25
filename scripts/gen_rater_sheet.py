@@ -72,7 +72,8 @@ def main() -> int:
     meta = json.loads((IMPORTS / "sources.json").read_text(encoding="utf-8"))
     for src in meta["sources"]:
         ext.parse(IMPORTS / src["file"], format=src["format"])
-    defs = (SKOS.definition, RDFS.comment)
+    # PROV-O keeps its definitions in prov:definition
+    defs = (SKOS.definition, URIRef("http://www.w3.org/ns/prov#definition"), RDFS.comment)
     rows = []
     with open(SSSOM, encoding="utf-8") as f:
         reader = csv.DictReader((l for l in f if not l.startswith("#")), delimiter="\t")
