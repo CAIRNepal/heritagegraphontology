@@ -15,7 +15,7 @@ Instance IRIs (demo/, example/ namespaces) and the ontology's own document IRIs
 are not terms and are ignored. Two exemptions are explicit and printed:
   * NEGATIVE_CONTROLS: terms that are undeclared on purpose (a test that must
     see a missing predicate);
-  * SKIPPED: files out of scope (the generated mapping-rater sheet).
+  * SKIPPED: files out of scope (none at present).
 
 The LUX bridge module (heritagegraph-lux-migration/alignment/) mints its own interoperability terms;
 files that belong to it (LUX_SCOPED) may use those terms as well as the core's.
@@ -41,7 +41,8 @@ LUX_DIR = ROOT / "heritagegraph-lux-migration"
 SCAN = [ROOT / "examples", ROOT / "evaluation", ROOT / "ontology" / "lux",
         LUX_DIR / "alignment", LUX_DIR / "queries", LUX_DIR / "scripts", ROOT / "cq_sparql.md"]
 LUX_MODULE_FILES = sorted((ROOT / "ontology" / "lux").glob("*.ttl")) + sorted((LUX_DIR / "alignment").glob("*.ttl"))
-LUX_SCOPED = ("ontology/lux", "evaluation/lux", "examples/lux-", "heritagegraph-lux-migration/")
+LUX_SCOPED = ("ontology/lux", "evaluation/lux", "examples/lux-", "heritagegraph-lux-migration/",
+              "evaluation/rater")  # the rater sheet lists core and LUX-module mappings
 SUFFIXES = {".ttl", ".rq", ".sparql", ".py", ".json", ".md", ".csv"}
 IGNORED_DIRS = {".venv", "venv", "results", "__pycache__", "protege"}
 
@@ -63,9 +64,6 @@ NEGATIVE_CONTROLS = {
     "hasArchitecturalStyel": "independent_abox.py negative test: a deliberately misspelt property",
 }
 SKIPPED: dict[str, str] = {
-    # generated from the SSSOM set (core and LUX module mappings): every term in it is
-    # declared in the core or the LUX module, which gen_sssom.py already reads
-    "evaluation/rater": "rater sheet generated from the published SSSOM mapping set",
 }
 
 PATTERNS = [

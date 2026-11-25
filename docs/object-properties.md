@@ -224,10 +224,10 @@ KumariRole conferred by this selection or enthronement event.
 
 | | |
 |---|---|
-| Domain | [Kumari Selection Event](classes.md#kumariselectionevent); [Kumari Enthronement Event](classes.md#kumarienthronementevent) |
+| Domain | [Kumari Enthronement Event](classes.md#kumarienthronementevent); [Kumari Selection Event](classes.md#kumariselectionevent) |
 | Range | [Kumari Role](classes.md#kumarirole) |
 | Used in | used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
-| domainIncludes | hg:KumariSelectionEvent; hg:KumariEnthronementEvent |
+| domainIncludes | hg:KumariEnthronementEvent; hg:KumariSelectionEvent |
 
 ### Confidence method
 
@@ -497,10 +497,10 @@ Source(s) that mention/document this entity: the normative way to cite a source 
 
 | | |
 |---|---|
-| Domain | [Architectural Structure](classes.md#architecturalstructure); [Syncretic Relationship](classes.md#syncreticrelationship) |
+| Domain | [Syncretic Relationship](classes.md#syncreticrelationship); [Architectural Structure](classes.md#architecturalstructure) |
 | Range | [Data Source](classes.md#datasource) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
-| domainIncludes | hg:ArchitecturalStructure; hg:SyncreticRelationship |
+| domainIncludes | hg:SyncreticRelationship; hg:ArchitecturalStructure |
 
 ### documents
 
@@ -813,10 +813,10 @@ Actor(s) participating in this period, situation or ritual without carrying it o
 
 | | |
 |---|---|
-| Domain | [Kumari Tenure](classes.md#kumaritenure); [Ritual Event](classes.md#ritualevent) |
+| Domain | [Ritual Event](classes.md#ritualevent); [Kumari Tenure](classes.md#kumaritenure) |
 | Range | [Actor](classes.md#e39_actor) |
 | Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Event](classes.md#ritualevent) |
-| domainIncludes | hg:KumariTenure; hg:RitualEvent |
+| domainIncludes | hg:RitualEvent; hg:KumariTenure |
 
 ### has access protocol
 
@@ -840,7 +840,7 @@ Architectural style classification.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Architectural Structure](classes.md#architecturalstructure) |
-| Range | [Architectural Style](classes.md#architecturalstyle) |
+| Range | [Architectural Style](classes.md#architecturalstyle-2) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
 | domainIncludes | hg:ArchitecturalStructure |
 
@@ -878,7 +878,7 @@ Categorization of the condition state.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Condition State](classes.md#e3_condition_state) |
-| Range | [Condition Type](classes.md#conditiontype) |
+| Range | [Condition Type](classes.md#conditiontype-2) |
 
 ### Has criterion
 
@@ -958,7 +958,7 @@ The level of precision for a recorded date.
 | | |
 |---|---|
 | Domain | [Time-Span](classes.md#e52_time-span) |
-| Range | [Date Precision](classes.md#dateprecision-2) |
+| Range | [Date Precision](classes.md#dateprecision) |
 
 ### has destruction event
 
@@ -983,7 +983,7 @@ Kind of endowment event (founding, augmentation, nationalisation, alienation).
 | | |
 |---|---|
 | Domain | [Endowment Event](classes.md#endowmentevent) |
-| Range | [Endowment Event Type](classes.md#endowmenteventtype) |
+| Range | [Endowment Event Type](classes.md#endowmenteventtype-2) |
 | Used in | used in axioms of [Endowment Event](classes.md#endowmentevent) |
 | domainIncludes | hg:EndowmentEvent |
 
@@ -1010,7 +1010,7 @@ Type of Guthi (Si, Jatra, Temple).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Guthi](classes.md#guthi) |
-| Range | [Guthi Type](classes.md#guthitype) |
+| Range | [Guthi Type](classes.md#guthitype-2) |
 | Used in | used in axioms of [Guthi](classes.md#guthi) |
 | domainIncludes | hg:Guthi |
 
@@ -1065,10 +1065,10 @@ Religious tradition(s) within which this deity is venerated, or which use this s
 | | |
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
-| Domain | [Deity](classes.md#deity); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Deity](classes.md#deity) |
 | Range | [Religious Tradition](classes.md#religioustradition) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Deity](classes.md#deity) |
-| domainIncludes | hg:Deity; hg:ArchitecturalStructure |
+| domainIncludes | hg:ArchitecturalStructure; hg:Deity |
 
 ### has ritual type
 

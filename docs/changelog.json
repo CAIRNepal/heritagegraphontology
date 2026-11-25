@@ -250,7 +250,7 @@
       "label": "Endowment Event Type",
       "kind": "class",
       "curie": "heritageGraph:EndowmentEventType",
-      "anchor": "EndowmentEventType",
+      "anchor": "EndowmentEventType-2",
       "added": [],
       "removed": []
     },
@@ -259,7 +259,7 @@
       "label": "Endowment Event Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "EndowmentEventType-2",
+      "anchor": "EndowmentEventType",
       "added": [],
       "removed": []
     },
@@ -1091,7 +1091,7 @@
       "label": "Architectural Style",
       "kind": "class",
       "curie": "heritageGraph:ArchitecturalStyle",
-      "anchor": "ArchitecturalStyle",
+      "anchor": "ArchitecturalStyle-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1130,7 +1130,7 @@
       "label": "Architectural Style (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ArchitecturalStyle-2",
+      "anchor": "ArchitecturalStyle",
       "added": [
         [
           "skos:prefLabel",
@@ -1964,7 +1964,7 @@
       "label": "Condition Type",
       "kind": "class",
       "curie": "heritageGraph:ConditionType",
-      "anchor": "ConditionType",
+      "anchor": "ConditionType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1999,7 +1999,7 @@
       "label": "Condition Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ConditionType-2",
+      "anchor": "ConditionType",
       "added": [
         [
           "skos:prefLabel",
@@ -2660,7 +2660,7 @@
       "label": "Date Precision",
       "kind": "class",
       "curie": "heritageGraph:DatePrecision",
-      "anchor": "DatePrecision-2",
+      "anchor": "DatePrecision",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -2699,7 +2699,7 @@
       "label": "Date Precision (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "DatePrecision",
+      "anchor": "DatePrecision-2",
       "added": [
         [
           "skos:prefLabel",
@@ -3962,41 +3962,6 @@
       "removed": []
     },
     {
-      "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
-      "label": "forms part of",
-      "kind": "object_property",
-      "curie": "crm:P9i_forms_part_of",
-      "anchor": "P9i_forms_part_of",
-      "added": [
-        [
-          "rdfs:isDefinedBy",
-          "http://www.cidoc-crm.org/cidoc-crm/"
-        ],
-        [
-          "rdfs:label",
-          "\"forms part of\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)\n\nIn First Order Logic of the inverse property:\n- P9(x,y) ⇒ E4(x)\n- P9(x,y) ⇒ E4(y)\n- P9(x,y) ⇒ P10(y,x)\n- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)\n- P9(x,y) ⇒ ¬P9(y,x)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Is part of festival\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Larger festival this ritual is part of\"@en"
-        ],
-        [
-          "skos:inScheme",
-          "heritageGraph:schema"
-        ]
-      ]
-    },
-    {
       "iri": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
       "label": "forms part of",
       "kind": "object_property",
@@ -4024,6 +3989,41 @@
         [
           "skos:definition",
           "\"Larger structure that this element is part of\"@en"
+        ],
+        [
+          "skos:inScheme",
+          "heritageGraph:schema"
+        ]
+      ]
+    },
+    {
+      "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+      "label": "forms part of",
+      "kind": "object_property",
+      "curie": "crm:P9i_forms_part_of",
+      "anchor": "P9i_forms_part_of",
+      "added": [
+        [
+          "rdfs:isDefinedBy",
+          "http://www.cidoc-crm.org/cidoc-crm/"
+        ],
+        [
+          "rdfs:label",
+          "\"forms part of\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)\n\nIn First Order Logic of the inverse property:\n- P9(x,y) ⇒ E4(x)\n- P9(x,y) ⇒ E4(y)\n- P9(x,y) ⇒ P10(y,x)\n- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)\n- P9(x,y) ⇒ ¬P9(y,x)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Is part of festival\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Larger festival this ritual is part of\"@en"
         ],
         [
           "skos:inScheme",
@@ -4219,7 +4219,7 @@
       "label": "Guthi Type",
       "kind": "class",
       "curie": "heritageGraph:GuthiType",
-      "anchor": "GuthiType",
+      "anchor": "GuthiType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -4278,7 +4278,7 @@
       "label": "Guthi Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "GuthiType-2",
+      "anchor": "GuthiType",
       "added": [
         [
           "skos:definition",
@@ -8226,7 +8226,7 @@
       "label": "obsolete license",
       "kind": "datatype_property",
       "curie": "heritageGraph:license",
-      "anchor": "license",
+      "anchor": "license-2",
       "added": [
         [
           "dcterms:isReplacedBy",

@@ -128,15 +128,11 @@ jobs:
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py
 
-      - name: Generate documentation with OntoReview (term pages, graph, quality report, interoperability scores, changelog)
-        env:
-          # BioPortal key for the cross-domain interoperability (CDI) score; set it as a repository secret
-          BIOPORTAL_API_KEY: ${{ secrets.BIOPORTAL_API_KEY }}
+      - name: Generate documentation with OntoReview (term pages, graph, quality report, changelog)
         run: |
-          # own environment, so OntoReview's dependencies cannot change the pinned build toolchain;
-          # the cdi extra computes the interoperability scores
+          # own environment, so OntoReview's dependencies cannot change the pinned build toolchain
           python3 -m venv .ontoreview
-          .ontoreview/bin/pip install "ontoreview[cdi]==1.0.1" certifi
+          .ontoreview/bin/pip install ontoreview==1.0.1 certifi
           ONTOREVIEW=.ontoreview/bin/ontoreview ROBOT_JAR=.tools/robot.jar bash scripts/build.sh "${GITHUB_WORKSPACE}/docs"
 
       - name: Add .nojekyll

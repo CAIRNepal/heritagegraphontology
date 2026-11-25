@@ -74,6 +74,9 @@ reproduce: $(ROBOT_JAR)  ## (first run fetches CIDOC-CRM, CRMinf, CRMsci, PROV-O
 	python3 evaluation/run_oops.py --local
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py entailments
 	python3 scripts/gen_paper_macros.py
+	python3 scripts/gen_eval_page.py
+	@git ls-files --error-unmatch docs-src/evaluation.md >/dev/null 2>&1 || (echo "NOT TRACKED: commit docs-src/evaluation.md" && false)
+	@git diff --exit-code docs-src/evaluation.md || (echo "STALE: the committed evaluation page differs from the regenerated one; commit docs-src/evaluation.md" && false)
 	@git ls-files --error-unmatch evaluation/heritagegraph-numbers.tex >/dev/null 2>&1 || (echo "NOT TRACKED: commit evaluation/heritagegraph-numbers.tex" && false)
 	@git diff --exit-code evaluation/heritagegraph-numbers.tex || (echo "STALE: the committed paper macros differ from the regenerated ones; commit evaluation/heritagegraph-numbers.tex" && false)
 
