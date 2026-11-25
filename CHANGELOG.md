@@ -5,6 +5,8 @@
 ### Planned for 1.1.0 (branch `fix/ontology-v1.1.0`; not yet released)
 
 **Breaking changes and migration rules** (data valid under 1.0.x that 1.1.0 rejects or reads differently):
+- Place coordinates move from geo:asWKT to crm:P168_place_is_defined_by (same WKT literal).
+- Data giving one structure two values of a single-valued enumeration slot is now inconsistent.
 - The holder of a Kumari tenure is given with `hg:tenureHolder`, not `hg:hadParticipant`
   (rewrite `?t hg:hadParticipant ?p` on a `hg:KumariTenure` to `?t hg:tenureHolder ?p`).
 - An endowment that sustained a tenure now sustains the tenure's office
@@ -33,6 +35,25 @@
   are resolved, and multivalued text accepts a single string.
 - Mappings: corrected SKOS strengths (Temple, Deity, IconographicObject, documentedBy).
 - LUX module: corrected the mappings, and the minted terms are marked `rdfs:isDefinedBy` the module.
+- Enumerations are subclasses of crm:E55_Type and their values are `owl:AllDifferent`, so two
+  values of a single-valued status (Destroyed and Extant) are inconsistent rather than merged.
+- The official CIDOC-CRM `owl:inverseOf` axioms are copied for reused inverse pairs.
+  `hg:invokesDeity` and `hg:isInvokedInRitual` are inverses, and `hg:succeeds` is irreflexive
+  and asymmetric.
+- Properties without `rdfs:domain` carry `schema:domainIncludes` (an annotation) for the classes
+  that use them. Class context stays in restrictions and SHACL, so reusing a property elsewhere
+  does not retype its subject.
+- `hg:EndowmentEvent` is a subclass of crm:E8_Acquisition. Its donor and recipient are
+  subproperties of crm:P23 / crm:P22.
+- Place geometry uses crm:P168 place is defined by (a GeoSPARQL WKT literal), not geo:asWKT,
+  whose domain is geo:Geometry.
+- Related mappings: confidenceScore to crminf:J5, recordedDate to crm:P1, startPlace / endPlace
+  to crm:P27 / P26, managedByGuthi to crm:P49 (each with the reason it is not a subproperty).
+- The normative source route is stated: `hg:mentionedInSource` for descriptions;
+  `prov:wasDerivedFrom` with `prov:wasAttributedTo` for beliefs; `hg:sourceCitation`,
+  `hg:sourceCreator` and `hg:sourceUrl` for a source's own data. The demonstrator uses it, links
+  to Wikidata with skos:exactMatch / closeMatch (not owl:sameAs), and gives each belief a
+  CRMinf proposition (J4).
 
 **Deprecated** (kept, marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement)
 - The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.

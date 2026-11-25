@@ -99,6 +99,18 @@ ex:J a hg:Temple , hg:Deity , owl:NamedIndividual ;
     rdfs:label "joint Temple-and-Deity individual" .
 """
 
+    # m1: enumeration values are owl:AllDifferent, so two values of a
+    # single-valued enumeration slot clash without any owl:differentFrom in
+    # the data (arm D); one value is consistent (arm E, control)
+    ENUM_BASE = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix es:  <https://cair-nepal.org/heritagegraph/ExistenceStatus#> .
+@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
+hg:existenceStatus a owl:ObjectProperty .
+"""
+    ENUM_TWO = ENUM_BASE + "ex:S a hg:Temple ; hg:existenceStatus es:Destroyed , es:Extant .\n"
+    ENUM_ONE = ENUM_BASE + "ex:S a hg:Temple ; hg:existenceStatus es:Extant .\n"
+
     def hermit_verdict(abox_ttl: str) -> tuple[bool, str]:
         """Merge the ontology with the injected ABox and classify with HermiT.
 
@@ -136,11 +148,23 @@ ex:J a hg:Temple , hg:Deity , owl:NamedIndividual ;
     print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
     arm_c_ok = not consistent
 
-    if arm_a_ok and arm_b_ok and arm_c_ok:
+    print("Arm D: a temple both Destroyed and Extant, no owl:differentFrom (expect INCONSISTENT)")
+    consistent, evidence = hermit_verdict(ENUM_TWO)
+    print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
+    arm_d_ok = not consistent
+
+    print("Arm E: the same temple with one status (control; expect CONSISTENT)")
+    consistent, evidence = hermit_verdict(ENUM_ONE)
+    print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
+    arm_e_ok = consistent
+
+    if arm_a_ok and arm_b_ok and arm_c_ok and arm_d_ok and arm_e_ok:
         print("\nPASS: the max-1 embodiment axiom is load-bearing (arm A clashes), the")
         print("control confirms the clash is driven by distinctness, not by the mere")
-        print("presence of two property values (arm B merges the names), and the")
-        print("asserted disjointness pair likewise bites (arm C clashes).")
+        print("presence of two property values (arm B merges the names), the")
+        print("asserted disjointness pair likewise bites (arm C clashes), and the")
+        print("enumeration values are distinct without help from the data (arm D")
+        print("clashes, arm E is consistent).")
         return 0
     print("\nFAIL: unexpected verdict in at least one arm.")
     return 1

@@ -295,7 +295,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -1082,7 +1082,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -3693,7 +3693,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -3965,7 +3965,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -4511,8 +4511,11 @@
                 },
                 "endowment_recipient": {
                     "description": "Guthi or state body that received the property (e.g. the Guthi Sansthan in a nationalisation).",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -7336,7 +7339,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -9806,7 +9809,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -10525,7 +10528,7 @@
                     ]
                 },
                 "place_coordinates": {
-                    "description": "Coordinates as WKT literal",
+                    "description": "The place's geometry, as a GeoSPARQL WKT literal (crm:P168 place is defined by)",
                     "type": [
                         "string",
                         "null"
@@ -10629,7 +10632,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -11178,7 +11181,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -11549,7 +11552,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -12252,7 +12255,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -12762,7 +12765,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -13018,7 +13021,7 @@
                     "type": "string"
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -13301,7 +13304,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },
@@ -14270,7 +14273,7 @@
                     ]
                 },
                 "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "description": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical derivation.",
                     "items": {
                         "type": "string"
                     },

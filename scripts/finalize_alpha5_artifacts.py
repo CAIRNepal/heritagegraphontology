@@ -430,10 +430,13 @@ def finalize_owl(sv: SchemaView) -> Graph:
     add_crm_superclasses(g, sv)
     drop_reused_value_restrictions(g)
     add_disjoint_kinds(g, sv)
+    add_enumeration_axioms(g)
+    add_official_inverses(g)
     # schema build directives, not ontology content
     for d in ("owl_property_chain", "lexical_form", "crm_superclass", "disjoint_kind"):
         g.remove((None, URIRef(HG_NS + d), None))
     add_external_class_domains(g, sv)
+    add_domain_includes(g, sv)
     drop_vacuous_min_cardinality(g)
     humanize_and_tag_labels(g)
     # after humanizing: official labels are copied verbatim
@@ -944,6 +947,90 @@ def add_disjoint_kinds(g: Graph, sv: SchemaView) -> None:
         all_disjoint(groups)
     print(f"M5: {len(groups)} disjoint kinds ({', '.join(f'{k} {len(v)}' for k, v in sorted(kinds.items()))}); "
           f"pairwise within {', '.join(sorted(PAIRWISE_KINDS))}")
+
+
+CRM_E55 = URIRef("http://www.cidoc-crm.org/cidoc-crm/E55_Type")
+SCHEMA_DOMAIN_INCLUDES = URIRef("http://schema.org/domainIncludes")
+
+
+def add_enumeration_axioms(g: Graph) -> None:
+    """m1: an enumeration class (owl:oneOf over named individuals) is a set of
+    types in the CIDOC-CRM sense, so it is stated rdfs:subClassOf crm:E55_Type
+    (every value is a type: a condition, a style, a status), and its values are
+    stated pairwise different (owl:AllDifferent): without it, no unique-name
+    assumption means a structure given two values of a single-valued status
+    (Destroyed and Extant) would merely make the two values the same
+    individual, instead of being inconsistent."""
+    official = Graph()
+    for _, vg, _ in _official_sources():
+        official += vg
+    if (CRM_E55, RDF.type, RDFS.Class) not in official and (CRM_E55, RDF.type, OWL.Class) not in official:
+        sys.exit("crm:E55_Type is not in the official CRM snapshot")
+    n = 0
+    for c in sorted(set(g.subjects(OWL.oneOf, None))):
+        if not (isinstance(c, URIRef) and str(c).startswith(HG_NS)):
+            continue
+        members = list(Collection(g, g.value(c, OWL.oneOf)))
+        if (CRM_E55, RDF.type, OWL.Class) not in g:
+            g.add((CRM_E55, RDF.type, OWL.Class))
+            g.add((CRM_E55, RDFS.label, Literal(str(CRM_E55))))  # replaced by the official label
+        g.add((c, RDFS.subClassOf, CRM_E55))
+        if len(members) > 1:
+            node, head = BNode(), BNode()
+            Collection(g, head, sorted(members))
+            g.add((node, RDF.type, OWL.AllDifferent))
+            g.add((node, OWL.distinctMembers, head))
+        n += 1
+    print(f"m1: {n} enumeration(s) stated rdfs:subClassOf crm:E55_Type, values owl:AllDifferent")
+
+
+def add_official_inverses(g: Graph) -> None:
+    """m2: where the core reuses both properties of a CIDOC-CRM/CRMinf inverse
+    pair (P14 / P14i, P50 / P50i, ...), copy the owl:inverseOf the official
+    snapshot states. The axiom is the owner's own, so the core still states
+    nothing about an external term that its owner does not state."""
+    official = Graph()
+    for _, vg, _ in _official_sources():
+        official += vg
+    n = 0
+    for p, q in sorted(official.subject_objects(OWL.inverseOf)):
+        if ((p, RDF.type, OWL.ObjectProperty) in g and (q, RDF.type, OWL.ObjectProperty) in g
+                and (p, OWL.inverseOf, q) not in g and (q, OWL.inverseOf, p) not in g):
+            g.add((p, OWL.inverseOf, q))
+            n += 1
+    print(f"m2: copied {n} official owl:inverseOf axiom(s) between reused CRM properties")
+
+
+def add_domain_includes(g: Graph, sv: SchemaView) -> None:
+    """m3: HeritageGraph gives a property's class context as restrictions on
+    the classes that use it and as SHACL shapes, not as rdfs:domain (a domain
+    would retype every subject the property is used on, so reusing a property
+    on another class would make the data inconsistent under the disjoint
+    kinds). So that the context is still stated on the property itself, each
+    HeritageGraph property without an rdfs:domain gets schema:domainIncludes
+    (an annotation, no inference) for the most general classes that use it."""
+    users: dict[URIRef, set[str]] = {}
+    for cn, c in sv.all_classes().items():
+        if c.mixin:
+            continue
+        for sn in sv.class_slots(cn):
+            su = sv.induced_slot(sn, cn).slot_uri
+            if su:
+                users.setdefault(URIRef(sv.expand_curie(str(su))), set()).add(cn)
+    n = 0
+    for prop, names in sorted(users.items()):
+        if (not str(prop).startswith(HG_NS) or (prop, RDF.type, None) not in g
+                or (prop, OWL.deprecated, None) in g or (prop, RDFS.domain, None) in g):
+            continue
+        top = {cn for cn in names
+               if not (set(sv.class_ancestors(cn, reflexive=False)) & names)}
+        for cn in sorted(top):
+            g.add((prop, SCHEMA_DOMAIN_INCLUDES, URIRef(sv.get_uri(sv.get_class(cn), expand=True))))
+            n += 1
+    if n:
+        g.add((SCHEMA_DOMAIN_INCLUDES, RDF.type, OWL.AnnotationProperty))
+    g.bind("schema", "http://schema.org/")
+    print(f"m3: {n} schema:domainIncludes annotation(s) on properties without rdfs:domain")
 
 
 def add_property_chains(g: Graph, sv: SchemaView) -> None:

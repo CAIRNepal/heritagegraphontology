@@ -1152,8 +1152,9 @@ classes:
     related_mappings:
       - prov:Entity
     annotations:
-      crminf_pattern: I2_Belief -J4_that-> I4_Proposition_Set; evidence via I5_Inference_Making 
-        (J1_used_as_premise / J2_concluded_that); expert re-check via I7_Belief_Adoption
+      crminf_pattern: I2_Belief -J4_that-> I4_Proposition_Set (asserts_proposition); the belief value as
+        confidence_score. HeritageGraph does not model CRMinf inference making (I5) or belief adoption
+        (I7); data that needs them can use the CRMinf terms directly
     mixins:
       - Entity
     slot_usage:
@@ -1655,8 +1656,11 @@ classes:
     class_uri: heritageGraph:EndowmentEvent
     description: "Event that founds, augments, nationalises or alienates a Guthi endowment, with its donor or
       recipient and its date."
+    # Every endowment event (founding, augmentation, nationalisation,
+    # alienation) transfers title to land or other property, so each is a
+    # CRM E8 Acquisition; donor and recipient are P23 / P22.
     broad_mappings:
-      - crm:E7_Activity
+      - crm:E8_Acquisition
     slots:
       - name
       - note
@@ -1678,7 +1682,7 @@ classes:
       - Activity
     annotations:
       disjoint_kind: event
-      crm_superclass: crm:E7_Activity
+      crm_superclass: crm:E8_Acquisition
 
   HereditaryRoleTenure:
     # 1.1.0: a specialisation of the generic Tenure pattern
@@ -1970,11 +1974,17 @@ slots:
   start_place:
     slot_uri: heritageGraph:startPlace
     range: Place
+    # not a subproperty of crm:P27 moved from: its domain E9 Move would make
+    # every ritual with a start place a Move
+    related_mappings:
+      - crm:P27_moved_from
     description: "Starting location of movement ritual"
 
   end_place:
     slot_uri: heritageGraph:endPlace
     range: Place
+    related_mappings:
+      - crm:P26_moved_to
     description: "Ending location of movement ritual"
 
   route_description:
@@ -2112,6 +2122,10 @@ slots:
     range: string
     broad_mappings:
       - crm:P3_has_note
+    # CRM gives a date as written as an E41 Appellation of the time-span
+    # (P1 is identified by); this is its literal shortcut
+    related_mappings:
+      - crm:P1_is_identified_by
     description: "The date as written in the source, in the calendar given by calendar_system (e.g. '2072' for a
       Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted
       Gregorian bounds go in date_earliest / date_latest."
@@ -2176,9 +2190,15 @@ slots:
 
 
   place_coordinates:
-    slot_uri: geo:asWKT
+    # GeoSPARQL's geo:asWKT has domain geo:Geometry, so it cannot sit on a
+    # place (E53) directly. CIDOC-CRM 7.1.3 gives P168 place is defined by,
+    # whose range is rdfs:Literal, for exactly this: a place defined by a
+    # geometry literal (here a GeoSPARQL WKT literal).
+    slot_uri: crm:P168_place_is_defined_by
     range: wktLiteral
-    description: "Coordinates as WKT literal"
+    description: "The place's geometry, as a GeoSPARQL WKT literal (crm:P168 place is defined by)"
+    related_mappings:
+      - geo:asWKT
 
   place_type:
     # DL FIX (alpha.6): dropped is_a has_type. A string-valued slot cannot
@@ -2265,8 +2285,11 @@ slots:
     slot_uri: heritageGraph:mentionedInSource
     range: DataSource
     multivalued: true
-    description: "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom
-      for assertions). Entity-mention is not logical derivation."
+    description: "Source(s) that mention/document this entity: the normative way to cite a source for a description
+      of a heritage thing, event, actor or relationship. Distinct from was_derived_from (prov:wasDerivedFrom), which
+      is used only on assertions (I2 Belief) with was_attributed_to for the claimant. A source's own bibliographic
+      data uses source_citation, datacite_creator (hg:sourceCreator), source_url and datacite_identifier. Entity-mention is not logical
+      derivation."
 
 
 
@@ -2330,6 +2353,7 @@ slots:
     slot_uri: heritageGraph:invokesDeity
     is_a: occurred_in_presence_of
     range: Deity
+    inverse: is_invoked_in_ritual
     multivalued: true
     description: "Deity invoked or made present through ritual"
 
@@ -2531,6 +2555,7 @@ slots:
     slot_uri: heritageGraph:isInvokedInRitual
     is_a: was_present_at
     range: RitualEvent
+    inverse: invokes_deity
     multivalued: true
     description: "Rituals where this deity is invoked"
 
@@ -2538,6 +2563,12 @@ slots:
 
   managed_by_guthi:
     slot_uri: heritageGraph:managedByGuthi
+    # The Guthi that administers a structure or a ritual (funds, schedules,
+    # duties). Not a subproperty of crm:P49 has former or current keeper:
+    # P49's domain E18 would make a managed ritual a physical thing. Custody of
+    # a structure is crm:P50 / P50i (holds_custody_of) or a CustodyPeriod.
+    related_mappings:
+      - crm:P49_has_former_or_current_keeper
     range: Guthi
     multivalued: true
     description: "Guthi organization managing this structure or ritual"
@@ -2549,6 +2580,9 @@ slots:
     # canonical general form; this is now its minted subproperty
     # (rdfs:subPropertyOf crm:P14i_performed via is_a).
     slot_uri: heritageGraph:performsRitual
+    # Not declared the inverse of performed_by_group: that slot is also used on
+    # Kumari selection and retirement events, which are not rituals, and an
+    # inverse would make them RitualEvents through this slot's range.
     is_a: carried_out_activity
     range: RitualEvent
     multivalued: true
@@ -2845,6 +2879,11 @@ slots:
 
   confidence_score:
     slot_uri: heritageGraph:confidenceScore
+    # CRMinf records the belief value with J5 holds to be (an object property
+    # to I6 Belief Value); this datatype score is a numeric counterpart, so it
+    # is related to J5, not a subproperty of it.
+    related_mappings:
+      - crminf:J5_holds_to_be
     # DATATYPE FIX: xsd:decimal, so the OWL range is ONE facet-restricted
     # datatype, decimal[>= 0, <= 1] (see finalize_alpha5_artifacts.py); float
     # with LinkML's integer-typed bounds produced an empty range.
@@ -3133,17 +3172,25 @@ slots:
     description: "Kind of endowment event (founding, augmentation, nationalisation, alienation)."
   endowment_donor:
     slot_uri: heritageGraph:endowmentDonor
+    is_a: transferred_title_from
     range: Actor
     multivalued: true
-    broad_mappings:
-      - crm:P23_transferred_title_from
     description: "Person or group who gave the property (the donor in a founding or augmentation)."
   endowment_recipient:
     slot_uri: heritageGraph:endowmentRecipient
+    is_a: transferred_title_to
     range: Actor
-    broad_mappings:
-      - crm:P22_transferred_title_to
     description: "Guthi or state body that received the property (e.g. the Guthi Sansthan in a nationalisation)."
+  transferred_title_from:
+    slot_uri: crm:P23_transferred_title_from
+    range: Actor
+    multivalued: true
+    description: "Actor who gave up title (CRM P23)."
+  transferred_title_to:
+    slot_uri: crm:P22_transferred_title_to
+    range: Actor
+    multivalued: true
+    description: "Actor who acquired title (CRM P22)."
   # ---- Tenure pattern (1.1.0, M13) ----
   tenure_holder:
     slot_uri: heritageGraph:tenureHolder
@@ -3207,6 +3254,9 @@ slots:
   succeeds:
     slot_uri: heritageGraph:succeeds
     range: HereditaryRoleTenure
+    # a tenure does not succeed itself, and two tenures do not succeed each other
+    irreflexive: true
+    asymmetric: true
     description: "Earlier tenure of the same hereditary office that this tenure succeeds."
   custody_holder:
     is_a: tenure_holder
