@@ -58,7 +58,8 @@ def expand(curie: str, cmap: dict) -> URIRef:
 
 def text(g: Graph, s: URIRef, preds) -> str:
     for p in preds:
-        vals = [o for o in g.objects(s, p) if getattr(o, "language", None) in ("en", None)]
+        vals = sorted((o for o in g.objects(s, p) if getattr(o, "language", None) in ("en", None)),
+                      key=lambda o: (-len(str(o)), str(o)))  # deterministic: the longest text
         if vals:
             return " ".join(str(vals[0]).split())
     return ""

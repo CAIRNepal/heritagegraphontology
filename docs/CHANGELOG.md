@@ -953,27 +953,6 @@ In First Order Logic:
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
 - **Field Survey Dataset** (`heritageGraph:FieldSurveyDataset`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-- **forms part of** (`crm:P9i_forms_part_of`, object property)
-  - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
-  - ➕ rdfs:label: "forms part of"@en
-  - ➕ skos:definition: "Quantification of the inverse property: many to many (0,n:0,n)
-
-Scope note of the inverse property:
-This property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.
-This property is transitive and asymmetric.
-
-Examples of the inverse property:
-- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)
-
-In First Order Logic of the inverse property:
-- P9(x,y) ⇒ E4(x)
-- P9(x,y) ⇒ E4(y)
-- P9(x,y) ⇒ P10(y,x)
-- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)
-- P9(x,y) ⇒ ¬P9(y,x)"@en
-  - ➖ rdfs:label: "Is part of festival"@en
-  - ➖ skos:definition: "Larger festival this ritual is part of"@en
-  - ➖ skos:inScheme: heritageGraph:schema
 - **forms part of** (`crm:P46i_forms_part_of`, object property)
   - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
   - ➕ rdfs:label: "forms part of"@en
@@ -999,6 +978,27 @@ In First Order Logic of the inverse property:
 - P46(x,y) ⇒ ¬P46(y,x)"@en
   - ➖ rdfs:label: "Is component of"@en
   - ➖ skos:definition: "Larger structure that this element is part of"@en
+  - ➖ skos:inScheme: heritageGraph:schema
+- **forms part of** (`crm:P9i_forms_part_of`, object property)
+  - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
+  - ➕ rdfs:label: "forms part of"@en
+  - ➕ skos:definition: "Quantification of the inverse property: many to many (0,n:0,n)
+
+Scope note of the inverse property:
+This property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.
+This property is transitive and asymmetric.
+
+Examples of the inverse property:
+- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)
+
+In First Order Logic of the inverse property:
+- P9(x,y) ⇒ E4(x)
+- P9(x,y) ⇒ E4(y)
+- P9(x,y) ⇒ P10(y,x)
+- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)
+- P9(x,y) ⇒ ¬P9(y,x)"@en
+  - ➖ rdfs:label: "Is part of festival"@en
+  - ➖ skos:definition: "Larger festival this ritual is part of"@en
   - ➖ skos:inScheme: heritageGraph:schema
 - **Fusion** (`https://cair-nepal.org/heritagegraph/SyncreticType#Fusion`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2230,14 +2230,14 @@ In First Order Logic:
   - ➖ rdfs:label: "Ritual events"@en
   - ➖ rdfs:range: heritageGraph:RitualEvent
   - ➖ skos:definition: "Collection of RitualEvent instances"@en
-- **obsolete SanGuthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`, concept)
+- **obsolete San Guthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`, concept)
   - ➕ dcterms:isReplacedBy: https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "obsolete SanGuthi"@en
+  - ➕ rdfs:label: "obsolete San Guthi"@en
   - ➕ skos:definition: "Variant spelling of sanah guthi."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust."@en
-  - ➕ skos:prefLabel: "obsolete SanGuthi"@en
+  - ➕ skos:prefLabel: "obsolete San Guthi"@en
   - ➖ rdfs:label: "San Guthi"@en
   - ➖ skos:definition: "Life-cycle ritual trust"@en
   - ➖ skos:prefLabel: "San Guthi"@en

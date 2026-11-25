@@ -90,6 +90,11 @@
 - `hg:routePlaces` is no longer a subproperty of crm:P7, and `hg:sourceCitation` no longer one of
   crm:P3 (related mappings instead). `crm:P183` (occurs before) is described as strict precedence.
 - The LUX module has a versionIRI (…/alignment/lux/1.1.0).
+- Labels: deprecated enumeration values are labelled "obsolete …" (ROBOT convention); `hg:documents`
+  is labelled "records" (CIDOC-CRM's P70 is "documents" and means a document, not an activity),
+  with a related mapping to crm:P70; `hg:InformationObject` is "Heritage information object", and
+  the properties accessProtocol and endowmentEventType are "has access protocol" and "has endowment
+  event type", so no label repeats a CRM label or a class name.
 - Demonstrator: the successor Kumari tenure of the same office (2025, open), the tradition's
   selection criteria (Allen 1975), and Nepali labels for the main places and the deity.
 

@@ -355,8 +355,11 @@ def finalize_owl(sv: SchemaView) -> Graph:
             for lp in (RDFS.label, SKOS.prefLabel, DCTERMS.title):
                 for old in list(g.objects(ind, lp)):
                     if not str(old).startswith("obsolete "):
+                        text = str(old)
+                        if " " not in text:  # a raw value name (SanGuthi): humanize it first
+                            text = humanize_name(text)
                         g.remove((ind, lp, old))
-                        g.add((ind, lp, Literal(f"obsolete {old}", lang=getattr(old, "language", None) or "en")))
+                        g.add((ind, lp, Literal(f"obsolete {text}", lang=getattr(old, "language", None) or "en")))
             repl = pv.deprecated_element_has_exact_replacement
             if repl and repl in sv.all_classes():
                 c = sv.get_class(repl)

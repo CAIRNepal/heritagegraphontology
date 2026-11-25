@@ -1091,7 +1091,7 @@
       "label": "Architectural Style",
       "kind": "class",
       "curie": "heritageGraph:ArchitecturalStyle",
-      "anchor": "ArchitecturalStyle-2",
+      "anchor": "ArchitecturalStyle",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1130,7 +1130,7 @@
       "label": "Architectural Style (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ArchitecturalStyle",
+      "anchor": "ArchitecturalStyle-2",
       "added": [
         [
           "skos:prefLabel",
@@ -1909,7 +1909,7 @@
       "label": "Condition Type",
       "kind": "class",
       "curie": "heritageGraph:ConditionType",
-      "anchor": "ConditionType",
+      "anchor": "ConditionType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1944,7 +1944,7 @@
       "label": "Condition Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ConditionType-2",
+      "anchor": "ConditionType",
       "added": [
         [
           "skos:prefLabel",
@@ -2605,7 +2605,7 @@
       "label": "Date Precision",
       "kind": "class",
       "curie": "heritageGraph:DatePrecision",
-      "anchor": "DatePrecision-2",
+      "anchor": "DatePrecision",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -2644,7 +2644,7 @@
       "label": "Date Precision (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "DatePrecision",
+      "anchor": "DatePrecision-2",
       "added": [
         [
           "skos:prefLabel",
@@ -3674,7 +3674,7 @@
       "label": "Existence Status",
       "kind": "class",
       "curie": "heritageGraph:ExistenceStatus",
-      "anchor": "ExistenceStatus-2",
+      "anchor": "ExistenceStatus",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -3717,7 +3717,7 @@
       "label": "Existence Status (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ExistenceStatus",
+      "anchor": "ExistenceStatus-2",
       "added": [
         [
           "skos:prefLabel",
@@ -3880,41 +3880,6 @@
       "removed": []
     },
     {
-      "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
-      "label": "forms part of",
-      "kind": "object_property",
-      "curie": "crm:P9i_forms_part_of",
-      "anchor": "P9i_forms_part_of",
-      "added": [
-        [
-          "rdfs:isDefinedBy",
-          "http://www.cidoc-crm.org/cidoc-crm/"
-        ],
-        [
-          "rdfs:label",
-          "\"forms part of\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)\n\nIn First Order Logic of the inverse property:\n- P9(x,y) ⇒ E4(x)\n- P9(x,y) ⇒ E4(y)\n- P9(x,y) ⇒ P10(y,x)\n- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)\n- P9(x,y) ⇒ ¬P9(y,x)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Is part of festival\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Larger festival this ritual is part of\"@en"
-        ],
-        [
-          "skos:inScheme",
-          "heritageGraph:schema"
-        ]
-      ]
-    },
-    {
       "iri": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
       "label": "forms part of",
       "kind": "object_property",
@@ -3942,6 +3907,41 @@
         [
           "skos:definition",
           "\"Larger structure that this element is part of\"@en"
+        ],
+        [
+          "skos:inScheme",
+          "heritageGraph:schema"
+        ]
+      ]
+    },
+    {
+      "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
+      "label": "forms part of",
+      "kind": "object_property",
+      "curie": "crm:P9i_forms_part_of",
+      "anchor": "P9i_forms_part_of",
+      "added": [
+        [
+          "rdfs:isDefinedBy",
+          "http://www.cidoc-crm.org/cidoc-crm/"
+        ],
+        [
+          "rdfs:label",
+          "\"forms part of\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E4 Period with another instance of E4 Period that is defined by a subset of the phenomena that define the former. Therefore, the spacetime volume of the latter must fall within the spacetime volume of the former.\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- Cretan Bronze Age (E4) consists of Middle Minoan (E4). (Hood, 1971)\n\nIn First Order Logic of the inverse property:\n- P9(x,y) ⇒ E4(x)\n- P9(x,y) ⇒ E4(y)\n- P9(x,y) ⇒ P10(y,x)\n- [P9(x,y) ∧ P9(y,z)] ⇒ P9(x,z)\n- P9(x,y) ⇒ ¬P9(y,x)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Is part of festival\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Larger festival this ritual is part of\"@en"
         ],
         [
           "skos:inScheme",
@@ -8851,7 +8851,7 @@
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi",
-      "label": "obsolete SanGuthi",
+      "label": "obsolete San Guthi",
       "kind": "concept",
       "curie": null,
       "anchor": "SanGuthi",
@@ -8870,7 +8870,7 @@
         ],
         [
           "rdfs:label",
-          "\"obsolete SanGuthi\"@en"
+          "\"obsolete San Guthi\"@en"
         ],
         [
           "skos:definition",
@@ -8882,7 +8882,7 @@
         ],
         [
           "skos:prefLabel",
-          "\"obsolete SanGuthi\"@en"
+          "\"obsolete San Guthi\"@en"
         ]
       ],
       "removed": [
@@ -9069,7 +9069,7 @@
       "label": "obsolete Stupa style",
       "kind": "concept",
       "curie": null,
-      "anchor": "Stupa-2",
+      "anchor": "Stupa",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -10565,7 +10565,7 @@
       "label": "Ritual Type",
       "kind": "class",
       "curie": "heritageGraph:RitualType",
-      "anchor": "RitualType-2",
+      "anchor": "RitualType",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -10668,7 +10668,7 @@
       "label": "Ritual Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "RitualType",
+      "anchor": "RitualType-2",
       "added": [
         [
           "skos:prefLabel",
@@ -11201,7 +11201,7 @@
       "label": "Stupa",
       "kind": "class",
       "curie": "heritageGraph:Stupa",
-      "anchor": "Stupa",
+      "anchor": "Stupa-2",
       "added": [
         [
           "rdfs:isDefinedBy",

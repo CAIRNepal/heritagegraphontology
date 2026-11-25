@@ -228,7 +228,7 @@ Daily mandatory worship.
 
 Buddhist votive shrine style.
 
-### obsolete SanGuthi ~~deprecated~~
+### obsolete San Guthi ~~deprecated~~
 
 **IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`
 
