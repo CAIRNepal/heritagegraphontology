@@ -1322,6 +1322,7 @@ classes:
       destroyed:
         # CIDOC-CRM P13 is necessary (1,n): a destruction destroys something
         required: true
+        minimum_cardinality: 1
   SyncreticRelationship:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.

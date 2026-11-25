@@ -1697,22 +1697,32 @@ def add_location_rule(g: Graph, sv: SchemaView) -> None:
             statuses = [c.equals_string for c in (es.any_of or [])]
     if not statuses:
         sys.exit("ArchitecturalStructure location rule not found in the schema")
-    target = URIRef(HG_NS + "ArchitecturalStructure")
-    shape = next(iter(g.subjects(SH.targetClass, target)), None)
-    if shape is None:
-        sys.exit("ArchitecturalStructure shape not found")
-    not_in, inner, has_loc = BNode(), BNode(), BNode()
-    lst = BNode()
-    Collection(g, lst, [URIRef(f"{HG_NS}ExistenceStatus#{v}") for v in statuses])
-    g.add((inner, SH["in"], lst))
-    g.add((not_in, SH.path, URIRef(HG_NS + "existenceStatus")))
-    g.add((not_in, SH["not"], inner))
-    g.add((has_loc, SH.path, URIRef("http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location")))
-    g.add((has_loc, SH.minCount, Literal(1)))
-    head = BNode()
-    Collection(g, head, [not_in, has_loc])
-    g.add((shape, SH["or"], head))
-    print(f"location rule: structures with status {', '.join(statuses)} record a current location")
+    # on the shape of the class and of every descendant (gen-shacl repeats
+    # inherited constraints in each subclass shape, so validation without the
+    # ontology graph, where Temple is not known to be an ArchitecturalStructure,
+    # still applies the rule)
+    names = ["ArchitecturalStructure"] + sorted(sv.class_descendants("ArchitecturalStructure", reflexive=False))
+    n = 0
+    for name in names:
+        c = sv.get_class(name)
+        target = uri_for(sv, str(c.class_uri or f"heritageGraph:{name}"))
+        shape = next(iter(g.subjects(SH.targetClass, target)), None)
+        if shape is None:
+            sys.exit(f"{name} shape not found")
+        not_in, inner, has_loc = BNode(), BNode(), BNode()
+        lst = BNode()
+        Collection(g, lst, [URIRef(f"{HG_NS}ExistenceStatus#{v}") for v in statuses])
+        g.add((inner, SH["in"], lst))
+        g.add((not_in, SH.path, URIRef(HG_NS + "existenceStatus")))
+        g.add((not_in, SH["not"], inner))
+        g.add((has_loc, SH.path, URIRef("http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location")))
+        g.add((has_loc, SH.minCount, Literal(1)))
+        head = BNode()
+        Collection(g, head, [not_in, has_loc])
+        g.add((shape, SH["or"], head))
+        n += 1
+    print(f"location rule: structures with status {', '.join(statuses)} record a current location "
+          f"({n} shapes)")
 
 
 def run_pyshacl() -> None:
@@ -1822,6 +1832,27 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
                 if isinstance(alt, dict) and "$ref" in alt:
                     repair(pdef["anyOf"], i, inlined, f"{owner}.{pname}")
     print(f"JSON Schema: resolved {len(fixed)} reference(s) to classes with no $defs entry")
+
+    # A Container collection holds the instances themselves, and the generated
+    # schema allows only its declared class there ($ref, additionalProperties
+    # false): a destruction (with destroyed) could not go into
+    # historical_events, nor a Temple's own fields into structures. Each
+    # collection accepts its class or any concrete descendant.
+    n_coll = 0
+    for props in (js.get("properties", {}), defs.get("Container", {}).get("properties", {})):
+        for pname, pdef in props.items():
+            items = pdef.get("items")
+            if not isinstance(items, dict) or "$ref" not in items:
+                continue
+            cname = items["$ref"].removeprefix("#/$defs/")
+            if cname not in sv.all_classes():
+                continue
+            subs = sorted(d for d in sv.class_descendants(cname, reflexive=False)
+                          if d in defs and not sv.get_class(d).abstract)
+            if subs:
+                pdef["items"] = {"anyOf": [{"$ref": f"#/$defs/{x}"} for x in [cname] + subs]}
+                n_coll += 1
+    print(f"JSON Schema: {n_coll} Container collection(s) also accept the concrete subclasses")
 
 
 def allow_single_string(js: dict, sv: SchemaView) -> None:

@@ -2145,7 +2145,23 @@
                 "actors": {
                     "description": "Collection of generic Actor instances",
                     "items": {
-                        "$ref": "#/$defs/Actor"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Actor"
+                            },
+                            {
+                                "$ref": "#/$defs/CasteGroup"
+                            },
+                            {
+                                "$ref": "#/$defs/DataCustodian"
+                            },
+                            {
+                                "$ref": "#/$defs/Guthi"
+                            },
+                            {
+                                "$ref": "#/$defs/Person"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2255,7 +2271,23 @@
                 "data_sources": {
                     "description": "Collection of DataSource instances",
                     "items": {
-                        "$ref": "#/$defs/DataSource"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/DataSource"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchivalRecord"
+                            },
+                            {
+                                "$ref": "#/$defs/FieldSurveyDataset"
+                            },
+                            {
+                                "$ref": "#/$defs/InformationObject"
+                            },
+                            {
+                                "$ref": "#/$defs/OralHistoryRecording"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2275,7 +2307,20 @@
                 "documentation_activities": {
                     "description": "Collection of DocumentationActivity instances",
                     "items": {
-                        "$ref": "#/$defs/DocumentationActivity"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/DocumentationActivity"
+                            },
+                            {
+                                "$ref": "#/$defs/FieldSurveyActivity"
+                            },
+                            {
+                                "$ref": "#/$defs/OralHistoryInterview"
+                            },
+                            {
+                                "$ref": "#/$defs/Verification"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2315,7 +2360,17 @@
                 "festivals": {
                     "description": "Collection of Festival instances",
                     "items": {
-                        "$ref": "#/$defs/Festival"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Festival"
+                            },
+                            {
+                                "$ref": "#/$defs/ChariotFestival"
+                            },
+                            {
+                                "$ref": "#/$defs/MaskedDance"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2353,7 +2408,14 @@
                 "historical_events": {
                     "description": "Collection of HistoricalEvent (incl. DestructionEvent) instances",
                     "items": {
-                        "$ref": "#/$defs/HistoricalEvent"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/HistoricalEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/DestructionEvent"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2363,7 +2425,59 @@
                 "human_made_objects": {
                     "description": "Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)",
                     "items": {
-                        "$ref": "#/$defs/HumanMadeObject"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/HumanMadeObject"
+                            },
+                            {
+                                "$ref": "#/$defs/ArchitecturalStructure"
+                            },
+                            {
+                                "$ref": "#/$defs/Chaitya"
+                            },
+                            {
+                                "$ref": "#/$defs/Dharmashala"
+                            },
+                            {
+                                "$ref": "#/$defs/DhungeDhara"
+                            },
+                            {
+                                "$ref": "#/$defs/IconographicObject"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariHouse"
+                            },
+                            {
+                                "$ref": "#/$defs/Murti"
+                            },
+                            {
+                                "$ref": "#/$defs/Pati"
+                            },
+                            {
+                                "$ref": "#/$defs/Paubha"
+                            },
+                            {
+                                "$ref": "#/$defs/Pokhari"
+                            },
+                            {
+                                "$ref": "#/$defs/ReligiousStructure"
+                            },
+                            {
+                                "$ref": "#/$defs/RestHouse"
+                            },
+                            {
+                                "$ref": "#/$defs/Sattal"
+                            },
+                            {
+                                "$ref": "#/$defs/Stupa"
+                            },
+                            {
+                                "$ref": "#/$defs/Temple"
+                            },
+                            {
+                                "$ref": "#/$defs/WaterStructure"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2373,7 +2487,17 @@
                 "iconographic_objects": {
                     "description": "Collection of IconographicObject instances (incl. Murti, Paubha)",
                     "items": {
-                        "$ref": "#/$defs/IconographicObject"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/IconographicObject"
+                            },
+                            {
+                                "$ref": "#/$defs/Murti"
+                            },
+                            {
+                                "$ref": "#/$defs/Paubha"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2532,7 +2656,38 @@
                 "ritual_events": {
                     "description": "Collection of RitualEvent instances",
                     "items": {
-                        "$ref": "#/$defs/RitualEvent"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/RitualEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/ChariotFestival"
+                            },
+                            {
+                                "$ref": "#/$defs/Consecration"
+                            },
+                            {
+                                "$ref": "#/$defs/Enshrinement"
+                            },
+                            {
+                                "$ref": "#/$defs/FearlessnessAssessment"
+                            },
+                            {
+                                "$ref": "#/$defs/Festival"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariEnthronementEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariRetirementEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariSelectionEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/MaskedDance"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2542,7 +2697,26 @@
                 "selection_criteria": {
                     "description": "Collection of SelectionCriterion instances",
                     "items": {
-                        "$ref": "#/$defs/SelectionCriterion"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/SelectionCriterion"
+                            },
+                            {
+                                "$ref": "#/$defs/AgeCriterion"
+                            },
+                            {
+                                "$ref": "#/$defs/HoroscopeCompatibilityCriterion"
+                            },
+                            {
+                                "$ref": "#/$defs/LineageCriterion"
+                            },
+                            {
+                                "$ref": "#/$defs/PhysicalIntegrityCriterion"
+                            },
+                            {
+                                "$ref": "#/$defs/ThirtyTwoPerfectionsCriterion"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2552,7 +2726,47 @@
                 "structures": {
                     "description": "Collection of ArchitecturalStructure instances (incl. subclasses)",
                     "items": {
-                        "$ref": "#/$defs/ArchitecturalStructure"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/ArchitecturalStructure"
+                            },
+                            {
+                                "$ref": "#/$defs/Chaitya"
+                            },
+                            {
+                                "$ref": "#/$defs/Dharmashala"
+                            },
+                            {
+                                "$ref": "#/$defs/DhungeDhara"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariHouse"
+                            },
+                            {
+                                "$ref": "#/$defs/Pati"
+                            },
+                            {
+                                "$ref": "#/$defs/Pokhari"
+                            },
+                            {
+                                "$ref": "#/$defs/ReligiousStructure"
+                            },
+                            {
+                                "$ref": "#/$defs/RestHouse"
+                            },
+                            {
+                                "$ref": "#/$defs/Sattal"
+                            },
+                            {
+                                "$ref": "#/$defs/Stupa"
+                            },
+                            {
+                                "$ref": "#/$defs/Temple"
+                            },
+                            {
+                                "$ref": "#/$defs/WaterStructure"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -3192,6 +3406,7 @@
                     "items": {
                         "type": "string"
                     },
+                    "minItems": 1,
                     "type": "array"
                 },
                 "ended_at_time": {
@@ -13255,7 +13470,23 @@
         "actors": {
             "description": "Collection of generic Actor instances",
             "items": {
-                "$ref": "#/$defs/Actor"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Actor"
+                    },
+                    {
+                        "$ref": "#/$defs/CasteGroup"
+                    },
+                    {
+                        "$ref": "#/$defs/DataCustodian"
+                    },
+                    {
+                        "$ref": "#/$defs/Guthi"
+                    },
+                    {
+                        "$ref": "#/$defs/Person"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13365,7 +13596,23 @@
         "data_sources": {
             "description": "Collection of DataSource instances",
             "items": {
-                "$ref": "#/$defs/DataSource"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/DataSource"
+                    },
+                    {
+                        "$ref": "#/$defs/ArchivalRecord"
+                    },
+                    {
+                        "$ref": "#/$defs/FieldSurveyDataset"
+                    },
+                    {
+                        "$ref": "#/$defs/InformationObject"
+                    },
+                    {
+                        "$ref": "#/$defs/OralHistoryRecording"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13385,7 +13632,20 @@
         "documentation_activities": {
             "description": "Collection of DocumentationActivity instances",
             "items": {
-                "$ref": "#/$defs/DocumentationActivity"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/DocumentationActivity"
+                    },
+                    {
+                        "$ref": "#/$defs/FieldSurveyActivity"
+                    },
+                    {
+                        "$ref": "#/$defs/OralHistoryInterview"
+                    },
+                    {
+                        "$ref": "#/$defs/Verification"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13425,7 +13685,17 @@
         "festivals": {
             "description": "Collection of Festival instances",
             "items": {
-                "$ref": "#/$defs/Festival"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Festival"
+                    },
+                    {
+                        "$ref": "#/$defs/ChariotFestival"
+                    },
+                    {
+                        "$ref": "#/$defs/MaskedDance"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13463,7 +13733,14 @@
         "historical_events": {
             "description": "Collection of HistoricalEvent (incl. DestructionEvent) instances",
             "items": {
-                "$ref": "#/$defs/HistoricalEvent"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/HistoricalEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/DestructionEvent"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13473,7 +13750,59 @@
         "human_made_objects": {
             "description": "Collection of generic HumanMadeObject instances (use structures / iconographic_objects for subclasses)",
             "items": {
-                "$ref": "#/$defs/HumanMadeObject"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/HumanMadeObject"
+                    },
+                    {
+                        "$ref": "#/$defs/ArchitecturalStructure"
+                    },
+                    {
+                        "$ref": "#/$defs/Chaitya"
+                    },
+                    {
+                        "$ref": "#/$defs/Dharmashala"
+                    },
+                    {
+                        "$ref": "#/$defs/DhungeDhara"
+                    },
+                    {
+                        "$ref": "#/$defs/IconographicObject"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariHouse"
+                    },
+                    {
+                        "$ref": "#/$defs/Murti"
+                    },
+                    {
+                        "$ref": "#/$defs/Pati"
+                    },
+                    {
+                        "$ref": "#/$defs/Paubha"
+                    },
+                    {
+                        "$ref": "#/$defs/Pokhari"
+                    },
+                    {
+                        "$ref": "#/$defs/ReligiousStructure"
+                    },
+                    {
+                        "$ref": "#/$defs/RestHouse"
+                    },
+                    {
+                        "$ref": "#/$defs/Sattal"
+                    },
+                    {
+                        "$ref": "#/$defs/Stupa"
+                    },
+                    {
+                        "$ref": "#/$defs/Temple"
+                    },
+                    {
+                        "$ref": "#/$defs/WaterStructure"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13483,7 +13812,17 @@
         "iconographic_objects": {
             "description": "Collection of IconographicObject instances (incl. Murti, Paubha)",
             "items": {
-                "$ref": "#/$defs/IconographicObject"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/IconographicObject"
+                    },
+                    {
+                        "$ref": "#/$defs/Murti"
+                    },
+                    {
+                        "$ref": "#/$defs/Paubha"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13642,7 +13981,38 @@
         "ritual_events": {
             "description": "Collection of RitualEvent instances",
             "items": {
-                "$ref": "#/$defs/RitualEvent"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/RitualEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/ChariotFestival"
+                    },
+                    {
+                        "$ref": "#/$defs/Consecration"
+                    },
+                    {
+                        "$ref": "#/$defs/Enshrinement"
+                    },
+                    {
+                        "$ref": "#/$defs/FearlessnessAssessment"
+                    },
+                    {
+                        "$ref": "#/$defs/Festival"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariEnthronementEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariRetirementEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariSelectionEvent"
+                    },
+                    {
+                        "$ref": "#/$defs/MaskedDance"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13652,7 +14022,26 @@
         "selection_criteria": {
             "description": "Collection of SelectionCriterion instances",
             "items": {
-                "$ref": "#/$defs/SelectionCriterion"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/SelectionCriterion"
+                    },
+                    {
+                        "$ref": "#/$defs/AgeCriterion"
+                    },
+                    {
+                        "$ref": "#/$defs/HoroscopeCompatibilityCriterion"
+                    },
+                    {
+                        "$ref": "#/$defs/LineageCriterion"
+                    },
+                    {
+                        "$ref": "#/$defs/PhysicalIntegrityCriterion"
+                    },
+                    {
+                        "$ref": "#/$defs/ThirtyTwoPerfectionsCriterion"
+                    }
+                ]
             },
             "type": [
                 "array",
@@ -13662,7 +14051,47 @@
         "structures": {
             "description": "Collection of ArchitecturalStructure instances (incl. subclasses)",
             "items": {
-                "$ref": "#/$defs/ArchitecturalStructure"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/ArchitecturalStructure"
+                    },
+                    {
+                        "$ref": "#/$defs/Chaitya"
+                    },
+                    {
+                        "$ref": "#/$defs/Dharmashala"
+                    },
+                    {
+                        "$ref": "#/$defs/DhungeDhara"
+                    },
+                    {
+                        "$ref": "#/$defs/KumariHouse"
+                    },
+                    {
+                        "$ref": "#/$defs/Pati"
+                    },
+                    {
+                        "$ref": "#/$defs/Pokhari"
+                    },
+                    {
+                        "$ref": "#/$defs/ReligiousStructure"
+                    },
+                    {
+                        "$ref": "#/$defs/RestHouse"
+                    },
+                    {
+                        "$ref": "#/$defs/Sattal"
+                    },
+                    {
+                        "$ref": "#/$defs/Stupa"
+                    },
+                    {
+                        "$ref": "#/$defs/Temple"
+                    },
+                    {
+                        "$ref": "#/$defs/WaterStructure"
+                    }
+                ]
             },
             "type": [
                 "array",

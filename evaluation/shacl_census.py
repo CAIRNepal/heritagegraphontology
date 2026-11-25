@@ -28,7 +28,10 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 20 tests hitting it.
+# Negative-test coverage: component type -> number of the 20 tests hitting it
+# (one test, a reconstructed structure without a location, exercises both
+# sh:or and the sh:not inside it, so the counts sum to 21).
+N_TESTS = 20
 NEG_TESTS = {
     "sh:minCount": 5,   # missing custody holder / assigned deity / assertsAbout / time-span / destroyed
     "sh:maxCount": 1,   # two embodied deities on one tenure
@@ -43,6 +46,7 @@ NEG_TESTS = {
     "sh:lessThanOrEquals": 1,  # time-span ends before it begins
     "sh:uniqueLang": 1,        # two English labels on one deity
     "sh:qualifiedMaxCount": 1, # two untagged labels on one deity
+    "sh:not": 1,               # a reconstructed structure without a location (inside the sh:or)
 }
 
 direct = {
@@ -57,6 +61,9 @@ direct = {
     "sh:lessThanOrEquals": SH.lessThanOrEquals,
     "sh:uniqueLang": SH.uniqueLang,
     "sh:qualifiedMaxCount": SH.qualifiedMaxCount,
+    "sh:not": SH["not"],
+    "sh:minInclusive": SH.minInclusive,
+    "sh:maxInclusive": SH.maxInclusive,
 }
 
 print(f"\n{'component':<14}{'occurrences':>12}{'negative tests':>16}")
@@ -78,6 +85,6 @@ for name, pred in direct.items():
 touched = [k for k in direct if NEG_TESTS.get(k)]
 print(f"\nTotal component occurrences: {total}")
 print(f"Component types present: {len(direct)}; "
-      f"exercised by the {sum(NEG_TESTS.values())} negative tests: {len(touched)} ({', '.join(touched)})")
+      f"exercised by the {N_TESTS} negative tests: {len(touched)} ({', '.join(touched)})")
 untouched = [k for k in direct if not NEG_TESTS.get(k)]
 print(f"Untouched by negative tests: {', '.join(untouched) or 'none'}.")

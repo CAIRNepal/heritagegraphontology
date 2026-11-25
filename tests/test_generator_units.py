@@ -224,3 +224,20 @@ def test_resolve_abstract_refs(csv):
     assert js["$defs"]["A"]["properties"]["x"] == {"type": "string"}
     assert js["properties"]["ritual_assessments"]["items"] == {
         "anyOf": [{"$ref": "#/$defs/FearlessnessAssessment"}]}
+
+
+def test_container_collections_accept_subclasses():
+    js = json.loads((ROOT / "ontology/HeritageGraph.schema.json").read_text())
+    refs = [a["$ref"] for a in js["properties"]["historical_events"]["items"]["anyOf"]]
+    assert "#/$defs/HistoricalEvent" in refs and "#/$defs/DestructionEvent" in refs
+    temple = [a["$ref"] for a in js["properties"]["structures"]["items"]["anyOf"]]
+    assert "#/$defs/Temple" in temple
+
+
+def test_location_rule_on_every_structure_shape(shapes):
+    temple_shape = next(shapes.subjects(SH.targetClass, HG.Temple))
+    paths = set()
+    for lst in shapes.objects(temple_shape, SH["or"]):
+        for m in Collection(shapes, lst):
+            paths |= set(shapes.objects(m, SH.path))
+    assert {HG.existenceStatus, CRM.P55_has_current_location} <= paths
