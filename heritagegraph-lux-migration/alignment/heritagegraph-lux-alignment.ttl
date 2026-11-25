@@ -634,10 +634,14 @@ heritageGraph:memberOfSet a owl:ObjectProperty ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:Set .
 
+# 1.1.0: range narrowed from AssertionSubject (which includes events, roles
+# and sources) to crm:E18_Physical_Thing: crm:P46_is_composed_of is physical
+# composition (E18 to E18), so every item held was entailed a physical thing,
+# making a ritual or a data source "held" in a holding an E18.
 heritageGraph:holdsItem a owl:ObjectProperty ;
     rdfs:label "holds item"@en ;
     rdfs:domain heritageGraph:CuratedHolding ;
-    rdfs:range heritageGraph:AssertionSubject ;
+    rdfs:range crm:E18_Physical_Thing ;
     rdfs:subPropertyOf crm:P46_is_composed_of .
 
 # --- Period containment ----------------------------------------------------
@@ -650,11 +654,16 @@ heritageGraph:occursDuringPeriod a owl:ObjectProperty ;
 
 # --- Propositional object / doctrine ---------------------------------------
 
+# 1.1.0: was rdfs:subPropertyOf crm:P129_is_about, the reverse direction.
+# P129 runs from the propositional object (E89) to what it is about, so the
+# subject of aboutProposition (any heritage subject: a temple, a ritual) was
+# entailed an E89 Propositional Object, a conceptual object. The heritage
+# subject is the subject of the proposition: crm:P129i_is_subject_of.
 heritageGraph:aboutProposition a owl:ObjectProperty ;
     rdfs:label "is about proposition"@en ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:PropositionalObject ;
-    rdfs:subPropertyOf crm:P129_is_about .
+    rdfs:subPropertyOf crm:P129i_is_subject_of .
 
 # --- Metadata on any heritage thing ----------------------------------------
 
@@ -1042,6 +1051,7 @@ crm:E17_Type_Assignment a owl:Class .
 crm:E20_Biological_Object a owl:Class .
 crm:E25_Human-Made_Feature a owl:Class .
 crm:E26_Physical_Feature a owl:Class .
+crm:E18_Physical_Thing a owl:Class .
 crm:E27_Site a owl:Class .
 crm:E30_Right a owl:Class .
 crm:E31_Document a owl:Class .
@@ -1117,6 +1127,7 @@ crm:P39i_was_measured_by a owl:ObjectProperty .
 crm:P40_observed_dimension a owl:ObjectProperty .
 crm:P43_has_dimension a owl:ObjectProperty .
 crm:P46_is_composed_of a owl:ObjectProperty .
+crm:P129i_is_subject_of a owl:ObjectProperty .
 crm:P49_has_former_or_current_keeper a owl:ObjectProperty .
 crm:P65_shows_visual_item a owl:ObjectProperty .
 crm:P67i_is_referred_to_by a owl:ObjectProperty .

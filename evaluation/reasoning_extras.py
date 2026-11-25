@@ -35,7 +35,9 @@ Subcommands (default: all):
 
   no-external-superclass  Core + LUX module + CIDOC-CRM (+ CRMinf, CRMsci) must not give
                   an external class a HeritageGraph superclass, or an enumeration
-                  individual an extra HeritageGraph type.
+                  individual an extra HeritageGraph type; and the core must
+                  assert no logical axiom about an external term that its
+                  owning vocabulary does not state.
 
   tenure-not-event  The same merge plus the demonstrator ABox must not infer that a
                   KumariTenure is a crm:E5_Event.
@@ -334,6 +336,10 @@ def run_merged_import() -> int:
     ok &= _classify("HG + CRM + CRMinf + CRMsci + PROV-O",
                     [hg, paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
                      paths["CRMsci v2.0"], paths["PROV-O"]])
+    ok &= _classify("HG + CRM-PROV bridge + CRM + CRMinf + CRMsci + PROV-O",
+                    [hg, ROOT / "ontology/HeritageGraph-crm-prov-bridge.ttl",
+                     paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
+                     paths["CRMsci v2.0"], paths["PROV-O"]])
 
     if ok:
         print("\nPASS: HermiT classifies every merged graph, each vocabulary "
@@ -468,6 +474,32 @@ def _hijacks(extra_ttl: str = "") -> tuple[list[str], int, int]:
     return violations, len(ext_classes), len(enum_members)
 
 
+FOREIGN_LOGICAL = (RDFS.domain, RDFS.range, RDFS.subClassOf, RDFS.subPropertyOf,
+                   OWL.equivalentClass, OWL.equivalentProperty, OWL.inverseOf,
+                   OWL.disjointWith, OWL.propertyChainAxiom)
+
+
+def _foreign_axioms(core: Graph) -> list[str]:
+    """Logical axioms of the core whose subject is not a HeritageGraph IRI
+    and that the owning vocabulary does not itself state (checked against the
+    official snapshots in ontology/imports/)."""
+    import json as _json
+    meta = _json.loads((ROOT / "ontology/imports/sources.json").read_text(encoding="utf-8"))
+    official = Graph()
+    for src in meta["sources"]:
+        official.parse(ROOT / "ontology/imports" / src["file"], format=src["format"])
+    out = []
+    for pred in FOREIGN_LOGICAL:
+        for s_, o in core.subject_objects(pred):
+            if not isinstance(s_, URIRef) or str(s_).startswith(HG_NS):
+                continue
+            if (s_, pred, o) in official or (pred == OWL.inverseOf and (o, pred, s_) in official):
+                continue
+            out.append(f"{s_} {pred.n3(core.namespace_manager)} "
+                       f"{o if isinstance(o, URIRef) else '[anonymous]'}")
+    return sorted(out)
+
+
 def run_no_external_superclass() -> int:
     """Fail if core + LUX module + CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci) entail
     that an external class gains a HeritageGraph superclass or that an
@@ -487,11 +519,25 @@ def run_no_external_superclass() -> int:
     caught = any("E28_Conceptual_Object" in v or "E55_Type" in v for v in control)
     print(f"negative control (Deity ≡ crm:E28_Conceptual_Object): "
           f"{len(control)} violation(s) -> {'caught' if caught else 'NOT caught'}")
-    if violations or not caught:
+    # asserted: no logical axiom about another vocabulary's term, unless that
+    # vocabulary states it itself (e.g. crm:E21_Person ⊑ crm:E39_Actor)
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    foreign = _foreign_axioms(core)
+    print(f"asserted axioms about external terms not stated by their owner: {len(foreign)}")
+    for f in foreign:
+        print("  VIOLATION:", f)
+    ctl = Graph(); ctl += core
+    ctl.add((URIRef("http://www.cidoc-crm.org/cidoc-crm/E12_Production"), RDFS.subClassOf,
+             URIRef(PROV_NS + "Activity")))
+    caught_f = len(_foreign_axioms(ctl)) > len(foreign)
+    print(f"negative control (crm:E12_Production ⊑ prov:Activity in the core): "
+          f"{'caught' if caught_f else 'NOT caught'}")
+    if violations or not caught or foreign or not caught_f:
         print("FAIL")
         return 1
-    print("PASS: no external class gains a HeritageGraph superclass and no enumeration "
-          "individual gains a HeritageGraph type beyond its own enumeration.")
+    print("PASS: no external class gains a HeritageGraph superclass, no enumeration "
+          "individual gains a HeritageGraph type beyond its own enumeration, and the core "
+          "states no axiom about an external term that its owner does not state.")
     return 0
 
 

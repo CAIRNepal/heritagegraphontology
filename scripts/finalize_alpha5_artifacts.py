@@ -410,8 +410,9 @@ def finalize_owl(sv: SchemaView) -> Graph:
     relax_text_ranges(g)
     relax_reused_max_cardinality(g)
     add_property_chains(g, sv)
+    add_crm_superclasses(g, sv)
     # schema build directives, not ontology content
-    for d in ("owl_property_chain", "lexical_form"):
+    for d in ("owl_property_chain", "lexical_form", "crm_superclass"):
         g.remove((None, URIRef(HG_NS + d), None))
     add_external_class_domains(g, sv)
     drop_vacuous_min_cardinality(g)
@@ -827,6 +828,37 @@ def relax_reused_max_cardinality(g: Graph) -> None:
           f"kept (CRM quantification max 1) {dict(sorted(kept.items()))}")
 
 
+def add_crm_superclasses(g: Graph, sv: SchemaView) -> None:
+    """A class annotated crm_superclass X is stated rdfs:subClassOf X. The
+    criterion (written in the paper): subClassOf whenever every instance of
+    the HeritageGraph class is an instance of X (a ritual is an E7 Activity,
+    a tenure an E4 Period); where that is not so for every instance (Deity),
+    the class keeps only its skos:broadMatch. The subject is the
+    HeritageGraph class, so the core says nothing new about the CRM class.
+    Aborts if X is not a class of the official CIDOC-CRM/CRMinf snapshot."""
+    official = Graph()
+    for _, vg, _ in _official_sources():
+        official += vg
+    n, bad = 0, []
+    for cn, c in sv.all_classes().items():
+        ann = c.annotations.get("crm_superclass") if c.annotations else None
+        if ann is None:
+            continue
+        sub = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
+        sup = uri_for(sv, str(ann.value))
+        if not ((sup, RDF.type, RDFS.Class) in official or (sup, RDF.type, OWL.Class) in official):
+            bad.append(f"{cn} -> {ann.value}")
+            continue
+        if (sup, RDF.type, OWL.Class) not in g:
+            g.add((sup, RDF.type, OWL.Class))
+            g.add((sup, RDFS.label, Literal(str(sup))))  # replaced by the official label
+        g.add((sub, RDFS.subClassOf, sup))
+        n += 1
+    if bad:
+        sys.exit("crm_superclass is not an official CRM/CRMinf class: " + ", ".join(bad))
+    print(f"CRM grounding: {n} HeritageGraph class(es) stated rdfs:subClassOf their CRM class")
+
+
 def add_property_chains(g: Graph, sv: SchemaView) -> None:
     """A slot annotated owl_property_chain "p1 p2" is a shortcut for that
     path: emit SubObjectPropertyOf(ObjectPropertyChain(p1 p2) slot), so data
@@ -967,6 +999,69 @@ def _purge_node(g: Graph, node) -> None:
         g.remove((node, p, o))
         if isinstance(o, BNode):
             _purge_node(g, o)
+
+
+_OFFICIAL: Graph | None = None
+
+
+def _owner_states(s: URIRef, pred: URIRef, o: URIRef) -> bool:
+    """Does an official vocabulary snapshot (ontology/imports/) state this
+    axiom (for owl:inverseOf, in either direction)?"""
+    global _OFFICIAL
+    if _OFFICIAL is None:
+        _OFFICIAL = Graph()
+        for _, vg, _ in _official_sources():
+            _OFFICIAL += vg
+    return (s, pred, o) in _OFFICIAL or (pred == OWL.inverseOf and (o, pred, s) in _OFFICIAL)
+
+
+PROV_NS = "http://www.w3.org/ns/prov#"
+BRIDGE_OUT = ROOT / "ontology" / "HeritageGraph-crm-prov-bridge.ttl"
+BRIDGE_IRI = URIRef(HG_NS + "crm-prov-bridge")
+# PROV class -> the reused (external) classes the bridge places under it
+BRIDGE: dict[URIRef, set[URIRef]] = {}
+
+
+def write_crm_prov_bridge(sv: SchemaView) -> None:
+    """The optional CRM→PROV-O alignment module. One rule, read from the
+    schema: a LinkML class whose IRI is an external class (Production =
+    crm:E12_Production, TimeSpan = crm:E52_Time-Span, ...) and that has the
+    PROV mixin Activity, Entity or Agent (directly or inherited) gives
+    <its IRI> rdfs:subClassOf prov:Activity / prov:Entity / prov:Agent. These
+    are HeritageGraph's statements about other vocabularies' classes, so they
+    are kept out of the core; load the module with the core when PROV-O-only
+    clients should see CRM-typed data as PROV."""
+    BRIDGE.clear()
+    mixin_to_prov = {"Activity": "Activity", "Entity": "Entity", "Agent": "Agent"}
+    for cn, c in sv.all_classes().items():
+        iri = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
+        if str(iri).startswith(HG_NS) or c.mixin or cn in mixin_to_prov:
+            continue
+        ancestors = set(sv.class_ancestors(cn))
+        for m, pc in mixin_to_prov.items():
+            if m in ancestors:
+                BRIDGE.setdefault(URIRef(PROV_NS + pc), set()).add(iri)
+    b = Graph()
+    b.bind("owl", OWL); b.bind("rdfs", RDFS); b.bind("prov", PROV_NS)
+    b.bind("crm", "http://www.cidoc-crm.org/cidoc-crm/")
+    b.bind("crminf", "http://www.cidoc-crm.org/extensions/crminf/")
+    b.bind("dcterms", DCTERMS)
+    b.add((BRIDGE_IRI, RDF.type, OWL.Ontology))
+    b.add((BRIDGE_IRI, RDFS.label, Literal("HeritageGraph CIDOC-CRM to PROV-O bridge", lang="en")))
+    b.add((BRIDGE_IRI, RDFS.comment, Literal(
+        "Optional module. HeritageGraph's alignment of the CIDOC-CRM and CRMinf classes it reuses "
+        "to PROV-O: each reused class whose HeritageGraph usage is a PROV activity, entity or agent "
+        "is stated a subclass of it. These axioms are about classes HeritageGraph does not own, so "
+        "they are not in the core ontology; load this module together with the core, CIDOC-CRM, "
+        "CRMinf and PROV-O when PROV-O-only clients should see CRM-typed data as PROV.", lang="en")))
+    b.add((BRIDGE_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
+    b.add((BRIDGE_IRI, DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")))
+    for pc, members in sorted(BRIDGE.items()):
+        for m in sorted(members):
+            b.add((m, RDFS.subClassOf, pc))
+    b.serialize(BRIDGE_OUT, format="turtle")
+    print(f"wrote {BRIDGE_OUT.name}: " + ", ".join(
+        f"{len(v)} -> prov:{k.split('#')[1]}" for k, v in sorted(BRIDGE.items())))
 
 
 def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
@@ -1190,18 +1285,17 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
     # HeritageGraph property, so it is re-stated with the HeritageGraph
     # property as subject. Declarations and annotations are kept.
     #
-    # Two justified exceptions. First, owl:inverseOf between two external
-    # properties that the owning vocabulary itself declares inverse
-    # (prov:generated / prov:wasGeneratedBy, asserted by PROV-O; the YAML
-    # declares the pair as slot inverses). Second, rdfs:subClassOf between two
-    # named external classes. These are crm:E21_Person ⊑ crm:E39_Actor (CIDOC-CRM's own axiom,
-    # restated so the core classifies without importing CRM) and the
-    # HeritageGraph CRM→PROV-O alignment of the reused classes (crm:E39_Actor ⊑
-    # prov:Agent, crm:E12_Production ⊑ prov:Activity, …, crminf:I2_Belief ⊑
-    # prov:Entity). They give no external class a HeritageGraph superclass,
-    # classify consistently with CIDOC-CRM, CRMinf, and PROV-O merged
-    # (reasoning_extras.py), and the provenance layer's SHACL constraints
-    # (e.g. prov:wasAttributedTo values are prov:Agent) depend on them.
+    # One exception: an axiom between two external terms that the owning
+    # vocabulary itself states, checked against the official snapshot
+    # (crm:E21_Person ⊑ crm:E39_Actor, restated so the core classifies
+    # without importing CRM; prov:generated owl:inverseOf prov:wasGeneratedBy).
+    # 1.1.0: HeritageGraph's own CRM→PROV-O alignment of the reused classes
+    # (crm:E12_Production ⊑ prov:Activity, crm:E39_Actor ⊑ prov:Agent, …) is
+    # not in the core: asserted there it redefined CIDOC-CRM classes for every
+    # dataset loading HeritageGraph. It is published as the optional module
+    # HeritageGraph-crm-prov-bridge.ttl (write_crm_prov_bridge), and the SHACL
+    # provenance constraints name the CRM classes explicitly
+    # (bridge_shacl_classes).
     logical = (RDFS.domain, RDFS.range, RDFS.subClassOf, RDFS.subPropertyOf,
                OWL.equivalentClass, OWL.equivalentProperty, OWL.inverseOf,
                OWL.disjointWith, OWL.propertyChainAxiom)
@@ -1211,8 +1305,8 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
             if not isinstance(s, URIRef) or str(s).startswith(HG_NS):
                 continue
             if (pred in (RDFS.subClassOf, OWL.inverseOf) and isinstance(o, URIRef)
-                    and not str(o).startswith(HG_NS)):
-                continue  # named external → external: the exceptions above
+                    and not str(o).startswith(HG_NS) and _owner_states(s, pred, o)):
+                continue  # stated by the owning vocabulary: the exception above
             g.remove((s, pred, o))
             n += 1
             if pred == OWL.inverseOf and isinstance(o, URIRef) and str(o).startswith(HG_NS):
@@ -1302,12 +1396,33 @@ def finalize_shacl(sv: SchemaView) -> None:
         n += 1
     print(f"rewrote {n} enum sh:in lists from literals to individual IRIs")
     relax_shacl_text_and_cardinality(g)
+    bridge_shacl_classes(g)
     add_usage_names(g, sv)
     scope_shapes(g, sv)
     add_timespan_rules(g)
     bind_hg(g)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
+
+
+def bridge_shacl_classes(g: Graph) -> None:
+    """Without the CRM→PROV axioms in the core, a crm:E21_Person value of
+    prov:wasAttributedTo is not (in the shapes' class closure) a prov:Agent.
+    Each sh:class prov:Activity / prov:Entity / prov:Agent constraint becomes
+    "that PROV class or one of the reused classes the bridge places under it",
+    so validation accepts exactly what it accepted with the axioms in the core."""
+    n = 0
+    for pc, members in BRIDGE.items():
+        for node in list(g.subjects(SH["class"], pc)):
+            g.remove((node, SH["class"], pc))
+            alts = []
+            for c in [pc] + sorted(members):
+                a = BNode(); g.add((a, SH["class"], c)); alts.append(a)
+            head = BNode(); Collection(g, head, alts)
+            g.add((node, SH["or"], head))
+            n += 1
+    print(f"SHACL: {n} sh:class prov:* constraint(s) also accept the reused CRM classes "
+          f"(the core no longer states CRM ⊑ PROV)")
 
 
 def relax_shacl_text_and_cardinality(g: Graph) -> None:
@@ -1667,6 +1782,7 @@ def main() -> int:
     gen("shacl", SHACL_OUT)
     gen_json_schema()
     finalize_owl(sv)
+    write_crm_prov_bridge(sv)
     finalize_shacl(sv)
     run_pyshacl()
     stamp_provenance()
