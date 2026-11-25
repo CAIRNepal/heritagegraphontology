@@ -322,22 +322,42 @@ ex:TS_Gunla a crm:E52_Time-Span ; rdfs:label "Gunla month 2025" ;
     crm:P82a_begin_of_the_begin "2025-07-25T00:00:00"^^xsd:dateTime .
 ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra 2025" ;
     crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
+# One time-span per occurrence (CRM P4: several events share an E52 only if
+# they begin and end through identical events). Where the data has no
+# precise date, the part's time-span carries only a bound that is known to
+# hold: it cannot begin before the festival, assessment or founding it
+# belongs to begins.
+ex:TS_YosinErection2025 a crm:E52_Time-Span ; rdfs:label "Yosin erection, Indra Jatra 2025" ;
+    crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
+ex:TS_KumariProcession2025 a crm:E52_Time-Span ; rdfs:label "Kumari chariot procession, Indra Jatra 2025" ;
+    crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
+ex:TS_BungadyahProcession2025 a crm:E52_Time-Span ; rdfs:label "Bungadyah chariot procession 2025" ;
+    crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
+ex:TS_CA2015 a crm:E52_Time-Span ; rdfs:label "Condition assessment after the 25 April 2015 earthquake" ;
+    crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime .
+ex:TS_ShantiSwasti2015 a crm:E52_Time-Span ; rdfs:label "Shanti swasti puja after the 25 April 2015 earthquake" ;
+    crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime .
+# Was the Kasthamandap construction period (from 1100 CE): the Taleju Temple
+# that houses this enshrinement was built in 1564 (Mahendra Malla), so the
+# enshrinement cannot begin earlier; its own date is not recorded here.
+ex:TS_EnshTaleju a crm:E52_Time-Span ; rdfs:label "Enshrinement of Taleju (not before the temple's construction, 1564)" ;
+    crm:P82a_begin_of_the_begin "1564-01-01T00:00:00"^^xsd:dateTime .
 
 # time-spans on events that lacked one
 ex:Prod_Kasthamandap crm:P4_has_time-span ex:TS_Construction .
-ex:CA_2015 crm:P4_has_time-span ex:TS_2015 ;
+ex:CA_2015 crm:P4_has_time-span ex:TS_CA2015 ;
     crm:P34_concerned ex:Kasthamandap .
-ex:Ensh_Taleju crm:P4_has_time-span ex:TS_Construction .
+ex:Ensh_Taleju crm:P4_has_time-span ex:TS_EnshTaleju .
 ex:Sel_2017 crm:P4_has_time-span ex:TS_Sel2017 ;
     hg:selectedPerson ex:KumariPerson .
-ex:YosinErection crm:P4_has_time-span ex:TS_Festival .
-ex:KumariProcession crm:P4_has_time-span ex:TS_Festival .
+ex:YosinErection crm:P4_has_time-span ex:TS_YosinErection2025 .
+ex:KumariProcession crm:P4_has_time-span ex:TS_KumariProcession2025 .
 ex:NityaPuja_KM crm:P4_has_time-span ex:TS_NityaPuja_KM .
 ex:NityaPuja_Bungamati crm:P4_has_time-span ex:TS_NityaPuja_Bungamati .
 ex:KumariNityaPuja crm:P4_has_time-span ex:TS_KumariNityaPuja .
-ex:ShantiSwastiPuja crm:P4_has_time-span ex:TS_2015 .
+ex:ShantiSwastiPuja crm:P4_has_time-span ex:TS_ShantiSwasti2015 .
 ex:GunlaBajan crm:P4_has_time-span ex:TS_Gunla .
-ex:BungadyahProcession crm:P4_has_time-span ex:TS_Bungadyah .
+ex:BungadyahProcession crm:P4_has_time-span ex:TS_BungadyahProcession2025 .
 ex:BungadyahJatra crm:P4_has_time-span ex:TS_Bungadyah .
 
 # location and identifiers for structures and objects
@@ -539,11 +559,13 @@ ex:TS_Bhavanishankar a crm:E52_Time-Span ; rdfs:label "NS 787 (late 1666 to late
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P82a_begin_of_the_begin "1666-10-15T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "1667-11-30T23:59:59"^^xsd:dateTime .
+ex:TS_BhavanishankarRituals a crm:E52_Time-Span ; rdfs:label "Rituals at Bhavanishankara Mandira, from the founding (NS 787)" ;
+    crm:P82a_begin_of_the_begin "1666-10-15T00:00:00"^^xsd:dateTime .
 ex:BhavanishankarRituals a hg:RitualEvent ;
     rdfs:label "Daily and anniversary rituals at Bhavanishankara Mandira" ;
     crm:P8_took_place_on_or_within ex:BhavanishankarMandira ;
     hg:recurrencePattern "daily and annual" ;
-    crm:P4_has_time-span ex:TS_Bhavanishankar .
+    crm:P4_has_time-span ex:TS_BhavanishankarRituals .
 ex:JagatprakashaMalla a crm:E21_Person ; rdfs:label "King Jagatprakasha Malla of Bhaktapur" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/jagatprakasha-malla"^^xsd:anyURI .
 ex:BhavanishankarGuthi a hg:Guthi ; rdfs:label "Guthi of Bhavanishankara Mandira" ;
@@ -631,6 +653,9 @@ ex:TS_Reopen2022 a crm:E52_Time-Span ; rdfs:label "4 April 2022" ;
 ex:TS_KRCCustody a crm:E52_Time-Span ; rdfs:label "May 2018 -- 4 April 2022" ;
     crm:P82a_begin_of_the_begin "2018-05-01T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2022-04-04T00:00:00"^^xsd:dateTime .
+ex:TS_KasthamandapRebuild a crm:E52_Time-Span ; rdfs:label "Reconstruction, within May 2018 -- 4 April 2022" ;
+    crm:P82a_begin_of_the_begin "2018-05-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2022-04-04T00:00:00"^^xsd:dateTime .
 ex:TOC_Kasthamandap2018 a crm:E10_Transfer_of_Custody ;
     rdfs:label "Kasthamandap reconstruction taken over by the Reconstruction Committee" ;
     crm:P30_transferred_custody_of ex:Kasthamandap ;
@@ -663,6 +688,6 @@ ex:Prod_KasthamandapRebuild a crm:E12_Production ;
     rdfs:label "Reconstruction of Kasthamandap (2018-2022)" ;
     crm:P108_has_produced ex:Kasthamandap ;
     crm:P14_carried_out_by ex:KRC ;
-    crm:P4_has_time-span ex:TS_KRCCustody ;
+    crm:P4_has_time-span ex:TS_KasthamandapRebuild ;
     dcterms:source ex:Src_KP_MaruSatta , ex:Src_HT_Kasthamandap2022 .
 ex:Kasthamandap hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant> .

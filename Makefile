@@ -30,16 +30,22 @@ $(ROBOT_JAR):
 	mkdir -p $(dir $@)
 	curl -fsSL -o $@ https://github.com/ontodev/robot/releases/download/v$(ROBOT_VERSION)/robot.jar
 
-check: $(ROBOT_JAR)  ## release gates: YAML/TTL sync, declared terms, CQ class-property patterns declared, ontology+each example DL/HermiT, no HG superclass on external terms, KumariTenure not an E5_Event, LUX module conservative, every example ABox consistent with HG + CRM + CRMinf + CRMsci + PROV-O, inference CQs answered only under reasoning, multi-calendar resolution and conversion check
+check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, artefact lockstep, SHACL conformance and negative tests, the 32 CQs, declared terms, CQ class-property patterns declared, ontology+each example DL/HermiT, no HG superclass on external terms, KumariTenure not an E5_Event, LUX module conservative, core + CRM give no E2/E77 clash, every example ABox consistent with HG + CRM + CRMinf + CRMsci + PROV-O, merged-vocabulary classification (with and without the CRM-PROV bridge), inference CQs answered only under reasoning, multi-calendar resolution and conversion check
+	python3 -m pytest -q tests/
 	python3 scripts/check_yaml_ttl_sync.py
+	python3 evaluation/artifact_lockstep.py
+	python3 evaluation/independent_abox.py
+	python3 evaluation/run_abox_cq32.py
 	python3 evaluation/check_declared_terms.py
 	python3 evaluation/check_cq_class_properties.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py injection
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py no-external-superclass
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py tenure-not-event
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py lux-conservativity
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py core-crm-disjointness
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py merged-abox
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py merged-import
 	python3 evaluation/run_inference_cq.py
 	python3 evaluation/pattern_experiments.py multicalendar
 

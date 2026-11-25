@@ -193,6 +193,10 @@ enums:
         # STYLE IRI FIX (v1.0.0): building type, not a style -> close mapping.
         close_mappings:
           - aat:300007562
+        # 1.1.0: deprecated, not removed (1.0.x data keeps validating): a
+        # chaitya is a building type, the class Chaitya, not a style.
+        deprecated: "A building type, not an architectural style: type the structure as a Chaitya instead."
+        deprecated_element_has_exact_replacement: Chaitya
       Stupa:
         title: "Stupa style"
         description: "Buddhist dome-shaped reliquary"
@@ -201,6 +205,9 @@ enums:
         # a class mapping target and a style value. Close mapping instead.
         close_mappings:
           - aat:300007576
+        # 1.1.0: deprecated, not removed (see Chaitya).
+        deprecated: "A building type, not an architectural style: type the structure as a Stupa instead."
+        deprecated_element_has_exact_replacement: Stupa
 
   #Guthi type enum
   GuthiType:

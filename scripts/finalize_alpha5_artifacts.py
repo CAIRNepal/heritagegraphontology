@@ -342,6 +342,23 @@ def finalize_owl(sv: SchemaView) -> Graph:
             n_dep += 1
     print(f"marked {n_dep} property(ies) owl:deprecated")
 
+    # --- owl:deprecated for enumeration values using the deprecated metaslot ---
+    n_pv = 0
+    for en, e in sv.all_enums().items():
+        for vn, pv in (e.permissible_values or {}).items():
+            if not pv.deprecated:
+                continue
+            ind = uri_for(sv, str(pv.meaning)) if pv.meaning else URIRef(f"{HG_NS}{en}#{vn}")
+            g.add((ind, OWL.deprecated, Literal(True)))
+            g.add((ind, SKOS.editorialNote, Literal(f"Deprecated in HeritageGraph 1.1.0: {pv.deprecated}", lang="en")))
+            repl = pv.deprecated_element_has_exact_replacement
+            if repl and repl in sv.all_classes():
+                c = sv.get_class(repl)
+                g.add((ind, DCTERMS.isReplacedBy, uri_for(sv, str(c.class_uri or f"heritageGraph:{repl}"))))
+                g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
+            n_pv += 1
+    print(f"marked {n_pv} enumeration value(s) owl:deprecated")
+
     # --- slot titles as labels (gen-owl labels a property with its name) ---
     n_title = 0
     titled = {sn: sl for sn, sl in sv.all_slots().items() if sl.title}

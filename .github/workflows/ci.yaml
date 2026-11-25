@@ -28,8 +28,19 @@ jobs:
           # pinned toolchain that built the release (unpinned LinkML regenerates different SHACL)
           pip install -r requirements-build.txt
 
+      - name: Generator unit tests
+        run: |
+          pip install pytest
+          python3 -m pytest -q tests/
+
       - name: Committed OWL/SHACL generated from the committed YAML
         run: python3 scripts/check_yaml_ttl_sync.py
+
+      - name: OWL, SHACL and JSON Schema in lockstep with the YAML
+        run: python3 evaluation/artifact_lockstep.py
+
+      - name: SHACL conformance of the examples and negative tests
+        run: python3 evaluation/independent_abox.py
 
       - name: Regenerate ontology artefacts
         run: |
@@ -57,6 +68,9 @@ jobs:
       - name: Ontology + each example ABox is OWL 2 DL and HermiT-consistent
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/check_combined_dl.py
 
+      - name: Inconsistency injection (the OWL axioms bite)
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py injection
+
       - name: Core + LUX + CIDOC-CRM give no external class an HG superclass
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py no-external-superclass
 
@@ -66,8 +80,23 @@ jobs:
       - name: LUX module + CIDOC-CRM give HG data no contradictory CRM type and no unentailed core class
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py lux-conservativity
 
+      - name: Core + CIDOC-CRM give no subject of an HG property both E2 and E77
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py core-crm-disjointness
+
+      - name: Every example ABox is consistent with HG + CRM + CRMinf + CRMsci + PROV-O
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py merged-abox
+
+      - name: Merged-vocabulary classification, with and without the CRM-PROV bridge
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py merged-import
+
       - name: Competency questions match their expected answer sets
         run: python3 evaluation/run_abox_cq32.py
+
+      - name: Inference CQs are answered only with HeritageGraph's axioms
+        run: python3 evaluation/run_inference_cq.py
+
+      - name: Multi-calendar resolution and conversion
+        run: python3 evaluation/pattern_experiments.py multicalendar
 
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py
