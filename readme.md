@@ -95,20 +95,21 @@ Each value has its own IRI, e.g.
 
 ## Example
 
-A temple, its production, and a condition assessment after the 2015 earthquake:
+A building, its production, and a condition assessment after the 2015 earthquake:
 
 ```turtle
 @prefix hg:  <https://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
 
-ex:Kasthamandap a hg:Temple ;
+ex:Kasthamandap a hg:Sattal ;
     hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P34i_was_assessed_by ex:CA_2015 .
 
 ex:Prod_Kasthamandap a crm:E12_Production ;
-    crm:P108_has_produced ex:Kasthamandap ;
-    crm:P14_carried_out_by ex:LicchaviBuilders .
+    crm:P108_has_produced ex:Kasthamandap .
+# who built it and when are contested: recorded as source-attributed beliefs
+# (crminf:I2_Belief), not as facts of the production
 
 ex:CA_2015 a crm:E14_Condition_Assessment ;
     crm:P35_has_identified ex:CS_Damaged .
@@ -132,6 +133,23 @@ SELECT ?tenure ?selection ?enthronement ?retirement WHERE {
 
 All 32 competency queries are in [`examples/queries/cq-abox-32.rq`](examples/queries/cq-abox-32.rq),
 and the demonstrator data in [`examples/kathmandu-mini-abox.ttl`](examples/kathmandu-mini-abox.ttl).
+
+## Validating data
+
+Validate instance data with the SHACL shapes and the OWL ontology as the ontology graph, without
+inference (the shapes check the asserted data; the result does not depend on loading other
+vocabularies):
+
+```sh
+pyshacl -s ontology/HeritageGraph.shacl.ttl -e ontology/HeritageGraph.ttl -i none -f human your-data.ttl
+```
+
+This is the configuration the release gates use (`evaluation/check_examples.py`). Adding other
+vocabularies with `-e` (e.g. PROV-O, so that a `prov:SoftwareAgent` counts as a `prov:Agent`) can
+make more data conform; the normative result is the one above. The shapes are open: data may use
+other vocabularies freely, while an undeclared term in the HeritageGraph namespace (a misspelling)
+is a violation and a deprecated one a warning. JSON data is validated with
+`ontology/HeritageGraph.schema.json`.
 
 ## Repository structure
 
@@ -184,5 +202,7 @@ cd evaluation && make all
 The ontology and its documentation are licensed under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see [LICENSE.md](LICENSE.md).
 The LUX migration tooling in `heritagegraph-lux-migration/` is licensed under Apache 2.0.
+Labels and definitions of reused terms are copied from their vocabularies and keep those licences;
+see [NOTICE.md](NOTICE.md).
 Contributions are welcome through issues and pull requests; please edit the LinkML source,
 not the generated files.
