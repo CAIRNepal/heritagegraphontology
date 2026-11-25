@@ -11,17 +11,18 @@ serializations = ["ttl", "owl", "jsonld", "nt"]
 
 [sections]
 graph = true
-# OntoReview builds the documentation only. The quality evidence is the
-# repository's own evaluation (`make reproduce`), shown on the Evaluation page.
-quality = false
+# the quality page shows OntoReview's generic checks (ROBOT, HermiT, OntoCheck, OOPS!);
+# the evaluation specific to HeritageGraph (`make reproduce`) is the Evaluation page
+quality = true
 changelog = true
 
 [evaluation]
-# generic checks off (no uploads to external services); see [sections] quality
-robot = "off"
-oops = "off"
-reasoner = "off"
-ontocheck = "off"
+robot = "auto"
+oops = "auto"
+reasoner = "hermit"
+ontocheck = "on"
+# off: the IRI check needs the ontology IRI to resolve (server redirect still to set up);
+# the interoperability scores compare against biomedical registries (OLS/BioPortal)
 iri_checks = "off"
 cdi = "off"
 si = "off"

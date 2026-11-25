@@ -224,10 +224,10 @@ KumariRole conferred by this selection or enthronement event.
 
 | | |
 |---|---|
-| Domain | [Kumari Enthronement Event](classes.md#kumarienthronementevent); [Kumari Selection Event](classes.md#kumariselectionevent) |
+| Domain | [Kumari Selection Event](classes.md#kumariselectionevent); [Kumari Enthronement Event](classes.md#kumarienthronementevent) |
 | Range | [Kumari Role](classes.md#kumarirole) |
 | Used in | used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
-| domainIncludes | hg:KumariEnthronementEvent; hg:KumariSelectionEvent |
+| domainIncludes | hg:KumariSelectionEvent; hg:KumariEnthronementEvent |
 
 ### Confidence method
 
@@ -828,7 +828,7 @@ Cultural access protocol for the thing or its record (e.g. restricted to initiat
 |---|---|
 | Super-properties | [Access Rights](object-properties.md#accessrights) |
 | Domain | [Transfer of Custody](classes.md#e10_transfer_of_custody) *or* [Production](classes.md#e12_production) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Human-Made Object](classes.md#e22_human-made_object) *or* [Design or Procedure](classes.md#e29_design_or_procedure) *or* [Condition State](classes.md#e3_condition_state) *or* [Time-Span](classes.md#e52_time-span) *or* [Place](classes.md#e53_place) *or* [Material](classes.md#e57_material) *or* [Destruction](classes.md#e6_destruction) *or* [Belief](classes.md#i2_belief) *or* [Architectural Element](classes.md#architecturalelement) *or* [Calendar System](classes.md#calendarsystem) *or* [Data Source](classes.md#datasource) *or* [Deity](classes.md#deity) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Endowment](classes.md#endowment) *or* [Endowment Event](classes.md#endowmentevent) *or* [Historical Event](classes.md#historicalevent) *or* [Office](classes.md#office) *or* [Physical Heritage Thing](classes.md#physicalheritagething) *or* [Proposition](classes.md#proposition) *or* [Religious Tradition](classes.md#religioustradition) *or* [Ritual Event](classes.md#ritualevent) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Structure Type](classes.md#structuretype) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Tenure](classes.md#tenure) |
-| Range | [Access Protocol](classes.md#accessprotocol-2) |
+| Range | [Access Protocol](classes.md#accessprotocol) |
 
 ### Has architectural style
 
@@ -958,7 +958,7 @@ The level of precision for a recorded date.
 | | |
 |---|---|
 | Domain | [Time-Span](classes.md#e52_time-span) |
-| Range | [Date Precision](classes.md#dateprecision) |
+| Range | [Date Precision](classes.md#dateprecision-2) |
 
 ### has destruction event
 
@@ -1108,7 +1108,7 @@ The typological nature of the syncretism (e.g., Ontological Identity, Functional
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Syncretic Relationship](classes.md#syncreticrelationship) |
-| Range | [Syncretic Type](classes.md#syncretictype) |
+| Range | [Syncretic Type](classes.md#syncretictype-2) |
 | Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
 | domainIncludes | hg:SyncreticRelationship |
 
@@ -1413,10 +1413,10 @@ Guthi organization managing this structure or ritual.
 
 | | |
 |---|---|
-| Domain | [Ritual Event](classes.md#ritualevent); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Ritual Event](classes.md#ritualevent) |
 | Range | [Guthi](classes.md#guthi) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Ritual Event](classes.md#ritualevent) |
-| domainIncludes | hg:RitualEvent; hg:ArchitecturalStructure |
+| domainIncludes | hg:ArchitecturalStructure; hg:RitualEvent |
 
 ### Mandated by
 

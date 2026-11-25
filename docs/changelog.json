@@ -7,7 +7,7 @@
       "label": "Access Protocol",
       "kind": "class",
       "curie": "heritageGraph:AccessProtocol",
-      "anchor": "AccessProtocol-2",
+      "anchor": "AccessProtocol",
       "added": [],
       "removed": []
     },
@@ -16,7 +16,7 @@
       "label": "Access Protocol (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "AccessProtocol",
+      "anchor": "AccessProtocol-2",
       "added": [],
       "removed": []
     },
@@ -2660,7 +2660,7 @@
       "label": "Date Precision",
       "kind": "class",
       "curie": "heritageGraph:DatePrecision",
-      "anchor": "DatePrecision",
+      "anchor": "DatePrecision-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -2699,7 +2699,7 @@
       "label": "Date Precision (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "DatePrecision-2",
+      "anchor": "DatePrecision",
       "added": [
         [
           "skos:prefLabel",
@@ -3962,41 +3962,6 @@
       "removed": []
     },
     {
-      "iri": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
-      "label": "forms part of",
-      "kind": "object_property",
-      "curie": "crm:P46i_forms_part_of",
-      "anchor": "P46i_forms_part_of",
-      "added": [
-        [
-          "rdfs:isDefinedBy",
-          "http://www.cidoc-crm.org/cidoc-crm/"
-        ],
-        [
-          "rdfs:label",
-          "\"forms part of\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it. The spatial extent of the composing part is included in the spatial extent of the whole.\nComponent elements, since they are themselves instances of E18 Physical Thing, may be further analysed into sub-components, thereby creating a hierarchy of part decomposition. An instance of E18 Physical Thing may be shared between multiple wholes, for example two buildings may share a common wall. This property does not specify when and for how long a component element resided in the respective whole. If a component is not part of a whole from the beginning of existence or until the end of existence of the whole, the classes E79 Part Addition and E90 Part Removal can be used to document when a component became part of a particular whole and/or when it stopped being a part of it. For the time-span of being part of the respective whole, the component is completely contained in the place the whole occupies.\nThis property is intended to describe specific components that are individually documented, rather than general aspects. Overall descriptions of the structure of an instance of E18 Physical Thing are captured by the P3 has note property.\nThe instances of E57 Material of which an instance of E18 Physical Thing is composed should be documented using P45 consists of (is incorporated in).\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- The Royal carriage (E22) forms part of the Royal train (E22).\n- The “Hog’s Back” (E24) forms part of the “Fosseway” (E24).\n\nIn First Order Logic of the inverse property:\n- P46(x,y) ⇒ E18(x)\n- P46(x,y) ⇒ E18(y)\n- P46(x,y) ⇒ P132(x,y)\n- [P46(x,y) ∧ P46(y,z)] ⇒ P46(x,z)\n- P46(x,y) ⇒ (∃uzw)[E93(u) ∧ P195i (x,u) ∧ E52(z) ∧ P164(u,z) ∧ E93(w) ∧ P195i (w,y) ∧ P164(w,z) ∧ P10(w,u)] \n- P46(x,y) ⇒ ¬P46(y,x)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Is component of\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Larger structure that this element is part of\"@en"
-        ],
-        [
-          "skos:inScheme",
-          "heritageGraph:schema"
-        ]
-      ]
-    },
-    {
       "iri": "http://www.cidoc-crm.org/cidoc-crm/P9i_forms_part_of",
       "label": "forms part of",
       "kind": "object_property",
@@ -4024,6 +3989,41 @@
         [
           "skos:definition",
           "\"Larger festival this ritual is part of\"@en"
+        ],
+        [
+          "skos:inScheme",
+          "heritageGraph:schema"
+        ]
+      ]
+    },
+    {
+      "iri": "http://www.cidoc-crm.org/cidoc-crm/P46i_forms_part_of",
+      "label": "forms part of",
+      "kind": "object_property",
+      "curie": "crm:P46i_forms_part_of",
+      "anchor": "P46i_forms_part_of",
+      "added": [
+        [
+          "rdfs:isDefinedBy",
+          "http://www.cidoc-crm.org/cidoc-crm/"
+        ],
+        [
+          "rdfs:label",
+          "\"forms part of\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Quantification of the inverse property: many to many (0,n:0,n)\n\nScope note of the inverse property:\nThis property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it. The spatial extent of the composing part is included in the spatial extent of the whole.\nComponent elements, since they are themselves instances of E18 Physical Thing, may be further analysed into sub-components, thereby creating a hierarchy of part decomposition. An instance of E18 Physical Thing may be shared between multiple wholes, for example two buildings may share a common wall. This property does not specify when and for how long a component element resided in the respective whole. If a component is not part of a whole from the beginning of existence or until the end of existence of the whole, the classes E79 Part Addition and E90 Part Removal can be used to document when a component became part of a particular whole and/or when it stopped being a part of it. For the time-span of being part of the respective whole, the component is completely contained in the place the whole occupies.\nThis property is intended to describe specific components that are individually documented, rather than general aspects. Overall descriptions of the structure of an instance of E18 Physical Thing are captured by the P3 has note property.\nThe instances of E57 Material of which an instance of E18 Physical Thing is composed should be documented using P45 consists of (is incorporated in).\nThis property is transitive and asymmetric.\n\nExamples of the inverse property:\n- The Royal carriage (E22) forms part of the Royal train (E22).\n- The “Hog’s Back” (E24) forms part of the “Fosseway” (E24).\n\nIn First Order Logic of the inverse property:\n- P46(x,y) ⇒ E18(x)\n- P46(x,y) ⇒ E18(y)\n- P46(x,y) ⇒ P132(x,y)\n- [P46(x,y) ∧ P46(y,z)] ⇒ P46(x,z)\n- P46(x,y) ⇒ (∃uzw)[E93(u) ∧ P195i (x,u) ∧ E52(z) ∧ P164(u,z) ∧ E93(w) ∧ P195i (w,y) ∧ P164(w,z) ∧ P10(w,u)] \n- P46(x,y) ⇒ ¬P46(y,x)\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Is component of\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Larger structure that this element is part of\"@en"
         ],
         [
           "skos:inScheme",
@@ -8226,7 +8226,7 @@
       "label": "obsolete license",
       "kind": "datatype_property",
       "curie": "heritageGraph:license",
-      "anchor": "license-2",
+      "anchor": "license",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -11114,7 +11114,7 @@
       "label": "Stupa",
       "kind": "class",
       "curie": "heritageGraph:Stupa",
-      "anchor": "Stupa-2",
+      "anchor": "Stupa",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -11133,7 +11133,7 @@
       "label": "Stupa style",
       "kind": "concept",
       "curie": null,
-      "anchor": "Stupa",
+      "anchor": "Stupa-2",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -11290,7 +11290,7 @@
       "label": "Syncretic Type",
       "kind": "class",
       "curie": "heritageGraph:SyncreticType",
-      "anchor": "SyncreticType",
+      "anchor": "SyncreticType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -11325,7 +11325,7 @@
       "label": "Syncretic Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "SyncreticType-2",
+      "anchor": "SyncreticType",
       "added": [
         [
           "skos:prefLabel",
