@@ -312,3 +312,16 @@ def test_schema_uses_the_pattern():
     text = (ROOT / "ontology" / "HeritageGraph.schema.json").read_text(encoding="utf-8")
     assert json.dumps(fin.XSD_DATETIME) in text
     assert '"format": "date-time"' not in text
+
+
+def test_cohen_kappa_known_values():
+    """rater_agreement.cohen_kappa against hand-computed values."""
+    sys.path.insert(0, str(ROOT / "evaluation"))
+    from rater_agreement import cohen_kappa
+    po, k = cohen_kappa([("accept", "accept")] * 4)
+    assert po == 1.0 and k == 1.0
+    # 10 items: 7 agree; rater1 accept 6 / reject 4, rater2 accept 5 / reject 5
+    pairs = ([("accept", "accept")] * 4 + [("reject", "reject")] * 3 +
+             [("accept", "reject")] * 2 + [("reject", "accept")] * 1)
+    po, k = cohen_kappa(pairs)
+    assert po == 0.7 and abs(k - (0.7 - 0.5) / (1 - 0.5)) < 1e-9   # pe = (6*5 + 4*5)/100 = 0.5
