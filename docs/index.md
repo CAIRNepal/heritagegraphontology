@@ -14,9 +14,9 @@ An event-centric LinkML schema for representing cultural heritage information, a
 
 ## Contents
 
-- [Classes](classes.md) (84)
-- [Object properties](object-properties.md) (149)
-- [Datatype properties](datatype-properties.md) (42)
-- [Annotation properties](annotation-properties.md) (37)
-- [Concept schemes](concept-schemes.md) (8)
-- [Concepts](concepts.md) (51)
+- [Classes](classes.md) (108)
+- [Object properties](object-properties.md) (179)
+- [Datatype properties](datatype-properties.md) (45)
+- [Annotation properties](annotation-properties.md) (39)
+- [Concept schemes](concept-schemes.md) (10)
+- [Concepts](concepts.md) (62)

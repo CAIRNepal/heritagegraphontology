@@ -378,6 +378,16 @@ def finalize_owl(sv: SchemaView) -> Graph:
             g.add((prop, RDFS.label, Literal(str(sl.title), lang="en")))
             n_title += 1
     print(f"labelled {n_title} property(ies) from their slot title")
+    # class titles likewise (e.g. InformationObject, whose name is CRM E73's label)
+    n_ctitle = 0
+    for cn, cl in sv.all_classes().items():
+        if cl.title:
+            cls = uri_for(sv, str(cl.class_uri or f"heritageGraph:{cn}"))
+            if str(cls).startswith(HG_NS) and (cls, RDF.type, OWL.Class) in g:
+                g.remove((cls, RDFS.label, None))
+                g.add((cls, RDFS.label, Literal(str(cl.title), lang="en")))
+                n_ctitle += 1
+    print(f"labelled {n_ctitle} class(es) from their title")
 
     # --- LinkML serialization constructs out of the OWL (1.1.0) ---
     strip_linkml_serialization(g)

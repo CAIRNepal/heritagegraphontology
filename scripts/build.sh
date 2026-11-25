@@ -29,7 +29,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${1:-$ROOT/docs}"
 PY="${PYTHON:-$ROOT/venv/bin/python}"; command -v "$PY" >/dev/null 2>&1 || PY="python3"
 ONTOREVIEW="${ONTOREVIEW:-ontoreview}"
-command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install ontoreview==1.0.1, or set ONTOREVIEW)" >&2; exit 1; }
+command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install 'ontoreview[cdi]==1.0.1', or set ONTOREVIEW; BIOPORTAL_API_KEY enables the interoperability scores)" >&2; exit 1; }
 
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK" 2>/dev/null || true' EXIT
 ARGS=(--config "$ROOT/ontoreview.toml" --output "$WORK/site")

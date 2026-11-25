@@ -15,7 +15,7 @@ Instance IRIs (demo/, example/ namespaces) and the ontology's own document IRIs
 are not terms and are ignored. Two exemptions are explicit and printed:
   * NEGATIVE_CONTROLS: terms that are undeclared on purpose (a test that must
     see a missing predicate);
-  * SKIPPED: files out of scope (none at present).
+  * SKIPPED: files out of scope (the generated mapping-rater sheet).
 
 The LUX bridge module (heritagegraph-lux-migration/alignment/) mints its own interoperability terms;
 files that belong to it (LUX_SCOPED) may use those terms as well as the core's.
@@ -62,7 +62,11 @@ NEGATIVE_CONTROLS = {
     "doesNotExistPattern": "run_abox_cq32.py self-test: a predicate no triple uses",
     "hasArchitecturalStyel": "independent_abox.py negative test: a deliberately misspelt property",
 }
-SKIPPED: dict[str, str] = {}
+SKIPPED: dict[str, str] = {
+    # generated from the SSSOM set (core and LUX module mappings): every term in it is
+    # declared in the core or the LUX module, which gen_sssom.py already reads
+    "evaluation/rater": "rater sheet generated from the published SSSOM mapping set",
+}
 
 PATTERNS = [
     re.compile(r"\b(?:hg|heritageGraph):([A-Za-z_][\w\-]*(?:\\?#\w+)?)"),

@@ -175,7 +175,7 @@ pip install -r requirements.txt -r evaluation/requirements.txt
 make artefacts   # regenerate OWL, SHACL and JSON Schema from the LinkML source
 make check       # release checks: source/artefact sync, declared terms, OWL 2 DL and
                  # HermiT consistency with every example, no changes to reused vocabularies
-make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.1)
+make docs        # regenerate the documentation with OntoReview (pip install "ontoreview[ui,cdi]==1.0.1"; set BIOPORTAL_API_KEY for the interoperability scores)
 ```
 
 The evaluation reported in the accompanying paper (competency questions, SHACL tests,

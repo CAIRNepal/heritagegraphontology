@@ -1,5 +1,11 @@
 # Concept schemes
 
+### Access Protocol (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/AccessProtocol`
+
+Cultural access protocol for heritage knowledge or a record of it, to be set with the community concerned.
+
 ### Architectural Style (concept scheme)
 
 **IRI:** `https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle`
@@ -18,6 +24,12 @@ Controlled vocabulary for the physical condition of heritage objects and structu
 
 Controlled vocabulary for the temporal precision of recorded heritage dates.
 
+### Endowment Event Type (concept scheme)
+
+**IRI:** `https://cair-nepal.org/heritagegraph/scheme/EndowmentEventType`
+
+Controlled vocabulary for events in the life of a Guthi endowment.
+
 ### Existence Status (concept scheme)
 
 **IRI:** `https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus`
@@ -28,11 +40,11 @@ Controlled vocabulary for whether a heritage structure still exists physically.
 
 **IRI:** `https://cair-nepal.org/heritagegraph/scheme/GuthiType`
 
-Controlled vocabulary of Guthi functional types (CRM E55_Type)
+Controlled vocabulary of Guthi functional types (CRM E55_Type).
 
 ### HeritageGraph LinkML schema
 
-**IRI:** `https://cair-nepal.org/heritagegraph/schema` · `heritageGraph:schema`
+**IRI:** `https://cair-nepal.org/heritagegraph/schema` · `hg:schema`
 
 The LinkML schema from which this ontology is generated; every generated term is skos:inScheme it.
 

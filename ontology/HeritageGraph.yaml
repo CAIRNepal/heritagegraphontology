@@ -1320,6 +1320,8 @@ classes:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.
     class_uri: heritageGraph:InformationObject
+    # its own label: "Information Object" is CIDOC-CRM's label for E73
+    title: "Heritage information object"
     broad_mappings:
       - crm:E73_Information_Object
     description: "A recorded piece of information about heritage"
@@ -3197,6 +3199,7 @@ slots:
     description: "Endowment founded, augmented, nationalised or alienated by this event."
   endowment_event_type:
     slot_uri: heritageGraph:endowmentEventType
+    title: "has endowment event type"
     range: EndowmentEventType
     description: "Kind of endowment event (founding, augmentation, nationalisation, alienation)."
   endowment_donor:
@@ -3248,6 +3251,7 @@ slots:
       protocols use access_protocol."
   access_protocol:
     slot_uri: heritageGraph:accessProtocol
+    title: "has access protocol"
     is_a: access_rights
     range: AccessProtocol
     multivalued: true
