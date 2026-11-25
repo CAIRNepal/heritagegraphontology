@@ -1,0 +1,52 @@
+# Reuse fixture (RQ3): the Tenure pattern applied outside Nepal.
+# Synthetic: the institutions, people, objects and dates are made up to show
+# that the generic pattern (hg:Tenure, hg:Office, tenure holder, office,
+# opening and closing events, time-span) needs no Nepal-specific term. They
+# are not historical claims.
+#  - a church office (a parish rector) held for a period, opened by an
+#    appointment and closed by a resignation: a plain hg:Tenure
+#  - a museum's custody of a reliquary: an hg:CustodyPeriod (a Tenure)
+@prefix hg:<https://cair-nepal.org/heritagegraph/> .
+@prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:<http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:<https://cair-nepal.org/heritagegraph/example/reuse/> .
+
+# --- an office held for a period ---------------------------------------
+ex:RectorOffice a hg:Office ; rdfs:label "Rector of a test parish"@en .
+ex:PersonR a crm:E21_Person ; rdfs:label "Test rector"@en ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/reuse/person-r"^^xsd:anyURI .
+ex:Appointment a crm:E7_Activity ; rdfs:label "Appointment of the test rector"@en .
+ex:Resignation a crm:E7_Activity ; rdfs:label "Resignation of the test rector"@en .
+ex:RectorTenure a hg:Tenure ;
+    rdfs:label "Test rector's tenure, 1990-2004"@en ;
+    hg:tenureHolder ex:PersonR ;
+    hg:tenureOffice ex:RectorOffice ;
+    hg:tenureOpenedBy ex:Appointment ;
+    hg:tenureClosedBy ex:Resignation ;
+    crm:P4_has_time-span ex:TS_Rector .
+ex:TS_Rector a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1990-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2004-12-31T23:59:59"^^xsd:dateTime .
+
+# --- custody of an object for a period ----------------------------------
+ex:Museum a hg:StateHeritageAuthority ; rdfs:label "Test state museum"@en .
+ex:Reliquary a hg:IconographicObject ; rdfs:label "Test reliquary"@en ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/reuse/reliquary"^^xsd:anyURI .
+ex:Loan a crm:E10_Transfer_of_Custody ; rdfs:label "Transfer of the reliquary to the museum"@en ;
+    crm:P30_transferred_custody_of ex:Reliquary ;
+    crm:P29_custody_received_by ex:Museum ;
+    crm:P4_has_time-span ex:TS_Loan .
+ex:TS_Loan a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "2010-03-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2010-03-01T23:59:59"^^xsd:dateTime .
+ex:MuseumCustody a hg:CustodyPeriod ;
+    rdfs:label "Custody of the test reliquary by the test museum (from 2010)"@en ;
+    hg:custodyHolder ex:Museum ;
+    hg:custodyObject ex:Reliquary ;
+    hg:custodyOpenedBy ex:Loan ;
+    crm:P4_has_time-span ex:TS_MuseumCustody .
+ex:TS_MuseumCustody a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "2010-03-01T00:00:00"^^xsd:dateTime .

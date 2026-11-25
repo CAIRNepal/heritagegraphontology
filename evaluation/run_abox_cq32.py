@@ -98,9 +98,39 @@ def load_queries(path: Path) -> list[tuple[int, str, str]]:
     return blocks
 
 
-def actual_rows(graph: Graph, sparql: str) -> list[list]:
+# Symmetric-pair CQs: (?x, ?y) and (?y, ?x) are one answer, and a pair whose
+# two members are the same resource (modulo owl:sameAs) is no answer.
+PAIRS = {6: ("a", "b"), 22: ("group1", "group2"), 23: ("tradition1", "tradition2")}
+
+
+def sameas_alias(abox: Graph) -> dict:
+    """owl:sameAs aliases (the demonstrator's Wikidata links) mapped back to
+    the demonstrator resource they were asserted equal to. Built from the
+    asserted ABox only, so its direction is fixed."""
+    from rdflib import OWL
+    return {o: s for s, o in abox.subject_objects(OWL.sameAs)}
+
+
+def actual_rows(graph: Graph, sparql: str, alias: dict | None = None,
+                pair: tuple[str, str] | None = None) -> list[list]:
+    """Bindings modulo owl:sameAs, as a duplicate-free sorted list: every
+    alias is replaced by its demonstrator resource before comparison; for a
+    symmetric-pair CQ the pair is put in a canonical order and identical
+    members drop the row."""
+    alias = alias or {}
     res = graph.query(sparql)
-    return sorted([[short(row[v]) for v in res.vars] for row in res])
+    out = set()
+    names = [str(v) for v in res.vars]
+    for row in res:
+        vals = [short(alias.get(row[v], row[v])) for v in res.vars]
+        if pair:
+            i, j = names.index(pair[0]), names.index(pair[1])
+            if vals[i] == vals[j]:
+                continue
+            if (vals[i] or "") > (vals[j] or ""):
+                vals[i], vals[j] = vals[j], vals[i]
+        out.add(tuple(vals))
+    return sorted(list(r) for r in out)
 
 
 # Pattern vocabulary for the multi-pattern census (used by --entailment): a CQ
@@ -246,6 +276,14 @@ def main() -> int:
     g = Graph()
     g.parse(TBOX, format="turtle")
     g.parse(ABOX, format="turtle")
+    alias = sameas_alias(Graph().parse(ABOX, format="turtle"))
+    # second arm: the same CQs over the OWL-RL closure must give the same
+    # answers (modulo owl:sameAs): the gold does not depend on whether the
+    # consumer reasons
+    from owlrl import DeductiveClosure, OWLRL_Semantics
+    entailed = Graph()
+    entailed += g
+    DeductiveClosure(OWLRL_Semantics).expand(entailed)
 
     queries = load_queries(QUERIES)
     assert len(queries) == 32, f"expected 32 queries, found {len(queries)}"
@@ -258,23 +296,27 @@ def main() -> int:
         f"TBox: {TBOX.name}",
         f"ABox: {ABOX.name}",
         f"Triples loaded: {len(g)}",
-        "Pass criterion: returned bindings == expected answer set (exact match).",
+        "Pass criterion: returned bindings == expected answer set (exact match, modulo owl:sameAs),",
+        "over the asserted graph AND over its OWL-RL closure.",
         "",
     ]
     rows = []
     passed = 0
     for cq, question, sparql in queries:
         gold = [list(r) for r in expected[f"CQ{cq}"]["expected"]]
-        gold_sorted = sorted(gold)
-        got = actual_rows(g, sparql)
-        match = got == gold_sorted
+        gold_sorted = sorted({tuple(r) for r in gold})
+        gold_sorted = [list(r) for r in gold_sorted]
+        got = actual_rows(g, sparql, alias, PAIRS.get(cq))
+        got_e = actual_rows(entailed, sparql, alias, PAIRS.get(cq))
+        match = got == gold_sorted and got_e == gold_sorted
         passed += bool(match)
         status = "PASS" if match else "FAIL"
         detail = ""
-        if not match:
-            missing = [r for r in gold_sorted if r not in got]
-            unexpected = [r for r in got if r not in gold_sorted]
-            detail = f"  missing={missing} unexpected={unexpected}"
+        for arm, rows_ in (("asserted", got), ("OWL-RL", got_e)):
+            if rows_ != gold_sorted:
+                missing = [r for r in gold_sorted if r not in rows_]
+                unexpected = [r for r in rows_ if r not in gold_sorted]
+                detail += f"  [{arm}] missing={missing} unexpected={unexpected}"
         lines.append(
             f"CQ{cq:<3} [{status}] expected={len(gold_sorted):<2} "
             f"actual={len(got):<2} {question}{detail}"
@@ -297,7 +339,7 @@ def main() -> int:
         broken = cq11[2].replace(
             "hg:recurrencePattern ?pattern", "hg:doesNotExistPattern ?pattern"
         )
-        broken_rows = actual_rows(g, broken)
+        broken_rows = actual_rows(g, broken, alias)
         self_test_ok = broken_rows != gold11
         lines += [
             "",

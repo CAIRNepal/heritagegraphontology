@@ -11,8 +11,11 @@
 # CQ1: Which architectural structures were built during a time period using an architectural style?
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT DISTINCT ?structure ?style ?place WHERE {
-  ?prod a crm:E12_Production ; crm:P108_has_produced ?structure .
+SELECT DISTINCT ?structure ?style ?place ?from ?to WHERE {
+  ?prod a crm:E12_Production ; crm:P108_has_produced ?structure ;
+        crm:P4_has_time-span ?ts .
+  ?ts crm:P82a_begin_of_the_begin ?from .
+  OPTIONAL { ?ts crm:P82b_end_of_the_end ?to }
   ?structure hg:hasArchitecturalStyle ?style ;
              crm:P55_has_current_location ?place .
 }
@@ -47,6 +50,9 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?area ?typology ?structure WHERE {
   ?area a crm:E53_Place ; crm:P53i_is_former_or_current_location_of ?structure .
   ?structure a ?typology . ?typology rdfs:subClassOf* hg:ArchitecturalStructure .
+  # the most specific typology (stable whether or not superclasses are inferred)
+  FILTER NOT EXISTS { ?structure a ?narrower . ?narrower rdfs:subClassOf+ ?typology .
+                      FILTER(?narrower != ?typology) }
 }
 
 # CQ6: Which heritage shares a common architectural style?
@@ -82,10 +88,13 @@ SELECT ?temple ?state ?conditionType WHERE {
 }
 
 # CQ9: Which caste groups have hereditary roles in rituals critical for a festival?
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
-SELECT ?group ?role ?ritual WHERE {
+SELECT ?group ?role ?ritual ?festival WHERE {
   ?group a hg:CasteGroup ; hg:traditionalRole ?role .
-  ?ritual hg:performedByGroup ?group ; hg:isCriticalForFestival ?critical .
+  ?ritual hg:performedByGroup ?group ; hg:isCriticalForFestival true ;
+          crm:P9i_forms_part_of ?festival .
+  ?festival a hg:Festival .
 }
 
 # CQ10: Which ritual objects are associated with rituals, and who is responsible for their use?
@@ -139,7 +148,7 @@ SELECT ?group ?duty ?festival ?guthi ?rule WHERE {
           hg:dutyFor ?festival ; hg:mandatedBy ?guthi ; hg:successionRule ?rule .
 }
 
-# CQ17: Which rituals have documented transformations, and which sources attest them?
+# CQ17: Which rituals have source-attested assertions about them (such as documented transformations), and which sources attest them?
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
@@ -149,12 +158,15 @@ SELECT ?assertion ?ritual ?value ?source WHERE {
   ?ritual a hg:RitualEvent .
 }
 
-# CQ18: How do changes in structures reflect broader transitions (via provenance assertions)?
+# CQ18: Which structures carry source-attested assertions about their history (such as conflicting build dates)?
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 SELECT ?structure ?assertion ?source WHERE {
-  ?structure hg:hasAssertion ?assertion .
-  ?assertion prov:wasDerivedFrom ?source .
+  ?structure a/rdfs:subClassOf* hg:ArchitecturalStructure ; hg:hasAssertion ?assertion .
+  ?assertion a crminf:I2_Belief ; prov:wasDerivedFrom ?source .
 }
 
 # CQ19: Which organisation held custody of a heritage structure when a given event took place there, and over which custody period?
@@ -187,12 +199,15 @@ SELECT ?endowment ?sustained ?holder ?event ?type WHERE {
 }
 
 # CQ22: Which festivals bring together multiple groups around a shared syncretic deity?
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX crminf: <http://www.cidoc-crm.org/extensions/crminf/>
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?festival ?deity ?group1 ?group2 WHERE {
   ?festival a hg:Festival ; hg:invokesDeity ?deity ;
             hg:performedByGroup ?group1 , ?group2 .
-  ?syn (crm:P140_assigned_attribute_to|crm:P141_assigned) ?deity .
+  ?group1 a/rdfs:subClassOf* crm:E74_Group . ?group2 a/rdfs:subClassOf* crm:E74_Group .
+  ?syn a hg:SyncreticRelationship ; (crm:P140_assigned_attribute_to|crm:P141_assigned) ?deity .
   FILTER(STR(?group1) < STR(?group2))
 }
 
@@ -213,7 +228,8 @@ SELECT ?ritualAtTemple ?ritualAtStupa ?deityA ?deityB WHERE {
   ?temple a hg:Temple .
   ?ritualAtStupa crm:P8_took_place_on_or_within ?stupa ; hg:invokesDeity ?deityB .
   ?stupa a hg:Stupa .
-  ?syn crm:P140_assigned_attribute_to ?deityB ; crm:P141_assigned ?deityA .
+  ?syn a hg:SyncreticRelationship ;
+       crm:P140_assigned_attribute_to ?deityB ; crm:P141_assigned ?deityA .
 }
 
 # CQ25: How do syncretic deities link traditions, and what evidence supports these links?
@@ -244,18 +260,20 @@ SELECT ?tenure ?deity ?tradition WHERE {
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?deity ?syn ?residence ?timespan WHERE {
-  ?tenure hg:embodiedDeity ?deity ;
+  ?tenure a hg:KumariTenure ; hg:embodiedDeity ?deity ;
           hg:residenceStructure ?residence ; crm:P4_has_time-span ?timespan .
-  ?syn crm:P140_assigned_attribute_to ?deity .
+  ?syn a hg:SyncreticRelationship ; crm:P140_assigned_attribute_to ?deity .
 }
 
 # CQ29: What daily rituals does a Kumari perform at her residence, with what temporal pattern?
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-SELECT ?tenure ?ritual ?type ?residence ?pattern WHERE {
-  ?tenure a hg:KumariTenure ; hg:residenceStructure ?residence .
-  ?ritual hg:ritualType ?type ; crm:P8_took_place_on_or_within ?residence ;
-          hg:recurrencePattern ?pattern .
+SELECT ?tenure ?ritual ?residence ?pattern WHERE {
+  ?tenure a hg:KumariTenure ; hg:tenureHolder ?kumari ; hg:residenceStructure ?residence .
+  ?ritual a hg:RitualEvent ; hg:hadParticipant ?kumari ;
+          hg:ritualType <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
+          crm:P8_took_place_on_or_within ?residence .
+  OPTIONAL { ?ritual hg:recurrencePattern ?pattern }
 }
 
 # CQ30: In which processions does a given Kumari participate, and in what sequence?

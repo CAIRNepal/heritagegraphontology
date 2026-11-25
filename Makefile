@@ -48,6 +48,7 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py merged-import
 	python3 evaluation/run_inference_cq.py
 	python3 evaluation/pattern_experiments.py multicalendar
+	python3 evaluation/pattern_experiments.py reuse
 
 BASE ?= https://cair-nepal.org/heritagegraph/
 conneg:              ## check content negotiation of the deployed IRIs (BASE=<url> for staging)

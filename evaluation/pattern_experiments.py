@@ -20,7 +20,7 @@ ontology copy only).
 
 Run:  python3 evaluation/pattern_experiments.py [ablation|tenure|sameas|
                                                   custodianship|supersession|
-                                                  multicalendar|all]
+                                                  multicalendar|reuse|all]
 """
 from __future__ import annotations
 
@@ -817,6 +817,72 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
     return 0 if all(checks.values()) else 1
 
 
+# ===========================================================================
+# reuse (RQ3): the Tenure pattern outside Nepal.
+# ===========================================================================
+REUSE_GENERIC = {"Tenure", "Office", "tenureHolder", "tenureOffice", "tenureOpenedBy",
+                 "tenureClosedBy", "CustodyPeriod", "custodyHolder", "custodyObject",
+                 "custodyOpenedBy", "custodyClosedBy", "StateHeritageAuthority",
+                 "IconographicObject"}
+REUSE_QUERY = """
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?tenure ?holder ?office ?from WHERE {
+  ?tenure a/rdfs:subClassOf* hg:Tenure ; ?hp ?holder .
+  ?hp rdfs:subPropertyOf* hg:tenureHolder .
+  OPTIONAL { ?tenure ?op ?office . ?op rdfs:subPropertyOf* hg:tenureOffice }
+  OPTIONAL { ?tenure crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from }
+}"""
+
+
+def run_reuse() -> int:
+    """RQ3: the generic Tenure pattern describes offices and custody outside
+    Nepal with no Nepal-specific term, and ONE query ("who held which office
+    or custody, from when") answers for the Nepali demonstrator and the
+    non-Nepali fixture alike. Checks: (1) the fixture uses only generic
+    HeritageGraph terms; (2) it conforms to the SHACL shapes; (3) the generic
+    query returns every tenure of both, with holder and office, through the
+    subclass and subproperty hierarchy (no per-class query)."""
+    from pyshacl import validate
+    HG = "https://cair-nepal.org/heritagegraph/"
+    fixture = Graph().parse(ROOT / "examples" / "reuse-tenure-beyond-nepal.ttl", format="turtle")
+    used = {str(t)[len(HG):] for tr in fixture for t in tr
+            if str(t).startswith(HG) and "#" not in str(t)[len(HG):] and "/example/" not in str(t)}
+    specific = sorted(used - REUSE_GENERIC)
+    print(f"[reuse] HeritageGraph terms used by the non-Nepali fixture: {sorted(used)}")
+    ok = not specific
+    print(f"  {'PASS' if ok else 'FAIL'}: only generic pattern terms"
+          + (f" (Nepal-specific: {specific})" if specific else ""))
+    conforms, _, txt = validate(fixture, shacl_graph=_shapes(), ont_graph=_ont_for_shacl(),
+                                inference="none")
+    print(f"  {'PASS' if conforms else 'FAIL'}: fixture conforms to the SHACL shapes")
+    if not conforms:
+        print(txt[:1200])
+    ok &= conforms
+    g = Graph()
+    g.parse(ROOT / "ontology" / "HeritageGraph.ttl", format="turtle")
+    g.parse(ROOT / "examples" / "kathmandu-mini-abox.ttl", format="turtle")
+    g += fixture
+    rows = sorted({tuple(str(x).rsplit("/", 1)[-1] if x is not None else None for x in r)
+                   for r in g.query(REUSE_QUERY)}, key=lambda r: [str(v) for v in r])
+    for r in rows:
+        print(f"    {r}")
+    want = {("Tenure_2017", "KumariPerson", "RoyalKumariRole"),
+            ("HRT_BarahiChariot", "Barahis", "Office_BungadyahChariotBuilder"),
+            ("CP_Kasthamandap_KRC", "KRC", None),
+            ("RectorTenure", "PersonR", "RectorOffice"),
+            ("MuseumCustody", "Museum", None)}
+    got = {r[:3] for r in rows}
+    missing = want - got
+    print(f"  {'PASS' if not missing else 'FAIL'}: one generic query answers Nepali and non-Nepali "
+          f"tenures ({len(got)} tenure rows)" + (f"; missing {sorted(missing, key=str)}" if missing else ""))
+    ok &= not missing
+    print("PASS: the Tenure pattern is reused outside Nepal without Nepal-specific terms."
+          if ok else "FAIL")
+    return 0 if ok else 1
+
+
 EXPERIMENTS = {
     "ablation": run_ablation,
     "tenure": run_tenure,
@@ -824,6 +890,7 @@ EXPERIMENTS = {
     "custodianship": run_custodianship,
     "supersession": run_supersession,
     "multicalendar": run_multicalendar,
+    "reuse": run_reuse,
 }
 
 

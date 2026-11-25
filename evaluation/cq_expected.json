@@ -4,18 +4,24 @@
     "vars": [
       "structure",
       "style",
-      "place"
+      "place",
+      "from",
+      "to"
     ],
     "expected": [
       [
         "Kasthamandap",
         "ArchitecturalStyle#Pagoda",
-        "KathmanduDurbarSquare"
+        "KathmanduDurbarSquare",
+        "0600-01-01T00:00:00",
+        "1200-12-31T23:59:59"
       ],
       [
         "TalejuTemple",
         "ArchitecturalStyle#Pagoda",
-        "KathmanduDurbarSquare"
+        "KathmanduDurbarSquare",
+        "1564-01-01T00:00:00",
+        "1564-12-31T23:59:59"
       ]
     ]
   },
@@ -161,12 +167,14 @@
     "vars": [
       "group",
       "role",
-      "ritual"
+      "ritual",
+      "festival"
     ],
     "expected": [
       [
         "Manandhars",
         "hereditary chariot pullers and oil pressers",
+        "KumariProcession",
         "IndraJatra"
       ]
     ]
@@ -285,7 +293,7 @@
     ]
   },
   "CQ17": {
-    "question": "Which rituals have documented transformations, and which sources attest them?",
+    "question": "Which rituals have source-attested assertions about them (such as documented transformations), and which sources attest them?",
     "vars": [
       "assertion",
       "ritual",
@@ -302,7 +310,7 @@
     ]
   },
   "CQ18": {
-    "question": "How do changes in structures reflect broader transitions (via provenance assertions)?",
+    "question": "Which structures carry source-attested assertions about their history (such as conflicting build dates)?",
     "vars": [
       "structure",
       "assertion",
@@ -521,7 +529,6 @@
     "vars": [
       "tenure",
       "ritual",
-      "type",
       "residence",
       "pattern"
     ],
@@ -529,7 +536,6 @@
       [
         "Tenure_2017",
         "KumariNityaPuja",
-        "RitualType#NityaPuja",
         "KumariGhar",
         "daily"
       ]

@@ -1374,6 +1374,25 @@ classes:
     annotations:
       crm_superclass: crm:E13_Attribute_Assignment
       disjoint_kind: event
+  GenericActivity:
+    # 1.1.0 (M13): any CIDOC-CRM activity, so that a Tenure can be opened or
+    # closed by an event HeritageGraph has no class for (an appointment, a
+    # resignation). Abstract: it has no shape and adds nothing to crm:E7.
+    abstract: true
+    class_uri: crm:E7_Activity
+    description: "Any CIDOC-CRM E7 Activity (e.g. an appointment or a resignation that opens or closes a tenure)."
+  TenureEvent:
+    # 1.1.0 (M13): the events that open or close a tenure
+    class_uri: heritageGraph:TenureEvent
+    description: "An event that opens or closes a Tenure: a ritual (an enthronement, a retirement), a transfer of
+      custody, an endowment event, a documentation or historical event, or any other activity."
+    union_of:
+      - RitualEvent
+      - HistoricalEvent
+      - TransferOfCustody
+      - EndowmentEvent
+      - DocumentationActivity
+      - GenericActivity
   Tenure:
     # 1.1.0 (M13): the pattern KumariTenure, HereditaryRoleTenure and
     # CustodyPeriod share, abstracted so it can be reused for offices and
@@ -3126,14 +3145,12 @@ slots:
     description: "Office, role or duty held during the tenure."
   tenure_opened_by:
     slot_uri: heritageGraph:tenureOpenedBy
-    # base range for a sound OWL range (as sustains); the opening event is an
-    # enthronement, an appointment, a transfer of custody, a founding
-    range: AssertionSubject
+    range: TenureEvent
     multivalued: true
     description: "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody)."
   tenure_closed_by:
     slot_uri: heritageGraph:tenureClosedBy
-    range: AssertionSubject
+    range: TenureEvent
     multivalued: true
     description: "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody)."
   # ---- Access protocol (1.1.0, M11) ----

@@ -98,6 +98,9 @@ jobs:
       - name: Multi-calendar resolution and conversion
         run: python3 evaluation/pattern_experiments.py multicalendar
 
+      - name: Tenure pattern reused outside Nepal (RQ3)
+        run: python3 evaluation/pattern_experiments.py reuse
+
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py
 

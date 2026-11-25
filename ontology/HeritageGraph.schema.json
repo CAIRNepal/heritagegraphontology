@@ -3380,7 +3380,7 @@
                 "tenure_closed_by": {
                     "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -3404,7 +3404,7 @@
                 "tenure_opened_by": {
                     "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -6886,7 +6886,7 @@
                 "tenure_closed_by": {
                     "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -6910,7 +6910,7 @@
                 "tenure_opened_by": {
                     "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -9240,7 +9240,7 @@
                 "tenure_closed_by": {
                     "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -9261,7 +9261,7 @@
                 "tenure_opened_by": {
                     "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -14679,7 +14679,7 @@
                 "tenure_closed_by": {
                     "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -14703,7 +14703,7 @@
                 "tenure_opened_by": {
                     "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/TenureEvent"
                     },
                     "type": [
                         "array",
@@ -14763,6 +14763,12 @@
                 "id"
             ],
             "title": "Tenure",
+            "type": "object"
+        },
+        "TenureEvent": {
+            "additionalProperties": false,
+            "description": "An event that opens or closes a Tenure: a ritual (an enthronement, a retirement), a transfer of custody, an endowment event, a documentation or historical event, or any other activity.",
+            "title": "TenureEvent",
             "type": "object"
         },
         "ThirtyTwoPerfectionsCriterion": {

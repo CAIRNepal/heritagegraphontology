@@ -193,7 +193,10 @@ ex:ShantiSwastiPuja a hg:RitualEvent ;
 ex:Indra a hg:Deity ; rdfs:label "Indra" ; hg:hasReligiousTradition ex:Hindu .
 ex:IndraJatra crm:P7_took_place_at ex:KathmanduDurbarSquare ;
     hg:invokesDeity ex:Indra ;
-    hg:performedByGroup ex:Manandhars ;
+    hg:performedByGroup ex:Manandhars .
+ex:IndraJatra a hg:Festival .
+# the Kumari chariot procession is part of Indra Jatra and essential to it
+ex:KumariProcession crm:P9i_forms_part_of ex:IndraJatra ;
     hg:isCriticalForFestival true .
 
 ex:Manandhars a hg:CasteGroup ;
@@ -315,6 +318,7 @@ ex:KumariNityaPuja a hg:RitualEvent ;
     rdfs:label "Daily nitya puja at Kumari Ghar" ;
     hg:ritualType <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> ;
     crm:P8_took_place_on_or_within ex:KumariGhar ;
+    hg:hadParticipant ex:KumariPerson ;
     hg:recurrencePattern "daily" .
 ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "30 September 2025 (successor installed)" .
 ex:Ret_2025 crm:P4_has_time-span ex:TS_Ret2025 ;
