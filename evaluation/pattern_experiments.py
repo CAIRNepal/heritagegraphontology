@@ -823,7 +823,9 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
 REUSE_GENERIC = {"Tenure", "Office", "tenureHolder", "tenureOffice", "tenureOpenedBy",
                  "tenureClosedBy", "CustodyPeriod", "custodyHolder", "custodyObject",
                  "custodyOpenedBy", "custodyClosedBy", "StateHeritageAuthority",
-                 "IconographicObject"}
+                 "accessProtocol", "hasAssertion"}
+# enumerations a non-Nepali record may use (values are <hg>Enum#Value)
+REUSE_GENERIC_ENUMS = {"AccessProtocol", "DatePrecision", "ExistenceStatus"}
 REUSE_QUERY = """
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
@@ -847,9 +849,12 @@ def run_reuse() -> int:
     from pyshacl import validate
     HG = "https://cair-nepal.org/heritagegraph/"
     fixture = Graph().parse(ROOT / "examples" / "reuse-tenure-beyond-nepal.ttl", format="turtle")
-    used = {str(t)[len(HG):] for tr in fixture for t in tr
-            if str(t).startswith(HG) and "#" not in str(t)[len(HG):] and "/example/" not in str(t)}
+    hg_terms = {str(t)[len(HG):] for tr in fixture for t in tr
+                if str(t).startswith(HG) and "/example/" not in str(t)}
+    used = {t for t in hg_terms if "#" not in t}
+    enum_values = {t for t in hg_terms if "#" in t}
     specific = sorted(used - REUSE_GENERIC)
+    specific += sorted(v for v in enum_values if v.split("#")[0] not in REUSE_GENERIC_ENUMS)
     print(f"[reuse] HeritageGraph terms used by the non-Nepali fixture: {sorted(used)}")
     ok = not specific
     print(f"  {'PASS' if ok else 'FAIL'}: only generic pattern terms"

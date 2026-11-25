@@ -167,6 +167,8 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
   ('ex:BadDestr a crm:E6_Destruction ; rdfs:label "x" .', "MinCount"),
  "Existence: a reconstructed temple with no current location (node-level sh:or)":
   ('ex:BadTemple a hg:Temple ; rdfs:label "t" ; hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Reconstructed> .', "Or"),
+ "Tenure: a 1.0.x-style Kumari tenure giving its holder only with hadParticipant (minCount)":
+  (TENURE_OK.replace("hg:tenureHolder ex:P", "hg:hadParticipant ex:P") + ' ex:BadTenure hg:embodiedDeity ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "MinCount"),
  "Typing: a structure type given as a deity, not a StructureType term (sh:class)":
   ('ex:BadStructure a hg:ReligiousStructure ; rdfs:label "s" ; hg:structureType ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "Class"),
 }
@@ -196,6 +198,7 @@ EXPECTED_PATH = {
  "Destruction: a destruction that destroyed a deity, not a physical thing (sh:or)": CRM_ + "P13_destroyed",
  "Destruction: a destruction that names nothing destroyed (minCount)": CRM_ + "P13_destroyed",
  "Existence: a reconstructed temple with no current location (node-level sh:or)": "None",  # node-level sh:or: no result path
+ "Tenure: a 1.0.x-style Kumari tenure giving its holder only with hadParticipant (minCount)": HG_ + "tenureHolder",
  "Typing: a structure type given as a deity, not a StructureType term (sh:class)": HG_ + "structureType",
 }
 SH_NS = "http://www.w3.org/ns/shacl#"

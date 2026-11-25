@@ -92,6 +92,9 @@ jobs:
       - name: Competency questions match their expected answer sets
         run: python3 evaluation/run_abox_cq32.py
 
+      - name: cq_sparql.md is generated from the committed CQ queries
+        run: python3 scripts/gen_cq_tbox_doc.py --check
+
       - name: Inference CQs are answered only with HeritageGraph's axioms
         run: python3 evaluation/run_inference_cq.py
 

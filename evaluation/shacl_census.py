@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constraint census for the published SHACL shapes.
 
-The negative-test suite (evaluation/independent_abox.py) injects twenty-one
+The negative-test suite (evaluation/independent_abox.py) injects twenty-two
 single violations; on its own that is an anecdote. This script supplies the
 systematic statement behind it: how many constraints of each SHACL component
 type the published shape graph carries, and which of those component types
@@ -28,12 +28,13 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 21 tests hitting it
+# Negative-test coverage: component type -> number of the 22 tests hitting it
 # (one test, a reconstructed structure without a location, exercises both
-# sh:or and the sh:not inside it, so the counts sum to 22).
-N_TESTS = 21
+# sh:or and the sh:not inside it, so the counts sum to 23).
+N_TESTS = 22
 NEG_TESTS = {
-    "sh:minCount": 5,   # missing custody holder / assigned deity / assertsAbout / time-span / destroyed
+    "sh:minCount": 6,   # missing custody holder / assigned deity / assertsAbout / time-span / destroyed /
+                        # tenure holder (1.0.x hadParticipant only)
     "sh:maxCount": 1,   # two embodied deities on one tenure
     "sh:datatype": 1,   # dcterms:identifier not xsd:anyURI
     "sh:class": 3,      # non-TimeSpan time-span; DocumentationActivity in ritual slot; deity as structure type

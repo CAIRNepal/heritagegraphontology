@@ -36,6 +36,7 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 evaluation/artifact_lockstep.py
 	python3 evaluation/independent_abox.py
 	python3 evaluation/run_abox_cq32.py
+	python3 scripts/gen_cq_tbox_doc.py --check
 	python3 evaluation/check_declared_terms.py
 	python3 evaluation/check_cq_class_properties.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py

@@ -268,9 +268,12 @@ def test_no_health_or_real_minor_in_definitions():
         assert word not in text, word
 
 
-def test_access_rights_on_mixins(shapes):
+def test_access_protocol_on_mixins(shapes, core):
     paths = set(shapes.objects(None, SH.path))
-    assert URIRef("http://purl.org/dc/terms/accessRights") in paths
+    assert HG.accessProtocol in paths
+    # the closed list sits on the HG subproperty; dcterms:accessRights stays open
+    assert URIRef("http://purl.org/dc/terms/accessRights") not in paths
+    assert (HG.accessProtocol, RDFS.subPropertyOf, URIRef("http://purl.org/dc/terms/accessRights")) in core
 
 
 def test_structure_types_are_terms_not_classes(core):

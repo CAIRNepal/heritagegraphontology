@@ -33,7 +33,7 @@ ex:TS_Rector a crm:E52_Time-Span ;
 
 # --- custody of an object for a period ----------------------------------
 ex:Museum a hg:StateHeritageAuthority ; rdfs:label "Test state museum"@en .
-ex:Reliquary a hg:IconographicObject ; rdfs:label "Test reliquary"@en ;
+ex:Reliquary a crm:E22_Human-Made_Object ; rdfs:label "Test reliquary"@en ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/reuse/reliquary"^^xsd:anyURI .
 ex:Loan a crm:E10_Transfer_of_Custody ; rdfs:label "Transfer of the reliquary to the museum"@en ;
     crm:P30_transferred_custody_of ex:Reliquary ;

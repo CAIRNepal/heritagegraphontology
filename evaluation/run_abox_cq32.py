@@ -108,7 +108,12 @@ def sameas_alias(abox: Graph) -> dict:
     the demonstrator resource they were asserted equal to. Built from the
     asserted ABox only, so its direction is fixed."""
     from rdflib import OWL
-    return {o: s for s, o in abox.subject_objects(OWL.sameAs)}
+    alias = {o: s for s, o in abox.subject_objects(OWL.sameAs)}
+    # collision-safe: an alias linked to two resources would merge them
+    targets = [o for _, o in abox.subject_objects(OWL.sameAs)]
+    assert len(targets) == len(set(targets)), "an owl:sameAs alias names two demonstrator resources"
+    assert not set(alias) & set(alias.values()), "owl:sameAs chains are not supported by the alias map"
+    return alias
 
 
 def actual_rows(graph: Graph, sparql: str, alias: dict | None = None,
@@ -186,6 +191,7 @@ def run_entailment() -> int:
     asserted.parse(TBOX, format="turtle")
     asserted.parse(ABOX, format="turtle")
     print(f"Asserted graph (TBox + ABox): {len(asserted)} triples")
+    alias = sameas_alias(Graph().parse(ABOX, format="turtle"))
 
     closed = Graph()
     for t in asserted:
@@ -206,8 +212,9 @@ def run_entailment() -> int:
         except Exception:
             tp = -1
         try:
-            n_a = len(set(map(tuple, asserted.query(sparql))))
-            n_c = len(set(map(tuple, closed.query(sparql))))
+            # modulo owl:sameAs, as the oracle: the Wikidata aliases are not new answers
+            n_a = len(actual_rows(asserted, sparql, alias, PAIRS.get(cq)))
+            n_c = len(actual_rows(closed, sparql, alias, PAIRS.get(cq)))
         except Exception as e:
             errors.append((cq, str(e)))
             continue
@@ -225,7 +232,7 @@ def run_entailment() -> int:
           f"median {sorted(tps.values())[len(tps)//2]}, max {max(tps.values())}")
     print(f"CQs joining >=2 design patterns: {len(multi)}/32 "
           f"({', '.join('CQ%d' % cq for cq, _, _ in multi)})")
-    print(f"CQs whose answer set GROWS under OWL-RL entailment: {len(gained)}/32")
+    print(f"CQs whose answer set GROWS under OWL-RL entailment (modulo owl:sameAs): {len(gained)}/32")
     for cq, n_a, n_c, touched in gained:
         print(f"  CQ{cq}: {n_a} -> {n_c} rows  (patterns: {', '.join(touched) or '-'})")
     print(f"CQs unchanged under entailment: {len(unchanged)}/32")
@@ -340,10 +347,11 @@ def main() -> int:
             "hg:recurrencePattern ?pattern", "hg:doesNotExistPattern ?pattern"
         )
         broken_rows = actual_rows(g, broken, alias)
-        self_test_ok = broken_rows != gold11
+        broken_rows_e = actual_rows(entailed, broken, alias)
+        self_test_ok = broken_rows != gold11 and broken_rows_e != gold11
         lines += [
             "",
-            "Negative control (CQ11 with a broken predicate): "
+            "Negative control (CQ11 with a broken predicate, both arms): "
             f"actual={len(broken_rows)} vs expected={len(gold11)} -> "
             f"{'mismatch detected (oracle discriminates)' if self_test_ok else 'NOT detected -- oracle is trivial'}",
         ]

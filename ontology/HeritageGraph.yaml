@@ -359,7 +359,7 @@ classes:
       - was_generated_by
       - generated_at_time
       - was_influenced_by
-      - access_rights
+      - access_protocol
   Activity:
     abstract: true
     mixin: true
@@ -373,7 +373,7 @@ classes:
       - was_associated_with
       - was_informed_by
       - was_influenced_by
-      - access_rights
+      - access_protocol
       - started_at_time
       - ended_at_time
   Agent:
@@ -1382,6 +1382,12 @@ classes:
     abstract: true
     class_uri: crm:E7_Activity
     description: "Any CIDOC-CRM E7 Activity (e.g. an appointment or a resignation that opens or closes a tenure)."
+  Death:
+    # 1.1.0: a death (crm:E69, an E5 Event, not an E7 Activity) can close a
+    # tenure. Abstract: no shape, nothing added to crm:E69.
+    abstract: true
+    class_uri: crm:E69_Death
+    description: "A CIDOC-CRM E69 Death (e.g. the death that closes a holder's tenure)."
   TenureEvent:
     # 1.1.0 (M13): the events that open or close a tenure
     class_uri: heritageGraph:TenureEvent
@@ -1394,6 +1400,7 @@ classes:
       - EndowmentEvent
       - DocumentationActivity
       - GenericActivity
+      - Death
   StructureType:
     # 1.1.0 (M14): one generic class instead of a class per local building type
     class_uri: heritageGraph:StructureType
@@ -1812,7 +1819,6 @@ classes:
       holder.
     slots:
       - role_deity
-    annotations:
   KumariHouse:
     # ALIASES (alpha.5): romanized alternate term.
     aliases:
@@ -2003,8 +2009,8 @@ slots:
     # carries the event out, whom P11 includes (P14 is a subproperty of P11)
     close_mappings:
       - crm:P11_had_participant
-    description: "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the girl
-      holding a Kumari tenure, or the Kumari in a chariot procession)."
+    description: "Actor(s) participating in this period, situation or ritual without carrying it out (e.g. the Kumari
+      in a chariot procession). The holder of a tenure is given with tenure_holder."
 
   embodied_deity:
     # CRM D/R FIX (alpha.5): P14.1_in_the_role_of is not a first-class property
@@ -2559,6 +2565,9 @@ slots:
   transferred_object:
     slot_uri: crm:P30_transferred_custody_of
     range: PhysicalHeritageThing
+    any_of:
+      - range: PhysicalHeritageThing
+      - range: HumanMadeObject
     description: "Object transferred in custody event"
 
   transferred_from_actor:
@@ -3048,7 +3057,8 @@ slots:
   selected_through:
     slot_uri: heritageGraph:selectedThrough
     range: KumariSelectionEvent
-    description: Selection event that initiated this tenure.
+    description: "Selection event that preceded this tenure. Not a tenure-opening event: the tenure opens with
+      the enthronement (enthroned_through, a subproperty of tenure_opened_by)."
     inverse: initiated_tenure
   enthroned_through:
     is_a: tenure_opened_by
@@ -3145,10 +3155,16 @@ slots:
   # ---- Access protocol (1.1.0, M11) ----
   access_rights:
     slot_uri: dcterms:accessRights
+    description: "Access rights (DCMI). Not constrained by HeritageGraph: other vocabularies' values (a literal,
+      an EU access-right IRI) stay valid. HeritageGraph's cultural protocols use access_protocol."
+  access_protocol:
+    slot_uri: heritageGraph:accessProtocol
+    is_a: access_rights
     range: AccessProtocol
     multivalued: true
     description: "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or
-      sacred, seasonal), set with the community concerned. Data under a restriction should not be published."
+      sacred, seasonal), set with the community concerned; a subproperty of dcterms:accessRights. Data under a
+      restriction should not be published."
 
   role_holder:
     is_a: tenure_holder
@@ -3187,7 +3203,11 @@ slots:
   custody_object:
     slot_uri: heritageGraph:custodyObject
     range: PhysicalHeritageThing
-    description: "Structure or object in custody during the period."
+    any_of:
+      - range: PhysicalHeritageThing
+      - range: HumanMadeObject
+    description: "Structure or object in custody during the period (any heritage structure, element or
+      human-made object, e.g. a museum object)."
   custody_opened_by:
     is_a: tenure_opened_by
     slot_uri: heritageGraph:custodyOpenedBy

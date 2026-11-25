@@ -20,6 +20,9 @@ CQ1. Which architectural structures were built during a time period using an arc
 ASK WHERE {
   crm:E12_Production a owl:Class .
   crm:P108_has_produced a owl:ObjectProperty .
+  crm:P4_has_time-span a owl:ObjectProperty .
+  crm:P82a_begin_of_the_begin a owl:DatatypeProperty .
+  crm:P82b_end_of_the_end a owl:DatatypeProperty .
   hg:hasArchitecturalStyle a owl:ObjectProperty .
   crm:P55_has_current_location a owl:ObjectProperty .
 }
@@ -59,7 +62,6 @@ ASK WHERE {
   hg:ArchitecturalStructure a owl:Class .
 }
 ```
-External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ6. Which heritage shares a common architectural style?
 ```sparql
@@ -95,7 +97,6 @@ ASK WHERE {
   <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> a owl:NamedIndividual .
 }
 ```
-External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ9. Which caste groups have hereditary roles in rituals critical for a festival?
 ```sparql
@@ -104,6 +105,8 @@ ASK WHERE {
   hg:traditionalRole a owl:DatatypeProperty .
   hg:performedByGroup a owl:ObjectProperty .
   hg:isCriticalForFestival a owl:DatatypeProperty .
+  crm:P9i_forms_part_of a owl:ObjectProperty .
+  hg:Festival a owl:Class .
 }
 ```
 
@@ -172,7 +175,7 @@ ASK WHERE {
 }
 ```
 
-CQ17. Which rituals have documented transformations, and which sources attest them?
+CQ17. Which rituals have source-attested assertions about them (such as documented transformations), and which sources attest them?
 ```sparql
 ASK WHERE {
   crminf:I2_Belief a owl:Class .
@@ -183,10 +186,12 @@ ASK WHERE {
 }
 ```
 
-CQ18. How do changes in structures reflect broader transitions (via provenance assertions)?
+CQ18. Which structures carry source-attested assertions about their history (such as conflicting build dates)?
 ```sparql
 ASK WHERE {
+  hg:ArchitecturalStructure a owl:Class .
   hg:hasAssertion a owl:ObjectProperty .
+  crminf:I2_Belief a owl:Class .
   prov:wasDerivedFrom a owl:ObjectProperty .
 }
 ```
@@ -215,13 +220,13 @@ ASK WHERE {
 }
 ```
 
-CQ21. Which endowments sustain which sites, rituals or sacred offices, which Guthi holds them, and through which founding or nationalisation events?
+CQ21. Which endowments sustain which sites, rituals or sacred offices, which Guthi or state body holds them, and through which founding or nationalisation events?
 ```sparql
 ASK WHERE {
   hg:Endowment a owl:Class .
   crm:P105_right_held_by a owl:ObjectProperty .
   hg:sustains a owl:ObjectProperty .
-  hg:Guthi a owl:Class .
+  crm:E74_Group a owl:Class .
   hg:concernsEndowment a owl:ObjectProperty .
   hg:endowmentEventType a owl:ObjectProperty .
 }
@@ -233,6 +238,8 @@ ASK WHERE {
   hg:Festival a owl:Class .
   hg:invokesDeity a owl:ObjectProperty .
   hg:performedByGroup a owl:ObjectProperty .
+  crm:E74_Group a owl:Class .
+  hg:SyncreticRelationship a owl:Class .
   crm:P140_assigned_attribute_to a owl:ObjectProperty .
   crm:P141_assigned a owl:ObjectProperty .
 }
@@ -245,7 +252,6 @@ ASK WHERE {
   hg:ArchitecturalStructure a owl:Class .
 }
 ```
-External terms used without an HeritageGraph declaration: `<http://www.w3.org/2000/01/rdf-schema#subClassOf>`.
 
 CQ24. Which rituals at Hindu temples and Buddhist monuments invoke the same syncretic deity?
 ```sparql
@@ -254,6 +260,7 @@ ASK WHERE {
   hg:invokesDeity a owl:ObjectProperty .
   hg:Temple a owl:Class .
   hg:Stupa a owl:Class .
+  hg:SyncreticRelationship a owl:Class .
   crm:P140_assigned_attribute_to a owl:ObjectProperty .
   crm:P141_assigned a owl:ObjectProperty .
 }
@@ -275,7 +282,7 @@ CQ26. Which person served as Kumari, for which period, at which residence?
 ```sparql
 ASK WHERE {
   hg:KumariTenure a owl:Class .
-  hg:hadParticipant a owl:ObjectProperty .
+  hg:tenureHolder a owl:ObjectProperty .
   hg:residenceStructure a owl:ObjectProperty .
   crm:P4_has_time-span a owl:ObjectProperty .
 }
@@ -293,9 +300,11 @@ ASK WHERE {
 CQ28. How does the Kumari institution embody Hindu-Buddhist syncretism in a place and period?
 ```sparql
 ASK WHERE {
+  hg:KumariTenure a owl:Class .
   hg:embodiedDeity a owl:ObjectProperty .
   hg:residenceStructure a owl:ObjectProperty .
   crm:P4_has_time-span a owl:ObjectProperty .
+  hg:SyncreticRelationship a owl:Class .
   crm:P140_assigned_attribute_to a owl:ObjectProperty .
 }
 ```
@@ -304,8 +313,12 @@ CQ29. What daily rituals does a Kumari perform at her residence, with what tempo
 ```sparql
 ASK WHERE {
   hg:KumariTenure a owl:Class .
+  hg:tenureHolder a owl:ObjectProperty .
   hg:residenceStructure a owl:ObjectProperty .
+  hg:RitualEvent a owl:Class .
+  hg:hadParticipant a owl:ObjectProperty .
   hg:ritualType a owl:ObjectProperty .
+  <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> a owl:NamedIndividual .
   crm:P8_took_place_on_or_within a owl:ObjectProperty .
   hg:recurrencePattern a owl:DatatypeProperty .
 }
@@ -315,8 +328,9 @@ CQ30. In which processions does a given Kumari participate, and in what sequence
 ```sparql
 ASK WHERE {
   hg:KumariTenure a owl:Class .
-  hg:hadParticipant a owl:ObjectProperty .
+  hg:tenureHolder a owl:ObjectProperty .
   crm:E21_Person a owl:Class .
+  hg:hadParticipant a owl:ObjectProperty .
   crm:P183_ends_before_the_start_of a owl:ObjectProperty .
   crm:P183i_starts_after_the_end_of a owl:ObjectProperty .
 }
@@ -327,7 +341,7 @@ CQ31. Which institution bears responsibility for a given Kumari during her tenur
 ASK WHERE {
   hg:KumariTenure a owl:Class .
   hg:supportedByInstitution a owl:ObjectProperty .
-  hg:Guthi a owl:Class .
+  crm:E74_Group a owl:Class .
 }
 ```
 
