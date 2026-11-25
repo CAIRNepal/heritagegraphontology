@@ -4,15 +4,15 @@ All figures on this page are produced by one command from a clean checkout of th
 
 | | |
 |---|---|
-| OWL triples | 4612 |
+| OWL triples | 4614 |
 | Classes (excluding enumerations) | 67 |
 | Enumerations | 9 |
 | Object / datatype properties | 85 / 28 |
 | Classes stated subclasses of a CIDOC-CRM class | 21 |
 | Deprecated terms (kept, never deleted) | 55 |
-| SHACL shapes | 82 node shapes, 23954 triples |
-| Mappings to other vocabularies (SSSOM) | 287 |
-| CIDOC-CRM terms reused / HeritageGraph terms linked to CIDOC-CRM | 23 classes, 48 properties / 47 classes, 27 properties |
+| SHACL shapes | 82 node shapes, 23958 triples |
+| Mappings to other vocabularies (SSSOM) | 288 |
+| CIDOC-CRM terms reused / HeritageGraph terms linked to CIDOC-CRM | 23 classes, 48 properties / 47 classes, 28 properties |
 
 ## Logic
 
