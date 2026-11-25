@@ -48,9 +48,11 @@ ex:Prod_Kasthamandap a crm:E12_Production ;
 ex:CA_2015 a crm:E14_Condition_Assessment ;
     rdfs:label "Post-2015-earthquake assessment of Kasthamandap" .
 ex:CS_Ruined a crm:E3_Condition_State ; rdfs:label "Collapsed in the 2015 earthquake" .
-# M10: the collapse is damage the monument survived (it was rebuilt), so it
-# is a natural alteration (CRMsci S18), part of the earthquake, not a CRM E6
-# destruction; the rebuild is a modification (E11), not a second production.
+# M10: the collapse altered Kasthamandap without ending its identity (the
+# same monument was rebuilt on its foundations), so it is a natural
+# alteration (CRMsci S18: change "without changing their identity"), part of
+# the earthquake, not a CRM E6 destruction; the rebuild is a modification
+# (E11), not a second production.
 ex:Collapse_Kasthamandap2015 a crmsci:S18_Alteration ;
     rdfs:label "Collapse of the Kasthamandap superstructure in the 2015 earthquake" ;
     crmsci:O18_altered ex:Kasthamandap ;
@@ -125,7 +127,7 @@ ex:Assert_BuildA a crminf:I2_Belief ;
 ex:Assert_BuildB a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build-date (account B)" ;
     hg:assertsAbout ex:Kasthamandap ;
-    prov:value "7th century CE" ;
+    prov:value "early 7th to early 9th century CE" ;
     crm:P3_has_note "Radiocarbon dates from the foundations: early 7th to early 9th century CE, with a major reconstruction in the 11th to 12th century." ;
     prov:wasDerivedFrom ex:Src_Durham_Kasthamandap ;
     prov:wasAttributedTo ex:DurhamTeam ;
@@ -137,7 +139,7 @@ ex:Src_Durham_Kasthamandap a hg:DataSource ;
     rdfs:label "Durham University, Kasthamandap: causes of collapse" ;
     dcterms:creator "Durham University" ;
     dcterms:bibliographicCitation "Durham University. Resilience: causes of collapse (post-2015 archaeological investigation of the Kasthamandap). https://stories.durham.ac.uk/resilience-2" .
-ex:DurhamTeam a crm:E39_Actor ; rdfs:label "Durham University post-earthquake investigation team" .
+ex:DurhamTeam a crm:E39_Actor ; rdfs:label "Durham University (authors of the cited post-earthquake investigation)" .
 # Illustrative: no specific publication; used only by Assert_RouteChange.
 ex:Src_DoA a hg:DataSource ; rdfs:label "Department of Archaeology (illustrative; no specific publication cited)" ;
     dcterms:creator "Department of Archaeology, Government of Nepal" .
@@ -280,7 +282,7 @@ ex:Prod_TalejuTemple a crm:E12_Production ;
     hg:commissionedBy ex:KingMahendraMalla ;
     crm:P4_has_time-span ex:TS_TalejuTemple1564 ;
     dcterms:source ex:Src_Wikipedia_TalejuTemple .
-ex:TS_TalejuTemple1564 a crm:E52_Time-Span ; rdfs:label "1564 CE (NS 684)" ;
+ex:TS_TalejuTemple1564 a crm:E52_Time-Span ; rdfs:label "1564 CE" ;
     crm:P82a_begin_of_the_begin "1564-01-01T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "1564-12-31T23:59:59"^^xsd:dateTime .
 ex:Src_Wikipedia_TalejuTemple a hg:DataSource ; rdfs:label "Wikipedia, Taleju Temple, Kathmandu" ;
@@ -376,8 +378,8 @@ ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra 2025" ;
 ex:TS_YosinErection2025 a crm:E52_Time-Span ; rdfs:label "Raising of the lingo (yosin), 4 September 2025" ;
     crm:P82a_begin_of_the_begin "2025-09-04T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-09-04T23:59:59"^^xsd:dateTime .
-ex:TS_KumariProcession2025 a crm:E52_Time-Span ; rdfs:label "Kumari chariot procession, 6 September 2025 (main day)" ;
-    crm:P82a_begin_of_the_begin "2025-09-06T00:00:00"^^xsd:dateTime ;
+ex:TS_KumariProcession2025 a crm:E52_Time-Span ; rdfs:label "Kumari chariot procession, Indra Jatra 2025 (between the start on 4 September and the report of 6 September)" ;
+    crm:P82a_begin_of_the_begin "2025-09-04T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-09-06T23:59:59"^^xsd:dateTime .
 ex:TS_BungadyahProcession2025 a crm:E52_Time-Span ; rdfs:label "Bungadyah chariot procession 2025" ;
     crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
@@ -746,12 +748,6 @@ ex:Prod_KasthamandapRebuild a crm:E11_Modification ;
     crm:P4_has_time-span ex:TS_KasthamandapRebuild ;
     dcterms:source ex:Src_KP_MaruSatta , ex:Src_HT_Kasthamandap2022 .
 ex:Kasthamandap hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Reconstructed> .
-ex:CA_2022 a crm:E14_Condition_Assessment ;
-    rdfs:label "Condition of the rebuilt Kasthamandap at its reopening (2022)" ;
-    crm:P34_concerned ex:Kasthamandap ;
-    crm:P35_has_identified ex:CS_Rebuilt ;
-    crm:P4_has_time-span ex:TS_CA2022 ;
-    dcterms:source ex:Src_HT_Kasthamandap2022 .
-ex:CS_Rebuilt a crm:E3_Condition_State ; rdfs:label "Rebuilt and reopened" .
-ex:TS_CA2022 a crm:E52_Time-Span ; rdfs:label "4 April 2022 (reopening)" ;
-    crm:P82a_begin_of_the_begin "2022-04-04T00:00:00"^^xsd:dateTime .
+# The rebuilt state is recorded by the reconstruction (E11, ending with the
+# reopening of 4 April 2022) and the status Reconstructed; the 2015
+# assessment (CA_2015, CQ8) is the last condition assessment on record.

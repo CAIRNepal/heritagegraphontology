@@ -161,6 +161,8 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
  # Free text accepts xsd:string or rdf:langString, nothing else.
  "Text: a note given as a number, not text (sh:or string|langString)":
   ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P3_has_note 42 .', "Or"),
+ "Destruction: a destruction that destroyed a deity, not a physical thing (sh:or)":
+  ('ex:BadDestr a crm:E6_Destruction ; rdfs:label "x" ; crm:P13_destroyed ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "Or"),
 }
 # The property each test must violate: a test counts as caught only when a
 # result has the expected constraint component ON THE EXPECTED PATH (a
@@ -185,6 +187,7 @@ EXPECTED_PATH = {
  "Labels: two English labels on one deity (sh:uniqueLang)": "http://www.w3.org/2000/01/rdf-schema#label",
  "Labels: two untagged labels on one deity (sh:qualifiedMaxCount)": "http://www.w3.org/2000/01/rdf-schema#label",
  "Text: a note given as a number, not text (sh:or string|langString)": CRM_ + "P3_has_note",
+ "Destruction: a destruction that destroyed a deity, not a physical thing (sh:or)": CRM_ + "P13_destroyed",
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0

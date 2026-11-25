@@ -7,6 +7,7 @@
 #    a route description and a citation each in two languages; a source in
 #    two languages (schema:inLanguage)
 #  - a procession over two distinct places (routePlaces ⊑ P7)
+#  - a destruction (E6) of a structure (crm:P13_destroyed)
 #  - one production of two objects, one custody transfer of two objects
 #    from one actor to two (CRM: many objects and actors per event)
 @prefix hg:<https://cair-nepal.org/heritagegraph/> .
@@ -72,3 +73,15 @@ ex:Claim a crminf:I2_Belief ;
     rdfs:label "Test claim"@en ;
     hg:assertsAbout ex:Temple ;
     prov:value "परीक्षण दावी: मन्दिर दुई तले छ"@ne .
+
+# a destruction (crm:E6) of a structure, linked by destroyed (crm:P13)
+ex:Shrine a hg:Temple ; rdfs:label "Test shrine"@en ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/ml/shrine"^^xsd:anyURI .
+ex:ShrineDestruction a crm:E6_Destruction ;
+    rdfs:label "Destruction of the test shrine"@en ;
+    crm:P13_destroyed ex:Shrine ;
+    crm:P4_has_time-span ex:TSDestruction .
+ex:TSDestruction a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1934-01-15T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1934-01-15T23:59:59"^^xsd:dateTime .
+

@@ -433,13 +433,14 @@ classes:
       has_current_location:
         maximum_cardinality: 1
     rules:
-      - description: Extant or partially extant structures must record a current location.
+      - description: Extant, partially extant or reconstructed structures must record a current location.
         preconditions:
           slot_conditions:
             existence_status:
               any_of:
                 - equals_string: Extant
                 - equals_string: PartiallyExtant
+                - equals_string: Reconstructed
         postconditions:
           slot_conditions:
             has_current_location:
@@ -715,7 +716,10 @@ classes:
       - has_timespan
       - took_place_at
       - architectural_structures
-      - includes_ritual_event
+    # 1.1.0: includes_ritual_event (crm:P9, range RitualEvent) removed here: a
+    # crisis ritual is motivated by the event (motivated_by, P17), not part of
+    # it, and the parts of a historical event (e.g. a collapse, a destruction)
+    # are not rituals. Festivals keep it.
     annotations:
       disjoint_kind: event
       crm_superclass: crm:E5_Event
@@ -1420,7 +1424,7 @@ classes:
     class_uri: heritageGraph:KumariSelectionEvent
     description: "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination
       of 32 auspicious physical marks (lakshana) and horoscope matching with the city and ruling authority, performed
-      by a committee of Vajracharya priests, the royal priest (Raj Jyotish) and an astrologer. Accounts of a
+      by Vajracharya priests and astrologers. Accounts of a
       fearlessness test are disputed and are recorded as such with FearlessnessAssessment, not stated here."
 
 

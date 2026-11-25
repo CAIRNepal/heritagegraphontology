@@ -147,7 +147,7 @@ CQ14. How do crises trigger extraordinary rituals outside the normal calendar?
 ```sparql
 ASK WHERE {
   hg:HistoricalEvent a owl:Class .
-  crm:P9_consists_of a owl:ObjectProperty .
+  crm:P17_was_motivated_by a owl:ObjectProperty .
   hg:recurrencePattern a owl:DatatypeProperty .
 }
 ```
