@@ -237,8 +237,8 @@ b:stmt ps:P39 b:KumariOffice ;
 
     Q = [
         ("Q1 deity, with the period it applies to",
-         """SELECT ?deity ?from WHERE { ?t a hg:KumariTenure ; hg:embodiedDeity ?deity ;
-              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
+         """SELECT ?deity ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+              hg:embodiedDeity ?deity ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
          """SELECT ?deity ?from WHERE { ?pc crm:P02_has_range ex:KumariPerson ;
               crm:P14.1_in_the_role_of b:KumariOffice . ?a crm:P01i_is_domain_of ?pc ;
               crm:P15_was_influenced_by ?deity ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
@@ -253,8 +253,8 @@ b:stmt ps:P39 b:KumariOffice ;
               ?c crm:P2_has_type ?close . ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
          """SELECT ?close WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P1534 ?close . }"""),
         ("Q3 residence during the period",
-         """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:residenceStructure ?res ;
-              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
+         """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+              hg:residenceStructure ?res ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
          """SELECT ?res ?from WHERE { ?a crm:P01i_is_domain_of ?pc ; crm:P7_took_place_at ?res ;
               crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from .
               ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",

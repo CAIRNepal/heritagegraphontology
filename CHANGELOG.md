@@ -7,8 +7,9 @@
 **Breaking changes and migration rules** (data valid under 1.0.x that 1.1.0 rejects or reads differently):
 - Place coordinates move from geo:asWKT to crm:P168_place_is_defined_by (same WKT literal).
 - Data giving one structure two values of a single-valued enumeration slot is now inconsistent.
-- An `hg:` property the ontology does not declare is now a SHACL violation (it was ignored by the open
-  shapes); an empty string as a text value is a violation.
+- On an instance of a HeritageGraph class, an `hg:` property the ontology does not declare is now a
+  SHACL violation (the open shapes ignored it), and a deprecated one a warning, which fails
+  conformance unless warnings are allowed. An empty string as a text value is a violation.
 - The holder of a Kumari tenure is given with `hg:tenureHolder`, not `hg:hadParticipant`
   (rewrite `?t hg:hadParticipant ?p` on a `hg:KumariTenure` to `?t hg:tenureHolder ?p`).
 - An endowment that sustained a tenure now sustains the tenure's office
@@ -86,6 +87,11 @@
 - The JSON Schema carries its licence. The JSON-LD context types `confidenceScore` as `xsd:decimal`.
 - NOTICE.md gives the licence of each reused vocabulary; `sources.json` records it per snapshot.
 - The README has a normative validation recipe.
+- `hg:routePlaces` is no longer a subproperty of crm:P7, and `hg:sourceCitation` no longer one of
+  crm:P3 (related mappings instead). `crm:P183` (occurs before) is described as strict precedence.
+- The LUX module has a versionIRI (…/alignment/lux/1.1.0).
+- Demonstrator: the successor Kumari tenure of the same office (2025, open), the tradition's
+  selection criteria (Allen 1975), and Nepali labels for the main places and the deity.
 
 **Deprecated** (kept, marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement)
 - The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.

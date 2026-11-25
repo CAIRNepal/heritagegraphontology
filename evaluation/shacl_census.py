@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constraint census for the published SHACL shapes.
 
-The negative-test suite (evaluation/independent_abox.py) injects twenty-two
+The negative-test suite (evaluation/independent_abox.py) injects twenty-six
 single violations; on its own that is an anecdote. This script supplies the
 systematic statement behind it: how many constraints of each SHACL component
 type the published shape graph carries, and which of those component types

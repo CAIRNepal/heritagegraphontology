@@ -818,3 +818,31 @@ ex:Prop_KumariSyncretism a hg:Proposition ;
     hg:propositionSubject ex:Tenure_2017 ;
     hg:propositionPredicate "https://cair-nepal.org/heritagegraph/embodiedDeity"^^xsd:anyURI ;
     hg:propositionObjectEntity ex:Taleju .
+
+# --- successive Kumaris: the successor tenure of the same office (Src_AP_Kumari2025) ---
+# The holder is identified only by role: data about the child is not recorded.
+ex:KumariPerson_2025 a crm:E21_Person ; rdfs:label "Royal Kumari (from 2025)" .
+ex:TS_Tenure2025 a crm:E52_Time-Span ; rdfs:label "from 30 September 2025 (open)" ;
+    crm:P82a_begin_of_the_begin "2025-09-30T00:00:00"^^xsd:dateTime .
+ex:Tenure_2025 a hg:KumariTenure ;
+    rdfs:label "Royal Kumari tenure (from 2025)" ;
+    hg:tenureHolder ex:KumariPerson_2025 ;
+    hg:residenceStructure ex:KumariGhar ;
+    hg:assumesRole ex:RoyalKumariRole ;
+    hg:embodiedDeity ex:Taleju ;
+    crm:P4_has_time-span ex:TS_Tenure2025 ;
+    hg:mentionedInSource ex:Src_AP_Kumari2025 .
+
+# --- the tradition's selection criteria (Allen 1975), not data about any child ---
+ex:Crit_Lineage a hg:LineageCriterion ; rdfs:label "Born into a Shakya or Vajracharya lineage" ;
+    hg:mentionedInSource ex:Src_Allen .
+ex:Crit_Age a hg:AgeCriterion ; rdfs:label "Chosen before puberty" ;
+    hg:mentionedInSource ex:Src_Allen .
+ex:Sel_2017 hg:hasCriterion ex:Crit_Lineage , ex:Crit_Age .
+
+# --- names in Nepali (Devanagari) ---
+ex:Kasthamandap rdfs:label "काष्ठमण्डप"@ne .
+ex:Taleju rdfs:label "तलेजु भवानी"@ne .
+ex:KathmanduDurbarSquare rdfs:label "काठमाडौं दरबार क्षेत्र"@ne .
+ex:Bungamati rdfs:label "बुङ्गमती"@ne .
+ex:KumariGhar rdfs:label "कुमारी घर"@ne .

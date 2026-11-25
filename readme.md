@@ -141,14 +141,16 @@ inference (the shapes check the asserted data; the result does not depend on loa
 vocabularies):
 
 ```sh
-pyshacl -s ontology/HeritageGraph.shacl.ttl -e ontology/HeritageGraph.ttl -i none -f human your-data.ttl
+pyshacl -s ontology/HeritageGraph.shacl.ttl -e ontology/HeritageGraph.ttl -i none --allow-warnings -f human your-data.ttl
 ```
 
 This is the configuration the release gates use (`evaluation/check_examples.py`). Adding other
 vocabularies with `-e` (e.g. PROV-O, so that a `prov:SoftwareAgent` counts as a `prov:Agent`) can
 make more data conform; the normative result is the one above. The shapes are open: data may use
-other vocabularies freely, while an undeclared term in the HeritageGraph namespace (a misspelling)
-is a violation and a deprecated one a warning. JSON data is validated with
+other vocabularies freely. On an instance of a HeritageGraph class, a property in the HeritageGraph
+namespace that the ontology does not declare (a misspelling) is a violation, and a deprecated one a
+warning (`--allow-warnings` keeps warnings from failing conformance). Misspelt class names and
+untyped nodes are not checked by the shapes. JSON data is validated with
 `ontology/HeritageGraph.schema.json`.
 
 ## Repository structure

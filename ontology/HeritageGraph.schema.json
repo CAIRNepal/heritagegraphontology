@@ -634,19 +634,9 @@
                 },
                 "source_citation": {
                     "description": "Formal citation of source",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "source_language": {
@@ -1478,7 +1468,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -2046,7 +2036,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -3266,19 +3256,9 @@
                 },
                 "source_citation": {
                     "description": "Formal citation of source",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "source_language": {
@@ -4823,7 +4803,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -5150,7 +5130,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -5473,7 +5453,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -5864,19 +5844,9 @@
                 },
                 "source_citation": {
                     "description": "Formal citation of source",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "source_language": {
@@ -6886,19 +6856,9 @@
                 },
                 "source_citation": {
                     "description": "Formal citation of source",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "source_language": {
@@ -7142,7 +7102,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -7728,7 +7688,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -8175,7 +8135,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -8781,7 +8741,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
@@ -9677,19 +9637,9 @@
                 },
                 "source_citation": {
                     "description": "Formal citation of source",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "source_language": {
@@ -11926,7 +11876,7 @@
                     ]
                 },
                 "occurs_before": {
-                    "description": "Points to the next ritual in the canonical sequence.",
+                    "description": "A ritual that follows this one in the canonical sequence (strict precedence, CRM P183; not necessarily the immediately next one).",
                     "type": [
                         "string",
                         "null"
