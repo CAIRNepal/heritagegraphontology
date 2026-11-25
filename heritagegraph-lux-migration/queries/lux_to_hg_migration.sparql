@@ -129,7 +129,7 @@ CONSTRUCT {
   ?hgPlace a crm:E53_Place ;
            owl:sameAs                ?pl ;
            <http://www.w3.org/2000/01/rdf-schema#label>              ?plname ;
-           <http://www.opengis.net/ont/geosparql#asWKT> ?wkt .
+           crm:P168_place_is_defined_by ?wkt .
 } WHERE {
   ?pl a crm:E53_Place .
   BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/place/",

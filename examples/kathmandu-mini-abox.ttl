@@ -784,14 +784,28 @@ ex:DANAM a crm:E39_Actor ; rdfs:label "DANAM, Heidelberg Academy of Sciences and
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/agent/danam"^^xsd:anyURI .
 
 # --- what each belief holds true, as a CRMinf proposition (J4 that) ---
-ex:Assert_BuildA crminf:J4_that ex:Prop_BuildA .
-ex:Prop_BuildA a hg:Proposition ;
+# each build-date account holds two propositions along the CRM path
+# production -P4-> time-span -P82-> date: the production took place within a
+# time-span (named only in the proposition), which lies within the stated date
+# the two hypothetical time-spans exist only as the content of the beliefs
+ex:TS_Prod_Kasthamandap_A a crm:E52_Time-Span ; rdfs:label "Time-span of the construction (account A)" .
+ex:TS_Prod_Kasthamandap_B a crm:E52_Time-Span ; rdfs:label "Time-span of the construction (account B)" .
+ex:Assert_BuildA crminf:J4_that ex:Prop_BuildA_span , ex:Prop_BuildA_date .
+ex:Prop_BuildA_span a hg:Proposition ;
     hg:propositionSubject ex:Prod_Kasthamandap ;
+    hg:propositionPredicate "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span"^^xsd:anyURI ;
+    hg:propositionObjectEntity ex:TS_Prod_Kasthamandap_A .
+ex:Prop_BuildA_date a hg:Proposition ;
+    hg:propositionSubject ex:TS_Prod_Kasthamandap_A ;
     hg:propositionPredicate "http://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within"^^xsd:anyURI ;
     hg:propositionLiteralValue "12th century CE" .
-ex:Assert_BuildB crminf:J4_that ex:Prop_BuildB .
-ex:Prop_BuildB a hg:Proposition ;
+ex:Assert_BuildB crminf:J4_that ex:Prop_BuildB_span , ex:Prop_BuildB_date .
+ex:Prop_BuildB_span a hg:Proposition ;
     hg:propositionSubject ex:Prod_Kasthamandap ;
+    hg:propositionPredicate "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span"^^xsd:anyURI ;
+    hg:propositionObjectEntity ex:TS_Prod_Kasthamandap_B .
+ex:Prop_BuildB_date a hg:Proposition ;
+    hg:propositionSubject ex:TS_Prod_Kasthamandap_B ;
     hg:propositionPredicate "http://www.cidoc-crm.org/cidoc-crm/P82_at_some_time_within"^^xsd:anyURI ;
     hg:propositionLiteralValue "early 7th to early 9th century CE" .
 ex:Assert_RouteChange crminf:J4_that ex:Prop_RouteChange .

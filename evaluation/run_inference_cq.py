@@ -7,7 +7,8 @@ Runs examples/queries/cq-inference.rq over the demonstrator ABox three ways:
   vocab-only  OWL 2 RL closure (owlrl) of ABox + the official CIDOC-CRM 7.1.3,
               CRMinf 1.0 and PROV-O files (ontology/imports/);
   with HG     OWL 2 RL closure of ABox + those vocabularies + HeritageGraph.
-Answers are counted modulo owl:sameAs (the demonstrator's Wikidata links). A
+Answers are counted modulo owl:sameAs (any owl:sameAs alias in the ABox is
+mapped back; the demonstrator links to Wikidata with SKOS, so it has none). A
 query passes iff "with HG" equals its frozen expected set, "vocab-only" equals
 its frozen set (so a fact newly asserted in the ABox is noticed), and
 "vocab-only" has strictly fewer rows: the extra answers are due to
@@ -53,8 +54,8 @@ def load_queries() -> list[tuple[str, str, str]]:
 
 
 def rows(g: Graph, q: str, alias: dict) -> list[tuple[str, ...]]:
-    """Bindings modulo owl:sameAs: every Wikidata alias is mapped back to the
-    demonstrator resource it was asserted equal to (the map is built from the
+    """Bindings modulo owl:sameAs: every owl:sameAs alias is mapped back to the
+    resource it was asserted equal to (the map is built from the
     asserted ABox only, so its direction is fixed)."""
     res = g.query(q)
     return sorted({tuple(short(alias.get(r[v], r[v])) for v in res.vars) for r in res})

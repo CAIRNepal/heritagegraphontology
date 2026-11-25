@@ -106,8 +106,9 @@ PAIRS = {6: ("a", "b"), 22: ("group1", "group2"), 23: ("tradition1", "tradition2
 
 
 def sameas_alias(abox: Graph) -> dict:
-    """owl:sameAs aliases (the demonstrator's Wikidata links) mapped back to
-    the demonstrator resource they were asserted equal to. Built from the
+    """owl:sameAs aliases in the ABox mapped back to the resource they were
+    asserted equal to (a safety net: the demonstrator links to Wikidata with
+    SKOS, so it has none). Built from the
     asserted ABox only, so its direction is fixed."""
     from rdflib import OWL
     alias = {o: s for s, o in abox.subject_objects(OWL.sameAs)}
@@ -214,7 +215,7 @@ def run_entailment() -> int:
         except Exception:
             tp = -1
         try:
-            # modulo owl:sameAs, as the oracle: the Wikidata aliases are not new answers
+            # modulo owl:sameAs, as the oracle: an alias is not a new answer
             n_a = len(actual_rows(asserted, sparql, alias, PAIRS.get(cq)))
             n_c = len(actual_rows(closed, sparql, alias, PAIRS.get(cq)))
         except Exception as e:

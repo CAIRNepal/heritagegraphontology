@@ -190,7 +190,7 @@ PROP_ROWS = [
     ('note', 'xsd:string', 'referred_to_by → LinguisticObject', 'crm:P3_has_note', 'identity (direct URI reuse)', ''),
     ('source_citation', 'xsd:string', 'referred_to_by', 'crm:P67i_is_referred_to_by', 'seeAlso', ''),
     ("source_url",               "xsd:string",           "digitally_carried_by",       "la:digitally_carried_by",         "subPropertyOf",      "One of the genuine la: properties (no CRM equivalent)."),
-    ('place_coordinates', 'geo:wktLiteral', 'defined_by', 'crm:P168_place_is_defined_by', 'none (v1.0.0 uses geo:asWKT)', ''),
+    ('place_coordinates', 'geo:wktLiteral', 'defined_by', 'crm:P168_place_is_defined_by', 'identity (direct URI reuse)', 'Since 1.1.0; v1.0.0 used geo:asWKT.'),
 
     ('assertion_author', 'Actor', '(carried_out_by on AttributeAssignment)', 'crm:P14_carried_out_by', 'removed in v1.0.0', 'Property not in HeritageGraph v1.0.0.'),
     ('was_attributed_to', 'Person', 'carried_out_by', 'crm:P14_carried_out_by', 'none (v1.0.0 uses prov:wasAttributedTo)', 'Renamed from was_attributed_to_agent in v1.0.0.'),
