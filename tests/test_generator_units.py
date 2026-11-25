@@ -281,3 +281,13 @@ def test_structure_types_are_terms_not_classes(core):
         assert (HG[gone], RDF.type, OWL.Class) not in core
     assert (HG.structureType, RDFS.subPropertyOf, CRM.P2_has_type) in core
     assert (HG.StructureType, RDFS.subClassOf, CRM.E55_Type) in core
+
+
+def test_custody_object_range_does_not_force_heritage_class(core):
+    # a plain crm:E22 in custody must not be entailed a PhysicalHeritageThing
+    # (that class is in a disjoint kind): the OWL range is the union base class
+    rng = set(core.objects(HG.custodyObject, RDFS.range))
+    assert HG.PhysicalHeritageThing not in rng
+    for r in rng:
+        for x in core.objects(r, OWL.intersectionOf):
+            assert HG.PhysicalHeritageThing not in set(Collection(core, x))

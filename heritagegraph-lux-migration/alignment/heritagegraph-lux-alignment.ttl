@@ -7,6 +7,7 @@
 @prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dig:           <http://www.ics.forth.gr/isl/CRMdig/> .
 @prefix sci:           <http://www.ics.forth.gr/isl/CRMsci/> .
+@prefix crmsci:        <http://www.cidoc-crm.org/extensions/crmsci/> .
 @prefix crminf:        <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix aat:           <http://vocab.getty.edu/aat/> .
 @prefix wikidata:      <http://www.wikidata.org/entity/> .
@@ -230,7 +231,9 @@ heritageGraph:isAboutDeity skos:closeMatch crm:P138_represents .  # P138 domain 
 # ---- Documentation linkage --------------------------------------------------
 
 heritageGraph:mentionedInSource rdfs:subPropertyOf crm:P67i_is_referred_to_by .  # LUX alias: "referred_to_by"; ⊑ not ≡: mentionedInSource (range DataSource) is narrower than P67i
-heritageGraph:documentedBy skos:closeMatch crm:P94i_was_created_by .  # P94i domain E28 would make documented structures conceptual objects
+# 1.1.0: was skos:closeMatch crm:P94i_was_created_by (documenting is not creating);
+# now the same match as the core: a survey that records something observes it.
+heritageGraph:documentedBy skos:closeMatch crmsci:O8i_was_observed_by .
 
 # ---- Person life events (better expressed as Birth/Death events) ------------
 

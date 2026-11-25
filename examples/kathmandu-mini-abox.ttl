@@ -307,7 +307,7 @@ ex:Syn_Taleju a hg:SyncreticRelationship ;
     hg:mentionedInSource ex:Src_Slusser .
 
 # --- Living Goddess lifecycle completion (CQ26, CQ29, CQ32) ---
-ex:KumariGhar a hg:ArchitecturalStructure ;
+ex:KumariGhar a hg:KumariHouse ;
     rdfs:label "Kumari Ghar (Kumari Chen)" ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 ex:TS_Tenure2017 a crm:E52_Time-Span ; rdfs:label "2017--2025" .
@@ -630,6 +630,7 @@ ex:BhavanishankarRituals a hg:RitualEvent ;
 ex:JagatprakashaMalla a crm:E21_Person ; rdfs:label "King Jagatprakasha Malla of Bhaktapur" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/jagatprakasha-malla"^^xsd:anyURI .
 ex:BhavanishankarGuthi a hg:Guthi ; rdfs:label "Guthi of Bhavanishankara Mandira" ;
+    crm:P50i_is_current_keeper_of ex:BhavanishankarMandira ;
     hg:performsRitual ex:BhavanishankarRituals .
 ex:Endow_Bhavanishankar a hg:Endowment ;
     rdfs:label "Land endowment for the rituals of Bhavanishankara Mandira" ;

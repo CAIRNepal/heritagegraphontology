@@ -16,9 +16,11 @@ after Carriero et al. 2020; and ICON-style, Sartini et al. 2023). This makes the
 suite a re-runnable regression oracle: any change to the schema, the queries, or
 the demonstrator data that alters an answer fails the test.
 
-A negative control (--self-test, on by default) perturbs one expected answer and
-confirms the harness reports a mismatch, demonstrating the oracle discriminates
-rather than trivially confirming itself.
+A negative control (on by default; --no-self-test skips it) replaces one
+predicate of CQ11 with a predicate no triple uses and confirms that both arms
+report a mismatch: the oracle discriminates rather than trivially confirming
+itself. It is one control, not a mutation analysis; evaluation/cq_coverage.py
+reports the systematic one (ABox deletion, IRI swap, TBox deletion).
 
 Writes a per-CQ report (txt + csv) and a LaTeX table body for the paper
 appendix. This is the single canonical CQ runner for the paper.

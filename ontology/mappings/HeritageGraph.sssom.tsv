@@ -1,0 +1,331 @@
+# mapping_set_id: https://cair-nepal.org/heritagegraph/mappings/HeritageGraph.sssom.tsv
+# mapping_set_description: Mappings from HeritageGraph terms (core and the LUX alignment module) to external vocabularies.
+# license: https://creativecommons.org/licenses/by/4.0/
+# curie_map:
+#   hg: https://cair-nepal.org/heritagegraph/
+#   crm: http://www.cidoc-crm.org/cidoc-crm/
+#   crminf: http://www.cidoc-crm.org/extensions/crminf/
+#   crmsci: http://www.cidoc-crm.org/extensions/crmsci/
+#   prov: http://www.w3.org/ns/prov#
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   rdfs: http://www.w3.org/2000/01/rdf-schema#
+#   owl: http://www.w3.org/2002/07/owl#
+#   aat: http://vocab.getty.edu/aat/
+#   wikidata: http://www.wikidata.org/entity/
+#   schema: http://schema.org/
+#   dbo: http://dbpedia.org/ontology/
+#   rico: https://www.ica.org/standards/RiC/ontology#
+#   la: https://linked.art/ns/terms/
+#   dcterms: http://purl.org/dc/terms/
+#   geo: http://www.opengis.net/ont/geosparql#
+#   time: http://www.w3.org/2006/time#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	subject_label	predicate_id	object_id	mapping_justification	author_label	reviewer_label	mapping_set_source	comment
+hg:AccessProtocol#Seasonal	Seasonal	skos:closeMatch	https://localcontexts.org/label/tk-seasonal/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:AccessProtocol#SecretSacred	Secret Sacred	skos:closeMatch	https://localcontexts.org/label/tk-secret-sacred/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Acquisition	Acquisition	rdfs:subClassOf	crm:E8_Acquisition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Activity	Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Appellation	Appellation	rdfs:subClassOf	crm:E41_Appellation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ArchitecturalElement		rdfs:subClassOf	crm:E25_Human-Made_Feature	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ArchitecturalElement		skos:closeMatch	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ArchitecturalElement	Architectural Element	rdfs:subClassOf	crm:E24_Physical_Human-Made_Thing	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalElement	Architectural Element	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalElement	Architectural Element	skos:broadMatch	crm:E25_Human-Made_Feature	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalElement	Architectural Element	skos:exactMatch	aat:300000885	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStructure		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ArchitecturalStructure	Architectural Structure	rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStructure	Architectural Structure	skos:broadMatch	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStructure	Architectural Structure	skos:closeMatch	schema:Place	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStructure	Architectural Structure	skos:exactMatch	wikidata:Q811979	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStyle	Architectural Style	skos:broadMatch	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStyle#Chaitya	Chaitya style	skos:closeMatch	aat:300007562	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStyle#Dome	Dome style	skos:relatedMatch	aat:300001280	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStyle#Pagoda	Pagoda style	skos:closeMatch	aat:300004829	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchitecturalStyle#Stupa	Stupa style	skos:closeMatch	aat:300007576	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchivalRecord		rdfs:subClassOf	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ArchivalRecord	Archival Record	skos:broadMatch	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ArchivalRecord	Archival Record	skos:exactMatch	rico:Record	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:AssertionSubject		skos:broadMatch	crm:E1_CRM_Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:AssertionSubject	Assertion Subject	skos:broadMatch	crm:E1_CRM_Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:AttributeAssignment	Attribute Assignment	rdfs:subClassOf	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:AuthorityDocument	Authority Document	rdfs:subClassOf	crm:E32_Authority_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:BeginningOfExistence	Beginning of Existence	rdfs:subClassOf	crm:E63_Beginning_of_Existence	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:BiologicalObject	Biological Object	rdfs:subClassOf	crm:E20_Biological_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Birth	Birth	rdfs:subClassOf	crm:E67_Birth	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:CalendarSystem	Calendar System	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:CalendarSystem	Calendar System	skos:broadMatch	time:TRS	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:CasteGroup		rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:CasteGroup	Caste Group	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:CasteGroup	Caste Group	skos:broadMatch	prov:Organization	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Chaitya		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ChariotFestival		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Concept	Concept	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ConditionType		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Consecration		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Consecration	Consecration	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Consecration	Consecration	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Consecration	Consecration	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Creation	Creation	rdfs:subClassOf	crm:E65_Creation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:CuratedHolding	Curated Holding	rdfs:subClassOf	crm:E78_Curated_Holding	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:CurationActivity	Curation Activity	rdfs:subClassOf	crm:E87_Curation_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Currency	Currency	rdfs:subClassOf	crm:E98_Currency	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:CustodyPeriod	Custody Period	skos:broadMatch	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DataCustodian		rdfs:subClassOf	crm:E39_Actor	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DataCustodian	Data Custodian	rdfs:subClassOf	crm:E39_Actor	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DataCustodian	Data Custodian	skos:broadMatch	prov:Agent	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DataSource		rdfs:subClassOf	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DataSource	Data Source	rdfs:subClassOf	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DataSource	Data Source	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DataSource	Data Source	skos:broadMatch	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DatePrecision		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Death	Death	rdfs:subClassOf	crm:E69_Death	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Deity	Deity	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Deity	Deity	skos:broadMatch	crm:E28_Conceptual_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Deity	Deity	skos:closeMatch	aat:300343850	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Deity	Deity	skos:closeMatch	dbo:Deity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Deity	Deity	skos:exactMatch	wikidata:Q178885	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Dharmashala		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DhungeDhara		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DigitalObject	Digital Object	rdfs:subClassOf	http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DigitalService	Digital Service	rdfs:subClassOf	la:DigitalService	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Dimension	Dimension	rdfs:subClassOf	crm:E54_Dimension	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Dissolution	Dissolution	rdfs:subClassOf	crm:E68_Dissolution	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DocumentationActivity		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:DocumentationActivity	Documentation Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DocumentationActivity	Documentation Activity	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:DocumentationActivity	Documentation Activity	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Encounter	Encounter Event	rdfs:subClassOf	http://www.ics.forth.gr/isl/CRMsci/S19_Encounter_Event	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:EndOfExistence	End of Existence	rdfs:subClassOf	crm:E64_End_of_Existence	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Endowment	Endowment	rdfs:subClassOf	crm:E72_Legal_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Endowment	Endowment	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Endowment	Endowment	skos:broadMatch	crm:E72_Legal_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:EndowmentEvent	Endowment Event	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:EndowmentEvent	Endowment Event	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:EndowmentEvent	Endowment Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Enshrinement		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Enshrinement	Enshrinement	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Enshrinement	Enshrinement	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Enshrinement	Enshrinement	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ExistenceStatus		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Festival		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Festival	Festival	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Festival	Festival	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:FieldSurveyActivity		rdfs:subClassOf	http://www.ics.forth.gr/isl/CRMsci/S4_Observation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:FieldSurveyActivity	Field Survey Activity	skos:broadMatch	crmsci:S4_Observation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:FieldSurveyDataset		rdfs:subClassOf	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:FieldSurveyDataset	Field Survey Dataset	skos:broadMatch	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Formation	Formation	rdfs:subClassOf	crm:E66_Formation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Group	Group	rdfs:subClassOf	crm:E39_Actor	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Group	Group	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Guthi		rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Guthi	Guthi	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Guthi	Guthi	skos:broadMatch	prov:Organization	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:GuthiType		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:HereditaryRoleTenure	Hereditary Role Tenure	skos:broadMatch	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:HistoricalEvent		rdfs:subClassOf	crm:E5_Event	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:HistoricalEvent	Historical Event	rdfs:subClassOf	crm:E5_Event	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:HistoricalEvent	Historical Event	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:HistoricalEvent	Historical Event	skos:broadMatch	crm:E5_Event	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:IconographicObject		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:IconographicObject	Iconographic Object	rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:IconographicObject	Iconographic Object	skos:broadMatch	dbo:Artwork	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:IconographicObject	Iconographic Object	skos:relatedMatch	crm:E36_Visual_Item	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Identifier	Identifier	rdfs:subClassOf	crm:E42_Identifier	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:IdentifierAssignment	Identifier Assignment	rdfs:subClassOf	crm:E15_Identifier_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:InformationObject		rdfs:subClassOf	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:InformationObject	Information Object	skos:broadMatch	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Inscription	Inscription	rdfs:subClassOf	crm:E34_Inscription	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Joining	Joining	rdfs:subClassOf	crm:E85_Joining	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:KumariEnthronementEvent	Kumari Enthronement Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariEnthronementEvent	Kumari Enthronement Event	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariLifecycleEvent	Kumari Lifecycle Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariLifecycleEvent	Kumari Lifecycle Event	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariRetirementEvent		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:KumariRetirementEvent	Kumari Retirement Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariRetirementEvent	Kumari Retirement Event	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariRole	Kumari Role	skos:broadMatch	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariSelectionEvent		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:KumariSelectionEvent	Kumari Selection Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariSelectionEvent	Kumari Selection Event	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:KumariTenure		rdfs:subClassOf	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:KumariTenure	Kumari Tenure	skos:broadMatch	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Language	Language	rdfs:subClassOf	crm:E56_Language	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Leaving	Leaving	rdfs:subClassOf	crm:E86_Leaving	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:LegalObject	Legal Object	rdfs:subClassOf	crm:E72_Legal_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:LinguisticObject	Linguistic Object	rdfs:subClassOf	crm:E33_Linguistic_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Mark	Mark	rdfs:subClassOf	crm:E37_Mark	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:MaskedDance		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Measurement	Measurement	rdfs:subClassOf	crm:E16_Measurement	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:MeasurementUnit	Measurement Unit	rdfs:subClassOf	crm:E58_Measurement_Unit	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Modification	Modification	rdfs:subClassOf	crm:E11_Modification	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:MonetaryAmount	Monetary Amount	rdfs:subClassOf	crm:E97_Monetary_Amount	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Move	Move	rdfs:subClassOf	crm:E9_Move	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Murti		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Murti	Murti	skos:exactMatch	wikidata:Q1781039	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Name	Name	rdfs:subClassOf	crm:E33_E41_Linguistic_Appellation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Office	Office	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Office	Office	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:OralHistoryInterview		rdfs:subClassOf	crm:E65_Creation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:OralHistoryInterview	Oral History Interview	skos:broadMatch	crm:E65_Creation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:OralHistoryRecording		rdfs:subClassOf	crm:E33_Linguistic_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:OralHistoryRecording	Oral History Recording	skos:broadMatch	crm:E33_Linguistic_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:PartAddition	Part Addition	rdfs:subClassOf	crm:E79_Part_Addition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:PartRemoval	Part Removal	rdfs:subClassOf	crm:E80_Part_Removal	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Pati		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Paubha		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Paubha	Paubha	skos:broadMatch	aat:300033618	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Paubha	Paubha	skos:closeMatch	wikidata:Q916651	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Paubha	Paubha	skos:exactMatch	wikidata:Q7148832	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Payment	Payment	rdfs:subClassOf	la:Payment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Period	Period	rdfs:subClassOf	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:PhysicalFeature	Physical Feature	rdfs:subClassOf	crm:E26_Physical_Feature	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:PhysicalHeritageThing		skos:closeMatch	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:PhysicalHeritageThing	Physical Heritage Thing	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Pokhari		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Presence	Presence	rdfs:subClassOf	crm:E93_Presence	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ProductType	Product Type	rdfs:subClassOf	crm:E99_Product_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Proposition	Proposition	rdfs:subClassOf	crminf:I4_Proposition_Set	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Proposition	Proposition	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Proposition	Proposition	skos:broadMatch	crminf:I4_Proposition_Set	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Proposition	Proposition	skos:closeMatch	http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:PropositionalObject	Propositional Object	rdfs:subClassOf	crm:E89_Propositional_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ProvenanceActivity	Provenance Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Purchase	Purchase	rdfs:subClassOf	crm:E96_Purchase	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ReligiousTradition		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ReligiousTradition	Religious Tradition	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ReligiousTradition	Religious Tradition	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ReligiousTradition	Religious Tradition	skos:broadMatch	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ReligiousTradition	Religious Tradition	skos:exactMatch	aat:300073708	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RestHouse		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Right	Right	rdfs:subClassOf	crm:E30_Right	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:RightAcquisition	Right Acquisition	rdfs:subClassOf	la:RightAcquisition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:RitualAssessment	Ritual Assessment	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RitualAssessment	Ritual Assessment	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RitualEvent		rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:RitualEvent	Ritual Event	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RitualEvent	Ritual Event	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RitualEvent	Ritual Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:RitualType		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:RitualType#ChariotProcession	Chariot Procession	skos:broadMatch	aat:300069290	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Sattal		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:SelectionCriterion	Selection Criterion	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SelectionCriterion	Selection Criterion	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SelectionCriterion	Selection Criterion	skos:broadMatch	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Set	Set	rdfs:subClassOf	la:Set	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Set	Set	skos:closeMatch	crm:E78_Curated_Holding	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:SetAddition	Addition (to set)	rdfs:subClassOf	la:Addition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:SetRemoval	Removal (from set)	rdfs:subClassOf	la:Removal	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Site	Site	rdfs:subClassOf	crm:E27_Site	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:StateHeritageAuthority	State Heritage Authority	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:StructureType	Structure Type	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:StructureType	Structure Type	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Stupa		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Stupa	Stupa	skos:exactMatch	aat:300007576	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Stupa	Stupa	skos:exactMatch	wikidata:Q180987	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SyncreticRelationship		rdfs:subClassOf	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:SyncreticRelationship	Syncretic Relationship	rdfs:subClassOf	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SyncreticRelationship	Syncretic Relationship	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SyncreticRelationship	Syncretic Relationship	skos:broadMatch	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:SyncreticType		rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Temple		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Temple	Temple	skos:broadMatch	dbo:ReligiousBuilding	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Temple	Temple	skos:broadMatch	schema:PlaceOfWorship	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Temple	Temple	skos:exactMatch	aat:300007595	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Temple	Temple	skos:exactMatch	dbo:Temple	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Temple	Temple	skos:exactMatch	wikidata:Q44539	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Temple	Temple	skos:narrowMatch	schema:HinduTemple	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Tenure	Tenure	rdfs:subClassOf	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Tenure	Tenure	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:Title	Title	rdfs:subClassOf	crm:E35_Title	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Transfer	Transfer	rdfs:subClassOf	la:Transfer	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Transformation	Transformation	rdfs:subClassOf	crm:E81_Transformation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:TypeAssignment	Type Assignment	rdfs:subClassOf	crm:E17_Type_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:TypeCreation	Type Creation	rdfs:subClassOf	crm:E83_Type_Creation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Verification		rdfs:subClassOf	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:Verification	Verification	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:VisualItem	Visual Item	rdfs:subClassOf	crm:E36_Visual_Item	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:WaterStructure		rdfs:subClassOf	crm:E22_Human-Made_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:aboutProposition	is subject of proposition	rdfs:subPropertyOf	crm:P129i_is_subject_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:accessProtocol	Access protocol	rdfs:subPropertyOf	dcterms:accessRights	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:acquisitionAmount	acquisition amount	rdfs:subPropertyOf	crm:P179_had_sales_price	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:amountInCurrency	amount in currency	rdfs:subPropertyOf	crm:P180_has_currency	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:architecturalStructures	Architectural structures	rdfs:subPropertyOf	crm:P12_occurred_in_the_presence_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:birthTimespan		skos:closeMatch	crm:P4_has_time-span	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:carriesInscription	carries inscription	rdfs:subPropertyOf	crm:P128_carries	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:datePrecision		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:deathTimespan		skos:closeMatch	crm:P4_has_time-span	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:destructionEvent		owl:equivalentProperty	crm:P13i_was_destroyed_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:diedInEvent	died in event	rdfs:subPropertyOf	crm:P100i_died_in	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:digitallyAvailableVia	digitally available via	rdfs:subPropertyOf	la:digitally_available_via	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:dimensionHasUnit	dimension has unit	rdfs:subPropertyOf	crm:P91_has_unit	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:dissolvedBy	dissolved by	rdfs:subPropertyOf	crm:P99i_was_dissolved_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:documentedBy		skos:closeMatch	crmsci:O8i_was_observed_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:documentedBy	Was documented by	rdfs:subPropertyOf	prov:wasInfluencedBy	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:documentedBy	Was documented by	skos:closeMatch	crmsci:O8i_was_observed_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:endowmentDonor	Endowment donor	skos:broadMatch	crm:P23_transferred_title_from	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:endowmentRecipient	Endowment recipient	skos:broadMatch	crm:P22_transferred_title_to	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:enshrinedDeity	Enshrined deity	rdfs:subPropertyOf	crm:P12_occurred_in_the_presence_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:enshrinedInStructure	Enshrined in structure	rdfs:subPropertyOf	crm:P8_took_place_on_or_within	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:existenceStatus		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:guthiType		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:guthiType	has guthi type	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:hadParticipant		skos:closeMatch	crm:P11_had_participant	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hadParticipant	Had participant	skos:closeMatch	crm:P11_had_participant	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:hasArchitecturalStyle		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasArchitecturalStyle	Has architectural style	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:hasConditionType		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasConditionType	Has condition type	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:hasDataCustodian	has data custodian	skos:closeMatch	crm:P109_has_current_or_former_curator	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasDigitalRepresentation	has digital representation	rdfs:subPropertyOf	crm:P138i_has_representation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasDimension	has dimension	rdfs:subPropertyOf	crm:P43_has_dimension	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasLanguage	has language	rdfs:subPropertyOf	crm:P72_has_language	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasMetadata	has metadata	rdfs:subPropertyOf	crm:P67i_is_referred_to_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasReligiousTradition		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hasReligiousTradition	Has religious tradition	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:hasVisualItem	shows visual item	rdfs:subPropertyOf	crm:P65_shows_visual_item	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:holdsItem	holds item	rdfs:subPropertyOf	crm:P46_is_composed_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:hypothesizedLocation		rdfs:subPropertyOf	crm:P55_has_current_location	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:identifiedByIdentifier	identified by identifier	rdfs:subPropertyOf	crm:P1_is_identified_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:identifiedByName	identified by name	rdfs:subPropertyOf	crm:P1_is_identified_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:identifiedByTitle	has title	rdfs:subPropertyOf	crm:P1_is_identified_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:invokesDeity		rdfs:subPropertyOf	crm:P12_occurred_in_the_presence_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:invokesDeity	Invokes deity	rdfs:subPropertyOf	crm:P12_occurred_in_the_presence_of	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:isAboutDeity		skos:closeMatch	crm:P138_represents	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:isAboutDeity	Is about deity	rdfs:subPropertyOf	crm:P62_depicts	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:isInvokedInRitual		rdfs:subPropertyOf	crm:P12i_was_present_at	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:isInvokedInRitual	Is invoked in ritual	rdfs:subPropertyOf	crm:P12i_was_present_at	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:managedByGuthi		skos:closeMatch	crm:P49_has_former_or_current_keeper	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:measurementObserves	measurement observes	rdfs:subPropertyOf	crm:P40_observed_dimension	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:mentionedInSource		rdfs:subPropertyOf	crm:P67i_is_referred_to_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:occursDuringPeriod	occurs during period	rdfs:subPropertyOf	crm:P10_falls_within	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:paidAmount	paid amount	rdfs:subPropertyOf	la:paid_amount	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:paidFrom	paid from	rdfs:subPropertyOf	la:paid_from	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:paidTo	paid to	rdfs:subPropertyOf	la:paid_to	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:participatesInRitual	Participates in ritual	rdfs:subPropertyOf	crm:P12i_was_present_at	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:performedByGroup		rdfs:subPropertyOf	crm:P14_carried_out_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:performedByGroup	Performed by group	rdfs:subPropertyOf	crm:P14_carried_out_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:performsRitual		rdfs:subPropertyOf	crm:P14i_performed	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:performsRitual	Performs ritual	rdfs:subPropertyOf	crm:P14i_performed	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:publicationTimespan		skos:closeMatch	crm:P4_has_time-span	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:recordedDate	Recorded date	skos:broadMatch	crm:P3_has_note	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:ritualType		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:ritualType	has ritual type	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:routePlaces	Route places	rdfs:subPropertyOf	crm:P7_took_place_at	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:sourceCitation	Source citation	rdfs:subPropertyOf	crm:P3_has_note	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:sourceCreator	Datacite creator	skos:exactMatch	dcterms:creator	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:sourcePublisher	Datacite publisher	skos:exactMatch	dcterms:publisher	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:structureType	has structure type	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:subjectToLegalObject	subject to legal status	skos:relatedMatch	crm:P67i_is_referred_to_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:syncreticType		rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:syncreticType	has syncretic type	rdfs:subPropertyOf	crm:P2_has_type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:transferredThing	transferred thing	rdfs:subPropertyOf	la:transferred	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:transferredToGuthi		rdfs:subPropertyOf	crm:P29_custody_received_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:transferredToGuthi	Transferred to guthi	rdfs:subPropertyOf	crm:P29_custody_received_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:verifiedByExpert	Verified by expert	rdfs:subPropertyOf	crm:P14_carried_out_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		core	
+hg:wasAcquiredThrough	was acquired through	rdfs:subPropertyOf	crm:P24i_changed_ownership_through	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasBornBy	was born by	rdfs:subPropertyOf	crm:P98i_was_born	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasEncounteredIn	was encountered in	rdfs:subPropertyOf	http://www.ics.forth.gr/isl/CRMsci/O19i_was_object_encountered_at	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasFormedBy	was formed by	rdfs:subPropertyOf	crm:P95i_was_formed_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasMeasuredBy	was measured by	rdfs:subPropertyOf	crm:P39i_was_measured_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasModifiedBy	was modified by	rdfs:subPropertyOf	crm:P31i_was_modified_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	
+hg:wasMovedBy	was moved by	rdfs:subPropertyOf	crm:P25i_moved_by	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		lux-module	

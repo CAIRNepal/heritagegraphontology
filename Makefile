@@ -23,6 +23,7 @@ artefacts:           ## regenerate OWL/SHACL/JSON Schema (+ JSON-LD context, CQ 
 	python3 scripts/finalize_alpha5_artifacts.py
 	python3 scripts/gen_jsonld_context.py
 	python3 scripts/gen_cq_tbox_doc.py
+	python3 scripts/gen_sssom.py
 
 robot: $(ROBOT_JAR)  ## download ROBOT $(ROBOT_VERSION) (needs Java) for `make check`
 
@@ -37,6 +38,7 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 evaluation/independent_abox.py
 	python3 evaluation/run_abox_cq32.py
 	python3 scripts/gen_cq_tbox_doc.py --check
+	python3 scripts/gen_sssom.py --check
 	python3 evaluation/check_declared_terms.py
 	python3 evaluation/check_cq_class_properties.py
 	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/check_combined_dl.py
@@ -50,6 +52,11 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 evaluation/run_inference_cq.py
 	python3 evaluation/pattern_experiments.py multicalendar
 	python3 evaluation/pattern_experiments.py reuse
+	python3 evaluation/pattern_experiments.py tenure
+	python3 evaluation/pattern_experiments.py custodianship
+
+coverage:            ## CQ traceability matrix and mutation analysis (report, ~2 min)
+	python3 evaluation/cq_coverage.py
 
 BASE ?= https://cair-nepal.org/heritagegraph/
 conneg:              ## check content negotiation of the deployed IRIs (BASE=<url> for staging)

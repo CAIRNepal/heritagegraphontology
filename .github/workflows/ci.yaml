@@ -95,6 +95,9 @@ jobs:
       - name: cq_sparql.md is generated from the committed CQ queries
         run: python3 scripts/gen_cq_tbox_doc.py --check
 
+      - name: The SSSOM mapping set is generated from the committed mappings
+        run: python3 scripts/gen_sssom.py --check
+
       - name: Inference CQs are answered only with HeritageGraph's axioms
         run: python3 evaluation/run_inference_cq.py
 
@@ -103,6 +106,11 @@ jobs:
 
       - name: Tenure pattern reused outside Nepal (RQ3)
         run: python3 evaluation/pattern_experiments.py reuse
+
+      - name: Tenure against the CRM role and Wikidata P39 idioms; custody and endowment scenario
+        run: |
+          python3 evaluation/pattern_experiments.py tenure
+          python3 evaluation/pattern_experiments.py custodianship
 
       - name: Run ontology evaluation suite
         run: python3 scripts/run_release_quality.py

@@ -898,7 +898,7 @@
                     ]
                 },
                 "epoch_date_gregorian": {
-                    "description": "Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14; Nepal Sambat counts elapsed years from year 0, 0879-10-24 = 20 October 879 Julian). Its month and day only indicate the approximate new-year season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November, lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose new year is 1 January, for which year conversion is exact.",
+                    "description": "Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14, a nominal back-projection of the modern solar reckoning rather than an attested date; Nepal Sambat counts elapsed years from year 0, 0879-10-24 = 20 October 879 Julian). Its month and day only indicate the approximate new-year season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November, lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose new year is 1 January, for which year conversion is exact.",
                     "pattern": "^-?[0-9]{4}-[0-9]{2}-[0-9]{2}$",
                     "type": [
                         "string",
@@ -3042,14 +3042,6 @@
                     "type": "string"
                 },
                 "custody_object": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "string"
-                        }
-                    ],
                     "description": "Structure or object in custody during the period (any heritage structure, element or human-made object, e.g. a museum object).",
                     "type": "string"
                 },
@@ -14172,7 +14164,7 @@
         },
         "TenureEvent": {
             "additionalProperties": false,
-            "description": "An event that opens or closes a Tenure: a ritual (an enthronement, a retirement), a transfer of custody, an endowment event, a documentation or historical event, or any other activity.",
+            "description": "An event that opens or closes a Tenure: a ritual (an enthronement, a retirement), a transfer of custody, an endowment event, a documentation or historical event, any other activity, or a death.",
             "title": "TenureEvent",
             "type": "object"
         },
@@ -14466,8 +14458,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "Object transferred in custody event",
-                    "type": "string"
+                    "description": "Object transferred in custody event"
                 },
                 "transferred_to_actor": {
                     "description": "New custodian (person or group)",

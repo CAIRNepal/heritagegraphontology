@@ -159,124 +159,163 @@ as bare literals that cannot be told apart, weighed, or traced.""")
 # tenure: KumariTenure period vs. the plain-CRM actor-role idiom.
 # ===========================================================================
 def run_tenure() -> int:
-    """Baseline comparison: KumariTenure period vs. the plain-CRM actor-role
-    idiom. The claim under test is that conventional actor-role modelling
-    conflates the enduring person with the temporary sacred office. Three paired
-    questions plus a SHACL constraint check on 'exactly one deity per office'.
-    """
+    """The Kumari tenure against the two strongest established idioms, on the
+    same facts (holder, office, deity, residence, period, opening and closing
+    events, supporting institution):
+      A. HeritageGraph: hg:KumariTenure (the released demonstrator).
+      B. CIDOC-CRM role idiom: an E7 activity carried out by the person in the
+         role of the Kumari office (crm:P14 with P14.1 "in the role of", in the
+         official property-class encoding crm:PC14_carried_out_by /
+         P01_has_domain / P02_has_range, published in CIDOC's PC extension),
+         with P4 time-span, P7 place, P15 "was influenced by" for the deity (CRM
+         has no embodiment property) and opening/closing E5 events linked by
+         P182.
+      C. Wikidata qualifier model: position held (P39) on a statement node
+         with start time (P580), end time (P582), end cause (P1534), location
+         (P276) and "represents" (P1268) for the deity.
+    For each question the report gives the rows each arm returns and the
+    number of triple patterns its query needs; the experiment states, rather
+    than assumes, where the arms differ. It fails only if the HeritageGraph arm
+    misses an answer or the constraint check behaves unexpectedly."""
     from pyshacl import validate
 
     PFX = """PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX ex:  <https://cair-nepal.org/heritagegraph/example/>
-PREFIX ar:  <https://cair-nepal.org/heritagegraph/example/actorrole/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX b:   <https://cair-nepal.org/heritagegraph/example/baseline/>
+PREFIX p:   <http://www.wikidata.org/prop/>
+PREFIX ps:  <http://www.wikidata.org/prop/statement/>
+PREFIX pq:  <http://www.wikidata.org/prop/qualifier/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 """
+    hg_g = Graph()
+    hg_g.parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
+    hg_g.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
 
-    tenure_g = Graph()
-    tenure_g.parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
-
-    ACTOR_ROLE = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
-@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+    CRM_ROLE = """@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
-@prefix ar:  <https://cair-nepal.org/heritagegraph/example/actorrole/> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-
-ex:KumariPerson a crm:E21_Person ; rdfs:label "Kumari (incumbent)" ;
-    crm:P2_has_type ar:KumariRoleType ;
-    ar:embodiesDeity ex:Taleju ;
-    ar:residesAt ex:KumariGhar ;
-    ar:supportedBy ex:KasthamandapGuthi .
-ar:KumariRoleType a crm:E55_Type ; rdfs:label "Kumari (role)" .
-ex:Taleju a hg:Deity ; rdfs:label "Taleju" .
-ex:KumariGhar a hg:ArchitecturalStructure ; rdfs:label "Kumari Ghar" .
-ex:KasthamandapGuthi a hg:Guthi ; rdfs:label "Kasthamandap Guthi" .
-ex:Sel_2017 a crm:E5_Event ; rdfs:label "Selection event" ;
-    crm:P11_had_participant ex:KumariPerson .
-ex:Ret_2025 a crm:E5_Event ; rdfs:label "Retirement event" ;
-    crm:P11_had_participant ex:KumariPerson .
-ex:TS_Tenure2017 a crm:E52_Time-Span ; rdfs:label "2017--2025" .
+@prefix b:   <https://cair-nepal.org/heritagegraph/example/baseline/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+b:KumariService a crm:E7_Activity ;
+    crm:P01i_is_domain_of b:pc1 , b:pc2 ;
+    crm:P4_has_time-span b:ts ;
+    crm:P7_took_place_at ex:KumariGhar ;
+    crm:P15_was_influenced_by ex:Taleju .
+b:pc1 a crm:PC14_carried_out_by ; crm:P02_has_range ex:KumariPerson ;
+    crm:P14.1_in_the_role_of b:KumariOffice .
+b:pc2 a crm:PC14_carried_out_by ; crm:P02_has_range ex:GuthiSansthan ;
+    crm:P14.1_in_the_role_of b:SupportingInstitution .
+b:KumariOffice a crm:E55_Type . b:SupportingInstitution a crm:E55_Type .
+b:ts a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
+b:Enthronement a crm:E5_Event ; crm:P182_ends_before_or_with_the_start_of b:KumariService .
+b:KumariService crm:P182_ends_before_or_with_the_start_of b:Retirement .
+b:Retirement a crm:E5_Event .
 """
-    role_g = Graph()
-    role_g.parse(data=ACTOR_ROLE, format="turtle")
+    WIKIDATA = """@prefix p:  <http://www.wikidata.org/prop/> .
+@prefix ps: <http://www.wikidata.org/prop/statement/> .
+@prefix pq: <http://www.wikidata.org/prop/qualifier/> .
+@prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
+@prefix b:  <https://cair-nepal.org/heritagegraph/example/baseline/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+ex:KumariPerson p:P39 b:stmt .
+b:stmt ps:P39 b:KumariOffice ;
+    pq:P580 "2017-09-28T00:00:00"^^xsd:dateTime ;
+    pq:P582 "2025-09-30T00:00:00"^^xsd:dateTime ;
+    pq:P1534 b:Retirement ;
+    pq:P276 ex:KumariGhar ;
+    pq:P1268 ex:Taleju .
+"""
+    crm_g = Graph().parse(data=CRM_ROLE, format="turtle")
+    wd_g = Graph().parse(data=WIKIDATA, format="turtle")
 
-    QUESTIONS = [
-        ("Q1 deity embodied, WITH its temporal scope",
-         PFX + """SELECT ?deity ?ts WHERE {
-           ?tenure a hg:KumariTenure ; hg:embodiedDeity ?deity ;
-                   crm:P4_has_time-span ?ts ; hg:hadParticipant ex:KumariPerson . }""",
-         PFX + """SELECT ?deity ?ts WHERE {
-           ex:KumariPerson ar:embodiesDeity ?deity ; crm:P4_has_time-span ?ts . }""",
-         PFX + """SELECT ?deity WHERE { ex:KumariPerson ar:embodiesDeity ?deity . }"""),
-        ("Q2 typed events initiating and terminating the office",
-         PFX + """SELECT ?sel ?ret WHERE {
-           ?sel a hg:KumariSelectionEvent ; hg:initiatedTenure ?tenure .
-           ?ret a hg:KumariRetirementEvent ; hg:endedTenureOf ?tenure . }""",
-         PFX + """SELECT ?sel ?ret WHERE {
-           ?sel a crm:E5_Event ; ar:initiatedOffice ?o .
-           ?ret a crm:E5_Event ; ar:terminatedOffice ?o . }""",
-         PFX + """SELECT ?ev WHERE { ?ev a crm:E5_Event ;
-           crm:P11_had_participant ex:KumariPerson . }"""),
-        ("Q3 residence scoped to the office's time-span",
-         PFX + """SELECT ?res ?ts WHERE {
-           ?tenure a hg:KumariTenure ; hg:residenceStructure ?res ;
-                   crm:P4_has_time-span ?ts . }""",
-         PFX + """SELECT ?res ?ts WHERE {
-           ex:KumariPerson ar:residesAt ?res ; crm:P4_has_time-span ?ts . }""",
-         PFX + """SELECT ?res WHERE { ex:KumariPerson ar:residesAt ?res . }"""),
+    Q = [
+        ("Q1 deity, with the period it applies to",
+         """SELECT ?deity ?from WHERE { ?t a hg:KumariTenure ; hg:embodiedDeity ?deity ;
+              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
+         """SELECT ?deity ?from WHERE { ?pc crm:P02_has_range ex:KumariPerson ;
+              crm:P14.1_in_the_role_of b:KumariOffice . ?a crm:P01i_is_domain_of ?pc ;
+              crm:P15_was_influenced_by ?deity ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
+         """SELECT ?deity ?from WHERE { ex:KumariPerson p:P39 ?s . ?s ps:P39 b:KumariOffice ;
+              pq:P1268 ?deity ; pq:P580 ?from . }"""),
+        ("Q2 typed events that began and ended the office",
+         """SELECT ?open ?close WHERE { ?t a hg:KumariTenure .
+              ?open a hg:KumariSelectionEvent ; hg:initiatedTenure ?t .
+              ?close a hg:KumariRetirementEvent ; hg:endedTenureOf ?t . }""",
+         """SELECT ?open ?close WHERE { ?open crm:P182_ends_before_or_with_the_start_of ?a .
+              ?a crm:P182_ends_before_or_with_the_start_of ?close ; crm:P01i_is_domain_of ?pc .
+              ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
+         """SELECT ?close WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P1534 ?close . }"""),
+        ("Q3 residence during the period",
+         """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:residenceStructure ?res ;
+              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
+         """SELECT ?res ?from WHERE { ?a crm:P01i_is_domain_of ?pc ; crm:P7_took_place_at ?res ;
+              crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from .
+              ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
+         """SELECT ?res ?from WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P276 ?res ; pq:P580 ?from . }"""),
+        ("Q4 who held the office on 1 January 2020",
+         """SELECT ?holder WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ?holder ;
+              crm:P4_has_time-span ?ts . ?ts crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
+              FILTER(?b <= "2020-01-01T00:00:00"^^xsd:dateTime && "2020-01-01T00:00:00"^^xsd:dateTime <= ?e) }""",
+         """SELECT ?holder WHERE { ?a crm:P01i_is_domain_of ?pc ; crm:P4_has_time-span ?ts .
+              ?pc crm:P02_has_range ?holder ; crm:P14.1_in_the_role_of b:KumariOffice .
+              ?ts crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
+              FILTER(?b <= "2020-01-01T00:00:00"^^xsd:dateTime && "2020-01-01T00:00:00"^^xsd:dateTime <= ?e) }""",
+         """SELECT ?holder WHERE { ?holder p:P39 ?s . ?s ps:P39 b:KumariOffice ; pq:P580 ?b ; pq:P582 ?e .
+              FILTER(?b <= "2020-01-01T00:00:00"^^xsd:dateTime && "2020-01-01T00:00:00"^^xsd:dateTime <= ?e) }"""),
+        ("Q5 institution supporting the office holder",
+         """SELECT ?inst WHERE { ?t a hg:KumariTenure ; hg:supportedByInstitution ?inst . }""",
+         """SELECT ?inst WHERE { ?a crm:P01i_is_domain_of ?pc , ?pk .
+              ?pk crm:P14.1_in_the_role_of b:KumariOffice .
+              ?pc crm:P02_has_range ?inst ; crm:P14.1_in_the_role_of b:SupportingInstitution . }""",
+         None),
     ]
 
-    print("Paired questions (tenure arm = released demonstrator; actor-role arm ="
-          "\ncharitable plain-CRM baseline, same facts)\n")
-    for name, q_tenure, q_role, q_degraded in QUESTIONS:
-        n_t = len(list(tenure_g.query(q_tenure)))
-        n_r = len(list(role_g.query(q_role)))
-        n_d = len(list(role_g.query(q_degraded)))
-        print(f"{name}")
-        print(f"  tenure arm: {n_t} row(s); actor-role arm: {n_r} row(s); "
-              f"degraded (scope dropped): {n_d} row(s)")
-    assert all(len(list(tenure_g.query(q))) >= 1 for _, q, _, _ in QUESTIONS)
+    def n_patterns(q: str) -> int:
+        return q.count(" . ") + q.count(" ; ") + 1
 
-    # C4: constraint enforceability. Inject a second embodied deity into each arm.
-    shapes = _shapes()
-    ont = _ont_for_shacl()
+    print(f"{'question':<46}{'HG':>8}{'CRM role':>10}{'Wikidata':>10}   (rows / triple patterns)")
+    ok = True
+    for name, qh, qc, qw in Q:
+        rh = len(list(hg_g.query(PFX + qh)))
+        rc = len(list(crm_g.query(PFX + qc)))
+        rw = "-" if qw is None else len(list(wd_g.query(PFX + qw)))
+        ok &= rh >= 1
+        cell = lambda r, q: f"{r}/{n_patterns(q)}" if q else "n/a"
+        print(f"{name:<46}{cell(rh, qh):>8}{cell(rc, qc):>10}{cell(rw, qw) if qw else 'n/a':>10}")
+    print("""
+Reading: all three idioms can state the facts. Where they differ:
+- Q1: CRM has no embodiment property (P15 'was influenced by' is far weaker);
+  Wikidata's P1268 'represents' is closer; HeritageGraph states embodiment.
+- Q2: the CRM and Wikidata arms record the closing event (and CRM an untyped
+  opening event) but not its kind; HeritageGraph types both (selection,
+  retirement), which the selection and retirement CQs use.
+- Q4/Q5: the CRM idiom needs the property-of-property reification (2-3 extra
+  patterns per role); Wikidata has no qualifier for a supporting institution.
+- Constraints: below.""")
 
-    TENURE_VIOLATION = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
+    # constraint check: 'exactly one embodied deity per tenure' under the published shapes
+    shapes, ont = _shapes(), _ont_for_shacl()
+    bad = Graph().parse(data="""@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
-@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
+@prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-ex:T a hg:KumariTenure ; rdfs:label "tenure" ;
-    hg:embodiedDeity ex:D1 , ex:D2 ;
-    crm:P11_had_participant ex:P ; crm:P4_has_time-span ex:TS .
+ex:T a hg:KumariTenure ; rdfs:label "tenure" ; hg:embodiedDeity ex:D1 , ex:D2 ;
+    hg:tenureHolder ex:P ; hg:residenceStructure ex:H ; crm:P4_has_time-span ex:TS .
 ex:D1 a hg:Deity ; rdfs:label "d1" . ex:D2 a hg:Deity ; rdfs:label "d2" .
-ex:P a crm:E21_Person ; rdfs:label "p" .
-ex:TS a crm:E52_Time-Span ; rdfs:label "ts" .
-"""
-    ROLE_VIOLATION = ACTOR_ROLE + """
-ex:KumariPerson ar:embodiesDeity ex:Vajradevi .
-ex:Vajradevi a hg:Deity ; rdfs:label "Vajradevi" .
-"""
-
-    tg = Graph(); tg.parse(data=TENURE_VIOLATION, format="turtle")
-    c_tenure, _, _ = validate(tg, shacl_graph=shapes, ont_graph=ont,
-                              inference="none", abort_on_first=False)
-    rg = Graph(); rg.parse(data=ROLE_VIOLATION, format="turtle")
-    c_role, _, _ = validate(rg, shacl_graph=shapes, ont_graph=ont,
-                            inference="none", abort_on_first=False)
-    print("\nC4 'exactly one deity per office' under the published shapes:")
-    print(f"  tenure arm, two deities on the tenure node:   "
-          f"conforms={c_tenure}  (expected False: violation caught)")
-    print(f"  actor-role arm, two deities on the person:    "
-          f"conforms={c_role}  (expected True: passes silently -- no node to constrain)")
-
-    if c_tenure or not c_role:
-        print("\nFAIL: unexpected constraint behaviour.")
-        return 1
-    print("\nPASS: the actor-role baseline answers the deity question only with "
-          "its temporal scope dropped, cannot express office initiation/"
-          "termination, attaches residence timelessly, and offers no bearer for "
-          "the one-deity constraint; the tenure node recovers all four.")
-    return 0
+ex:P a crm:E21_Person ; rdfs:label "p" . ex:H a hg:KumariHouse ; rdfs:label "h" .
+ex:TS a crm:E52_Time-Span .""", format="turtle")
+    c_hg, _, _ = validate(bad, shacl_graph=shapes, ont_graph=ont, inference="none")
+    crm_bad = Graph().parse(data=CRM_ROLE + "b:KumariService crm:P15_was_influenced_by ex:Vajradevi .\n",
+                            format="turtle")
+    c_crm, _, _ = validate(crm_bad, shacl_graph=shapes, ont_graph=ont, inference="none")
+    print(f"\n'one deity per tenure': HeritageGraph tenure with two deities conforms={c_hg} "
+          f"(caught); CRM-role activity with two influences conforms={c_crm} (a generic E7 "
+          f"has no shape that could carry the rule without an office-specific class).")
+    ok &= (not c_hg) and c_crm
+    print("PASS" if ok else "FAIL")
+    return 0 if ok else 1
 
 
 # ===========================================================================
@@ -365,97 +404,124 @@ type and provenance queryable.""")
 # custodianship: institutional depth (custody transfer, roles, endowment).
 # ===========================================================================
 def run_custodianship() -> int:
-    """Institutional-depth scenario exercising custody transfer through
-    crm:E10_Transfer_of_Custody, hereditary caste roles, and endowment support.
-    The scenario is released and shape-conformant, separate from the demonstrator
-    (whose published triple counts stay untouched).
+    """Institutional-depth scenario on HeritageGraph's own patterns: an
+    endowment held by a state body that sustains a ritual (hg:Endowment,
+    P105, hg:sustains), a dated custody chain opened and closed by transfers of
+    custody with an open current period (hg:CustodyPeriod), and a hereditary
+    office held by a caste group under that body's mandate
+    (hg:HereditaryRoleTenure). Illustrative scenario, separate from the
+    demonstrator; the institutions and dates are simplified, not a historical
+    record. Fails unless every question is answered and the data conforms.
     """
     from pyshacl import validate
 
     PFX = """PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
-PREFIX ex:  <https://cair-nepal.org/heritagegraph/example/>
+PREFIX ex:  <https://cair-nepal.org/heritagegraph/example/cust/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 """
 
     SCENARIO = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix aat: <http://vocab.getty.edu/aat/> .
-@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:  <https://cair-nepal.org/heritagegraph/example/cust/> .
 
-# Structure under custody.
-ex:Kasthamandap a hg:Temple ; rdfs:label "Kasthamandap" ;
-    hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> .
-
-# Institutions: a private temple guthi and the state corporation.
-ex:PrivateGuthi a hg:Guthi ; rdfs:label "Kasthamandap private Guthi" ;
+ex:Pavilion a hg:Sattal ; rdfs:label "Public pavilion (illustrative)" .
+ex:PrivateGuthi a hg:Guthi ; rdfs:label "Pavilion guthi (illustrative)" ;
     hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> .
-ex:GuthiSansthan a hg:Guthi ; rdfs:label "Guthi Sansthan (state corporation)" ;
-    hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi> ;
-    crm:P50i_is_current_keeper_of ex:Kasthamandap ;
-    hg:performsRitual ex:IndraJatra .
+ex:StateBody a hg:StateHeritageAuthority ; rdfs:label "State guthi corporation (illustrative)" .
 
-# Custody transfer following the Guthi Corporation Act (2021 B.S. / 1964 CE).
-ex:TS_1964 a crm:E52_Time-Span ; rdfs:label "1964 CE (2021 B.S.)" .
-ex:Transfer_1964 a crm:E10_Transfer_of_Custody ;
-    rdfs:label "Nationalisation of the Kasthamandap guthi endowment" ;
-    crm:P30_transferred_custody_of ex:Kasthamandap ;
+# custody chain: the guthi, then the state body from 1964 (open: no end)
+ex:T_1900 a crm:E52_Time-Span ; crm:P82a_begin_of_the_begin "1900-01-01T00:00:00"^^xsd:dateTime .
+ex:T_1964 a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1964-04-13T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1965-04-12T23:59:59"^^xsd:dateTime .
+ex:Transfer_1964 a crm:E10_Transfer_of_Custody ; rdfs:label "Transfer to the state body" ;
+    crm:P30_transferred_custody_of ex:Pavilion ;
     crm:P28_custody_surrendered_by ex:PrivateGuthi ;
-    crm:P29_custody_received_by ex:GuthiSansthan ;
-    hg:transferredToGuthi ex:GuthiSansthan ;
-    crm:P4_has_time-span ex:TS_1964 .
+    crm:P29_custody_received_by ex:StateBody ;
+    crm:P4_has_time-span ex:T_1964 .
+ex:CP_Guthi a hg:CustodyPeriod ; rdfs:label "Custody by the guthi" ;
+    hg:custodyHolder ex:PrivateGuthi ; hg:custodyObject ex:Pavilion ;
+    hg:custodyClosedBy ex:Transfer_1964 ;
+    crm:P4_has_time-span ex:T_CP_Guthi .
+ex:T_CP_Guthi a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1900-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1964-04-13T00:00:00"^^xsd:dateTime .
+ex:CP_State a hg:CustodyPeriod ; rdfs:label "Custody by the state body (current)" ;
+    hg:custodyHolder ex:StateBody ; hg:custodyObject ex:Pavilion ;
+    hg:custodyOpenedBy ex:Transfer_1964 ;
+    crm:P4_has_time-span ex:T_CP_State .
+ex:T_CP_State a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1964-04-13T00:00:00"^^xsd:dateTime .
 
-# Ritual sustained by the endowment, performed by a hereditary caste group.
-ex:IndraJatra a hg:RitualEvent ; rdfs:label "Indra Jatra" ;
-    hg:performedByGroup ex:Manandhars .
-ex:Manandhars a hg:CasteGroup ; rdfs:label "Manandhar community" ;
-    hg:traditionalRole "hereditary chariot pullers and oil pressers" ;
-    crm:P107_has_current_or_former_member ex:MemberPerson .
-ex:MemberPerson a crm:E21_Person ; rdfs:label "Guthiyar (member)" .
+# endowment held by the state body that sustains a ritual
+ex:Festival a hg:Festival ; rdfs:label "City festival (illustrative)" ;
+    hg:performedByGroup ex:CarpenterCaste .
+ex:Endowment a hg:Endowment ; rdfs:label "Festival land endowment" ;
+    crm:P105_right_held_by ex:StateBody ; hg:sustains ex:Festival .
+
+# hereditary office under the state body's mandate
+ex:CarpenterCaste a hg:CasteGroup ; rdfs:label "Carpenter caste group (illustrative)" ;
+    hg:traditionalRole "hereditary chariot builders" .
+ex:ChariotBuilder a hg:RitualOffice ; rdfs:label "Builder of the festival chariot" .
+ex:HRT a hg:HereditaryRoleTenure ; rdfs:label "Chariot-building office" ;
+    hg:roleHolder ex:CarpenterCaste ; hg:tenureOffice ex:ChariotBuilder ;
+    hg:roleDuty "build the festival chariot" ; hg:dutyFor ex:Festival ;
+    hg:mandatedBy ex:StateBody ; hg:successionRule "hereditary within the caste group" .
 """
 
     QUERIES = {
-        "Q1 custody transfer (object, from, to, time-span)":
-            PFX + """SELECT ?obj ?from ?to ?ts WHERE {
-              ?t a crm:E10_Transfer_of_Custody ;
-                 crm:P30_transferred_custody_of ?obj ;
-                 crm:P28_custody_surrendered_by ?from ;
-                 crm:P29_custody_received_by ?to ;
-                 crm:P4_has_time-span ?ts . }""",
-        "Q2 current keeper after the transfer":
-            PFX + """SELECT ?keeper WHERE {
-              ?keeper crm:P50i_is_current_keeper_of ex:Kasthamandap . }""",
-        "Q3 hereditary roles (group, role, ritual, member)":
-            PFX + """SELECT ?group ?role ?ritual ?member WHERE {
-              ?ritual hg:performedByGroup ?group .
-              ?group hg:traditionalRole ?role ;
-                     crm:P107_has_current_or_former_member ?member . }""",
-        "Q4 endowment: keeper that also sustains the ritual cycle":
-            PFX + """SELECT ?guthi ?asset ?ritual WHERE {
-              ?guthi a hg:Guthi ;
-                     crm:P50i_is_current_keeper_of ?asset ;
-                     hg:performsRitual ?ritual . }""",
+        "Q1 custody holder of the pavilion in 1950 and in 2000 (open current period)":
+            PFX + """SELECT ?year ?holder WHERE {
+              VALUES ?year { 1950 2000 }
+              ?cp a hg:CustodyPeriod ; hg:custodyObject ex:Pavilion ; hg:custodyHolder ?holder ;
+                  crm:P4_has_time-span ?ts .
+              ?ts crm:P82a_begin_of_the_begin ?from .
+              OPTIONAL { ?ts crm:P82b_end_of_the_end ?to }
+              FILTER(YEAR(?from) <= ?year && (!BOUND(?to) || ?year < YEAR(?to)))
+            } ORDER BY ?year""",
+        "Q2 the transfer that opened the current custody (from, to, time-span)":
+            PFX + """SELECT ?transfer ?from ?to ?ts WHERE {
+              ?cp a hg:CustodyPeriod ; hg:custodyOpenedBy ?transfer .
+              FILTER NOT EXISTS { ?cp crm:P4_has_time-span/crm:P82b_end_of_the_end ?end }
+              ?transfer crm:P28_custody_surrendered_by ?from ; crm:P29_custody_received_by ?to ;
+                        crm:P4_has_time-span ?ts . }""",
+        "Q3 hereditary office (holder, office, duty, festival, mandating body)":
+            PFX + """SELECT ?holder ?office ?duty ?festival ?body WHERE {
+              ?t a hg:HereditaryRoleTenure ; hg:roleHolder ?holder ; hg:tenureOffice ?office ;
+                 hg:roleDuty ?duty ; hg:dutyFor ?festival ; hg:mandatedBy ?body . }""",
+        "Q4 endowment: holder that sustains the festival, and the group performing it":
+            PFX + """SELECT ?endowment ?holder ?festival ?group WHERE {
+              ?endowment a hg:Endowment ; crm:P105_right_held_by ?holder ; hg:sustains ?festival .
+              ?festival hg:performedByGroup ?group . }""",
+    }
+    EXPECTED = {
+        "Q1": {("1950", "PrivateGuthi"), ("2000", "StateBody")},
+        "Q2": {("Transfer_1964", "PrivateGuthi", "StateBody", "T_1964")},
+        "Q3": {("CarpenterCaste", "ChariotBuilder", "build the festival chariot", "Festival", "StateBody")},
+        "Q4": {("Endowment", "StateBody", "Festival", "CarpenterCaste")},
     }
 
     g = Graph()
     g.parse(data=SCENARIO, format="turtle")
     print(f"Scenario: {len(g)} triples\n")
+    ok = True
     for name, q in QUERIES.items():
-        rows = list(g.query(q))
-        print(f"[{len(rows)} row(s)] {name}")
-        for r in rows:
-            print("   -> " + " | ".join(
-                str(x).replace("https://cair-nepal.org/heritagegraph/example/", "") for x in r))
-    print()
-
-    shapes = _shapes()
-    ont = _ont_for_shacl()
-    conforms, _, report = validate(g, shacl_graph=shapes, ont_graph=ont,
+        rows = {tuple(str(x).rsplit("/", 1)[-1] for x in r) for r in g.query(q)}
+        good = rows == EXPECTED[name[:2]]
+        ok &= good
+        print(f"  [{'PASS' if good else 'FAIL'}] {name}: {sorted(rows)}")
+    conforms, _, report = validate(g, shacl_graph=_shapes(), ont_graph=_ont_for_shacl(),
                                    inference="none", abort_on_first=False)
-    print(f"SHACL conformance of the scenario: conforms={conforms}")
+    print(f"  [{'PASS' if conforms else 'FAIL'}] SHACL conformance of the scenario")
     if not conforms:
         print(report[:2000])
-    return 0
+    ok &= conforms
+    print("PASS" if ok else "FAIL")
+    return 0 if ok else 1
 
 
 # ===========================================================================
@@ -637,6 +703,11 @@ ex:NewarBuddhistTradition a hg:ReligiousTradition ;
 
 # --- The three calendar systems -----------------------------------------
 # Offset semantics (per schema): CE = calendar year - yearOffsetFromGregorian.
+# Epoch convention: epochDateGregorian is the proleptic Gregorian date on which
+# the year numbered (CE year of the epoch + offset) begins. For Bikram Sambat
+# that is year 1 (57 BCE = astronomical year -56; a nominal back-projection of
+# the modern solar reckoning, not a historically attested date); for Nepal
+# Sambat it is year 0 (879 CE; N.S. 1 began in 880, N.S. 1146 in 2025).
 ex:BikramSambat a hg:CalendarSystem ; rdfs:label "Bikram Sambat" ;
     hg:epochDateGregorian "-0056-04-14" ;      # 57 BCE, mid-April new year
     hg:yearOffsetFromGregorian 57 ;
@@ -673,7 +744,8 @@ ex:TS_IJ_Exact a crm:E52_Time-Span ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> ;
     crm:P82a_begin_of_the_begin "2015-09-25T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2015-09-25T23:59:59"^^xsd:dateTime ;
-    crm:P86_falls_within ex:TS_IJ_BS , ex:TS_IJ_NS .
+    crm:P86_falls_within ex:TS_IJ_BS , ex:TS_IJ_NS ;
+    rdfs:seeAlso ex:TS_IJ_BS , ex:TS_IJ_NS .
 ex:TS_IJ_BS a crm:E52_Time-Span ;
     rdfs:label "Indra Jatra 2015, Bikram Sambat record (B.S. 2072)" ;
     hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
@@ -701,7 +773,11 @@ ex:TS_SP_Exact a crm:E52_Time-Span ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> ;
     crm:P82a_begin_of_the_begin "2016-02-12T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2016-02-12T23:59:59"^^xsd:dateTime ;
-    crm:P86_falls_within ex:TS_SP_BS , ex:TS_SP_NS , ex:TS_SP_BS_naive .
+    crm:P86_falls_within ex:TS_SP_BS , ex:TS_SP_NS ;
+    rdfs:seeAlso ex:TS_SP_BS , ex:TS_SP_NS ;
+    # the naively converted record is cited for the occurrence, not claimed to
+    # contain it (crm:P86 would assert a falsehood)
+    rdfs:seeAlso ex:TS_SP_BS_naive .
 ex:TS_SP_BS a crm:E52_Time-Span ;
     rdfs:label "Shree Panchami 2016, Bikram Sambat record (B.S. 2072, Magh)" ;
     hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
@@ -722,6 +798,14 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P82a_begin_of_the_begin "2015-01-01T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2015-12-31T23:59:59"^^xsd:dateTime .
+# Conversion-error case the year-only check cannot see: the right Gregorian
+# years (2015-2016) but the wrong months (as if B.S. began in October).
+ex:TS_BS_wrong_months a crm:E52_Time-Span ;
+    rdfs:label "B.S. 2072 record converted with the wrong new year (ERROR CASE)" ;
+    hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2015-10-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-09-30T23:59:59"^^xsd:dateTime .
 """
 
     QUERIES = {
@@ -743,7 +827,7 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
               ?occ rdfs:label ?occurrence ; crm:P4_has_time-span ?exact .
               ?exact crm:P82a_begin_of_the_begin ?date .
               OPTIONAL {
-                ?exact crm:P86_falls_within ?rec .
+                ?exact rdfs:seeAlso ?rec .
                 ?rec crm:P82a_begin_of_the_begin ?rb ; crm:P82b_end_of_the_end ?re .
                 FILTER(?date < ?rb || ?date > ?re)
                 BIND(?rec AS ?conflicting)
@@ -799,7 +883,40 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
                 for r in g.query(QUERIES[name])]
     q1 = {(r[0], int(r[3]), int(r[4])) for r in res(next(k for k in QUERIES if k.startswith("Q1")))}
     q2 = res(next(k for k in QUERIES if k.startswith("Q2")))
-    q4 = [r[0] for r in res(next(k for k in QUERIES if k.startswith("Q4")))]
+    q4_year_only = [r[0] for r in res(next(k for k in QUERIES if k.startswith("Q4")))]
+
+    # Full-bound conversion check (Q4 above compares years only): a year
+    # record's stored interval must start within 30 days after its calendar's
+    # new year (the month and day of the epoch) in the converted CE year, and
+    # last one calendar year (350-390 days). A recorded year that does not
+    # parse as an integer is an error, not silently skipped.
+    from datetime import date, datetime
+    XSDNS = "http://www.w3.org/2001/XMLSchema#"
+    HGNS = "https://cair-nepal.org/heritagegraph/"
+    bad_bounds, unparseable = [], []
+    for rec, recd, off, epoch, b, e in g.query(PFX + """
+        SELECT ?record ?rec ?off ?epoch ?b ?e WHERE {
+          ?record hg:recordedDate ?rec ;
+                  hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+                  hg:calendarSystem ?cal ;
+                  crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
+          ?cal hg:yearOffsetFromGregorian ?off ; hg:epochDateGregorian ?epoch . }"""):
+        name = str(rec).rsplit("/", 1)[-1]
+        try:
+            year = int(str(recd))
+        except ValueError:
+            unparseable.append(name)
+            continue
+        ce = year - int(off)
+        mm, dd = (int(x) for x in str(epoch)[-5:].split("-"))
+        new_year = date(ce, mm, dd)
+        start = datetime.fromisoformat(str(b)).date()
+        end = datetime.fromisoformat(str(e)).date()
+        if not (0 <= (start - new_year).days <= 30 and 350 <= (end - start).days <= 390):
+            bad_bounds.append(name)
+    q4 = sorted(bad_bounds)
+    print(f"Q4 full-bound check: records whose bounds disagree with their recorded year: {q4}; "
+          f"unparseable recorded years: {unparseable}")
     checks = {
         "Q1 BS 2072 -> 2015-2016, NS 1135 -> 2014-2015, NS 1136 -> 2015-2016":
             {("TS_IJ_BS", 2015, 2016), ("TS_IJ_NS", 2014, 2015), ("TS_SP_NS", 2015, 2016)} <= q1,
@@ -807,7 +924,9 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
             [r[2] for r in q2 if r[0].startswith("Indra Jatra")] == [None],
         "Q2 Shree Panchami 2016 conflicts only with the naive record":
             [r[2] for r in q2 if r[0].startswith("Shree Panchami")] == ["TS_SP_BS_naive"],
-        "Q4 flags exactly the naively converted record": q4 == ["TS_SP_BS_naive"],
+        "Q4 (full bounds) flags both error records": q4 == ["TS_BS_wrong_months", "TS_SP_BS_naive"],
+        "Q4 (year only) misses the wrong-month record": q4_year_only == ["TS_SP_BS_naive"],
+        "every year record parses (none skipped)": not unparseable,
         "boundary case: single-year conversion (Y - 57) misses Shree Panchami 2016":
             2072 - 57 != 2016,
         "SHACL conforms": bool(conforms),
