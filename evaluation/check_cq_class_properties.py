@@ -94,6 +94,7 @@ def main() -> int:
     control = ("CONTROL", "PREFIX hg: <https://cair-nepal.org/heritagegraph/>\n"
                "SELECT ?t WHERE { ?t a hg:Temple ; hg:embodiedDeity ?d . }")
     failures, checked, skipped = [], 0, set()
+    untyped = {}  # CQ -> patterns whose subject variable has no rdf:type in the query
     for cq, body in split_queries(QUERIES.read_text(encoding="utf-8")) + [control]:
         algebra = translateQuery(parseQuery(body)).algebra
         tps = triples(algebra)
@@ -105,7 +106,11 @@ def main() -> int:
             if p == RDF.type:
                 continue
             for subj, prop in steps(s, p, o):
-                if subj not in types or prop == RDF.type:
+                if prop == RDF.type:
+                    continue
+                if subj not in types:
+                    if cq != "CONTROL":
+                        untyped[cq] = untyped.get(cq, 0) + 1
                     continue
                 classes = types[subj]
                 shaped = {c for c in classes if any(x in declared for x in supers(c))}
@@ -119,6 +124,8 @@ def main() -> int:
     caught = any(f.startswith("CONTROL:") for f in failures)
     failures = [f for f in failures if not f.startswith("CONTROL:")]
     print(f"Class-property patterns checked in {QUERIES.name}: {checked - 1}")
+    print(f"Not checked (subject has no rdf:type in the query, so no shape to compare): "
+          f"{sum(untyped.values())} pattern(s) in {len(untyped)} CQ(s): {', '.join(sorted(untyped, key=lambda c: int(c[2:]) if c[2:].isdigit() else 0))}")
     print(f"negative control (?t a hg:Temple ; hg:embodiedDeity ?d): {'caught' if caught else 'NOT caught'}")
     if not caught:
         failures.append("negative control not caught")

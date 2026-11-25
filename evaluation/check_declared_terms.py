@@ -60,6 +60,7 @@ LEGACY_DATA_TYPES = {
 
 NEGATIVE_CONTROLS = {
     "doesNotExistPattern": "run_abox_cq32.py self-test: a predicate no triple uses",
+    "hasArchitecturalStyel": "independent_abox.py negative test: a deliberately misspelt property",
 }
 SKIPPED: dict[str, str] = {}
 

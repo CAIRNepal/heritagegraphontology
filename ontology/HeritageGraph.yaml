@@ -150,6 +150,8 @@ enums:
         description: "Precise date known"
       Year:
         description: "Year-level precision only"
+      Month:
+        description: "Month-level precision (e.g. a lunar month of a given year)"
       Decade:
         description: "Within 10-year range"
       Century:
@@ -161,14 +163,17 @@ enums:
   SyncreticType:
     description: "Controlled vocabulary for kinds of syncretic theological relationships between deities."
     permissible_values:
+      # Each value is a kind of claimed relationship between two deities, as a
+      # source states it; who claims it is recorded on the relationship.
       Equivalence:
-        description: "Same deity in different traditions (e.g., Avalokiteshvara = Matsyendranath)"
+        description: "Claimed identity: the two are held to be one deity in different traditions (e.g. Avalokiteshvara
+          and Matsyendranath for Newar Buddhists)"
       Appropriation:
-        description: "Deity borrowed from one tradition into another"
+        description: "Claimed adoption: one tradition is held to have taken the deity over from the other"
       Fusion:
-        description: "Intrinsically syncretic deity merging multiple traditions"
+        description: "Claimed combination: the deity is held to combine features of deities of several traditions"
       Historical:
-        description: "Gradual syncretism over time"
+        description: "Claimed historical derivation: the deity is held to have developed from the other over time"
 
   
   ArchitecturalStyle:
@@ -186,7 +191,8 @@ enums:
     permissible_values:
       Pagoda:
         title: "Pagoda style"
-        description: "Multi-tiered roof style indigenous to Nepal"
+        description: "Multi-tiered roof temple form of the Kathmandu Valley (the Newar tiered temple), whose roofs
+          diminish upward and rest on carved struts"
         # STYLE IRI FIX (v1.0.0): the AAT concept is the building type
         # 'pagodas', not a style; it was the value's IRI (`meaning`), which
         # typed a Getty term as ArchitecturalStyle. The value now has its own
@@ -237,20 +243,29 @@ enums:
   GuthiType:
     description: "Controlled vocabulary of Guthi functional types (CRM E55_Type)"
     permissible_values:
+      # Glosses after Gellner & Quigley (1995, Contested Hierarchies) and Toffin
+      # (1984, Société et religion chez les Néwar du Népal).
       SiGuthi:
-        description: "Funeral trust"
+        description: "Death guthi (si guthi): the association whose members carry out the cremation and death rites
+          of member households"
       JatraGuthi:
         description: "Festival organization trust"
       PujaGuthi:
         description: "Daily worship trust"
       TempleGuthi:
-        description: "Temple maintenance trust"
+        title: "Deity guthi"
+        description: "Deity guthi (dyah guthi): an association, usually endowed with land, that keeps up the worship and
+          the festival of a deity at its temple or shrine"
       NashaGuthi:
         description: "Music and dance trust"
       SanaGuthi:
-        description: "Agricultural cooperative trust"
+        description: "Funeral association (sanah guthi): the association that organises the funeral procession and
+          cremation of member households; in some localities it and the si guthi are one body"
       SanGuthi:
-        description: "Life-cycle ritual trust"
+        description: "Variant spelling of sanah guthi"
+        deprecated: "A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a
+          life-cycle ritual trust."
+        deprecated_element_has_exact_replacement: SanaGuthi
       RajGuthi:
         description: "Royal endowment trust"
 
@@ -625,7 +640,8 @@ classes:
   Murti:
     is_a: IconographicObject
     class_uri: heritageGraph:Murti
-    description: "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)"
+    description: "Consecrated image or seat of a deity, figural or aniconic (e.g. a stone, a linga, a pitha),
+      ritually activated to serve as divine presence (not merely depiction)"
     # MAPPING AUDIT (alpha.5): aat:300264383 = 'sculpting' (verified) -- an
     # activity, wrong for a statue -> removed. wikidata:Q2594295 is an insect
     # species (verified) -- wrong entity; replaced with the verified
@@ -877,9 +893,10 @@ classes:
     description: "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)"
 
   MaskedDance:
-    is_a: Festival
+    is_a: RitualEvent
     class_uri: heritageGraph:MaskedDance
-    description: "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)"
+    description: "Performance in which masked dancers embody deities (e.g. Kartik Naach); usually part of a festival
+      (crm:P9 forms part of), not itself a festival"
 
 
   Consecration:
@@ -1560,8 +1577,9 @@ classes:
     is_a: KumariLifecycleEvent
     class_uri: heritageGraph:KumariSelectionEvent
     description: "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination
-      of 32 auspicious physical marks (lakshana) and horoscope matching with the city and ruling authority, performed
-      by Vajracharya priests and astrologers. Accounts of a
+      of 32 auspicious physical marks (lakshana) and horoscope matching with the city and ruling authority, carried
+      out, in published accounts, by the priests of Taleju and the Buddhist Vajracharya priests with an astrologer.
+      Accounts of a
       fearlessness test are disputed and are recorded as such with FearlessnessAssessment, not stated here."
 
 
@@ -1595,7 +1613,8 @@ classes:
       initiated_tenure:
         required: true
         range: KumariTenure
-        description: "Living Goddess tenure that this selection event initiated"
+        description: "Living Goddess tenure that this selection event led to (the tenure itself opens at the
+          enthronement, enthroned_through)"
 
   
     broad_mappings:
@@ -2238,8 +2257,9 @@ slots:
     slot_uri: heritageGraph:isPrimaryForTradition
     range: ReligiousTradition
     multivalued: true
-    description: "Religious tradition(s) that primarily use this calendar system (e.g., Bikram Sambat for Hindu,
-      Nepal Sambat for Newar Buddhist)"
+    description: "Religious tradition(s) that use this calendar system for their rites. Calendars are not
+      divided by religion in Nepal: Nepal Sambat is the era of the Newar ritual calendar, used by Newar Hindus and
+      Buddhists alike, and Bikram Sambat is the official civil era"
 
   existence_status:
     title: "has existence status"
@@ -2683,7 +2703,7 @@ slots:
   epoch_date_gregorian:
     slot_uri: heritageGraph:epochDateGregorian
     range: string
-    pattern: "^-?[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    pattern: "^-?[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
     description: "Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the
       era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14, a nominal back-projection of the modern
       solar reckoning rather than an attested date; Nepal Sambat counts elapsed years
@@ -3031,6 +3051,7 @@ slots:
     # (header) is illegal punning in OWL 2 DL (flagged by Protege/HermiT).
     # Minted IRI with dcterms:creator kept as an exact mapping.
     slot_uri: heritageGraph:sourceCreator
+    title: "source creator"
     exact_mappings:
       - dcterms:creator
     range: Actor

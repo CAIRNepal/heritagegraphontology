@@ -7,6 +7,8 @@
 **Breaking changes and migration rules** (data valid under 1.0.x that 1.1.0 rejects or reads differently):
 - Place coordinates move from geo:asWKT to crm:P168_place_is_defined_by (same WKT literal).
 - Data giving one structure two values of a single-valued enumeration slot is now inconsistent.
+- An `hg:` property the ontology does not declare is now a SHACL violation (it was ignored by the open
+  shapes); an empty string as a text value is a violation.
 - The holder of a Kumari tenure is given with `hg:tenureHolder`, not `hg:hadParticipant`
   (rewrite `?t hg:hadParticipant ?p` on a `hg:KumariTenure` to `?t hg:tenureHolder ?p`).
 - An endowment that sustained a tenure now sustains the tenure's office
@@ -55,8 +57,39 @@
   to Wikidata with skos:exactMatch / closeMatch (not owl:sameAs), and gives each belief a
   CRMinf proposition (J4).
 
+- Controlled-vocabulary glosses corrected (Gellner & Quigley 1995; Toffin 1984):
+  - Sanah guthi is a funeral association.
+  - TempleGuthi is the deity guthi (dyah guthi).
+  - Calendars are not divided by religion: Nepal Sambat is the Newar ritual era, Bikram Sambat the
+    civil era.
+  - Pagoda: the Newar tiered temple.
+  - Murti includes aniconic seats.
+  - SyncreticType values are kinds of claimed relationship.
+  - The Kumari selection officiants are described as in published accounts.
+- `hg:MaskedDance` is a RitualEvent (usually part of a festival), no longer a Festival.
+  DatePrecision gains Month.
+- SHACL:
+  - Dependent nodes (time-spans, productions, condition states and assessments, propositions)
+    may be blank nodes.
+  - The confidence score also accepts xsd:integer.
+  - No text value may be empty.
+  - Three SHACL-SPARQL rules: an undeclared `hg:` property is a violation; a deprecated one is a
+    warning; a belief marked conflicting needs a rival.
+  - The shapes graph states its licence and version.
+- The epoch date pattern accepts only valid months and days.
+- OWL:
+  - Definitions end with a full stop; YAML slot names in annotations are replaced by CURIEs.
+  - Every term is `rdfs:isDefinedBy` the ontology.
+  - Creators are ORCID IRIs.
+  - Cardinalities are typed `xsd:nonNegativeInteger`.
+  - `dcterms:modified` is deterministic (the date of the YAML's last commit).
+- The JSON Schema carries its licence. The JSON-LD context types `confidenceScore` as `xsd:decimal`.
+- NOTICE.md gives the licence of each reused vocabulary; `sources.json` records it per snapshot.
+- The README has a normative validation recipe.
+
 **Deprecated** (kept, marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement)
 - The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.
+- GuthiType SanGuthi (a variant spelling of sanah guthi), replaced by SanaGuthi.
 
 **Evaluation**
 - `make reproduce` regenerates every artefact from a clean checkout and compares it with the

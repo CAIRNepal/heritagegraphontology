@@ -235,7 +235,8 @@ def test_container_collections_accept_subclasses():
 
 
 def test_location_rule_on_every_structure_shape(shapes):
-    temple_shape = next(shapes.subjects(SH.targetClass, HG.Temple))
+    # the Temple class shape (other shapes, e.g. the deprecated-property warning, also target hg:Temple)
+    temple_shape = next(s for s in shapes.subjects(SH.targetClass, HG.Temple) if (s, SH["or"], None) in shapes)
     paths = set()
     for lst in shapes.objects(temple_shape, SH["or"]):
         for m in Collection(shapes, lst):

@@ -14,7 +14,7 @@ pipeline rewrites union ranges into).
 """
 from pathlib import Path
 
-from rdflib import Graph, Namespace, RDF
+from rdflib import BNode, Graph, Namespace, RDF
 from rdflib.collection import Collection
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,10 +28,10 @@ prop_shapes = set(g.objects(None, SH.property))
 print(f"Shape graph: {len(g)} triples, {len(node_shapes)} sh:NodeShapes, "
       f"{len(prop_shapes)} property shapes (sh:property links)")
 
-# Negative-test coverage: component type -> number of the 22 tests hitting it
+# Negative-test coverage: component type -> number of the 26 tests hitting it
 # (one test, a reconstructed structure without a location, exercises both
-# sh:or and the sh:not inside it, so the counts sum to 23).
-N_TESTS = 22
+# sh:or and the sh:not inside it, so the counts sum to 27).
+N_TESTS = 26
 NEG_TESTS = {
     "sh:minCount": 6,   # missing custody holder / assigned deity / assertsAbout / time-span / destroyed /
                         # tenure holder (1.0.x hadParticipant only)
@@ -48,40 +48,42 @@ NEG_TESTS = {
     "sh:uniqueLang": 1,        # two English labels on one deity
     "sh:qualifiedMaxCount": 1, # two untagged labels on one deity
     "sh:not": 1,               # a reconstructed structure without a location (inside the sh:or)
+    "sh:sparql": 2,            # a misspelt hg: property; a conflicting belief with no rival
+    "sh:minLength": 1,         # an empty label
+    "sh:maxInclusive": 1,      # a confidence score above 1
 }
 
-direct = {
-    "sh:minCount": SH.minCount,
-    "sh:maxCount": SH.maxCount,
-    "sh:datatype": SH.datatype,
-    "sh:class": SH["class"],
-    "sh:in": SH["in"],
-    "sh:nodeKind": SH.nodeKind,
-    "sh:or": SH["or"],
-    "sh:pattern": SH.pattern,
-    "sh:lessThanOrEquals": SH.lessThanOrEquals,
-    "sh:uniqueLang": SH.uniqueLang,
-    "sh:qualifiedMaxCount": SH.qualifiedMaxCount,
-    "sh:not": SH["not"],
-    "sh:minInclusive": SH.minInclusive,
-    "sh:maxInclusive": SH.maxInclusive,
-}
+# every constraint parameter in the SHACL namespace that the shapes use (not
+# targets, names, descriptions, ordering or the parts of a SPARQL constraint)
+NOT_COMPONENTS = {"path", "property", "targetClass", "targetNode", "targetSubjectsOf", "targetObjectsOf",
+                  "name", "description", "order", "group", "message", "severity", "select", "prefixes",
+                  "deactivated", "qualifiedValueShapesDisjoint", "qualifiedValueShape", "flags"}
+preds = sorted({p for p in g.predicates() if str(p).startswith(str(SH))
+                and str(p)[len(str(SH)):] not in NOT_COMPONENTS})
+direct = {f"sh:{str(p)[len(str(SH)):]}": p for p in preds}
 
-print(f"\n{'component':<14}{'occurrences':>12}{'negative tests':>16}")
+
+def canon(o) -> str:
+    if isinstance(o, BNode):
+        try:
+            return "(" + " ".join(canon(m) for m in Collection(g, o)) + ")"
+        except Exception:
+            return "[" + ";".join(sorted(f"{p.n3()} {canon(v)}" for p, v in g.predicate_objects(o))) + "]"
+    return o.n3()
+
+
+paths = {canon(o) for o in g.objects(None, SH.path)}
+print(f"Distinct property paths constrained: {len(paths)}")
+print(f"\n{'component':<22}{'occurrences':>12}{'distinct':>10}{'negative tests':>16}")
 total = 0
 for name, pred in direct.items():
-    n = len(list(g.subject_objects(pred)))
-    if name == "sh:class":
-        # also count sh:class occurrences inside sh:or disjunction members
-        in_or = 0
-        for _, lst in g.subject_objects(SH["or"]):
-            for member in Collection(g, lst):
-                in_or += len(list(g.objects(member, SH["class"])))
-        note = f" ({n - in_or} direct + {in_or} inside sh:or)" if in_or else ""
-        print(f"{name:<14}{n:>12}{NEG_TESTS.get(name, 0):>16}{note}")
-    else:
-        print(f"{name:<14}{n:>12}{NEG_TESTS.get(name, 0):>16}")
-    total += n
+    occ = list(g.subject_objects(pred))
+    # a distinct constraint: the same component, value and path counts once,
+    # however many class shapes repeat it
+    distinct = {(canon(g.value(s_, SH.path)) if g.value(s_, SH.path) is not None else "node", canon(o))
+                for s_, o in occ}
+    print(f"{name:<22}{len(occ):>12}{len(distinct):>10}{NEG_TESTS.get(name, 0):>16}")
+    total += len(occ)
 
 touched = [k for k in direct if NEG_TESTS.get(k)]
 print(f"\nTotal component occurrences: {total}")
@@ -89,3 +91,6 @@ print(f"Component types present: {len(direct)}; "
       f"exercised by the {N_TESTS} negative tests: {len(touched)} ({', '.join(touched)})")
 untouched = [k for k in direct if not NEG_TESTS.get(k)]
 print(f"Untouched by negative tests: {', '.join(untouched) or 'none'}.")
+missing = [k for k in NEG_TESTS if k not in direct]
+if missing:
+    raise SystemExit(f"census lists negative tests for components the shapes do not use: {missing}")

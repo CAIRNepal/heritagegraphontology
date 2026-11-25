@@ -356,6 +356,11 @@ def finalize_owl(sv: SchemaView) -> Graph:
                 c = sv.get_class(repl)
                 g.add((ind, DCTERMS.isReplacedBy, uri_for(sv, str(c.class_uri or f"heritageGraph:{repl}"))))
                 g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
+            elif repl and repl in (e.permissible_values or {}):
+                r = e.permissible_values[repl]  # another value of the same enumeration
+                g.add((ind, DCTERMS.isReplacedBy,
+                       uri_for(sv, str(r.meaning)) if r.meaning else URIRef(f"{HG_NS}{en}#{repl}")))
+                g.add((DCTERMS.isReplacedBy, RDF.type, OWL.AnnotationProperty))
             n_pv += 1
     print(f"marked {n_pv} enumeration value(s) owl:deprecated")
 
@@ -398,11 +403,11 @@ def finalize_owl(sv: SchemaView) -> Graph:
     creators = [c.strip() for c in header.get("dcterms:creator", "CAIR-Nepal").split(";") if c.strip()]
     meta = [
         (DCTERMS.created, Literal("2025-11-23", datatype=XSD.date)),
-        (DCTERMS.modified, Literal(date.today().isoformat(), datatype=XSD.date)),
+        (DCTERMS.modified, Literal(_modified_date(header), datatype=XSD.date)),
         (DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")),
         (DCTERMS.bibliographicCitation, Literal(citation)),
         (DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")),
-        *[(DCTERMS.creator, Literal(c)) for c in creators],
+        *[(DCTERMS.creator, _creator_node(g, c)) for c in creators],
         (DCTERMS.publisher, Literal(header.get("dcterms:publisher", "CAIR-Nepal"))),
         (BIBO.status, Literal(header.get("bibo:status", "Published"))),
         (VANN.preferredNamespacePrefix, Literal(header.get("vann:preferredNamespacePrefix", "hg"))),
@@ -525,6 +530,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
         print(f"restored {restored} owl:inverseOf axiom(s)")
         if still:
             sys.exit("AXIOM SURVIVAL GUARD FAILED:\n  - " + "\n  - ".join(still[:20]))
+    polish_owl(g, sv)
     bind_hg(g)
     g.serialize(destination=OWL_OUT, format="turtle")
     print(f"finalized {OWL_OUT.name} ({len(g)} triples)")
@@ -534,10 +540,117 @@ def finalize_owl(sv: SchemaView) -> Graph:
 GEO = Namespace("http://www.opengis.net/ont/geosparql#")
 
 
+def _modified_date(header: dict) -> str:
+    """m27: a deterministic dcterms:modified, so two runs on one commit give the
+    same ontology: SOURCE_DATE_EPOCH if set, else the date of the last commit
+    of the YAML source, else the schema header's dcterms:modified."""
+    import os
+    epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    if epoch:
+        from datetime import datetime, timezone
+        return datetime.fromtimestamp(int(epoch), tz=timezone.utc).date().isoformat()
+    try:
+        out = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(SCHEMA)],
+                             cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
+        if out:
+            return out
+    except (OSError, subprocess.CalledProcessError):
+        pass
+    return header.get("dcterms:modified", "2026-01-01")
+
+
+def _orcids() -> dict:
+    """Author name -> ORCID IRI, from CITATION.cff (the authoritative author list)."""
+    import yaml
+    path = ROOT / "CITATION.cff"
+    if not path.exists():
+        return {}
+    cff = yaml.safe_load(path.read_text(encoding="utf-8"))
+    out = {}
+    for a in cff.get("authors", []):
+        if a.get("orcid"):
+            name = f"{a.get('given-names', '')} {a.get('family-names', '')}".strip()
+            out[_ascii(name)] = a["orcid"]
+    return out
+
+
+def _ascii(s: str) -> str:
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c)).lower()
+
+
+def _creator_node(g: Graph, name: str):
+    """m23: a creator with an ORCID is its ORCID IRI, labelled with the name."""
+    orcid = _orcids().get(_ascii(name))
+    if not orcid:
+        return Literal(name)
+    node = URIRef(orcid)
+    g.add((node, RDFS.label, Literal(name)))
+    return node
+
+
+def polish_owl(g: Graph, sv: SchemaView) -> None:
+    """Annotation and serialisation hygiene, after every logical step.
+
+    m22: YAML slot names quoted in HeritageGraph definitions and notes
+    (calendar_system, tenure_holder) become the CURIE of the property
+    (hg:calendarSystem), and every definition ends with a full stop.
+    m23: every HeritageGraph term is rdfs:isDefinedBy the ontology.
+    n5: cardinality restrictions carry xsd:nonNegativeInteger literals."""
+    import re
+    names = {}
+    for sn, sl in sv.all_slots().items():
+        if "_" in sn and sl.slot_uri:
+            curie = sv.expand_curie(str(sl.slot_uri))
+            for pfx, ns in g.namespace_manager.namespaces():
+                if curie.startswith(str(ns)) and pfx:
+                    names[sn] = f"{'hg' if str(ns) == HG_NS else pfx}:{curie[len(str(ns)):]}"
+                    break
+    word = re.compile(r"\b(" + "|".join(sorted(map(re.escape, names), key=len, reverse=True)) + r")\b") if names else None
+    n_name = n_stop = 0
+    for p in (SKOS.definition, SKOS.editorialNote, RDFS.comment):
+        for s_, o in list(g.subject_objects(p)):
+            if not (isinstance(s_, URIRef) and str(s_).startswith(HG_NS) and isinstance(o, Literal)):
+                continue
+            text = str(o)
+            if word:
+                new = word.sub(lambda m: names[m.group(1)], text)
+                if new != text:
+                    n_name += 1
+                    text = new
+            if p == SKOS.definition and text and not text.rstrip().endswith((".", "!", "?")):
+                text = text.rstrip() + "."
+                n_stop += 1
+            if text != str(o):
+                g.remove((s_, p, o))
+                g.add((s_, p, Literal(text, lang=o.language, datatype=o.datatype)))
+    n_def = 0
+    for s_ in set(g.subjects(RDF.type, None)):
+        if (isinstance(s_, URIRef) and str(s_).startswith(HG_NS) and s_ != ONTOLOGY_IRI
+                and (s_, RDF.type, OWL.Ontology) not in g
+                and any((s_, RDF.type, t) in g for t in (OWL.Class, OWL.ObjectProperty, OWL.DatatypeProperty,
+                                                          OWL.AnnotationProperty, OWL.NamedIndividual))):
+            if (s_, RDFS.isDefinedBy, None) not in g:
+                g.add((s_, RDFS.isDefinedBy, ONTOLOGY_IRI))
+                n_def += 1
+    n_card = 0
+    for p in (OWL.maxCardinality, OWL.minCardinality, OWL.cardinality,
+              OWL.maxQualifiedCardinality, OWL.minQualifiedCardinality, OWL.qualifiedCardinality):
+        for r, o in list(g.subject_objects(p)):
+            if isinstance(o, Literal) and o.datatype != XSD.nonNegativeInteger:
+                g.remove((r, p, o))
+                g.add((r, p, Literal(str(o), datatype=XSD.nonNegativeInteger)))
+                n_card += 1
+    print(f"polish: {n_name} slot name(s) -> CURIEs, {n_stop} definition(s) given a full stop, "
+          f"{n_def} rdfs:isDefinedBy, {n_card} cardinality literal(s) typed xsd:nonNegativeInteger")
+
+
 def bind_hg(g: Graph) -> None:
     """Serialize HeritageGraph IRIs with the short prefix hg: (the LinkML
     source keeps heritageGraph: internally; IRIs are unchanged)."""
     g.namespace_manager.bind("hg", HG_NS, override=True, replace=True)
+    # n6: schema.org as schema:, not rdflib's generated schema1:
+    g.namespace_manager.bind("schema", "http://schema.org/", override=True, replace=True)
 
 
 LINKML_PV = URIRef("https://w3id.org/linkml/permissible_values")
@@ -677,7 +790,7 @@ def apply_official_external_annotations(g: Graph) -> None:
     sources = _official_sources()
     targets = sorted({s for p in OWNER_TEXT_PREDS for s in g.subjects(p, None)
                       if isinstance(s, URIRef) and not str(s).startswith(HG_NS)
-                      and s != ONTOLOGY_IRI})
+                      and s != ONTOLOGY_IRI and not str(s).startswith("https://orcid.org/")})  # creators, not terms
     missing, n_removed = [], 0
     for s in targets:
         for p in OWNER_TEXT_PREDS:
@@ -1582,9 +1695,140 @@ def finalize_shacl(sv: SchemaView) -> None:
     scope_shapes(g, sv)
     add_timespan_rules(g)
     add_location_rule(g, sv)
+    harden_shacl(g, sv)
     bind_hg(g)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
+
+
+CRM_NS = "http://www.cidoc-crm.org/cidoc-crm/"
+# nodes that only exist as part of another description (Linked Art writes them
+# as blank nodes): their value may be a blank node as well as an IRI
+DEPENDENT_CLASSES = {URIRef(CRM_NS + "E52_Time-Span"), URIRef(CRM_NS + "E12_Production"),
+                     URIRef(CRM_NS + "E3_Condition_State"), URIRef(CRM_NS + "E14_Condition_Assessment"),
+                     URIRef(HG_NS + "Proposition")}
+
+
+def harden_shacl(g: Graph, sv: SchemaView) -> None:
+    """Shape rules beyond what gen-shacl derives from the schema.
+
+    m14: a value of a dependent class (time-span, production, condition
+         state or assessment, proposition) may be a blank node.
+    m15: the confidence score accepts xsd:integer as well as xsd:decimal (1
+         and 0 are scores); xsd:double is not accepted, since its value space
+         is disjoint from the OWL range xsd:decimal.
+    m16: no text value is the empty string (sh:minLength 1).
+    m12: the shapes are open (data may use other vocabularies), so three
+         SHACL-SPARQL rules check what open shapes cannot:
+         an undeclared hg: property (a typo such as hg:hasArchitecturalStyel)
+         is a violation, a deprecated one a warning, and a belief marked
+         "conflicting" needs a rival belief about the same subject.
+    m23: the shapes graph states its licence and version."""
+    owl = Graph().parse(OWL_OUT, format="turtle")
+    # the LUX alignment module mints terms in the hg: namespace too
+    lux = ROOT / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
+    if lux.exists():
+        owl += Graph().parse(lux, format="turtle")
+    n_bn = 0
+    for ps in list(g.subjects(SH.nodeKind, SH.IRI)):
+        if any(c in DEPENDENT_CLASSES for c in g.objects(ps, SH["class"])):
+            g.remove((ps, SH.nodeKind, SH.IRI))
+            g.add((ps, SH.nodeKind, SH.BlankNodeOrIRI))
+            n_bn += 1
+    n_cs = 0
+    for ps in list(g.subjects(SH.path, URIRef(HG_NS + "confidenceScore"))):
+        if (ps, SH.datatype, XSD.decimal) in g:
+            g.remove((ps, SH.datatype, XSD.decimal))
+            alts = []
+            for dt in (XSD.decimal, XSD.integer):
+                b = BNode(); g.add((b, SH.datatype, dt)); alts.append(b)
+            head = BNode(); Collection(g, head, alts)
+            g.add((ps, SH["or"], head))
+            n_cs += 1
+    n_len = 0
+    text_types = {XSD.string, RDF.langString}
+    for ps in set(g.subjects(SH.path, None)):
+        if (ps, RDF.type, SH.NodeShape) in g or (ps, SH.minLength, None) in g:
+            continue
+        dts = set(g.objects(ps, SH.datatype))
+        for lst in g.objects(ps, SH["or"]):
+            for alt in Collection(g, lst):
+                dts |= set(g.objects(alt, SH.datatype))
+        if dts and dts <= text_types:
+            g.add((ps, SH.minLength, Literal(1)))
+            n_len += 1
+
+    declared = sorted({str(s_) for s_ in owl.subjects(RDF.type, None)
+                       if str(s_).startswith(HG_NS) and "#" not in str(s_)
+                       and any((s_, RDF.type, t) in owl for t in (OWL.ObjectProperty, OWL.DatatypeProperty,
+                                                                  OWL.AnnotationProperty))})
+    deprecated = sorted(p for p in declared if (URIRef(p), OWL.deprecated, None) in owl)
+    import re as _re
+    # one anchored regular expression: rdflib evaluates it far faster than a
+    # NOT IN over some two hundred IRIs, once per triple of every focus node
+    allowed_re = "^" + _re.escape(HG_NS) + "(" + "|".join(_re.escape(p[len(HG_NS):]) for p in declared) + ")$"
+    allowed_re = allowed_re.replace("\\", "\\\\")
+    dep = ", ".join(f"<{p}>" for p in deprecated) or "<urn:none>"
+
+    # the shapes target instances of the classes that have a node shape (not
+    # every typed node: validation mixes the ontology into the data graph, and
+    # its terms are typed too)
+    class_shapes = sorted(sh_ for sh_ in g.subjects(RDF.type, SH.NodeShape)
+                          if (sh_, SH.targetClass, None) in g)
+
+    def sparql_shape(name: str, select: str, message: str, severity=SH.Violation, target=None):
+        c = URIRef(HG_NS + "shapes/" + name)
+        g.add((c, RDF.type, SH.SPARQLConstraint))
+        g.add((c, SH.message, Literal(message, lang="en")))
+        g.add((c, SH.select, Literal(select)))
+        g.add((c, RDFS.comment, Literal(message, lang="en")))
+        if target is not None:
+            shape = URIRef(HG_NS + "shapes/" + name + "Shape")
+            g.add((shape, RDF.type, SH.NodeShape))
+            g.add((shape, SH.targetSubjectsOf, target))
+            g.add((shape, SH.severity, severity))
+            g.add((shape, SH.sparql, c))
+            return
+        if severity == SH.Violation:
+            for sh_ in class_shapes:
+                g.add((sh_, SH.sparql, c))
+        else:  # a warning needs its own shape (severity is per shape)
+            shape = URIRef(HG_NS + "shapes/" + name + "Shape")
+            g.add((shape, RDF.type, SH.NodeShape))
+            g.add((shape, SH.severity, severity))
+            g.add((shape, SH.sparql, c))
+            for sh_ in class_shapes:
+                for tc in g.objects(sh_, SH.targetClass):
+                    g.add((shape, SH.targetClass, tc))
+
+    sparql_shape("UndeclaredProperty",
+                 "SELECT $this ?path WHERE { $this ?path ?o . "
+                 f"FILTER(STRSTARTS(STR(?path), \"{HG_NS}\") && !REGEX(STR(?path), \"{allowed_re}\")) }}",
+                 "Uses a property in the HeritageGraph namespace that the ontology does not declare "
+                 "(a misspelt or invented term).")
+    sparql_shape("DeprecatedProperty",
+                 f"SELECT $this ?path WHERE {{ $this ?path ?o . FILTER(?path IN ({dep})) }}",
+                 "Uses a deprecated HeritageGraph property; see its dcterms:isReplacedBy.",
+                 severity=SH.Warning)
+    sparql_shape("ConflictingBeliefHasRival",
+                 "SELECT $this WHERE { $this <" + HG_NS + "reconciliationStatus> ?st . "
+                 "FILTER(LCASE(STR(?st)) = \"conflicting\") "
+                 "OPTIONAL { $this <" + HG_NS + "assertsAbout> ?subj . "
+                 "?other <" + HG_NS + "assertsAbout> ?s2 . FILTER(?other != $this) "
+                 "FILTER(?s2 = ?subj || EXISTS { ?subj ?p1 ?s2 } || EXISTS { ?s2 ?p2 ?subj }) } "
+                 "FILTER(!BOUND(?other)) }",
+                 "A belief marked conflicting needs at least one other belief about the same subject or a subject "
+                 "directly linked to it (e.g. a belief about a syncretic relationship and one about its deity).",
+                 target=URIRef(HG_NS + "reconciliationStatus"))
+
+    shapes = URIRef(HG_NS + "shapes")
+    g.add((shapes, RDF.type, OWL.Ontology))
+    g.add((shapes, DCTERMS.title, Literal("HeritageGraph SHACL shapes", lang="en")))
+    g.add((shapes, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
+    g.add((shapes, OWL.versionInfo, Literal(str(sv.schema.version))))
+    g.add((shapes, DCTERMS.source, ONTOLOGY_IRI))
+    print(f"SHACL hardening: {n_bn} blank-node-or-IRI value(s), {n_cs} confidence score shape(s), "
+          f"{n_len} minLength 1, 3 SHACL-SPARQL rules ({len(declared)} declared hg: properties)")
 
 
 def bridge_shacl_classes(g: Graph) -> None:
@@ -2038,6 +2282,10 @@ def gen_json_schema() -> None:
     resolve_abstract_refs(js, csv)
     relax_datetime(js)
     allow_single_string(js, csv)
+    # m23: licence and provenance of the schema itself (an annotation keyword, no validation effect)
+    js["$comment"] = (f"HeritageGraph JSON Schema, version {js.get('version', '')}, generated from "
+                      "ontology/HeritageGraph.yaml (HeritageGraph-container.yaml). Licence: CC BY 4.0 "
+                      "(https://creativecommons.org/licenses/by/4.0/). Ontology: https://cair-nepal.org/heritagegraph/ontology")
     out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")
 

@@ -171,6 +171,16 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
   (TENURE_OK.replace("hg:tenureHolder ex:P", "hg:hadParticipant ex:P") + ' ex:BadTenure hg:embodiedDeity ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "MinCount"),
  "Typing: a structure type given as a deity, not a StructureType term (sh:class)":
   ('ex:BadStructure a hg:ReligiousStructure ; rdfs:label "s" ; hg:structureType ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "Class"),
+ "Open shapes: a misspelt HeritageGraph property, hg:hasArchitecturalStyel (SHACL-SPARQL)":
+  ('ex:D1 a hg:Deity ; rdfs:label "d" ; hg:hasArchitecturalStyel ex:X .', "SPARQL"),
+ "Provenance: a belief marked conflicting with no rival belief about its subject (SHACL-SPARQL)":
+  ('ex:B1 a crminf:I2_Belief ; rdfs:label "b" ; hg:assertsAbout ex:D1 ; hg:reconciliationStatus "conflicting" . '
+   'ex:D1 a hg:Deity ; rdfs:label "d" .', "SPARQL"),
+ "Text: an empty label (minLength)":
+  ('ex:D1 a hg:Deity ; rdfs:label "" .', "MinLength"),
+ "Provenance: a confidence score above 1 (maxInclusive)":
+  ('ex:B1 a crminf:I2_Belief ; rdfs:label "b" ; hg:assertsAbout ex:D1 ; hg:confidenceScore "1.5"^^xsd:decimal . '
+   'ex:D1 a hg:Deity ; rdfs:label "d" .', "MaxInclusive"),
 }
 # The property each test must violate: a test counts as caught only when a
 # result has the expected constraint component ON THE EXPECTED PATH (a
@@ -200,6 +210,10 @@ EXPECTED_PATH = {
  "Existence: a reconstructed temple with no current location (node-level sh:or)": "None",  # node-level sh:or: no result path
  "Tenure: a 1.0.x-style Kumari tenure giving its holder only with hadParticipant (minCount)": HG_ + "tenureHolder",
  "Typing: a structure type given as a deity, not a StructureType term (sh:class)": HG_ + "structureType",
+ "Open shapes: a misspelt HeritageGraph property, hg:hasArchitecturalStyel (SHACL-SPARQL)": HG_ + "hasArchitecturalStyel",
+ "Provenance: a belief marked conflicting with no rival belief about its subject (SHACL-SPARQL)": "None",
+ "Text: an empty label (minLength)": "http://www.w3.org/2000/01/rdf-schema#label",
+ "Provenance: a confidence score above 1 (maxInclusive)": HG_ + "confidenceScore",
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0

@@ -8,6 +8,10 @@
 # its CRM type by entailment (e.g. hg:Murti ⊑ crm:E22_Human-Made_Object), so a
 # LUX/Linked-Art consumer sees a valid crm:E22 with no extra mapping.
 #
+# FICTIONAL: the object, its accession number, the acquisition, the price, the
+# collection and the museum are invented to exercise the classes; they are not
+# a LUX record and describe no real acquisition or institution.
+#
 # Validate (merged shapes + RDFS inference):
 #   pyshacl -s ontology/HeritageGraph.shacl.ttl -s ontology/lux/HeritageGraph-lux.shacl.ttl \
 #           -e heritagegraph-lux-migration/alignment/heritagegraph-lux-alignment.ttl -e ontology/HeritageGraph.ttl \
@@ -93,7 +97,7 @@ ex:tspan-prod a crm:E52_Time-Span ;
 # ---- Acquisition with a monetary amount -------------------------------------
 
 ex:acquisition a hg:Acquisition ;
-    rdfs:label "Museum acquisition, 2019" ;
+    rdfs:label "Acquisition (fictional example)" ;
     hg:acquisitionAmount ex:price .
 
 ex:price a hg:MonetaryAmount ;
@@ -106,10 +110,10 @@ ex:usd a hg:Currency ; rdfs:label "US Dollar" .
 # ---- Curated holding / set membership ---------------------------------------
 
 ex:set a hg:Set ;
-    rdfs:label "CAIR Nepal Sculpture Collection" ;
+    rdfs:label "Example sculpture collection (fictional)" ;
     hg:holdsItem ex:murti .
 
 # ---- Place ------------------------------------------------------------------
 
 ex:place a crm:E53_Place ;
-    rdfs:label "Patan Museum" .
+    rdfs:label "Example museum (fictional)" .

@@ -177,8 +177,9 @@ SELECT ?event ?structure ?holder ?period WHERE {
   ?event crm:P4_has_time-span ?ets . ?ets crm:P82a_begin_of_the_begin ?date .
   ?period a hg:CustodyPeriod ; hg:custodyObject ?structure ; hg:custodyHolder ?holder ;
           crm:P4_has_time-span ?cts .
-  ?cts crm:P82a_begin_of_the_begin ?from ; crm:P82b_end_of_the_end ?to .
-  FILTER(?from <= ?date && ?date <= ?to)
+  ?cts crm:P82a_begin_of_the_begin ?from .
+  OPTIONAL { ?cts crm:P82b_end_of_the_end ?to }   # an open custody period has no end yet
+  FILTER(?from <= ?date && (!BOUND(?to) || ?date <= ?to))
 }
 
 # CQ20: Which structures were commissioned by a specific patron?

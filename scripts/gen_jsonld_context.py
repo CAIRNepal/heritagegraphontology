@@ -85,7 +85,11 @@ def main() -> int:
             if is_object:
                 entry["@type"] = "@id"
             else:
-                rng = next((str(o) for o in g.objects(URIRef(p), RDFS.range)), None)
+                r = next(iter(g.objects(URIRef(p), RDFS.range)), None)
+                # a facet-restricted range (confidenceScore: decimal[0, 1]) is typed by its base datatype
+                if r is not None and not isinstance(r, URIRef):
+                    r = g.value(r, OWL.onDatatype) or r
+                rng = str(r) if r is not None else None
                 token = DATATYPE_TOKEN.get(rng, None) if rng else None
                 if token:
                     entry["@type"] = token
