@@ -7,7 +7,7 @@
       "label": "Access Protocol",
       "kind": "class",
       "curie": "heritageGraph:AccessProtocol",
-      "anchor": "AccessProtocol-2",
+      "anchor": "AccessProtocol",
       "added": [],
       "removed": []
     },
@@ -16,7 +16,7 @@
       "label": "Access Protocol (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "AccessProtocol",
+      "anchor": "AccessProtocol-2",
       "added": [],
       "removed": []
     },
@@ -1662,7 +1662,7 @@
       "label": "Chaitya",
       "kind": "class",
       "curie": "heritageGraph:Chaitya",
-      "anchor": "Chaitya-2",
+      "anchor": "Chaitya",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1677,61 +1677,6 @@
         [
           "skos:definition",
           "\"Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley.\"@en"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
-      "label": "Chaitya style",
-      "kind": "concept",
-      "curie": null,
-      "anchor": "Chaitya",
-      "added": [
-        [
-          "dcterms:isReplacedBy",
-          "heritageGraph:Chaitya"
-        ],
-        [
-          "dcterms:title",
-          "\"Chaitya style\"@en"
-        ],
-        [
-          "owl:deprecated",
-          "true"
-        ],
-        [
-          "rdfs:isDefinedBy",
-          "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"Chaitya style\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Buddhist votive shrine style.\"@en"
-        ],
-        [
-          "skos:editorialNote",
-          "\"Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead.\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Chaitya style\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Chaitya\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Buddhist votive shrine style\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Chaitya\"@en"
         ]
       ]
     },
@@ -2660,7 +2605,7 @@
       "label": "Date Precision",
       "kind": "class",
       "curie": "heritageGraph:DatePrecision",
-      "anchor": "DatePrecision",
+      "anchor": "DatePrecision-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -2699,7 +2644,7 @@
       "label": "Date Precision (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "DatePrecision-2",
+      "anchor": "DatePrecision",
       "added": [
         [
           "skos:prefLabel",
@@ -3201,33 +3146,6 @@
         [
           "skos:definition",
           "\"Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.\"@en"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/documents",
-      "label": "documents",
-      "kind": "object_property",
-      "curie": "heritageGraph:documents",
-      "anchor": "documents",
-      "added": [
-        [
-          "rdfs:isDefinedBy",
-          "heritageGraph:ontology"
-        ],
-        [
-          "schema1:domainIncludes",
-          "heritageGraph:DocumentationActivity"
-        ],
-        [
-          "skos:definition",
-          "\"Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy).\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:definition",
-          "\"Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).\"@en"
         ]
       ]
     },
@@ -6838,6 +6756,61 @@
       ]
     },
     {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
+      "label": "obsolete Chaitya style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Chaitya-2",
+      "added": [
+        [
+          "dcterms:isReplacedBy",
+          "heritageGraph:Chaitya"
+        ],
+        [
+          "dcterms:title",
+          "\"obsolete Chaitya style\"@en"
+        ],
+        [
+          "owl:deprecated",
+          "true"
+        ],
+        [
+          "rdfs:isDefinedBy",
+          "heritageGraph:ontology"
+        ],
+        [
+          "rdfs:label",
+          "\"obsolete Chaitya style\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Buddhist votive shrine style.\"@en"
+        ],
+        [
+          "skos:editorialNote",
+          "\"Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead.\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"obsolete Chaitya style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Chaitya\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Buddhist votive shrine style\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Chaitya\"@en"
+        ]
+      ]
+    },
+    {
       "iri": "https://cair-nepal.org/heritagegraph/condition_assessments",
       "label": "obsolete condition assessments",
       "kind": "object_property",
@@ -8877,6 +8850,57 @@
       ]
     },
     {
+      "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi",
+      "label": "obsolete SanGuthi",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "SanGuthi",
+      "added": [
+        [
+          "dcterms:isReplacedBy",
+          "https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi"
+        ],
+        [
+          "owl:deprecated",
+          "true"
+        ],
+        [
+          "rdfs:isDefinedBy",
+          "heritageGraph:ontology"
+        ],
+        [
+          "rdfs:label",
+          "\"obsolete SanGuthi\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Variant spelling of sanah guthi.\"@en"
+        ],
+        [
+          "skos:editorialNote",
+          "\"Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust.\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"obsolete SanGuthi\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"San Guthi\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Life-cycle ritual trust\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"San Guthi\"@en"
+        ]
+      ]
+    },
+    {
       "iri": "https://cair-nepal.org/heritagegraph/schema_version",
       "label": "obsolete schema version",
       "kind": "datatype_property",
@@ -9037,6 +9061,61 @@
         [
           "skos:definition",
           "\"Collection of ArchitecturalStructure instances (incl. subclasses)\"@en"
+        ]
+      ]
+    },
+    {
+      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
+      "label": "obsolete Stupa style",
+      "kind": "concept",
+      "curie": null,
+      "anchor": "Stupa-2",
+      "added": [
+        [
+          "dcterms:isReplacedBy",
+          "heritageGraph:Stupa"
+        ],
+        [
+          "dcterms:title",
+          "\"obsolete Stupa style\"@en"
+        ],
+        [
+          "owl:deprecated",
+          "true"
+        ],
+        [
+          "rdfs:isDefinedBy",
+          "heritageGraph:ontology"
+        ],
+        [
+          "rdfs:label",
+          "\"obsolete Stupa style\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Buddhist dome-shaped reliquary.\"@en"
+        ],
+        [
+          "skos:editorialNote",
+          "\"Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead.\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"obsolete Stupa style\"@en"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"Stupa\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Buddhist dome-shaped reliquary\"@en"
+        ],
+        [
+          "skos:prefLabel",
+          "\"Stupa\"@en"
         ]
       ]
     },
@@ -9937,6 +10016,49 @@
       ]
     },
     {
+      "iri": "https://cair-nepal.org/heritagegraph/documents",
+      "label": "records",
+      "kind": "object_property",
+      "curie": "heritageGraph:documents",
+      "anchor": "documents",
+      "added": [
+        [
+          "dcterms:title",
+          "\"records\"@en"
+        ],
+        [
+          "rdfs:isDefinedBy",
+          "heritageGraph:ontology"
+        ],
+        [
+          "rdfs:label",
+          "\"records\"@en"
+        ],
+        [
+          "schema1:domainIncludes",
+          "heritageGraph:DocumentationActivity"
+        ],
+        [
+          "skos:definition",
+          "\"Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy).\"@en"
+        ],
+        [
+          "skos:relatedMatch",
+          "crm:P70_documents"
+        ]
+      ],
+      "removed": [
+        [
+          "rdfs:label",
+          "\"documents\"@en"
+        ],
+        [
+          "skos:definition",
+          "\"Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).\"@en"
+        ]
+      ]
+    },
+    {
       "iri": "https://cair-nepal.org/heritagegraph/recurrencePattern",
       "label": "Recurrence pattern",
       "kind": "datatype_property",
@@ -10443,7 +10565,7 @@
       "label": "Ritual Type",
       "kind": "class",
       "curie": "heritageGraph:RitualType",
-      "anchor": "RitualType",
+      "anchor": "RitualType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -10546,7 +10668,7 @@
       "label": "Ritual Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "RitualType-2",
+      "anchor": "RitualType",
       "added": [
         [
           "skos:prefLabel",
@@ -10668,41 +10790,6 @@
         [
           "skos:definition",
           "\"Severely damaged or collapsed\"@en"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi",
-      "label": "San Guthi",
-      "kind": "concept",
-      "curie": null,
-      "anchor": "SanGuthi",
-      "added": [
-        [
-          "dcterms:isReplacedBy",
-          "https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi"
-        ],
-        [
-          "owl:deprecated",
-          "true"
-        ],
-        [
-          "rdfs:isDefinedBy",
-          "heritageGraph:ontology"
-        ],
-        [
-          "skos:definition",
-          "\"Variant spelling of sanah guthi.\"@en"
-        ],
-        [
-          "skos:editorialNote",
-          "\"Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust.\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:definition",
-          "\"Life-cycle ritual trust\"@en"
         ]
       ]
     },
@@ -11125,61 +11212,6 @@
         [
           "owl:disjointWith",
           "heritageGraph:Chaitya"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
-      "label": "Stupa style",
-      "kind": "concept",
-      "curie": null,
-      "anchor": "Stupa-2",
-      "added": [
-        [
-          "dcterms:isReplacedBy",
-          "heritageGraph:Stupa"
-        ],
-        [
-          "dcterms:title",
-          "\"Stupa style\"@en"
-        ],
-        [
-          "owl:deprecated",
-          "true"
-        ],
-        [
-          "rdfs:isDefinedBy",
-          "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"Stupa style\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Buddhist dome-shaped reliquary.\"@en"
-        ],
-        [
-          "skos:editorialNote",
-          "\"Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead.\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Stupa style\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Stupa\"@en"
-        ],
-        [
-          "skos:definition",
-          "\"Buddhist dome-shaped reliquary\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Stupa\"@en"
         ]
       ]
     },

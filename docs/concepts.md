@@ -36,12 +36,6 @@ Devotional singing ritual.
 
 Within century range.
 
-### Chaitya style ~~deprecated~~
-
-**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`
-
-Buddhist votive shrine style.
-
 ### Chariot Procession
 
 **IRI:** `https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession`
@@ -228,6 +222,24 @@ Transfer of an endowment to state administration (e.g. the Guthi Sansthan, estab
 
 Daily mandatory worship.
 
+### obsolete Chaitya style ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`
+
+Buddhist votive shrine style.
+
+### obsolete SanGuthi ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`
+
+Variant spelling of sanah guthi.
+
+### obsolete Stupa style ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`
+
+Buddhist dome-shaped reliquary.
+
 ### Open
 
 **IRI:** `https://cair-nepal.org/heritagegraph/AccessProtocol#Open`
@@ -306,12 +318,6 @@ Consecration/activation ritual.
 
 Severely damaged or collapsed.
 
-### San Guthi ~~deprecated~~
-
-**IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`
-
-Variant spelling of sanah guthi.
-
 ### Sana Guthi
 
 **IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi`
@@ -341,12 +347,6 @@ North Indian spire-shaped style.
 **IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi`
 
 Death guthi (si guthi): the association whose members carry out the cremation and death rites of member households.
-
-### Stupa style ~~deprecated~~
-
-**IRI:** `https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`
-
-Buddhist dome-shaped reliquary.
 
 ### Unknown
 

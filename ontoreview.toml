@@ -18,6 +18,8 @@ changelog = true
 
 [evaluation]
 robot = "auto"
+# ROBOT's default profile, with missing_definition as INFO (see config/README.md)
+robot_profile = "config/robot_report_profile.tsv"
 oops = "auto"
 reasoner = "hermit"
 ontocheck = "on"

@@ -2,12 +2,12 @@
   "summary": {
     "error": 2,
     "warning": 5,
-    "info": 292
+    "info": 291
   },
   "totals": {
     "error": 4,
-    "warning": 296,
-    "info": 919
+    "warning": 5,
+    "info": 1206
   },
   "external": [
     {
@@ -28,7 +28,7 @@
         {
           "code": "missing_definition",
           "name": "Missing definition",
-          "severity": "warning",
+          "severity": "info",
           "description": "",
           "affected": [
             "dc:accessRights",
@@ -323,18 +323,6 @@
           "note": ""
         },
         {
-          "code": "missing_obsolete_label",
-          "name": "Missing obsolete label",
-          "severity": "warning",
-          "description": "",
-          "affected": [
-            "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya",
-            "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa",
-            "https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi"
-          ],
-          "note": ""
-        },
-        {
           "code": "missing_superclass",
           "name": "Missing superclass",
           "severity": "info",
@@ -377,8 +365,8 @@
       "provenance": {},
       "summary": {
         "error": 2,
-        "warning": 291,
-        "info": 26
+        "warning": 0,
+        "info": 314
       }
     },
     {
@@ -1053,7 +1041,7 @@
             "https://orcid.org/0009-0004-5297-5990",
             "https://orcid.org/0009-0007-3770-4668"
           ],
-          "note": "Abhisheka, Aczel → angel, Akira → akita, Aldridge → abridge, Ambrosiana → ambrosia, Amoudruz, Amun → amen, Andr → and, Arve → are, Atlanticus → atlantic's, Avalokiteshvara → avalokitesvara, Bader → baker, Bartsch → batch, Benaki → abenaki, Berkoff, Bernet → beret, Bertaud → bernard, Bhadra → hydra, Bhajan → shaman, Biblioteca → bibliotheca, Bikram → buckram, Blanco → blanc, Boltin → bolting, Bouch → touch, Boudhanath …"
+          "note": "Abhisheka, Aczel → angel, Akira → akiva, Aldridge → abridge, Ambrosiana → ambrosia, Amoudruz, Amun → amen, Andr → and, Arve → are, Atlanticus → atlantic's, Avalokiteshvara → avalokitesvara, Bader → baker, Bartsch → batch, Benaki → abenaki, Berkoff, Bernet → beret, Bertaud → bernard, Bhadra → hydra, Bhajan → shaman, Biblioteca → bibliotheca, Bikram → buckram, Blanco → blanc, Boltin → bolting, Bouch → touch, Boudhanath …"
         }
       ],
       "error": null,
@@ -1153,7 +1141,7 @@
           "metric": "externalLinks",
           "title": "External links",
           "about": "Entities linked to external resources (owl:sameAs, rdfs:seeAlso, SKOS mappings, …)",
-          "value": "15.1% of entities",
+          "value": "15.3% of entities",
           "status": "info"
         },
         {
@@ -1177,7 +1165,7 @@
           "metric": "spellCheck",
           "title": "Spelling",
           "about": "Words in English (or untagged) labels, definitions and comments not found in an English dictionary",
-          "value": "589 possible misspellings in 16961 words (3.5%)",
+          "value": "589 possible misspellings in 16964 words (3.5%)",
           "status": "info"
         },
         {
@@ -3902,15 +3890,6 @@
       "subject": "http://www.w3.org/ns/prov#wasRevisionOf",
       "subject_label": "wasRevisionOf",
       "anchor": "wasRevisionOf"
-    },
-    {
-      "rule": "OB029",
-      "title": "Possible re-definition of a standard term",
-      "severity": "info",
-      "message": "“documents” has the same name as `http://www.cidoc-crm.org/cidoc-crm/P70_documents`; if it means the same thing, consider reusing it.",
-      "subject": "https://cair-nepal.org/heritagegraph/documents",
-      "subject_label": "documents",
-      "anchor": "documents"
     }
   ],
   "rules": [

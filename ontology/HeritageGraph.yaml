@@ -3089,6 +3089,12 @@ slots:
       lexical_form: code
   documents:
     slot_uri: heritageGraph:documents
+    # labelled "records": "documents" is the label of crm:P70, which links a
+    # document (an information object) to what it documents; this links a
+    # documentation activity to what it recorded
+    title: "records"
+    related_mappings:
+      - crm:P70_documents
     range: AssertionSubject
     multivalued: true
     inverse: was_documented_by

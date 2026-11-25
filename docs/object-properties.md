@@ -497,24 +497,10 @@ Source(s) that mention/document this entity: the normative way to cite a source 
 
 | | |
 |---|---|
-| Domain | [Syncretic Relationship](classes.md#syncreticrelationship); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Syncretic Relationship](classes.md#syncreticrelationship) |
 | Range | [Data Source](classes.md#datasource) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
-| domainIncludes | hg:SyncreticRelationship; hg:ArchitecturalStructure |
-
-### documents
-
-**IRI:** `https://cair-nepal.org/heritagegraph/documents` · `hg:documents`
-
-Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy).
-
-| | |
-|---|---|
-| Domain | [Documentation Activity](classes.md#documentationactivity) |
-| Range | [Assertion Subject](classes.md#assertionsubject) |
-| Inverse of | [Was documented by](object-properties.md#documentedby) |
-| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
-| domainIncludes | hg:DocumentationActivity |
+| domainIncludes | hg:ArchitecturalStructure; hg:SyncreticRelationship |
 
 ### Duty for
 
@@ -828,7 +814,7 @@ Cultural access protocol for the thing or its record (e.g. restricted to initiat
 |---|---|
 | Super-properties | [Access Rights](object-properties.md#accessrights) |
 | Domain | [Transfer of Custody](classes.md#e10_transfer_of_custody) *or* [Production](classes.md#e12_production) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Human-Made Object](classes.md#e22_human-made_object) *or* [Design or Procedure](classes.md#e29_design_or_procedure) *or* [Condition State](classes.md#e3_condition_state) *or* [Time-Span](classes.md#e52_time-span) *or* [Place](classes.md#e53_place) *or* [Material](classes.md#e57_material) *or* [Destruction](classes.md#e6_destruction) *or* [Belief](classes.md#i2_belief) *or* [Architectural Element](classes.md#architecturalelement) *or* [Calendar System](classes.md#calendarsystem) *or* [Data Source](classes.md#datasource) *or* [Deity](classes.md#deity) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Endowment](classes.md#endowment) *or* [Endowment Event](classes.md#endowmentevent) *or* [Historical Event](classes.md#historicalevent) *or* [Office](classes.md#office) *or* [Physical Heritage Thing](classes.md#physicalheritagething) *or* [Proposition](classes.md#proposition) *or* [Religious Tradition](classes.md#religioustradition) *or* [Ritual Event](classes.md#ritualevent) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Structure Type](classes.md#structuretype) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Tenure](classes.md#tenure) |
-| Range | [Access Protocol](classes.md#accessprotocol-2) |
+| Range | [Access Protocol](classes.md#accessprotocol) |
 
 ### Has architectural style
 
@@ -958,7 +944,7 @@ The level of precision for a recorded date.
 | | |
 |---|---|
 | Domain | [Time-Span](classes.md#e52_time-span) |
-| Range | [Date Precision](classes.md#dateprecision) |
+| Range | [Date Precision](classes.md#dateprecision-2) |
 
 ### has destruction event
 
@@ -1065,10 +1051,10 @@ Religious tradition(s) within which this deity is venerated, or which use this s
 | | |
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
-| Domain | [Deity](classes.md#deity); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Deity](classes.md#deity) |
 | Range | [Religious Tradition](classes.md#religioustradition) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Deity](classes.md#deity) |
-| domainIncludes | hg:Deity; hg:ArchitecturalStructure |
+| domainIncludes | hg:ArchitecturalStructure; hg:Deity |
 
 ### has ritual type
 
@@ -1080,7 +1066,7 @@ Classification of ritual (puja, jatra, consecration).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Ritual Event](classes.md#ritualevent) |
-| Range | [Ritual Type](classes.md#ritualtype) |
+| Range | [Ritual Type](classes.md#ritualtype-2) |
 | Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
 | domainIncludes | hg:RitualEvent |
 
@@ -1798,6 +1784,20 @@ When source was published.
 | Used in | used in axioms of [Data Source](classes.md#datasource) |
 | domainIncludes | hg:DataSource |
 
+### records
+
+**IRI:** `https://cair-nepal.org/heritagegraph/documents` · `hg:documents`
+
+Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy).
+
+| | |
+|---|---|
+| Domain | [Documentation Activity](classes.md#documentationactivity) |
+| Range | [Assertion Subject](classes.md#assertionsubject) |
+| Inverse of | [Was documented by](object-properties.md#documentedby) |
+| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+| domainIncludes | hg:DocumentationActivity |
+
 ### Residence structure
 
 **IRI:** `https://cair-nepal.org/heritagegraph/residenceStructure` · `hg:residenceStructure`
@@ -2379,7 +2379,7 @@ Documentation event that recorded this (pre-existing) entity or event. Uses hg:d
 | Super-properties | [wasInfluencedBy](object-properties.md#wasinfluencedby) |
 | Domain | [Assertion Subject](classes.md#assertionsubject) |
 | Range | [Documentation Activity](classes.md#documentationactivity) |
-| Inverse of | [documents](object-properties.md#documents) |
+| Inverse of | [records](object-properties.md#documents) |
 | Used in | used in axioms of [Heritage information object](classes.md#informationobject); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
 
 ### was motivated by

@@ -353,18 +353,6 @@ In First Order Logic:
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley. In Newar usage chaitya (Newar chibhah) also names great stupas (Swayambhu Mahachaitya), so a monument may be both a Stupa and a Chaitya."@en
   - ➖ skos:definition: "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley."@en
-- **Chaitya style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`, concept)
-  - ➕ dcterms:isReplacedBy: heritageGraph:Chaitya
-  - ➕ dcterms:title: "Chaitya style"@en
-  - ➕ owl:deprecated: true
-  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "Chaitya style"@en
-  - ➕ skos:definition: "Buddhist votive shrine style."@en
-  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead."@en
-  - ➕ skos:prefLabel: "Chaitya style"@en
-  - ➖ rdfs:label: "Chaitya"@en
-  - ➖ skos:definition: "Buddhist votive shrine style"@en
-  - ➖ skos:prefLabel: "Chaitya"@en
 - **Chariot Festival** (`heritageGraph:ChariotFestival`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)."@en
@@ -794,11 +782,6 @@ In First Order Logic:
   - ➕ skos:editorialNote: "PROV-O alignment: prov:wasInfluencedBy"@en
   - ➖ heritageGraph:prov_alignment: "prov:wasInfluencedBy"
   - ➖ skos:definition: "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation."@en
-- **documents** (`heritageGraph:documents`, object property)
-  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ schema1:domainIncludes: heritageGraph:DocumentationActivity
-  - ➕ skos:definition: "Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy)."@en
-  - ➖ skos:definition: "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by)."@en
 - **Dome style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome`, concept)
   - ➕ dcterms:title: "Dome style"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -1794,6 +1777,18 @@ In First Order Logic:
   - ➖ rdfs:label: "Caste groups"@en
   - ➖ rdfs:range: heritageGraph:CasteGroup
   - ➖ skos:definition: "Collection of CasteGroup instances"@en
+- **obsolete Chaitya style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya`, concept)
+  - ➕ dcterms:isReplacedBy: heritageGraph:Chaitya
+  - ➕ dcterms:title: "obsolete Chaitya style"@en
+  - ➕ owl:deprecated: true
+  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
+  - ➕ rdfs:label: "obsolete Chaitya style"@en
+  - ➕ skos:definition: "Buddhist votive shrine style."@en
+  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead."@en
+  - ➕ skos:prefLabel: "obsolete Chaitya style"@en
+  - ➖ rdfs:label: "Chaitya"@en
+  - ➖ skos:definition: "Buddhist votive shrine style"@en
+  - ➖ skos:prefLabel: "Chaitya"@en
 - **obsolete condition assessments** (`heritageGraph:condition_assessments`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2235,6 +2230,17 @@ In First Order Logic:
   - ➖ rdfs:label: "Ritual events"@en
   - ➖ rdfs:range: heritageGraph:RitualEvent
   - ➖ skos:definition: "Collection of RitualEvent instances"@en
+- **obsolete SanGuthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`, concept)
+  - ➕ dcterms:isReplacedBy: https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi
+  - ➕ owl:deprecated: true
+  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
+  - ➕ rdfs:label: "obsolete SanGuthi"@en
+  - ➕ skos:definition: "Variant spelling of sanah guthi."@en
+  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust."@en
+  - ➕ skos:prefLabel: "obsolete SanGuthi"@en
+  - ➖ rdfs:label: "San Guthi"@en
+  - ➖ skos:definition: "Life-cycle ritual trust"@en
+  - ➖ skos:prefLabel: "San Guthi"@en
 - **obsolete schema version** (`heritageGraph:schema_version`, datatype property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2269,6 +2275,18 @@ In First Order Logic:
   - ➖ rdfs:label: "structures"@en
   - ➖ rdfs:range: heritageGraph:ArchitecturalStructure
   - ➖ skos:definition: "Collection of ArchitecturalStructure instances (incl. subclasses)"@en
+- **obsolete Stupa style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`, concept)
+  - ➕ dcterms:isReplacedBy: heritageGraph:Stupa
+  - ➕ dcterms:title: "obsolete Stupa style"@en
+  - ➕ owl:deprecated: true
+  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
+  - ➕ rdfs:label: "obsolete Stupa style"@en
+  - ➕ skos:definition: "Buddhist dome-shaped reliquary."@en
+  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead."@en
+  - ➕ skos:prefLabel: "obsolete Stupa style"@en
+  - ➖ rdfs:label: "Stupa"@en
+  - ➖ skos:definition: "Buddhist dome-shaped reliquary"@en
+  - ➖ skos:prefLabel: "Stupa"@en
 - **obsolete syncretic relationships** (`heritageGraph:syncretic_relationships`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2498,6 +2516,15 @@ In First Order Logic:
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Status of multi-source reconciliation of the asserted value: confirmed (independent sources agree), conflicting (sources disagree; see the competing assertions), or unverified (single source, not yet checked)."@en
   - ➖ skos:definition: "Status of multi-source reconciliation (confirmed, conflicting, unverified)"@en
+- **records** (`heritageGraph:documents`, object property)
+  - ➕ dcterms:title: "records"@en
+  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
+  - ➕ rdfs:label: "records"@en
+  - ➕ schema1:domainIncludes: heritageGraph:DocumentationActivity
+  - ➕ skos:definition: "Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy)."@en
+  - ➕ skos:relatedMatch: crm:P70_documents
+  - ➖ rdfs:label: "documents"@en
+  - ➖ skos:definition: "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by)."@en
 - **Recurrence pattern** (`heritageGraph:recurrencePattern`, datatype property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:range: rdf:PlainLiteral
@@ -2651,13 +2678,6 @@ In First Order Logic:
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Severely damaged or collapsed."@en
   - ➖ skos:definition: "Severely damaged or collapsed"@en
-- **San Guthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi`, concept)
-  - ➕ dcterms:isReplacedBy: https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi
-  - ➕ owl:deprecated: true
-  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ skos:definition: "Variant spelling of sanah guthi."@en
-  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust."@en
-  - ➖ skos:definition: "Life-cycle ritual trust"@en
 - **Sana Guthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Funeral association (sanah guthi): the association that organises the funeral procession and cremation of member households; in some localities it and the si guthi are one body."@en
@@ -2770,18 +2790,6 @@ In First Order Logic of the inverse property:
 - **Stupa** (`heritageGraph:Stupa`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➖ owl:disjointWith: heritageGraph:Chaitya
-- **Stupa style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa`, concept)
-  - ➕ dcterms:isReplacedBy: heritageGraph:Stupa
-  - ➕ dcterms:title: "Stupa style"@en
-  - ➕ owl:deprecated: true
-  - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "Stupa style"@en
-  - ➕ skos:definition: "Buddhist dome-shaped reliquary."@en
-  - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead."@en
-  - ➕ skos:prefLabel: "Stupa style"@en
-  - ➖ rdfs:label: "Stupa"@en
-  - ➖ skos:definition: "Buddhist dome-shaped reliquary"@en
-  - ➖ skos:prefLabel: "Stupa"@en
 - **Supported by institution** (`heritageGraph:supportedByInstitution`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:range: crm:E74_Group

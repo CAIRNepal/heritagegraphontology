@@ -548,14 +548,14 @@ hg:InformationObject a owl:Class ;
     dcterms:title "Heritage information object"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty schema1:inLanguage ],
+            owl:allValuesFrom prov:Activity ;
+            owl:onProperty prov:wasGeneratedBy ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
-            owl:allValuesFrom prov:Activity ;
-            owl:onProperty prov:wasGeneratedBy ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty schema1:inLanguage ],
         hg:DataSource ;
     skos:broadMatch crm:E73_Information_Object ;
     skos:definition "A recorded piece of information about heritage."@en ;
@@ -2126,16 +2126,16 @@ prov:wasGeneratedBy a owl:ObjectProperty ;
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> a owl:NamedIndividual,
         skos:Concept,
         hg:ArchitecturalStyle ;
-    rdfs:label "Chaitya style"@en ;
+    rdfs:label "obsolete Chaitya style"@en ;
     dcterms:isReplacedBy hg:Chaitya ;
-    dcterms:title "Chaitya style"@en ;
+    dcterms:title "obsolete Chaitya style"@en ;
     rdfs:isDefinedBy hg:ontology ;
     owl:deprecated true ;
     skos:closeMatch aat:300007562 ;
     skos:definition "Buddhist votive shrine style."@en ;
     skos:editorialNote "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead."@en ;
     skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-    skos:prefLabel "Chaitya style"@en .
+    skos:prefLabel "obsolete Chaitya style"@en .
 
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> a owl:NamedIndividual,
         skos:Concept,
@@ -2172,16 +2172,16 @@ prov:wasGeneratedBy a owl:ObjectProperty ;
 <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> a owl:NamedIndividual,
         skos:Concept,
         hg:ArchitecturalStyle ;
-    rdfs:label "Stupa style"@en ;
+    rdfs:label "obsolete Stupa style"@en ;
     dcterms:isReplacedBy hg:Stupa ;
-    dcterms:title "Stupa style"@en ;
+    dcterms:title "obsolete Stupa style"@en ;
     rdfs:isDefinedBy hg:ontology ;
     owl:deprecated true ;
     skos:closeMatch aat:300007576 ;
     skos:definition "Buddhist dome-shaped reliquary."@en ;
     skos:editorialNote "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead."@en ;
     skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle> ;
-    skos:prefLabel "Stupa style"@en .
+    skos:prefLabel "obsolete Stupa style"@en .
 
 <https://cair-nepal.org/heritagegraph/ConditionType#Damaged> a owl:NamedIndividual,
         skos:Concept,
@@ -2415,14 +2415,14 @@ prov:wasGeneratedBy a owl:ObjectProperty ;
 <https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi> a owl:NamedIndividual,
         skos:Concept,
         hg:GuthiType ;
-    rdfs:label "San Guthi"@en ;
+    rdfs:label "obsolete SanGuthi"@en ;
     dcterms:isReplacedBy <https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi> ;
     rdfs:isDefinedBy hg:ontology ;
     owl:deprecated true ;
     skos:definition "Variant spelling of sanah guthi."@en ;
     skos:editorialNote "Deprecated in HeritageGraph 1.1.0: A duplicate of SanaGuthi (variant spelling of sanah guthi), previously glossed wrongly as a life-cycle ritual trust."@en ;
     skos:inScheme <https://cair-nepal.org/heritagegraph/scheme/GuthiType> ;
-    skos:prefLabel "San Guthi"@en .
+    skos:prefLabel "obsolete SanGuthi"@en .
 
 <https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi> a owl:NamedIndividual,
         skos:Concept,
@@ -2447,17 +2447,17 @@ hg:Murti a owl:Class ;
     rdfs:label "Murti"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty hg:isAboutDeity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:isAboutDeity ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:consecratedByEvent ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Consecration ;
             owl:onProperty hg:consecratedByEvent ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:isAboutDeity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:consecratedByEvent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty hg:isAboutDeity ],
         hg:IconographicObject ;
     skos:definition "Consecrated image or seat of a deity, figural or aniconic (e.g. a stone, a linga, a pitha), ritually activated to serve as divine presence (not merely depiction)."@en ;
     skos:exactMatch wikidata:Q1781039 ;
@@ -2739,13 +2739,15 @@ hg:destructionEvent a owl:ObjectProperty ;
     skos:inScheme hg:schema .
 
 hg:documents a owl:ObjectProperty ;
-    rdfs:label "documents"@en ;
+    rdfs:label "records"@en ;
+    dcterms:title "records"@en ;
     schema1:domainIncludes hg:DocumentationActivity ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:range hg:AssertionSubject ;
     owl:inverseOf hg:documentedBy ;
     skos:definition "Pre-existing heritage entity or event recorded by this documentation activity (inverse of hg:documentedBy)."@en ;
-    skos:inScheme hg:schema .
+    skos:inScheme hg:schema ;
+    skos:relatedMatch crm:P70_documents .
 
 hg:endPlace a owl:ObjectProperty ;
     rdfs:label "End place"@en ;
@@ -3210,14 +3212,14 @@ hg:KumariRetirementEvent a owl:Class ;
     rdfs:label "Kumari Retirement Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
+            owl:onProperty hg:performedByGroup ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:endedTenureOf ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty crm:P14_carried_out_by ],
@@ -3225,17 +3227,11 @@ hg:KumariRetirementEvent a owl:Class ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariTenure ;
-            owl:onProperty hg:endedTenureOf ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom hg:KumariTenure ;
             owl:onProperty hg:endedTenureOf ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
@@ -3243,8 +3239,14 @@ hg:KumariRetirementEvent a owl:Class ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
-            owl:onProperty hg:performedByGroup ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endedTenureOf ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endedTenureOf ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -3263,32 +3265,32 @@ hg:RitualAssessment a owl:Class ;
     rdfs:label "Ritual Assessment"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariSelectionEvent ;
-            owl:onProperty hg:partOfSelection ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:partOfSelection ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E21_Person ;
             owl:onProperty hg:assessesCandidate ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:partOfSelection ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariSelectionEvent ;
+            owl:onProperty hg:partOfSelection ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:assessesCandidate ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty hg:assessesCandidate ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
         hg:RitualEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -3299,14 +3301,14 @@ hg:Temple a owl:Class ;
     rdfs:label "Temple"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:hasArchitecturalStyle ],
+            owl:allValuesFrom hg:Enshrinement ;
+            owl:onProperty hg:enshrinesDeityThroughEvent ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ArchitecturalStyle ;
             owl:onProperty hg:hasArchitecturalStyle ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:Enshrinement ;
-            owl:onProperty hg:enshrinesDeityThroughEvent ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:hasArchitecturalStyle ],
         hg:ReligiousStructure ;
     skos:altLabel "Mandir"@en ;
     skos:broadMatch dbo:ReligiousBuilding,
@@ -3323,13 +3325,13 @@ hg:Verification a owl:Class ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:verificationMethod ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E21_Person ;
             owl:onProperty hg:verifiedByExpert ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:verifiedAssertion ],
@@ -3531,11 +3533,11 @@ hg:ArchitecturalElement a owl:Class ;
     rdfs:label "Architectural Element"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P46i_forms_part_of ],
-        [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P46i_forms_part_of ],
         crm:E24_Physical_Human-Made_Thing,
         prov:Entity ;
     skos:broadMatch crm:E25_Human-Made_Feature ;
@@ -3547,8 +3549,20 @@ hg:KumariEnthronementEvent a owl:Class ;
     rdfs:label "Kumari Enthronement Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:enthronedPerson ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariRole ;
+            owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:boundsTenure ],
@@ -3557,39 +3571,27 @@ hg:KumariEnthronementEvent a owl:Class ;
             owl:onProperty hg:boundsTenure ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:boundsTenure ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:onProperty hg:enthronedPerson ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E21_Person ;
             owl:onProperty hg:enthronedPerson ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:confersRole ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:enthronedPerson ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:confersRole ],
+            owl:onProperty hg:boundsTenure ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRole ;
-            owl:onProperty hg:confersRole ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
@@ -3738,8 +3740,14 @@ hg:Consecration a owl:Class ;
     rdfs:label "Consecration"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty hg:makesDeityPresent ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:makesDeityPresent ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty crm:P14_carried_out_by ],
@@ -3747,14 +3755,8 @@ hg:Consecration a owl:Class ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty hg:makesDeityPresent ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:makesDeityPresent ],
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         crm:E7_Activity,
         prov:Activity,
         hg:RitualEvent ;
@@ -3767,50 +3769,50 @@ hg:CustodyPeriod a owl:Class ;
     rdfs:label "Custody Period"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:custodyHolder ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyClosedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyHolder ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:PhysicalHeritageThing crm:E22_Human-Made_Object ) ] hg:AssertionSubject ) ] ;
-            owl:onProperty hg:custodyObject ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E10_Transfer_of_Custody ;
-            owl:onProperty hg:custodyClosedBy ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyObject ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyObject ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyOpenedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:custodyHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyHolder ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyObject ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E10_Transfer_of_Custody ;
+            owl:onProperty hg:custodyClosedBy ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyOpenedBy ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E10_Transfer_of_Custody ;
             owl:onProperty hg:custodyOpenedBy ],
         [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:PhysicalHeritageThing crm:E22_Human-Made_Object ) ] hg:AssertionSubject ) ] ;
+            owl:onProperty hg:custodyObject ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyObject ],
+        [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyHolder ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:custodyHolder ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:custodyClosedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         hg:Tenure ;
     skos:broadMatch crm:E4_Period ;
     skos:definition "Dated period during which an actor (typically a Guthi) holds custody of a heritage structure or object, opened and closed by transfer-of-custody events. Unlike the untimed crm:P50i_is_current_keeper_of, it answers who held custody at a given date."@en ;
@@ -3821,20 +3823,20 @@ hg:HistoricalEvent a owl:Class ;
     rdfs:label "Historical Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ArchitecturalStructure ;
             owl:onProperty hg:architecturalStructures ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
         crm:E5_Event,
         prov:Activity ;
     skos:broadMatch crm:E5_Event ;
@@ -3849,20 +3851,20 @@ hg:IconographicObject a owl:Class ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P55_has_current_location ],
+        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty hg:participatesInRitual ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:usedBy ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E12_Production ;
             owl:onProperty crm:P108i_was_produced_by ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P55_has_current_location ],
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:usedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty hg:participatesInRitual ],
         crm:E22_Human-Made_Object ;
     skos:broadMatch dbo:Artwork ;
     skos:definition "Sacred visual art objects that depict or embody deities through iconographic conventions."@en ;
@@ -3884,11 +3886,14 @@ hg:SyncreticRelationship a owl:Class ;
     rdfs:label "Syncretic Relationship"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P140_assigned_attribute_to ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:SyncreticType ;
             owl:onProperty hg:syncreticType ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P141_assigned ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:syncreticType ],
@@ -3900,10 +3905,7 @@ hg:SyncreticRelationship a owl:Class ;
             owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P141_assigned ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
+            owl:onProperty crm:P140_assigned_attribute_to ],
         crm:E13_Attribute_Assignment,
         prov:Activity ;
     skos:broadMatch crm:E13_Attribute_Assignment ;
@@ -3949,22 +3951,22 @@ hg:Endowment a owl:Class ;
     rdfs:label "Endowment"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P105_right_held_by ],
-        [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty hg:endowedLand ],
         [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:ArchitecturalStructure hg:RitualEvent hg:Office ) ] hg:AssertionSubject ) ] ;
             owl:onProperty hg:sustains ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:ArchitecturalStructure hg:RitualEvent hg:Office ) ] hg:AssertionSubject ) ] ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P105_right_held_by ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:sustains ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E74_Group ;
@@ -4034,10 +4036,10 @@ hg:KumariRole a owl:Class ;
     rdfs:label "Kumari Role"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom hg:Deity ;
             owl:onProperty hg:roleDeity ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:roleDeity ],
         hg:RitualOffice ;
     skos:altLabel "Living Goddess"@en,
@@ -4050,11 +4052,20 @@ hg:Proposition a owl:Class ;
     rdfs:label "Proposition"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom hg:AssertionSubject ;
+            owl:onProperty hg:propositionObjectEntity ],
+        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:propositionPredicate ],
+            owl:onProperty hg:propositionLiteralValue ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:propositionSubject ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:propositionObjectEntity ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:propositionPredicate ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:anyURI ;
             owl:onProperty hg:propositionPredicate ],
@@ -4062,23 +4073,14 @@ hg:Proposition a owl:Class ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:propositionSubject ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:propositionLiteralValue ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:propositionPredicate ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:propositionObjectEntity ],
+            owl:onProperty hg:propositionSubject ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:propositionPredicate ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdfs:Literal ;
             owl:onProperty hg:propositionLiteralValue ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:propositionObjectEntity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:propositionSubject ],
         crminf:I4_Proposition_Set,
         prov:Entity ;
     skos:broadMatch crminf:I4_Proposition_Set ;
@@ -4190,23 +4192,23 @@ hg:CalendarSystem a owl:Class ;
     rdfs:label "Calendar System"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:integer ;
-            owl:onProperty hg:yearOffsetFromGregorian ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:yearOffsetFromGregorian ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:epochDateGregorian ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:epochDateGregorian ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:yearOffsetFromGregorian ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ReligiousTradition ;
             owl:onProperty hg:isPrimaryForTradition ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:epochDateGregorian ],
+            owl:allValuesFrom xsd:integer ;
+            owl:onProperty hg:yearOffsetFromGregorian ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
         prov:Entity ;
     skos:broadMatch time:TRS ;
     skos:definition "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning."@en ;
@@ -4230,11 +4232,35 @@ hg:EndowmentEvent a owl:Class ;
     rdfs:label "Endowment Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:concernsEndowment ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:endowmentDonor ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endowmentEventType ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endowmentRecipient ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Endowment ;
+            owl:onProperty hg:concernsEndowment ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:endowmentRecipient ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endowmentEventType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:concernsEndowment ],
@@ -4243,37 +4269,13 @@ hg:EndowmentEvent a owl:Class ;
             owl:onProperty hg:endowmentEventType ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:concernsEndowment ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:endowmentRecipient ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:endowmentEventType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:endowmentRecipient ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Endowment ;
-            owl:onProperty hg:concernsEndowment ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:endowmentEventType ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
         crm:E8_Acquisition,
         prov:Activity ;
     skos:broadMatch crm:E8_Acquisition ;
@@ -4287,8 +4289,11 @@ hg:Enshrinement a owl:Class ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:enshrinedDeity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Temple ;
+            owl:onProperty hg:enshrinedInStructure ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
@@ -4300,13 +4305,10 @@ hg:Enshrinement a owl:Class ;
             owl:onProperty hg:enshrinedDeity ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:enshrinedDeity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Temple ;
             owl:onProperty hg:enshrinedInStructure ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:enshrinedInStructure ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         crm:E7_Activity,
         prov:Activity,
         hg:RitualEvent ;
@@ -4385,62 +4387,62 @@ hg:HereditaryRoleTenure a owl:Class ;
     rdfs:label "Hereditary Role Tenure"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:tenureOffice ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:roleHolder ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( crm:E21_Person hg:CasteGroup ) ] crm:E39_Actor ) ] ;
+            owl:onProperty hg:roleHolder ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:TenureEvent ;
+            owl:onProperty hg:tenureClosedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:RitualOffice ;
+            owl:onProperty hg:tenureOffice ],
+        [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:roleDuty ],
         [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:roleHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:successionRule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:HereditaryRoleTenure ;
+            owl:onProperty hg:succeeds ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty hg:dutyFor ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:succeeds ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:mandatedBy ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualOffice ;
-            owl:onProperty hg:tenureOffice ],
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:roleDuty ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E74_Group ;
             owl:onProperty hg:mandatedBy ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:TenureEvent ;
             owl:onProperty hg:tenureOpenedBy ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( crm:E21_Person hg:CasteGroup ) ] crm:E39_Actor ) ] ;
-            owl:onProperty hg:roleHolder ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty hg:successionRule ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty hg:dutyFor ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:HereditaryRoleTenure ;
-            owl:onProperty hg:succeeds ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:roleDuty ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:succeeds ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:tenureOffice ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:TenureEvent ;
-            owl:onProperty hg:tenureClosedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:roleHolder ],
         hg:Tenure ;
     skos:altLabel "Hereditary ritual office"@en ;
     skos:broadMatch crm:E4_Period ;
@@ -4452,32 +4454,50 @@ hg:KumariSelectionEvent a owl:Class ;
     rdfs:label "Kumari Selection Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:initiatedTenure ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:initiatedTenure ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:isCriticalForFestival ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:KumariTenure ;
             owl:onProperty hg:initiatedTenure ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:isCriticalForFestival ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:selectedPerson ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty crm:P7_took_place_at ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:initiatedTenure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty hg:isCriticalForFestival ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:selectedPerson ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty hg:selectedPerson ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
+            owl:onProperty hg:performedByGroup ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:initiatedTenure ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariRole ;
+            owl:onProperty hg:confersRole ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:SelectionCriterion ;
             owl:onProperty hg:hasCriterion ],
@@ -4485,26 +4505,8 @@ hg:KumariSelectionEvent a owl:Class ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:boolean ;
-            owl:onProperty hg:isCriticalForFestival ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:selectedPerson ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRole ;
-            owl:onProperty hg:confersRole ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:confersRole ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
-            owl:onProperty hg:performedByGroup ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty hg:selectedPerson ],
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
         hg:KumariLifecycleEvent ;
     skos:broadMatch crm:E7_Activity,
         prov:Activity ;
@@ -4529,35 +4531,35 @@ hg:Tenure a owl:Class ;
     rdfs:label "Tenure"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:TenureEvent ;
-            owl:onProperty hg:tenureClosedBy ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:tenureOffice ],
-        [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:tenureHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom crminf:I2_Belief ;
             owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
+            owl:allValuesFrom hg:TenureEvent ;
+            owl:onProperty hg:tenureOpenedBy ],
+        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:tenureHolder ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:tenureHolder ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Office ;
             owl:onProperty hg:tenureOffice ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom hg:TenureEvent ;
+            owl:onProperty hg:tenureClosedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:TenureEvent ;
-            owl:onProperty hg:tenureOpenedBy ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:tenureOffice ],
         crm:E4_Period,
         prov:Entity ;
     skos:definition "A dated period during which an actor holds an office, a duty or custody of something (a CIDOC-CRM E4 Period), with the events that open and close it. KumariTenure, HereditaryRoleTenure and CustodyPeriod are specialisations; the pattern applies to offices and custody beyond Nepal."@en ;
@@ -4592,9 +4594,6 @@ hg:Guthi a owl:Class ;
             owl:allValuesFrom hg:RitualEvent ;
             owl:onProperty hg:performsRitual ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:guthiType ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E21_Person ;
             owl:onProperty crm:P107_has_current_or_former_member ],
         [ a owl:Restriction ;
@@ -4602,6 +4601,9 @@ hg:Guthi a owl:Class ;
             owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:GuthiType ;
+            owl:onProperty hg:guthiType ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:guthiType ],
         crm:E74_Group ;
     skos:broadMatch prov:Organization ;
@@ -4687,74 +4689,74 @@ hg:KumariTenure a owl:Class ;
     rdfs:label "Kumari Tenure"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty hg:embodiedDeity ],
-        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:embodiedDeity ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E74_Group ;
-            owl:onProperty hg:supportedByInstitution ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:enthronedThrough ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRole ;
-            owl:onProperty hg:assumesRole ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E21_Person ;
-            owl:onProperty hg:tenureHolder ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ArchitecturalStructure ;
-            owl:onProperty hg:residenceStructure ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:tenureHolder ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariRetirementEvent ;
             owl:onProperty hg:retiredThrough ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:KumariSelectionEvent ;
-            owl:onProperty hg:selectedThrough ],
-        [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:residenceStructure ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:KumariEnthronementEvent ;
             owl:onProperty hg:enthronedThrough ],
         [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:tenureHolder ],
+            owl:allValuesFrom hg:KumariRetirementEvent ;
+            owl:onProperty hg:retiredThrough ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:DocumentationActivity ;
             owl:onProperty hg:documentedBy ],
         [ a owl:Restriction ;
-            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:embodiedDeity ],
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:hadParticipant ],
+            owl:allValuesFrom crm:E21_Person ;
+            owl:onProperty hg:tenureHolder ],
         [ a owl:Restriction ;
             owl:minCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:residenceStructure ],
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty hg:embodiedDeity ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:retiredThrough ],
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:tenureHolder ],
+        [ a owl:Restriction ;
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:residenceStructure ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:assumesRole ],
         [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:hadParticipant ],
+        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:embodiedDeity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariSelectionEvent ;
+            owl:onProperty hg:selectedThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:KumariRole ;
+            owl:onProperty hg:assumesRole ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:enthronedThrough ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ArchitecturalStructure ;
+            owl:onProperty hg:residenceStructure ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:selectedThrough ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
+            owl:minCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:embodiedDeity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:tenureHolder ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E74_Group ;
+            owl:onProperty hg:supportedByInstitution ],
         hg:Tenure ;
     skos:altLabel "Living Goddess Tenure"@en ;
     skos:broadMatch crm:E4_Period ;
@@ -4786,49 +4788,49 @@ hg:DataSource a owl:Class ;
     rdfs:label "Data Source"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty hg:sourceUrl ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:identifierScheme ],
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:sourceCitation ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty hg:resourceType ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty hg:sourceUrl ],
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:sourceCreator ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:sourcePublisher ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty hg:identifierScheme ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty hg:sourcePublisher ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:resourceType ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:publicationTimespan ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:sourceUrl ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty schema1:inLanguage ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:resourceType ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:sourcePublisher ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:sourceCreator ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty hg:sourcePublisher ],
+            owl:onProperty hg:identifierScheme ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:persistentIdentifier ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:identifierScheme ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty hg:sourceCitation ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty hg:publicationTimespan ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
@@ -4846,14 +4848,14 @@ hg:Deity a owl:Class ;
             owl:allValuesFrom hg:ReligiousTradition ;
             owl:onProperty hg:hasReligiousTradition ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:RitualEvent ;
-            owl:onProperty hg:isInvokedInRitual ],
-        [ a owl:Restriction ;
             owl:allValuesFrom hg:Enshrinement ;
             owl:onProperty hg:isEnshrinedThroughEvent ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:RitualEvent ;
+            owl:onProperty hg:isInvokedInRitual ],
         prov:Entity ;
     skos:broadMatch crm:E28_Conceptual_Object ;
     skos:closeMatch dbo:Deity,
@@ -4866,14 +4868,11 @@ hg:DocumentationActivity a owl:Class ;
     rdfs:label "Documentation Activity"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom hg:AssertionSubject ;
-            owl:onProperty hg:documents ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom prov:Agent ;
-            owl:onProperty prov:wasAssociatedWith ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E52_Time-Span ;
             owl:onProperty crm:P4_has_time-span ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:usedEquipment ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty crm:P4_has_time-span ],
@@ -4881,11 +4880,14 @@ hg:DocumentationActivity a owl:Class ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:usedMethod ],
         [ a owl:Restriction ;
+            owl:allValuesFrom hg:AssertionSubject ;
+            owl:onProperty hg:documents ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom prov:Agent ;
+            owl:onProperty prov:wasAssociatedWith ],
+        [ a owl:Restriction ;
             owl:allValuesFrom prov:Entity ;
             owl:onProperty prov:generated ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty hg:usedEquipment ],
         crm:E7_Activity,
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
@@ -4902,62 +4904,62 @@ hg:ArchitecturalStructure a owl:Class ;
     rdfs:label "Architectural Structure"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E6_Destruction ;
-            owl:onProperty hg:destructionEvent ],
-        [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:destructionEvent ],
+            owl:onProperty hg:existenceStatus ],
         [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty hg:hypothesizedLocation ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ReligiousTradition ;
+            owl:onProperty hg:hasReligiousTradition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E12_Production ;
+            owl:onProperty crm:P108i_was_produced_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E14_Condition_Assessment ;
+            owl:onProperty crm:P34i_was_assessed_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:ArchitecturalStyle ;
             owl:onProperty hg:hasArchitecturalStyle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:StructureType ;
+            owl:onProperty hg:structureType ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:Guthi ;
+            owl:onProperty hg:managedByGuthi ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P55_has_current_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty hg:lastKnownExistenceDate ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DataSource ;
+            owl:onProperty hg:mentionedInSource ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:ExistenceStatus ;
             owl:onProperty hg:existenceStatus ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:ReligiousTradition ;
-            owl:onProperty hg:hasReligiousTradition ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:hasArchitecturalStyle ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E6_Destruction ;
+            owl:onProperty hg:destructionEvent ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty crm:P108i_was_produced_by ],
+        [ a owl:Restriction ;
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:destructionEvent ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
             owl:onProperty hg:lastKnownExistenceDate ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty crm:P3_has_note ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P55_has_current_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E14_Condition_Assessment ;
-            owl:onProperty crm:P34i_was_assessed_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:StructureType ;
-            owl:onProperty hg:structureType ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:DataSource ;
-            owl:onProperty hg:mentionedInSource ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E12_Production ;
-            owl:onProperty crm:P108i_was_produced_by ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:ArchitecturalStyle ;
-            owl:onProperty hg:hasArchitecturalStyle ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom hg:Guthi ;
-            owl:onProperty hg:managedByGuthi ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:existenceStatus ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:dateTime ;
-            owl:onProperty hg:lastKnownExistenceDate ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:hypothesizedLocation ],
         crm:E22_Human-Made_Object ;
     skos:broadMatch crm:E22_Human-Made_Object ;
     skos:closeMatch schema1:Place ;
@@ -5045,71 +5047,71 @@ hg:RitualEvent a owl:Class ;
     rdfs:label "Ritual Event"@en ;
     rdfs:isDefinedBy hg:ontology ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom crm:E52_Time-Span ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty hg:recurrencePattern ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crminf:I2_Belief ;
-            owl:onProperty hg:hasAssertion ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
-            owl:onProperty hg:performedByGroup ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty crm:P4_has_time-span ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty crm:P7_took_place_at ],
-        [ a owl:Restriction ;
             owl:allValuesFrom crm:E39_Actor ;
             owl:onProperty hg:hadParticipant ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom rdf:PlainLiteral ;
-            owl:onProperty crm:P3_has_note ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:Guthi ;
             owl:onProperty hg:managedByGuthi ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E57_Material ;
-            owl:onProperty crm:P125_used_object_of_type ],
+            owl:allValuesFrom hg:Deity ;
+            owl:onProperty hg:invokesDeity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E39_Actor ;
+            owl:onProperty crm:P14_carried_out_by ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ owl:intersectionOf ( [ owl:unionOf ( hg:Guthi hg:CasteGroup ) ] crm:E39_Actor ) ] ;
+            owl:onProperty hg:performedByGroup ],
         [ a owl:Restriction ;
             owl:allValuesFrom hg:RitualType ;
             owl:onProperty hg:ritualType ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:endPlace ],
-        [ a owl:Restriction ;
-            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:startPlace ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom crm:E53_Place ;
-            owl:onProperty hg:endPlace ],
+            owl:onProperty hg:ritualType ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty hg:routePlaces ],
         [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty hg:endPlace ],
+        [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:routeDescription ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:DocumentationActivity ;
-            owl:onProperty hg:documentedBy ],
+            owl:allValuesFrom crminf:I2_Belief ;
+            owl:onProperty hg:hasAssertion ],
         [ a owl:Restriction ;
             owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
-            owl:onProperty hg:ritualType ],
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom crm:E53_Place ;
             owl:onProperty hg:startPlace ],
         [ a owl:Restriction ;
-            owl:allValuesFrom crm:E39_Actor ;
-            owl:onProperty crm:P14_carried_out_by ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:startPlace ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom hg:DocumentationActivity ;
+            owl:onProperty hg:documentedBy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E57_Material ;
+            owl:onProperty crm:P125_used_object_of_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty hg:recurrencePattern ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom rdf:PlainLiteral ;
+            owl:onProperty crm:P3_has_note ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E52_Time-Span ;
+            owl:onProperty crm:P4_has_time-span ],
         [ a owl:Restriction ;
             owl:allValuesFrom rdf:PlainLiteral ;
             owl:onProperty hg:lunarDateTithi ],
         [ a owl:Restriction ;
-            owl:allValuesFrom hg:Deity ;
-            owl:onProperty hg:invokesDeity ],
+            owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+            owl:onProperty hg:endPlace ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom crm:E53_Place ;
+            owl:onProperty crm:P7_took_place_at ],
         crm:E7_Activity,
         prov:Activity ;
     skos:broadMatch crm:E7_Activity ;
@@ -5179,22 +5181,25 @@ hg:ontology a owl:Ontology ;
     skos:definition "An event-centric LinkML schema for representing cultural heritage information, aligned with CIDOC-CRM and PROV-O through exact/broad mappings and subproperty bridges, enabling provenance tracking and ritual-spatial-temporal reasoning."@en .
 
 [] a owl:AllDifferent ;
-    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/RitualType#Abhisheka> <https://cair-nepal.org/heritagegraph/RitualType#Bhajan> <https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession> <https://cair-nepal.org/heritagegraph/RitualType#Circumambulation> <https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual> <https://cair-nepal.org/heritagegraph/RitualType#Homa> <https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual> <https://cair-nepal.org/heritagegraph/RitualType#Jatra> <https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja> <https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance> <https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja> <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> <https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual> <https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement> <https://cair-nepal.org/heritagegraph/RitualType#RelicTour> <https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual> <https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration> <https://cair-nepal.org/heritagegraph/RitualType#Vrata> <https://cair-nepal.org/heritagegraph/RitualType#Yagna> ) .
-
-[] a owl:AllDifferent ;
     owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/SyncreticType#Appropriation> <https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> <https://cair-nepal.org/heritagegraph/SyncreticType#Fusion> <https://cair-nepal.org/heritagegraph/SyncreticType#Historical> ) .
 
 [] a owl:AllDifferent ;
-    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/EndowmentEventType#Alienation> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Augmentation> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Founding> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Nationalisation> ) .
+    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/AccessProtocol#CommunityUseOnly> <https://cair-nepal.org/heritagegraph/AccessProtocol#InitiatesOnly> <https://cair-nepal.org/heritagegraph/AccessProtocol#Open> <https://cair-nepal.org/heritagegraph/AccessProtocol#Seasonal> <https://cair-nepal.org/heritagegraph/AccessProtocol#SecretSacred> ) .
 
 [] a owl:AllDifferent ;
     owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/ConditionType#Damaged> <https://cair-nepal.org/heritagegraph/ConditionType#Good> <https://cair-nepal.org/heritagegraph/ConditionType#Restored> <https://cair-nepal.org/heritagegraph/ConditionType#Ruined> ) .
 
 [] a owl:AllDifferent ;
-    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> ) .
+    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> ) .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/RitualType#Abhisheka> <https://cair-nepal.org/heritagegraph/RitualType#Bhajan> <https://cair-nepal.org/heritagegraph/RitualType#ChariotProcession> <https://cair-nepal.org/heritagegraph/RitualType#Circumambulation> <https://cair-nepal.org/heritagegraph/RitualType#DeinstallationRitual> <https://cair-nepal.org/heritagegraph/RitualType#Homa> <https://cair-nepal.org/heritagegraph/RitualType#InstallationRitual> <https://cair-nepal.org/heritagegraph/RitualType#Jatra> <https://cair-nepal.org/heritagegraph/RitualType#KamyaPuja> <https://cair-nepal.org/heritagegraph/RitualType#MaskedPerformance> <https://cair-nepal.org/heritagegraph/RitualType#NaimittikaPuja> <https://cair-nepal.org/heritagegraph/RitualType#NityaPuja> <https://cair-nepal.org/heritagegraph/RitualType#ProcessionRitual> <https://cair-nepal.org/heritagegraph/RitualType#ProcessionalMovement> <https://cair-nepal.org/heritagegraph/RitualType#RelicTour> <https://cair-nepal.org/heritagegraph/RitualType#ReturningRitual> <https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration> <https://cair-nepal.org/heritagegraph/RitualType#Vrata> <https://cair-nepal.org/heritagegraph/RitualType#Yagna> ) .
 
 [] a owl:AllDifferent ;
     owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/DatePrecision#Century> <https://cair-nepal.org/heritagegraph/DatePrecision#Circa> <https://cair-nepal.org/heritagegraph/DatePrecision#Decade> <https://cair-nepal.org/heritagegraph/DatePrecision#Exact> <https://cair-nepal.org/heritagegraph/DatePrecision#Month> <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ) .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/EndowmentEventType#Alienation> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Augmentation> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Founding> <https://cair-nepal.org/heritagegraph/EndowmentEventType#Nationalisation> ) .
 
 [] a owl:AllDisjointClasses ;
     owl:members ( [ a owl:Class ;
@@ -5203,15 +5208,12 @@ hg:ontology a owl:Ontology ;
                 owl:unionOf ( hg:CasteGroup hg:Guthi hg:StateHeritageAuthority ) ] hg:DataSource hg:Tenure [ a owl:Class ;
                 owl:unionOf ( hg:ArchitecturalElement hg:ArchitecturalStructure hg:IconographicObject hg:PhysicalHeritageThing ) ] ) .
 
-[] a owl:AllDifferent ;
-    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/AccessProtocol#CommunityUseOnly> <https://cair-nepal.org/heritagegraph/AccessProtocol#InitiatesOnly> <https://cair-nepal.org/heritagegraph/AccessProtocol#Open> <https://cair-nepal.org/heritagegraph/AccessProtocol#Seasonal> <https://cair-nepal.org/heritagegraph/AccessProtocol#SecretSacred> ) .
-
-[] a owl:AllDifferent ;
-    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Chaitya> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara> <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa> ) .
-
 [] a owl:AllDisjointClasses ;
     owl:members ( hg:CalendarSystem hg:Deity hg:Office hg:Proposition hg:ReligiousTradition hg:SelectionCriterion hg:StructureType ) .
 
 [] a owl:AllDifferent ;
     owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/ExistenceStatus#Destroyed> <https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant> <https://cair-nepal.org/heritagegraph/ExistenceStatus#Hypothetical> <https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost> <https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant> <https://cair-nepal.org/heritagegraph/ExistenceStatus#Reconstructed> <https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown> ) .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( <https://cair-nepal.org/heritagegraph/GuthiType#JatraGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#NashaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#PujaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SanGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SanaGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi> <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> ) .
 
