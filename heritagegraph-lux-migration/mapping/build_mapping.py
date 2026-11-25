@@ -160,7 +160,7 @@ PROP_ROWS = [
 
     ('has_membership', 'Person', 'current_or_former_member', 'crm:P107_has_current_or_former_member', 'identity (direct URI reuse)', ''),
     ('member_of_group', 'Guthi', 'member_of', 'crm:P107i_is_current_or_former_member_of', 'identity (direct URI reuse)', ''),
-    ('managed_by_guthi', 'Guthi', 'current_keeper / current_owner', 'crm:P49_has_former_or_current_keeper', 'closeMatch', ''),
+    ('managed_by_guthi', 'Guthi', 'current_keeper / current_owner', 'crm:P49_has_former_or_current_keeper', 'relatedMatch', ''),
 
     ('birth_timespan', 'TimeSpan', 'born → timespan', 'crm:E67_Birth via P4_has_time-span', 'closeMatch', "Better modeled via 'born' Activity (P98i_was_born) with timespan."),
     ('death_timespan', 'TimeSpan', 'died → timespan', 'crm:E69_Death via P4_has_time-span', 'closeMatch', ''),
