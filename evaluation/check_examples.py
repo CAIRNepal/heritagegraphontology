@@ -36,7 +36,7 @@ for f in sorted((ROOT / "examples").glob("*.ttl")):
         ok = False
         continue
     conforms, _, text = validate(Graph().parse(f, format="turtle"), shacl_graph=shapes,
-                                 ont_graph=ont, inference="none")
+                                 ont_graph=ont, inference="none", allow_warnings=True)  # as the README recipe
     good = conforms == EXPECTED[f.name]
     ok &= good
     print(f"  [{'PASS' if good else 'FAIL'}] {f.name}: conforms={conforms} (expected {EXPECTED[f.name]})")

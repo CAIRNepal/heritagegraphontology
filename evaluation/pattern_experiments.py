@@ -257,7 +257,7 @@ b:stmt ps:P39 b:KumariOffice ;
               hg:residenceStructure ?res ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
          """SELECT ?res ?from WHERE { ?a crm:P01i_is_domain_of ?pc ; crm:P7_took_place_at ?res ;
               crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from .
-              ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
+              ?pc crm:P02_has_range ex:KumariPerson ; crm:P14.1_in_the_role_of b:KumariOffice . }""",
          """SELECT ?res ?from WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P276 ?res ; pq:P580 ?from . }"""),
         ("Q4 who held the office on 1 January 2020",
          """SELECT ?holder WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ?holder ;
