@@ -126,7 +126,7 @@ Then follow `protege/PROTEGE_EVALUATION_CHECKLIST.md`.
 | Tool | What it checks | Script |
 |------|---------------|--------|
 | **OOPS! (online)** | Submits to https://oops.linkeddata.es/ REST API | `run_oops.py` |
-| **Local heuristic** | P08, P10, P11, P13, P22, P41 pitfalls | `run_oops.py` |
+| **Local heuristic** | P08, P10, P11, P13, P41 pitfalls, plus a local non-HTTP-IRI check (LOCAL-URI) | `run_oops.py` |
 
 **Output:**
 - `results/oops_report.txt` — Combined online + local pitfall summary
@@ -140,7 +140,7 @@ Then follow `protege/PROTEGE_EVALUATION_CHECKLIST.md`.
 | P10 | Missing disjointness between siblings | Important |
 | P11 | Missing domain or range on properties | Important |
 | P13 | Missing inverse relationship declarations | Minor |
-| P22 | Using non-HTTP URIs | Critical |
+| LOCAL-URI | Non-HTTP IRIs (local check; not an OOPS! pitfall: OOPS! P22 is naming conventions) | Critical |
 | P41 | No license declared | Minor |
 
 ### §4.3 — Competency-Question Validation

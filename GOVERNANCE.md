@@ -38,10 +38,13 @@ with its migration notes. (1.0.0 is tagged and archived; 1.0.1 was published wit
 ## Deprecation policy
 
 - A published IRI is never deleted or reused. A term that is withdrawn stays in the release as
-  `owl:deprecated true`, with `dcterms:isReplacedBy` its replacement where there is one, and a
-  note giving the version and the reason. Its label is kept, so existing data still displays.
-- A deprecated term is kept, in the OWL, the SHACL and the JSON-LD context, for at least one
-  major version, so data can migrate. The 1.0.x JSON-LD prefix `heritageGraph:` is kept as an
+  `owl:deprecated true`, with `dcterms:isReplacedBy` its replacement where there is one, and an
+  editorial note giving the version and the reason. A withdrawn construct with no replacement is
+  labelled "obsolete …" (the 1.0.x container terms); a deprecated enumeration value keeps a
+  descriptive label (e.g. "Stupa style").
+- A deprecated term is kept, in the OWL and (for classes and properties) the JSON-LD context,
+  for at least one major version, so data can migrate. The SHACL shapes do not validate deprecated
+  container terms. The 1.0.x JSON-LD prefix `heritageGraph:` is kept as an
   alias of `hg:` for the same reason.
 - Enumeration values are deprecated the same way (e.g. the ArchitecturalStyle values Stupa and
   Chaitya, replaced by the classes Stupa and Chaitya).
