@@ -1448,6 +1448,8 @@ def finalize_shacl(sv: SchemaView) -> None:
         g.remove((s, SH.closed, o)); n += 1
     for s, o in list(g.subject_objects(SH.ignoredProperties)):
         g.remove((s, SH.ignoredProperties, o))
+        Collection(g, o).clear()  # and the list cells, or they stay as orphan triples
+        g.remove((o, RDF.first, None)); g.remove((o, RDF.rest, None))
     print(f"opened {n} closed shapes (and dropped their ignoredProperties lists)")
     # (4) enum-ranged slots: gen-shacl lists permissible values as string
     # literals in sh:in, while the OWL layer types these slots as object
