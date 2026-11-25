@@ -40,9 +40,8 @@ $(VENV)/bin/activate: requirements.txt
 	touch $(VENV)/bin/activate
 	@echo "✅ Virtual environment ready. Run: source $(VENV)/bin/activate"
 
-independent: setup ## Independent from-scratch re-evaluation + SHACL negative tests
+independent: setup ## SHACL conformance + negative tests (independent_eval.py was removed in 1.1.0: superseded by the release gates)
 	@echo "Running independent cross-check..."
-	$(PYTHON) independent_eval.py
 	$(PYTHON) independent_abox.py
 	@echo ""
 
@@ -51,7 +50,10 @@ quality: all ## Run evaluations + copy to release/
 	cd .. && $(CURDIR)/$(PYTHON) scripts/run_release_quality.py
 	@echo ""
 
-all: setup consistency oops cq alignment metrics terms combined ## Run ALL automated evaluations
+all: ## Run ALL automated evaluations: the root `make reproduce` (one source of truth for the gates)
+	$(MAKE) -C .. reproduce
+
+all-legacy: setup consistency oops cq alignment metrics terms combined ## the pre-1.1.0 subset (kept for reference)
 	@echo ""
 	@echo "=============================================="
 	@echo " ✅ All evaluations complete!"

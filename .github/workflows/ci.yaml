@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - HeritageGraph
+  pull_request:
   workflow_dispatch:
 
 # the Pages deploy pushes to gh-pages; newer repositories give GITHUB_TOKEN read-only access by default
@@ -40,13 +41,22 @@ jobs:
         run: python3 evaluation/artifact_lockstep.py
 
       - name: SHACL conformance of the examples and negative tests
-        run: python3 evaluation/independent_abox.py
+        run: |
+          python3 evaluation/independent_abox.py
+          python3 evaluation/check_examples.py
+
+      - name: A PROV-O-only consumer traverses the provenance layer (with the CRM-PROV bridge)
+        run: python3 evaluation/provo_consumer.py
 
       - name: Regenerate ontology artefacts
         run: |
           python3 scripts/finalize_alpha5_artifacts.py
           python3 scripts/gen_jsonld_context.py
           python3 scripts/gen_cq_tbox_doc.py
+          python3 scripts/gen_sssom.py
+
+      - name: Regenerated artefacts equal the committed ones
+        run: python3 scripts/check_regenerated.py
 
       - name: Set up Java (ROBOT / HermiT)
         uses: actions/setup-java@v4
@@ -127,6 +137,8 @@ jobs:
 
 
       - name: Deploy to GitHub Pages
+        # pull requests run the gates only; publishing happens on push
+        if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

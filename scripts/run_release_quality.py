@@ -98,12 +98,14 @@ Generated: {datetime.now().isoformat()}
 | Registry readiness | {registry_score} | VoID + LOV metadata; nginx content negotiation prepared (`deploy/nginx/`) |
 | **Composite** | **{composite}** | **{readiness}** |
 
-## Automated checks (all green)
+## Automated checks
 
-- Paper vs TTL metrics: 7/7 match
-- Alignment claims: 5/5 match
-- CQ TBox: 32/32 pass
-- SHACL: clean generation (no inverse warnings)
+All checks run with `make reproduce` (the release gates, the mutation analysis and the
+metric reports); CI runs the same gates on every push and pull request, and a commit is
+releasable only if they pass. This report states no pass counts of its own: the live
+numbers are in `evaluation/results/metrics.json` (ontology size, HeritageGraph and external
+terms counted apart) and `evaluation/results/alignment.json` (alignment counts).
+
 - ABox samples: {abox_pass} passing SELECT queries
 
 ## Pre-submission checklist

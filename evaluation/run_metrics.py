@@ -110,8 +110,12 @@ def run_evaluation():
          if isinstance(s, URIRef) and s not in deprecated},
         key=str
     )
-    log(f"  Object properties          : {len(obj_props)}")
+    hg_obj = [p for p in obj_props if str(p).startswith(str(HG))]
+    log(f"  Object properties          : {len(obj_props)} ({len(hg_obj)} HeritageGraph, "
+        f"{len(obj_props) - len(hg_obj)} external)")
     metric("object_properties", len(obj_props))
+    metric("object_properties_heritagegraph", len(hg_obj))
+    metric("object_properties_external", len(obj_props) - len(hg_obj))
 
     # Datatype properties
     dat_props = sorted(
@@ -119,8 +123,12 @@ def run_evaluation():
          if isinstance(s, URIRef) and s not in deprecated},
         key=str
     )
-    log(f"  Datatype properties        : {len(dat_props)}")
+    hg_dat = [p for p in dat_props if str(p).startswith(str(HG))]
+    log(f"  Datatype properties        : {len(dat_props)} ({len(hg_dat)} HeritageGraph, "
+        f"{len(dat_props) - len(hg_dat)} external)")
     metric("datatype_properties", len(dat_props))
+    metric("datatype_properties_heritagegraph", len(hg_dat))
+    metric("datatype_properties_external", len(dat_props) - len(hg_dat))
 
     # Union classes — distinguish explicit union class definitions from enum encodings
     all_union_subjects = list(g.subjects(OWL.unionOf, None))
@@ -263,25 +271,29 @@ def run_evaluation():
         has_def = "✅" if cls in classes_with_def else "❌"
         log(f"  {i:>3}. {short:<40} label:{has_label}  def:{has_def}")
 
-    # ──────────────────────────────────────────────────────────────────
-    # Paper comparison
-    # ──────────────────────────────────────────────────────────────────
-    log(section("Paper Claims vs Actual"))
-    comparisons = [
-        ("Named owl:Class (HG namespace)", "70", str(len(hg_classes))),
-        ("Object properties", "123", str(len(obj_props))),
-        ("Datatype properties", "48", str(len(dat_props))),
-        ("Union classes (named)", "3", str(len(explicit_union_classes))),
-        ("Named individuals (enum values)", "64", str(len(named_individuals))),
-        ("SHACL NodeShapes", "61", "61"),
-        ("CQ TBox pass rate", "32/32", "32/32"),
-    ]
-    log(f"\n  {'Metric':<30} {'Paper':>10} {'Actual':>10} {'Match':>8}")
-    log(f"  {'-' * 62}")
-    for name, paper, actual in comparisons:
-        match = "✅" if paper == actual else "❌"
-        log(f"  {name:<30} {paper:>10} {actual:>10} {match:>8}")
-        metric(f"paper_vs_actual_{name.lower().replace(' ', '_')}", f"paper={paper}, actual={actual}")
+    # No hard-coded "paper claims" table: the live numbers go to
+    # results/metrics.json, which the paper should read instead of restating
+    # numbers by hand (a stale literal cannot then contradict the artefact).
+    import json as _json
+    shapes = Graph()
+    shapes.parse(SCRIPT_DIR.parent / "ontology" / "HeritageGraph.shacl.ttl", format="turtle")
+    SHNS = "http://www.w3.org/ns/shacl#"
+    live = {
+        "classes_heritagegraph": len(hg_classes),
+        "classes_external": len(ext_classes),
+        "object_properties_heritagegraph": len(hg_obj),
+        "object_properties_external": len(obj_props) - len(hg_obj),
+        "datatype_properties_heritagegraph": len(hg_dat),
+        "datatype_properties_external": len(dat_props) - len(hg_dat),
+        "union_classes": len(explicit_union_classes),
+        "named_individuals": len(named_individuals),
+        "shacl_node_shapes": len(set(shapes.subjects(RDF.type, URIRef(SHNS + "NodeShape")))),
+        "owl_triples": len(g),
+    }
+    (RESULTS_DIR / "metrics.json").write_text(_json.dumps(live, indent=2) + "\n", encoding="utf-8")
+    log(section("Live metrics (results/metrics.json)"))
+    for k, v in live.items():
+        log(f"  {k:<36} {v:>6}")
 
     # Write outputs
     report_path = RESULTS_DIR / "metrics_report.txt"

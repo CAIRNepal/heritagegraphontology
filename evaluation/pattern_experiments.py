@@ -308,7 +308,7 @@ b:stmt ps:P39 b:KumariOffice ;
             "Q4": {("KumariPerson",)}, "Q5": {("GuthiSansthan",)}}
     # Q2: the beginning and ending events, as each arm identifies them
     WANT_Q2 = [{("Sel_2017", "Ret_2025")}, {("KumariSelection", "KumariRetirement")},
-               {("KumariSelection", "KumariRetirement")}]
+               {("KumariRetirement",)}]           # Wikidata: the end cause only (no start cause)
 
     print(f"{'question':<46}{'HG':>10}{'CRM role':>12}{'Wikidata':>12}   (answered? / triple patterns)")
     ok = True
@@ -322,8 +322,9 @@ b:stmt ps:P39 b:KumariOffice ;
             v = vals(g_, q_)
             if key == "Q2":
                 want = WANT_Q2[arm]
-                partial = bool(v) and len(next(iter(v))) < 2   # one of the two events only
-                res.append(f"{'partial' if partial else 'yes' if v == want else 'NO'}/{n_patterns(q_)}")
+                one_event = len(next(iter(want))) < 2          # this arm can give one of the two only
+                verdict = ("partial" if one_event else "yes") if v == want else "NO"
+                res.append(f"{verdict}/{n_patterns(q_)}")
                 continue
             good = v == WANT[key]
             res.append(f"{'yes' if good else 'NO'}/{n_patterns(q_)}")
@@ -985,7 +986,10 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
     from datetime import date, datetime, timedelta
     EXN = "https://cair-nepal.org/heritagegraph/example/"
     NEW_YEAR_WINDOW = {EXN + "BikramSambat": ((4, 13), (4, 15)),
-                       EXN + "NepalSambat": ((10, 13), (11, 15))}
+                       EXN + "NepalSambat": ((10, 13), (11, 15)),
+                       EXN + "GregorianCalendar": ((1, 1), (1, 1))}
+    # a lunisolar Nepal Sambat year has 353-385 days (12 or 13 lunar months)
+    LENGTH = {EXN + "NepalSambat": (353, 385)}
     bad_bounds, unparseable = [], []
     for rec, recd, prec, cal, off, b, e in g.query(PFX + """
         SELECT ?record ?rec ?prec ?cal ?off ?b ?e WHERE {
@@ -1000,8 +1004,8 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
             unparseable.append(name)
             continue
         if not str(prec).endswith("#Year"):
-            continue                       # exact dates are checked by the shapes
-        if str(cal) not in NEW_YEAR_WINDOW and not str(cal).endswith("GregorianCalendar"):
+            continue                       # only year-precision records are checked here
+        if str(cal) not in NEW_YEAR_WINDOW:
             unparseable.append(name)
             continue
         try:
@@ -1012,15 +1016,14 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
         if off is None or b is None or e is None or year - int(off) < 1:
             unparseable.append(name)
             continue
-        if str(cal).endswith("GregorianCalendar"):
-            continue
         ce = year - int(off)
         (m1, d1), (m2, d2) = NEW_YEAR_WINDOW[str(cal)]
         start = datetime.fromisoformat(str(b)).date()
         end = datetime.fromisoformat(str(e)).date()
         starts_ok = date(ce, m1, d1) <= start <= date(ce, m2, d2)
         ends_ok = date(ce + 1, m1, d1) - timedelta(days=1) <= end <= date(ce + 1, m2, d2) - timedelta(days=1)
-        if not (starts_ok and ends_ok):
+        lo, hi = LENGTH.get(str(cal), (0, 10**6))
+        if not (starts_ok and ends_ok and lo <= (end - start).days <= hi):
             bad_bounds.append(name)
     q4 = sorted(bad_bounds)
     print(f"Q4 full-bound check: records whose bounds disagree with their recorded year: {q4}; "

@@ -108,6 +108,10 @@ def build() -> str:
     for row in mappings(lux, core):
         sources.setdefault(row, set()).add("LUX module")
     rows = sorted(sources)
+    known = {(sid, pid, oid) for sid, _, pid, oid in rows}
+    for key in verdicts:
+        if key not in known:
+            print(f"WARNING: rater verdict for {' '.join(key)} matches no mapping (typo?)", file=sys.stderr)
     out = io.StringIO()
     out.write("# mapping_set_id: https://cair-nepal.org/heritagegraph/mappings/HeritageGraph.sssom.tsv\n")
     out.write("# mapping_set_description: Mappings from HeritageGraph terms (core and the LUX alignment module) "
@@ -127,7 +131,7 @@ def build() -> str:
         if verdict == "reject":
             continue  # a rater rejected the mapping: not published
         comment = "stated in: " + ", ".join(sorted(sources[(sid, label, pid, oid)]))
-        if verdict:
+        if verdict in ("accept", "revise"):
             comment += f"; rater verdict: {verdict}" + (f" ({v['note']})" if v.get("note") else "")
         w.writerow([sid, label, pid, oid, "semapv:ManualMappingCuration",
                     "HeritageGraph authors (CAIR-Nepal)",

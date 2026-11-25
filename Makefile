@@ -36,6 +36,8 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 scripts/check_yaml_ttl_sync.py
 	python3 evaluation/artifact_lockstep.py
 	python3 evaluation/independent_abox.py
+	python3 evaluation/check_examples.py
+	python3 evaluation/provo_consumer.py
 	python3 evaluation/run_abox_cq32.py
 	python3 scripts/gen_cq_tbox_doc.py --check
 	python3 scripts/gen_sssom.py --check
@@ -54,6 +56,16 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 evaluation/pattern_experiments.py reuse
 	python3 evaluation/pattern_experiments.py tenure
 	python3 evaluation/pattern_experiments.py custodianship
+
+reproduce: $(ROBOT_JAR)  ## everything the paper reports: regenerate, compare with the committed artefacts, all release gates, mutation analysis, metric reports
+	$(MAKE) artefacts
+	git checkout -- docs  # docs/ is rebuilt at release; its regeneration is not compared here
+	python3 scripts/check_regenerated.py
+	$(MAKE) check
+	$(MAKE) coverage
+	python3 evaluation/run_metrics.py
+	python3 evaluation/run_alignment.py
+	python3 evaluation/mapping_audit.py
 
 coverage:            ## CQ traceability matrix and mutation analysis (report, ~2 min)
 	python3 evaluation/cq_coverage.py
