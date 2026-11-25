@@ -112,7 +112,7 @@ NEG_PFX = """@prefix hg: <https://cair-nepal.org/heritagegraph/> .
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
 """
-TENURE_OK = ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:residenceStructure ex:H ; hg:hadParticipant ex:P ;
+TENURE_OK = ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:residenceStructure ex:H ; hg:tenureHolder ex:P ;
     crm:P4_has_time-span ex:TS .
 ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .
 ex:TS a crm:E52_Time-Span .''')
@@ -134,7 +134,7 @@ tests = {
  "Provenance: Belief (HeritageAssertion) missing assertsAbout (minCount)":
   ('ex:BadAssert a crminf:I2_Belief ; rdfs:label "x" .', "MinCount"),
  "Living Goddess: KumariTenure missing crm:P4_has_time-span (minCount)":
-  ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:embodiedDeity ex:D1 ; hg:residenceStructure ex:H ; hg:hadParticipant ex:P .
+  ('''ex:BadTenure a hg:KumariTenure ; rdfs:label "x" ; hg:embodiedDeity ex:D1 ; hg:residenceStructure ex:H ; hg:tenureHolder ex:P .
 ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:P a crm:E21_Person ; rdfs:label "p" .''', "MinCount"),
  "Sibling separation: DocumentationActivity in a ritual-valued slot (sh:class)":
   ('ex:G a hg:Guthi ; rdfs:label "g" ; hg:performsRitual ex:Doc . ex:Doc a hg:DocumentationActivity ; rdfs:label "doc" .', "Class"),

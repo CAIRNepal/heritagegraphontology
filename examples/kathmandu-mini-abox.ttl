@@ -107,7 +107,7 @@ ex:Tenure_2017 a hg:KumariTenure ;
     hg:supportedByInstitution ex:GuthiSansthan .
 # the Kathmandu Guthi Office (Guthi Sansthan) bears the Kumari's lodging, food,
 # daily worship and festival costs during her stay (Src_Republica_Kumari)
-ex:GuthiSansthan a hg:Guthi ;
+ex:GuthiSansthan a hg:StateHeritageAuthority ;
     rdfs:label "Guthi Sansthan (Kathmandu Guthi Office)" ;
     crm:P3_has_note "Public corporation established in 1964 CE (VS 2021) to take over the administration of guthi land." ;
     dcterms:source ex:Src_KP_GuthiBill , ex:Src_Republica_Kumari .
@@ -144,7 +144,7 @@ ex:DurhamTeam a crm:E39_Actor ; rdfs:label "Durham University (authors of the ci
 ex:Src_DoA a hg:DataSource ; rdfs:label "Department of Archaeology (illustrative; no specific publication cited)" ;
     dcterms:creator "Department of Archaeology, Government of Nepal" .
 ex:Slusser a crm:E39_Actor ; rdfs:label "M. S. Slusser" .
-ex:DoA a crm:E39_Actor ; rdfs:label "Department of Archaeology" .
+ex:DoA a hg:StateHeritageAuthority ; rdfs:label "Department of Archaeology" .
 
 # =====================================================================
 # Witnesses so that every one of the 32 CQs (examples/queries/
@@ -308,7 +308,7 @@ ex:KumariGhar a hg:ArchitecturalStructure ;
     rdfs:label "Kumari Ghar (Kumari Chen)" ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare .
 ex:TS_Tenure2017 a crm:E52_Time-Span ; rdfs:label "2017--2025" .
-ex:Tenure_2017 hg:hadParticipant ex:KumariPerson ;
+ex:Tenure_2017 hg:tenureHolder ex:KumariPerson ;
     hg:residenceStructure ex:KumariGhar ;
     crm:P4_has_time-span ex:TS_Tenure2017 .
 ex:KumariNityaPuja a hg:RitualEvent ;
@@ -680,7 +680,7 @@ ex:TS_1964 a crm:E52_Time-Span ; rdfs:label "VS 2021 (mid-April 1964 to mid-Apri
 ex:Endow_GuthiSansthan a hg:Endowment ;
     rdfs:label "Guthi land endowments administered by the Guthi Sansthan" ;
     crm:P105_right_held_by ex:GuthiSansthan ;
-    hg:sustains ex:Tenure_2017 , ex:BungadyahJatra ;
+    hg:sustains ex:RoyalKumariRole , ex:BungadyahJatra ;
     dcterms:source ex:Src_Republica_Kumari , ex:Src_NT_Barahi .
 ex:EE_Nationalisation_1964 a hg:EndowmentEvent ;
     rdfs:label "Guthi land brought under the Guthi Sansthan" ;
@@ -691,9 +691,11 @@ ex:EE_Nationalisation_1964 a hg:EndowmentEvent ;
     dcterms:source ex:Src_KP_GuthiBill .
 
 # --- hereditary office: the Barahi chariot builders of Bungadyah ---
+ex:Office_BungadyahChariotBuilder a hg:RitualOffice ; rdfs:label "Builder of the Bungadyah chariot" .
 ex:HRT_BarahiChariot a hg:HereditaryRoleTenure ;
     rdfs:label "Barahi office of building the Bungadyah chariot" ;
     hg:roleHolder ex:Barahis ;
+    hg:tenureOffice ex:Office_BungadyahChariotBuilder ;
     hg:roleDuty "search for, carve and assemble the wooden parts of the Bungadyah (Rato Machhindranath) chariot; rebuild it from scratch every 12 years" ;
     hg:dutyFor ex:BungadyahJatra ;
     hg:mandatedBy ex:GuthiSansthan ;

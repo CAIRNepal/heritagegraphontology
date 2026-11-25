@@ -181,7 +181,7 @@ def test_disjoint_kinds(sv):
               for n in g.subjects(RDF.type, OWL.AllDisjointClasses)]
     assert len(groups) == 2                     # the kinds, and the concepts pairwise
     concepts = next(m for m in groups if HG.Deity in m)
-    assert {HG.Deity, HG.KumariRole, HG.ReligiousTradition} <= set(concepts)
+    assert {HG.Deity, HG.Office, HG.ReligiousTradition} <= set(concepts)
     kinds = next(m for m in groups if HG.Deity not in m)
     assert len(kinds) == 6
 
@@ -241,3 +241,33 @@ def test_location_rule_on_every_structure_shape(shapes):
         for m in Collection(shapes, lst):
             paths |= set(shapes.objects(m, SH.path))
     assert {HG.existenceStatus, CRM.P55_has_current_location} <= paths
+
+
+# --- M11-M14: tenure pattern, offices, state bodies, access protocols ---------
+def test_tenure_pattern(core):
+    for c in (HG.KumariTenure, HG.HereditaryRoleTenure, HG.CustodyPeriod):
+        assert (c, RDFS.subClassOf, HG.Tenure) in core
+    assert (HG.Tenure, RDFS.subClassOf, CRM.E4_Period) in core
+    for sub, sup in ((HG.roleHolder, HG.tenureHolder), (HG.custodyHolder, HG.tenureHolder),
+                     (HG.assumesRole, HG.tenureOffice), (HG.custodyOpenedBy, HG.tenureOpenedBy),
+                     (HG.enthronedThrough, HG.tenureOpenedBy), (HG.retiredThrough, HG.tenureClosedBy),
+                     (HG.custodyClosedBy, HG.tenureClosedBy)):
+        assert (sub, RDFS.subPropertyOf, sup) in core, sub
+
+
+def test_offices_and_state_bodies(core):
+    assert (HG.KumariRole, RDFS.subClassOf, HG.RitualOffice) in core
+    assert (HG.RitualOffice, RDFS.subClassOf, HG.Office) in core
+    assert (HG.Office, RDFS.subClassOf, CRM.E55_Type) in core
+    assert (HG.StateHeritageAuthority, RDFS.subClassOf, CRM.E74_Group) in core
+
+
+def test_no_health_or_real_minor_in_definitions():
+    text = (ROOT / "ontology/HeritageGraph.yaml").read_text(encoding="utf-8").lower()
+    for word in ("menstruation", "blood", "scars", "samita"):
+        assert word not in text, word
+
+
+def test_access_rights_on_mixins(shapes):
+    paths = set(shapes.objects(None, SH.path))
+    assert URIRef("http://purl.org/dc/terms/accessRights") in paths

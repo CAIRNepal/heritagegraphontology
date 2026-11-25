@@ -30,6 +30,27 @@ enums:
         description: "Repaired and stabilized"
 
 
+  AccessProtocol:
+    # 1.1.0 (M11): cultural access protocols, aligned where a published label
+    # exists with the Local Contexts Traditional Knowledge (TK) labels
+    description: "Cultural access protocol for heritage knowledge or a record of it, to be set with the community
+      concerned."
+    permissible_values:
+      Open:
+        description: "No community restriction on access or publication"
+      CommunityUseOnly:
+        description: "For use within the community concerned; not for general publication"
+      InitiatesOnly:
+        description: "Restricted to initiates (e.g. the agam deity and rites of a lineage or monastery)"
+      SecretSacred:
+        description: "Secret or sacred knowledge with specific conditions of access"
+        close_mappings:
+          - https://localcontexts.org/label/tk-secret-sacred/
+      Seasonal:
+        description: "Access or use only at certain times (e.g. during a festival)"
+        close_mappings:
+          - https://localcontexts.org/label/tk-seasonal/
+
   ExistenceStatus:
     description: "Controlled vocabulary for whether a heritage structure still exists physically."
     permissible_values:
@@ -338,6 +359,7 @@ classes:
       - was_generated_by
       - generated_at_time
       - was_influenced_by
+      - access_rights
   Activity:
     abstract: true
     mixin: true
@@ -351,6 +373,7 @@ classes:
       - was_associated_with
       - was_informed_by
       - was_influenced_by
+      - access_rights
       - started_at_time
       - ended_at_time
   Agent:
@@ -1351,7 +1374,65 @@ classes:
     annotations:
       crm_superclass: crm:E13_Attribute_Assignment
       disjoint_kind: event
+  Tenure:
+    # 1.1.0 (M13): the pattern KumariTenure, HereditaryRoleTenure and
+    # CustodyPeriod share, abstracted so it can be reused for offices and
+    # custody elsewhere. Why not CIDOC-CRM E85 Joining / E86 Leaving: they
+    # model membership of an E74 group; a Kumari's office, a hereditary ritual
+    # duty and custody of a monument are not group memberships. Why not P14.1
+    # "in the role of": it qualifies one activity, while a tenure is a period
+    # with its own holder, office, opening and closing events and provenance.
+    class_uri: heritageGraph:Tenure
+    description: "A dated period during which an actor holds an office, a duty or custody of something (a CIDOC-CRM
+      E4 Period), with the events that open and close it. KumariTenure, HereditaryRoleTenure and CustodyPeriod are
+      specialisations; the pattern applies to offices and custody beyond Nepal."
+    slots:
+      - name
+      - note
+      - tenure_holder
+      - tenure_office
+      - has_timespan
+      - tenure_opened_by
+      - tenure_closed_by
+      - has_assertion
+    mixins:
+      - Entity
+    annotations:
+      crm_superclass: crm:E4_Period
+      disjoint_kind: period
+  Office:
+    # 1.1.0 (M13/M14): the office or role a tenure holds (a CIDOC-CRM E55
+    # Type: the office is the type, the tenure the dated holding of it).
+    class_uri: heritageGraph:Office
+    description: "An office, role or duty that persons or groups hold for a period (a CIDOC-CRM E55 Type): the office
+      is the type, a Tenure is the dated holding of it, the holder is the actor."
+    slots:
+      - name
+      - note
+    mixins:
+      - Entity
+    annotations:
+      crm_superclass: crm:E55_Type
+      disjoint_kind: concept
+  RitualOffice:
+    is_a: Office
+    class_uri: heritageGraph:RitualOffice
+    description: "A ritual office or specialist role (e.g. Vajracharya or Rajopadhyaya priest, Karmacharya, chariot
+      builder, festival musician, the Kumari), held by a person or a caste group, often hereditarily."
+  StateHeritageAuthority:
+    # 1.1.0 (M12): a state body, so that the Guthi Sansthan, a public
+    # corporation, need not be typed as a Guthi. A CIDOC-CRM E74 Group (via
+    # Group): CRM 7 merged E40 Legal Body into E74.
+    is_a: Group
+    class_uri: heritageGraph:StateHeritageAuthority
+    description: "A state body with responsibility for heritage (a CIDOC-CRM E74 Group), e.g. the Guthi Sansthan
+      (Guthi Corporation, a public corporation that administers nationalised guthi land) or the Department of
+      Archaeology."
+    annotations:
+      disjoint_kind: group
   KumariTenure:
+    # 1.1.0: a specialisation of the generic Tenure pattern
+    is_a: Tenure
     # ALIASES (alpha.5): romanized alternate term.
     aliases:
       - "Living Goddess Tenure"
@@ -1365,6 +1446,7 @@ classes:
       deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families."
     slots:
       - name
+      - tenure_holder
       - had_participant
       - embodied_deity
       - residence_structure
@@ -1378,11 +1460,15 @@ classes:
     slot_usage:
       name:
         required: true
-        description: "Name of this tenure period (e.g., 'Kumari Samita Bajracharya Tenure 2015-2023')"
-      had_participant:
+        description: "Name of this tenure period (e.g. 'Royal Kumari tenure, 2017-2025'). Kumari are children:
+          prefer the office and period to the person's name unless the name is public and its use is appropriate."
+      tenure_holder:
         required: true
         range: Person
         description: "The girl serving as Living Goddess during this period"
+      had_participant:
+        description: "Other actors taking part in the tenure without holding it (1.0.x data gave the holder here;
+          use tenure_holder)"
       embodied_deity:
         required: true
         range: Deity
@@ -1396,21 +1482,18 @@ classes:
         range: TimeSpan
         description: "Duration of Living Goddess tenure (from selection to retirement)"
       supported_by_institution:
-        range: Guthi
+        range: Group
         multivalued: true
-        description: "Guthi or state body providing economic/ritual support during tenure"
+        description: "Guthi or state body (e.g. the Guthi Sansthan) providing economic or ritual support during the
+          tenure"
 
 
 
     annotations:
-      disjoint_kind: period
-      crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
         assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
         stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
         reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
-    mixins:
-      - Entity
   KumariLifecycleEvent:
     is_a: RitualEvent
     abstract: true
@@ -1550,6 +1633,8 @@ classes:
       crm_superclass: crm:E7_Activity
 
   HereditaryRoleTenure:
+    # 1.1.0: a specialisation of the generic Tenure pattern
+    is_a: Tenure
     aliases:
       - "Hereditary ritual office"
     class_uri: heritageGraph:HereditaryRoleTenure
@@ -1567,24 +1652,28 @@ classes:
       - mandated_by
       - succession_rule
       - succeeds
+      - tenure_office
+      - tenure_opened_by
+      - tenure_closed_by
       - has_timespan
       - has_assertion
     slot_usage:
+      tenure_office:
+        range: RitualOffice
+        description: "The hereditary ritual office held (e.g. chariot builder, Rajopadhyaya priest)"
       role_holder:
         required: true
       role_duty:
         required: true
     annotations:
-      disjoint_kind: period
-      crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
         assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
         stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
         reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
-    mixins:
-      - Entity
 
   CustodyPeriod:
+    # 1.1.0: a specialisation of the generic Tenure pattern
+    is_a: Tenure
     class_uri: heritageGraph:CustodyPeriod
     description: "Dated period during which an actor (typically a Guthi) holds custody of a heritage structure or
       object, opened and closed by transfer-of-custody events. Unlike the untimed crm:P50i_is_current_keeper_of,
@@ -1608,14 +1697,10 @@ classes:
       has_timespan:
         required: true
     annotations:
-      disjoint_kind: period
-      crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
         assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
         stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
         reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
-    mixins:
-      - Entity
   # Container and Metadata (the LinkML tree_root and its dataset header) moved
   # to HeritageGraph-container.yaml in 1.1.0: they exist only so JSON/YAML data
   # files can hold instances, carry no domain semantics, and are generated only
@@ -1627,8 +1712,9 @@ classes:
   KumariRetirementEvent:
     is_a: KumariLifecycleEvent
     class_uri: heritageGraph:KumariRetirementEvent
-    description: 'Ritual or administrative event that formally ends a Living Goddess tenure, returning the person
-      to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.'
+    description: 'Ritual or administrative event that formally ends a Living Goddess tenure according to tradition,
+      returning the person to secular life. Record the event and its date, not the reason: the traditional grounds
+      concern the bodily state of a child, and HeritageGraph does not record health or bodily data about persons.'
     slots:
       - name
       - ended_tenure_of
@@ -1681,6 +1767,7 @@ classes:
     aliases:
       - "Living Goddess"
       - "Royal Kumari"
+    is_a: RitualOffice
     class_uri: heritageGraph:KumariRole
     broad_mappings:
       # URI POLICY (alpha.5): narrower than crm:E55_Type; moved from exact_mappings.
@@ -1690,11 +1777,43 @@ classes:
       holder.
     slots:
       - role_deity
-    mixins:
-      - Entity
     annotations:
-      disjoint_kind: concept
-      crm_superclass: crm:E55_Type
+  Vihara:
+    # 1.1.0 (M14)
+    aliases:
+      - "Bahah"
+      - "Baha"
+      - "Bahi"
+    is_a: ReligiousStructure
+    class_uri: heritageGraph:Vihara
+    description: "A Newar Buddhist monastic complex built round a courtyard (Newar bahah or bahi, Sanskrit vihara),
+      with a shrine to its principal deity and a sangha of Vajracharya and Shakya householders."
+  Dyochhen:
+    # 1.1.0 (M14)
+    aliases:
+      - "God-house"
+    is_a: ReligiousStructure
+    class_uri: heritageGraph:Dyochhen
+    description: "A Newar god-house (dyo chhen): a building that houses a deity, often a Mother Goddess or a
+      lineage deity, worshipped by a community or guthi; its inner shrine may be restricted (see access_rights)."
+  AgamChhen:
+    # 1.1.0 (M14)
+    aliases:
+      - "Agam house"
+      - "Agama shrine"
+    is_a: ReligiousStructure
+    class_uri: heritageGraph:AgamChhen
+    description: "A Newar esoteric shrine house (agam chhen) of a lineage's or monastery's tantric deity, whose
+      shrine and rites are restricted to initiates; record the restriction with access_rights."
+  Pitha:
+    # 1.1.0 (M14)
+    aliases:
+      - "Pith"
+      - "Power place"
+    is_a: ReligiousStructure
+    class_uri: heritageGraph:Pitha
+    description: "A seat of a goddess's power (pitha), typically an open-air shrine of one of the Mother Goddesses at
+      the edge of a Newar town, linked to a god-house within it."
   KumariHouse:
     # ALIASES (alpha.5): romanized alternate term.
     aliases:
@@ -1744,8 +1863,10 @@ classes:
     broad_mappings:
       # URI POLICY (alpha.5): narrower than crm:E55_Type; moved from exact_mappings.
       - crm:E55_Type
-    description: An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as 
+    description: "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as
       explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.
+      Ethics: candidates are children. Criteria describe the tradition; data about how a named or identifiable
+      child met them (bodily marks, health, horoscope) must not be recorded."
     mixins:
       - Entity
     annotations:
@@ -1765,7 +1886,8 @@ classes:
       - "Battis Lakshana"
     is_a: SelectionCriterion
     class_uri: heritageGraph:ThirtyTwoPerfectionsCriterion
-    description: Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).
+    description: The battis lakshana, the traditional list of thirty-two auspicious marks a candidate is held to
+      bear. HeritageGraph records that the criterion belongs to the selection, not any assessment of a candidate.
   HoroscopeCompatibilityCriterion:
     is_a: SelectionCriterion
     class_uri: heritageGraph:HoroscopeCompatibilityCriterion
@@ -1773,7 +1895,8 @@ classes:
   PhysicalIntegrityCriterion:
     is_a: SelectionCriterion
     class_uri: heritageGraph:PhysicalIntegrityCriterion
-    description: Candidate must have an unblemished body with no scars, wounds, or loss of blood/teeth.
+    description: The traditional requirement of physical integrity in a candidate. HeritageGraph records that the
+      criterion belongs to the selection, not any assessment of a candidate's body or health.
   RitualAssessment:
     is_a: RitualEvent
     abstract: true
@@ -1906,7 +2029,7 @@ slots:
 
   supported_by_institution:
     slot_uri: heritageGraph:supportedByInstitution
-    range: Guthi
+    range: Group
     multivalued: true
     description: "Institution(s) providing economic support (stipend, land endowment) or ritual support (priest
       salaries) for a Living Goddess during tenure. Extends Guthi role beyond structure management to person support."
@@ -2910,6 +3033,7 @@ slots:
   # KUMARI WIRING (alpha.5): results_in_role deleted -- two names existed for
   # "yields this role" on sibling events; unified on confers_role.
   assumes_role:
+    is_a: tenure_office
     slot_uri: heritageGraph:assumesRole
     range: KumariRole
     description: KumariRole held during this tenure.
@@ -2919,10 +3043,12 @@ slots:
     description: Selection event that initiated this tenure.
     inverse: initiated_tenure
   enthroned_through:
+    is_a: tenure_opened_by
     slot_uri: heritageGraph:enthronedThrough
     range: KumariEnthronementEvent
     description: Enthronement event that activated this tenure.
   retired_through:
+    is_a: tenure_closed_by
     slot_uri: heritageGraph:retiredThrough
     range: KumariRetirementEvent
     description: Retirement/desanctification event that ended this tenure.
@@ -2948,8 +3074,9 @@ slots:
   # ---- Guthi pattern (1.1.0): endowment, hereditary mandate, custody period ----
   endowment_holder:
     slot_uri: crm:P105_right_held_by
-    range: Guthi
-    description: "Guthi that holds the endowment."
+    range: Group
+    description: "Guthi or state body (e.g. the Guthi Sansthan, holding nationalised guthi land) that holds the
+      endowment."
   endowed_land:
     slot_uri: heritageGraph:endowedLand
     range: Place
@@ -2962,9 +3089,10 @@ slots:
     any_of:
       - range: ArchitecturalStructure
       - range: RitualEvent
-      - range: KumariTenure
-      - range: HereditaryRoleTenure
+      - range: Office
     multivalued: true
+    # 1.1.0 (M13): an endowment sustains the office (which persists from holder
+    # to holder), not one dated tenure of it
     description: "Structure, ritual or festival, or sacred office whose upkeep or performance the endowment funds."
   concerns_endowment:
     slot_uri: heritageGraph:concernsEndowment
@@ -2987,7 +3115,37 @@ slots:
     broad_mappings:
       - crm:P22_transferred_title_to
     description: "Guthi or state body that received the property (e.g. the Guthi Sansthan in a nationalisation)."
+  # ---- Tenure pattern (1.1.0, M13) ----
+  tenure_holder:
+    slot_uri: heritageGraph:tenureHolder
+    range: Actor
+    description: "Actor holding the office, duty or custody during the tenure."
+  tenure_office:
+    slot_uri: heritageGraph:tenureOffice
+    range: Office
+    description: "Office, role or duty held during the tenure."
+  tenure_opened_by:
+    slot_uri: heritageGraph:tenureOpenedBy
+    # base range for a sound OWL range (as sustains); the opening event is an
+    # enthronement, an appointment, a transfer of custody, a founding
+    range: AssertionSubject
+    multivalued: true
+    description: "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody)."
+  tenure_closed_by:
+    slot_uri: heritageGraph:tenureClosedBy
+    range: AssertionSubject
+    multivalued: true
+    description: "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody)."
+  # ---- Access protocol (1.1.0, M11) ----
+  access_rights:
+    slot_uri: dcterms:accessRights
+    range: AccessProtocol
+    multivalued: true
+    description: "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or
+      sacred, seasonal), set with the community concerned. Data under a restriction should not be published."
+
   role_holder:
+    is_a: tenure_holder
     slot_uri: heritageGraph:roleHolder
     range: Actor
     any_of:
@@ -3005,8 +3163,8 @@ slots:
     description: "Ritual or festival the hereditary duty serves."
   mandated_by:
     slot_uri: heritageGraph:mandatedBy
-    range: Guthi
-    description: "Guthi that mandates (and usually funds) the hereditary duty."
+    range: Group
+    description: "Guthi or state body that mandates (and usually funds) the hereditary duty."
   succession_rule:
     slot_uri: heritageGraph:successionRule
     range: string
@@ -3016,6 +3174,7 @@ slots:
     range: HereditaryRoleTenure
     description: "Earlier tenure of the same hereditary office that this tenure succeeds."
   custody_holder:
+    is_a: tenure_holder
     slot_uri: heritageGraph:custodyHolder
     range: Actor
     description: "Actor (typically a Guthi) holding custody during the period."
@@ -3024,10 +3183,12 @@ slots:
     range: PhysicalHeritageThing
     description: "Structure or object in custody during the period."
   custody_opened_by:
+    is_a: tenure_opened_by
     slot_uri: heritageGraph:custodyOpenedBy
     range: TransferOfCustody
     description: "Transfer of custody that began the period."
   custody_closed_by:
+    is_a: tenure_closed_by
     slot_uri: heritageGraph:custodyClosedBy
     range: TransferOfCustody
     description: "Transfer of custody that ended the period."

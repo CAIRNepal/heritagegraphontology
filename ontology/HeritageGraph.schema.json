@@ -1,5 +1,17 @@
 {
     "$defs": {
+        "AccessProtocol": {
+            "description": "Cultural access protocol for heritage knowledge or a record of it, to be set with the community concerned.",
+            "enum": [
+                "Open",
+                "CommunityUseOnly",
+                "InitiatesOnly",
+                "SecretSacred",
+                "Seasonal"
+            ],
+            "title": "AccessProtocol",
+            "type": "string"
+        },
         "Actor": {
             "additionalProperties": false,
             "description": "General actor (person or group) responsible for events",
@@ -70,10 +82,288 @@
             "title": "Actor",
             "type": "object"
         },
+        "AgamChhen": {
+            "additionalProperties": false,
+            "description": "A Newar esoteric shrine house (agam chhen) of a lineage's or monastery's tantric deity, whose shrine and rites are restricted to initiates; record the restriction with access_rights.",
+            "if": {
+                "properties": {
+                    "existence_status": {
+                        "anyOf": [
+                            {
+                                "const": "Extant"
+                            },
+                            {
+                                "const": "PartiallyExtant"
+                            },
+                            {
+                                "const": "Reconstructed"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "existence_status"
+                ]
+            },
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "destruction_event": {
+                    "description": "Event that destroyed this structure (if known)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "documented_in_source": {
+                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "existence_status": {
+                    "$ref": "#/$defs/ExistenceStatus",
+                    "description": "Current physical status of the structure"
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_architectural_style": {
+                    "$ref": "#/$defs/ArchitecturalStyle",
+                    "description": "Architectural style classification"
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_component": {
+                    "description": "Architectural elements composing structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_condition_assessment": {
+                    "description": "Condition assessment events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_current_location": {
+                    "description": "Current location of object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_custody_event": {
+                    "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "hypothesized_location": {
+                    "description": "Possible locations if the structure is lost",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "last_known_existence_date": {
+                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "managed_by_guthi": {
+                    "description": "Guthi organization managing this structure or ritual",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "participates_in_ritual": {
+                    "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_documented_by": {
+                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_produced_by_event": {
+                    "description": "Event that created this object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "then": {
+                "properties": {
+                    "has_current_location": {}
+                },
+                "required": [
+                    "has_current_location"
+                ]
+            },
+            "title": "AgamChhen",
+            "type": "object"
+        },
         "AgeCriterion": {
             "additionalProperties": false,
             "description": "Candidate must be within the prescribed pre-pubescent age range.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -145,6 +435,16 @@
             "additionalProperties": false,
             "description": "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -263,6 +563,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -513,6 +823,16 @@
             "additionalProperties": false,
             "description": "Government or institutional administrative record",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "datacite_creator": {
                     "description": "Person or organization primarily responsible for creating the source",
                     "items": {
@@ -684,6 +1004,16 @@
             "additionalProperties": false,
             "description": "A provenance-bearing belief or claim about a heritage entity or event. The assertion is represented as CRMinf I2 Belief and as a prov:Entity, allowing source, attribution, generation time, revision, confidence, and reconciliation status to be recorded explicitly.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "assertion_content": {
                     "description": "The factual claim being asserted",
                     "type": [
@@ -815,6 +1145,16 @@
             "additionalProperties": false,
             "description": "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "epoch_date_gregorian": {
                     "description": "Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14; Nepal Sambat counts elapsed years from year 0, 0879-10-24 = 20 October 879 Julian). Its month and day only indicate the approximate new-year season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November, lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose new year is 1 January, for which year conversion is exact.",
                     "pattern": "^-?[0-9]{4}-[0-9]{2}-[0-9]{2}$",
@@ -1030,6 +1370,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -1268,6 +1618,16 @@
             "additionalProperties": false,
             "description": "Festival involving ceremonial chariot procession (e.g., Rato Machhindranath Jatra)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -1583,6 +1943,16 @@
             "additionalProperties": false,
             "description": "Event of evaluating the physical state of a heritage object or structure",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "assessed_condition_state": {
                     "description": "Condition state identified by the assessment",
                     "type": [
@@ -1713,6 +2083,16 @@
             "additionalProperties": false,
             "description": "A physical condition state of a heritage object",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -1823,6 +2203,16 @@
             "additionalProperties": false,
             "description": "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -2142,6 +2532,16 @@
             "additionalProperties": false,
             "description": "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in persons, not actors); broader collections exist for instances of the general classes only.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "actors": {
                     "description": "Collection of generic Actor instances",
                     "items": {
@@ -2160,6 +2560,9 @@
                             },
                             {
                                 "$ref": "#/$defs/Person"
+                            },
+                            {
+                                "$ref": "#/$defs/StateHeritageAuthority"
                             }
                         ]
                     },
@@ -2430,6 +2833,9 @@
                                 "$ref": "#/$defs/HumanMadeObject"
                             },
                             {
+                                "$ref": "#/$defs/AgamChhen"
+                            },
+                            {
                                 "$ref": "#/$defs/ArchitecturalStructure"
                             },
                             {
@@ -2440,6 +2846,9 @@
                             },
                             {
                                 "$ref": "#/$defs/DhungeDhara"
+                            },
+                            {
+                                "$ref": "#/$defs/Dyochhen"
                             },
                             {
                                 "$ref": "#/$defs/IconographicObject"
@@ -2455,6 +2864,9 @@
                             },
                             {
                                 "$ref": "#/$defs/Paubha"
+                            },
+                            {
+                                "$ref": "#/$defs/Pitha"
                             },
                             {
                                 "$ref": "#/$defs/Pokhari"
@@ -2473,6 +2885,9 @@
                             },
                             {
                                 "$ref": "#/$defs/Temple"
+                            },
+                            {
+                                "$ref": "#/$defs/Vihara"
                             },
                             {
                                 "$ref": "#/$defs/WaterStructure"
@@ -2731,6 +3146,9 @@
                                 "$ref": "#/$defs/ArchitecturalStructure"
                             },
                             {
+                                "$ref": "#/$defs/AgamChhen"
+                            },
+                            {
                                 "$ref": "#/$defs/Chaitya"
                             },
                             {
@@ -2740,10 +3158,16 @@
                                 "$ref": "#/$defs/DhungeDhara"
                             },
                             {
+                                "$ref": "#/$defs/Dyochhen"
+                            },
+                            {
                                 "$ref": "#/$defs/KumariHouse"
                             },
                             {
                                 "$ref": "#/$defs/Pati"
+                            },
+                            {
+                                "$ref": "#/$defs/Pitha"
                             },
                             {
                                 "$ref": "#/$defs/Pokhari"
@@ -2762,6 +3186,9 @@
                             },
                             {
                                 "$ref": "#/$defs/Temple"
+                            },
+                            {
+                                "$ref": "#/$defs/Vihara"
                             },
                             {
                                 "$ref": "#/$defs/WaterStructure"
@@ -2862,10 +3289,23 @@
             "additionalProperties": false,
             "description": "Dated period during which an actor (typically a Guthi) holds custody of a heritage structure or object, opened and closed by transfer-of-custody events. Unlike the untimed crm:P50i_is_current_keeper_of, it answers who held custody at a given date.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "custody_closed_by": {
                     "description": "Transfer of custody that ended the period.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -2879,8 +3319,11 @@
                 },
                 "custody_opened_by": {
                     "description": "Transfer of custody that began the period.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -2932,6 +3375,40 @@
                         {
                             "type": "null"
                         }
+                    ]
+                },
+                "tenure_closed_by": {
+                    "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tenure_holder": {
+                    "description": "Actor holding the office, duty or custody during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_office": {
+                    "description": "Office, role or duty held during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_opened_by": {
+                    "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
                     ]
                 },
                 "was_attributed_to": {
@@ -3073,6 +3550,16 @@
             "additionalProperties": false,
             "description": "Original source from which heritage information was derived",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "datacite_creator": {
                     "description": "Person or organization primarily responsible for creating the source",
                     "items": {
@@ -3256,6 +3743,16 @@
             "additionalProperties": false,
             "description": "Divine conceptual entity in Hindu, Buddhist, or syncretic traditions. Distinct from physical representations (Murti) and ritual presences.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -3391,6 +3888,16 @@
             "additionalProperties": false,
             "description": "Event that destroyed a structure (CIDOC-CRM E6: the structure no longer exists in its former identity), linked to it by destroyed (crm:P13_destroyed). Damage a structure survives is not a destruction: record it as crmsci:S18_Alteration (natural, e.g. an earthquake) or crm:E11_Modification (human), and the resulting condition with a condition assessment.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "architectural_structures": {
                     "description": "Heritage structures affected by or present during this historical event",
                     "items": {
@@ -3560,6 +4067,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -3818,6 +4335,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -4056,6 +4583,16 @@
             "additionalProperties": false,
             "description": "Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
@@ -4192,10 +4729,288 @@
             "title": "DocumentationActivity",
             "type": "object"
         },
+        "Dyochhen": {
+            "additionalProperties": false,
+            "description": "A Newar god-house (dyo chhen): a building that houses a deity, often a Mother Goddess or a lineage deity, worshipped by a community or guthi; its inner shrine may be restricted (see access_rights).",
+            "if": {
+                "properties": {
+                    "existence_status": {
+                        "anyOf": [
+                            {
+                                "const": "Extant"
+                            },
+                            {
+                                "const": "PartiallyExtant"
+                            },
+                            {
+                                "const": "Reconstructed"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "existence_status"
+                ]
+            },
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "destruction_event": {
+                    "description": "Event that destroyed this structure (if known)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "documented_in_source": {
+                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "existence_status": {
+                    "$ref": "#/$defs/ExistenceStatus",
+                    "description": "Current physical status of the structure"
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_architectural_style": {
+                    "$ref": "#/$defs/ArchitecturalStyle",
+                    "description": "Architectural style classification"
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_component": {
+                    "description": "Architectural elements composing structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_condition_assessment": {
+                    "description": "Condition assessment events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_current_location": {
+                    "description": "Current location of object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_custody_event": {
+                    "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "hypothesized_location": {
+                    "description": "Possible locations if the structure is lost",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "last_known_existence_date": {
+                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "managed_by_guthi": {
+                    "description": "Guthi organization managing this structure or ritual",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "participates_in_ritual": {
+                    "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_documented_by": {
+                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_produced_by_event": {
+                    "description": "Event that created this object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "then": {
+                "properties": {
+                    "has_current_location": {}
+                },
+                "required": [
+                    "has_current_location"
+                ]
+            },
+            "title": "Dyochhen",
+            "type": "object"
+        },
         "Endowment": {
             "additionalProperties": false,
             "description": "Land, income or other property permanently dedicated to sustain a structure, a ritual or festival, or a sacred office, and held by a Guthi. The endowment, not the membership, is what makes a Guthi a trust.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "endowed_land": {
                     "description": "Land (plots, fields) dedicated to the endowment.",
                     "items": {
@@ -4207,7 +5022,7 @@
                     ]
                 },
                 "endowment_holder": {
-                    "description": "Guthi that holds the endowment.",
+                    "description": "Guthi or state body (e.g. the Guthi Sansthan, holding nationalised guthi land) that holds the endowment.",
                     "type": "string"
                 },
                 "generated_at_time": {
@@ -4322,6 +5137,16 @@
             "additionalProperties": false,
             "description": "Event that founds, augments, nationalises or alienates a Guthi endowment, with its donor or recipient and its date.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "concerns_endowment": {
                     "description": "Endowment founded, augmented, nationalised or alienated by this event.",
                     "type": "string"
@@ -4498,6 +5323,16 @@
             "additionalProperties": false,
             "description": "Event of installing a deity's murti or symbol within a temple sanctum",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -4834,6 +5669,16 @@
             "additionalProperties": false,
             "description": "The 'fearlessness test' popularly described (animal heads, masked dancers in darkness). Its historical and contemporary practice is DISPUTED -- some former Kumaris contest how it is described. Represented as an assessment whose accounts are source-attributed via has_assertion, NOT as a mandatory criterion.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "assesses_candidate": {
                     "description": "Candidate being assessed.",
                     "type": [
@@ -5153,6 +5998,16 @@
             "additionalProperties": false,
             "description": "Large-scale community ritual event (Jatra) involving processions, music, and collective participation",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -5468,6 +6323,16 @@
             "additionalProperties": false,
             "description": "The activity of measuring, photographing, or assessing a site in person.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
@@ -5608,6 +6473,16 @@
             "additionalProperties": false,
             "description": "The structured data or report resulting from a field survey.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "datacite_creator": {
                     "description": "Person or organization primarily responsible for creating the source",
                     "items": {
@@ -5898,6 +6773,16 @@
             "additionalProperties": false,
             "description": "Time-bounded holding of a hereditary ritual duty by a person or caste group, under the mandate of a Guthi, with the rule by which the duty passes on. The same period pattern as KumariTenure, applied to hereditary offices (priests, chariot builders, musicians).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "duty_for": {
                     "description": "Ritual or festival the hereditary duty serves.",
                     "items": {
@@ -5938,7 +6823,7 @@
                     "type": "string"
                 },
                 "mandated_by": {
-                    "description": "Guthi that mandates (and usually funds) the hereditary duty.",
+                    "description": "Guthi or state body that mandates (and usually funds) the hereditary duty.",
                     "type": [
                         "string",
                         "null"
@@ -5995,6 +6880,40 @@
                     "description": "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group).",
                     "type": [
                         "string",
+                        "null"
+                    ]
+                },
+                "tenure_closed_by": {
+                    "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tenure_holder": {
+                    "description": "Actor holding the office, duty or custody during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_office": {
+                    "description": "The hereditary ritual office held (e.g. chariot builder, Rajopadhyaya priest)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_opened_by": {
+                    "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 },
@@ -6059,6 +6978,16 @@
             "additionalProperties": false,
             "description": "Major event affecting heritage structures or ritual life (earthquake, epidemic, political transition, fire, flood).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "architectural_structures": {
                     "description": "Heritage structures affected by or present during this historical event",
                     "items": {
@@ -6199,6 +7128,16 @@
             "additionalProperties": false,
             "description": "Candidate's horoscope must be compatible with the city and ruling authority.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -6270,6 +7209,16 @@
             "additionalProperties": false,
             "description": "Physical objects created by human activity",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -6402,6 +7351,16 @@
             "additionalProperties": false,
             "description": "Sacred visual art objects that depict or embody deities through iconographic conventions",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "depicts_deity": {
                     "description": "Deity depicted iconographically (not cultic presence)",
                     "items": {
@@ -6571,6 +7530,16 @@
             "additionalProperties": false,
             "description": "A recorded piece of information about heritage",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "datacite_creator": {
                     "description": "Person or organization primarily responsible for creating the source",
                     "items": {
@@ -6762,6 +7731,16 @@
             "additionalProperties": false,
             "description": "Ritual installing a selected girl into the Kumari role and residence, activating the tenure (distinct from selection, which chooses her, and retirement, which ends it).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "bounds_tenure": {
                     "description": "The tenure this enthronement activates (required tenure edge for this event type).",
                     "type": "string"
@@ -7102,6 +8081,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -7338,8 +8327,18 @@
         },
         "KumariRetirementEvent": {
             "additionalProperties": false,
-            "description": "Ritual or administrative event that formally ends a Living Goddess tenure, returning the person to secular status. Common triggers: first menstruation, injury causing blood loss, serious illness.",
+            "description": "Ritual or administrative event that formally ends a Living Goddess tenure according to tradition, returning the person to secular life. Record the event and its date, not the reason: the traditional grounds concern the bodily state of a child, and HeritageGraph does not record health or bodily data about persons.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "bounds_tenure": {
                     "description": "The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement).",
                     "type": [
@@ -7653,6 +8652,16 @@
             "additionalProperties": false,
             "description": "The role/office of Kumari (living-goddess embodiment) that a person assumes for the duration of a KumariTenure. The role is the type; the tenure is the time-bounded holding of it; the person is the holder.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -7664,6 +8673,30 @@
                 "id": {
                     "description": "Globally unique URI identifier",
                     "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "role_deity": {
                     "description": "Deity embodied by whoever holds this role (e.g., Taleju).",
@@ -7731,6 +8764,16 @@
             "additionalProperties": false,
             "description": "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination of 32 auspicious physical marks (lakshana) and horoscope matching with the city and ruling authority, performed by Vajracharya priests and astrologers. Accounts of a fearlessness test are disputed and are recorded as such with FearlessnessAssessment, not stated here.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "bounds_tenure": {
                     "description": "The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement).",
                     "type": [
@@ -8075,6 +9118,16 @@
             "additionalProperties": false,
             "description": "Time-bounded role where a person embodies a deity as Living Goddess (Kumari), residing at a specific god-house and supported by religious institutions. This class captures the unique Nepali tradition of living deity embodiment in young girls selected from Buddhist Shakya/Vajracharya families.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "assumes_role": {
                     "description": "KumariRole held during this tenure.",
                     "type": [
@@ -8088,8 +9141,11 @@
                 },
                 "enthroned_through": {
                     "description": "Enthronement event that activated this tenure.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -8102,11 +9158,24 @@
                     ]
                 },
                 "had_participant": {
-                    "description": "The girl serving as Living Goddess during this period",
+                    "description": "Other actors taking part in the tenure without holding it (1.0.x data gave the holder here; use tenure_holder)",
                     "items": {
                         "type": "string"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "has_timespan": {
                     "description": "Duration of Living Goddess tenure (from selection to retirement)",
@@ -8117,8 +9186,25 @@
                     "type": "string"
                 },
                 "name": {
-                    "description": "Name of this tenure period (e.g., 'Kumari Samita Bajracharya Tenure 2015-2023')",
+                    "description": "Name of this tenure period (e.g. 'Royal Kumari tenure, 2017-2025'). Kumari are children: prefer the office and period to the person's name unless the name is public and its use is appropriate.",
                     "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
                 },
                 "residence_structure": {
                     "description": "God-house where Living Goddess resides (e.g., Kumari Ghar)",
@@ -8126,8 +9212,11 @@
                 },
                 "retired_through": {
                     "description": "Retirement/desanctification event that ended this tenure.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -8139,7 +9228,38 @@
                     ]
                 },
                 "supported_by_institution": {
-                    "description": "Guthi or state body providing economic/ritual support during tenure",
+                    "description": "Guthi or state body (e.g. the Guthi Sansthan) providing economic or ritual support during the tenure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tenure_closed_by": {
+                    "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tenure_holder": {
+                    "description": "The girl serving as Living Goddess during this period",
+                    "type": "string"
+                },
+                "tenure_office": {
+                    "description": "Office, role or duty held during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_opened_by": {
+                    "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
                     "items": {
                         "type": "string"
                     },
@@ -8209,7 +9329,7 @@
             },
             "required": [
                 "name",
-                "had_participant",
+                "tenure_holder",
                 "embodied_deity",
                 "residence_structure",
                 "has_timespan",
@@ -8222,6 +9342,16 @@
             "additionalProperties": false,
             "description": "Candidate must belong to an eligible lineage (Shakya / Vajracharya Newar Buddhist family).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -8293,6 +9423,16 @@
             "additionalProperties": false,
             "description": "Festival featuring masked dancers embodying deities (e.g., Kartik Naach)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -8608,6 +9748,16 @@
             "additionalProperties": false,
             "description": "Physical substance used in construction or crafting",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -8703,6 +9853,16 @@
             "additionalProperties": false,
             "description": "Dataset metadata information",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "curator": {
                     "description": "Person or organization curating the dataset.",
                     "type": [
@@ -8816,6 +9976,16 @@
             "additionalProperties": false,
             "description": "Consecrated statue of a deity, ritually activated to serve as divine presence (not merely depiction)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "consecrated_by_event": {
                     "description": "Consecration event that activated this murti",
                     "type": [
@@ -8998,10 +10168,125 @@
             "title": "Murti",
             "type": "object"
         },
+        "Office": {
+            "additionalProperties": false,
+            "description": "An office, role or duty that persons or groups hold for a period (a CIDOC-CRM E55 Type): the office is the type, a Tenure is the dated holding of it, the holder is the actor.",
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Office",
+            "type": "object"
+        },
         "OralHistoryInterview": {
             "additionalProperties": false,
             "description": "The interaction event between a researcher and a knowledge holder.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
@@ -9142,6 +10427,16 @@
             "additionalProperties": false,
             "description": "The recording or transcript of an oral history interview.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "datacite_creator": {
                     "description": "Person or organization primarily responsible for creating the source",
                     "items": {
@@ -9333,6 +10628,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -9571,6 +10876,16 @@
             "additionalProperties": false,
             "description": "Traditional Newari scroll painting (thangka) with mandala and deity iconography",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "depicts_deity": {
                     "description": "Deity depicted iconographically (not cultic presence)",
                     "items": {
@@ -9868,6 +11183,16 @@
             "additionalProperties": false,
             "description": "Union of the tangible heritage classes: architectural structures, iconographic objects, and standalone architectural elements. Used as the range of slots that apply to any physical heritage thing (production, custody, condition assessment).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -9937,8 +11262,18 @@
         },
         "PhysicalIntegrityCriterion": {
             "additionalProperties": false,
-            "description": "Candidate must have an unblemished body with no scars, wounds, or loss of blood/teeth.",
+            "description": "The traditional requirement of physical integrity in a candidate. HeritageGraph records that the criterion belongs to the selection, not any assessment of a candidate's body or health.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -10006,10 +11341,288 @@
             "title": "PhysicalIntegrityCriterion",
             "type": "object"
         },
+        "Pitha": {
+            "additionalProperties": false,
+            "description": "A seat of a goddess's power (pitha), typically an open-air shrine of one of the Mother Goddesses at the edge of a Newar town, linked to a god-house within it.",
+            "if": {
+                "properties": {
+                    "existence_status": {
+                        "anyOf": [
+                            {
+                                "const": "Extant"
+                            },
+                            {
+                                "const": "PartiallyExtant"
+                            },
+                            {
+                                "const": "Reconstructed"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "existence_status"
+                ]
+            },
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "destruction_event": {
+                    "description": "Event that destroyed this structure (if known)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "documented_in_source": {
+                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "existence_status": {
+                    "$ref": "#/$defs/ExistenceStatus",
+                    "description": "Current physical status of the structure"
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_architectural_style": {
+                    "$ref": "#/$defs/ArchitecturalStyle",
+                    "description": "Architectural style classification"
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_component": {
+                    "description": "Architectural elements composing structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_condition_assessment": {
+                    "description": "Condition assessment events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_current_location": {
+                    "description": "Current location of object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_custody_event": {
+                    "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "hypothesized_location": {
+                    "description": "Possible locations if the structure is lost",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "last_known_existence_date": {
+                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "managed_by_guthi": {
+                    "description": "Guthi organization managing this structure or ritual",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "participates_in_ritual": {
+                    "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_documented_by": {
+                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_produced_by_event": {
+                    "description": "Event that created this object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "then": {
+                "properties": {
+                    "has_current_location": {}
+                },
+                "required": [
+                    "has_current_location"
+                ]
+            },
+            "title": "Pitha",
+            "type": "object"
+        },
         "Place": {
             "additionalProperties": false,
             "description": "Defined geographic location where events occur and structures exist",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "contains_structure": {
                     "description": "Structures located in this place",
                     "items": {
@@ -10132,6 +11745,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -10370,6 +11993,16 @@
             "additionalProperties": false,
             "description": "Event of creating an architectural structure, murti, or paubha",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -10540,6 +12173,16 @@
             "additionalProperties": false,
             "description": "A single machine-readable proposition (subject - predicate - object) held true by an Assertion. Modelled as a singleton proposition set (CRMinf I4); the predicate is a URI/CURIE, the object either a heritage entity or a literal.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -10659,6 +12302,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -10897,6 +12550,16 @@
             "additionalProperties": false,
             "description": "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -11012,6 +12675,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -11250,6 +12923,16 @@
             "additionalProperties": false,
             "description": "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups. An instance is one dated occurrence (one CIDOC-CRM E7 with at most one time-span), e.g. the Indra Jatra of 2025; the recurring practice it belongs to (annual, by lunar date) is described by recurrence_pattern and lunar_date_tithi, not by the instance's time-span.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "carried_out_by": {
                     "description": "Actor(s) who performed this event",
                     "items": {
@@ -11551,6 +13234,111 @@
             "title": "RitualEvent",
             "type": "object"
         },
+        "RitualOffice": {
+            "additionalProperties": false,
+            "description": "A ritual office or specialist role (e.g. Vajracharya or Rajopadhyaya priest, Karmacharya, chariot builder, festival musician, the Kumari), held by a person or a caste group, often hereditarily.",
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "RitualOffice",
+            "type": "object"
+        },
         "RitualType": {
             "description": "Controlled vocabulary of ritual and festival activity types in Kathmandu Valley living heritage.",
             "enum": [
@@ -11601,6 +13389,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -11837,8 +13635,18 @@
         },
         "SelectionCriterion": {
             "additionalProperties": false,
-            "description": "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.",
+            "description": "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text. Ethics: candidates are children. Criteria describe the tradition; data about how a named or identifiable child met them (bodily marks, health, horoscope) must not be recorded.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -11906,6 +13714,76 @@
             "title": "SelectionCriterion",
             "type": "object"
         },
+        "StateHeritageAuthority": {
+            "additionalProperties": false,
+            "description": "A state body with responsibility for heritage (a CIDOC-CRM E74 Group), e.g. the Guthi Sansthan (Guthi Corporation, a public corporation that administers nationalised guthi land) or the Department of Archaeology.",
+            "properties": {
+                "acted_on_behalf_of": {
+                    "description": "Agent on whose behalf this agent acted.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "StateHeritageAuthority",
+            "type": "object"
+        },
         "Stupa": {
             "additionalProperties": false,
             "description": "Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath, Swayambhunath).",
@@ -11930,6 +13808,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -12168,6 +14056,16 @@
             "additionalProperties": false,
             "description": "The act of identifying one deity with another across theological frameworks (a CIDOC-CRM E13 Attribute Assignment: P140 the deity identified, P141 the deity it is identified with), recorded with the source that reports it (documented_in_source).",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "assigned_equivalent": {
                     "description": "The deity or sacred figure being identified as equivalent to the primary deity.",
                     "items": {
@@ -12332,6 +14230,16 @@
             "additionalProperties": false,
             "description": "Method or craft process used in production or ritual",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -12447,6 +14355,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -12691,10 +14609,176 @@
             "title": "Temple",
             "type": "object"
         },
+        "Tenure": {
+            "additionalProperties": false,
+            "description": "A dated period during which an actor holds an office, a duty or custody of something (a CIDOC-CRM E4 Period), with the events that open and close it. KumariTenure, HereditaryRoleTenure and CustodyPeriod are specialisations; the pattern applies to offices and custody beyond Nepal.",
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_timespan": {
+                    "description": "Links event to its temporal extent",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "tenure_closed_by": {
+                    "description": "Event that closed the tenure (e.g. a retirement, a death, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tenure_holder": {
+                    "description": "Actor holding the office, duty or custody during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_office": {
+                    "description": "Office, role or duty held during the tenure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tenure_opened_by": {
+                    "description": "Event that opened the tenure (e.g. an enthronement, an appointment, a transfer of custody).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Tenure",
+            "type": "object"
+        },
         "ThirtyTwoPerfectionsCriterion": {
             "additionalProperties": false,
-            "description": "Candidate must exhibit the battis lakshana (thirty-two perfections/auspicious bodily marks).",
+            "description": "The battis lakshana, the traditional list of thirty-two auspicious marks a candidate is held to bear. HeritageGraph records that the criterion belongs to the selection, not any assessment of a candidate.",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
                     "format": "date-time",
@@ -12766,6 +14850,16 @@
             "additionalProperties": false,
             "description": "Temporal extent of an event or period",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "calendar_system": {
                     "description": "Calendar system used for date representation",
                     "type": [
@@ -12881,6 +14975,16 @@
             "additionalProperties": false,
             "description": "Event of transferring responsibility for temple maintenance, ritual performance, or artifact stewardship",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
                     "format": "date-time",
@@ -13022,6 +15126,16 @@
             "additionalProperties": false,
             "description": "Process of cross-checking heritage claims against multiple sources",
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "documents": {
                     "description": "Pre-existing heritage entity or event recorded by this documentation activity (inverse of was_documented_by).",
                     "items": {
@@ -13202,6 +15316,274 @@
             "title": "Verification",
             "type": "object"
         },
+        "Vihara": {
+            "additionalProperties": false,
+            "description": "A Newar Buddhist monastic complex built round a courtyard (Newar bahah or bahi, Sanskrit vihara), with a shrine to its principal deity and a sangha of Vajracharya and Shakya householders.",
+            "if": {
+                "properties": {
+                    "existence_status": {
+                        "anyOf": [
+                            {
+                                "const": "Extant"
+                            },
+                            {
+                                "const": "PartiallyExtant"
+                            },
+                            {
+                                "const": "Reconstructed"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "existence_status"
+                ]
+            },
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "destruction_event": {
+                    "description": "Event that destroyed this structure (if known)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "documented_in_source": {
+                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "existence_status": {
+                    "$ref": "#/$defs/ExistenceStatus",
+                    "description": "Current physical status of the structure"
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_architectural_style": {
+                    "$ref": "#/$defs/ArchitecturalStyle",
+                    "description": "Architectural style classification"
+                },
+                "has_assertion": {
+                    "description": "Provenance-bearing assertion made about this entity or event.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_component": {
+                    "description": "Architectural elements composing structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_condition_assessment": {
+                    "description": "Condition assessment events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_current_location": {
+                    "description": "Current location of object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_custody_event": {
+                    "description": "Custody transfer events for this structure",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "has_religious_tradition": {
+                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "hypothesized_location": {
+                    "description": "Possible locations if the structure is lost",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "last_known_existence_date": {
+                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "managed_by_guthi": {
+                    "description": "Guthi organization managing this structure or ritual",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": "string"
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "participates_in_ritual": {
+                    "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_documented_by": {
+                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_produced_by_event": {
+                    "description": "Event that created this object or structure",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "id"
+            ],
+            "then": {
+                "properties": {
+                    "has_current_location": {}
+                },
+                "required": [
+                    "has_current_location"
+                ]
+            },
+            "title": "Vihara",
+            "type": "object"
+        },
         "WaterStructure": {
             "additionalProperties": false,
             "description": "Engineered water supply systems with ritual and civic significance",
@@ -13226,6 +15608,16 @@
                 ]
             },
             "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "destruction_event": {
                     "description": "Event that destroyed this structure (if known)",
                     "type": [
@@ -13467,6 +15859,16 @@
     "description": "Root container for cultural heritage data instances. PLACEMENT RULE: put each instance in the most specific collection available (e.g. a Festival in festivals, not ritual_events; a Person in persons, not actors); broader collections exist for instances of the general classes only.",
     "metamodel_version": "1.7.0",
     "properties": {
+        "access_rights": {
+            "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+            "items": {
+                "$ref": "#/$defs/AccessProtocol"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "actors": {
             "description": "Collection of generic Actor instances",
             "items": {
@@ -13485,6 +15887,9 @@
                     },
                     {
                         "$ref": "#/$defs/Person"
+                    },
+                    {
+                        "$ref": "#/$defs/StateHeritageAuthority"
                     }
                 ]
             },
@@ -13755,6 +16160,9 @@
                         "$ref": "#/$defs/HumanMadeObject"
                     },
                     {
+                        "$ref": "#/$defs/AgamChhen"
+                    },
+                    {
                         "$ref": "#/$defs/ArchitecturalStructure"
                     },
                     {
@@ -13765,6 +16173,9 @@
                     },
                     {
                         "$ref": "#/$defs/DhungeDhara"
+                    },
+                    {
+                        "$ref": "#/$defs/Dyochhen"
                     },
                     {
                         "$ref": "#/$defs/IconographicObject"
@@ -13780,6 +16191,9 @@
                     },
                     {
                         "$ref": "#/$defs/Paubha"
+                    },
+                    {
+                        "$ref": "#/$defs/Pitha"
                     },
                     {
                         "$ref": "#/$defs/Pokhari"
@@ -13798,6 +16212,9 @@
                     },
                     {
                         "$ref": "#/$defs/Temple"
+                    },
+                    {
+                        "$ref": "#/$defs/Vihara"
                     },
                     {
                         "$ref": "#/$defs/WaterStructure"
@@ -14056,6 +16473,9 @@
                         "$ref": "#/$defs/ArchitecturalStructure"
                     },
                     {
+                        "$ref": "#/$defs/AgamChhen"
+                    },
+                    {
                         "$ref": "#/$defs/Chaitya"
                     },
                     {
@@ -14065,10 +16485,16 @@
                         "$ref": "#/$defs/DhungeDhara"
                     },
                     {
+                        "$ref": "#/$defs/Dyochhen"
+                    },
+                    {
                         "$ref": "#/$defs/KumariHouse"
                     },
                     {
                         "$ref": "#/$defs/Pati"
+                    },
+                    {
+                        "$ref": "#/$defs/Pitha"
                     },
                     {
                         "$ref": "#/$defs/Pokhari"
@@ -14087,6 +16513,9 @@
                     },
                     {
                         "$ref": "#/$defs/Temple"
+                    },
+                    {
+                        "$ref": "#/$defs/Vihara"
                     },
                     {
                         "$ref": "#/$defs/WaterStructure"

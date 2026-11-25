@@ -1838,7 +1838,7 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
     # false): a destruction (with destroyed) could not go into
     # historical_events, nor a Temple's own fields into structures. Each
     # collection accepts its class or any concrete descendant.
-    n_coll = 0
+    widened = set()
     for props in (js.get("properties", {}), defs.get("Container", {}).get("properties", {})):
         for pname, pdef in props.items():
             items = pdef.get("items")
@@ -1851,8 +1851,9 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
                           if d in defs and not sv.get_class(d).abstract)
             if subs:
                 pdef["items"] = {"anyOf": [{"$ref": f"#/$defs/{x}"} for x in [cname] + subs]}
-                n_coll += 1
-    print(f"JSON Schema: {n_coll} Container collection(s) also accept the concrete subclasses")
+                widened.add(pname)
+    print(f"JSON Schema: {len(widened)} Container collection(s) (root and Container def) also accept "
+          f"the concrete subclasses")
 
 
 def allow_single_string(js: dict, sv: SchemaView) -> None:

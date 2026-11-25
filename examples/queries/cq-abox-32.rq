@@ -176,12 +176,13 @@ SELECT ?production ?patron ?structure WHERE {
   ?production hg:commissionedBy ?patron ; crm:P108_has_produced ?structure .
 }
 
-# CQ21: Which endowments sustain which sites, rituals or sacred offices, which Guthi holds them, and through which founding or nationalisation events?
+# CQ21: Which endowments sustain which sites, rituals or sacred offices, which Guthi or state body holds them, and through which founding or nationalisation events?
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?endowment ?sustained ?holder ?event ?type WHERE {
   ?endowment a hg:Endowment ; crm:P105_right_held_by ?holder ; hg:sustains ?sustained .
-  ?holder a hg:Guthi .
+  ?holder a/rdfs:subClassOf* crm:E74_Group .
   ?event hg:concernsEndowment ?endowment ; hg:endowmentEventType ?type .
 }
 
@@ -228,7 +229,7 @@ SELECT ?syn ?deityA ?deityB ?source WHERE {
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?person ?residence ?timespan WHERE {
-  ?tenure a hg:KumariTenure ; hg:hadParticipant ?person ;
+  ?tenure a hg:KumariTenure ; hg:tenureHolder ?person ;
           hg:residenceStructure ?residence ; crm:P4_has_time-span ?timespan .
 }
 
@@ -261,7 +262,7 @@ SELECT ?tenure ?ritual ?type ?residence ?pattern WHERE {
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?tenure ?person ?ritual ?neighbour WHERE {
-  ?tenure a hg:KumariTenure ; hg:hadParticipant ?person .
+  ?tenure a hg:KumariTenure ; hg:tenureHolder ?person .
   ?person a crm:E21_Person .
   ?ritual hg:hadParticipant ?person .
   ?ritual (crm:P183_ends_before_the_start_of|crm:P183i_starts_after_the_end_of) ?neighbour .
@@ -269,9 +270,11 @@ SELECT ?tenure ?person ?ritual ?neighbour WHERE {
 
 # CQ31: Which institution bears responsibility for a given Kumari during her tenure?
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 SELECT ?tenure ?institution WHERE {
   ?tenure a hg:KumariTenure ; hg:supportedByInstitution ?institution .
-  ?institution a hg:Guthi .
+  ?institution a/rdfs:subClassOf* crm:E74_Group .
 }
 
 # CQ32: When and why did an individual stop being Kumari, and what event terminated the status?
