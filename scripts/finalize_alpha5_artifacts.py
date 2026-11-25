@@ -1294,7 +1294,7 @@ def repair_dl_profile(g: Graph, sv: SchemaView) -> None:
     # heritageGraph:existence_status instead of the slot_uris) AND weakens the
     # precondition from 'status is Extant/PartiallyExtant' to 'any status' -
     # an axiom the schema does not assert. Remove it; the SHACL shapes carry
-    # the actual conditional rule.
+    # the actual conditional rule (add_location_rule).
     n = 0
     for s in list(g.subjects(OWL.intersectionOf, None)):
         if isinstance(s, BNode) and (s, RDFS.subClassOf, None) in g:
@@ -1492,6 +1492,7 @@ def finalize_shacl(sv: SchemaView) -> None:
     add_usage_names(g, sv)
     scope_shapes(g, sv)
     add_timespan_rules(g)
+    add_location_rule(g, sv)
     bind_hg(g)
     g.serialize(destination=SHACL_OUT, format="turtle")
     print(f"finalized {SHACL_OUT.name} ({len(g)} triples)")
@@ -1678,6 +1679,40 @@ def add_timespan_rules(g: Graph) -> None:
     Collection(g, head, [no_rec, has_cal])
     g.add((shape, SH["or"], head))
     print("time-span rules: P82a <= P82b; recordedDate requires calendarSystem")
+
+
+def add_location_rule(g: Graph, sv: SchemaView) -> None:
+    """The ArchitecturalStructure rule "a structure whose existence status is
+    one of S must record a current location" (a LinkML rule, which gen-shacl
+    does not translate) as SHACL on the ArchitecturalStructure shape: either
+    no existence status in S, or at least one crm:P55_has_current_location.
+    S is read from the rule's precondition, so the YAML stays the source."""
+    cls = sv.get_class("ArchitecturalStructure")
+    statuses = []
+    for rule in cls.rules or []:
+        conds = (rule.preconditions.slot_conditions or {}) if rule.preconditions else {}
+        es = conds.get("existence_status")
+        post = (rule.postconditions.slot_conditions or {}) if rule.postconditions else {}
+        if es is not None and "has_current_location" in post:
+            statuses = [c.equals_string for c in (es.any_of or [])]
+    if not statuses:
+        sys.exit("ArchitecturalStructure location rule not found in the schema")
+    target = URIRef(HG_NS + "ArchitecturalStructure")
+    shape = next(iter(g.subjects(SH.targetClass, target)), None)
+    if shape is None:
+        sys.exit("ArchitecturalStructure shape not found")
+    not_in, inner, has_loc = BNode(), BNode(), BNode()
+    lst = BNode()
+    Collection(g, lst, [URIRef(f"{HG_NS}ExistenceStatus#{v}") for v in statuses])
+    g.add((inner, SH["in"], lst))
+    g.add((not_in, SH.path, URIRef(HG_NS + "existenceStatus")))
+    g.add((not_in, SH["not"], inner))
+    g.add((has_loc, SH.path, URIRef("http://www.cidoc-crm.org/cidoc-crm/P55_has_current_location")))
+    g.add((has_loc, SH.minCount, Literal(1)))
+    head = BNode()
+    Collection(g, head, [not_in, has_loc])
+    g.add((shape, SH["or"], head))
+    print(f"location rule: structures with status {', '.join(statuses)} record a current location")
 
 
 def run_pyshacl() -> None:

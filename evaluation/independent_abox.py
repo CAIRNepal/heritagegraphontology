@@ -163,6 +163,10 @@ ex:D1 a hg:Deity ; rdfs:label "d" . ex:H a hg:KumariHouse ; rdfs:label "h" . ex:
   ('ex:BadRitual a hg:RitualEvent ; rdfs:label "x" ; crm:P3_has_note 42 .', "Or"),
  "Destruction: a destruction that destroyed a deity, not a physical thing (sh:or)":
   ('ex:BadDestr a crm:E6_Destruction ; rdfs:label "x" ; crm:P13_destroyed ex:D1 . ex:D1 a hg:Deity ; rdfs:label "d" .', "Or"),
+ "Destruction: a destruction that names nothing destroyed (minCount)":
+  ('ex:BadDestr a crm:E6_Destruction ; rdfs:label "x" .', "MinCount"),
+ "Existence: a reconstructed temple with no current location (node-level sh:or)":
+  ('ex:BadTemple a hg:Temple ; rdfs:label "t" ; hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Reconstructed> .', "Or"),
 }
 # The property each test must violate: a test counts as caught only when a
 # result has the expected constraint component ON THE EXPECTED PATH (a
@@ -188,6 +192,8 @@ EXPECTED_PATH = {
  "Labels: two untagged labels on one deity (sh:qualifiedMaxCount)": "http://www.w3.org/2000/01/rdf-schema#label",
  "Text: a note given as a number, not text (sh:or string|langString)": CRM_ + "P3_has_note",
  "Destruction: a destruction that destroyed a deity, not a physical thing (sh:or)": CRM_ + "P13_destroyed",
+ "Destruction: a destruction that names nothing destroyed (minCount)": CRM_ + "P13_destroyed",
+ "Existence: a reconstructed temple with no current location (node-level sh:or)": "None",  # node-level sh:or: no result path
 }
 SH_NS = "http://www.w3.org/ns/shacl#"
 caught = 0

@@ -1318,6 +1318,10 @@ classes:
       - has_timespan
       - took_place_at
       - destroyed
+    slot_usage:
+      destroyed:
+        # CIDOC-CRM P13 is necessary (1,n): a destruction destroys something
+        required: true
   SyncreticRelationship:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.

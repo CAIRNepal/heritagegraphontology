@@ -3192,10 +3192,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
@@ -3318,6 +3315,7 @@
                 }
             },
             "required": [
+                "destroyed",
                 "id"
             ],
             "title": "DestructionEvent",
