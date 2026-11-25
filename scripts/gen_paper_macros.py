@@ -50,7 +50,9 @@ def main() -> int:
     sssom = [l for l in (ROOT / "ontology/mappings/HeritageGraph.sssom.tsv").read_text().splitlines()
              if l and not l.startswith("#")][1:]
     abox = Graph().parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
+    # classes only: the enumerations (each a subclass of crm:E55_Type) are counted apart
     crm_super = sum(1 for c in owl.subjects(RDF.type, OWL.Class) if str(c).startswith(HG)
+                    and c not in enums and (c, OWL.deprecated, None) not in owl
                     and any(str(o).startswith("http://www.cidoc-crm.org/cidoc-crm/") for o in owl.objects(c, RDFS.subClassOf)))
     numbers = {
         "OwlTriples": metrics["owl_triples"],
