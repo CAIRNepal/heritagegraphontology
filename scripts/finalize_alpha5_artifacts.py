@@ -1831,6 +1831,23 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
             for i, alt in enumerate(pdef.get("anyOf", [])):   # nullable form
                 if isinstance(alt, dict) and "$ref" in alt:
                     repair(pdef["anyOf"], i, inlined, f"{owner}.{pname}")
+    # de-duplicate anyOf alternatives (two members resolved to the same id string)
+    def dedupe(node):
+        if isinstance(node, dict):
+            if isinstance(node.get("anyOf"), list):
+                seen, out = set(), []
+                for alt in node["anyOf"]:
+                    key = json.dumps(alt, sort_keys=True)
+                    if key not in seen:
+                        seen.add(key); out.append(alt)
+                node["anyOf"] = out
+            for v in node.values():
+                dedupe(v)
+        elif isinstance(node, list):
+            for v in node:
+                dedupe(v)
+    import json
+    dedupe(js)
     print(f"JSON Schema: resolved {len(fixed)} reference(s) to classes with no $defs entry")
 
     # A Container collection holds the instances themselves, and the generated

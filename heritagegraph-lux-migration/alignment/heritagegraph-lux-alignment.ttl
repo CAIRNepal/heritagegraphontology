@@ -7,7 +7,6 @@
 @prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dig:           <http://www.ics.forth.gr/isl/CRMdig/> .
 @prefix sci:           <http://www.ics.forth.gr/isl/CRMsci/> .
-@prefix crmsci:        <http://www.cidoc-crm.org/extensions/crmsci/> .
 @prefix crminf:        <http://www.cidoc-crm.org/extensions/crminf/> .
 @prefix aat:           <http://vocab.getty.edu/aat/> .
 @prefix wikidata:      <http://www.wikidata.org/entity/> .
@@ -233,7 +232,7 @@ heritageGraph:isAboutDeity skos:closeMatch crm:P138_represents .  # P138 domain 
 heritageGraph:mentionedInSource rdfs:subPropertyOf crm:P67i_is_referred_to_by .  # LUX alias: "referred_to_by"; ⊑ not ≡: mentionedInSource (range DataSource) is narrower than P67i
 # 1.1.0: was skos:closeMatch crm:P94i_was_created_by (documenting is not creating);
 # now the same match as the core: a survey that records something observes it.
-heritageGraph:documentedBy skos:closeMatch crmsci:O8i_was_observed_by .
+heritageGraph:documentedBy skos:closeMatch sci:O8i_was_observed_by .  # this module's CRMsci namespace (LUX data uses sci:); the core uses the cidoc-crm.org one
 
 # ---- Person life events (better expressed as Birth/Death events) ------------
 

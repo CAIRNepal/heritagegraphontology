@@ -11,8 +11,10 @@ from the LUX alignment module (the same predicates, plus owl:equivalentClass/
 equivalentProperty). The mappings were curated by hand by the ontology's
 authors (the rationale is kept as comments in ontology/HeritageGraph.yaml and
 the module), so mapping_justification is semapv:ManualMappingCuration.
-reviewer_label stays empty until an independent rater has judged the mapping
-(evaluation/mapping_rater_verdicts.csv); the generator never fills it in.
+reviewer_label is set only when an independent rater has accepted the mapping in
+evaluation/mapping_rater_verdicts.csv (verdict accept / reject / revise); a rejected mapping
+is not published, and the generator never fills in a verdict itself. Deprecated terms
+are skipped, and a mapping stated in both the core and the LUX module is one row.
 """
 from __future__ import annotations
 
@@ -50,6 +52,10 @@ CURIE_MAP = {
     "geo": "http://www.opengis.net/ont/geosparql#",
     "time": "http://www.w3.org/2006/time#",
     "semapv": "https://w3id.org/semapv/vocab/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "sci": "http://www.ics.forth.gr/isl/CRMsci/",
+    "dig": "http://www.ics.forth.gr/isl/CRMdig/",
+    "lclabel": "https://localcontexts.org/label/",
 }
 PREDICATES = {
     SKOS.exactMatch: "skos:exactMatch", SKOS.closeMatch: "skos:closeMatch",
@@ -59,7 +65,7 @@ PREDICATES = {
     OWL.equivalentProperty: "owl:equivalentProperty",
 }
 COLUMNS = ["subject_id", "subject_label", "predicate_id", "object_id", "mapping_justification",
-           "author_label", "reviewer_label", "mapping_set_source", "comment"]
+           "author_label", "reviewer_label", "comment"]
 
 
 def curie(u: URIRef) -> str:
@@ -70,16 +76,18 @@ def curie(u: URIRef) -> str:
     return s
 
 
-def mappings(g: Graph, source: str):
+def mappings(g: Graph, labels: Graph):
     for pred, pid in PREDICATES.items():
         for s, o in g.subject_objects(pred):
             if not (isinstance(s, URIRef) and isinstance(o, URIRef)):
                 continue
             if not str(s).startswith(HG) or str(o).startswith(HG):
                 continue  # HeritageGraph term -> external term only
-            label = next((str(l) for l in g.objects(s, RDFS.label)
+            if (s, OWL.deprecated, None) in labels or (s, OWL.deprecated, None) in g:
+                continue  # deprecated terms are not mapped anew
+            label = next((str(l) for src in (labels, g) for l in src.objects(s, RDFS.label)
                           if getattr(l, "language", None) in ("en", None)), "")
-            yield curie(s), label, pid, curie(o), source
+            yield curie(s), label, pid, curie(o)
 
 
 def rater_verdicts() -> dict:
@@ -94,7 +102,12 @@ def build() -> str:
     core = Graph().parse(CORE, format="turtle")
     lux = Graph().parse(LUX, format="turtle")
     verdicts = rater_verdicts()
-    rows = sorted(set(mappings(core, "core")) | set(mappings(lux, "lux-module")))
+    sources: dict = {}
+    for row in mappings(core, core):
+        sources.setdefault(row, set()).add("core")
+    for row in mappings(lux, core):
+        sources.setdefault(row, set()).add("LUX module")
+    rows = sorted(sources)
     out = io.StringIO()
     out.write("# mapping_set_id: https://cair-nepal.org/heritagegraph/mappings/HeritageGraph.sssom.tsv\n")
     out.write("# mapping_set_description: Mappings from HeritageGraph terms (core and the LUX alignment module) "
@@ -105,11 +118,17 @@ def build() -> str:
         out.write(f"#   {p}: {ns}\n")
     w = csv.writer(out, delimiter="\t", lineterminator="\n")
     w.writerow(COLUMNS)
-    for sid, label, pid, oid, source in rows:
+    for sid, label, pid, oid in rows:
         v = verdicts.get((sid, pid, oid), {})
+        verdict = v.get("verdict", "").strip().lower()
+        if verdict == "reject":
+            continue  # a rater rejected the mapping: not published
+        comment = "stated in: " + ", ".join(sorted(sources[(sid, label, pid, oid)]))
+        if verdict:
+            comment += f"; rater verdict: {verdict}" + (f" ({v['note']})" if v.get("note") else "")
         w.writerow([sid, label, pid, oid, "semapv:ManualMappingCuration",
-                    "HeritageGraph authors (CAIR-Nepal)", v.get("rater", ""),
-                    source, v.get("note", "")])
+                    "HeritageGraph authors (CAIR-Nepal)",
+                    v.get("rater", "") if verdict == "accept" else "", comment])
     return out.getvalue()
 
 

@@ -209,9 +209,11 @@ b:KumariOffice a crm:E55_Type . b:SupportingInstitution a crm:E55_Type .
 b:ts a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
-b:Enthronement a crm:E5_Event ; crm:P182_ends_before_or_with_the_start_of b:KumariService .
+b:Selection a crm:E5_Event ; crm:P2_has_type b:KumariSelection ;
+    crm:P182_ends_before_or_with_the_start_of b:KumariService .
 b:KumariService crm:P182_ends_before_or_with_the_start_of b:Retirement .
-b:Retirement a crm:E5_Event .
+b:Retirement a crm:E5_Event ; crm:P2_has_type b:KumariRetirement .
+b:KumariSelection a crm:E55_Type . b:KumariRetirement a crm:E55_Type .
 """
     WIKIDATA = """@prefix p:  <http://www.wikidata.org/prop/> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
@@ -223,7 +225,7 @@ ex:KumariPerson p:P39 b:stmt .
 b:stmt ps:P39 b:KumariOffice ;
     pq:P580 "2017-09-28T00:00:00"^^xsd:dateTime ;
     pq:P582 "2025-09-30T00:00:00"^^xsd:dateTime ;
-    pq:P1534 b:Retirement ;
+    pq:P1534 b:KumariRetirement ;
     pq:P276 ex:KumariGhar ;
     pq:P1268 ex:Taleju .
 """
@@ -243,9 +245,9 @@ b:stmt ps:P39 b:KumariOffice ;
          """SELECT ?open ?close WHERE { ?t a hg:KumariTenure .
               ?open a hg:KumariSelectionEvent ; hg:initiatedTenure ?t .
               ?close a hg:KumariRetirementEvent ; hg:endedTenureOf ?t . }""",
-         """SELECT ?open ?close WHERE { ?open crm:P182_ends_before_or_with_the_start_of ?a .
-              ?a crm:P182_ends_before_or_with_the_start_of ?close ; crm:P01i_is_domain_of ?pc .
-              ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
+         """SELECT ?open ?close WHERE { ?o crm:P182_ends_before_or_with_the_start_of ?a ; crm:P2_has_type ?open .
+              ?a crm:P182_ends_before_or_with_the_start_of ?c ; crm:P01i_is_domain_of ?pc .
+              ?c crm:P2_has_type ?close . ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
          """SELECT ?close WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P1534 ?close . }"""),
         ("Q3 residence during the period",
          """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:residenceStructure ?res ;
@@ -272,27 +274,60 @@ b:stmt ps:P39 b:KumariOffice ;
          None),
     ]
 
-    def n_patterns(q: str) -> int:
-        return q.count(" . ") + q.count(" ; ") + 1
+    from rdflib.plugins.sparql import prepareQuery
+    from rdflib.plugins.sparql.algebra import traverse
+    from rdflib.paths import SequencePath
 
-    print(f"{'question':<46}{'HG':>8}{'CRM role':>10}{'Wikidata':>10}   (rows / triple patterns)")
+    def n_patterns(q: str) -> int:
+        """Triple patterns in the parsed algebra; each hop of a sequence path counts."""
+        count = 0
+        def visit(node):
+            nonlocal count
+            if getattr(node, "name", None) == "BGP":
+                for t in node.triples:
+                    p = t[1]
+                    count += len(p.args) if isinstance(p, SequencePath) else 1
+        traverse(prepareQuery(PFX + q).algebra, visitPre=visit)
+        return count
+
+    # the facts every arm encodes; an arm answers a question when its values match
+    import re as _re
+
+    def norm(x):
+        if x is None:
+            return None
+        v = str(x).rsplit("/", 1)[-1]
+        return v[:10] if _re.match(r"^\d{4}-\d{2}-\d{2}T", v) else v   # a date-time: its day
+
+    def vals(g, q):
+        return {tuple(norm(x) for x in r) for r in g.query(PFX + q)}
+    WANT = {"Q1": {("Taleju", "2017-09-28")}, "Q3": {("KumariGhar", "2017-09-28")},
+            "Q4": {("KumariPerson",)}, "Q5": {("GuthiSansthan",)}}
+
+    print(f"{'question':<46}{'HG':>10}{'CRM role':>12}{'Wikidata':>12}   (answered? / triple patterns)")
     ok = True
     for name, qh, qc, qw in Q:
-        rh = len(list(hg_g.query(PFX + qh)))
-        rc = len(list(crm_g.query(PFX + qc)))
-        rw = "-" if qw is None else len(list(wd_g.query(PFX + qw)))
-        ok &= rh >= 1
-        cell = lambda r, q: f"{r}/{n_patterns(q)}" if q else "n/a"
-        print(f"{name:<46}{cell(rh, qh):>8}{cell(rc, qc):>10}{cell(rw, qw) if qw else 'n/a':>10}")
+        key = name[:2]
+        res = []
+        for g_, q_ in ((hg_g, qh), (crm_g, qc), (wd_g, qw)):
+            if q_ is None:
+                res.append("n/a")
+                continue
+            v = vals(g_, q_)
+            good = (v == WANT[key]) if key in WANT else bool(v) and all(None not in r for r in v)
+            res.append(f"{'yes' if good else 'NO'}/{n_patterns(q_)}")
+        ok &= res[0].startswith("yes")
+        print(f"{name:<46}{res[0]:>10}{res[1]:>12}{res[2]:>12}")
     print("""
-Reading: all three idioms can state the facts. Where they differ:
-- Q1: CRM has no embodiment property (P15 'was influenced by' is far weaker);
+Reading: all three idioms state the facts, with these differences.
+- Q1: CRM has no embodiment property (P15 'was influenced by' is weaker);
   Wikidata's P1268 'represents' is closer; HeritageGraph states embodiment.
-- Q2: the CRM and Wikidata arms record the closing event (and CRM an untyped
-  opening event) but not its kind; HeritageGraph types both (selection,
-  retirement), which the selection and retirement CQs use.
-- Q4/Q5: the CRM idiom needs the property-of-property reification (2-3 extra
-  patterns per role); Wikidata has no qualifier for a supporting institution.
+- Q2: CRM types its opening and closing events with P2_has_type and E55s it must
+  mint; Wikidata records the end cause (P1534) but has no start-cause qualifier;
+  HeritageGraph has typed selection and retirement events.
+- Pattern counts (from the parsed queries): the CRM idiom needs the
+  property-of-property reification for each role (PC14 / P01 / P02 / P14.1);
+  Wikidata has no qualifier for a supporting institution (Q5).
 - Constraints: below.""")
 
     # constraint check: 'exactly one embodied deity per tenure' under the published shapes
@@ -307,13 +342,29 @@ ex:D1 a hg:Deity ; rdfs:label "d1" . ex:D2 a hg:Deity ; rdfs:label "d2" .
 ex:P a crm:E21_Person ; rdfs:label "p" . ex:H a hg:KumariHouse ; rdfs:label "h" .
 ex:TS a crm:E52_Time-Span .""", format="turtle")
     c_hg, _, _ = validate(bad, shacl_graph=shapes, ont_graph=ont, inference="none")
+    # the CRM idiom can carry the rule too, with a SHACL-SPARQL constraint on
+    # activities whose participant acts in the role of the Kumari office
+    CRM_SHAPE = """@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix b: <https://cair-nepal.org/heritagegraph/example/baseline/> .
+b:OneDeityShape a sh:NodeShape ; sh:targetClass crm:E7_Activity ;
+  sh:sparql [ sh:message "a Kumari service has at most one deity" ; sh:select \"\"\"
+    PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+    PREFIX b: <https://cair-nepal.org/heritagegraph/example/baseline/>
+    SELECT $this WHERE { $this crm:P01i_is_domain_of/crm:P14.1_in_the_role_of b:KumariOffice ;
+      crm:P15_was_influenced_by ?d1 , ?d2 . FILTER(?d1 != ?d2) } \"\"\" ] ."""
+    crm_shapes = Graph().parse(data=CRM_SHAPE, format="turtle")
+    crm_ok = Graph().parse(data=CRM_ROLE, format="turtle")
     crm_bad = Graph().parse(data=CRM_ROLE + "b:KumariService crm:P15_was_influenced_by ex:Vajradevi .\n",
                             format="turtle")
-    c_crm, _, _ = validate(crm_bad, shacl_graph=shapes, ont_graph=ont, inference="none")
-    print(f"\n'one deity per tenure': HeritageGraph tenure with two deities conforms={c_hg} "
-          f"(caught); CRM-role activity with two influences conforms={c_crm} (a generic E7 "
-          f"has no shape that could carry the rule without an office-specific class).")
-    ok &= (not c_hg) and c_crm
+    c_crm_ok, _, _ = validate(crm_ok, shacl_graph=crm_shapes, inference="none")
+    c_crm, _, _ = validate(crm_bad, shacl_graph=crm_shapes, inference="none")
+    print(f"\n'one deity per tenure': HeritageGraph's published shape catches two deities "
+          f"(conforms={c_hg}). The CRM idiom can enforce it too, but only with a SHACL-SPARQL "
+          f"constraint the data publisher writes over the role reification "
+          f"(two influences conforms={c_crm}; one influence conforms={c_crm_ok}). The difference "
+          f"is that HeritageGraph ships the rule; expressiveness is equal.")
+    ok &= (not c_hg) and (not c_crm) and c_crm_ok
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
 
@@ -433,11 +484,10 @@ ex:PrivateGuthi a hg:Guthi ; rdfs:label "Pavilion guthi (illustrative)" ;
     hg:guthiType <https://cair-nepal.org/heritagegraph/GuthiType#TempleGuthi> .
 ex:StateBody a hg:StateHeritageAuthority ; rdfs:label "State guthi corporation (illustrative)" .
 
-# custody chain: the guthi, then the state body from 1964 (open: no end)
-ex:T_1900 a crm:E52_Time-Span ; crm:P82a_begin_of_the_begin "1900-01-01T00:00:00"^^xsd:dateTime .
+# custody chain: the guthi, then the state body from 13 April 1964 (open: no end)
 ex:T_1964 a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1964-04-13T00:00:00"^^xsd:dateTime ;
-    crm:P82b_end_of_the_end "1965-04-12T23:59:59"^^xsd:dateTime .
+    crm:P82b_end_of_the_end "1964-04-13T23:59:59"^^xsd:dateTime .
 ex:Transfer_1964 a crm:E10_Transfer_of_Custody ; rdfs:label "Transfer to the state body" ;
     crm:P30_transferred_custody_of ex:Pavilion ;
     crm:P28_custody_surrendered_by ex:PrivateGuthi ;
@@ -798,6 +848,25 @@ ex:TS_SP_BS_naive a crm:E52_Time-Span ;
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P82a_begin_of_the_begin "2015-01-01T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2015-12-31T23:59:59"^^xsd:dateTime .
+# Correct conversions (positive controls for the full-bound check): B.S. 2073
+# began on 13 April 2016, N.S. 1138 at Mha Puja, 20 October 2017.
+ex:TS_BS_2073 a crm:E52_Time-Span ; rdfs:label "B.S. 2073 (correct conversion)" ;
+    hg:recordedDate "2073" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2016-04-13T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2017-04-13T23:59:59"^^xsd:dateTime .
+ex:TS_NS_1138 a crm:E52_Time-Span ; rdfs:label "N.S. 1138 (correct conversion)" ;
+    hg:recordedDate "1138" ; hg:calendarSystem ex:NepalSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2017-10-20T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2018-11-07T23:59:59"^^xsd:dateTime .
+# Conversion-error case: a month late (B.S. 2072 begun on 14 May 2015).
+ex:TS_BS_month_late a crm:E52_Time-Span ;
+    rdfs:label "B.S. 2072 record begun a month late (ERROR CASE)" ;
+    hg:recordedDate "2072" ; hg:calendarSystem ex:BikramSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2015-05-14T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2016-05-13T23:59:59"^^xsd:dateTime .
 # Conversion-error case the year-only check cannot see: the right Gregorian
 # years (2015-2016) but the wrong months (as if B.S. began in October).
 ex:TS_BS_wrong_months a crm:E52_Time-Span ;
@@ -885,34 +954,46 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
     q2 = res(next(k for k in QUERIES if k.startswith("Q2")))
     q4_year_only = [r[0] for r in res(next(k for k in QUERIES if k.startswith("Q4")))]
 
-    # Full-bound conversion check (Q4 above compares years only): a year
-    # record's stored interval must start within 30 days after its calendar's
-    # new year (the month and day of the epoch) in the converted CE year, and
-    # last one calendar year (350-390 days). A recorded year that does not
-    # parse as an integer is an error, not silently skipped.
+    # Full-bound conversion check (Q4 above compares years only). The calendar's
+    # new year moves from year to year, so the check uses its window, not the
+    # epoch's day: Bikram Sambat (solar) begins on 13-15 April; Nepal Sambat
+    # (lunisolar) at Mha Puja, between about 13 October and 15 November. A
+    # year record's interval must start inside the window of its converted CE
+    # year and last one calendar year (350-390 days: 354-384 for a lunisolar
+    # year). A year record whose year does not parse, or that lacks a bound or
+    # its calendar's offset, is reported, not skipped.
     from datetime import date, datetime
-    XSDNS = "http://www.w3.org/2001/XMLSchema#"
-    HGNS = "https://cair-nepal.org/heritagegraph/"
+    NEW_YEAR_WINDOW = {"Bikram Sambat": ((4, 13), (4, 15)),
+                       "Nepal Sambat": ((10, 13), (11, 15)),
+                       "Gregorian calendar": ((1, 1), (1, 1))}
     bad_bounds, unparseable = [], []
-    for rec, recd, off, epoch, b, e in g.query(PFX + """
-        SELECT ?record ?rec ?off ?epoch ?b ?e WHERE {
+    for rec, recd, cal, off, b, e in g.query(PFX + """
+        SELECT ?record ?rec ?calName ?off ?b ?e WHERE {
           ?record hg:recordedDate ?rec ;
                   hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
-                  hg:calendarSystem ?cal ;
-                  crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
-          ?cal hg:yearOffsetFromGregorian ?off ; hg:epochDateGregorian ?epoch . }"""):
+                  hg:calendarSystem ?cal .
+          ?cal rdfs:label ?calName .
+          OPTIONAL { ?cal hg:yearOffsetFromGregorian ?off }
+          OPTIONAL { ?record crm:P82a_begin_of_the_begin ?b }
+          OPTIONAL { ?record crm:P82b_end_of_the_end ?e } }"""):
         name = str(rec).rsplit("/", 1)[-1]
         try:
             year = int(str(recd))
         except ValueError:
             unparseable.append(name)
             continue
+        if off is None or b is None or e is None or str(cal) not in NEW_YEAR_WINDOW:
+            unparseable.append(name)
+            continue
         ce = year - int(off)
-        mm, dd = (int(x) for x in str(epoch)[-5:].split("-"))
-        new_year = date(ce, mm, dd)
+        if ce < 1:
+            unparseable.append(name)
+            continue
+        (m1, d1), (m2, d2) = NEW_YEAR_WINDOW[str(cal)]
         start = datetime.fromisoformat(str(b)).date()
         end = datetime.fromisoformat(str(e)).date()
-        if not (0 <= (start - new_year).days <= 30 and 350 <= (end - start).days <= 390):
+        in_window = date(ce, m1, d1) <= start <= date(ce, m2, d2)
+        if not (in_window and 350 <= (end - start).days <= 390):
             bad_bounds.append(name)
     q4 = sorted(bad_bounds)
     print(f"Q4 full-bound check: records whose bounds disagree with their recorded year: {q4}; "
@@ -924,7 +1005,10 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
             [r[2] for r in q2 if r[0].startswith("Indra Jatra")] == [None],
         "Q2 Shree Panchami 2016 conflicts only with the naive record":
             [r[2] for r in q2 if r[0].startswith("Shree Panchami")] == ["TS_SP_BS_naive"],
-        "Q4 (full bounds) flags both error records": q4 == ["TS_BS_wrong_months", "TS_SP_BS_naive"],
+        "Q4 (full bounds) flags exactly the three error records":
+            q4 == ["TS_BS_month_late", "TS_BS_wrong_months", "TS_SP_BS_naive"],
+        "Q4 (full bounds) accepts the correct BS 2073 and NS 1138 records":
+            "TS_BS_2073" not in q4 and "TS_NS_1138" not in q4,
         "Q4 (year only) misses the wrong-month record": q4_year_only == ["TS_SP_BS_naive"],
         "every year record parses (none skipped)": not unparseable,
         "boundary case: single-year conversion (Y - 57) misses Shree Panchami 2016":

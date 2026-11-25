@@ -699,7 +699,8 @@ classes:
     close_mappings:
       - aat:300343850
       - dbo:Deity
-    exact_mappings:
+      # (Wikidata's 'deity' is likewise a kind of supernatural being, not a
+      # conceptual entity: a close match too)
       # URI FIX (alpha.5): schema:Deity does not exist (schema.org defines no
       # Deity type); replaced with the Wikidata concept 'deity' (Q178885).
       - wikidata:Q178885

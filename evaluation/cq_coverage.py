@@ -12,8 +12,11 @@ witness (often a single one). This script measures how much the suite tests:
    per CQ as killed / applicable mutants (a mutant is killed when the CQ's
    answer set no longer equals its gold):
    a. ABox deletion: delete each demonstrator triple in turn.
-   b. IRI swap: replace each HeritageGraph term in the query with a sibling
-      term of the same kind (class for class, property for property).
+   b. IRI swap: replace each HeritageGraph term in the query with each of its
+      siblings: the HG terms that share a direct superclass (classes) or a
+      direct superproperty (properties). A mutant that raises an error is
+      invalid, not killed; kills that return no rows at all are reported
+      separately from kills that return different rows.
    c. TBox deletion: delete each rdfs:subClassOf / rdfs:subPropertyOf axiom
       between HeritageGraph terms (asserted arm: the queries' rdfs:subClassOf*
       paths read the TBox).
@@ -52,8 +55,10 @@ def main() -> int:
     queries = load_queries(QUERIES)
     gold = {cq: sorted({tuple(r) for r in expected[f"CQ{cq}"]["expected"]}) for cq, _, _ in queries}
 
+    enums = {str(c)[len(HG):] for c in tbox.subjects(OWL.oneOf, None) if str(c).startswith(HG)}
     classes = {str(c)[len(HG):] for c in tbox.subjects(RDF.type, OWL.Class)
-               if str(c).startswith(HG) and (c, OWL.deprecated, None) not in tbox and "#" not in str(c)}
+               if str(c).startswith(HG) and (c, OWL.deprecated, None) not in tbox
+               and "#" not in str(c)} - enums
     props = {str(p)[len(HG):] for t in (OWL.ObjectProperty, OWL.DatatypeProperty)
              for p in tbox.subjects(RDF.type, t)
              if str(p).startswith(HG) and (p, OWL.deprecated, None) not in tbox}
@@ -76,18 +81,23 @@ def main() -> int:
             inst[str(o)[len(HG):]] += 1
         elif str(p).startswith(HG):
             inst[str(p)[len(HG):]] += 1
+        if isinstance(o, URIRef) and str(o).startswith(HG) and "#" in str(o)[len(HG):]:
+            inst[str(o)[len(HG):].split("#")[0]] += 1       # an enumeration value in use
     with open(RESULTS / "cq_traceability.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["term", "kind", "used_in_cqs", "demonstrator_uses"])
-        for t in sorted(classes | props):
-            w.writerow([f"hg:{t}", "class" if t in classes else "property",
+        for t in sorted(classes | props | enums):
+            w.writerow([f"hg:{t}", "enumeration" if t in enums else "class" if t in classes else "property",
                         " ".join(used.get(t, [])), inst.get(t, 0)])
     cls_cq = sum(1 for t in classes if t in used)
     prp_cq = sum(1 for t in props if t in used)
     cls_inst = sum(1 for t in classes if inst.get(t))
     prp_inst = sum(1 for t in props if inst.get(t))
+    en_cq = sum(1 for t in enums if t in used or any(f"{t}#" in q for _, _, q in queries))
+    en_inst = sum(1 for t in enums if inst.get(t))
     print(f"Traceability: classes in a CQ {cls_cq}/{len(classes)}, instantiated {cls_inst}/{len(classes)}; "
-          f"properties in a CQ {prp_cq}/{len(props)}, used in data {prp_inst}/{len(props)}")
+          f"properties in a CQ {prp_cq}/{len(props)}, used in data {prp_inst}/{len(props)}; "
+          f"enumerations in a CQ {en_cq}/{len(enums)}, a value used in data {en_inst}/{len(enums)}")
 
     # 2a. ABox deletion
     killed_by = defaultdict(int)
@@ -103,17 +113,34 @@ def main() -> int:
           f"are needed by at least one CQ")
 
     # 2b. IRI swap
-    swap_k, swap_n = defaultdict(int), defaultdict(int)
+    def siblings(t: str) -> set[str]:
+        term = URIRef(HG + t)
+        rel = RDFS.subClassOf if t in classes else RDFS.subPropertyOf
+        pool = classes if t in classes else props
+        parents = {o for o in tbox.objects(term, rel) if isinstance(o, URIRef)}
+        return {str(x)[len(HG):] for par in parents for x in tbox.subjects(rel, par)
+                if str(x).startswith(HG) and str(x)[len(HG):] in pool} - {t}
+
+    swap_k, swap_n, swap_empty, swap_invalid = (defaultdict(int) for _ in range(4))
+    no_sibling = set()
     for cq, _, sparql in queries:
         for t in hg_terms(sparql):
-            pool = sorted((classes if t in classes else props) - {t})
-            for other in pool[:8]:                      # up to 8 siblings per term
+            if t not in classes and t not in props:
+                continue
+            sibs = sorted(siblings(t))
+            if not sibs:
+                no_sibling.add(t)
+            for other in sibs:
                 mutant = re.sub(rf"hg:{re.escape(t)}\b", f"hg:{other}", sparql)
-                swap_n[cq] += 1
                 try:
-                    swap_k[cq] += run(base, cq, mutant) != gold[cq]
+                    got = run(base, cq, mutant)
                 except Exception:
+                    swap_invalid[cq] += 1
+                    continue
+                swap_n[cq] += 1
+                if got != gold[cq]:
                     swap_k[cq] += 1
+                    swap_empty[cq] += not got
     # 2c. TBox deletion
     axioms = [(s, p, o) for p in (RDFS.subClassOf, RDFS.subPropertyOf)
               for s, o in tbox.subject_objects(p)
@@ -126,12 +153,15 @@ def main() -> int:
 
     with open(RESULTS / "cq_mutation.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["cq", "gold_rows", "abox_triples_needed", "iri_swaps_killed", "iri_swaps",
-                    "tbox_axioms_needed"])
+        w.writerow(["cq", "gold_rows", "abox_triples_needed", "sibling_swaps_killed",
+                    "of_which_empty_result", "sibling_swaps", "tbox_axioms_needed"])
         for cq, _, _ in queries:
-            w.writerow([f"CQ{cq}", len(gold[cq]), killed_by[cq], swap_k[cq], swap_n[cq], tbox_k[cq]])
-    k, n = sum(swap_k.values()), sum(swap_n.values())
-    print(f"IRI swap: {k}/{n} mutants killed ({100 * k // max(n, 1)}%)")
+            w.writerow([f"CQ{cq}", len(gold[cq]), killed_by[cq], swap_k[cq], swap_empty[cq],
+                        swap_n[cq], tbox_k[cq]])
+    k, n, e = sum(swap_k.values()), sum(swap_n.values()), sum(swap_empty.values())
+    print(f"Sibling swap: {k}/{n} valid mutants killed ({100 * k // max(n, 1)}%), {e} of them by an "
+          f"empty result; {sum(swap_invalid.values())} invalid; {len(no_sibling)} query terms have no "
+          f"sibling")
     print(f"TBox deletion: {len(axioms)} HG subClassOf/subPropertyOf axioms; "
           f"{sum(1 for cq in tbox_k if tbox_k[cq])}/32 CQs need at least one")
     sizes = defaultdict(int)
