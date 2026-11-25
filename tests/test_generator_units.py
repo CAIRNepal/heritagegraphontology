@@ -271,3 +271,10 @@ def test_no_health_or_real_minor_in_definitions():
 def test_access_rights_on_mixins(shapes):
     paths = set(shapes.objects(None, SH.path))
     assert URIRef("http://purl.org/dc/terms/accessRights") in paths
+
+
+def test_structure_types_are_terms_not_classes(core):
+    for gone in ("Vihara", "Dyochhen", "AgamChhen", "Pitha"):
+        assert (HG[gone], RDF.type, OWL.Class) not in core
+    assert (HG.structureType, RDFS.subPropertyOf, CRM.P2_has_type) in core
+    assert (HG.StructureType, RDFS.subClassOf, CRM.E55_Type) in core

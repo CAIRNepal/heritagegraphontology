@@ -82,274 +82,6 @@
             "title": "Actor",
             "type": "object"
         },
-        "AgamChhen": {
-            "additionalProperties": false,
-            "description": "A Newar esoteric shrine house (agam chhen) of a lineage's or monastery's tantric deity, whose shrine and rites are restricted to initiates; record the restriction with access_rights.",
-            "if": {
-                "properties": {
-                    "existence_status": {
-                        "anyOf": [
-                            {
-                                "const": "Extant"
-                            },
-                            {
-                                "const": "PartiallyExtant"
-                            },
-                            {
-                                "const": "Reconstructed"
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "existence_status"
-                ]
-            },
-            "properties": {
-                "access_rights": {
-                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
-                    "items": {
-                        "$ref": "#/$defs/AccessProtocol"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "destruction_event": {
-                    "description": "Event that destroyed this structure (if known)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "existence_status": {
-                    "$ref": "#/$defs/ExistenceStatus",
-                    "description": "Current physical status of the structure"
-                },
-                "generated_at_time": {
-                    "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_architectural_style": {
-                    "$ref": "#/$defs/ArchitecturalStyle",
-                    "description": "Architectural style classification"
-                },
-                "has_assertion": {
-                    "description": "Provenance-bearing assertion made about this entity or event.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_component": {
-                    "description": "Architectural elements composing structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_condition_assessment": {
-                    "description": "Condition assessment events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_current_location": {
-                    "description": "Current location of object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_custody_event": {
-                    "description": "Custody transfer events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_religious_tradition": {
-                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "hypothesized_location": {
-                    "description": "Possible locations if the structure is lost",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Globally unique URI identifier",
-                    "type": "string"
-                },
-                "last_known_existence_date": {
-                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "managed_by_guthi": {
-                    "description": "Guthi organization managing this structure or ritual",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Primary name or label",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Free-text note (description, reason, verification notes)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "participates_in_ritual": {
-                    "description": "Rituals in which this structure participates",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_attributed_to": {
-                    "description": "Agent to whom responsibility for this entity is attributed.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_derived_from": {
-                    "description": "Entity from which this entity was derived.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_documented_by": {
-                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_generated_by": {
-                    "description": "Activity that generated this entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "was_influenced_by": {
-                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            }
-                        ],
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_produced_by_event": {
-                    "description": "Event that created this object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "name",
-                "id"
-            ],
-            "then": {
-                "properties": {
-                    "has_current_location": {}
-                },
-                "required": [
-                    "has_current_location"
-                ]
-            },
-            "title": "AgamChhen",
-            "type": "object"
-        },
         "AgeCriterion": {
             "additionalProperties": false,
             "description": "Candidate must be within the prescribed pre-pubescent age range.",
@@ -718,6 +450,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -1525,6 +1267,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -2833,9 +2585,6 @@
                                 "$ref": "#/$defs/HumanMadeObject"
                             },
                             {
-                                "$ref": "#/$defs/AgamChhen"
-                            },
-                            {
                                 "$ref": "#/$defs/ArchitecturalStructure"
                             },
                             {
@@ -2846,9 +2595,6 @@
                             },
                             {
                                 "$ref": "#/$defs/DhungeDhara"
-                            },
-                            {
-                                "$ref": "#/$defs/Dyochhen"
                             },
                             {
                                 "$ref": "#/$defs/IconographicObject"
@@ -2864,9 +2610,6 @@
                             },
                             {
                                 "$ref": "#/$defs/Paubha"
-                            },
-                            {
-                                "$ref": "#/$defs/Pitha"
                             },
                             {
                                 "$ref": "#/$defs/Pokhari"
@@ -2885,9 +2628,6 @@
                             },
                             {
                                 "$ref": "#/$defs/Temple"
-                            },
-                            {
-                                "$ref": "#/$defs/Vihara"
                             },
                             {
                                 "$ref": "#/$defs/WaterStructure"
@@ -3146,9 +2886,6 @@
                                 "$ref": "#/$defs/ArchitecturalStructure"
                             },
                             {
-                                "$ref": "#/$defs/AgamChhen"
-                            },
-                            {
                                 "$ref": "#/$defs/Chaitya"
                             },
                             {
@@ -3158,16 +2895,10 @@
                                 "$ref": "#/$defs/DhungeDhara"
                             },
                             {
-                                "$ref": "#/$defs/Dyochhen"
-                            },
-                            {
                                 "$ref": "#/$defs/KumariHouse"
                             },
                             {
                                 "$ref": "#/$defs/Pati"
-                            },
-                            {
-                                "$ref": "#/$defs/Pitha"
                             },
                             {
                                 "$ref": "#/$defs/Pokhari"
@@ -3186,9 +2917,6 @@
                             },
                             {
                                 "$ref": "#/$defs/Temple"
-                            },
-                            {
-                                "$ref": "#/$defs/Vihara"
                             },
                             {
                                 "$ref": "#/$defs/WaterStructure"
@@ -4230,6 +3958,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -4498,6 +4236,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -4727,274 +4475,6 @@
                 "id"
             ],
             "title": "DocumentationActivity",
-            "type": "object"
-        },
-        "Dyochhen": {
-            "additionalProperties": false,
-            "description": "A Newar god-house (dyo chhen): a building that houses a deity, often a Mother Goddess or a lineage deity, worshipped by a community or guthi; its inner shrine may be restricted (see access_rights).",
-            "if": {
-                "properties": {
-                    "existence_status": {
-                        "anyOf": [
-                            {
-                                "const": "Extant"
-                            },
-                            {
-                                "const": "PartiallyExtant"
-                            },
-                            {
-                                "const": "Reconstructed"
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "existence_status"
-                ]
-            },
-            "properties": {
-                "access_rights": {
-                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
-                    "items": {
-                        "$ref": "#/$defs/AccessProtocol"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "destruction_event": {
-                    "description": "Event that destroyed this structure (if known)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "existence_status": {
-                    "$ref": "#/$defs/ExistenceStatus",
-                    "description": "Current physical status of the structure"
-                },
-                "generated_at_time": {
-                    "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_architectural_style": {
-                    "$ref": "#/$defs/ArchitecturalStyle",
-                    "description": "Architectural style classification"
-                },
-                "has_assertion": {
-                    "description": "Provenance-bearing assertion made about this entity or event.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_component": {
-                    "description": "Architectural elements composing structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_condition_assessment": {
-                    "description": "Condition assessment events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_current_location": {
-                    "description": "Current location of object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_custody_event": {
-                    "description": "Custody transfer events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_religious_tradition": {
-                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "hypothesized_location": {
-                    "description": "Possible locations if the structure is lost",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Globally unique URI identifier",
-                    "type": "string"
-                },
-                "last_known_existence_date": {
-                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "managed_by_guthi": {
-                    "description": "Guthi organization managing this structure or ritual",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Primary name or label",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Free-text note (description, reason, verification notes)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "participates_in_ritual": {
-                    "description": "Rituals in which this structure participates",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_attributed_to": {
-                    "description": "Agent to whom responsibility for this entity is attributed.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_derived_from": {
-                    "description": "Entity from which this entity was derived.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_documented_by": {
-                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_generated_by": {
-                    "description": "Activity that generated this entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "was_influenced_by": {
-                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            }
-                        ],
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_produced_by_event": {
-                    "description": "Event that created this object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "name",
-                "id"
-            ],
-            "then": {
-                "properties": {
-                    "has_current_location": {}
-                },
-                "required": [
-                    "has_current_location"
-                ]
-            },
-            "title": "Dyochhen",
             "type": "object"
         },
         "Endowment": {
@@ -8244,6 +7724,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -10791,6 +10281,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -11341,274 +10841,6 @@
             "title": "PhysicalIntegrityCriterion",
             "type": "object"
         },
-        "Pitha": {
-            "additionalProperties": false,
-            "description": "A seat of a goddess's power (pitha), typically an open-air shrine of one of the Mother Goddesses at the edge of a Newar town, linked to a god-house within it.",
-            "if": {
-                "properties": {
-                    "existence_status": {
-                        "anyOf": [
-                            {
-                                "const": "Extant"
-                            },
-                            {
-                                "const": "PartiallyExtant"
-                            },
-                            {
-                                "const": "Reconstructed"
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "existence_status"
-                ]
-            },
-            "properties": {
-                "access_rights": {
-                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
-                    "items": {
-                        "$ref": "#/$defs/AccessProtocol"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "destruction_event": {
-                    "description": "Event that destroyed this structure (if known)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "existence_status": {
-                    "$ref": "#/$defs/ExistenceStatus",
-                    "description": "Current physical status of the structure"
-                },
-                "generated_at_time": {
-                    "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_architectural_style": {
-                    "$ref": "#/$defs/ArchitecturalStyle",
-                    "description": "Architectural style classification"
-                },
-                "has_assertion": {
-                    "description": "Provenance-bearing assertion made about this entity or event.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_component": {
-                    "description": "Architectural elements composing structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_condition_assessment": {
-                    "description": "Condition assessment events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_current_location": {
-                    "description": "Current location of object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_custody_event": {
-                    "description": "Custody transfer events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_religious_tradition": {
-                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "hypothesized_location": {
-                    "description": "Possible locations if the structure is lost",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Globally unique URI identifier",
-                    "type": "string"
-                },
-                "last_known_existence_date": {
-                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "managed_by_guthi": {
-                    "description": "Guthi organization managing this structure or ritual",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Primary name or label",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Free-text note (description, reason, verification notes)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "participates_in_ritual": {
-                    "description": "Rituals in which this structure participates",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_attributed_to": {
-                    "description": "Agent to whom responsibility for this entity is attributed.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_derived_from": {
-                    "description": "Entity from which this entity was derived.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_documented_by": {
-                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_generated_by": {
-                    "description": "Activity that generated this entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "was_influenced_by": {
-                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            }
-                        ],
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_produced_by_event": {
-                    "description": "Event that created this object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "name",
-                "id"
-            ],
-            "then": {
-                "properties": {
-                    "has_current_location": {}
-                },
-                "required": [
-                    "has_current_location"
-                ]
-            },
-            "title": "Pitha",
-            "type": "object"
-        },
         "Place": {
             "additionalProperties": false,
             "description": "Defined geographic location where events occur and structures exist",
@@ -11900,6 +11132,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -12465,6 +11707,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -12830,6 +12082,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -13552,6 +12814,16 @@
                         "null"
                     ]
                 },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "was_attributed_to": {
                     "description": "Agent to whom responsibility for this entity is attributed.",
                     "items": {
@@ -13784,6 +13056,111 @@
             "title": "StateHeritageAuthority",
             "type": "object"
         },
+        "StructureType": {
+            "additionalProperties": false,
+            "description": "A type of heritage structure from a controlled vocabulary or a community's own term list (a CIDOC-CRM E55 Type), e.g. the Newar bahah or bahi (Buddhist monastic courtyard), dyochhen (god-house), agam chhen (esoteric shrine house) or pitha (seat of a goddess). Link each term to AAT or Wikidata with SKOS mappings where an equivalent exists; local types need no new ontology class.",
+            "properties": {
+                "access_rights": {
+                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
+                    "items": {
+                        "$ref": "#/$defs/AccessProtocol"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "generated_at_time": {
+                    "description": "Time at which this entity was generated (ISO 8601).",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Globally unique URI identifier",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Primary name or label",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "note": {
+                    "description": "Free-text note (description, reason, verification notes)",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "was_attributed_to": {
+                    "description": "Agent to whom responsibility for this entity is attributed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_derived_from": {
+                    "description": "Entity from which this entity was derived.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "was_generated_by": {
+                    "description": "Activity that generated this entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "was_influenced_by": {
+                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ],
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "StructureType",
+            "type": "object"
+        },
         "Stupa": {
             "additionalProperties": false,
             "description": "Buddhist dome-shaped reliquary shrine with circumambulation and ritual activation (e.g., Boudhanath, Swayambhunath).",
@@ -13963,6 +13340,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -14520,6 +13907,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -15322,274 +14719,6 @@
             "title": "Verification",
             "type": "object"
         },
-        "Vihara": {
-            "additionalProperties": false,
-            "description": "A Newar Buddhist monastic complex built round a courtyard (Newar bahah or bahi, Sanskrit vihara), with a shrine to its principal deity and a sangha of Vajracharya and Shakya householders.",
-            "if": {
-                "properties": {
-                    "existence_status": {
-                        "anyOf": [
-                            {
-                                "const": "Extant"
-                            },
-                            {
-                                "const": "PartiallyExtant"
-                            },
-                            {
-                                "const": "Reconstructed"
-                            }
-                        ]
-                    }
-                },
-                "required": [
-                    "existence_status"
-                ]
-            },
-            "properties": {
-                "access_rights": {
-                    "description": "Cultural access protocol for the thing or its record (e.g. restricted to initiates, secret or sacred, seasonal), set with the community concerned. Data under a restriction should not be published.",
-                    "items": {
-                        "$ref": "#/$defs/AccessProtocol"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "destruction_event": {
-                    "description": "Event that destroyed this structure (if known)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "documented_in_source": {
-                    "description": "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "existence_status": {
-                    "$ref": "#/$defs/ExistenceStatus",
-                    "description": "Current physical status of the structure"
-                },
-                "generated_at_time": {
-                    "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_architectural_style": {
-                    "$ref": "#/$defs/ArchitecturalStyle",
-                    "description": "Architectural style classification"
-                },
-                "has_assertion": {
-                    "description": "Provenance-bearing assertion made about this entity or event.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_component": {
-                    "description": "Architectural elements composing structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_condition_assessment": {
-                    "description": "Condition assessment events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_current_location": {
-                    "description": "Current location of object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "has_custody_event": {
-                    "description": "Custody transfer events for this structure",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "has_religious_tradition": {
-                    "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "hypothesized_location": {
-                    "description": "Possible locations if the structure is lost",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Globally unique URI identifier",
-                    "type": "string"
-                },
-                "last_known_existence_date": {
-                    "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "managed_by_guthi": {
-                    "description": "Guthi organization managing this structure or ritual",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Primary name or label",
-                    "type": "string"
-                },
-                "note": {
-                    "description": "Free-text note (description, reason, verification notes)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "participates_in_ritual": {
-                    "description": "Rituals in which this structure participates",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_attributed_to": {
-                    "description": "Agent to whom responsibility for this entity is attributed.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_derived_from": {
-                    "description": "Entity from which this entity was derived.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_documented_by": {
-                    "description": "Documentation event that recorded this (pre-existing) entity or event. Uses heritageGraph:documentedBy (aligned to prov:wasInfluencedBy). NOTE: prov:wasGeneratedBy was incorrect: a stupa is not *generated by* the survey that records it.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_generated_by": {
-                    "description": "Activity that generated this entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "was_influenced_by": {
-                    "description": "General PROV-O influence relation. Prefer a more specific PROV relation whenever one applies.",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "string"
-                            }
-                        ],
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "was_produced_by_event": {
-                    "description": "Event that created this object or structure",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "name",
-                "id"
-            ],
-            "then": {
-                "properties": {
-                    "has_current_location": {}
-                },
-                "required": [
-                    "has_current_location"
-                ]
-            },
-            "title": "Vihara",
-            "type": "object"
-        },
         "WaterStructure": {
             "additionalProperties": false,
             "description": "Engineered water supply systems with ritual and civic significance",
@@ -15769,6 +14898,16 @@
                 },
                 "participates_in_ritual": {
                     "description": "Rituals in which this structure participates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "structure_type": {
+                    "description": "Type of the structure from a controlled vocabulary or a local term list (e.g. bahah, dyochhen), finer than its class; a subproperty of crm:P2_has_type.",
                     "items": {
                         "type": "string"
                     },
@@ -16166,9 +15305,6 @@
                         "$ref": "#/$defs/HumanMadeObject"
                     },
                     {
-                        "$ref": "#/$defs/AgamChhen"
-                    },
-                    {
                         "$ref": "#/$defs/ArchitecturalStructure"
                     },
                     {
@@ -16179,9 +15315,6 @@
                     },
                     {
                         "$ref": "#/$defs/DhungeDhara"
-                    },
-                    {
-                        "$ref": "#/$defs/Dyochhen"
                     },
                     {
                         "$ref": "#/$defs/IconographicObject"
@@ -16197,9 +15330,6 @@
                     },
                     {
                         "$ref": "#/$defs/Paubha"
-                    },
-                    {
-                        "$ref": "#/$defs/Pitha"
                     },
                     {
                         "$ref": "#/$defs/Pokhari"
@@ -16218,9 +15348,6 @@
                     },
                     {
                         "$ref": "#/$defs/Temple"
-                    },
-                    {
-                        "$ref": "#/$defs/Vihara"
                     },
                     {
                         "$ref": "#/$defs/WaterStructure"
@@ -16479,9 +15606,6 @@
                         "$ref": "#/$defs/ArchitecturalStructure"
                     },
                     {
-                        "$ref": "#/$defs/AgamChhen"
-                    },
-                    {
                         "$ref": "#/$defs/Chaitya"
                     },
                     {
@@ -16491,16 +15615,10 @@
                         "$ref": "#/$defs/DhungeDhara"
                     },
                     {
-                        "$ref": "#/$defs/Dyochhen"
-                    },
-                    {
                         "$ref": "#/$defs/KumariHouse"
                     },
                     {
                         "$ref": "#/$defs/Pati"
-                    },
-                    {
-                        "$ref": "#/$defs/Pitha"
                     },
                     {
                         "$ref": "#/$defs/Pokhari"
@@ -16519,9 +15637,6 @@
                     },
                     {
                         "$ref": "#/$defs/Temple"
-                    },
-                    {
-                        "$ref": "#/$defs/Vihara"
                     },
                     {
                         "$ref": "#/$defs/WaterStructure"

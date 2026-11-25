@@ -8,6 +8,7 @@
 #    two languages (schema:inLanguage)
 #  - a procession over two distinct places (routePlaces ⊑ P7)
 #  - a destruction (E6) of a structure (crm:P13_destroyed)
+#  - a local building type given as a StructureType term (hg:structureType)
 #  - one production of two objects, one custody transfer of two objects
 #    from one actor to two (CRM: many objects and actors per event)
 @prefix hg:<https://cair-nepal.org/heritagegraph/> .
@@ -84,4 +85,10 @@ ex:ShrineDestruction a crm:E6_Destruction ;
 ex:TSDestruction a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "1934-01-15T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "1934-01-15T23:59:59"^^xsd:dateTime .
+
+# a local building type as a term, not a class (hg:structureType ⊑ crm:P2)
+ex:BahahType a hg:StructureType ; rdfs:label "Bahah"@en , "बहाः"@new .
+ex:TestBahah a hg:ReligiousStructure ; rdfs:label "Test bahah"@en ;
+    hg:structureType ex:BahahType ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/ml/bahah"^^xsd:anyURI .
 
