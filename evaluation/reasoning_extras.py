@@ -47,13 +47,12 @@ Subcommands (default: all):
                   CRM's disjointness (E2/E77 stated; E18/E28 from the scope notes) or
                   with a core class that core + CIDOC-CRM alone do not entail.
 
-Run:  ROBOT_JAR=/tmp/hgtools/robot.jar \\
-      JAVA_HOME=/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home \\
-      python3 evaluation/reasoning_extras.py [injection|merged-import|all]
+Run:  ROBOT_JAR=.tools/robot-1.9.8.jar [JAVA_HOME=...] python3 evaluation/reasoning_extras.py [injection|merged-import|all]
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 import subprocess
 import tempfile
@@ -65,9 +64,9 @@ from rdflib.collection import Collection
 
 ROOT = Path(__file__).resolve().parents[1]
 ROBOT_JAR = os.environ.get("ROBOT_JAR", "/tmp/hgtools/robot.jar")
-JAVA_HOME = os.environ.get("JAVA_HOME",
-                           "/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home")
-JAVA = str(Path(JAVA_HOME) / "bin" / "java")
+# Java from JAVA_HOME when it is set (CI's setup-java sets it), else `java` on PATH
+JAVA = (str(Path(os.environ["JAVA_HOME"]) / "bin" / "java")
+        if os.environ.get("JAVA_HOME") else "java")
 
 
 # ===========================================================================
@@ -163,6 +162,15 @@ VOCABS = {
         "https://cidoc-crm.org/extensions/crmsci/rdfs/2.0/CRMsci_v2.0.rdf"),
     "PROV-O": ("prov.ttl", "https://www.w3.org/ns/prov.ttl"),
 }
+# sha256 of each file as retrieved for the release, so a changed upstream file
+# cannot silently change a gate's result (CRM and CRMinf equal the snapshots in
+# ontology/imports/; CRMsci and the full PROV-O bundle are not snapshotted there).
+VOCAB_SHA256 = {
+    "cidoc_crm.rdf": "3f9c634092e34f65927ea73b6ac232cda724da927dd93ff9efb8624cfff562d2",
+    "crminf.rdf": "b25d006afcbb798ce5081da19c240ae4094b83c432d0e53f1adb017f57739e43",
+    "crmsci.rdf": "3988699f51e9e468f06735b78e1a3d4001a4f150037dcc79ccb97e6e12d0eb9b",
+    "prov.ttl": "d7ea634dbcd31347eba38157197f69d314077ef7f88fd4f90e4f24a78bfe1097",
+}
 
 # Namespace each vocabulary document declares its terms in. A merge only tests
 # the alignment if HG's terms in that namespace are the very terms the
@@ -193,6 +201,11 @@ def _fetch(name: str, fname: str, url: str) -> Path:
             ctx = None
         with urllib.request.urlopen(url, context=ctx, timeout=120) as r:
             p.write_bytes(r.read())
+    digest = hashlib.sha256(p.read_bytes()).hexdigest()
+    if digest != VOCAB_SHA256[fname]:
+        raise SystemExit(f"{name}: {p} has sha256 {digest}, not the pinned "
+                         f"{VOCAB_SHA256[fname]}; the upstream file changed (delete the "
+                         f"cached copy to refetch, and review the change before re-pinning)")
     clean = p.with_suffix(".noimports.ttl")
     if not clean.exists():
         g = Graph()
