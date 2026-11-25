@@ -16,8 +16,10 @@
    and PROV-O terms where they fit; no axioms on terms HeritageGraph does not own; a class
    is stated a subclass of a CRM class only when every instance is one) and, for knowledge a
    community holds, asks that community before it is modelled or published.
-3. **Change.** Every change is made in `ontology/HeritageGraph.yaml` (never in a generated
-   file), regenerated with `make artefacts`, and must pass `make check`. A change to a
+3. **Change.** Every change to the core is made in `ontology/HeritageGraph.yaml` (never in a
+   generated file) and regenerated with `make artefacts`. The LUX alignment module is a
+   hand-maintained Turtle file, edited directly. Every change must pass `make check`, which
+   includes the LUX module's conservativity gate. A change to a
    modelling pattern also gets a SHACL negative test or a competency question.
 4. **Independent review.** Each change is reviewed by someone who did not write it before it
    is merged.
@@ -30,18 +32,21 @@ Semantic versioning on the ontology (`versionIRI` …/ontology/X.Y.Z):
 - **Minor**: new terms, or constraints that only accept more data; existing valid data stays valid.
 - **Major**: a change that makes some previously valid data invalid, or changes a term's meaning.
 
-Each release is tagged, archived with a DOI, and listed in `CHANGELOG.md` with its migration notes.
+From 1.1.0 on, each release is tagged, archived with a version DOI, and listed in `CHANGELOG.md`
+with its migration notes. (1.0.0 is tagged and archived; 1.0.1 was published without a tag.)
 
 ## Deprecation policy
 
 - A published IRI is never deleted or reused. A term that is withdrawn stays in the release as
-  `owl:deprecated true`, labelled "obsolete …", with `dcterms:isReplacedBy` its replacement
-  where there is one, and an editorial note giving the version and the reason.
-- A deprecated term is kept for at least one major version, so data can migrate.
+  `owl:deprecated true`, with `dcterms:isReplacedBy` its replacement where there is one, and a
+  note giving the version and the reason. Its label is kept, so existing data still displays.
+- A deprecated term is kept, in the OWL, the SHACL and the JSON-LD context, for at least one
+  major version, so data can migrate. The 1.0.x JSON-LD prefix `heritageGraph:` is kept as an
+  alias of `hg:` for the same reason.
 - Enumeration values are deprecated the same way (e.g. the ArchitecturalStyle values Stupa and
   Chaitya, replaced by the classes Stupa and Chaitya).
 - A change that breaks valid data is listed in `CHANGELOG.md` with a migration rule (for
-  1.1.0: the holder of a Kumari tenure moves from `hg:hadParticipant` to `hg:tenureHolder`;
+  1.1.0, under [Unreleased] until it is released: the holder of a Kumari tenure moves from `hg:hadParticipant` to `hg:tenureHolder`;
   an endowment that sustained a tenure sustains the tenure's office).
 
 ## Community knowledge and access

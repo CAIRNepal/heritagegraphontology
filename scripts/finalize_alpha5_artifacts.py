@@ -1906,7 +1906,7 @@ def allow_single_string(js: dict, sv: SchemaView) -> None:
     print(f"JSON Schema: {n} multivalued text field(s) also accept a single string")
 
 
-XSD_DATETIME = (r"^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+XSD_DATETIME = (r"^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?"
                 r"(Z|[+-][0-9]{2}:[0-9]{2})?$")
 
 

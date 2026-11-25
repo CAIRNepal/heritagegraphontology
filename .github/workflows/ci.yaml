@@ -137,8 +137,8 @@ jobs:
 
 
       - name: Deploy to GitHub Pages
-        # pull requests run the gates only; publishing happens on push
-        if: github.event_name != 'pull_request'
+        # pull requests run the gates only; only the published branches deploy (a manual run on another branch does not)
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/HeritageGraph')
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

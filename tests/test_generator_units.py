@@ -291,3 +291,23 @@ def test_custody_object_range_does_not_force_heritage_class(core):
     for r in rng:
         for x in core.objects(r, OWL.intersectionOf):
             assert HG.PhysicalHeritageThing not in set(Collection(core, x))
+
+
+@pytest.mark.parametrize("value,ok", [
+    ("2024-01-01T12:00:00", True), ("2024-01-01T12:00:00Z", True),
+    ("2024-01-01T12:00:00.5Z", True), ("2024-01-01T12:00:00.123+05:45", True),
+    ("-0044-03-15T00:00:00", True), ("2024-01-01T12:00:00+14:00", True),
+    ("2024-01-01", False), ("2024-01-01T12:00:00\\5Z", False), ("2024-01-01T12:00", False),
+])
+def test_xsd_datetime_pattern(value, ok):
+    """The JSON Schema date-time pattern accepts every xsd:dateTime lexical form,
+    fractional seconds included, and rejects what is not one."""
+    import re
+    assert bool(re.match(fin.XSD_DATETIME, value)) is ok
+
+
+def test_schema_uses_the_pattern():
+    """The released JSON Schema carries the same pattern (one backslash before the dot)."""
+    text = (ROOT / "ontology" / "HeritageGraph.schema.json").read_text(encoding="utf-8")
+    assert json.dumps(fin.XSD_DATETIME) in text
+    assert '"format": "date-time"' not in text

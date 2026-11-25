@@ -191,6 +191,7 @@ def _fetch(name: str, fname: str, url: str) -> Path:
     at merge time. The axioms under test are supplied explicitly, so the
     import declarations are dropped from a local copy.
     """
+    CACHE.mkdir(parents=True, exist_ok=True)
     p = CACHE / fname
     if not p.exists() or p.stat().st_size == 0:
         print(f"  fetching {name} from {url}")
@@ -203,7 +204,7 @@ def _fetch(name: str, fname: str, url: str) -> Path:
             p.write_bytes(r.read())
     digest = hashlib.sha256(p.read_bytes()).hexdigest()
     if digest != VOCAB_SHA256[fname]:
-        raise SystemExit(f"{name}: {p} has sha256 {digest}, not the pinned "
+        raise RuntimeError(f"{name}: {p} has sha256 {digest}, not the pinned "
                          f"{VOCAB_SHA256[fname]}; the upstream file changed (delete the "
                          f"cached copy to refetch, and review the change before re-pinning)")
     clean = p.with_suffix(".noimports.ttl")

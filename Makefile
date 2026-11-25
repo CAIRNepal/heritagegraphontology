@@ -72,7 +72,9 @@ reproduce: $(ROBOT_JAR)  ## (first run fetches CIDOC-CRM, CRMinf, CRMsci, PROV-O
 	python3 evaluation/pattern_experiments.py sameas
 	python3 evaluation/pattern_experiments.py supersession
 	python3 evaluation/run_oops.py --local
+	ROBOT_JAR=$(abspath $(ROBOT_JAR)) python3 evaluation/reasoning_extras.py entailments
 	python3 scripts/gen_paper_macros.py
+	git diff --exit-code evaluation/heritagegraph-numbers.tex || (echo "STALE: the committed paper macros differ from the regenerated ones; commit evaluation/heritagegraph-numbers.tex" && false)
 
 coverage:            ## CQ traceability matrix and mutation analysis (report, ~2 min)
 	python3 evaluation/cq_coverage.py

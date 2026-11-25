@@ -67,7 +67,7 @@
 <https://cair-nepal.org/heritagegraph/alignment/lux> a owl:Ontology ;
     rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ;
     dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. Updated July 2026 to track the alpha5 core-ontology regeneration (12 classes now identity-mapped to external CRM/PROV URIs instead of separate hg: wrappers)."@en ;
-    dct:creator "Semih Yumusak" , "Niraj Karki" ;
+    dct:creator "Semih Yumuşak" , "Niraj Karki" ;
     dct:license <https://www.apache.org/licenses/LICENSE-2.0> ;
     rdfs:comment "Licensed under Apache-2.0 (the heritagegraph-lux-migration folder), unlike the core ontology (CC BY 4.0). Terms in the HeritageGraph namespace that this module mints are marked rdfs:isDefinedBy this module."@en ;
     owl:imports <https://cair-nepal.org/heritagegraph/ontology> .
@@ -1045,6 +1045,7 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 # true regardless of run size. V1/t11 check this in addition to (not instead
 # of) the imported/lux instance check.
 hg:alignmentLuxDirectlyReuses a owl:AnnotationProperty ;
+    rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> ;
     rdfs:label "directly reuses (no hg: wrapper)"@en ;
     rdfs:comment "Declares that a LUX/CRM class is migrated by direct URI reuse (§6) rather than via an owl:equivalentClass/subClassOf edge to a hg: class. Used by V1_unmapped_lux_classes as a schema-level coverage proof that does not depend on how many instances a given pilot run happened to migrate."@en .
 

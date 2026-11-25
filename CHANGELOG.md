@@ -2,6 +2,47 @@
 
 ## [Unreleased]
 
+### Planned for 1.1.0 (branch `fix/ontology-v1.1.0`; not yet released)
+
+**Breaking changes and migration rules** (data valid under 1.0.x that 1.1.0 rejects or reads differently):
+- The holder of a Kumari tenure is given with `hg:tenureHolder`, not `hg:hadParticipant`
+  (rewrite `?t hg:hadParticipant ?p` on a `hg:KumariTenure` to `?t hg:tenureHolder ?p`).
+- An endowment that sustained a tenure now sustains the tenure's office
+  (`hg:sustains ?tenure` becomes `hg:sustains ?office`, where `?tenure hg:tenureOffice ?office`).
+- The ArchitecturalStyle values Stupa and Chaitya are deprecated, replaced by the classes
+  `hg:Stupa` and `hg:Chaitya`.
+- A syncretic relationship is cited with `hg:mentionedInSource`, not `prov:wasDerivedFrom`.
+
+**Added**
+- The generic tenure pattern: `hg:Tenure`, `hg:Office`, `hg:RitualOffice`, `hg:TenureEvent`, with
+  `hg:tenureHolder`, `hg:tenureOffice`, `hg:tenureOpenedBy` and `hg:tenureClosedBy`.
+- `hg:StructureType` and `hg:structureType` (generic typing in place of new structure classes);
+  `hg:StateHeritageAuthority`.
+- Reuse of crm:P13 destroyed (required on a destruction event) and crm:P17 was motivated by;
+  ExistenceStatus `Reconstructed`.
+- dcterms:accessRights, and its subproperty `hg:accessProtocol` with the AccessProtocol values.
+- An optional CRM-PROV bridge module; an SSSOM mapping set; GOVERNANCE.md and a term-request template.
+
+**Changed**
+- The core states no axiom about a term of another vocabulary unless that vocabulary states it.
+- HeritageGraph classes are stated subclasses of the CIDOC-CRM class every instance belongs to.
+  Disjoint kinds are stated with `owl:AllDisjointClasses`.
+- Max cardinality 1 is kept on a reused CRM property only where CRM's own quantification allows it.
+- Free text accepts language-tagged literals, with at most one value per language.
+- JSON Schema: date-times use the xsd:dateTime lexical form (offset optional). Abstract references
+  are resolved, and multivalued text accepts a single string.
+- Mappings: corrected SKOS strengths (Temple, Deity, IconographicObject, documentedBy).
+- LUX module: corrected the mappings, and the minted terms are marked `rdfs:isDefinedBy` the module.
+
+**Deprecated** (kept, marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement)
+- The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.
+
+**Evaluation**
+- `make reproduce` regenerates every artefact from a clean checkout and compares it with the
+  committed copy. It also runs all release gates, the mutation analysis and the metric reports, and
+  writes the paper's numbers.
+- The reasoning gates pin each downloaded vocabulary by sha256.
+
 ### Changed (documentation generated with OntoReview)
 - The documentation site (GitHub Pages) is generated with OntoReview 1.0.1 (`ontoreview build`, configured
   by `ontoreview.toml`) instead of WIDOCO: term pages, class graph, a quality report (HermiT consistency,

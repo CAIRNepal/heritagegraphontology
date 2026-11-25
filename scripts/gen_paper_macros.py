@@ -3,7 +3,8 @@
 
     python3 scripts/gen_paper_macros.py   # after `make reproduce`
 
-Writes evaluation/heritagegraph-numbers.tex (tracked) with \\newcommand
+Writes evaluation/heritagegraph-numbers.tex (tracked; `make reproduce` fails if the
+committed copy differs from the regenerated one) with \\newcommand
 definitions (e.g. \\hgClasses, \\hgNegativeTests, \\hgCQsPassed). The paper
 should \\input this file and use the macros instead of typing numbers, so a
 regenerated ontology cannot leave a stale number in the text. Sources: the
@@ -50,7 +51,7 @@ def main() -> int:
              if l and not l.startswith("#")][1:]
     abox = Graph().parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
     crm_super = sum(1 for c in owl.subjects(RDF.type, OWL.Class) if str(c).startswith(HG)
-                    and any(str(o).startswith("http://www.cidoc-crm.org/") for o in owl.objects(c, RDFS.subClassOf)))
+                    and any(str(o).startswith("http://www.cidoc-crm.org/cidoc-crm/") for o in owl.objects(c, RDFS.subClassOf)))
     numbers = {
         "OwlTriples": metrics["owl_triples"],
         "Classes": classes,
