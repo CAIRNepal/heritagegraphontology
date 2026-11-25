@@ -1144,8 +1144,13 @@ def write_crm_prov_bridge(sv: SchemaView) -> None:
     b.add((BRIDGE_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
     b.add((BRIDGE_IRI, DCTERMS.source, URIRef("https://github.com/CAIRNepal/heritagegraphontology")))
     for pc, members in sorted(BRIDGE.items()):
+        b.add((pc, RDF.type, OWL.Class))
         for m in sorted(members):
+            b.add((m, RDF.type, OWL.Class))
             b.add((m, RDFS.subClassOf, pc))
+    # declarations, so the module is OWL 2 DL on its own (not only when merged)
+    for ap in (DCTERMS.license, DCTERMS.source):
+        b.add((ap, RDF.type, OWL.AnnotationProperty))
     b.serialize(BRIDGE_OUT, format="turtle")
     print(f"wrote {BRIDGE_OUT.name}: " + ", ".join(
         f"{len(v)} -> prov:{k.split('#')[1]}" for k, v in sorted(BRIDGE.items())))

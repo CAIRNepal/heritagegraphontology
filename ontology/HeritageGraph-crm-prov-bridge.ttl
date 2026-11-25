@@ -5,37 +5,61 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-crm:E10_Transfer_of_Custody rdfs:subClassOf prov:Activity .
+dcterms:license a owl:AnnotationProperty .
 
-crm:E12_Production rdfs:subClassOf prov:Activity .
+dcterms:source a owl:AnnotationProperty .
 
-crm:E14_Condition_Assessment rdfs:subClassOf prov:Activity .
+crm:E10_Transfer_of_Custody a owl:Class ;
+    rdfs:subClassOf prov:Activity .
 
-crm:E21_Person rdfs:subClassOf prov:Agent .
+crm:E12_Production a owl:Class ;
+    rdfs:subClassOf prov:Activity .
 
-crm:E22_Human-Made_Object rdfs:subClassOf prov:Entity .
+crm:E14_Condition_Assessment a owl:Class ;
+    rdfs:subClassOf prov:Activity .
 
-crm:E29_Design_or_Procedure rdfs:subClassOf prov:Entity .
+crm:E21_Person a owl:Class ;
+    rdfs:subClassOf prov:Agent .
 
-crm:E39_Actor rdfs:subClassOf prov:Agent .
+crm:E22_Human-Made_Object a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crm:E3_Condition_State rdfs:subClassOf prov:Entity .
+crm:E29_Design_or_Procedure a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crm:E52_Time-Span rdfs:subClassOf prov:Entity .
+crm:E39_Actor a owl:Class ;
+    rdfs:subClassOf prov:Agent .
 
-crm:E53_Place rdfs:subClassOf prov:Entity .
+crm:E3_Condition_State a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crm:E57_Material rdfs:subClassOf prov:Entity .
+crm:E52_Time-Span a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crm:E6_Destruction rdfs:subClassOf prov:Activity .
+crm:E53_Place a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crm:E74_Group rdfs:subClassOf prov:Agent .
+crm:E57_Material a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
-crminf:I2_Belief rdfs:subClassOf prov:Entity .
+crm:E6_Destruction a owl:Class ;
+    rdfs:subClassOf prov:Activity .
+
+crm:E74_Group a owl:Class ;
+    rdfs:subClassOf prov:Agent .
+
+crminf:I2_Belief a owl:Class ;
+    rdfs:subClassOf prov:Entity .
 
 <https://cair-nepal.org/heritagegraph/crm-prov-bridge> a owl:Ontology ;
     rdfs:label "HeritageGraph CIDOC-CRM to PROV-O bridge"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:source <https://github.com/CAIRNepal/heritagegraphontology> ;
     rdfs:comment "Optional module. HeritageGraph's alignment of the CIDOC-CRM and CRMinf classes it reuses to PROV-O: each reused class whose HeritageGraph usage is a PROV activity, entity or agent is stated a subclass of it. These axioms are about classes HeritageGraph does not own, so they are not in the core ontology; load this module together with the core, CIDOC-CRM, CRMinf and PROV-O when PROV-O-only clients should see CRM-typed data as PROV."@en .
+
+prov:Agent a owl:Class .
+
+prov:Activity a owl:Class .
+
+prov:Entity a owl:Class .
 

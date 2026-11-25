@@ -129,6 +129,9 @@ def test_bridge_rule(sv, tmp_path, monkeypatch):
     assert (CRM.E6_Destruction, RDFS.subClassOf, PROV.Activity) in b   # inherited mixin
     assert (CRM.E39_Actor, RDFS.subClassOf, PROV.Agent) in b
     assert not any(str(s).startswith(str(HG)) for s in b.subjects(RDFS.subClassOf, None))
+    # every class it uses is declared: the module is OWL 2 DL on its own
+    used = set(b.subjects(RDFS.subClassOf, None)) | set(b.objects(None, RDFS.subClassOf))
+    assert all((c, RDF.type, OWL.Class) in b for c in used)
 
 
 # --- M2: birth/death shortcuts ------------------------------------------------
