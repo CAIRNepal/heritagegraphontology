@@ -305,14 +305,22 @@ ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime
     crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
 ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-09-30T00:00:00"^^xsd:dateTime .
 
-# shared time-spans for recurring and historical events
+# time-spans of single occurrences and historical periods (a RitualEvent is
+# one dated occurrence; its recurrence is described by hg:recurrencePattern)
 ex:TS_Construction a crm:E52_Time-Span ; rdfs:label "Construction period (contested)" ;
     crm:P82a_begin_of_the_begin "1100-01-01T00:00:00"^^xsd:dateTime .
-ex:TS_Daily a crm:E52_Time-Span ; rdfs:label "Daily ritual cycle" ;
-    crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime .
-ex:TS_Gunla a crm:E52_Time-Span ; rdfs:label "Gunla month (annual)" ;
+ex:TS_NityaPuja_KM a crm:E52_Time-Span ; rdfs:label "1 January 2025 (one daily performance)" ;
+    crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-01-01T23:59:59"^^xsd:dateTime .
+ex:TS_NityaPuja_Bungamati a crm:E52_Time-Span ; rdfs:label "1 January 2025 (one daily performance)" ;
+    crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-01-01T23:59:59"^^xsd:dateTime .
+ex:TS_KumariNityaPuja a crm:E52_Time-Span ; rdfs:label "1 January 2025 (one daily performance)" ;
+    crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-01-01T23:59:59"^^xsd:dateTime .
+ex:TS_Gunla a crm:E52_Time-Span ; rdfs:label "Gunla month 2025" ;
     crm:P82a_begin_of_the_begin "2025-07-25T00:00:00"^^xsd:dateTime .
-ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra season" ;
+ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra 2025" ;
     crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
 
 # time-spans on events that lacked one
@@ -324,9 +332,9 @@ ex:Sel_2017 crm:P4_has_time-span ex:TS_Sel2017 ;
     hg:selectedPerson ex:KumariPerson .
 ex:YosinErection crm:P4_has_time-span ex:TS_Festival .
 ex:KumariProcession crm:P4_has_time-span ex:TS_Festival .
-ex:NityaPuja_KM crm:P4_has_time-span ex:TS_Daily .
-ex:NityaPuja_Bungamati crm:P4_has_time-span ex:TS_Daily .
-ex:KumariNityaPuja crm:P4_has_time-span ex:TS_Daily .
+ex:NityaPuja_KM crm:P4_has_time-span ex:TS_NityaPuja_KM .
+ex:NityaPuja_Bungamati crm:P4_has_time-span ex:TS_NityaPuja_Bungamati .
+ex:KumariNityaPuja crm:P4_has_time-span ex:TS_KumariNityaPuja .
 ex:ShantiSwastiPuja crm:P4_has_time-span ex:TS_2015 .
 ex:GunlaBajan crm:P4_has_time-span ex:TS_Gunla .
 ex:BungadyahProcession crm:P4_has_time-span ex:TS_Bungadyah .
@@ -350,8 +358,9 @@ ex:DoA dcterms:identifier "https://cair-nepal.org/heritagegraph/example/agent/do
 ex:Assert_BuildA prov:generatedAtTime "2026-06-23T00:00:00"^^xsd:dateTime .
 ex:Assert_BuildB prov:generatedAtTime "2026-06-23T00:00:00"^^xsd:dateTime .
 ex:Assert_RouteChange prov:generatedAtTime "2026-06-23T00:00:00"^^xsd:dateTime .
-ex:Syn_Karunamaya prov:wasDerivedFrom ex:Src_Slusser .
-ex:Syn_Taleju prov:wasDerivedFrom ex:Src_Slusser .
+# syncretic identifications are acts (crm:E13, prov:Activity): their source is
+# given with hg:mentionedInSource and dcterms:source, not prov:wasDerivedFrom
+# (entities only)
 
 # condition-state typing
 ex:CS_Ruined hg:hasConditionType <https://cair-nepal.org/heritagegraph/ConditionType#Ruined> .
@@ -372,16 +381,19 @@ ex:CS_Ruined hg:hasConditionType <https://cair-nepal.org/heritagegraph/Condition
 # --- linked-data authority links (Wikidata, verified QIDs) ---
 ex:Kasthamandap        owl:sameAs wd:Q6374805 .
 ex:SwayambhuMahachaitya owl:sameAs wd:Q12946982 .
-ex:IndraJatra          owl:sameAs wd:Q301339 .
 ex:Bungamati           owl:sameAs wd:Q2608296 .
 ex:Taleju              owl:sameAs wd:Q9355345 .
-ex:BungadyahJatra      owl:sameAs wd:Q16971988 .
 ex:KathmanduDurbarSquare owl:sameAs wd:Q6122177 .
 ex:Earthquake2015      owl:sameAs wd:Q19830062 .
 # ex:Matsyendranath: no link. wd:Q1420753 (previously linked) is the Nath guru
 # Matsyendranath, not the deity Bunga Dyah / Rato Machhindranath, for whom
 # Wikidata has no item (searched 2026-11-24); the festival link is BungadyahJatra.
 ex:TalejuTemple        rdfs:seeAlso wd:Q12947124 .
+# The Wikidata items for Indra Jatra and Bungadyah Jatra are the recurring
+# festivals; ex:IndraJatra and ex:BungadyahJatra are their 2025 occurrences
+# (each has one time-span), so they are related, not the same.
+ex:IndraJatra          rdfs:seeAlso wd:Q301339 .
+ex:BungadyahJatra      rdfs:seeAlso wd:Q16971988 .
 
 # --- canonical scholarship as bibliographic sources ---
 ex:Src_Allen a hg:DataSource ; rdfs:label "Allen, The Cult of Kumari (1975)" ;

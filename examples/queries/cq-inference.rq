@@ -20,8 +20,9 @@ SELECT ?group ?ritual WHERE {
 }
 
 # IQ2: Which PROV activities are recorded, as a PROV-O-only client sees them?
-# (crm:E12_Production, crm:E10_Transfer_of_Custody, crm:E14_Condition_Assessment rdfs:subClassOf prov:Activity;
-#  HeritageGraph's event classes rdfs:subClassOf prov:Activity)
+# (HeritageGraph's event classes rdfs:subClassOf prov:Activity. CRM-typed events, crm:E12_Production,
+#  crm:E10_Transfer_of_Custody, crm:E14_Condition_Assessment, are prov:Activity only with the optional
+#  CRM-PROV bridge module loaded, which the core does not assert.)
 PREFIX prov: <http://www.w3.org/ns/prov#>
 SELECT ?activity WHERE {
   ?activity a prov:Activity .

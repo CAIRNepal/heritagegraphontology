@@ -509,11 +509,16 @@ heritageGraph:hasRight a owl:ObjectProperty ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:Right .
 
+# 1.1.0: no longer rdfs:subPropertyOf crm:P67i_is_referred_to_by, whose
+# range is E89 Propositional Object: a LegalObject is an E72, which includes
+# physical things, so a physical legal object became a conceptual one
+# (inconsistent under E18/E28 disjointness). Kept as a related match until
+# the legal-status modelling (crm:E30 Right, P104) is decided.
 heritageGraph:subjectToLegalObject a owl:ObjectProperty ;
     rdfs:label "subject to legal status"@en ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:LegalObject ;
-    rdfs:subPropertyOf crm:P67i_is_referred_to_by .
+    skos:relatedMatch crm:P67i_is_referred_to_by .
 
 # --- Identification ---------------------------------------------------------
 
@@ -529,11 +534,16 @@ heritageGraph:identifiedByName a owl:ObjectProperty ;
     rdfs:range heritageGraph:Name ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
+# 1.1.0: was rdfs:subPropertyOf crm:P102_has_title, whose domain is E71
+# Human-Made Thing (a persistent item): a titled ritual, tenure or event
+# became both a temporal entity and a persistent item. A Title is an E35
+# and so an E41 Appellation: crm:P1_is_identified_by (E1 to E41), of which
+# P102 is itself a subproperty.
 heritageGraph:identifiedByTitle a owl:ObjectProperty ;
     rdfs:label "has title"@en ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:Title ;
-    rdfs:subPropertyOf crm:P102_has_title .
+    rdfs:subPropertyOf crm:P1_is_identified_by .
 
 # --- Lifecycle events linking individuals & groups to event nodes ----------
 
@@ -660,7 +670,7 @@ heritageGraph:occursDuringPeriod a owl:ObjectProperty ;
 # entailed an E89 Propositional Object, a conceptual object. The heritage
 # subject is the subject of the proposition: crm:P129i_is_subject_of.
 heritageGraph:aboutProposition a owl:ObjectProperty ;
-    rdfs:label "is about proposition"@en ;
+    rdfs:label "is subject of proposition"@en ;
     rdfs:domain heritageGraph:AssertionSubject ;
     rdfs:range heritageGraph:PropositionalObject ;
     rdfs:subPropertyOf crm:P129i_is_subject_of .

@@ -77,7 +77,7 @@ ex:syncretic_link a hg:SyncreticRelationship ;
     crm:P140_assigned_attribute_to ex:Matsyendranath ;
     crm:P141_assigned              ex:Avalokiteshvara ;
     hg:syncreticType               <https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
-    prov:wasDerivedFrom            ex:oral_source .
+    hg:mentionedInSource           ex:oral_source .   # an act (prov:Activity): not prov:wasDerivedFrom
 
 # Confidence and reconciliation status are properties of beliefs (CRMinf I2):
 # the confidence in the syncretic claim is an assertion about it.

@@ -516,7 +516,10 @@ def run_no_external_superclass() -> int:
         "<https://cair-nepal.org/heritagegraph/Deity> "
         "<http://www.w3.org/2002/07/owl#equivalentClass> "
         "<http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> .")
-    caught = any("E28_Conceptual_Object" in v or "E55_Type" in v for v in control)
+    # caught: Deity gains as a superclass of E28/E55, or (with the disjoint
+    # kinds) the merge becomes incoherent, every E28 class unsatisfiable
+    caught = any("E28_Conceptual_Object" in v or "E55_Type" in v
+                 or "not classifiable" in v for v in control)
     print(f"negative control (Deity ≡ crm:E28_Conceptual_Object): "
           f"{len(control)} violation(s) -> {'caught' if caught else 'NOT caught'}")
     # asserted: no logical axiom about another vocabulary's term, unless that
@@ -633,6 +636,7 @@ def _lux_probe_abox(module: Graph) -> tuple[Graph, dict]:
               for s, o in module.subject_objects(p)
               if str(s).startswith(HG_NS) and not str(o).startswith(HG_NS)}
     sv = SchemaView(str(ROOT / "ontology/HeritageGraph.yaml"))
+    by_iri = {URIRef(sv.get_uri(c, expand=True)): n for n, c in sv.all_classes().items()}
     abox, where = Graph(), {}
     i = 0
     for c in sv.all_classes():
@@ -658,6 +662,26 @@ def _lux_probe_abox(module: Graph) -> tuple[Graph, dict]:
         if isinstance(rng, URIRef): abox.add((obj, RDF.type, rng))
         n = str(prop)[len(HG_NS):]
         where[subj] = f"{n} (subject)"; where[obj] = f"{n} (object)"
+        # a union domain or range (AssertionSubject: rituals, tenures, temples,
+        # sources, ...) is probed member by member: typing the subject with the
+        # union alone never meets a member's CRM disjointness (a ritual is an
+        # E2, a P102 subject an E77)
+        for side, cls in (("subject", dom), ("object", rng)):
+            name = by_iri.get(cls)
+            members = (sv.get_class(name).union_of or []) if name else []
+            for m in members:
+                i += 1
+                subj, obj = URIRef(f"{PROBE_NS}s{i}"), URIRef(f"{PROBE_NS}o{i}")
+                abox.add((subj, prop, obj))
+                m_iri = URIRef(sv.get_uri(sv.get_class(m), expand=True))
+                if side == "subject":
+                    abox.add((subj, RDF.type, m_iri))
+                    if isinstance(rng, URIRef): abox.add((obj, RDF.type, rng))
+                else:
+                    abox.add((obj, RDF.type, m_iri))
+                    if isinstance(dom, URIRef): abox.add((subj, RDF.type, dom))
+                where[subj] = f"{n} (subject{', ' + m if side == 'subject' else ''})"
+                where[obj] = f"{n} (object{', ' + m if side == 'object' else ''})"
     return abox, where
 
 
@@ -691,6 +715,11 @@ def _lux_violations(module: Graph) -> tuple[list[str], int]:
     core_ttl = ROOT / "ontology/HeritageGraph.ttl"
     core = Graph(); core.parse(core_ttl, format="turtle")
     core_classes = {c for c in core.subjects(RDF.type, OWL.Class) if isinstance(c, URIRef)}
+    union_classes = {c for c in core_classes if (c, OWL.unionOf, None) in core
+                     or any((c, OWL.equivalentClass, u) in core and (u, OWL.unionOf, None) in core
+                            for u in core.objects(c, OWL.equivalentClass))}
+    union_classes |= {c for c in core_classes
+                      if any((r, OWL.unionOf, None) in core for r in core.objects(c, RDFS.subClassOf))}
     abox, where = _lux_probe_abox(module)
     base = _reason_types([core_ttl] + vocabs, abox)
     full = _reason_types([core_ttl, module] + vocabs, abox)
@@ -704,7 +733,9 @@ def _lux_violations(module: Graph) -> tuple[list[str], int]:
             out.append(f"C2 {where[x]}: both crm:E18_Physical_Thing and crm:E28_Conceptual_Object")
         asserted = set(abox.objects(x, RDF.type))
         if asserted and asserted <= core_classes:   # C3 concerns instances of core classes only
-            for t in sorted((types - base.get(x, set())) & core_classes):
+            # a member of a union class (AssertionSubject) is in the union by
+            # definition: gaining it through a union-typed domain is not new
+            for t in sorted((types - base.get(x, set())) & core_classes - union_classes):
                 out.append(f"C3 {where[x]}: gains core class {t}")
     return sorted(set(out)), len(where)
 

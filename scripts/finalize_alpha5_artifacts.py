@@ -411,8 +411,10 @@ def finalize_owl(sv: SchemaView) -> Graph:
     relax_reused_max_cardinality(g)
     add_property_chains(g, sv)
     add_crm_superclasses(g, sv)
+    drop_reused_value_restrictions(g)
+    add_disjoint_kinds(g, sv)
     # schema build directives, not ontology content
-    for d in ("owl_property_chain", "lexical_form", "crm_superclass"):
+    for d in ("owl_property_chain", "lexical_form", "crm_superclass", "disjoint_kind"):
         g.remove((None, URIRef(HG_NS + d), None))
     add_external_class_domains(g, sv)
     drop_vacuous_min_cardinality(g)
@@ -857,6 +859,74 @@ def add_crm_superclasses(g: Graph, sv: SchemaView) -> None:
     if bad:
         sys.exit("crm_superclass is not an official CRM/CRMinf class: " + ", ".join(bad))
     print(f"CRM grounding: {n} HeritageGraph class(es) stated rdfs:subClassOf their CRM class")
+
+
+def drop_reused_value_restrictions(g: Graph) -> None:
+    """M5: an owl:allValuesFrom restriction from a HeritageGraph class over a
+    reused CIDOC-CRM property to a HeritageGraph class (Guthi ⊑
+    ∀crm:P50i_is_current_keeper_of.ArchitecturalStructure) does not check
+    data, it reclassifies it: a Guthi that keeps a murti makes the murti an
+    ArchitecturalStructure, an iconographic object that depicts a person
+    makes the person a Deity. Such value ranges are checks, so they stay in
+    the SHACL shapes (sh:class) and leave the OWL. Restrictions over
+    HeritageGraph's own properties, and datatype restrictions, are kept."""
+    n, dropped = 0, []
+    for r in list(g.subjects(OWL.allValuesFrom, None)):
+        p, v = g.value(r, OWL.onProperty), g.value(r, OWL.allValuesFrom)
+        if (isinstance(p, URIRef) and not str(p).startswith(HG_NS)
+                and isinstance(v, URIRef) and str(v).startswith(HG_NS)):
+            for c in list(g.subjects(RDFS.subClassOf, r)):
+                g.remove((c, RDFS.subClassOf, r))
+                dropped.append(f"{str(c).rsplit('/', 1)[-1]} ∀{str(p).rsplit('/', 1)[-1]}")
+            g.remove((r, None, None))
+            n += 1
+    print(f"M5: moved {n} value restriction(s) over reused CRM properties to SHACL only")
+
+
+# kinds whose classes are also pairwise disjoint (a deity is not a role,
+# a tradition, a selection criterion, a calendar or a proposition)
+PAIRWISE_KINDS = {"concept"}
+
+
+def add_disjoint_kinds(g: Graph, sv: SchemaView) -> None:
+    """M5: classes annotated disjoint_kind (physical, event, period, concept,
+    group, information) are grouped, and the groups are stated disjoint
+    (owl:AllDisjointClasses over each group, a union where it has several
+    classes); the classes of a PAIRWISE_KINDS group are also pairwise
+    disjoint. Subclasses inherit. Only HeritageGraph classes take part."""
+    kinds: dict[str, list[URIRef]] = {}
+    for cn, c in sv.all_classes().items():
+        ann = c.annotations.get("disjoint_kind") if c.annotations else None
+        if ann is None:
+            continue
+        iri = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
+        if not str(iri).startswith(HG_NS):
+            sys.exit(f"disjoint_kind on {cn}, whose IRI is not a HeritageGraph class")
+        kinds.setdefault(str(ann.value), []).append(iri)
+
+    def all_disjoint(members: list) -> None:
+        node, head = BNode(), BNode()
+        Collection(g, head, members)
+        g.add((node, RDF.type, OWL.AllDisjointClasses))
+        g.add((node, OWL.members, head))
+
+    groups = []
+    for kind in sorted(kinds):
+        cls = sorted(kinds[kind])
+        if len(cls) == 1:
+            groups.append(cls[0])
+        else:
+            u, head = BNode(), BNode()
+            Collection(g, head, cls)
+            g.add((u, RDF.type, OWL.Class))
+            g.add((u, OWL.unionOf, head))
+            groups.append(u)
+        if kind in PAIRWISE_KINDS and len(cls) > 1:
+            all_disjoint(cls)
+    if len(groups) > 1:
+        all_disjoint(groups)
+    print(f"M5: {len(groups)} disjoint kinds ({', '.join(f'{k} {len(v)}' for k, v in sorted(kinds.items()))}); "
+          f"pairwise within {', '.join(sorted(PAIRWISE_KINDS))}")
 
 
 def add_property_chains(g: Graph, sv: SchemaView) -> None:
@@ -1410,7 +1480,9 @@ def bridge_shacl_classes(g: Graph) -> None:
     prov:wasAttributedTo is not (in the shapes' class closure) a prov:Agent.
     Each sh:class prov:Activity / prov:Entity / prov:Agent constraint becomes
     "that PROV class or one of the reused classes the bridge places under it",
-    so validation accepts exactly what it accepted with the axioms in the core."""
+    so validation accepts what it accepted with the axioms in the core, plus
+    crm:E6_Destruction (which the core never placed under prov:Activity and the
+    bridge's single rule does). Violations are reported as sh:or results."""
     n = 0
     for pc, members in BRIDGE.items():
         for node in list(g.subjects(SH["class"], pc)):

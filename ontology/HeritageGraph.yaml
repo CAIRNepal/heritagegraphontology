@@ -434,6 +434,8 @@ classes:
           slot_conditions:
             has_current_location:
               required: true
+    annotations:
+      disjoint_kind: physical
 
   ReligiousStructure:
     is_a: ArchitecturalStructure
@@ -491,12 +493,15 @@ classes:
     exact_mappings:
       - aat:300007576
       - wikidata:Q180987
-    disjoint_with:
-      - Chaitya
   Chaitya:
     is_a: ReligiousStructure
     class_uri: heritageGraph:Chaitya
-    description: "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley."
+    description: "Buddhist votive shrine (chaitya); votive stupa form found across the Kathmandu Valley. In Newar
+      usage chaitya (Newar chibhah) also names great stupas (Swayambhu Mahachaitya), so a monument may be
+      both a Stupa and a Chaitya."
+    # 1.1.0: no longer disjoint with Stupa. The disjointness contradicted this
+    # definition and Newar usage: typing Swayambhu Mahachaitya a Chaitya made
+    # the demonstrator inconsistent.
 
   RestHouse:
     is_a: ArchitecturalStructure
@@ -562,6 +567,8 @@ classes:
       - participates_in_ritual
       - has_current_location
       - used_by
+    annotations:
+      disjoint_kind: physical
   Paubha:
     is_a: IconographicObject
     class_uri: heritageGraph:Paubha
@@ -616,6 +623,7 @@ classes:
       is_component_of:
         required: true
     annotations:
+      disjoint_kind: physical
       crm_superclass: crm:E24_Physical_Human-Made_Thing
 
   # ========================================================================
@@ -637,6 +645,8 @@ classes:
 
     mixins:
       - Entity
+    annotations:
+      disjoint_kind: physical
   Deity:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.
@@ -662,6 +672,8 @@ classes:
       - is_enshrined_through_event
     mixins:
       - Entity
+    annotations:
+      disjoint_kind: concept
   ReligiousTradition:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.
@@ -677,6 +689,7 @@ classes:
     mixins:
       - Entity
     annotations:
+      disjoint_kind: concept
       crm_superclass: crm:E55_Type
   HistoricalEvent:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
@@ -694,6 +707,7 @@ classes:
       - architectural_structures
       - includes_ritual_event
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E5_Event
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -723,6 +737,8 @@ classes:
     slot_usage:
       name:
         required: true
+    annotations:
+      disjoint_kind: concept
 
   # ========================================================================
   # EVENT CLASSES (CIDOC-CRM Event-Centric Core)
@@ -755,7 +771,10 @@ classes:
     class_uri: heritageGraph:RitualEvent
     broad_mappings:
       - crm:E7_Activity
-    description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"
+    description: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups.
+      An instance is one dated occurrence (one CIDOC-CRM E7 with at most one time-span), e.g. the Indra Jatra
+      of 2025; the recurring practice it belongs to (annual, by lunar date) is described by recurrence_pattern
+      and lunar_date_tithi, not by the instance's time-span."
     # MAPPING AUDIT (alpha.5): aat:300055603 = 'ownership' (verified) --
     # wrong concept -> removed.
     slots:
@@ -783,6 +802,7 @@ classes:
       - end_place
       - route_description
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E7_Activity
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -818,6 +838,8 @@ classes:
 
 
   Consecration:
+    # 1.1.0: a ritual (stated in the core; the LUX module stated it alone)
+    is_a: RitualEvent
     class_uri: heritageGraph:Consecration
     description: "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"
     slots:
@@ -831,6 +853,7 @@ classes:
       # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
       - crm:E7_Activity
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E7_Activity
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -838,6 +861,8 @@ classes:
     mixins:
       - Activity
   Enshrinement:
+    # 1.1.0: a ritual (stated in the core; the LUX module stated it alone)
+    is_a: RitualEvent
     class_uri: heritageGraph:Enshrinement
     description: "Event of installing a deity's murti or symbol within a temple sanctum"
     slots:
@@ -851,6 +876,7 @@ classes:
       # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
       - crm:E7_Activity
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E7_Activity
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -922,6 +948,8 @@ classes:
         range: GuthiType
     broad_mappings:
       - prov:Organization
+    annotations:
+      disjoint_kind: group
 
   # CLEANUP (alpha.5): removed 40 lines of commented-out Guthi subclasses
   # (SiGuthi..RajGuthi) -- the GuthiType enum covers this typology.
@@ -941,6 +969,8 @@ classes:
       - prov:Organization
     # GROUP (1.1.0): a caste group is a CIDOC-CRM E74 Group.
     is_a: Group
+    annotations:
+      disjoint_kind: group
   Person:
     class_uri: crm:E21_Person
     description: "Individual person who performs, commissions, documents, or verifies heritage activities"
@@ -1123,6 +1153,7 @@ classes:
       proposition_predicate:
         required: true
     annotations:
+      disjoint_kind: concept
       crm_superclass: crminf:I4_Proposition_Set
   DataSource:
     class_uri: heritageGraph:DataSource
@@ -1147,6 +1178,7 @@ classes:
     mixins:
       - Entity
     annotations:
+      disjoint_kind: information
       crm_superclass: crm:E73_Information_Object
   FieldSurveyActivity:
     is_a: DocumentationActivity
@@ -1213,6 +1245,7 @@ classes:
       # URI POLICY (alpha.5): narrower than E7; moved from exact_mappings.
       - crm:E7_Activity
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E7_Activity
       prov_alignment_note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative
         CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity 
@@ -1272,9 +1305,9 @@ classes:
     class_uri: heritageGraph:SyncreticRelationship
     broad_mappings:
       - crm:E13_Attribute_Assignment
-    description: "Formalizes the syncretic equivalence between divine entities across different theological frameworks.
-      Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority
-      and provenance."
+    description: "The act of identifying one deity with another across theological frameworks (a CIDOC-CRM
+      E13 Attribute Assignment: P140 the deity identified, P141 the deity it is identified with), recorded
+      with the source that reports it (documented_in_source)."
     slots:
       - name
       - note
@@ -1283,15 +1316,17 @@ classes:
       - syncretic_type
       - was_documented_by
       - documented_in_source
-    # PROV PLACEMENT (1.1.0): a prov:Entity (a reified claim whose sources are
-    # given with prov:wasDerivedFrom), not a prov:Activity. As an activity, every
-    # syncretic relationship with a source was inconsistent with PROV-O
-    # (prov:wasDerivedFrom has domain prov:Entity, disjoint with prov:Activity).
-    # crm:E13 stays a broad match only; prov:used (activity-only) is dropped.
+    # PROV PLACEMENT (1.1.0): the act (crm:E13 ⊑ E7, hence a prov:Activity),
+    # not the claim. Its P140/P141 make every instance an E13 anyway, and as a
+    # prov:Entity it was unsatisfiable under the common alignment
+    # E7 ⊑ prov:Activity (prov:Entity and prov:Activity are disjoint). Sources
+    # are given with documented_in_source (hg:mentionedInSource), not
+    # prov:wasDerivedFrom, which applies to entities only.
     mixins:
-      - Entity
+      - Activity
     annotations:
       crm_superclass: crm:E13_Attribute_Assignment
+      disjoint_kind: event
   KumariTenure:
     # ALIASES (alpha.5): romanized alternate term.
     aliases:
@@ -1344,11 +1379,12 @@ classes:
 
 
     annotations:
+      disjoint_kind: period
       crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
-        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
-        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
-        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
+        assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
+        stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
+        reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
     mixins:
       - Entity
   KumariLifecycleEvent:
@@ -1486,6 +1522,7 @@ classes:
     mixins:
       - Activity
     annotations:
+      disjoint_kind: event
       crm_superclass: crm:E7_Activity
 
   HereditaryRoleTenure:
@@ -1514,11 +1551,12 @@ classes:
       role_duty:
         required: true
     annotations:
+      disjoint_kind: period
       crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
-        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
-        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
-        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
+        assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
+        stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
+        reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
     mixins:
       - Entity
 
@@ -1546,11 +1584,12 @@ classes:
       has_timespan:
         required: true
     annotations:
+      disjoint_kind: period
       crm_superclass: crm:E4_Period
       design_note: 'PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions,
-        assertions about it), while broad-matched to crm:E4_Period. The CRM match is a skos:broadMatch, not a subclass
-        axiom, so the PROV-O Entity/Activity disjointness is never engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci
-        and PROV-O loaded is consistent with the example data (reasoning_extras.py merged-import, merged-abox).'
+        assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class
+        stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged;
+        reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data.'
     mixins:
       - Entity
   # Container and Metadata (the LinkML tree_root and its dataset header) moved
@@ -1630,6 +1669,7 @@ classes:
     mixins:
       - Entity
     annotations:
+      disjoint_kind: concept
       crm_superclass: crm:E55_Type
   KumariHouse:
     # ALIASES (alpha.5): romanized alternate term.
@@ -1685,7 +1725,8 @@ classes:
     mixins:
       - Entity
     annotations:
-      crm_superclass: crm:E28_Conceptual_Object
+      disjoint_kind: concept
+      crm_superclass: crm:E55_Type
   AgeCriterion:
     is_a: SelectionCriterion
     class_uri: heritageGraph:AgeCriterion
@@ -1933,12 +1974,14 @@ slots:
   lunar_date_tithi:
     slot_uri: heritageGraph:lunarDateTithi
     range: string
-    description: "Lunar day (Tithi) for ritual timing"
+    description: "Lunar day (tithi) by which the practice is timed, in free text (e.g. 'Bhadra Shukla
+      Chaturdashi')."
 
   recurrence_pattern:
     slot_uri: heritageGraph:recurrencePattern
     range: string
-    description: "Frequency of recurring ritual (e.g., annual, monthly)"
+    description: "How the practice this occurrence belongs to recurs (e.g. annual, monthly), in free text. It
+      describes the practice, not the occurrence: each occurrence is its own RitualEvent with its own time-span."
 
   birth_timespan:
     # 1.1.0: no longer rdfs:subPropertyOf crm:P4_has_time-span. P4 belongs to
