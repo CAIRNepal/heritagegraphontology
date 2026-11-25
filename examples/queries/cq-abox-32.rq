@@ -121,8 +121,8 @@ SELECT ?ritual ?start ?end ?route WHERE {
 PREFIX hg: <https://cair-nepal.org/heritagegraph/>
 PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
 SELECT ?crisis ?ritual ?pattern WHERE {
-  ?crisis a hg:HistoricalEvent ; crm:P9_consists_of ?ritual .
-  ?ritual hg:recurrencePattern ?pattern .
+  ?crisis a hg:HistoricalEvent .
+  ?ritual crm:P17_was_motivated_by ?crisis ; hg:recurrencePattern ?pattern .
 }
 
 # CQ15: What materials and techniques are used in key ritual events?

@@ -14,6 +14,7 @@
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix schema: <http://schema.org/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix crmsci: <http://www.cidoc-crm.org/extensions/crmsci/> .
 @prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -24,7 +25,7 @@
 
 # --- places & time-spans ---
 ex:KathmanduDurbarSquare a crm:E53_Place ; rdfs:label "Kathmandu Durbar Square" .
-ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra (annual, Bhadra)" .
+ex:TS_Festival a crm:E52_Time-Span ; rdfs:label "Indra Jatra 2025 (from the raising of the lingo, 4 September 2025)" .
 
 # --- tangible heritage: a sacred pavilion + its construction (event-mediated) ---
 # Kasthamandap ("Maru Satta") is a multi-tiered public pavilion (sattal) housing
@@ -37,14 +38,32 @@ ex:Kasthamandap a hg:Sattal ;
 
 ex:Prod_Kasthamandap a crm:E12_Production ;
     rdfs:label "Construction of Kasthamandap" ;
-    crm:P108_has_produced ex:Kasthamandap ;
-    crm:P14_carried_out_by ex:LicchaviBuilders .
-ex:LicchaviBuilders a crm:E39_Actor ; rdfs:label "Builders (tradition)" .
+    crm:P108_has_produced ex:Kasthamandap .
+# Who built it and when are contested: the two accounts are the beliefs
+# Assert_BuildA / Assert_BuildB below, not facts of this production. (Earlier
+# versions stated a builder, "Licchavi builders", and a patron, King Lakshmi
+# Narasimha Malla, here; neither was supported by a cited source.)
 
 # condition history via an assessment event
 ex:CA_2015 a crm:E14_Condition_Assessment ;
     rdfs:label "Post-2015-earthquake assessment of Kasthamandap" .
 ex:CS_Ruined a crm:E3_Condition_State ; rdfs:label "Collapsed in the 2015 earthquake" .
+# M10: the collapse is damage the monument survived (it was rebuilt), so it
+# is a natural alteration (CRMsci S18), part of the earthquake, not a CRM E6
+# destruction; the rebuild is a modification (E11), not a second production.
+ex:Collapse_Kasthamandap2015 a crmsci:S18_Alteration ;
+    rdfs:label "Collapse of the Kasthamandap superstructure in the 2015 earthquake" ;
+    crmsci:O18_altered ex:Kasthamandap ;
+    crm:P9i_forms_part_of ex:Earthquake2015 ;
+    crm:P4_has_time-span ex:TS_Collapse2015 ;
+    dcterms:source ex:Src_Durham_Kasthamandap .
+ex:TS_Collapse2015 a crm:E52_Time-Span ; rdfs:label "25 April 2015" ;
+    crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2015-04-25T23:59:59"^^xsd:dateTime .
+crmsci:S18_Alteration a owl:Class .
+crmsci:O18_altered a owl:ObjectProperty .
+crm:E11_Modification a owl:Class .
+crm:P31_has_modified a owl:ObjectProperty .
 
 # --- institutional layer: a Guthi custodian ---
 # The guthi responsible for conserving Kasthamandap (myRepublica). The earlier
@@ -107,13 +126,20 @@ ex:Assert_BuildB a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build-date (account B)" ;
     hg:assertsAbout ex:Kasthamandap ;
     prov:value "7th century CE" ;
-    prov:wasDerivedFrom ex:Src_DoA ;
-    prov:wasAttributedTo ex:DoA ;
+    crm:P3_has_note "Radiocarbon dates from the foundations: early 7th to early 9th century CE, with a major reconstruction in the 11th to 12th century." ;
+    prov:wasDerivedFrom ex:Src_Durham_Kasthamandap ;
+    prov:wasAttributedTo ex:DurhamTeam ;
     hg:confidenceScore "0.5"^^xsd:decimal .
 ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" ;
     dcterms:creator "Mary Shepherd Slusser" ; dcterms:date "1982" ;
     dcterms:bibliographicCitation "Slusser, M. S. (1982). Nepal Mandala: A Cultural Study of the Kathmandu Valley. Princeton University Press." .
-ex:Src_DoA a hg:DataSource ; rdfs:label "Department of Archaeology survey" ;
+ex:Src_Durham_Kasthamandap a hg:DataSource ;
+    rdfs:label "Durham University, Kasthamandap: causes of collapse" ;
+    dcterms:creator "Durham University" ;
+    dcterms:bibliographicCitation "Durham University. Resilience: causes of collapse (post-2015 archaeological investigation of the Kasthamandap). https://stories.durham.ac.uk/resilience-2" .
+ex:DurhamTeam a crm:E39_Actor ; rdfs:label "Durham University post-earthquake investigation team" .
+# Illustrative: no specific publication; used only by Assert_RouteChange.
+ex:Src_DoA a hg:DataSource ; rdfs:label "Department of Archaeology (illustrative; no specific publication cited)" ;
     dcterms:creator "Department of Archaeology, Government of Nepal" .
 ex:Slusser a crm:E39_Actor ; rdfs:label "M. S. Slusser" .
 ex:DoA a crm:E39_Actor ; rdfs:label "Department of Archaeology" .
@@ -155,10 +181,10 @@ ex:TS_2015 a crm:E52_Time-Span ; rdfs:label "25 April 2015" .
 ex:Earthquake2015 a hg:HistoricalEvent ;
     rdfs:label "Gorkha earthquake (2015)" ;
     hg:architecturalStructures ex:Kasthamandap ;
-    crm:P4_has_time-span ex:TS_2015 ;
-    crm:P9_consists_of ex:ShantiSwastiPuja .
+    crm:P4_has_time-span ex:TS_2015 .
 ex:ShantiSwastiPuja a hg:RitualEvent ;
     rdfs:label "Shanti swasti puja (post-earthquake propitiation)" ;
+    crm:P17_was_motivated_by ex:Earthquake2015 ;
     hg:recurrencePattern "extraordinary (crisis-triggered)" .
 
 # --- ritual layer enrichment (CQ8-CQ12, CQ16, CQ22, CQ30) ---
@@ -246,9 +272,20 @@ ex:BungadyahJatra a hg:Festival ;
     hg:performedByGroup ex:Manandhars , ex:Barahis .
 
 # --- patronage (CQ20) ---
-ex:KingLakshmiNarasimhaMalla a crm:E39_Actor ;
-    rdfs:label "King Lakshmi Narasimha Malla (attributed)" .
-ex:Prod_Kasthamandap hg:commissionedBy ex:KingLakshmiNarasimhaMalla .
+ex:KingMahendraMalla a crm:E21_Person ; rdfs:label "King Mahendra Malla of Kathmandu" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/person/mahendra-malla"^^xsd:anyURI .
+ex:Prod_TalejuTemple a crm:E12_Production ;
+    rdfs:label "Construction of the Taleju Temple, Hanuman Dhoka" ;
+    crm:P108_has_produced ex:TalejuTemple ;
+    hg:commissionedBy ex:KingMahendraMalla ;
+    crm:P4_has_time-span ex:TS_TalejuTemple1564 ;
+    dcterms:source ex:Src_Wikipedia_TalejuTemple .
+ex:TS_TalejuTemple1564 a crm:E52_Time-Span ; rdfs:label "1564 CE (NS 684)" ;
+    crm:P82a_begin_of_the_begin "1564-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1564-12-31T23:59:59"^^xsd:dateTime .
+ex:Src_Wikipedia_TalejuTemple a hg:DataSource ; rdfs:label "Wikipedia, Taleju Temple, Kathmandu" ;
+    dcterms:bibliographicCitation "Taleju Temple, Kathmandu. Wikipedia. https://en.wikipedia.org/wiki/Taleju_Temple,_Kathmandu (built by King Mahendra Malla in 1564)" .
+ex:Ensh_Taleju dcterms:source ex:Src_Wikipedia_TalejuTemple .
 
 # --- syncretism evidence + Kumari syncretism (CQ25, CQ27, CQ28) ---
 ex:Syn_Karunamaya hg:mentionedInSource ex:Src_Slusser .
@@ -279,7 +316,7 @@ ex:KumariNityaPuja a hg:RitualEvent ;
     hg:recurrencePattern "daily" .
 ex:TS_Ret2025 a crm:E52_Time-Span ; rdfs:label "30 September 2025 (successor installed)" .
 ex:Ret_2025 crm:P4_has_time-span ex:TS_Ret2025 ;
-    crm:P3_has_note "Tenure ended on reaching puberty, per tradition; the successor was installed on 30 September 2025." ;
+    crm:P3_has_note "The successor was installed on 30 September 2025. By tradition a Kumari's tenure ends at puberty; the source reports the tradition, not the reason for this retirement." ;
     dcterms:source ex:Src_AP_Kumari2025 .
 
 # --- documented ritual transformation (CQ17) ---
@@ -292,14 +329,21 @@ ex:Assert_RouteChange a crminf:I2_Belief ;
     hg:confidenceScore "0.6"^^xsd:decimal .
 
 # =====================================================================
-# Required fields so the full demonstrator validates conformant against
-# HeritageGraph.shacl.ttl (time-spans on events, begin dates on
-# time-spans, identifiers on objects/persons, provenance on assertions
-# and syncretic relationships).
+# Time-spans, identifiers and provenance that the shapes require. A
+# time-span carries a date only where a source gives one; otherwise it
+# carries only a bound known to hold (e.g. not before the festival or the
+# temple it belongs to), never a date chosen to make the data validate.
 # =====================================================================
 
 # begin dates for existing time-spans
-ex:TS_Festival crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
+ex:TS_Festival crm:P82a_begin_of_the_begin "2025-09-04T00:00:00"^^xsd:dateTime .
+ex:IndraJatra dcterms:source ex:Src_Ekantipur_IndraJatra2025 .
+ex:YosinErection dcterms:source ex:Src_Ekantipur_IndraJatra2025 .
+ex:KumariProcession dcterms:source ex:Src_KP_IndraJatra2025 .
+ex:Src_Ekantipur_IndraJatra2025 a hg:DataSource ; rdfs:label "ekantipur, Indra Jatra started in Vasantpur (4 September 2025)" ;
+    dcterms:bibliographicCitation "ekantipur. Indra Jatra started in Vasantpur [Photos], 4 September 2025. https://ekantipur.com/photo_feature/2025/09/04/en/indra-jatra-started-in-vasantpur-photos-00-33.html" .
+ex:Src_KP_IndraJatra2025 a hg:DataSource ; rdfs:label "Kathmandu Post, Kathmandu marks Indra Jatra with chariot processions (6 September 2025)" ;
+    dcterms:bibliographicCitation "The Kathmandu Post. Kathmandu marks Indra Jatra with chariot processions and rituals, 6 September 2025. https://kathmandupost.com/visual-stories/2025/09/06/kathmandu-marks-indra-jatra-with-chariot-processions-and-rituals" .
 ex:TS_2015 crm:P82a_begin_of_the_begin "2015-04-25T00:00:00"^^xsd:dateTime .
 ex:TS_Tenure2017 crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
@@ -307,8 +351,10 @@ ex:TS_Ret2025 crm:P82a_begin_of_the_begin "2025-09-30T00:00:00"^^xsd:dateTime .
 
 # time-spans of single occurrences and historical periods (a RitualEvent is
 # one dated occurrence; its recurrence is described by hg:recurrencePattern)
-ex:TS_Construction a crm:E52_Time-Span ; rdfs:label "Construction period (contested)" ;
-    crm:P82a_begin_of_the_begin "1100-01-01T00:00:00"^^xsd:dateTime .
+ex:TS_Construction a crm:E52_Time-Span ;
+    rdfs:label "Construction: between the 7th and the 12th century CE (contested; see Assert_BuildA, Assert_BuildB)" ;
+    crm:P82a_begin_of_the_begin "0600-01-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1200-12-31T23:59:59"^^xsd:dateTime .
 ex:TS_NityaPuja_KM a crm:E52_Time-Span ; rdfs:label "1 January 2025 (one daily performance)" ;
     crm:P82a_begin_of_the_begin "2025-01-01T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-01-01T23:59:59"^^xsd:dateTime .
@@ -327,10 +373,12 @@ ex:TS_Bungadyah a crm:E52_Time-Span ; rdfs:label "Bungadyah Jatra 2025" ;
 # precise date, the part's time-span carries only a bound that is known to
 # hold: it cannot begin before the festival, assessment or founding it
 # belongs to begins.
-ex:TS_YosinErection2025 a crm:E52_Time-Span ; rdfs:label "Yosin erection, Indra Jatra 2025" ;
-    crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
-ex:TS_KumariProcession2025 a crm:E52_Time-Span ; rdfs:label "Kumari chariot procession, Indra Jatra 2025" ;
-    crm:P82a_begin_of_the_begin "2025-08-29T00:00:00"^^xsd:dateTime .
+ex:TS_YosinErection2025 a crm:E52_Time-Span ; rdfs:label "Raising of the lingo (yosin), 4 September 2025" ;
+    crm:P82a_begin_of_the_begin "2025-09-04T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-09-04T23:59:59"^^xsd:dateTime .
+ex:TS_KumariProcession2025 a crm:E52_Time-Span ; rdfs:label "Kumari chariot procession, 6 September 2025 (main day)" ;
+    crm:P82a_begin_of_the_begin "2025-09-06T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2025-09-06T23:59:59"^^xsd:dateTime .
 ex:TS_BungadyahProcession2025 a crm:E52_Time-Span ; rdfs:label "Bungadyah chariot procession 2025" ;
     crm:P82a_begin_of_the_begin "2025-04-20T00:00:00"^^xsd:dateTime .
 ex:TS_CA2015 a crm:E52_Time-Span ; rdfs:label "Condition assessment after the 25 April 2015 earthquake" ;
@@ -387,12 +435,19 @@ ex:CS_Ruined hg:hasConditionType <https://cair-nepal.org/heritagegraph/Condition
 
 # =====================================================================
 # CITED GOLD-STANDARD LAYER
-# Every non-trivial fact in this demonstrator is attributed to a real,
-# checkable source, so the CQ witnesses are transcribed from published
-# scholarship / linked-data authorities rather than authored ad hoc
-# (cf. SeaLiT's archival transcription and ArCo's ICCD grounding). This
-# converts the "author-internal ABox" circularity concern into a cited
-# exemplar KG, the field-standard practice for intangible heritage.
+# Facts are attributed to a checkable source (dcterms:source,
+# prov:wasDerivedFrom or hg:mentionedInSource) where one was found: the
+# Kumari tenure and retirement, the Guthi and custody records, the Indra
+# Jatra 2025 dates, the Taleju Temple patronage, the Kasthamandap build-date
+# accounts and the syncretic identifications. Contested facts are recorded
+# as source-attributed beliefs (crminf:I2), not stated flatly.
+# Illustrative, not sourced: some CQ witnesses are authored to exercise the
+# patterns and carry no source: the daily pujas (NityaPuja_KM,
+# NityaPuja_Bungamati), GunlaBajan, ShantiSwastiPuja, BhavanishankarRituals,
+# CA_2015, Murti_Taleju, KarmacharyaPriest, Pinnacle_KM, ChariotConstruction,
+# SalWood and the route-change belief Assert_RouteChange (Src_DoA). They
+# show what the ontology can express, not documented events. Deities,
+# traditions, calendars and source authors are identified by name only.
 # Links use owl:sameAs to Wikidata (exact matches, machine-checkable) and
 # rdfs:seeAlso for related entities; dcterms:source names the scholarly
 # work each thematic cluster is drawn from.
@@ -684,10 +739,19 @@ ex:ShuvarambhaPuja2018 a hg:RitualEvent ;
     hg:recurrencePattern "once (commencement of reconstruction)" ;
     crm:P4_has_time-span ex:TS_Shuvarambha2018 ;
     dcterms:source ex:Src_KP_MaruSatta .
-ex:Prod_KasthamandapRebuild a crm:E12_Production ;
+ex:Prod_KasthamandapRebuild a crm:E11_Modification ;
     rdfs:label "Reconstruction of Kasthamandap (2018-2022)" ;
-    crm:P108_has_produced ex:Kasthamandap ;
+    crm:P31_has_modified ex:Kasthamandap ;
     crm:P14_carried_out_by ex:KRC ;
     crm:P4_has_time-span ex:TS_KasthamandapRebuild ;
     dcterms:source ex:Src_KP_MaruSatta , ex:Src_HT_Kasthamandap2022 .
-ex:Kasthamandap hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Extant> .
+ex:Kasthamandap hg:existenceStatus <https://cair-nepal.org/heritagegraph/ExistenceStatus#Reconstructed> .
+ex:CA_2022 a crm:E14_Condition_Assessment ;
+    rdfs:label "Condition of the rebuilt Kasthamandap at its reopening (2022)" ;
+    crm:P34_concerned ex:Kasthamandap ;
+    crm:P35_has_identified ex:CS_Rebuilt ;
+    crm:P4_has_time-span ex:TS_CA2022 ;
+    dcterms:source ex:Src_HT_Kasthamandap2022 .
+ex:CS_Rebuilt a crm:E3_Condition_State ; rdfs:label "Rebuilt and reopened" .
+ex:TS_CA2022 a crm:E52_Time-Span ; rdfs:label "4 April 2022 (reopening)" ;
+    crm:P82a_begin_of_the_begin "2022-04-04T00:00:00"^^xsd:dateTime .

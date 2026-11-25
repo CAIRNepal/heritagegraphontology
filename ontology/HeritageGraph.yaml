@@ -42,7 +42,10 @@ enums:
       Lost:
         description: "Existence documented but location/remains unknown"
       Hypothetical:
-        description: "Reconstructed or theorized; never physically realized"
+        description: "Theorized (e.g. a reconstruction on paper only); never physically realized"
+      Reconstructed:
+        description: "Destroyed or collapsed and rebuilt: it exists again in physical form, with a documented
+          reconstruction (record the reconstruction as an event, e.g. crm:E11_Modification)"
       Unknown:
         description: "Existence status uncertain"
 
@@ -808,6 +811,7 @@ classes:
       - start_place
       - end_place
       - route_description
+      - motivated_by
     annotations:
       disjoint_kind: event
       crm_superclass: crm:E7_Activity
@@ -1301,11 +1305,15 @@ classes:
   DestructionEvent:
     is_a: HistoricalEvent
     class_uri: crm:E6_Destruction
-    description: "Event that destroyed or damaged a structure."
+    description: "Event that destroyed a structure (CIDOC-CRM E6: the structure no longer exists in its former
+      identity), linked to it by destroyed (crm:P13_destroyed). Damage a structure survives is not a destruction:
+      record it as crmsci:S18_Alteration (natural, e.g. an earthquake) or crm:E11_Modification (human), and the
+      resulting condition with a condition assessment."
     slots:
       - note
       - has_timespan
       - took_place_at
+      - destroyed
   SyncreticRelationship:
     # URI POLICY (alpha.5): narrower than the CRM class; IRI minted,
     # CRM identity moved to broad_mappings.
@@ -1411,9 +1419,9 @@ classes:
     is_a: KumariLifecycleEvent
     class_uri: heritageGraph:KumariSelectionEvent
     description: "Tantric ritual process of selecting a new Living Goddess from eligible candidates. Involves examination
-      of 32 auspicious physical marks (lakshana), horoscope matching with the city and ruling authority, and tests
-      of fearlessness (e.g., remaining calm among buffalo heads and masked dancers in darkness). Performed by committee
-      of Vajracharya priests, royal priest (Raj Jyotish), and astrologer."
+      of 32 auspicious physical marks (lakshana) and horoscope matching with the city and ruling authority, performed
+      by a committee of Vajracharya priests, the royal priest (Raj Jyotish) and an astrologer. Accounts of a
+      fearlessness test are disputed and are recorded as such with FearlessnessAssessment, not stated here."
 
 
     
@@ -2085,7 +2093,24 @@ slots:
     title: "has destruction event"
     slot_uri: heritageGraph:destructionEvent
     range: DestructionEvent
+    # 1.1.0: the inverse of crm:P13_destroyed (the LUX module already stated
+    # destructionEvent ≡ crm:P13i_was_destroyed_by; the core now agrees)
+    inverse: destroyed
     description: "Event that destroyed this structure (if known)"
+
+  destroyed:
+    slot_uri: crm:P13_destroyed
+    range: PhysicalHeritageThing
+    multivalued: true
+    inverse: destruction_event
+    description: "Structure or object this destruction ended (CIDOC-CRM P13)"
+
+  motivated_by:
+    slot_uri: crm:P17_was_motivated_by
+    range: HistoricalEvent
+    multivalued: true
+    description: "Event that prompted this ritual, e.g. an earthquake prompting a propitiation (CIDOC-CRM P17).
+      A crisis ritual is motivated by the crisis, not part of it (not crm:P9)."
 
   hypothesized_location:
     slot_uri: heritageGraph:hypothesizedLocation
