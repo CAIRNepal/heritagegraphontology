@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """Design-pattern baseline & ablation experiments for HeritageGraph.
 
-Consolidates six standalone modelling-comparison experiments behind one CLI.
-Each holds the FACT SET constant and varies only the representation, showing
-that the HeritageGraph pattern recovers what a charitable baseline loses.
-Together they back the pattern-justification claims of the evaluation section.
+Consolidates the modelling-comparison experiments behind one CLI. Each holds
+the FACT SET constant and varies only the representation, and reports where the
+representations differ (in some, e.g. tenure, a strong baseline expresses the
+same facts and the difference lies elsewhere: shipped constraints, typed
+events, query size). Together they back the pattern claims of the evaluation.
 
 Subcommands (default: all):
   ablation       event-mediated representation vs. static property attachment
-  tenure         KumariTenure period vs. the plain-CRM actor-role idiom
+  tenure         KumariTenure vs. the CIDOC-CRM role idiom and Wikidata P39 qualifiers
   sameas         reified SyncreticRelationship vs. owl:sameAs identity collapse
-  custodianship  institutional depth: custody transfer, hereditary roles, endowment
+  custodianship  custody periods, endowment and hereditary office (exact answers)
   supersession   belief supersession chain + structured Proposition content
   multicalendar  resolving a tithi-scheduled ritual across BS / NS / Gregorian
+  reuse          the Tenure pattern applied outside Nepal (RQ3)
 
 Each SHACL check uses the same pipeline-gate configuration (ont_graph mixed in,
 inference="none", owl:NamedIndividual declarations stripped from the in-memory
@@ -173,8 +175,9 @@ def run_tenure() -> int:
       C. Wikidata qualifier model: position held (P39) on a statement node
          with start time (P580), end time (P582), end cause (P1534), location
          (P276) and "represents" (P1268) for the deity.
-    For each question the report gives the rows each arm returns and the
-    number of triple patterns its query needs; the experiment states, rather
+    For each question the report gives whether each arm's answer matches the
+    facts (yes, partial or NO) and the number of triple patterns its query
+    needs, counted from the parsed SPARQL; the experiment states, rather
     than assumes, where the arms differ. It fails only if the HeritageGraph arm
     misses an answer or the constraint check behaves unexpectedly."""
     from pyshacl import validate
@@ -303,18 +306,26 @@ b:stmt ps:P39 b:KumariOffice ;
         return {tuple(norm(x) for x in r) for r in g.query(PFX + q)}
     WANT = {"Q1": {("Taleju", "2017-09-28")}, "Q3": {("KumariGhar", "2017-09-28")},
             "Q4": {("KumariPerson",)}, "Q5": {("GuthiSansthan",)}}
+    # Q2: the beginning and ending events, as each arm identifies them
+    WANT_Q2 = [{("Sel_2017", "Ret_2025")}, {("KumariSelection", "KumariRetirement")},
+               {("KumariSelection", "KumariRetirement")}]
 
     print(f"{'question':<46}{'HG':>10}{'CRM role':>12}{'Wikidata':>12}   (answered? / triple patterns)")
     ok = True
     for name, qh, qc, qw in Q:
         key = name[:2]
         res = []
-        for g_, q_ in ((hg_g, qh), (crm_g, qc), (wd_g, qw)):
+        for arm, (g_, q_) in enumerate(((hg_g, qh), (crm_g, qc), (wd_g, qw))):
             if q_ is None:
                 res.append("n/a")
                 continue
             v = vals(g_, q_)
-            good = (v == WANT[key]) if key in WANT else bool(v) and all(None not in r for r in v)
+            if key == "Q2":
+                want = WANT_Q2[arm]
+                partial = bool(v) and len(next(iter(v))) < 2   # one of the two events only
+                res.append(f"{'partial' if partial else 'yes' if v == want else 'NO'}/{n_patterns(q_)}")
+                continue
+            good = v == WANT[key]
             res.append(f"{'yes' if good else 'NO'}/{n_patterns(q_)}")
         ok &= res[0].startswith("yes")
         print(f"{name:<46}{res[0]:>10}{res[1]:>12}{res[2]:>12}")
@@ -860,6 +871,12 @@ ex:TS_NS_1138 a crm:E52_Time-Span ; rdfs:label "N.S. 1138 (correct conversion)" 
     hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
     crm:P82a_begin_of_the_begin "2017-10-20T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2018-11-07T23:59:59"^^xsd:dateTime .
+# Conversion-error case for Nepal Sambat: N.S. 1138 begun two months early.
+ex:TS_NS_early a crm:E52_Time-Span ; rdfs:label "N.S. 1138 record begun two months early (ERROR CASE)" ;
+    hg:recordedDate "1138" ; hg:calendarSystem ex:NepalSambat ;
+    hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
+    crm:P82a_begin_of_the_begin "2017-08-20T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2018-08-19T23:59:59"^^xsd:dateTime .
 # Conversion-error case: a month late (B.S. 2072 begun on 14 May 2015).
 ex:TS_BS_month_late a crm:E52_Time-Span ;
     rdfs:label "B.S. 2072 record begun a month late (ERROR CASE)" ;
@@ -959,41 +976,51 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
     # epoch's day: Bikram Sambat (solar) begins on 13-15 April; Nepal Sambat
     # (lunisolar) at Mha Puja, between about 13 October and 15 November. A
     # year record's interval must start inside the window of its converted CE
-    # year and last one calendar year (350-390 days: 354-384 for a lunisolar
-    # year). A year record whose year does not parse, or that lacks a bound or
-    # its calendar's offset, is reported, not skipped.
-    from datetime import date, datetime
-    NEW_YEAR_WINDOW = {"Bikram Sambat": ((4, 13), (4, 15)),
-                       "Nepal Sambat": ((10, 13), (11, 15)),
-                       "Gregorian calendar": ((1, 1), (1, 1))}
+    # year and end on the day before the window of the next year. Limitation:
+    # the Nepal Sambat window is a month wide (no per-year Mha Puja table is
+    # used), so Nepal Sambat records are checked to within about a month,
+    # Bikram Sambat records to within a day or two. A record that does not
+    # parse, lacks a bound, a calendar, a known calendar or a date precision
+    # is reported, not skipped.
+    from datetime import date, datetime, timedelta
+    EXN = "https://cair-nepal.org/heritagegraph/example/"
+    NEW_YEAR_WINDOW = {EXN + "BikramSambat": ((4, 13), (4, 15)),
+                       EXN + "NepalSambat": ((10, 13), (11, 15))}
     bad_bounds, unparseable = [], []
-    for rec, recd, cal, off, b, e in g.query(PFX + """
-        SELECT ?record ?rec ?calName ?off ?b ?e WHERE {
-          ?record hg:recordedDate ?rec ;
-                  hg:datePrecision <https://cair-nepal.org/heritagegraph/DatePrecision#Year> ;
-                  hg:calendarSystem ?cal .
-          ?cal rdfs:label ?calName .
-          OPTIONAL { ?cal hg:yearOffsetFromGregorian ?off }
+    for rec, recd, prec, cal, off, b, e in g.query(PFX + """
+        SELECT ?record ?rec ?prec ?cal ?off ?b ?e WHERE {
+          ?record hg:recordedDate ?rec .
+          OPTIONAL { ?record hg:datePrecision ?prec }
+          OPTIONAL { ?record hg:calendarSystem ?cal .
+                     OPTIONAL { ?cal hg:yearOffsetFromGregorian ?off } }
           OPTIONAL { ?record crm:P82a_begin_of_the_begin ?b }
           OPTIONAL { ?record crm:P82b_end_of_the_end ?e } }"""):
         name = str(rec).rsplit("/", 1)[-1]
+        if prec is None or cal is None:
+            unparseable.append(name)
+            continue
+        if not str(prec).endswith("#Year"):
+            continue                       # exact dates are checked by the shapes
+        if str(cal) not in NEW_YEAR_WINDOW and not str(cal).endswith("GregorianCalendar"):
+            unparseable.append(name)
+            continue
         try:
             year = int(str(recd))
         except ValueError:
             unparseable.append(name)
             continue
-        if off is None or b is None or e is None or str(cal) not in NEW_YEAR_WINDOW:
+        if off is None or b is None or e is None or year - int(off) < 1:
             unparseable.append(name)
+            continue
+        if str(cal).endswith("GregorianCalendar"):
             continue
         ce = year - int(off)
-        if ce < 1:
-            unparseable.append(name)
-            continue
         (m1, d1), (m2, d2) = NEW_YEAR_WINDOW[str(cal)]
         start = datetime.fromisoformat(str(b)).date()
         end = datetime.fromisoformat(str(e)).date()
-        in_window = date(ce, m1, d1) <= start <= date(ce, m2, d2)
-        if not (in_window and 350 <= (end - start).days <= 390):
+        starts_ok = date(ce, m1, d1) <= start <= date(ce, m2, d2)
+        ends_ok = date(ce + 1, m1, d1) - timedelta(days=1) <= end <= date(ce + 1, m2, d2) - timedelta(days=1)
+        if not (starts_ok and ends_ok):
             bad_bounds.append(name)
     q4 = sorted(bad_bounds)
     print(f"Q4 full-bound check: records whose bounds disagree with their recorded year: {q4}; "
@@ -1005,8 +1032,8 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
             [r[2] for r in q2 if r[0].startswith("Indra Jatra")] == [None],
         "Q2 Shree Panchami 2016 conflicts only with the naive record":
             [r[2] for r in q2 if r[0].startswith("Shree Panchami")] == ["TS_SP_BS_naive"],
-        "Q4 (full bounds) flags exactly the three error records":
-            q4 == ["TS_BS_month_late", "TS_BS_wrong_months", "TS_SP_BS_naive"],
+        "Q4 (full bounds) flags exactly the four error records (three BS, one NS)":
+            q4 == ["TS_BS_month_late", "TS_BS_wrong_months", "TS_NS_early", "TS_SP_BS_naive"],
         "Q4 (full bounds) accepts the correct BS 2073 and NS 1138 records":
             "TS_BS_2073" not in q4 and "TS_NS_1138" not in q4,
         "Q4 (year only) misses the wrong-month record": q4_year_only == ["TS_SP_BS_naive"],

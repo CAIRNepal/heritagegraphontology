@@ -13,8 +13,9 @@ witness (often a single one). This script measures how much the suite tests:
    answer set no longer equals its gold):
    a. ABox deletion: delete each demonstrator triple in turn.
    b. IRI swap: replace each HeritageGraph term in the query with each of its
-      siblings: the HG terms that share a direct superclass (classes) or a
-      direct superproperty (properties). A mutant that raises an error is
+      siblings: the HG terms that share a direct HeritageGraph superclass
+      (classes) or superproperty (properties); external upper-level parents
+      (prov:Entity, crm:P2_has_type, ...) do not make terms siblings. A mutant that raises an error is
       invalid, not killed; kills that return no rows at all are reported
       separately from kills that return different rows.
    c. TBox deletion: delete each rdfs:subClassOf / rdfs:subPropertyOf axiom
@@ -117,7 +118,10 @@ def main() -> int:
         term = URIRef(HG + t)
         rel = RDFS.subClassOf if t in classes else RDFS.subPropertyOf
         pool = classes if t in classes else props
-        parents = {o for o in tbox.objects(term, rel) if isinstance(o, URIRef)}
+        # HeritageGraph parents only: an upper-level external parent (prov:Entity,
+        # prov:Activity, crm:P2_has_type) would make every term a sibling
+        parents = {o for o in tbox.objects(term, rel)
+                   if isinstance(o, URIRef) and str(o).startswith(HG)}
         return {str(x)[len(HG):] for par in parents for x in tbox.subjects(rel, par)
                 if str(x).startswith(HG) and str(x)[len(HG):] in pool} - {t}
 

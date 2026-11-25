@@ -13,7 +13,7 @@ authors (the rationale is kept as comments in ontology/HeritageGraph.yaml and
 the module), so mapping_justification is semapv:ManualMappingCuration.
 reviewer_label is set only when an independent rater has accepted the mapping in
 evaluation/mapping_rater_verdicts.csv (verdict accept / reject / revise); a rejected mapping
-is not published, and the generator never fills in a verdict itself. Deprecated terms
+is left out of the SSSOM set (it stays in the ontology until its authors change it), and the generator never fills in a verdict itself. Deprecated terms
 are skipped, and a mapping stated in both the core and the LUX module is one row.
 """
 from __future__ import annotations
@@ -121,6 +121,9 @@ def build() -> str:
     for sid, label, pid, oid in rows:
         v = verdicts.get((sid, pid, oid), {})
         verdict = v.get("verdict", "").strip().lower()
+        if verdict and verdict not in ("accept", "reject", "revise"):
+            print(f"WARNING: unknown rater verdict {verdict!r} for {sid} {pid} {oid} "
+                  f"(use accept, reject or revise); published without a reviewer", file=sys.stderr)
         if verdict == "reject":
             continue  # a rater rejected the mapping: not published
         comment = "stated in: " + ", ".join(sorted(sources[(sid, label, pid, oid)]))
