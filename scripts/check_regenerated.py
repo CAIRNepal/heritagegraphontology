@@ -19,7 +19,7 @@ from rdflib import BNode, Graph
 
 ROOT = Path(__file__).resolve().parents[1]
 RDF_FILES = ["ontology/HeritageGraph.ttl", "ontology/HeritageGraph.shacl.ttl",
-             "ontology/HeritageGraph-crm-prov-bridge.ttl"]
+             "ontology/HeritageGraph-crm-prov-bridge.ttl", "ontology/review.owl"]
 JSON_FILES = ["ontology/HeritageGraph.schema.json"]
 TEXT_FILES = ["cq_sparql.md", "ontology/mappings/HeritageGraph.sssom.tsv"]
 
@@ -36,14 +36,20 @@ def canon(g: Graph) -> set[str]:
             return "[" + ";".join(sorted(f"{p} {node(o, depth + 1)}"
                                          for p, o in g.predicate_objects(n))) + "]"
         return n.n3()
-    return {f"{s.n3()} {p} {node(o)}" for s, p, o in g
-            if not isinstance(s, BNode) and "modified" not in str(p)}
+    out = {f"{s.n3()} {p} {node(o)}" for s, p, o in g
+           if not isinstance(s, BNode) and "modified" not in str(p)}
+    # top-level blank nodes (no triple points to them, e.g. [] a owl:AllDisjointClasses)
+    referenced = {o for o in g.objects() if isinstance(o, BNode)}
+    for b in {s for s in g.subjects() if isinstance(s, BNode)} - referenced:
+        out.add("TOP " + node(b))
+    return out
 
 
 ok = True
 for f in RDF_FILES:
-    a = canon(Graph().parse(data=committed(f), format="turtle"))
-    b = canon(Graph().parse(ROOT / f, format="turtle"))
+    fmt = "xml" if f.endswith(".owl") else "turtle"
+    a = canon(Graph().parse(data=committed(f), format=fmt))
+    b = canon(Graph().parse(ROOT / f, format=fmt))
     same = a == b
     ok &= same
     print(f"  [{'OK' if same else 'DIFFERS'}] {f}" + ("" if same else

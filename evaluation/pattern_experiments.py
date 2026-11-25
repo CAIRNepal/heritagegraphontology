@@ -1023,7 +1023,7 @@ ex:TS_BS_wrong_months a crm:E52_Time-Span ;
         starts_ok = date(ce, m1, d1) <= start <= date(ce, m2, d2)
         ends_ok = date(ce + 1, m1, d1) - timedelta(days=1) <= end <= date(ce + 1, m2, d2) - timedelta(days=1)
         lo, hi = LENGTH.get(str(cal), (0, 10**6))
-        if not (starts_ok and ends_ok and lo <= (end - start).days <= hi):
+        if not (starts_ok and ends_ok and lo <= (end - start).days + 1 <= hi):   # days in the year
             bad_bounds.append(name)
     q4 = sorted(bad_bounds)
     print(f"Q4 full-bound check: records whose bounds disagree with their recorded year: {q4}; "

@@ -1904,6 +1904,32 @@ def allow_single_string(js: dict, sv: SchemaView) -> None:
     print(f"JSON Schema: {n} multivalued text field(s) also accept a single string")
 
 
+XSD_DATETIME = (r"^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]+)?"
+                r"(Z|[+-][0-9]{2}:[0-9]{2})?$")
+
+
+def relax_datetime(js: dict) -> None:
+    """JSON Schema's "format": "date-time" is RFC 3339, which requires a time
+    zone offset; the RDF values are xsd:dateTime, where the offset is optional
+    (the demonstrator's dates have none), so valid data was refused. Each
+    date-time field takes the xsd:dateTime lexical form instead."""
+    n = 0
+    def walk(node):
+        nonlocal n
+        if isinstance(node, dict):
+            if node.get("format") == "date-time":
+                del node["format"]
+                node["pattern"] = XSD_DATETIME
+                n += 1
+            for v in node.values():
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+    walk(js)
+    print(f"JSON Schema: {n} date-time field(s) take the xsd:dateTime form (offset optional)")
+
+
 def gen_json_schema() -> None:
     out = ROOT / "ontology" / "HeritageGraph.schema.json"
     # generated from the serialization wrapper (core schema + Container/Metadata);
@@ -1921,6 +1947,7 @@ def gen_json_schema() -> None:
     js["$id"], js["title"] = core["id"], core["name"]
     csv = SchemaView(str(CONTAINER_SCHEMA))
     resolve_abstract_refs(js, csv)
+    relax_datetime(js)
     allow_single_string(js, csv)
     out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")

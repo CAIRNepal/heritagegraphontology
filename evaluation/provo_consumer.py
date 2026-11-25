@@ -16,7 +16,8 @@ cases with the HeritageGraph vocabulary deliberately withheld:
      from the bridge; hg:DataSource rdfs:subClassOf prov:Entity, from the
      core) materialise PROV-level types. Without the bridge (the core alone
      states nothing about CRM classes) the CRM-typed believers and actors are
-     not PROV agents: the bridge is what a PROV-O-only consumer loads.
+     not PROV agents. (A consumer that loads PROV-O itself gets the same types
+     from PROV-O's own domains and ranges; this test loads the bridge instead.)
      Three queries mentioning ONLY prov: terms (plus rdfs:label) then
      retrieve the beliefs with their attribution, derivation, and
      generation times.

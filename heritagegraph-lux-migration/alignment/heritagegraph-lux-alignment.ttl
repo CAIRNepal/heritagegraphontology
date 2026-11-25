@@ -67,7 +67,9 @@
 <https://cair-nepal.org/heritagegraph/alignment/lux> a owl:Ontology ;
     rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ;
     dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. Updated July 2026 to track the alpha5 core-ontology regeneration (12 classes now identity-mapped to external CRM/PROV URIs instead of separate hg: wrappers)."@en ;
-    dct:creator "Semih Yumuşak" , "Niraj Karki" ;
+    dct:creator "Semih Yumusak" , "Niraj Karki" ;
+    dct:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+    rdfs:comment "Licensed under Apache-2.0 (the heritagegraph-lux-migration folder), unlike the core ontology (CC BY 4.0). Terms in the HeritageGraph namespace that this module mints are marked rdfs:isDefinedBy this module."@en ;
     owl:imports <https://cair-nepal.org/heritagegraph/ontology> .
 
 #####################################################################
@@ -1165,3 +1167,103 @@ sci:O19i_was_object_encountered_at a owl:ObjectProperty .
 crm:P90_has_value a owl:DatatypeProperty .
 
 # end of file
+
+#####################################################################
+# 8. TERMS THIS MODULE DEFINES (1.1.0)
+#    These IRIs are in the HeritageGraph namespace but are defined by this
+#    module, not by the core ontology; rdfs:isDefinedBy says so. (Their
+#    IRIs are kept: LUX migration data and reports already use them.)
+#####################################################################
+hg:Acquisition rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Activity rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Appellation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:AttributeAssignment rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:AuthorityDocument rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:BeginningOfExistence rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:BiologicalObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Birth rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Concept rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Creation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:CuratedHolding rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:CurationActivity rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Currency rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Death rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:DigitalObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:DigitalService rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Dimension rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Dissolution rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Encounter rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:EndOfExistence rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Formation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Group rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Identifier rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:IdentifierAssignment rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Inscription rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Joining rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Language rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Leaving rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:LegalObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:LinguisticObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Mark rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Measurement rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:MeasurementUnit rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Modification rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:MonetaryAmount rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Move rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Name rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:PartAddition rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:PartRemoval rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Payment rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Period rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:PhysicalFeature rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Presence rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:ProductType rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:PropositionalObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:ProvenanceActivity rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Purchase rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Right rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:RightAcquisition rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Set rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:SetAddition rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:SetRemoval rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Site rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Title rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Transfer rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:Transformation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:TypeAssignment rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:TypeCreation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:VisualItem rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:aboutProposition rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:acquisitionAmount rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:amountInCurrency rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:carriesInscription rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:diedInEvent rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:digitallyAvailableVia rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:dimensionHasUnit rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:dissolvedBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasDataCustodian rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasDigitalRepresentation rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasDimension rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasLanguage rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasMetadata rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasRight rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:hasVisualItem rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:holdsItem rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:identifiedByIdentifier rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:identifiedByName rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:identifiedByTitle rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:measurementObserves rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:memberOfSet rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:occursDuringPeriod rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:paidAmount rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:paidFrom rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:paidTo rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:subjectToLegalObject rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:transferredThing rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasAcquiredThrough rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasBornBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasEncounteredIn rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasFormedBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasMeasuredBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasModifiedBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .
+hg:wasMovedBy rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux> .

@@ -131,7 +131,7 @@ PROP_ROWS = [
     ('took_place_at', 'Place', 'took_place_at', 'crm:P7_took_place_at', 'identity (direct URI reuse)', ''),
     ('has_timespan', 'TimeSpan', 'timespan', 'crm:P4_has_time-span', 'identity (direct URI reuse)', ''),
     ('has_current_location', 'Place', 'current_location', 'crm:P55_has_current_location', 'identity (direct URI reuse)', ''),
-    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55",                      "subPropertyOf",   "Provenance assertion needed for hypothetical."),
+    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55",                      "relatedMatch",    "A hypothesis, not the current location: model it as a provenance assertion (crminf:I2 about a P53 location)."),
     ('has_component', 'ArchitecturalElement', 'part', 'crm:P46_is_composed_of', 'identity (direct URI reuse)', 'P46 for physical (P106 for visual/linguistic).'),
     ('is_component_of', 'ArchitecturalStructure', 'part_of', 'crm:P46i_forms_part_of', 'identity (direct URI reuse)', ''),
     ('contains_structure', 'ArchitecturalStructure', '(no LUX alias)', 'crm:P59i_is_located_on_or_within', 'none (v1.0.0 uses crm:P53i_is_former_or_current_location_of)', ''),

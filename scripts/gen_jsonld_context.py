@@ -65,15 +65,17 @@ def main() -> int:
 
     terms: "OrderedDict[str, object]" = OrderedDict()
 
+    deprecated = {s for s in g.subjects(OWL.deprecated, None)}
     classes = sorted(str(s) for s in g.subjects(RDF.type, OWL.Class)
                      if isinstance(s, URIRef) and str(s).startswith(HG)
-                     and "/scheme/" not in str(s))
+                     and "/scheme/" not in str(s) and s not in deprecated)
     for c in classes:
         terms[local(c)] = f"hg:{local(c)}"
 
     def add_props(prop_type, is_object):
         props = sorted(str(s) for s in g.subjects(RDF.type, prop_type)
-                       if isinstance(s, URIRef) and str(s).startswith(HG))
+                       if isinstance(s, URIRef) and str(s).startswith(HG)
+                       and s not in deprecated)   # deprecated stubs (e.g. hg:license) are not mapped
         for p in props:
             name = local(p)
             if name in terms:

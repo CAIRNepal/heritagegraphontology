@@ -217,9 +217,14 @@ def run_evaluation():
     g.parse(str(ONTOLOGY_FILE), format="turtle")
     log(f"  Parsed {len(g)} triples")
 
-    # --- Try OOPS! online ---
+    # --- Try OOPS! online (not with --local: that sends the ontology to an
+    # external service, which an unreleased version should not be) ---
     log(section("OOPS! Online Service"))
-    xml_response = try_oops_online(RDFXML_FILE.read_text(encoding="utf-8"))
+    if "--local" in sys.argv:
+        xml_response = None
+        log("  --local: the ontology was NOT submitted to the OOPS! service.")
+    else:
+        xml_response = try_oops_online(RDFXML_FILE.read_text(encoding="utf-8"))
 
     if xml_response:
         xml_path = RESULTS_DIR / "oops_response.xml"
@@ -227,11 +232,14 @@ def run_evaluation():
         log(f"  ✅ OOPS! response saved to: {xml_path}")
         log(f"  Response size: {len(xml_response)} chars")
         log("  → Open the XML file to review detected pitfalls.")
-    else:
+    elif "--local" not in sys.argv:
         log("  ⚠️  OOPS! online service not available.")
 
     # --- Local heuristic scan (always run) ---
     log(section("Local Heuristic Pitfall Scan"))
+    log("  NOTE: this is a local heuristic re-implementation of a subset of the OOPS!")
+    log("  pitfall catalogue (P04, P08, P10, P11, P13, P19, P22, P41), NOT a run of the")
+    log("  OOPS! service; its counts are not OOPS! results and must not be cited as such.")
     pitfalls = local_pitfall_scan(g)
 
     severity_order = {"Critical": 0, "Important": 1, "Minor": 2}

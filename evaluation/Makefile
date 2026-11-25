@@ -45,7 +45,7 @@ independent: setup ## SHACL conformance + negative tests (independent_eval.py wa
 	$(PYTHON) independent_abox.py
 	@echo ""
 
-quality: all ## Run evaluations + copy to release/
+quality: setup all ## Run evaluations + copy to release/
 	@echo "Building release quality report..."
 	cd .. && $(CURDIR)/$(PYTHON) scripts/run_release_quality.py
 	@echo ""

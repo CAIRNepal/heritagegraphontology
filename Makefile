@@ -57,15 +57,22 @@ check: $(ROBOT_JAR)  ## release gates: generator unit tests, YAML/TTL sync, arte
 	python3 evaluation/pattern_experiments.py tenure
 	python3 evaluation/pattern_experiments.py custodianship
 
-reproduce: $(ROBOT_JAR)  ## everything the paper reports: regenerate, compare with the committed artefacts, all release gates, mutation analysis, metric reports
+reproduce: $(ROBOT_JAR)  ## (first run fetches CIDOC-CRM, CRMinf, CRMsci, PROV-O and ROBOT) everything the paper reports: regenerate, compare with the committed artefacts, all release gates, mutation analysis, metric reports
 	$(MAKE) artefacts
-	git checkout -- docs  # docs/ is rebuilt at release; its regeneration is not compared here
+	git checkout -- docs && git clean -fq docs  # docs/ (HTML, JSON-LD context, release copies) is rebuilt at release, not compared here; uncommitted edits under docs/ are discarded
 	python3 scripts/check_regenerated.py
 	$(MAKE) check
 	$(MAKE) coverage
 	python3 evaluation/run_metrics.py
 	python3 evaluation/run_alignment.py
 	python3 evaluation/mapping_audit.py
+	python3 evaluation/run_abox_cq32.py --entailment
+	python3 evaluation/mapping_audit.py negative-control
+	python3 evaluation/pattern_experiments.py ablation
+	python3 evaluation/pattern_experiments.py sameas
+	python3 evaluation/pattern_experiments.py supersession
+	python3 evaluation/run_oops.py --local
+	python3 scripts/gen_paper_macros.py
 
 coverage:            ## CQ traceability matrix and mutation analysis (report, ~2 min)
 	python3 evaluation/cq_coverage.py

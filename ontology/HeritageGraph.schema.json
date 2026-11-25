@@ -92,11 +92,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -167,11 +167,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -310,11 +310,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -393,11 +393,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -591,11 +591,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -772,11 +772,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -871,11 +871,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -1097,11 +1097,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -1180,11 +1180,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -1345,11 +1345,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -1543,11 +1543,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -1668,11 +1668,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -1704,11 +1704,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "used": {
                     "description": "Entity used by this activity.",
@@ -1778,11 +1778,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_condition_type": {
                     "$ref": "#/$defs/ConditionType",
@@ -1916,11 +1916,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -2111,11 +2111,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -2450,11 +2450,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "guthis": {
                     "description": "Collection of Guthi instances",
@@ -2967,11 +2967,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_assertion": {
                     "description": "Provenance-bearing assertion made about this entity or event.",
@@ -3226,11 +3226,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -3375,11 +3375,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_religious_tradition": {
                     "description": "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)",
@@ -3532,11 +3532,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -3585,11 +3585,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -3708,11 +3708,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -3791,11 +3791,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -3980,11 +3980,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -4063,11 +4063,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -4221,11 +4221,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -4257,11 +4257,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "used": {
                     "description": "Entity used by this activity.",
@@ -4369,11 +4369,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_assertion": {
                     "description": "Provenance-bearing assertion made about this entity or event.",
@@ -4489,11 +4489,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "endowment_donor": {
                     "description": "Person or group who gave the property (the donor in a founding or augmentation).",
@@ -4570,11 +4570,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -4682,11 +4682,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "enshrined_deity": {
                     "description": "Deity installed through enshrinement",
@@ -4887,11 +4887,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -5026,11 +5026,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -5221,11 +5221,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -5339,11 +5339,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -5537,11 +5537,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -5648,11 +5648,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -5684,11 +5684,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "used": {
                     "description": "Entity used by this activity.",
@@ -5820,11 +5820,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -6080,11 +6080,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_assertion": {
                     "description": "Provenance-bearing assertion made about this entity or event.",
@@ -6276,11 +6276,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -6329,11 +6329,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -6410,11 +6410,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -6485,11 +6485,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_condition_assessment": {
                     "description": "Condition assessment events for this structure",
@@ -6631,11 +6631,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_condition_assessment": {
                     "description": "Condition assessment events for this structure",
@@ -6832,11 +6832,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -7014,11 +7014,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "enthroned_person": {
                     "description": "Girl enthroned as Kumari.",
@@ -7206,11 +7206,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -7351,11 +7351,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -7434,11 +7434,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -7606,11 +7606,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "ended_tenure_of": {
                     "description": "The Living Goddess tenure that this event terminated",
@@ -7792,11 +7792,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Where the retirement ceremony occurred",
@@ -7896,11 +7896,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -8033,11 +8033,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -8243,11 +8243,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -8368,11 +8368,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "had_participant": {
                     "description": "Other actors taking part in the tenure without holding it (1.0.x data gave the holder here; use tenure_holder)",
@@ -8565,11 +8565,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -8657,11 +8657,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -8855,11 +8855,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -8956,11 +8956,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -9076,11 +9076,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated_date": {
                     "description": "Date the dataset serialization was generated (ISO 8601).",
@@ -9189,11 +9189,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_condition_assessment": {
                     "description": "Condition assessment events for this structure",
@@ -9362,11 +9362,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -9471,11 +9471,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -9507,11 +9507,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "used": {
                     "description": "Entity used by this activity.",
@@ -9643,11 +9643,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -9821,11 +9821,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -9904,11 +9904,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -10062,11 +10062,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_condition_assessment": {
                     "description": "Condition assessment events for this structure",
@@ -10347,11 +10347,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -10422,11 +10422,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -10507,11 +10507,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -10644,11 +10644,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -10727,11 +10727,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -10895,11 +10895,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -10948,11 +10948,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -11049,11 +11049,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -11193,11 +11193,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -11276,11 +11276,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -11424,11 +11424,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -11564,11 +11564,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -11647,11 +11647,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -11812,11 +11812,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -12000,11 +12000,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -12101,11 +12101,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -12267,11 +12267,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -12350,11 +12350,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -12498,11 +12498,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -12637,11 +12637,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -12777,11 +12777,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -12860,11 +12860,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -13029,11 +13029,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -13075,11 +13075,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "syncretic_type": {
                     "$ref": "#/$defs/SyncreticType",
@@ -13176,11 +13176,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -13326,11 +13326,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -13409,11 +13409,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -13557,11 +13557,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_assertion": {
                     "description": "Provenance-bearing assertion made about this entity or event.",
@@ -13713,11 +13713,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -13795,19 +13795,19 @@
                 },
                 "date_earliest": {
                     "description": "Earliest possible date, always in the proleptic Gregorian calendar (xsd:dateTime); for a date recorded in another calendar, the start of its converted Gregorian interval (see recorded_date).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "date_latest": {
                     "description": "Latest possible date, always in the proleptic Gregorian calendar (xsd:dateTime); for a date recorded in another calendar, the end of its converted Gregorian interval (see recorded_date).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "date_precision": {
                     "$ref": "#/$defs/DatePrecision",
@@ -13825,11 +13825,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "id": {
                     "description": "Globally unique URI identifier",
@@ -13907,11 +13907,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -13943,11 +13943,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "took_place_at": {
                     "description": "Place where the event occurred",
@@ -14066,11 +14066,11 @@
                 },
                 "ended_at_time": {
                     "description": "Time at which this activity ended.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "generated": {
                     "description": "Entity generated by this activity.",
@@ -14119,11 +14119,11 @@
                 },
                 "started_at_time": {
                     "description": "Time at which this activity started.",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "used": {
                     "description": "Entity used by this activity.",
@@ -14285,11 +14285,11 @@
                 },
                 "generated_at_time": {
                     "description": "Time at which this entity was generated (ISO 8601).",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "has_architectural_style": {
                     "$ref": "#/$defs/ArchitecturalStyle",
@@ -14368,11 +14368,11 @@
                 },
                 "last_known_existence_date": {
                     "description": "Latest date when this structure is documented as existing (ISO 8601)",
-                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
-                    ]
+                    ],
+                    "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
                 },
                 "managed_by_guthi": {
                     "description": "Guthi organization managing this structure or ritual",
@@ -14757,11 +14757,11 @@
         },
         "generated_at_time": {
             "description": "Time at which this entity was generated (ISO 8601).",
-            "format": "date-time",
             "type": [
                 "string",
                 "null"
-            ]
+            ],
+            "pattern": "^-?[0-9]{4,}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\\\.[0-9]+)?(Z|[+-][0-9]{2}:[0-9]{2})?$"
         },
         "guthis": {
             "description": "Collection of Guthi instances",

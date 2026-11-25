@@ -278,8 +278,10 @@ def run_evaluation():
     shapes = Graph()
     shapes.parse(SCRIPT_DIR.parent / "ontology" / "HeritageGraph.shacl.ttl", format="turtle")
     SHNS = "http://www.w3.org/ns/shacl#"
+    enum_classes = {c for c in g.subjects(OWL.oneOf, None) if str(c).startswith(str(HG))}
     live = {
-        "classes_heritagegraph": len(hg_classes),
+        "classes_heritagegraph": len([c for c in hg_classes if c not in enum_classes]),
+        "enumerations_heritagegraph": len(enum_classes),
         "classes_external": len(ext_classes),
         "object_properties_heritagegraph": len(hg_obj),
         "object_properties_external": len(obj_props) - len(hg_obj),
