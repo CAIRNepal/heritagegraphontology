@@ -26,7 +26,7 @@ All figures on this page are produced by one command from a clean checkout of th
 
 - **32 of 32** competency questions return exactly their expected answers over the demonstrator data, both as asserted and under OWL 2 RL entailment; a deliberately broken query is detected (negative control).
 - By dimension: Institutional/Syncretic 7, Living Goddess 7, Ritual/Festival 12, Structural 6.
-- **Inference questions**: 4 questions are answered only with HeritageGraph's axioms (empty over the asserted data and over the external vocabularies alone):
+- **Inference questions**: 4 questions whose answers grow only with HeritageGraph's axioms: each returns fewer answers over the asserted data and over the external vocabularies alone (each frozen set checked) than with HeritageGraph:
 
   - IQ1 (6 answers, PASS): Which groups performed which rituals, as a CIDOC-CRM-only client sees them (crm:P14i)?
   - IQ2 (22 answers, PASS): Which PROV activities are recorded, as a PROV-O-only client sees them?
@@ -50,16 +50,16 @@ All figures on this page are produced by one command from a clean checkout of th
 ## Data validation (SHACL)
 
 - 6 example data sets each have their expected validation outcome.
-- **26 negative tests**, each a single injected error (a missing required value, a value of the wrong class or datatype, a value outside a controlled vocabulary, a time-span ending before it begins, two labels in one language, a misspelt property, a conflicting belief without a rival, ...), are all caught, each by the expected constraint on the expected property.
+- **26 negative tests**, each a single injected error (a missing required value, a value of the wrong class or datatype, a value outside a controlled vocabulary, a time-span ending before it begins, two labels in one language, a misspelt property, a conflicting belief without a rival, ...), are all caught, each by the expected constraint (on the expected property, or on the node for the three node-level rules).
 - The shapes are open, so data may use other vocabularies; three SHACL-SPARQL rules check what open shapes cannot (an undeclared or deprecated HeritageGraph property, a conflicting belief without a rival).
 
 ## Modelling experiments
 
 - **Tenure** against the CIDOC-CRM role idiom (property of property P14.1) and the Wikidata P39 idiom: the same questions over the same facts, compared on answers and query size.
-- **Custodianship and endowment**: a Guthi endowment that sustains an office and a ritual, a custody chain, and their questions.
+- **Custodianship and endowment**: an endowment held by a state heritage body that sustains a festival, a hereditary office held under that body's mandate, and a custody chain from a Guthi to the state body, with their questions.
 - **Multiple calendars**: Bikram Sambat and Nepal Sambat dates converted to Gregorian bounds with full new-year windows, checked against positive and negative controls.
 - **Reuse outside Nepal**: the generic Tenure pattern describes a church office and a museum custody period with no Nepal-specific term, and one query answers both.
-- **PROV-O consumer**: a client that knows only PROV-O traverses every recorded belief to its agent and source.
+- **PROV-O consumer**: queries that use only PROV-O terms traverse every recorded belief to its agent and source, over the data with the HeritageGraph TBox and the optional CRM-PROV bridge (which makes CRM-typed agents PROV agents).
 
 ## Known limitations
 

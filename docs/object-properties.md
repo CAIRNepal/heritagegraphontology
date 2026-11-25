@@ -813,10 +813,10 @@ Actor(s) participating in this period, situation or ritual without carrying it o
 
 | | |
 |---|---|
-| Domain | [Ritual Event](classes.md#ritualevent); [Kumari Tenure](classes.md#kumaritenure) |
+| Domain | [Kumari Tenure](classes.md#kumaritenure); [Ritual Event](classes.md#ritualevent) |
 | Range | [Actor](classes.md#e39_actor) |
 | Used in | used in axioms of [Kumari Tenure](classes.md#kumaritenure); used in axioms of [Ritual Event](classes.md#ritualevent) |
-| domainIncludes | hg:RitualEvent; hg:KumariTenure |
+| domainIncludes | hg:KumariTenure; hg:RitualEvent |
 
 ### has access protocol
 
@@ -828,7 +828,7 @@ Cultural access protocol for the thing or its record (e.g. restricted to initiat
 |---|---|
 | Super-properties | [Access Rights](object-properties.md#accessrights) |
 | Domain | [Transfer of Custody](classes.md#e10_transfer_of_custody) *or* [Production](classes.md#e12_production) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Human-Made Object](classes.md#e22_human-made_object) *or* [Design or Procedure](classes.md#e29_design_or_procedure) *or* [Condition State](classes.md#e3_condition_state) *or* [Time-Span](classes.md#e52_time-span) *or* [Place](classes.md#e53_place) *or* [Material](classes.md#e57_material) *or* [Destruction](classes.md#e6_destruction) *or* [Belief](classes.md#i2_belief) *or* [Architectural Element](classes.md#architecturalelement) *or* [Calendar System](classes.md#calendarsystem) *or* [Data Source](classes.md#datasource) *or* [Deity](classes.md#deity) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Endowment](classes.md#endowment) *or* [Endowment Event](classes.md#endowmentevent) *or* [Historical Event](classes.md#historicalevent) *or* [Office](classes.md#office) *or* [Physical Heritage Thing](classes.md#physicalheritagething) *or* [Proposition](classes.md#proposition) *or* [Religious Tradition](classes.md#religioustradition) *or* [Ritual Event](classes.md#ritualevent) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Structure Type](classes.md#structuretype) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Tenure](classes.md#tenure) |
-| Range | [Access Protocol](classes.md#accessprotocol) |
+| Range | [Access Protocol](classes.md#accessprotocol-2) |
 
 ### Has architectural style
 
@@ -878,7 +878,7 @@ Categorization of the condition state.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Condition State](classes.md#e3_condition_state) |
-| Range | [Condition Type](classes.md#conditiontype-2) |
+| Range | [Condition Type](classes.md#conditiontype) |
 
 ### Has criterion
 
@@ -958,7 +958,7 @@ The level of precision for a recorded date.
 | | |
 |---|---|
 | Domain | [Time-Span](classes.md#e52_time-span) |
-| Range | [Date Precision](classes.md#dateprecision-2) |
+| Range | [Date Precision](classes.md#dateprecision) |
 
 ### has destruction event
 
@@ -1010,7 +1010,7 @@ Type of Guthi (Si, Jatra, Temple).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Guthi](classes.md#guthi) |
-| Range | [Guthi Type](classes.md#guthitype-2) |
+| Range | [Guthi Type](classes.md#guthitype) |
 | Used in | used in axioms of [Guthi](classes.md#guthi) |
 | domainIncludes | hg:Guthi |
 
@@ -1065,10 +1065,10 @@ Religious tradition(s) within which this deity is venerated, or which use this s
 | | |
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
-| Domain | [Architectural Structure](classes.md#architecturalstructure); [Deity](classes.md#deity) |
+| Domain | [Deity](classes.md#deity); [Architectural Structure](classes.md#architecturalstructure) |
 | Range | [Religious Tradition](classes.md#religioustradition) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Deity](classes.md#deity) |
-| domainIncludes | hg:ArchitecturalStructure; hg:Deity |
+| domainIncludes | hg:Deity; hg:ArchitecturalStructure |
 
 ### has ritual type
 
@@ -1080,7 +1080,7 @@ Classification of ritual (puja, jatra, consecration).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Ritual Event](classes.md#ritualevent) |
-| Range | [Ritual Type](classes.md#ritualtype-2) |
+| Range | [Ritual Type](classes.md#ritualtype) |
 | Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
 | domainIncludes | hg:RitualEvent |
 
@@ -1108,7 +1108,7 @@ The typological nature of the syncretism (e.g., Ontological Identity, Functional
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Syncretic Relationship](classes.md#syncreticrelationship) |
-| Range | [Syncretic Type](classes.md#syncretictype-2) |
+| Range | [Syncretic Type](classes.md#syncretictype) |
 | Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
 | domainIncludes | hg:SyncreticRelationship |
 
@@ -1413,10 +1413,10 @@ Guthi organization managing this structure or ritual.
 
 | | |
 |---|---|
-| Domain | [Architectural Structure](classes.md#architecturalstructure); [Ritual Event](classes.md#ritualevent) |
+| Domain | [Ritual Event](classes.md#ritualevent); [Architectural Structure](classes.md#architecturalstructure) |
 | Range | [Guthi](classes.md#guthi) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Ritual Event](classes.md#ritualevent) |
-| domainIncludes | hg:ArchitecturalStructure; hg:RitualEvent |
+| domainIncludes | hg:RitualEvent; hg:ArchitecturalStructure |
 
 ### Mandated by
 

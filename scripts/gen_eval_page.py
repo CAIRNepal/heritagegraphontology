@@ -97,8 +97,9 @@ def main() -> int:
       f"demonstrator data, both as asserted and under OWL 2 RL entailment; a deliberately broken query "
       f"is detected (negative control).")
     w("- By dimension: " + ", ".join(f"{d} {n}" for d, n in sorted(dims.items())) + ".")
-    w(f"- **Inference questions**: {len(iq)} questions are answered only with HeritageGraph's axioms "
-      f"(empty over the asserted data and over the external vocabularies alone):")
+    w(f"- **Inference questions**: {len(iq)} questions whose answers grow only with HeritageGraph's "
+      f"axioms: each returns fewer answers over the asserted data and over the external vocabularies alone "
+      f"(each frozen set checked) than with HeritageGraph:")
     w("")
     for l in iq:
         mt = re.match(r"^(IQ\d) \[(\w+)\].*with-HG=(\d+)\s+(.*)$", l)
@@ -125,7 +126,8 @@ def main() -> int:
     w(f"- **{m['NegativeTests']} negative tests**, each a single injected error (a missing required value, "
       f"a value of the wrong class or datatype, a value outside a controlled vocabulary, a time-span "
       f"ending before it begins, two labels in one language, a misspelt property, a conflicting belief "
-      f"without a rival, ...), are all caught, each by the expected constraint on the expected property.")
+      f"without a rival, ...), are all caught, each by the expected constraint (on the expected property, or on "
+      f"the node for the three node-level rules).")
     w("- The shapes are open, so data may use other vocabularies; three SHACL-SPARQL rules check what open "
       "shapes cannot (an undeclared or deprecated HeritageGraph property, a conflicting belief without a "
       "rival).")
@@ -134,14 +136,16 @@ def main() -> int:
     w("")
     w("- **Tenure** against the CIDOC-CRM role idiom (property of property P14.1) and the Wikidata P39 "
       "idiom: the same questions over the same facts, compared on answers and query size.")
-    w("- **Custodianship and endowment**: a Guthi endowment that sustains an office and a ritual, a custody "
-      "chain, and their questions.")
+    w("- **Custodianship and endowment**: an endowment held by a state heritage body that sustains a "
+      "festival, a hereditary office held under that body's mandate, and a custody chain from a Guthi to "
+      "the state body, with their questions.")
     w("- **Multiple calendars**: Bikram Sambat and Nepal Sambat dates converted to Gregorian bounds with "
       "full new-year windows, checked against positive and negative controls.")
     w("- **Reuse outside Nepal**: the generic Tenure pattern describes a church office and a museum "
       "custody period with no Nepal-specific term, and one query answers both.")
-    w("- **PROV-O consumer**: a client that knows only PROV-O traverses every recorded belief to its "
-      "agent and source.")
+    w("- **PROV-O consumer**: queries that use only PROV-O terms traverse every recorded belief to its "
+      "agent and source, over the data with the HeritageGraph TBox and the optional CRM-PROV bridge (which "
+      "makes CRM-typed agents PROV agents).")
     w("")
     w("## Known limitations")
     w("")
