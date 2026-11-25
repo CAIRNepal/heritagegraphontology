@@ -1682,7 +1682,8 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
         fixed.append(f"{where} ({target})")
 
     for owner, props, inlined in ([("Container", js.get("properties", {}), True)] +
-                                  [(c, d.get("properties", {}), False) for c, d in defs.items()]):
+                                  [(c, d.get("properties", {}), c == "Container")
+                                   for c, d in defs.items()]):
         for pname, pdef in props.items():
             if "$ref" in pdef:
                 repair(props, pname, inlined, f"{owner}.{pname}")
@@ -1694,23 +1695,13 @@ def resolve_abstract_refs(js: dict, sv: SchemaView) -> None:
     print(f"JSON Schema: resolved {len(fixed)} reference(s) to classes with no $defs entry")
 
 
-# BCP 47 language tag (simplified: language, then subtags)
-BCP47 = "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-
-
-def allow_language_maps(js: dict, sv: SchemaView) -> None:
-    """B1 in JSON: a human-language text field (a string slot that is not
-    lexical_form code/any_literal) also accepts a JSON-LD language map,
-    {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}, the JSON form of RDF
-    language-tagged strings (JSON-LD 1.1, @container @language). A plain
-    string stays valid, so existing instances still validate. A multivalued
-    text field (note) takes a string, an array of strings, or a language map
-    whose values are a string or an array of strings."""
-    one = {"type": "object", "minProperties": 1, "propertyNames": {"pattern": BCP47},
-           "additionalProperties": {"type": "string"}}
-    many = {"type": "object", "minProperties": 1, "propertyNames": {"pattern": BCP47},
-            "additionalProperties": {"anyOf": [{"type": "string"},
-                                               {"type": "array", "items": {"type": "string"}}]}}
+def allow_single_string(js: dict, sv: SchemaView) -> None:
+    """A text field made multivalued in 1.1.0 (note, and source_citation
+    through is_a note) is an array in the generated JSON Schema; 1.0.x data
+    gave it as one string. Accept a single string as well, so every 1.0.x
+    instance still validates. JSON values are plain strings: language-tagged
+    text is an RDF-level feature (tagged literals, checked by the SHACL
+    shapes), with no JSON form in this schema."""
     classes = sv.all_classes()
     n = 0
     for cname, cdef in js.get("$defs", {}).items():
@@ -1721,27 +1712,18 @@ def allow_language_maps(js: dict, sv: SchemaView) -> None:
                 sl = sv.induced_slot(pname, cname)
             except ValueError:
                 continue
-            # explicit string range only: a slot with any_of (was_influenced_by:
-            # Entity | Activity | Agent) has no range and falls back to the
-            # default string, but its values are references
-            if sl.range != "string" or sl.any_of or sl.exactly_one_of or not sl.slot_uri:
+            if (not sl.multivalued or sl.range != "string" or sl.any_of
+                    or sl.exactly_one_of or not sl.slot_uri):
                 continue
             if uri_for(sv, str(sl.slot_uri)) in CODE_VALUED | ANY_LITERAL:
                 continue
-            desc = pdef.get("description")
-            if sl.multivalued:
-                alts = [{"type": "string"}, {"type": "array", "items": {"type": "string"}}, many]
-            else:
-                alts = [{"type": "string"}, one]
-            if sl.required:
-                new = {"anyOf": alts}
-            else:
-                new = {"anyOf": alts + [{"type": "null"}]}
-            if desc:
-                new = {"description": desc, **new}
+            alts = [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]
+            new = {"anyOf": alts if sl.required else alts + [{"type": "null"}]}
+            if pdef.get("description"):
+                new = {"description": pdef["description"], **new}
             cdef["properties"][pname] = new
             n += 1
-    print(f"JSON Schema: {n} text field(s) also accept a JSON-LD language map")
+    print(f"JSON Schema: {n} multivalued text field(s) also accept a single string")
 
 
 def gen_json_schema() -> None:
@@ -1749,8 +1731,8 @@ def gen_json_schema() -> None:
     # generated from the serialization wrapper (core schema + Container/Metadata);
     # $id and title stay those of the core schema so the published JSON Schema
     # keeps its identity across 1.0.x -> 1.1.0. Its $defs change only
-    # additively: text fields also accept language maps, and note also an
-    # array, so every 1.0.x instance still validates.
+    # additively (note also accepts an array; references that could not be
+    # resolved are repaired), so every 1.0.x instance still validates.
     import json
     import yaml
     res = subprocess.run(
@@ -1761,7 +1743,7 @@ def gen_json_schema() -> None:
     js["$id"], js["title"] = core["id"], core["name"]
     csv = SchemaView(str(CONTAINER_SCHEMA))
     resolve_abstract_refs(js, csv)
-    allow_language_maps(js, csv)
+    allow_single_string(js, csv)
     out.write_text(json.dumps(js, indent=4) + "\n\n", encoding="utf-8")  # gen-json-schema layout
     print(f"generated {out.name}")
 

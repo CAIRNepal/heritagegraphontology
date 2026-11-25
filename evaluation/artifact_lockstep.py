@@ -23,12 +23,12 @@ This script checks that property term by term, treating the YAML schema
                          because instance payloads cannot instantiate them,
                          and no $defs entry lacks a YAML counterpart.
   P  Prefixes            the JSON/YAML wrapper schema binds every core prefix.
-  L  Language-tagged text in all three artefacts: a slot whose OWL range is
-                         rdf:PlainLiteral (text that may carry a language tag)
-                         accepts a JSON-LD language map in every JSON field
-                         and xsd:string or rdf:langString in every SHACL
-                         shape; a code slot (xsd:string in OWL) accepts
-                         neither. Sample instances check the JSON side.
+  L  Language-tagged text: a slot whose OWL range is rdf:PlainLiteral
+                         (text that may carry a language tag) accepts
+                         xsd:string or rdf:langString in every SHACL shape; a
+                         code slot (xsd:string in OWL) only xsd:string. No
+                         JSON field accepts a language map (JSON values are
+                         plain strings). Sample instances check the JSON side.
 
 Exit status is non-zero if any drift is found, so the audit can gate the
 release pipeline.
@@ -226,48 +226,18 @@ for s in slots.values():
     if kind is None:
         continue
     n += 1
-    for cname, cdef in defs.items():
-        pdef = cdef.get("properties", {}).get(s.name)
-        if pdef is not None and json_has_langmap(pdef) != (kind == "text"):
-            drift.append(f"{s.name} JSON {cname} ({kind})")
     shapes, ok = shacl_accepts_langstring(u)
     if any(o != (kind == "text") for o in ok):
         drift.append(f"{s.name} SHACL ({kind})")
 bad_slots = {d.split()[0] for d in drift}
-report("L text vs code slots agree across OWL, SHACL, JSON", n - len(bad_slots), n, drift)
+report("L text vs code slots agree across OWL and SHACL", n - len(bad_slots), n, drift)
 
-# L'' the other direction: every JSON field that accepts a language map is a
-# text slot (explicit range string, no any_of, not lexical_form code or
-# any_literal) whose RDF property is a datatype property or rdfs:label, and
-# whose SHACL shapes (if any) accept rdf:langString.
-RDFS_LABEL = URIRef("http://www.w3.org/2000/01/rdf-schema#label")
-drift, opened = [], set()
-for cname, cdef in defs.items():
-    if cname not in cv.all_classes():
-        continue
-    for pname, pdef in cdef.get("properties", {}).items():
-        if not json_has_langmap(pdef):
-            continue
-        opened.add(pname)
-        sl = cv.induced_slot(pname, cname)
-        anns = sl.annotations or {}
-        anns = anns if isinstance(anns, dict) else getattr(anns, "_as_dict", {})
-        form = getattr(anns.get("lexical_form"), "value", anns.get("lexical_form"))
-        form = form.get("value") if isinstance(form, dict) else form
-        u = URIRef(cv.get_uri(sl, expand=True)) if sl.slot_uri else None
-        why = []
-        if sl.range != "string" or sl.any_of or sl.exactly_one_of:
-            why.append("not a string slot")
-        if form in ("code", "any_literal"):
-            why.append(f"lexical_form {form}")
-        if u is not None and u != RDFS_LABEL and (u, RDF.type, OWL.ObjectProperty) in owl_g:
-            why.append("OWL object property")
-        if u is not None and False in shacl_accepts_langstring(u)[1]:
-            why.append("SHACL refuses rdf:langString")
-        if why:
-            drift.append(f"{cname}.{pname}: {', '.join(why)}")
-report("L'' every JSON language-map field is a text slot", len(opened) - len({d.split(':')[0].split('.')[1] for d in drift}),
-       len(opened), drift)
+# L'' JSON values are plain strings: no JSON field accepts a language map
+# (language-tagged text is an RDF-level feature with no JSON form).
+drift = [f"{c}.{p}" for c, d in defs.items() for p, pd in d.get("properties", {}).items()
+         if json_has_langmap(pd)]
+n_props = sum(len(d.get("properties", {})) for d in defs.values())
+report("L'' no JSON field accepts a language map", n_props - len(drift), n_props, drift)
 
 try:
     import jsonschema
@@ -279,19 +249,16 @@ if jsonschema is not None:
         return not list(jsonschema.Draft201909Validator(sch).iter_errors(inst))
     samples = [
         ("Deity, plain-string name", "Deity", {"id": "ex:d", "name": "Taleju"}, True),
-        ("Deity, name as language map", "Deity",
-         {"id": "ex:d", "name": {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}}, True),
-        ("Deity, name map with a bad language tag", "Deity",
-         {"id": "ex:d", "name": {"english!": "Taleju"}}, False),
-        ("Deity, several notes, per language", "Deity",
-         {"id": "ex:d", "note": {"en": ["first", "second"], "ne": "टिप्पणी"}}, True),
+        ("Deity, name as a language map (no JSON form)", "Deity",
+         {"id": "ex:d", "name": {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}}, False),
         ("Deity, one note as a plain string (1.0.x form)", "Deity", {"id": "ex:d", "note": "x"}, True),
-        ("DataSource, source_url as a language map (code slot)", "DataSource",
-         {"id": "ex:s", "source_url": {"en": "https://example.org"}}, False),
+        ("Deity, several notes", "Deity", {"id": "ex:d", "note": ["first", "second"]}, True),
+        ("Assertion, asserts_about given by id", "Assertion",
+         {"id": "ex:a", "asserts_about": "ex:d"}, True),
     ]
     bad = [f"{name} (expected {'valid' if exp else 'invalid'})"
            for name, cls, inst, exp in samples if valid(cls, inst) != exp]
-    report("L' JSON instances: language maps accepted on text, refused on codes",
+    report("L' JSON instances: plain strings and ids accepted, language maps refused",
            len(samples) - len(bad), len(samples), bad)
 
 print()

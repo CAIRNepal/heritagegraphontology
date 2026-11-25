@@ -86,10 +86,6 @@ def main() -> int:
                 token = DATATYPE_TOKEN.get(rng, None) if rng else None
                 if token:
                     entry["@type"] = token
-                elif rng == str(RDF.PlainLiteral):
-                    # human-language text: {"en": "...", "ne": "..."} is read as
-                    # language-tagged strings; a plain string stays a plain string
-                    entry["@container"] = "@language"
             terms[name] = entry
 
     add_props(OWL.ObjectProperty, True)

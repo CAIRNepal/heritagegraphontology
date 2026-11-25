@@ -20,23 +20,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -49,26 +35,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -197,21 +163,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -223,26 +175,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -452,21 +384,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -478,26 +396,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -664,23 +562,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -693,26 +577,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -737,26 +601,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -839,23 +683,9 @@
             "properties": {
                 "assertion_content": {
                     "description": "The factual claim being asserted",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "asserts_about": {
@@ -890,23 +720,9 @@
                 },
                 "data_quality_note": {
                     "description": "Notes on data quality, completeness, or uncertainty",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "generated_at_time": {
@@ -1028,21 +844,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -1054,26 +856,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -1164,23 +946,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -1196,49 +964,15 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "traditional_role": {
                     "description": "Hereditary occupation or ritual duty",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_influenced_by": {
@@ -1414,21 +1148,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -1440,26 +1160,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -1657,23 +1357,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -1688,23 +1374,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -1717,26 +1389,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -1778,23 +1430,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -1810,23 +1448,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -1998,23 +1622,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -2105,23 +1715,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -2134,26 +1730,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -2286,23 +1862,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -2637,7 +2199,17 @@
                 "kumari_lifecycle_events": {
                     "description": "Collection of Kumari lifecycle events (selection, enthronement, retirement)",
                     "items": {
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/KumariEnthronementEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariRetirementEvent"
+                            },
+                            {
+                                "$ref": "#/$defs/KumariSelectionEvent"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2748,7 +2320,11 @@
                 "ritual_assessments": {
                     "description": "Collection of RitualAssessment (e.g. FearlessnessAssessment) instances",
                     "items": {
-                        "type": "string"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/FearlessnessAssessment"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -2924,23 +2500,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -2953,26 +2515,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3054,23 +2596,9 @@
                 },
                 "custodian_type": {
                     "description": "Type of custodian (government, academic, community), free text",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "id": {
@@ -3079,23 +2607,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -3108,26 +2622,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3219,23 +2713,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -3248,26 +2728,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3292,26 +2752,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3458,23 +2898,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -3487,26 +2913,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3624,23 +3030,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -3653,26 +3045,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -3898,21 +3270,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -3924,26 +3282,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -4187,21 +3525,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -4213,26 +3537,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -4376,23 +3680,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -4426,49 +3716,15 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "used_method": {
                     "description": "Documentation method used",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_associated_with": {
@@ -4561,21 +3817,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -4587,26 +3829,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -4746,23 +3968,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -4775,26 +3983,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -4951,23 +4139,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -5152,23 +4326,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -5183,23 +4343,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -5212,26 +4358,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -5280,23 +4406,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -5312,23 +4424,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -5540,23 +4638,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -5571,23 +4655,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -5600,26 +4670,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -5661,23 +4711,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -5693,23 +4729,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -5867,23 +4889,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -5917,49 +4925,15 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "used_method": {
                     "description": "Documentation method used",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_associated_with": {
@@ -6066,23 +5040,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -6095,26 +5055,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -6139,26 +5079,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -6279,23 +5199,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -6308,26 +5214,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -6440,23 +5326,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -6472,47 +5344,13 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "role_duty": {
                     "description": "The ritual duty held (e.g. building the festival chariot, performing the daily worship).",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "role_holder": {
                     "anyOf": [
@@ -6535,23 +5373,9 @@
                 },
                 "succession_rule": {
                     "description": "Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group).",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_attributed_to": {
@@ -6666,23 +5490,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -6695,26 +5505,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -6911,23 +5701,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "participates_in_ritual": {
@@ -7067,23 +5843,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -7096,26 +5858,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -7281,23 +6023,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -7310,26 +6038,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -7354,26 +6062,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -7561,23 +6249,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -7592,23 +6266,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -7621,26 +6281,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -7682,23 +6322,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -7714,23 +6340,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -7991,21 +6603,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -8017,26 +6615,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -8232,23 +6810,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -8263,21 +6827,7 @@
                 },
                 "name": {
                     "description": "Name of retirement event",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -8289,26 +6839,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -8350,23 +6880,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -8382,23 +6898,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -8716,23 +7218,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -8747,21 +7235,7 @@
                 },
                 "name": {
                     "description": "Name of selection event",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -8773,26 +7247,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -8834,23 +7288,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -8866,23 +7306,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -9049,21 +7475,7 @@
                 },
                 "name": {
                     "description": "Name of this tenure period (e.g., 'Kumari Samita Bajracharya Tenure 2015-2023')",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "residence_structure": {
                     "description": "God-house where Living Goddess resides (e.g., Kumari Ghar)",
@@ -9333,23 +7745,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -9364,23 +7762,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -9393,26 +7777,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -9454,23 +7818,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -9486,23 +7836,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -9633,23 +7969,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -9662,26 +7984,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -9929,23 +8231,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -9958,26 +8246,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -10122,23 +8390,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -10172,49 +8426,15 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "used_method": {
                     "description": "Documentation method used",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_associated_with": {
@@ -10321,23 +8541,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -10350,26 +8556,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -10394,26 +8580,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -10635,21 +8801,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -10661,26 +8813,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -10834,23 +8966,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -10863,26 +8981,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -11033,26 +9131,6 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
@@ -11063,23 +9141,9 @@
                 },
                 "institutional_affiliation": {
                     "description": "Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "member_of_group": {
@@ -11094,23 +9158,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -11123,26 +9173,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -11348,23 +9378,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "place_coordinates": {
@@ -11376,23 +9392,9 @@
                 },
                 "place_type": {
                     "description": "Type of place (city, village, region), free text",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_attributed_to": {
@@ -11595,21 +9597,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -11621,26 +9609,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -11804,23 +9772,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "produced_object": {
@@ -12167,21 +10121,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -12193,26 +10133,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -12329,23 +10249,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -12358,26 +10264,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -12585,21 +10471,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -12611,26 +10483,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -12818,23 +10670,9 @@
                 },
                 "lunar_date_tithi": {
                     "description": "Lunar day (Tithi) for ritual timing",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "managed_by_guthi": {
@@ -12849,23 +10687,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -12878,26 +10702,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -12939,23 +10743,9 @@
                 },
                 "recurrence_pattern": {
                     "description": "Frequency of recurring ritual (e.g., annual, monthly)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "ritual_on_structure": {
@@ -12971,23 +10761,9 @@
                 },
                 "route_description": {
                     "description": "Text description of the procession route",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "route_places": {
@@ -13271,21 +11047,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -13297,26 +11059,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -13631,21 +11373,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -13657,26 +11385,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -13814,23 +11522,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -13843,26 +11537,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -13970,23 +11644,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -13999,26 +11659,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -14236,21 +11876,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -14262,26 +11888,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -14506,23 +12112,9 @@
                 },
                 "recorded_date": {
                     "description": "The date as written in the source, in the calendar given by calendar_system (e.g. '2072' for a Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted Gregorian bounds go in date_earliest / date_latest.",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "was_attributed_to": {
@@ -14615,23 +12207,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "started_at_time": {
@@ -14780,23 +12358,9 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "note": {
@@ -14809,26 +12373,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
@@ -14867,70 +12411,22 @@
                             }
                         },
                         {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "type": "null"
                         }
                     ]
                 },
                 "used_method": {
                     "description": "Documentation method used",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "verification_method": {
                     "description": "Method used for verification (cross-check, expert review, field visit)",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        },
-                        {
-                            "type": "null"
-                        }
+                    "type": [
+                        "string",
+                        "null"
                     ]
                 },
                 "verified_assertion": {
@@ -15146,21 +12642,7 @@
                 },
                 "name": {
                     "description": "Primary name or label",
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "type": "string"
                 },
                 "note": {
                     "description": "Free-text note (description, reason, verification notes)",
@@ -15172,26 +12654,6 @@
                             "type": "array",
                             "items": {
                                 "type": "string"
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "minProperties": 1,
-                            "propertyNames": {
-                                "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
-                            },
-                            "additionalProperties": {
-                                "anyOf": [
-                                    {
-                                        "type": "string"
-                                    },
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                ]
                             }
                         },
                         {
