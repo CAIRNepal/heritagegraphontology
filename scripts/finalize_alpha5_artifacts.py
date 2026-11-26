@@ -1025,14 +1025,17 @@ def drop_reused_value_restrictions(g: Graph) -> None:
     n, dropped = 0, []
     for r in list(g.subjects(OWL.allValuesFrom, None)):
         p, v = g.value(r, OWL.onProperty), g.value(r, OWL.allValuesFrom)
+        # also a datatype range on a reused property (schema:inLanguage only
+        # xsd:string): the property belongs to another vocabulary, so the
+        # value check stays in the SHACL shapes
         if (isinstance(p, URIRef) and not str(p).startswith(HG_NS)
-                and isinstance(v, URIRef) and str(v).startswith(HG_NS)):
+                and isinstance(v, URIRef) and (str(v).startswith(HG_NS) or str(v).startswith(str(XSD)))):
             for c in list(g.subjects(RDFS.subClassOf, r)):
                 g.remove((c, RDFS.subClassOf, r))
                 dropped.append(f"{str(c).rsplit('/', 1)[-1]} ∀{str(p).rsplit('/', 1)[-1]}")
             g.remove((r, None, None))
             n += 1
-    print(f"M5: moved {n} value restriction(s) over reused CRM properties to SHACL only")
+    print(f"M5: moved {n} value restriction(s) over reused properties to SHACL only")
 
 
 # kinds whose classes are also pairwise disjoint (a deity is not a role,
