@@ -2,9 +2,13 @@
 
 ## [Unreleased]
 
-### Planned for 1.1.0 (branch `fix/ontology-v1.1.0`; not yet released)
+## [1.1.0] - 2026-11-26
 
-**Breaking changes and migration rules** (data valid under 1.0.x that 1.1.0 rejects or reads differently):
+### Breaking changes and migration rules
+
+Data valid under 1.0.x that 1.1.0 rejects or reads differently. This release is an exception to the
+minor-release rule in GOVERNANCE.md; each change has a migration rule.
+
 - Place coordinates move from geo:asWKT to crm:P168_place_is_defined_by (same WKT literal).
 - Data giving one structure two values of a single-valued enumeration slot is now inconsistent.
 - On an instance of a HeritageGraph class, an `hg:` property the ontology does not declare is now a
@@ -18,7 +22,7 @@
   `hg:Stupa` and `hg:Chaitya`.
 - A syncretic relationship is cited with `hg:mentionedInSource`, not `prov:wasDerivedFrom`.
 
-**Added**
+### Added
 - The generic tenure pattern: `hg:Tenure`, `hg:Office`, `hg:RitualOffice`, `hg:TenureEvent`, with
   `hg:tenureHolder`, `hg:tenureOffice`, `hg:tenureOpenedBy` and `hg:tenureClosedBy`.
 - `hg:StructureType` and `hg:structureType` (generic typing in place of new structure classes);
@@ -28,7 +32,7 @@
 - dcterms:accessRights, and its subproperty `hg:accessProtocol` with the AccessProtocol values.
 - An optional CRM-PROV bridge module; an SSSOM mapping set; GOVERNANCE.md and a term-request template.
 
-**Changed**
+### Changed
 - The core states no axiom about a term of another vocabulary unless that vocabulary states it.
 - HeritageGraph classes are stated subclasses of the CIDOC-CRM class every instance belongs to.
   Disjoint kinds are stated with `owl:AllDisjointClasses`.
@@ -57,7 +61,6 @@
   `hg:sourceCreator` and `hg:sourceUrl` for a source's own data. The demonstrator uses it, links
   to Wikidata with skos:exactMatch / closeMatch (not owl:sameAs), and gives each belief a
   CRMinf proposition (J4).
-
 - Controlled-vocabulary glosses corrected (Gellner & Quigley 1995; Toffin 1984):
   - Sanah guthi is a funeral association.
   - TempleGuthi is the deity guthi (dyah guthi).
@@ -98,26 +101,30 @@
 - Demonstrator: the successor Kumari tenure of the same office (2025, open), the tradition's
   selection criteria (Allen 1975), and Nepali labels for the main places and the deity.
 
-**Deprecated** (kept, marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement)
+### Deprecated
+
+Kept, and marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement.
 - The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.
 - GuthiType SanGuthi (a variant spelling of sanah guthi), replaced by SanaGuthi.
 
-**Evaluation**
+### Evaluation
 - `make reproduce` regenerates every artefact from a clean checkout and compares it with the
   committed copy. It also runs all release gates, the mutation analysis and the metric reports, and
   writes the paper's numbers.
 - The reasoning gates pin each downloaded vocabulary by sha256.
 
-### Changed (documentation generated with OntoReview)
+### Documentation
 - The documentation site (GitHub Pages) is generated with OntoReview 1.0.1 (`ontoreview build`, configured
   by `ontoreview.toml`) instead of WIDOCO: term pages, class graph, a quality report (HermiT consistency,
-  ROBOT, OOPS!, OntoCheck, IRI checks, cross-domain interoperability) and a changelog against the
+  ROBOT and OntoCheck; OOPS! when its web service is available) and a changelog against the
   previous release (from `owl:priorVersion`). The abstract, introduction, description and references are
   kept as Markdown in `docs-src/`.
 - `scripts/build.sh` still publishes the immutable release copies (`docs/releases/<version>/`), the
   enumeration-value pages and the JSON-LD context; OntoReview's self-hosting files (Docker, nginx, Pages
   workflow) are left out. CI installs OntoReview in its own environment.
-- Removed the WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
+
+### Removed
+- The WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
   `scripts/declutter_webvowl.py`; `make webvowl` is now `make serve`.
 
 ## [1.0.1] - 2026-10-20

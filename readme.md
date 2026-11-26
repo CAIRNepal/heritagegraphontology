@@ -1,7 +1,7 @@
 # HeritageGraph Ontology
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23435676.svg)](https://doi.org/10.5281/zenodo.23435676)
 [![Documentation](https://img.shields.io/badge/docs-online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
 
@@ -20,7 +20,7 @@ at the Center for Artificial Intelligence Research Nepal (CAIR-Nepal).
 |---|---|
 | Namespace | `https://cair-nepal.org/heritagegraph/` (prefix `hg:`) |
 | Ontology IRI | `https://cair-nepal.org/heritagegraph/ontology` |
-| Version IRI | `https://cair-nepal.org/heritagegraph/ontology/1.0.1` |
+| Version IRI | `https://cair-nepal.org/heritagegraph/ontology/1.1.0` |
 | Ontology | [`ontology/HeritageGraph.ttl`](ontology/HeritageGraph.ttl) (Turtle; RDF/XML and JSON-LD in the [documentation](https://cairnepal.github.io/heritagegraphontology/)) |
 | SHACL shapes | [`ontology/HeritageGraph.shacl.ttl`](ontology/HeritageGraph.shacl.ttl) |
 | JSON Schema | [`ontology/HeritageGraph.schema.json`](ontology/HeritageGraph.schema.json) |
@@ -28,17 +28,17 @@ at the Center for Artificial Intelligence Research Nepal (CAIR-Nepal).
 | Linked Art alignment | [`heritagegraph-lux-migration/`](heritagegraph-lux-migration/) |
 | Archived releases | Zenodo, [doi:10.5281/zenodo.23435676](https://doi.org/10.5281/zenodo.23435676) (all versions) |
 
-## At a glance (v1.0.1)
+## At a glance (v1.1.0)
 
 | | |
 |---|---|
-| Classes | 66 |
-| Object / datatype properties | 102 / 32 |
-| Controlled vocabularies | 7 enumerations, 51 values |
+| Classes | 67 |
+| Object / datatype properties | 85 / 28 |
+| Controlled vocabularies | 9 closed enumerations, 59 current values |
 | Expressivity | OWL 2 DL, $\mathcal{ALCHOIN(D)}$; consistent under HermiT, no unsatisfiable classes |
-| Validation | 75 SHACL node shapes |
-| Alignment | 42 classes and 25 properties mapped to 11 external vocabularies |
-| Competency questions | 32, each answered by a SPARQL query over the demonstrator data |
+| Validation | 82 SHACL node shapes |
+| Alignment | 275 SSSOM mappings, mainly to CIDOC-CRM, CRMinf, CRMsci and PROV-O |
+| Competency questions | 32 SPARQL queries, each returning exactly its expected answers over the demonstrator data |
 
 ## Modelling patterns
 
@@ -191,7 +191,7 @@ cd evaluation && make all
 @software{heritagegraph_2026,
   author    = {Karki, Niraj and Oli, Nabin and Sapkota, Anu and Chhetri, Tek Raj and Yumusak, Semih},
   title     = {{HeritageGraph Ontology}},
-  version   = {1.0.1},
+  version   = {1.1.0},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.23435676},

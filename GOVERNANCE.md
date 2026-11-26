@@ -34,6 +34,8 @@ Semantic versioning on the ontology (`versionIRI` …/ontology/X.Y.Z):
 
 From 1.1.0 on, each release is tagged, archived with a version DOI, and listed in `CHANGELOG.md`
 with its migration notes. (1.0.0 is tagged and archived; 1.0.1 was published without a tag.)
+Release 1.1.0 is an exception to the rules above: it tightens the validation of some data that
+1.0.x accepted, and `CHANGELOG.md` gives a migration rule for each such change.
 
 ## Deprecation policy
 
@@ -48,7 +50,7 @@ with its migration notes. (1.0.0 is tagged and archived; 1.0.1 was published wit
 - Enumeration values are deprecated the same way (e.g. the ArchitecturalStyle values Stupa and
   Chaitya, replaced by the classes Stupa and Chaitya).
 - A change that breaks valid data is listed in `CHANGELOG.md` with a migration rule (for
-  1.1.0, under [Unreleased] until it is released: the holder of a Kumari tenure moves from `hg:hadParticipant` to `hg:tenureHolder`;
+  1.1.0: the holder of a Kumari tenure moves from `hg:hadParticipant` to `hg:tenureHolder`;
   an endowment that sustained a tenure sustains the tenure's office).
 
 ## Community knowledge and access
