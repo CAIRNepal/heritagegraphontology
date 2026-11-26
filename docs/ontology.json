@@ -43,7 +43,7 @@
   "annotation_property": 39,
   "concept_scheme": 10,
   "concept": 62,
-  "triples": 4614
+  "triples": 4606
  },
  "terms": [
   {
@@ -135,8 +135,8 @@
     "crm:E24_Physical_Human-Made_Thing"
    ],
    "restrictions": [
-    "crm:P46i_forms_part_of min 1",
-    "crm:P3_has_note only rdf:PlainLiteral"
+    "crm:P3_has_note only rdf:PlainLiteral",
+    "crm:P46i_forms_part_of min 1"
    ]
   },
   {
@@ -155,24 +155,24 @@
    ],
    "restrictions": [
     "crm:P108i_was_produced_by only crm:E12_Production",
-    "hg:hasArchitecturalStyle only hg:ArchitecturalStyle",
-    "crm:P34i_was_assessed_by only crm:E14_Condition_Assessment",
-    "hg:hasReligiousTradition only hg:ReligiousTradition",
-    "hg:hasArchitecturalStyle max 1",
-    "hg:destructionEvent only crm:E6_Destruction",
-    "hg:lastKnownExistenceDate max 1",
-    "hg:destructionEvent max 1",
     "hg:mentionedInSource only hg:DataSource",
-    "hg:lastKnownExistenceDate only xsd:dateTime",
-    "hg:existenceStatus only hg:ExistenceStatus",
-    "crm:P3_has_note only rdf:PlainLiteral",
     "hg:hypothesizedLocation only crm:E53_Place",
+    "hg:lastKnownExistenceDate only xsd:dateTime",
+    "hg:lastKnownExistenceDate max 1",
+    "hg:hasArchitecturalStyle only hg:ArchitecturalStyle",
+    "hg:existenceStatus only hg:ExistenceStatus",
+    "hg:managedByGuthi only hg:Guthi",
+    "hg:destructionEvent max 1",
+    "crm:P55_has_current_location only crm:E53_Place",
     "hg:existenceStatus max 1",
-    "hg:hasAssertion only crminf:I2_Belief",
     "crm:P108i_was_produced_by max 1",
     "hg:structureType only hg:StructureType",
-    "crm:P55_has_current_location only crm:E53_Place",
-    "hg:managedByGuthi only hg:Guthi"
+    "hg:hasArchitecturalStyle max 1",
+    "crm:P34i_was_assessed_by only crm:E14_Condition_Assessment",
+    "hg:hasAssertion only crminf:I2_Belief",
+    "hg:destructionEvent only crm:E6_Destruction",
+    "hg:hasReligiousTradition only hg:ReligiousTradition",
+    "crm:P3_has_note only rdf:PlainLiteral"
    ]
   },
   {
@@ -232,12 +232,12 @@
     "prov:Entity"
    ],
    "restrictions": [
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:epochDateGregorian only xsd:string",
     "hg:yearOffsetFromGregorian max 1",
-    "hg:epochDateGregorian max 1",
+    "crm:P3_has_note only rdf:PlainLiteral",
     "hg:isPrimaryForTradition only hg:ReligiousTradition",
-    "hg:yearOffsetFromGregorian only xsd:integer"
+    "hg:epochDateGregorian max 1",
+    "hg:yearOffsetFromGregorian only xsd:integer",
+    "hg:epochDateGregorian only xsd:string"
    ],
    "disjoint_with": [
     "hg:Deity",
@@ -258,8 +258,8 @@
     "crm:E74_Group"
    ],
    "restrictions": [
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:traditionalRole only rdf:PlainLiteral"
+    "hg:traditionalRole only rdf:PlainLiteral",
+    "crm:P3_has_note only rdf:PlainLiteral"
    ]
   },
   {
@@ -330,12 +330,12 @@
     "hg:RitualEvent"
    ],
    "restrictions": [
-    "hg:makesDeityPresent max 1",
-    "crm:P4_has_time-span max 1",
-    "crm:P14_carried_out_by only crm:E39_Actor",
     "hg:makesDeityPresent only hg:Deity",
     "crm:P4_has_time-span only crm:E52_Time-Span",
-    "crm:P7_took_place_at only crm:E53_Place"
+    "crm:P7_took_place_at only crm:E53_Place",
+    "hg:makesDeityPresent max 1",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P4_has_time-span max 1"
    ]
   },
   {
@@ -349,20 +349,20 @@
    ],
    "restrictions": [
     "crm:P4_has_time-span only crm:E52_Time-Span",
-    "crm:P4_has_time-span max 1",
-    "hg:custodyClosedBy max 1",
-    "hg:custodyHolder min 1",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "hg:custodyObject max 1",
-    "hg:custodyObject only ((hg:PhysicalHeritageThing or crm:E22_Human-Made_Object) and hg:AssertionSubject)",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:custodyHolder max 1",
     "hg:custodyObject min 1",
+    "hg:custodyHolder min 1",
     "hg:custodyClosedBy only crm:E10_Transfer_of_Custody",
+    "hg:custodyObject only ((hg:PhysicalHeritageThing or crm:E22_Human-Made_Object) and hg:AssertionSubject)",
+    "hg:custodyObject max 1",
+    "hg:custodyClosedBy max 1",
+    "crm:P3_has_note only rdf:PlainLiteral",
     "hg:custodyOpenedBy max 1",
+    "hg:custodyHolder max 1",
+    "hg:custodyHolder only crm:E39_Actor",
     "hg:custodyOpenedBy only crm:E10_Transfer_of_Custody",
+    "hg:hasAssertion only crminf:I2_Belief",
     "crm:P4_has_time-span min 1",
-    "hg:custodyHolder only crm:E39_Actor"
+    "crm:P4_has_time-span max 1"
    ]
   },
   {
@@ -375,8 +375,8 @@
     "crm:E39_Actor"
    ],
    "restrictions": [
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:custodianType only rdf:PlainLiteral"
+    "hg:custodianType only rdf:PlainLiteral",
+    "crm:P3_has_note only rdf:PlainLiteral"
    ]
   },
   {
@@ -396,22 +396,21 @@
     "hg:OralHistoryRecording"
    ],
    "restrictions": [
-    "hg:resourceType only xsd:string",
-    "hg:sourcePublisher max 1",
-    "hg:persistentIdentifier max 1",
+    "hg:sourcePublisher only crm:E39_Actor",
     "hg:publicationTimespan only crm:E52_Time-Span",
+    "hg:sourceCitation only rdf:PlainLiteral",
+    "hg:persistentIdentifier max 1",
+    "hg:identifierScheme only xsd:string",
+    "hg:persistentIdentifier only xsd:string",
+    "hg:sourcePublisher max 1",
+    "crm:P3_has_note only rdf:PlainLiteral",
+    "hg:sourceUrl max 1",
+    "hg:publicationTimespan max 1",
+    "hg:resourceType max 1",
+    "hg:resourceType only xsd:string",
     "hg:sourceCreator only crm:E39_Actor",
     "hg:identifierScheme max 1",
-    "hg:identifierScheme only xsd:string",
-    "schema1:inLanguage only xsd:string",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:sourceUrl only xsd:string",
-    "hg:sourceUrl max 1",
-    "hg:persistentIdentifier only xsd:string",
-    "hg:sourcePublisher only crm:E39_Actor",
-    "hg:resourceType max 1",
-    "hg:publicationTimespan max 1",
-    "hg:sourceCitation only rdf:PlainLiteral"
+    "hg:sourceUrl only xsd:string"
    ],
    "disjoint_with": [
     "hg:Tenure"
@@ -444,10 +443,10 @@
     "prov:Entity"
    ],
    "restrictions": [
+    "hg:isInvokedInRitual only hg:RitualEvent",
     "hg:hasReligiousTradition only hg:ReligiousTradition",
     "hg:isEnshrinedThroughEvent only hg:Enshrinement",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:isInvokedInRitual only hg:RitualEvent"
+    "crm:P3_has_note only rdf:PlainLiteral"
    ],
    "disjoint_with": [
     "hg:CalendarSystem",
@@ -502,8 +501,8 @@
    "label": "Documentation Activity",
    "definition": "Activity that records information about a heritage entity or event and may generate information objects or assertions. It aligns CIDOC CRM documentation practices with prov:Activity.",
    "superclasses": [
-    "prov:Activity",
-    "crm:E7_Activity"
+    "crm:E7_Activity",
+    "prov:Activity"
    ],
    "subclasses": [
     "hg:FieldSurveyActivity",
@@ -512,12 +511,12 @@
    ],
    "restrictions": [
     "prov:wasAssociatedWith only prov:Agent",
-    "hg:usedEquipment only rdf:PlainLiteral",
-    "prov:generated only prov:Entity",
-    "hg:usedMethod only rdf:PlainLiteral",
-    "hg:documents only hg:AssertionSubject",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
     "crm:P4_has_time-span max 1",
-    "crm:P4_has_time-span only crm:E52_Time-Span"
+    "hg:usedEquipment only rdf:PlainLiteral",
+    "hg:usedMethod only rdf:PlainLiteral",
+    "prov:generated only prov:Entity",
+    "hg:documents only hg:AssertionSubject"
    ]
   },
   {
@@ -531,13 +530,13 @@
     "crm:E72_Legal_Object"
    ],
    "restrictions": [
-    "crm:P105_right_held_by only crm:E74_Group",
-    "crm:P105_right_held_by min 1",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:sustains min 1",
-    "hg:sustains only ((hg:ArchitecturalStructure or hg:RitualEvent or hg:Office) and hg:AssertionSubject)",
     "hg:hasAssertion only crminf:I2_Belief",
-    "hg:endowedLand only crm:E53_Place"
+    "crm:P105_right_held_by min 1",
+    "hg:endowedLand only crm:E53_Place",
+    "hg:sustains min 1",
+    "crm:P3_has_note only rdf:PlainLiteral",
+    "crm:P105_right_held_by only crm:E74_Group",
+    "hg:sustains only ((hg:ArchitecturalStructure or hg:RitualEvent or hg:Office) and hg:AssertionSubject)"
    ]
   },
   {
@@ -551,21 +550,21 @@
     "prov:Activity"
    ],
    "restrictions": [
-    "hg:endowmentRecipient only crm:E39_Actor",
+    "hg:concernsEndowment min 1",
     "hg:concernsEndowment max 1",
     "hg:endowmentDonor only crm:E39_Actor",
-    "hg:concernsEndowment min 1",
-    "hg:endowmentEventType only hg:EndowmentEventType",
-    "hg:endowmentEventType min 1",
-    "hg:endowmentEventType max 1",
-    "hg:concernsEndowment only hg:Endowment",
     "crm:P4_has_time-span max 1",
+    "hg:endowmentEventType min 1",
+    "hg:endowmentRecipient max 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "hg:endowmentRecipient only crm:E39_Actor",
+    "hg:concernsEndowment only hg:Endowment",
+    "hg:endowmentEventType only hg:EndowmentEventType",
     "hg:hasAssertion only crminf:I2_Belief",
     "crm:P4_has_time-span min 1",
+    "hg:endowmentEventType max 1",
     "crm:P3_has_note only rdf:PlainLiteral",
-    "crm:P7_took_place_at only crm:E53_Place",
-    "hg:endowmentRecipient max 1",
-    "crm:P4_has_time-span only crm:E52_Time-Span"
+    "crm:P7_took_place_at only crm:E53_Place"
    ]
   },
   {
@@ -590,14 +589,14 @@
     "hg:RitualEvent"
    ],
    "restrictions": [
-    "crm:P4_has_time-span only crm:E52_Time-Span",
     "crm:P4_has_time-span max 1",
-    "hg:enshrinedDeity only hg:Deity",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "hg:enshrinedInStructure max 1",
     "crm:P7_took_place_at only crm:E53_Place",
     "crm:P14_carried_out_by only crm:E39_Actor",
     "hg:enshrinedDeity max 1",
-    "hg:enshrinedInStructure max 1",
-    "hg:enshrinedInStructure only hg:Temple"
+    "hg:enshrinedInStructure only hg:Temple",
+    "hg:enshrinedDeity only hg:Deity"
    ]
   },
   {
@@ -712,11 +711,11 @@
     "crm:E74_Group"
    ],
    "restrictions": [
+    "hg:guthiType only hg:GuthiType",
+    "hg:performsRitual only hg:RitualEvent",
     "crm:P3_has_note only rdf:PlainLiteral",
     "hg:guthiType max 1",
-    "hg:guthiType only hg:GuthiType",
-    "crm:P107_has_current_or_former_member only crm:E21_Person",
-    "hg:performsRitual only hg:RitualEvent"
+    "crm:P107_has_current_or_former_member only crm:E21_Person"
    ]
   },
   {
@@ -742,25 +741,25 @@
     "hg:Tenure"
    ],
    "restrictions": [
-    "hg:succeeds max 1",
-    "hg:succeeds only hg:HereditaryRoleTenure",
-    "hg:tenureOffice max 1",
-    "crm:P4_has_time-span max 1",
-    "hg:successionRule only rdf:PlainLiteral",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "hg:roleHolder min 1",
     "hg:roleDuty only rdf:PlainLiteral",
-    "hg:tenureClosedBy only hg:TenureEvent",
     "hg:mandatedBy max 1",
-    "hg:tenureOpenedBy only hg:TenureEvent",
-    "hg:roleHolder max 1",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:dutyFor only hg:RitualEvent",
-    "hg:roleHolder only ((crm:E21_Person or hg:CasteGroup) and crm:E39_Actor)",
+    "hg:mandatedBy only crm:E74_Group",
+    "crm:P4_has_time-span max 1",
     "hg:tenureOffice only hg:RitualOffice",
+    "hg:dutyFor only hg:RitualEvent",
+    "crm:P3_has_note only rdf:PlainLiteral",
+    "hg:succeeds only hg:HereditaryRoleTenure",
+    "hg:successionRule only rdf:PlainLiteral",
+    "hg:tenureOffice max 1",
+    "hg:succeeds max 1",
+    "hg:roleHolder min 1",
+    "hg:hasAssertion only crminf:I2_Belief",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "hg:roleHolder max 1",
+    "hg:roleHolder only ((crm:E21_Person or hg:CasteGroup) and crm:E39_Actor)",
+    "hg:tenureOpenedBy only hg:TenureEvent",
     "hg:roleDuty min 1",
-    "hg:mandatedBy only crm:E74_Group"
+    "hg:tenureClosedBy only hg:TenureEvent"
    ]
   },
   {
@@ -773,7 +772,6 @@
     "hg:DataSource"
    ],
    "restrictions": [
-    "schema1:inLanguage only xsd:string",
     "hg:documentedBy only hg:DocumentationActivity",
     "prov:wasGeneratedBy only prov:Activity"
    ]
@@ -789,11 +787,11 @@
     "crm:E5_Event"
    ],
    "restrictions": [
-    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P3_has_note only rdf:PlainLiteral",
     "hg:architecturalStructures only hg:ArchitecturalStructure",
     "crm:P4_has_time-span max 1",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "crm:P4_has_time-span only crm:E52_Time-Span"
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "crm:P7_took_place_at only crm:E53_Place"
    ]
   },
   {
@@ -831,12 +829,12 @@
     "hg:Paubha"
    ],
    "restrictions": [
-    "hg:participatesInRitual only hg:RitualEvent",
-    "crm:P3_has_note only rdf:PlainLiteral",
     "crm:P108i_was_produced_by max 1",
-    "hg:usedBy only crm:E39_Actor",
+    "crm:P108i_was_produced_by only crm:E12_Production",
+    "crm:P3_has_note only rdf:PlainLiteral",
+    "hg:participatesInRitual only hg:RitualEvent",
     "crm:P55_has_current_location only crm:E53_Place",
-    "crm:P108i_was_produced_by only crm:E12_Production"
+    "hg:usedBy only crm:E39_Actor"
    ]
   },
   {
@@ -859,21 +857,21 @@
     "hg:KumariLifecycleEvent"
    ],
    "restrictions": [
-    "hg:confersRole min 1",
-    "hg:confersRole only hg:KumariRole",
-    "hg:boundsTenure only hg:KumariTenure",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "crm:P4_has_time-span max 1",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
-    "hg:boundsTenure max 1",
-    "hg:confersRole max 1",
-    "hg:enthronedPerson max 1",
-    "hg:documentedBy only hg:DocumentationActivity",
     "hg:boundsTenure min 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
     "crm:P7_took_place_at only crm:E53_Place",
+    "hg:enthronedPerson max 1",
+    "crm:P4_has_time-span max 1",
+    "hg:documentedBy only hg:DocumentationActivity",
     "hg:enthronedPerson only crm:E21_Person",
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "hg:confersRole min 1",
+    "hg:boundsTenure max 1",
+    "hg:boundsTenure only hg:KumariTenure",
+    "hg:confersRole only hg:KumariRole",
+    "hg:hasAssertion only crminf:I2_Belief",
     "hg:enthronedPerson min 1",
-    "crm:P14_carried_out_by only crm:E39_Actor"
+    "hg:confersRole max 1"
    ]
   },
   {
@@ -918,18 +916,18 @@
     "hg:KumariLifecycleEvent"
    ],
    "restrictions": [
+    "crm:P14_carried_out_by only crm:E39_Actor",
+    "hg:endedTenureOf max 1",
     "crm:P4_has_time-span only crm:E52_Time-Span",
-    "hg:documentedBy only hg:DocumentationActivity",
-    "hg:endedTenureOf min 1",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "hg:hasAssertion only crminf:I2_Belief",
     "hg:endedTenureOf only hg:KumariTenure",
+    "hg:endedTenureOf min 1",
+    "crm:P4_has_time-span min 1",
+    "hg:performedByGroup only ((hg:Guthi or hg:CasteGroup) and crm:E39_Actor)",
     "crm:P3_has_note only rdf:PlainLiteral",
     "crm:P4_has_time-span max 1",
-    "crm:P14_carried_out_by only crm:E39_Actor",
-    "crm:P4_has_time-span min 1",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "hg:performedByGroup only ((hg:Guthi or hg:CasteGroup) and crm:E39_Actor)",
-    "hg:endedTenureOf max 1",
-    "crm:P7_took_place_at only crm:E53_Place"
+    "hg:documentedBy only hg:DocumentationActivity"
    ]
   },
   {
@@ -960,24 +958,24 @@
     "hg:KumariLifecycleEvent"
    ],
    "restrictions": [
-    "hg:initiatedTenure max 1",
-    "hg:initiatedTenure only hg:KumariTenure",
-    "hg:selectedPerson only crm:E21_Person",
-    "hg:hasCriterion only hg:SelectionCriterion",
-    "hg:confersRole only hg:KumariRole",
-    "crm:P4_has_time-span max 1",
-    "hg:selectedPerson min 1",
-    "hg:isCriticalForFestival only xsd:boolean",
-    "hg:documentedBy only hg:DocumentationActivity",
-    "hg:initiatedTenure min 1",
-    "hg:isCriticalForFestival max 1",
-    "hg:selectedPerson max 1",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
-    "crm:P7_took_place_at only crm:E53_Place",
     "crm:P14_carried_out_by only crm:E39_Actor",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
     "hg:performedByGroup only ((hg:Guthi or hg:CasteGroup) and crm:E39_Actor)",
     "hg:confersRole max 1",
-    "hg:hasAssertion only crminf:I2_Belief"
+    "hg:initiatedTenure min 1",
+    "hg:isCriticalForFestival max 1",
+    "hg:documentedBy only hg:DocumentationActivity",
+    "hg:hasAssertion only crminf:I2_Belief",
+    "hg:selectedPerson only crm:E21_Person",
+    "hg:initiatedTenure max 1",
+    "hg:selectedPerson max 1",
+    "hg:selectedPerson min 1",
+    "hg:initiatedTenure only hg:KumariTenure",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "hg:confersRole only hg:KumariRole",
+    "crm:P4_has_time-span max 1",
+    "hg:isCriticalForFestival only xsd:boolean",
+    "hg:hasCriterion only hg:SelectionCriterion"
    ]
   },
   {
@@ -994,28 +992,28 @@
    ],
    "restrictions": [
     "hg:documentedBy only hg:DocumentationActivity",
-    "hg:hadParticipant only crm:E39_Actor",
-    "crm:P4_has_time-span min 1",
     "hg:residenceStructure only hg:ArchitecturalStructure",
-    "hg:residenceStructure min 1",
-    "hg:embodiedDeity only hg:Deity",
-    "hg:enthronedThrough only hg:KumariEnthronementEvent",
     "hg:assumesRole max 1",
-    "hg:selectedThrough only hg:KumariSelectionEvent",
-    "hg:embodiedDeity max 1",
-    "hg:retiredThrough only hg:KumariRetirementEvent",
-    "hg:tenureHolder max 1",
-    "hg:residenceStructure max 1",
-    "hg:supportedByInstitution only crm:E74_Group",
-    "hg:tenureHolder only crm:E21_Person",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
-    "hg:enthronedThrough max 1",
+    "hg:enthronedThrough only hg:KumariEnthronementEvent",
     "hg:selectedThrough max 1",
+    "hg:retiredThrough only hg:KumariRetirementEvent",
     "hg:tenureHolder min 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
     "hg:retiredThrough max 1",
+    "hg:embodiedDeity only hg:Deity",
+    "hg:enthronedThrough max 1",
+    "hg:tenureHolder max 1",
+    "hg:residenceStructure min 1",
     "hg:assumesRole only hg:KumariRole",
-    "crm:P4_has_time-span max 1",
-    "hg:embodiedDeity min 1"
+    "hg:tenureHolder only crm:E21_Person",
+    "hg:hadParticipant only crm:E39_Actor",
+    "hg:embodiedDeity max 1",
+    "crm:P4_has_time-span min 1",
+    "hg:selectedThrough only hg:KumariSelectionEvent",
+    "hg:residenceStructure max 1",
+    "hg:embodiedDeity min 1",
+    "hg:supportedByInstitution only crm:E74_Group",
+    "crm:P4_has_time-span max 1"
    ]
   },
   {
@@ -1065,10 +1063,10 @@
     "hg:IconographicObject"
    ],
    "restrictions": [
-    "hg:consecratedByEvent only hg:Consecration",
     "hg:consecratedByEvent max 1",
     "hg:isAboutDeity only hg:Deity",
-    "hg:isAboutDeity max 1"
+    "hg:isAboutDeity max 1",
+    "hg:consecratedByEvent only hg:Consecration"
    ]
   },
   {
@@ -1243,16 +1241,16 @@
     "crminf:I4_Proposition_Set"
    ],
    "restrictions": [
+    "hg:propositionPredicate min 1",
+    "hg:propositionPredicate max 1",
+    "hg:propositionSubject only hg:AssertionSubject",
     "hg:propositionObjectEntity only hg:AssertionSubject",
+    "hg:propositionPredicate only xsd:anyURI",
     "hg:propositionSubject max 1",
-    "hg:propositionLiteralValue only rdfs:Literal",
     "hg:propositionObjectEntity max 1",
     "hg:propositionLiteralValue max 1",
-    "hg:propositionSubject only hg:AssertionSubject",
-    "hg:propositionPredicate max 1",
-    "hg:propositionSubject min 1",
-    "hg:propositionPredicate min 1",
-    "hg:propositionPredicate only xsd:anyURI"
+    "hg:propositionLiteralValue only rdfs:Literal",
+    "hg:propositionSubject min 1"
    ],
    "disjoint_with": [
     "hg:CalendarSystem",
@@ -1339,15 +1337,15 @@
     "hg:FearlessnessAssessment"
    ],
    "restrictions": [
-    "crm:P4_has_time-span max 1",
-    "hg:partOfSelection max 1",
     "hg:assessesCandidate only crm:E21_Person",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "hg:partOfSelection only hg:KumariSelectionEvent",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
     "hg:documentedBy only hg:DocumentationActivity",
+    "hg:partOfSelection only hg:KumariSelectionEvent",
+    "hg:hasAssertion only crminf:I2_Belief",
+    "crm:P4_has_time-span max 1",
+    "hg:assessesCandidate max 1",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
     "crm:P14_carried_out_by only crm:E39_Actor",
-    "hg:assessesCandidate max 1"
+    "hg:partOfSelection max 1"
    ]
   },
   {
@@ -1369,28 +1367,28 @@
     "hg:RitualAssessment"
    ],
    "restrictions": [
-    "hg:endPlace only crm:E53_Place",
-    "hg:routeDescription only rdf:PlainLiteral",
-    "hg:hadParticipant only crm:E39_Actor",
-    "hg:documentedBy only hg:DocumentationActivity",
+    "hg:performedByGroup only ((hg:Guthi or hg:CasteGroup) and crm:E39_Actor)",
     "hg:managedByGuthi only hg:Guthi",
-    "hg:hasAssertion only crminf:I2_Belief",
-    "hg:routePlaces only crm:E53_Place",
-    "hg:ritualType max 1",
     "crm:P4_has_time-span only crm:E52_Time-Span",
-    "crm:P7_took_place_at only crm:E53_Place",
+    "crm:P125_used_object_of_type only crm:E57_Material",
+    "hg:routePlaces only crm:E53_Place",
+    "crm:P3_has_note only rdf:PlainLiteral",
     "hg:ritualType only hg:RitualType",
     "crm:P14_carried_out_by only crm:E39_Actor",
-    "crm:P125_used_object_of_type only crm:E57_Material",
-    "hg:endPlace max 1",
-    "hg:performedByGroup only ((hg:Guthi or hg:CasteGroup) and crm:E39_Actor)",
-    "hg:startPlace only crm:E53_Place",
+    "hg:endPlace only crm:E53_Place",
     "hg:lunarDateTithi only rdf:PlainLiteral",
+    "hg:hadParticipant only crm:E39_Actor",
     "crm:P4_has_time-span max 1",
-    "hg:invokesDeity only hg:Deity",
     "hg:startPlace max 1",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:recurrencePattern only rdf:PlainLiteral"
+    "hg:ritualType max 1",
+    "hg:routeDescription only rdf:PlainLiteral",
+    "hg:recurrencePattern only rdf:PlainLiteral",
+    "hg:endPlace max 1",
+    "hg:documentedBy only hg:DocumentationActivity",
+    "hg:invokesDeity only hg:Deity",
+    "hg:startPlace only crm:E53_Place",
+    "crm:P7_took_place_at only crm:E53_Place",
+    "hg:hasAssertion only crminf:I2_Belief"
    ]
   },
   {
@@ -1505,13 +1503,13 @@
     "crm:E13_Attribute_Assignment"
    ],
    "restrictions": [
-    "hg:documentedBy only hg:DocumentationActivity",
-    "crm:P3_has_note only rdf:PlainLiteral",
-    "hg:syncreticType max 1",
     "crm:P141_assigned min 1",
+    "hg:syncreticType max 1",
+    "crm:P3_has_note only rdf:PlainLiteral",
     "crm:P140_assigned_attribute_to min 1",
-    "hg:syncreticType only hg:SyncreticType",
-    "hg:mentionedInSource only hg:DataSource"
+    "hg:documentedBy only hg:DocumentationActivity",
+    "hg:mentionedInSource only hg:DataSource",
+    "hg:syncreticType only hg:SyncreticType"
    ]
   },
   {
@@ -1558,16 +1556,16 @@
     "hg:KumariTenure"
    ],
    "restrictions": [
-    "hg:tenureHolder max 1",
-    "hg:hasAssertion only crminf:I2_Belief",
+    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "hg:tenureOffice only hg:Office",
     "hg:tenureHolder only crm:E39_Actor",
-    "hg:tenureClosedBy only hg:TenureEvent",
-    "hg:tenureOffice max 1",
     "crm:P3_has_note only rdf:PlainLiteral",
     "hg:tenureOpenedBy only hg:TenureEvent",
-    "crm:P4_has_time-span only crm:E52_Time-Span",
+    "hg:tenureHolder max 1",
+    "hg:tenureClosedBy only hg:TenureEvent",
+    "hg:hasAssertion only crminf:I2_Belief",
     "crm:P4_has_time-span max 1",
-    "hg:tenureOffice only hg:Office"
+    "hg:tenureOffice max 1"
    ],
    "disjoint_with": [
     "hg:DataSource"
@@ -1643,8 +1641,8 @@
    ],
    "restrictions": [
     "hg:verificationMethod only rdf:PlainLiteral",
-    "hg:verifiedAssertion only crminf:I2_Belief",
     "crm:P3_has_note only rdf:PlainLiteral",
+    "hg:verifiedAssertion only crminf:I2_Belief",
     "hg:verifiedByExpert only crm:E21_Person"
    ]
   },
@@ -2035,8 +2033,8 @@
    "label": "Documented in source",
    "definition": "Source(s) that mention/document this entity: the normative way to cite a source for a description of a heritage thing, event, actor or relationship. Distinct from prov:wasDerivedFrom, which is used only on assertions (I2 Belief) with prov:wasAttributedTo for the claimant. A source's own bibliographic data uses hg:sourceCitation, hg:sourceCreator, hg:sourceUrl and hg:persistentIdentifier. Entity-mention is not logical derivation.",
    "domain": [
-    "hg:SyncreticRelationship",
-    "hg:ArchitecturalStructure"
+    "hg:ArchitecturalStructure",
+    "hg:SyncreticRelationship"
    ],
    "range": [
     "hg:DataSource"
@@ -2493,8 +2491,8 @@
     "crm:P2_has_type"
    ],
    "domain": [
-    "hg:Deity",
-    "hg:ArchitecturalStructure"
+    "hg:ArchitecturalStructure",
+    "hg:Deity"
    ],
    "range": [
     "hg:ReligiousTradition"
@@ -2757,8 +2755,8 @@
    "label": "Managed by guthi",
    "definition": "Guthi organization managing this structure or ritual.",
    "domain": [
-    "hg:ArchitecturalStructure",
-    "hg:RitualEvent"
+    "hg:RitualEvent",
+    "hg:ArchitecturalStructure"
    ],
    "range": [
     "hg:Guthi"

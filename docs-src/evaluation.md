@@ -4,7 +4,7 @@ All figures on this page are produced by one command from a clean checkout of th
 
 | | |
 |---|---|
-| OWL triples | 4614 |
+| OWL triples | 4606 |
 | Classes (excluding enumerations) | 67 |
 | Enumerations | 9 |
 | Object / datatype properties | 85 / 28 |

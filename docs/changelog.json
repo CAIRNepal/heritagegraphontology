@@ -7,7 +7,7 @@
       "label": "Access Protocol",
       "kind": "class",
       "curie": "heritageGraph:AccessProtocol",
-      "anchor": "AccessProtocol-2",
+      "anchor": "AccessProtocol",
       "added": [],
       "removed": []
     },
@@ -16,7 +16,7 @@
       "label": "Access Protocol (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "AccessProtocol",
+      "anchor": "AccessProtocol-2",
       "added": [],
       "removed": []
     },
@@ -250,7 +250,7 @@
       "label": "Endowment Event Type",
       "kind": "class",
       "curie": "heritageGraph:EndowmentEventType",
-      "anchor": "EndowmentEventType",
+      "anchor": "EndowmentEventType-2",
       "added": [],
       "removed": []
     },
@@ -259,7 +259,7 @@
       "label": "Endowment Event Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "EndowmentEventType-2",
+      "anchor": "EndowmentEventType",
       "added": [],
       "removed": []
     },
@@ -1091,7 +1091,7 @@
       "label": "Architectural Style",
       "kind": "class",
       "curie": "heritageGraph:ArchitecturalStyle",
-      "anchor": "ArchitecturalStyle-2",
+      "anchor": "ArchitecturalStyle",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1130,7 +1130,7 @@
       "label": "Architectural Style (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ArchitecturalStyle",
+      "anchor": "ArchitecturalStyle-2",
       "added": [
         [
           "skos:prefLabel",
@@ -1662,7 +1662,7 @@
       "label": "Chaitya",
       "kind": "class",
       "curie": "heritageGraph:Chaitya",
-      "anchor": "Chaitya-2",
+      "anchor": "Chaitya",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1909,7 +1909,7 @@
       "label": "Condition Type",
       "kind": "class",
       "curie": "heritageGraph:ConditionType",
-      "anchor": "ConditionType-2",
+      "anchor": "ConditionType",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1944,7 +1944,7 @@
       "label": "Condition Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "ConditionType",
+      "anchor": "ConditionType-2",
       "added": [
         [
           "skos:prefLabel",
@@ -2487,6 +2487,10 @@
           "schema1:inLanguage min 0"
         ],
         [
+          "rdfs:subClassOf",
+          "schema1:inLanguage only xsd:string"
+        ],
+        [
           "skos:definition",
           "\"Original source from which heritage information was derived\"@en"
         ]
@@ -2605,7 +2609,7 @@
       "label": "Date Precision",
       "kind": "class",
       "curie": "heritageGraph:DatePrecision",
-      "anchor": "DatePrecision",
+      "anchor": "DatePrecision-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -2644,7 +2648,7 @@
       "label": "Date Precision (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "DatePrecision-2",
+      "anchor": "DatePrecision",
       "added": [
         [
           "skos:prefLabel",
@@ -4137,7 +4141,7 @@
       "label": "Guthi Type",
       "kind": "class",
       "curie": "heritageGraph:GuthiType",
-      "anchor": "GuthiType",
+      "anchor": "GuthiType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -4196,7 +4200,7 @@
       "label": "Guthi Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "GuthiType-2",
+      "anchor": "GuthiType",
       "added": [
         [
           "skos:definition",
@@ -4944,6 +4948,10 @@
         [
           "rdfs:subClassOf",
           "schema1:inLanguage min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "schema1:inLanguage only xsd:string"
         ],
         [
           "skos:definition",
@@ -6760,7 +6768,7 @@
       "label": "obsolete Chaitya style",
       "kind": "concept",
       "curie": null,
-      "anchor": "Chaitya",
+      "anchor": "Chaitya-2",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -8199,7 +8207,7 @@
       "label": "obsolete license",
       "kind": "datatype_property",
       "curie": "heritageGraph:license",
-      "anchor": "license-2",
+      "anchor": "license",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -10565,7 +10573,7 @@
       "label": "Ritual Type",
       "kind": "class",
       "curie": "heritageGraph:RitualType",
-      "anchor": "RitualType-2",
+      "anchor": "RitualType",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -10668,7 +10676,7 @@
       "label": "Ritual Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "RitualType",
+      "anchor": "RitualType-2",
       "added": [
         [
           "skos:prefLabel",

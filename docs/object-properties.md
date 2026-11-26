@@ -497,10 +497,10 @@ Source(s) that mention/document this entity: the normative way to cite a source 
 
 | | |
 |---|---|
-| Domain | [Syncretic Relationship](classes.md#syncreticrelationship); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Syncretic Relationship](classes.md#syncreticrelationship) |
 | Range | [Data Source](classes.md#datasource) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
-| domainIncludes | hg:SyncreticRelationship; hg:ArchitecturalStructure |
+| domainIncludes | hg:ArchitecturalStructure; hg:SyncreticRelationship |
 
 ### Duty for
 
@@ -814,7 +814,7 @@ Cultural access protocol for the thing or its record (e.g. restricted to initiat
 |---|---|
 | Super-properties | [Access Rights](object-properties.md#accessrights) |
 | Domain | [Transfer of Custody](classes.md#e10_transfer_of_custody) *or* [Production](classes.md#e12_production) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Human-Made Object](classes.md#e22_human-made_object) *or* [Design or Procedure](classes.md#e29_design_or_procedure) *or* [Condition State](classes.md#e3_condition_state) *or* [Time-Span](classes.md#e52_time-span) *or* [Place](classes.md#e53_place) *or* [Material](classes.md#e57_material) *or* [Destruction](classes.md#e6_destruction) *or* [Belief](classes.md#i2_belief) *or* [Architectural Element](classes.md#architecturalelement) *or* [Calendar System](classes.md#calendarsystem) *or* [Data Source](classes.md#datasource) *or* [Deity](classes.md#deity) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Endowment](classes.md#endowment) *or* [Endowment Event](classes.md#endowmentevent) *or* [Historical Event](classes.md#historicalevent) *or* [Office](classes.md#office) *or* [Physical Heritage Thing](classes.md#physicalheritagething) *or* [Proposition](classes.md#proposition) *or* [Religious Tradition](classes.md#religioustradition) *or* [Ritual Event](classes.md#ritualevent) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Structure Type](classes.md#structuretype) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Tenure](classes.md#tenure) |
-| Range | [Access Protocol](classes.md#accessprotocol-2) |
+| Range | [Access Protocol](classes.md#accessprotocol) |
 
 ### Has architectural style
 
@@ -826,7 +826,7 @@ Architectural style classification.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Architectural Structure](classes.md#architecturalstructure) |
-| Range | [Architectural Style](classes.md#architecturalstyle-2) |
+| Range | [Architectural Style](classes.md#architecturalstyle) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
 | domainIncludes | hg:ArchitecturalStructure |
 
@@ -864,7 +864,7 @@ Categorization of the condition state.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Condition State](classes.md#e3_condition_state) |
-| Range | [Condition Type](classes.md#conditiontype-2) |
+| Range | [Condition Type](classes.md#conditiontype) |
 
 ### Has criterion
 
@@ -944,7 +944,7 @@ The level of precision for a recorded date.
 | | |
 |---|---|
 | Domain | [Time-Span](classes.md#e52_time-span) |
-| Range | [Date Precision](classes.md#dateprecision) |
+| Range | [Date Precision](classes.md#dateprecision-2) |
 
 ### has destruction event
 
@@ -969,7 +969,7 @@ Kind of endowment event (founding, augmentation, nationalisation, alienation).
 | | |
 |---|---|
 | Domain | [Endowment Event](classes.md#endowmentevent) |
-| Range | [Endowment Event Type](classes.md#endowmenteventtype) |
+| Range | [Endowment Event Type](classes.md#endowmenteventtype-2) |
 | Used in | used in axioms of [Endowment Event](classes.md#endowmentevent) |
 | domainIncludes | hg:EndowmentEvent |
 
@@ -996,7 +996,7 @@ Type of Guthi (Si, Jatra, Temple).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Guthi](classes.md#guthi) |
-| Range | [Guthi Type](classes.md#guthitype) |
+| Range | [Guthi Type](classes.md#guthitype-2) |
 | Used in | used in axioms of [Guthi](classes.md#guthi) |
 | domainIncludes | hg:Guthi |
 
@@ -1051,10 +1051,10 @@ Religious tradition(s) within which this deity is venerated, or which use this s
 | | |
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
-| Domain | [Deity](classes.md#deity); [Architectural Structure](classes.md#architecturalstructure) |
+| Domain | [Architectural Structure](classes.md#architecturalstructure); [Deity](classes.md#deity) |
 | Range | [Religious Tradition](classes.md#religioustradition) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Deity](classes.md#deity) |
-| domainIncludes | hg:Deity; hg:ArchitecturalStructure |
+| domainIncludes | hg:ArchitecturalStructure; hg:Deity |
 
 ### has ritual type
 
@@ -1066,7 +1066,7 @@ Classification of ritual (puja, jatra, consecration).
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Ritual Event](classes.md#ritualevent) |
-| Range | [Ritual Type](classes.md#ritualtype-2) |
+| Range | [Ritual Type](classes.md#ritualtype) |
 | Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
 | domainIncludes | hg:RitualEvent |
 
@@ -1399,10 +1399,10 @@ Guthi organization managing this structure or ritual.
 
 | | |
 |---|---|
-| Domain | [Architectural Structure](classes.md#architecturalstructure); [Ritual Event](classes.md#ritualevent) |
+| Domain | [Ritual Event](classes.md#ritualevent); [Architectural Structure](classes.md#architecturalstructure) |
 | Range | [Guthi](classes.md#guthi) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Ritual Event](classes.md#ritualevent) |
-| domainIncludes | hg:ArchitecturalStructure; hg:RitualEvent |
+| domainIncludes | hg:RitualEvent; hg:ArchitecturalStructure |
 
 ### Mandated by
 

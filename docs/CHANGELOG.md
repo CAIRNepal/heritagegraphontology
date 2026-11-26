@@ -602,6 +602,7 @@ In First Order Logic of the inverse property:
   - ➖ rdfs:subClassOf: heritageGraph:sourceUrl min 0
   - ➖ rdfs:subClassOf: schema1:inLanguage max 1
   - ➖ rdfs:subClassOf: schema1:inLanguage min 0
+  - ➖ rdfs:subClassOf: schema1:inLanguage only xsd:string
   - ➖ skos:definition: "Original source from which heritage information was derived"@en
 - **Datacite identifier** (`heritageGraph:persistentIdentifier`, datatype property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -1302,6 +1303,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: prov:wasGeneratedBy min 0
   - ➖ rdfs:subClassOf: schema1:inLanguage max 1
   - ➖ rdfs:subClassOf: schema1:inLanguage min 0
+  - ➖ rdfs:subClassOf: schema1:inLanguage only xsd:string
   - ➖ skos:definition: "A recorded piece of information about heritage"@en
 - **Historical** (`https://cair-nepal.org/heritagegraph/SyncreticType#Historical`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology

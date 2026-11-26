@@ -157,10 +157,6 @@ An unambiguous reference to the resource within a given context.
 
 The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
 
-| | |
-|---|---|
-| Used in | used in axioms of [Data Source](classes.md#datasource); used in axioms of [Heritage information object](classes.md#informationobject) |
-
 ### Institutional affiliation
 
 **IRI:** `https://cair-nepal.org/heritagegraph/institutionalAffiliation` · `hg:institutionalAffiliation`
