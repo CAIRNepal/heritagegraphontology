@@ -4,14 +4,14 @@ All figures on this page are produced by one command from a clean checkout of th
 
 | | |
 |---|---|
-| OWL triples | 4606 |
+| OWL triples | 4267 |
 | Classes (excluding enumerations) | 67 |
 | Enumerations | 9 |
 | Object / datatype properties | 85 / 28 |
 | Classes stated subclasses of a CIDOC-CRM class | 21 |
 | Deprecated terms (kept, never deleted) | 55 |
-| SHACL shapes | 82 node shapes, 23958 triples |
-| Mappings to other vocabularies (SSSOM) | 288 |
+| SHACL shapes | 82 node shapes, 40293 triples |
+| Mappings to other vocabularies (SSSOM) | 275 |
 | CIDOC-CRM terms reused / HeritageGraph terms linked to CIDOC-CRM | 23 classes, 48 properties / 47 classes, 28 properties |
 
 ## Logic
@@ -28,15 +28,15 @@ All figures on this page are produced by one command from a clean checkout of th
 - By dimension: Institutional/Syncretic 7, Living Goddess 7, Ritual/Festival 12, Structural 6.
 - **Inference questions**: 4 questions whose answers grow only with HeritageGraph's axioms: each returns fewer answers over the asserted data and over the external vocabularies alone (each frozen set checked) than with HeritageGraph:
 
-  - IQ1 (6 answers, PASS): Which groups performed which rituals, as a CIDOC-CRM-only client sees them (crm:P14i)?
+  - IQ1 (5 answers, PASS): Which groups performed which rituals, as a CIDOC-CRM-only client sees them (crm:P14i)?
   - IQ2 (22 answers, PASS): Which PROV activities are recorded, as a PROV-O-only client sees them?
-  - IQ3 (4 answers, PASS): Which assertions are recorded about each heritage subject, seen from the subject?
+  - IQ3 (5 answers, PASS): Which assertions are recorded about each heritage subject, seen from the subject?
   - IQ4 (8 answers, PASS): Which physical heritage things are located where?
 
 ### How much the questions test (mutation analysis)
 
-- 23 of 32 questions have a single expected answer in the demonstrator (one witness); their evidence is thin (see the limitations below).
-- Swapping a term for a sibling HeritageGraph term changes the answer in 42 of 42 applicable cases.
+- 20 of 32 questions have a single expected answer in the demonstrator (one witness); their evidence is thin (see the limitations below).
+- Swapping a term for a sibling HeritageGraph term changes the answer in 34 of 42 applicable cases.
 - 4 questions depend on a TBox axiom (their answer changes when the axiom is deleted).
 
 ### Coverage of the vocabulary
@@ -44,7 +44,7 @@ All figures on this page are produced by one command from a clean checkout of th
 | | terms | used in a question | used in the demonstrator |
 |---|---|---|---|
 | class | 67 | 15 | 31 |
-| enumeration | 9 | 0 | 7 |
+| enumeration | 9 | 0 | 8 |
 | property | 113 | 37 | 69 |
 
 ## Data validation (SHACL)
