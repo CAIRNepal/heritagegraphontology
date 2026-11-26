@@ -439,7 +439,7 @@ ex:Src_Alsop a hg:DataSource ; rdfs:label "Alsop, Bunga Dya / Avalokiteshvara (R
   ?d a hg:Deity ; hg:hasReligiousTradition ?t . } GROUP BY ?d"""
     Q3 = PFX + """SELECT ?type ?source WHERE {
   ?s a hg:SyncreticRelationship ; hg:syncreticType ?type ;
-     prov:wasDerivedFrom ?source . }"""
+     hg:mentionedInSource ?source . }"""
 
     def short(x):
         return str(x).split("/")[-1]
