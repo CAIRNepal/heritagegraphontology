@@ -94,7 +94,7 @@ def main() -> int:
         name = "hg" + "".join(words.get(c, c) for c in k if c.isalnum())
         assert name not in seen, f"duplicate macro {name}"
         seen.add(name)
-        lines.append(f"\\newcommand{{\\{name}}}{{{v}}}")
+        lines.append(f"\\newcommand{{\\{name}}}{{{v:,}}}" if isinstance(v, int) else f"\\newcommand{{\\{name}}}{{{v}}}")  # thousands separators, as in the tables
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"Wrote {out.relative_to(ROOT)} ({len(numbers)} macros)")
     return 0
