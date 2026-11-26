@@ -141,10 +141,6 @@ In First Order Logic:
 - P3(x,y) ⇒ E62(y) 
 - P3(x,y,z) ⇒ [P3(x,y) ∧ E55(z)]
 
-| | |
-|---|---|
-| Used in | used in axioms of [Architectural Element](classes.md#architecturalelement); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Calendar System](classes.md#calendarsystem); used in axioms of [Caste Group](classes.md#castegroup); used in axioms of [Custody Period](classes.md#custodyperiod); used in axioms of [Data Custodian](classes.md#datacustodian); used in axioms of [Data Source](classes.md#datasource); used in axioms of [Deity](classes.md#deity); used in axioms of [Endowment](classes.md#endowment); used in axioms of [Endowment Event](classes.md#endowmentevent); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Hereditary Role Tenure](classes.md#hereditaryroletenure); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Office](classes.md#office); used in axioms of [Religious Tradition](classes.md#religioustradition); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Structure Type](classes.md#structuretype); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship); used in axioms of [Tenure](classes.md#tenure); used in axioms of [Verification](classes.md#verification) |
-
 ### Identifier
 
 **IRI:** `http://purl.org/dc/terms/identifier` · `dcterms:identifier`

@@ -1,13 +1,13 @@
 {
-  "old_version": "1.0.0",
-  "new_version": "1.0.1",
+  "old_version": "1.0.1",
+  "new_version": "1.1.0",
   "added": [
     {
       "iri": "https://cair-nepal.org/heritagegraph/AccessProtocol",
       "label": "Access Protocol",
       "kind": "class",
       "curie": "heritageGraph:AccessProtocol",
-      "anchor": "AccessProtocol",
+      "anchor": "AccessProtocol-2",
       "added": [],
       "removed": []
     },
@@ -16,7 +16,7 @@
       "label": "Access Protocol (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "AccessProtocol-2",
+      "anchor": "AccessProtocol",
       "added": [],
       "removed": []
     },
@@ -174,15 +174,6 @@
       "removed": []
     },
     {
-      "iri": "http://purl.org/ontology/bibo/doi",
-      "label": "doi",
-      "kind": "annotation_property",
-      "curie": "bibo:doi",
-      "anchor": "doi",
-      "added": [],
-      "removed": []
-    },
-    {
       "iri": "http://schema.org/domainIncludes",
       "label": "domainIncludes",
       "kind": "annotation_property",
@@ -250,7 +241,7 @@
       "label": "Endowment Event Type",
       "kind": "class",
       "curie": "heritageGraph:EndowmentEventType",
-      "anchor": "EndowmentEventType-2",
+      "anchor": "EndowmentEventType",
       "added": [],
       "removed": []
     },
@@ -259,7 +250,7 @@
       "label": "Endowment Event Type (concept scheme)",
       "kind": "concept_scheme",
       "curie": null,
-      "anchor": "EndowmentEventType",
+      "anchor": "EndowmentEventType-2",
       "added": [],
       "removed": []
     },
@@ -345,15 +336,6 @@
       "removed": []
     },
     {
-      "iri": "https://cair-nepal.org/heritagegraph/schema",
-      "label": "HeritageGraph LinkML schema",
-      "kind": "concept_scheme",
-      "curie": "heritageGraph:schema",
-      "anchor": "schema",
-      "added": [],
-      "removed": []
-    },
-    {
       "iri": "http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object",
       "label": "Information Object",
       "kind": "class",
@@ -368,24 +350,6 @@
       "kind": "concept",
       "curie": null,
       "anchor": "InitiatesOnly",
-      "added": [],
-      "removed": []
-    },
-    {
-      "iri": "http://purl.org/dc/terms/isReplacedBy",
-      "label": "isReplacedBy",
-      "kind": "annotation_property",
-      "curie": "dcterms:isReplacedBy",
-      "anchor": "isReplacedBy",
-      "added": [],
-      "removed": []
-    },
-    {
-      "iri": "http://purl.org/dc/terms/issued",
-      "label": "issued",
-      "kind": "annotation_property",
-      "curie": "dcterms:issued",
-      "anchor": "issued",
       "added": [],
       "removed": []
     },
@@ -929,10 +893,6 @@
           "crm:E24_Physical_Human-Made_Thing"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal).\"@en"
         ]
@@ -977,10 +937,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:hasReligiousTradition only heritageGraph:ReligiousTradition"
         ],
         [
@@ -995,7 +951,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P108i_was_produced_by only crm:E12_Production"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P34i_was_assessed_by min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P34i_was_assessed_by only crm:E14_Condition_Assessment"
         ],
         [
           "rdfs:subClassOf",
@@ -1024,6 +988,10 @@
         [
           "rdfs:subClassOf",
           "crm:P55_has_current_location min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P55_has_current_location only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -1056,6 +1024,10 @@
         [
           "rdfs:subClassOf",
           "heritageGraph:mentionedInSource min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E22_Human-Made_Object"
         ]
       ]
     },
@@ -1091,7 +1063,7 @@
       "label": "Architectural Style",
       "kind": "class",
       "curie": "heritageGraph:ArchitecturalStyle",
-      "anchor": "ArchitecturalStyle",
+      "anchor": "ArchitecturalStyle-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1122,25 +1094,10 @@
         [
           "linkml:permissible_values",
           "https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle",
-      "label": "Architectural Style (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "ArchitecturalStyle-2",
-      "added": [
+        ],
         [
-          "skos:prefLabel",
-          "\"Architectural Style (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Architectural Style\"@en"
+          "skos:broadMatch",
+          "crm:E55_Type"
         ]
       ]
     },
@@ -1177,10 +1134,6 @@
         [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:subClassOf",
-          "crm:E22_Human-Made_Object or heritageGraph:ArchitecturalElement or heritageGraph:Deity or heritageGraph:ReligiousTradition or heritageGraph:HistoricalEvent or heritageGraph:RitualEvent or crm:E12_Production or heritageGraph:Consecration or heritageGraph:Enshrinement or crm:E10_Transfer_of_Custody or crm:E14_Condition_Assessment or crm:E3_Condition_State or crm:E39_Actor or crm:E53_Place or crm:E52_Time-Span or heritageGraph:DataSource or heritageGraph:DocumentationActivity or heritageGraph:SyncreticRelationship or heritageGraph:KumariTenure or crm:E29_Design_or_Procedure or crm:E57_Material or heritageGraph:KumariRole or heritageGraph:SelectionCriterion or crminf:I2_Belief or heritageGraph:CalendarSystem or heritageGraph:Endowment or heritageGraph:EndowmentEvent or heritageGraph:HereditaryRoleTenure or heritageGraph:CustodyPeriod"
         ]
       ],
       "removed": [
@@ -1489,10 +1442,6 @@
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Calendar reckoning system with conversion rules for multi-calendar temporal reasoning.\"@en"
         ]
@@ -1584,10 +1533,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:traditionalRole only rdf:PlainLiteral"
         ],
         [
@@ -1662,7 +1607,7 @@
       "label": "Chaitya",
       "kind": "class",
       "curie": "heritageGraph:Chaitya",
-      "anchor": "Chaitya",
+      "anchor": "Chaitya-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1909,7 +1854,7 @@
       "label": "Condition Type",
       "kind": "class",
       "curie": "heritageGraph:ConditionType",
-      "anchor": "ConditionType",
+      "anchor": "ConditionType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -1936,25 +1881,6 @@
         [
           "linkml:permissible_values",
           "https://cair-nepal.org/heritagegraph/ConditionType#Ruined"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/ConditionType",
-      "label": "Condition Type (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "ConditionType-2",
-      "added": [
-        [
-          "skos:prefLabel",
-          "\"Condition Type (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Condition Type\"@en"
         ]
       ]
     },
@@ -2081,6 +2007,10 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P16_used_specific_object max 1"
         ],
         [
@@ -2097,6 +2027,10 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P7_took_place_at max 1"
         ],
         [
@@ -2105,7 +2039,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
+        ],
+        [
+          "rdfs:subClassOf",
           "heritageGraph:makesDeityPresent min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E7_Activity"
         ],
         [
           "skos:definition",
@@ -2328,10 +2270,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:custodianType only rdf:PlainLiteral"
         ]
       ],
@@ -2414,10 +2352,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:sourceCitation only rdf:PlainLiteral"
         ],
         [
@@ -2489,6 +2423,10 @@
         [
           "rdfs:subClassOf",
           "schema1:inLanguage only xsd:string"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E73_Information_Object"
         ],
         [
           "skos:definition",
@@ -2644,25 +2582,6 @@
       ]
     },
     {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/DatePrecision",
-      "label": "Date Precision (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "DatePrecision",
-      "added": [
-        [
-          "skos:prefLabel",
-          "\"Date Precision (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Date Precision\"@en"
-        ]
-      ]
-    },
-    {
       "iri": "https://cair-nepal.org/heritagegraph/deathTimespan",
       "label": "Death timespan",
       "kind": "object_property",
@@ -2753,10 +2672,6 @@
         [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
         ],
         [
           "skos:closeMatch",
@@ -3082,6 +2997,10 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
+        [
+          "rdfs:subClassOf",
           "heritageGraph:documents min 0"
         ],
         [
@@ -3110,7 +3029,19 @@
         ],
         [
           "rdfs:subClassOf",
+          "prov:generated only prov:Entity"
+        ],
+        [
+          "rdfs:subClassOf",
           "prov:wasAssociatedWith min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "prov:wasAssociatedWith only prov:Agent"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E7_Activity"
         ]
       ]
     },
@@ -3161,38 +3092,18 @@
       "anchor": "Dome",
       "added": [
         [
-          "dcterms:title",
-          "\"Dome style\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:label",
-          "\"Dome style\"@en"
-        ],
-        [
           "skos:definition",
           "\"Dome-based style (Mughal/Neo-classical influence).\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Dome style\"@en"
         ]
       ],
       "removed": [
         [
-          "rdfs:label",
-          "\"Dome\"@en"
-        ],
-        [
           "skos:definition",
           "\"Dome-based style (Mughal/Neo-classical influence)\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Dome\"@en"
         ]
       ]
     },
@@ -3470,7 +3381,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P4_has_time-span min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
         ],
         [
           "rdfs:subClassOf",
@@ -3482,11 +3401,19 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
+        ],
+        [
+          "rdfs:subClassOf",
           "heritageGraph:enshrinedDeity min 0"
         ],
         [
           "rdfs:subClassOf",
           "heritageGraph:enshrinedInStructure min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E7_Activity"
         ],
         [
           "skos:definition",
@@ -3713,25 +3640,6 @@
         [
           "linkml:permissible_values",
           "https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus",
-      "label": "Existence Status (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "ExistenceStatus",
-      "added": [
-        [
-          "skos:prefLabel",
-          "\"Existence Status (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Existence Status\"@en"
         ]
       ]
     },
@@ -4081,10 +3989,6 @@
           "crm:E74_Group"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership.\"@en"
         ]
@@ -4097,6 +4001,10 @@
         [
           "rdfs:subClassOf",
           "crm:P107_has_current_or_former_member min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P107_has_current_or_former_member only crm:E21_Person"
         ],
         [
           "rdfs:subClassOf",
@@ -4205,20 +4113,12 @@
         [
           "skos:definition",
           "\"Controlled vocabulary of Guthi functional types (CRM E55_Type).\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Guthi Type (concept scheme)\"@en"
         ]
       ],
       "removed": [
         [
           "skos:definition",
           "\"Controlled vocabulary of Guthi functional types (CRM E55_Type)\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Guthi Type\"@en"
         ]
       ]
     },
@@ -4310,10 +4210,6 @@
       "anchor": "calendarSystem",
       "added": [
         [
-          "dcterms:title",
-          "\"has calendar system\"@en"
-        ],
-        [
           "rdfs:domain",
           "crm:E52_Time-Span"
         ],
@@ -4322,19 +4218,11 @@
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:label",
-          "\"has calendar system\"@en"
-        ],
-        [
           "skos:definition",
           "\"Calendar system used for date representation.\"@en"
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Calendar system\"@en"
-        ],
         [
           "skos:definition",
           "\"Calendar system used for date representation\"@en"
@@ -4468,28 +4356,15 @@
       "anchor": "datePrecision",
       "added": [
         [
-          "dcterms:title",
-          "\"has date precision\"@en"
-        ],
-        [
           "rdfs:domain",
           "crm:E52_Time-Span"
         ],
         [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has date precision\"@en"
         ]
       ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Date precision\"@en"
-        ]
-      ]
+      "removed": []
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/destructionEvent",
@@ -4499,20 +4374,12 @@
       "anchor": "destructionEvent",
       "added": [
         [
-          "dcterms:title",
-          "\"has destruction event\"@en"
-        ],
-        [
           "owl:inverseOf",
           "crm:P13_destroyed"
         ],
         [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has destruction event\"@en"
         ],
         [
           "schema1:domainIncludes",
@@ -4524,10 +4391,6 @@
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Destruction event\"@en"
-        ],
         [
           "skos:definition",
           "\"Event that destroyed this structure (if known)\"@en"
@@ -4542,16 +4405,8 @@
       "anchor": "existenceStatus",
       "added": [
         [
-          "dcterms:title",
-          "\"has existence status\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has existence status\"@en"
         ],
         [
           "schema1:domainIncludes",
@@ -4563,10 +4418,6 @@
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Existence status\"@en"
-        ],
         [
           "skos:definition",
           "\"Current physical status of the structure\"@en"
@@ -4581,16 +4432,8 @@
       "anchor": "guthiType",
       "added": [
         [
-          "dcterms:title",
-          "\"has guthi type\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has guthi type\"@en"
         ],
         [
           "schema1:domainIncludes",
@@ -4602,10 +4445,6 @@
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Guthi type\"@en"
-        ],
         [
           "skos:definition",
           "\"Type of Guthi (Si, Jatra, Temple)\"@en"
@@ -4760,16 +4599,8 @@
       "anchor": "ritualType",
       "added": [
         [
-          "dcterms:title",
-          "\"has ritual type\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has ritual type\"@en"
         ],
         [
           "schema1:domainIncludes",
@@ -4781,10 +4612,6 @@
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Ritual type\"@en"
-        ],
         [
           "skos:definition",
           "\"Classification of ritual (puja, jatra, consecration)\"@en"
@@ -4799,28 +4626,15 @@
       "anchor": "syncreticType",
       "added": [
         [
-          "dcterms:title",
-          "\"has syncretic type\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"has syncretic type\"@en"
         ],
         [
           "schema1:domainIncludes",
           "heritageGraph:SyncreticRelationship"
         ]
       ],
-      "removed": [
-        [
-          "rdfs:label",
-          "\"Syncretic type\"@en"
-        ]
-      ]
+      "removed": []
     },
     {
       "iri": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span",
@@ -4943,6 +4757,10 @@
         ],
         [
           "rdfs:subClassOf",
+          "prov:wasGeneratedBy only prov:Activity"
+        ],
+        [
+          "rdfs:subClassOf",
           "schema1:inLanguage max 1"
         ],
         [
@@ -4998,10 +4816,6 @@
           "crm:E5_Event"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:editorialNote",
           "\"PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally.\"@en"
         ]
@@ -5029,11 +4843,19 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P7_took_place_at max 1"
         ],
         [
           "rdfs:subClassOf",
           "crm:P7_took_place_at min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -5046,6 +4868,10 @@
         [
           "rdfs:subClassOf",
           "heritageGraph:architecturalStructures min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E5_Event"
         ]
       ]
     },
@@ -5187,10 +5013,6 @@
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Sacred visual art objects that depict or embody deities through iconographic conventions.\"@en"
         ],
@@ -5203,6 +5025,10 @@
         [
           "rdfs:subClassOf",
           "crm:P108i_was_produced_by min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P108i_was_produced_by only crm:E12_Production"
         ],
         [
           "rdfs:subClassOf",
@@ -5223,6 +5049,10 @@
         [
           "rdfs:subClassOf",
           "crm:P55_has_current_location min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P55_has_current_location only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -5881,7 +5711,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P4_has_time-span min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
         ],
         [
           "rdfs:subClassOf",
@@ -5890,6 +5728,10 @@
         [
           "rdfs:subClassOf",
           "crm:P7_took_place_at min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -5954,14 +5796,6 @@
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P14_carried_out_by only crm:E39_Actor"
-        ],
-        [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Ritual or administrative event that formally ends a Living Goddess tenure according to tradition, returning the person to secular life. Record the event and its date, not the reason: the traditional grounds concern the bodily state of a child, and HeritageGraph does not record health or bodily data about persons.\"@en"
         ],
@@ -5981,7 +5815,7 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P14_carried_out_by only crm:E21_Person"
+          "crm:P14_carried_out_by only crm:E39_Actor"
         ],
         [
           "rdfs:subClassOf",
@@ -5997,11 +5831,19 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P7_took_place_at max 1"
         ],
         [
           "rdfs:subClassOf",
           "crm:P7_took_place_at min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -6079,7 +5921,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P4_has_time-span min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
         ],
         [
           "rdfs:subClassOf",
@@ -6088,6 +5938,10 @@
         [
           "rdfs:subClassOf",
           "crm:P7_took_place_at min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -6160,6 +6014,10 @@
         ]
       ],
       "removed": [
+        [
+          "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
         [
           "rdfs:subClassOf",
           "heritageGraph:assumesRole min 0"
@@ -6768,7 +6626,7 @@
       "label": "obsolete Chaitya style",
       "kind": "concept",
       "curie": null,
-      "anchor": "Chaitya-2",
+      "anchor": "Chaitya",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -6805,8 +6663,12 @@
       ],
       "removed": [
         [
+          "dcterms:title",
+          "\"Chaitya style\"@en"
+        ],
+        [
           "rdfs:label",
-          "\"Chaitya\"@en"
+          "\"Chaitya style\"@en"
         ],
         [
           "skos:definition",
@@ -6814,7 +6676,7 @@
         ],
         [
           "skos:prefLabel",
-          "\"Chaitya\"@en"
+          "\"Chaitya style\"@en"
         ]
       ]
     },
@@ -7322,10 +7184,6 @@
           "\"obsolete crminf pattern\"@en"
         ],
         [
-          "skos:definition",
-          "\"Editorial note naming the CRMinf pattern that a class instantiates.\"@en"
-        ],
-        [
           "skos:editorialNote",
           "\"Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'CRMinf pattern: '.\"@en"
         ],
@@ -7334,7 +7192,12 @@
           "heritageGraph:schema"
         ]
       ],
-      "removed": []
+      "removed": [
+        [
+          "rdfs:label",
+          "\"crminf pattern\"@en"
+        ]
+      ]
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/curator",
@@ -7637,10 +7500,6 @@
           "\"obsolete design note\"@en"
         ],
         [
-          "skos:definition",
-          "\"Editorial note recording a modelling decision about a term.\"@en"
-        ],
-        [
           "skos:editorialNote",
           "\"Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'Design note: '.\"@en"
         ],
@@ -7649,7 +7508,12 @@
           "heritageGraph:schema"
         ]
       ],
-      "removed": []
+      "removed": [
+        [
+          "rdfs:label",
+          "\"design note\"@en"
+        ]
+      ]
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/documentation_activities",
@@ -7888,8 +7752,12 @@
       ],
       "removed": [
         [
+          "dcterms:title",
+          "\"has metadata\"@en"
+        ],
+        [
           "rdfs:label",
-          "\"metadata\"@en"
+          "\"has metadata\"@en"
         ],
         [
           "rdfs:range",
@@ -8207,7 +8075,7 @@
       "label": "obsolete license",
       "kind": "datatype_property",
       "curie": "heritageGraph:license",
-      "anchor": "license",
+      "anchor": "license-2",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -8638,10 +8506,6 @@
           "\"obsolete prov alignment\"@en"
         ],
         [
-          "skos:definition",
-          "\"Editorial note naming the PROV-O term that a slot is aligned with.\"@en"
-        ],
-        [
           "skos:editorialNote",
           "\"Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'PROV-O alignment: '.\"@en"
         ],
@@ -8650,7 +8514,12 @@
           "heritageGraph:schema"
         ]
       ],
-      "removed": []
+      "removed": [
+        [
+          "rdfs:label",
+          "\"prov alignment\"@en"
+        ]
+      ]
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/prov_alignment_note",
@@ -8676,10 +8545,6 @@
           "\"obsolete prov alignment note\"@en"
         ],
         [
-          "skos:definition",
-          "\"Editorial note explaining the status of a class's PROV-O alignment.\"@en"
-        ],
-        [
           "skos:editorialNote",
           "\"Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'PROV-O alignment note: '.\"@en"
         ],
@@ -8688,7 +8553,12 @@
           "heritageGraph:schema"
         ]
       ],
-      "removed": []
+      "removed": [
+        [
+          "rdfs:label",
+          "\"prov alignment note\"@en"
+        ]
+      ]
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/provenance_scope",
@@ -8714,10 +8584,6 @@
           "\"obsolete provenance scope\"@en"
         ],
         [
-          "skos:definition",
-          "\"States whether a class's provenance slots describe the data record or the real-world referent.\"@en"
-        ],
-        [
           "skos:editorialNote",
           "\"Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'Provenance scope: '.\"@en"
         ],
@@ -8726,7 +8592,12 @@
           "heritageGraph:schema"
         ]
       ],
-      "removed": []
+      "removed": [
+        [
+          "rdfs:label",
+          "\"provenance scope\"@en"
+        ]
+      ]
     },
     {
       "iri": "https://cair-nepal.org/heritagegraph/religious_traditions",
@@ -8994,16 +8865,8 @@
       "anchor": "selectionCriteriaMet",
       "added": [
         [
-          "dcterms:isReplacedBy",
-          "heritageGraph:hasCriterion"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
-        ],
-        [
-          "rdfs:label",
-          "\"obsolete selection criteria met\"@en"
         ],
         [
           "rdfs:range",
@@ -9015,10 +8878,6 @@
         ]
       ],
       "removed": [
-        [
-          "rdfs:label",
-          "\"Selection criteria met\"@en"
-        ],
         [
           "rdfs:range",
           "xsd:string"
@@ -9077,7 +8936,7 @@
       "label": "obsolete Stupa style",
       "kind": "concept",
       "curie": null,
-      "anchor": "Stupa",
+      "anchor": "Stupa-2",
       "added": [
         [
           "dcterms:isReplacedBy",
@@ -9114,8 +8973,12 @@
       ],
       "removed": [
         [
+          "dcterms:title",
+          "\"Stupa style\"@en"
+        ],
+        [
           "rdfs:label",
-          "\"Stupa\"@en"
+          "\"Stupa style\"@en"
         ],
         [
           "skos:definition",
@@ -9123,7 +8986,7 @@
         ],
         [
           "skos:prefLabel",
-          "\"Stupa\"@en"
+          "\"Stupa style\"@en"
         ]
       ]
     },
@@ -9331,38 +9194,18 @@
       "anchor": "Pagoda",
       "added": [
         [
-          "dcterms:title",
-          "\"Pagoda style\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:label",
-          "\"Pagoda style\"@en"
-        ],
-        [
           "skos:definition",
           "\"Multi-tiered roof form of the Kathmandu Valley, as in the Newar tiered temple: roofs that diminish upward and rest on carved struts (also used on other building types).\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Pagoda style\"@en"
         ]
       ],
       "removed": [
         [
-          "rdfs:label",
-          "\"Pagoda\"@en"
-        ],
-        [
           "skos:definition",
           "\"Multi-tiered roof style indigenous to Nepal\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Pagoda\"@en"
         ]
       ]
     },
@@ -9470,7 +9313,7 @@
         ],
         [
           "skos:definition",
-          "\"Traditional Newari scroll painting (thangka) with mandala and deity iconography.\"@en"
+          "\"Traditional Newar religious scroll painting, Hindu or Buddhist, with mandala and deity iconography; related to, but not the same as, the Tibetan thangka.\"@en"
         ]
       ],
       "removed": [
@@ -9835,6 +9678,10 @@
         [
           "rdfs:subClassOf",
           "heritageGraph:propositionObjectEntity min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crminf:I4_Proposition_Set"
         ]
       ]
     },
@@ -9986,7 +9833,7 @@
         ],
         [
           "skos:definition",
-          "\"Royal endowment trust.\"@en"
+          "\"Raj guthi (state trust): a guthi in which the Guthi Sansthan holds rights and which it manages and operates, under the Guthi Corporation Act 2033 BS (1976); a legal-administrative status, not a functional type.\"@en"
         ]
       ],
       "removed": [
@@ -10163,10 +10010,6 @@
           "crm:E55_Type"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic).\"@en"
         ]
@@ -10183,6 +10026,10 @@
         [
           "rdfs:subClassOf",
           "crm:P3_has_note only xsd:string"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E55_Type"
         ],
         [
           "skos:definition",
@@ -10318,7 +10165,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P4_has_time-span min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
         ],
         [
           "rdfs:subClassOf",
@@ -10378,10 +10233,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:lunarDateTithi only rdf:PlainLiteral"
         ],
         [
@@ -10412,7 +10263,15 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P125_used_object_of_type only crm:E57_Material"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P14_carried_out_by min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P14_carried_out_by only crm:E39_Actor"
         ],
         [
           "rdfs:subClassOf",
@@ -10456,11 +10315,19 @@
         ],
         [
           "rdfs:subClassOf",
+          "crm:P4_has_time-span only crm:E52_Time-Span"
+        ],
+        [
+          "rdfs:subClassOf",
           "crm:P7_took_place_at max 1"
         ],
         [
           "rdfs:subClassOf",
           "crm:P7_took_place_at min 0"
+        ],
+        [
+          "rdfs:subClassOf",
+          "crm:P7_took_place_at only crm:E53_Place"
         ],
         [
           "rdfs:subClassOf",
@@ -10561,6 +10428,10 @@
         [
           "rdfs:subClassOf",
           "heritageGraph:startPlace min 0"
+        ],
+        [
+          "skos:broadMatch",
+          "crm:E7_Activity"
         ],
         [
           "skos:definition",
@@ -10668,25 +10539,6 @@
         [
           "linkml:permissible_values",
           "https://cair-nepal.org/heritagegraph/RitualType#Yagna"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/RitualType",
-      "label": "Ritual Type (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "RitualType-2",
-      "added": [
-        [
-          "skos:prefLabel",
-          "\"Ritual Type (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Ritual Type\"@en"
         ]
       ]
     },
@@ -10837,7 +10689,7 @@
         ],
         [
           "skos:definition",
-          "\"Multi-story rest house (3-5 floors) with ritual and social functions.\"@en"
+          "\"Multi-storey public rest house (e.g. the three-storey Kasthamandap) with ritual and social functions.\"@en"
         ]
       ],
       "removed": [
@@ -10923,6 +10775,10 @@
       ],
       "removed": [
         [
+          "skos:broadMatch",
+          "crm:E55_Type"
+        ],
+        [
           "skos:definition",
           "\"An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text.\"@en"
         ]
@@ -10936,38 +10792,18 @@
       "anchor": "Shikhara",
       "added": [
         [
-          "dcterms:title",
-          "\"Shikhara style\"@en"
-        ],
-        [
           "rdfs:isDefinedBy",
           "heritageGraph:ontology"
         ],
         [
-          "rdfs:label",
-          "\"Shikhara style\"@en"
-        ],
-        [
           "skos:definition",
           "\"North Indian spire-shaped style.\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Shikhara style\"@en"
         ]
       ],
       "removed": [
         [
-          "rdfs:label",
-          "\"Shikhara\"@en"
-        ],
-        [
           "skos:definition",
           "\"North Indian spire-shaped style\"@en"
-        ],
-        [
-          "skos:prefLabel",
-          "\"Shikhara\"@en"
         ]
       ]
     },
@@ -11209,7 +11045,7 @@
       "label": "Stupa",
       "kind": "class",
       "curie": "heritageGraph:Stupa",
-      "anchor": "Stupa-2",
+      "anchor": "Stupa",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -11266,10 +11102,6 @@
           "crm:E13_Attribute_Assignment"
         ],
         [
-          "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
           "skos:definition",
           "\"The act of identifying one deity with another across theological frameworks (a CIDOC-CRM E13 Attribute Assignment: P140 the deity identified, P141 the deity it is identified with), recorded with the source that reports it (hg:mentionedInSource).\"@en"
         ]
@@ -11320,6 +11152,10 @@
           "prov:used only prov:Entity"
         ],
         [
+          "skos:broadMatch",
+          "crm:E13_Attribute_Assignment"
+        ],
+        [
           "skos:definition",
           "\"Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance.\"@en"
         ]
@@ -11330,7 +11166,7 @@
       "label": "Syncretic Type",
       "kind": "class",
       "curie": "heritageGraph:SyncreticType",
-      "anchor": "SyncreticType",
+      "anchor": "SyncreticType-2",
       "added": [
         [
           "rdfs:isDefinedBy",
@@ -11357,25 +11193,6 @@
         [
           "linkml:permissible_values",
           "https://cair-nepal.org/heritagegraph/SyncreticType#Historical"
-        ]
-      ]
-    },
-    {
-      "iri": "https://cair-nepal.org/heritagegraph/scheme/SyncreticType",
-      "label": "Syncretic Type (concept scheme)",
-      "kind": "concept_scheme",
-      "curie": null,
-      "anchor": "SyncreticType-2",
-      "added": [
-        [
-          "skos:prefLabel",
-          "\"Syncretic Type (concept scheme)\"@en"
-        ]
-      ],
-      "removed": [
-        [
-          "skos:prefLabel",
-          "\"Syncretic Type\"@en"
         ]
       ]
     },
@@ -12037,10 +11854,6 @@
         ],
         [
           "rdfs:subClassOf",
-          "crm:P3_has_note only rdf:PlainLiteral"
-        ],
-        [
-          "rdfs:subClassOf",
           "heritageGraph:verificationMethod only rdf:PlainLiteral"
         ],
         [
@@ -12698,16 +12511,8 @@
       "anchor": null,
       "added": [
         [
-          "bibo:doi",
-          "\"10.5281/zenodo.23435676\""
-        ],
-        [
-          "bibo:status",
-          "\"Published\""
-        ],
-        [
           "dcterms:bibliographicCitation",
-          "\"Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676\""
+          "\"Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.1.0). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676\""
         ],
         [
           "dcterms:creator",
@@ -12730,12 +12535,58 @@
           "https://orcid.org/0009-0007-3770-4668"
         ],
         [
-          "dcterms:issued",
-          "\"2026-10-17\"^^xsd:date"
+          "dcterms:modified",
+          "\"2026-11-26\"^^xsd:date"
+        ],
+        [
+          "owl:priorVersion",
+          "https://cair-nepal.org/heritagegraph/ontology/1.0.1"
+        ],
+        [
+          "owl:versionIRI",
+          "https://cair-nepal.org/heritagegraph/ontology/1.1.0"
+        ],
+        [
+          "owl:versionInfo",
+          "\"1.1.0\""
+        ],
+        [
+          "pav:version",
+          "\"1.1.0\""
+        ],
+        [
+          "vann:preferredNamespacePrefix",
+          "\"hg\""
+        ]
+      ],
+      "removed": [
+        [
+          "dcterms:bibliographicCitation",
+          "\"Karki, N., Oli, N., Sapkota, A., Yumusak, S., & Chhetri, T. R. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Anu Sapkota\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Nabin Oli\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Niraj Karki\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Semih Yumusak\""
+        ],
+        [
+          "dcterms:creator",
+          "\"Tek Raj Chhetri\""
         ],
         [
           "dcterms:modified",
-          "\"2026-11-25\"^^xsd:date"
+          "\"2026-11-22\"^^xsd:date"
         ],
         [
           "owl:priorVersion",
@@ -12755,48 +12606,14 @@
         ],
         [
           "vann:preferredNamespacePrefix",
-          "\"hg\""
-        ]
-      ],
-      "removed": [
-        [
-          "bibo:status",
-          "\"Pre-release specification draft (alpha)\""
-        ],
-        [
-          "dcterms:bibliographicCitation",
-          "\"CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology\""
-        ],
-        [
-          "dcterms:creator",
-          "\"CAIR-Nepal\""
-        ],
-        [
-          "dcterms:modified",
-          "\"2026-10-17\"^^xsd:date"
-        ],
-        [
-          "owl:versionIRI",
-          "https://cair-nepal.org/heritagegraph/ontology/1.0.0"
-        ],
-        [
-          "owl:versionInfo",
-          "\"1.0.0\""
-        ],
-        [
-          "pav:version",
-          "\"1.0.0\""
-        ],
-        [
-          "vann:preferredNamespacePrefix",
           "\"heritageGraph\""
         ]
       ]
     }
   ],
   "summary": {
-    "added": 77,
+    "added": 73,
     "removed": 2,
-    "modified": 335
+    "modified": 329
   }
 }

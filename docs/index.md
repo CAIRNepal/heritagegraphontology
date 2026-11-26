@@ -2,7 +2,7 @@
 
 **IRI:** `https://cair-nepal.org/heritagegraph/ontology`
 
-**Version:** 1.0.1
+**Version:** 1.1.0
 
 **Authors:** Niraj Karki, Nabin Oli, Anu Sapkota, Tek Raj Chhetri, Semih Yumusak
 

@@ -280,7 +280,7 @@ Daily worship trust.
 
 **IRI:** `https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi`
 
-Royal endowment trust.
+Raj guthi (state trust): a guthi in which the Guthi Sansthan holds rights and which it manages and operates, under the Guthi Corporation Act 2033 BS (1976); a legal-administrative status, not a functional type.
 
 ### Reconstructed
 

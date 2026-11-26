@@ -166,7 +166,6 @@ In First Order Logic:
 |---|---|
 | Sub-properties | [Performed by group](object-properties.md#performedbygroup), [Verified by expert](object-properties.md#verifiedbyexpert) |
 | Inverse of | [performed](object-properties.md#p14i_performed) |
-| Used in | used in axioms of [Consecration](classes.md#consecration); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Assessment](classes.md#ritualassessment); used in axioms of [Ritual Event](classes.md#ritualevent) |
 
 ### Commissioned by
 
@@ -497,10 +496,10 @@ Source(s) that mention/document this entity: the normative way to cite a source 
 
 | | |
 |---|---|
-| Domain | [Architectural Structure](classes.md#architecturalstructure); [Syncretic Relationship](classes.md#syncreticrelationship) |
+| Domain | [Syncretic Relationship](classes.md#syncreticrelationship); [Architectural Structure](classes.md#architecturalstructure) |
 | Range | [Data Source](classes.md#datasource) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
-| domainIncludes | hg:ArchitecturalStructure; hg:SyncreticRelationship |
+| domainIncludes | hg:SyncreticRelationship; hg:ArchitecturalStructure |
 
 ### Duty for
 
@@ -789,7 +788,6 @@ In First Order Logic of the inverse property:
 | | |
 |---|---|
 | Inverse of | [wasGeneratedBy](object-properties.md#wasgeneratedby) |
-| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
 
 ### Had participant
 
@@ -814,7 +812,7 @@ Cultural access protocol for the thing or its record (e.g. restricted to initiat
 |---|---|
 | Super-properties | [Access Rights](object-properties.md#accessrights) |
 | Domain | [Transfer of Custody](classes.md#e10_transfer_of_custody) *or* [Production](classes.md#e12_production) *or* [Condition Assessment](classes.md#e14_condition_assessment) *or* [Human-Made Object](classes.md#e22_human-made_object) *or* [Design or Procedure](classes.md#e29_design_or_procedure) *or* [Condition State](classes.md#e3_condition_state) *or* [Time-Span](classes.md#e52_time-span) *or* [Place](classes.md#e53_place) *or* [Material](classes.md#e57_material) *or* [Destruction](classes.md#e6_destruction) *or* [Belief](classes.md#i2_belief) *or* [Architectural Element](classes.md#architecturalelement) *or* [Calendar System](classes.md#calendarsystem) *or* [Data Source](classes.md#datasource) *or* [Deity](classes.md#deity) *or* [Documentation Activity](classes.md#documentationactivity) *or* [Endowment](classes.md#endowment) *or* [Endowment Event](classes.md#endowmentevent) *or* [Historical Event](classes.md#historicalevent) *or* [Office](classes.md#office) *or* [Physical Heritage Thing](classes.md#physicalheritagething) *or* [Proposition](classes.md#proposition) *or* [Religious Tradition](classes.md#religioustradition) *or* [Ritual Event](classes.md#ritualevent) *or* [Selection Criterion](classes.md#selectioncriterion) *or* [Structure Type](classes.md#structuretype) *or* [Syncretic Relationship](classes.md#syncreticrelationship) *or* [Tenure](classes.md#tenure) |
-| Range | [Access Protocol](classes.md#accessprotocol) |
+| Range | [Access Protocol](classes.md#accessprotocol-2) |
 
 ### Has architectural style
 
@@ -826,7 +824,7 @@ Architectural style classification.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Architectural Structure](classes.md#architecturalstructure) |
-| Range | [Architectural Style](classes.md#architecturalstyle) |
+| Range | [Architectural Style](classes.md#architecturalstyle-2) |
 | Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Temple](classes.md#temple) |
 | domainIncludes | hg:ArchitecturalStructure |
 
@@ -864,7 +862,7 @@ Categorization of the condition state.
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Condition State](classes.md#e3_condition_state) |
-| Range | [Condition Type](classes.md#conditiontype) |
+| Range | [Condition Type](classes.md#conditiontype-2) |
 
 ### Has criterion
 
@@ -900,10 +898,6 @@ In First Order Logic:
 - P55(x,y) ⇐ (∃z) [ [E9(z) ˄ P25i(x,z) ˄ P26(z,y)]
 - ˄ ¬​ (∃w) [E9(w) ˄ P25i(x,w) ˄ P27(w,y)˄ P182(z,w)]]​
 
-| | |
-|---|---|
-| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Iconographic Object](classes.md#iconographicobject) |
-
 ### has current or former member
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P107_has_current_or_former_member` · `crm:P107_has_current_or_former_member`
@@ -933,7 +927,6 @@ In First Order Logic:
 | | |
 |---|---|
 | Inverse of | [is current or former member of](object-properties.md#p107i_is_current_or_former_member_of) |
-| Used in | used in axioms of [Guthi](classes.md#guthi) |
 
 ### has date precision
 
@@ -969,7 +962,7 @@ Kind of endowment event (founding, augmentation, nationalisation, alienation).
 | | |
 |---|---|
 | Domain | [Endowment Event](classes.md#endowmentevent) |
-| Range | [Endowment Event Type](classes.md#endowmenteventtype-2) |
+| Range | [Endowment Event Type](classes.md#endowmenteventtype) |
 | Used in | used in axioms of [Endowment Event](classes.md#endowmentevent) |
 | domainIncludes | hg:EndowmentEvent |
 
@@ -1094,7 +1087,7 @@ The typological nature of the syncretism (e.g., Ontological Identity, Functional
 |---|---|
 | Super-properties | [has type](object-properties.md#p2_has_type) |
 | Domain | [Syncretic Relationship](classes.md#syncreticrelationship) |
-| Range | [Syncretic Type](classes.md#syncretictype) |
+| Range | [Syncretic Type](classes.md#syncretictype-2) |
 | Used in | used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship) |
 | domainIncludes | hg:SyncreticRelationship |
 
@@ -2106,10 +2099,6 @@ In First Order Logic:
 - P7(x,y) ⇒ (∃z,u) [P157(y,u) ˄ P157(z,u) ˄ P161(x,z) ˄ P89(z,y)]
 - [E4(x) ˄ P157(y,u) ˄ P157(v,u) ˄ P7(x,y) ˄ P161(x,z) ˄ P89(z,v) ˄ P89(v,y)] ⇒ P7(x,v)
 
-| | |
-|---|---|
-| Used in | used in axioms of [Consecration](classes.md#consecration); used in axioms of [Endowment Event](classes.md#endowmentevent); used in axioms of [Enshrinement](classes.md#enshrinement); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Kumari Enthronement Event](classes.md#kumarienthronementevent); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent); used in axioms of [Ritual Event](classes.md#ritualevent) |
-
 ### took place on or within
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P8_took_place_on_or_within` · `crm:P8_took_place_on_or_within`
@@ -2249,10 +2238,6 @@ In First Order Logic:
 - P125(x,y) ⇒ E55(y)
 - P125(x,y) ⇔ (∃z) [E70(z) ∧ P16(x,z) ∧ P2(z,y)]
 
-| | |
-|---|---|
-| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
-
 ### used specific object
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P16_used_specific_object` · `crm:P16_used_specific_object`
@@ -2348,7 +2333,6 @@ In First Order Logic of the inverse property:
 | | |
 |---|---|
 | Inverse of | [concerned](object-properties.md#p34_concerned) |
-| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
 
 ### was born
 
@@ -2453,10 +2437,6 @@ In First Order Logic of the inverse property:
 
 An prov:Agent that had some (unspecified) responsibility for the occurrence of this prov:Activity.
 
-| | |
-|---|---|
-| Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
-
 ### wasAttributedTo
 
 **IRI:** `http://www.w3.org/ns/prov#wasAttributedTo` · `prov:wasAttributedTo`
@@ -2476,7 +2456,6 @@ A derivation is a transformation of an entity into another, an update of an enti
 | | |
 |---|---|
 | Inverse of | [generated](object-properties.md#generated) |
-| Used in | used in axioms of [Heritage information object](classes.md#informationobject) |
 
 ### wasInfluencedBy
 

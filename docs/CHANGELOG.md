@@ -1,6 +1,6 @@
-# Changelog: 1.0.0 → 1.0.1
+# Changelog: 1.0.1 → 1.1.0
 
-## Added (77)
+## Added (73)
 
 - **Access Protocol** (`heritageGraph:AccessProtocol`, class)
 - **Access Protocol (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/AccessProtocol`, concept scheme)
@@ -21,7 +21,6 @@
 - **Death** (`crm:E69_Death`, class)
 - **destroyed** (`crm:P13_destroyed`, object property)
 - **died in** (`crm:P100i_died_in`, object property)
-- **doi** (`bibo:doi`, annotation property)
 - **domainIncludes** (`schema1:domainIncludes`, annotation property)
 - **Duty for** (`heritageGraph:dutyFor`, object property)
 - **editorialNote** (`skos:editorialNote`, annotation property)
@@ -40,11 +39,8 @@
 - **has endowment event type** (`heritageGraph:endowmentEventType`, object property)
 - **has structure type** (`heritageGraph:structureType`, object property)
 - **Hereditary Role Tenure** (`heritageGraph:HereditaryRoleTenure`, class)
-- **HeritageGraph LinkML schema** (`heritageGraph:schema`, concept scheme)
 - **Information Object** (`crm:E73_Information_Object`, class)
 - **Initiates Only** (`https://cair-nepal.org/heritagegraph/AccessProtocol#InitiatesOnly`, concept)
-- **isReplacedBy** (`dcterms:isReplacedBy`, annotation property)
-- **issued** (`dcterms:issued`, annotation property)
 - **Legal Object** (`crm:E72_Legal_Object`, class)
 - **Mandated by** (`heritageGraph:mandatedBy`, object property)
 - **Month** (`https://cair-nepal.org/heritagegraph/DatePrecision#Month`, concept)
@@ -85,31 +81,32 @@
 - **permissible_values** (`linkml:permissible_values`, annotation property)
 - **Place coordinates** (`geo:asWKT`, datatype property)
 
-## Modified (336)
+## Modified (330)
 
 - **Ontology metadata** (`https://cair-nepal.org/heritagegraph/ontology`, ontology)
-  - ➕ bibo:doi: "10.5281/zenodo.23435676"
-  - ➕ bibo:status: "Published"
-  - ➕ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
+  - ➕ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Chhetri, T. R., & Yumusak, S. (2026). HeritageGraph Ontology (Version 1.1.0). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
   - ➕ dcterms:creator: https://orcid.org/0000-0002-3905-7878
   - ➕ dcterms:creator: https://orcid.org/0000-0002-8878-4991
   - ➕ dcterms:creator: https://orcid.org/0009-0000-7679-0107
   - ➕ dcterms:creator: https://orcid.org/0009-0004-5297-5990
   - ➕ dcterms:creator: https://orcid.org/0009-0007-3770-4668
-  - ➕ dcterms:issued: "2026-10-17"^^xsd:date
-  - ➕ dcterms:modified: "2026-11-25"^^xsd:date
-  - ➕ owl:priorVersion: https://cair-nepal.org/heritagegraph/ontology/1.0.0
-  - ➕ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.0.1
-  - ➕ owl:versionInfo: "1.0.1"
-  - ➕ pav:version: "1.0.1"
+  - ➕ dcterms:modified: "2026-11-26"^^xsd:date
+  - ➕ owl:priorVersion: https://cair-nepal.org/heritagegraph/ontology/1.0.1
+  - ➕ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.1.0
+  - ➕ owl:versionInfo: "1.1.0"
+  - ➕ pav:version: "1.1.0"
   - ➕ vann:preferredNamespacePrefix: "hg"
-  - ➖ bibo:status: "Pre-release specification draft (alpha)"
-  - ➖ dcterms:bibliographicCitation: "CAIR-Nepal (2026). HeritageGraph Ontology (1.0.0). https://cair-nepal.org/heritagegraph/ontology"
-  - ➖ dcterms:creator: "CAIR-Nepal"
-  - ➖ dcterms:modified: "2026-10-17"^^xsd:date
-  - ➖ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.0.0
-  - ➖ owl:versionInfo: "1.0.0"
-  - ➖ pav:version: "1.0.0"
+  - ➖ dcterms:bibliographicCitation: "Karki, N., Oli, N., Sapkota, A., Yumusak, S., & Chhetri, T. R. (2026). HeritageGraph Ontology (Version 1.0.1). CAIR-Nepal. https://doi.org/10.5281/zenodo.23435676"
+  - ➖ dcterms:creator: "Anu Sapkota"
+  - ➖ dcterms:creator: "Nabin Oli"
+  - ➖ dcterms:creator: "Niraj Karki"
+  - ➖ dcterms:creator: "Semih Yumusak"
+  - ➖ dcterms:creator: "Tek Raj Chhetri"
+  - ➖ dcterms:modified: "2026-11-22"^^xsd:date
+  - ➖ owl:priorVersion: https://cair-nepal.org/heritagegraph/ontology/1.0.0
+  - ➖ owl:versionIRI: https://cair-nepal.org/heritagegraph/ontology/1.0.1
+  - ➖ owl:versionInfo: "1.0.1"
+  - ➖ pav:version: "1.0.1"
   - ➖ vann:preferredNamespacePrefix: "heritageGraph"
 - **Abhisheka** (`https://cair-nepal.org/heritagegraph/RitualType#Abhisheka`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -160,7 +157,6 @@ In First Order Logic:
 - **Architectural Element** (`heritageGraph:ArchitecturalElement`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E24_Physical_Human-Made_Thing
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)."@en
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
@@ -170,11 +166,12 @@ In First Order Logic:
   - ➖ skos:definition: "Carved or constructed component of an architectural structure (e.g., Gajur, Torana, Tundal)"@en
 - **Architectural Structure** (`heritageGraph:ArchitecturalStructure`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:hasReligiousTradition only heritageGraph:ReligiousTradition
   - ➕ rdfs:subClassOf: heritageGraph:structureType only heritageGraph:StructureType
   - ➖ rdfs:subClassOf: crm:P108i_was_produced_by min 0
+  - ➖ rdfs:subClassOf: crm:P108i_was_produced_by only crm:E12_Production
   - ➖ rdfs:subClassOf: crm:P34i_was_assessed_by min 0
+  - ➖ rdfs:subClassOf: crm:P34i_was_assessed_by only crm:E14_Condition_Assessment
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
@@ -182,6 +179,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: crm:P46_is_composed_of only heritageGraph:ArchitecturalElement
   - ➖ rdfs:subClassOf: crm:P55_has_current_location max 1
   - ➖ rdfs:subClassOf: crm:P55_has_current_location min 0
+  - ➖ rdfs:subClassOf: crm:P55_has_current_location only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:destructionEvent min 0
   - ➖ rdfs:subClassOf: heritageGraph:existenceStatus min 0
   - ➖ rdfs:subClassOf: heritageGraph:hasArchitecturalStyle min 0
@@ -190,6 +188,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: heritageGraph:lastKnownExistenceDate min 0
   - ➖ rdfs:subClassOf: heritageGraph:managedByGuthi min 0
   - ➖ rdfs:subClassOf: heritageGraph:mentionedInSource min 0
+  - ➖ skos:broadMatch: crm:E22_Human-Made_Object
 - **Architectural structures** (`heritageGraph:architecturalStructures`, object property)
   - ➕ rdfs:domain: crm:E6_Destruction or heritageGraph:HistoricalEvent
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -203,16 +202,13 @@ In First Order Logic:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Stupa
-- **Architectural Style (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ArchitecturalStyle`, concept scheme)
-  - ➕ skos:prefLabel: "Architectural Style (concept scheme)"@en
-  - ➖ skos:prefLabel: "Architectural Style"@en
+  - ➖ skos:broadMatch: crm:E55_Type
 - **Archival Record** (`heritageGraph:ArchivalRecord`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Government or institutional administrative record."@en
   - ➖ skos:definition: "Government or institutional administrative record"@en
 - **Assertion Subject** (`heritageGraph:AssertionSubject`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:E22_Human-Made_Object or heritageGraph:ArchitecturalElement or heritageGraph:Deity or heritageGraph:ReligiousTradition or heritageGraph:HistoricalEvent or heritageGraph:RitualEvent or crm:E12_Production or heritageGraph:Consecration or heritageGraph:Enshrinement or crm:E10_Transfer_of_Custody or crm:E14_Condition_Assessment or crm:E3_Condition_State or crm:E39_Actor or crm:E53_Place or crm:E52_Time-Span or heritageGraph:DataSource or heritageGraph:DocumentationActivity or heritageGraph:SyncreticRelationship or heritageGraph:KumariTenure or crm:E29_Design_or_Procedure or crm:E57_Material or heritageGraph:KumariRole or heritageGraph:SelectionCriterion or crminf:I2_Belief or heritageGraph:CalendarSystem or heritageGraph:Endowment or heritageGraph:EndowmentEvent or heritageGraph:HereditaryRoleTenure or heritageGraph:CustodyPeriod
   - ➖ rdfs:subClassOf: crm:E22_Human-Made_Object or heritageGraph:ArchitecturalElement or heritageGraph:Deity or heritageGraph:ReligiousTradition or heritageGraph:HistoricalEvent or heritageGraph:RitualEvent or crm:E12_Production or heritageGraph:Consecration or heritageGraph:Enshrinement or crm:E10_Transfer_of_Custody or crm:E14_Condition_Assessment or crm:E3_Condition_State or crm:E39_Actor or crm:E53_Place or crm:E52_Time-Span or heritageGraph:DataSource or heritageGraph:DocumentationActivity or heritageGraph:SyncreticRelationship or heritageGraph:KumariTenure or crm:E29_Design_or_Procedure or crm:E57_Material or heritageGraph:KumariRole or heritageGraph:SelectionCriterion or crminf:I2_Belief or heritageGraph:CalendarSystem
 - **Asserts about** (`heritageGraph:assertsAbout`, object property)
   - ➕ rdfs:domain: crminf:I2_Belief
@@ -297,7 +293,6 @@ In First Order Logic:
   - ➖ skos:definition: "The KumariTenure period that this lifecycle event bounds (initiates or terminates). Specialized by initiated_tenure (selection) and ended_tenure_of (retirement)."@en
 - **Calendar System** (`heritageGraph:CalendarSystem`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Calendar reckoning system with conversion rules for multi-calendar temporal reasoning."@en
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
@@ -333,7 +328,6 @@ In First Order Logic:
 - **Caste Group** (`heritageGraph:CasteGroup`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E74_Group
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:traditionalRole only rdf:PlainLiteral
   - ➕ skos:definition: "Hereditary social group (Jati) with specific ritual roles and occupational duties."@en
   - ➖ rdfs:subClassOf: crm:E39_Actor
@@ -438,9 +432,6 @@ In First Order Logic:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ConditionType#Good
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ConditionType#Restored
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ConditionType#Ruined
-- **Condition Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ConditionType`, concept scheme)
-  - ➕ skos:prefLabel: "Condition Type (concept scheme)"@en
-  - ➖ skos:prefLabel: "Condition Type"@en
 - **Confers role** (`heritageGraph:confersRole`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:KumariEnthronementEvent
@@ -465,13 +456,17 @@ In First Order Logic:
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P16_used_specific_object max 1
   - ➖ rdfs:subClassOf: crm:P16_used_specific_object min 0
   - ➖ rdfs:subClassOf: crm:P16_used_specific_object only heritageGraph:Murti
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:makesDeityPresent min 0
+  - ➖ skos:broadMatch: crm:E7_Activity
   - ➖ skos:definition: "Ritual event that transforms an object into a sacred vessel (e.g., Prana Pratistha for Murti)"@en
 - **consists of** (`crm:P9_consists_of`, object property)
   - ➕ owl:inverseOf: crm:P9i_forms_part_of
@@ -566,7 +561,6 @@ In First Order Logic of the inverse property:
   - ➖ skos:definition: "Partially damaged"@en
 - **Data Custodian** (`heritageGraph:DataCustodian`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:custodianType only rdf:PlainLiteral
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
@@ -584,7 +578,6 @@ In First Order Logic of the inverse property:
 - **Data Source** (`heritageGraph:DataSource`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E73_Information_Object
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:sourceCitation only rdf:PlainLiteral
   - ➕ skos:definition: "Original source from which heritage information was derived."@en
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
@@ -603,6 +596,7 @@ In First Order Logic of the inverse property:
   - ➖ rdfs:subClassOf: schema1:inLanguage max 1
   - ➖ rdfs:subClassOf: schema1:inLanguage min 0
   - ➖ rdfs:subClassOf: schema1:inLanguage only xsd:string
+  - ➖ skos:broadMatch: crm:E73_Information_Object
   - ➖ skos:definition: "Original source from which heritage information was derived"@en
 - **Datacite identifier** (`heritageGraph:persistentIdentifier`, datatype property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -632,9 +626,6 @@ In First Order Logic of the inverse property:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/DatePrecision#Decade
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/DatePrecision#Exact
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/DatePrecision#Year
-- **Date Precision (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/DatePrecision`, concept scheme)
-  - ➕ skos:prefLabel: "Date Precision (concept scheme)"@en
-  - ➖ skos:prefLabel: "Date Precision"@en
 - **Death timespan** (`heritageGraph:deathTimespan`, object property)
   - ➕ owl:propertyChainAxiom: [anonymous]
   - ➕ rdfs:domain: crm:E21_Person
@@ -652,7 +643,6 @@ In First Order Logic of the inverse property:
   - ➖ skos:definition: "De-installation/conclusion ritual"@en
 - **Deity** (`heritageGraph:Deity`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:closeMatch: aat:300343850
   - ➕ skos:closeMatch: dbo:Deity
   - ➕ skos:closeMatch: wikidata:Q178885
@@ -767,6 +757,7 @@ In First Order Logic:
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: heritageGraph:documents min 0
   - ➖ rdfs:subClassOf: heritageGraph:usedEquipment min 0
   - ➖ rdfs:subClassOf: heritageGraph:usedEquipment only xsd:string
@@ -774,7 +765,10 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: heritageGraph:usedMethod min 0
   - ➖ rdfs:subClassOf: heritageGraph:usedMethod only xsd:string
   - ➖ rdfs:subClassOf: prov:generated min 0
+  - ➖ rdfs:subClassOf: prov:generated only prov:Entity
   - ➖ rdfs:subClassOf: prov:wasAssociatedWith min 0
+  - ➖ rdfs:subClassOf: prov:wasAssociatedWith only prov:Agent
+  - ➖ skos:broadMatch: crm:E7_Activity
 - **Documented in source** (`heritageGraph:mentionedInSource`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:ArchitecturalStructure
@@ -784,14 +778,9 @@ In First Order Logic:
   - ➖ heritageGraph:prov_alignment: "prov:wasInfluencedBy"
   - ➖ skos:definition: "Source(s) that mention/document this entity. Distinct from was_derived_from (which is prov:wasDerivedFrom for assertions). Entity-mention is not logical derivation."@en
 - **Dome style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Dome`, concept)
-  - ➕ dcterms:title: "Dome style"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "Dome style"@en
   - ➕ skos:definition: "Dome-based style (Mughal/Neo-classical influence)."@en
-  - ➕ skos:prefLabel: "Dome style"@en
-  - ➖ rdfs:label: "Dome"@en
   - ➖ skos:definition: "Dome-based style (Mughal/Neo-classical influence)"@en
-  - ➖ skos:prefLabel: "Dome"@en
 - **Embodied deity** (`heritageGraph:embodiedDeity`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:KumariTenure
@@ -876,11 +865,15 @@ In First Order Logic:
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:enshrinedDeity min 0
   - ➖ rdfs:subClassOf: heritageGraph:enshrinedInStructure min 0
+  - ➖ skos:broadMatch: crm:E7_Activity
   - ➖ skos:definition: "Event of installing a deity's murti or symbol within a temple sanctum"@en
 - **Enshrines deity through event** (`heritageGraph:enshrinesDeityThroughEvent`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -924,9 +917,6 @@ In First Order Logic:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ExistenceStatus#Lost
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ExistenceStatus#PartiallyExtant
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/ExistenceStatus#Unknown
-- **Existence Status (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/ExistenceStatus`, concept scheme)
-  - ➕ skos:prefLabel: "Existence Status (concept scheme)"@en
-  - ➖ skos:prefLabel: "Existence Status"@en
 - **Expertise area** (`heritageGraph:expertiseArea`, datatype property)
   - ➕ rdfs:domain: crm:E21_Person
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -1025,10 +1015,10 @@ In First Order Logic of the inverse property:
 - **Guthi** (`heritageGraph:Guthi`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E74_Group
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Endowed trust organization unique to Nepal, managing temples, rituals, and land through hereditary or voluntary membership."@en
   - ➖ rdfs:subClassOf: crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P107_has_current_or_former_member min 0
+  - ➖ rdfs:subClassOf: crm:P107_has_current_or_former_member only crm:E21_Person
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
@@ -1053,9 +1043,7 @@ In First Order Logic of the inverse property:
   - ➖ skos:definition: "Controlled vocabulary of Guthi functional types (CRM E55_Type)"@en
 - **Guthi Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/GuthiType`, concept scheme)
   - ➕ skos:definition: "Controlled vocabulary of Guthi functional types (CRM E55_Type)."@en
-  - ➕ skos:prefLabel: "Guthi Type (concept scheme)"@en
   - ➖ skos:definition: "Controlled vocabulary of Guthi functional types (CRM E55_Type)"@en
-  - ➖ skos:prefLabel: "Guthi Type"@en
 - **Had participant** (`heritageGraph:hadParticipant`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:KumariTenure
@@ -1072,12 +1060,9 @@ In First Order Logic of the inverse property:
   - ➕ rdfs:domain: heritageGraph:AssertionSubject
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
 - **has calendar system** (`heritageGraph:calendarSystem`, object property)
-  - ➕ dcterms:title: "has calendar system"@en
   - ➕ rdfs:domain: crm:E52_Time-Span
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has calendar system"@en
   - ➕ skos:definition: "Calendar system used for date representation."@en
-  - ➖ rdfs:label: "Calendar system"@en
   - ➖ skos:definition: "Calendar system used for date representation"@en
 - **Has condition type** (`heritageGraph:hasConditionType`, object property)
   - ➕ rdfs:domain: crm:E3_Condition_State
@@ -1138,35 +1123,23 @@ In First Order Logic:
   - ➖ skos:definition: "Members of Guthi organization"@en
   - ➖ skos:inScheme: heritageGraph:schema
 - **has date precision** (`heritageGraph:datePrecision`, object property)
-  - ➕ dcterms:title: "has date precision"@en
   - ➕ rdfs:domain: crm:E52_Time-Span
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has date precision"@en
-  - ➖ rdfs:label: "Date precision"@en
 - **has destruction event** (`heritageGraph:destructionEvent`, object property)
-  - ➕ dcterms:title: "has destruction event"@en
   - ➕ owl:inverseOf: crm:P13_destroyed
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has destruction event"@en
   - ➕ schema1:domainIncludes: heritageGraph:ArchitecturalStructure
   - ➕ skos:definition: "Event that destroyed this structure (if known)."@en
-  - ➖ rdfs:label: "Destruction event"@en
   - ➖ skos:definition: "Event that destroyed this structure (if known)"@en
 - **has existence status** (`heritageGraph:existenceStatus`, object property)
-  - ➕ dcterms:title: "has existence status"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has existence status"@en
   - ➕ schema1:domainIncludes: heritageGraph:ArchitecturalStructure
   - ➕ skos:definition: "Current physical status of the structure."@en
-  - ➖ rdfs:label: "Existence status"@en
   - ➖ skos:definition: "Current physical status of the structure"@en
 - **has guthi type** (`heritageGraph:guthiType`, object property)
-  - ➕ dcterms:title: "has guthi type"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has guthi type"@en
   - ➕ schema1:domainIncludes: heritageGraph:Guthi
   - ➕ skos:definition: "Type of Guthi (Si, Jatra, Temple)."@en
-  - ➖ rdfs:label: "Guthi type"@en
   - ➖ skos:definition: "Type of Guthi (Si, Jatra, Temple)"@en
 - **has identified** (`crm:P35_has_identified`, object property)
   - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
@@ -1240,19 +1213,13 @@ In First Order Logic:
   - ➕ skos:definition: "Religious tradition(s) within which this deity is venerated, or which use this structure (a temple, or a pavilion, rest house or water spout with a shrine)."@en
   - ➖ skos:definition: "Religious tradition(s) within which this deity is venerated, or which use this religious structure"@en
 - **has ritual type** (`heritageGraph:ritualType`, object property)
-  - ➕ dcterms:title: "has ritual type"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has ritual type"@en
   - ➕ schema1:domainIncludes: heritageGraph:RitualEvent
   - ➕ skos:definition: "Classification of ritual (puja, jatra, consecration)."@en
-  - ➖ rdfs:label: "Ritual type"@en
   - ➖ skos:definition: "Classification of ritual (puja, jatra, consecration)"@en
 - **has syncretic type** (`heritageGraph:syncreticType`, object property)
-  - ➕ dcterms:title: "has syncretic type"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "has syncretic type"@en
   - ➕ schema1:domainIncludes: heritageGraph:SyncreticRelationship
-  - ➖ rdfs:label: "Syncretic type"@en
 - **has time-span** (`crm:P4_has_time-span`, object property)
   - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
   - ➕ rdfs:label: "has time-span"@en
@@ -1301,6 +1268,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: prov:wasGeneratedBy max 1
   - ➖ rdfs:subClassOf: prov:wasGeneratedBy min 0
+  - ➖ rdfs:subClassOf: prov:wasGeneratedBy only prov:Activity
   - ➖ rdfs:subClassOf: schema1:inLanguage max 1
   - ➖ rdfs:subClassOf: schema1:inLanguage min 0
   - ➖ rdfs:subClassOf: schema1:inLanguage only xsd:string
@@ -1312,18 +1280,20 @@ In First Order Logic:
 - **Historical Event** (`heritageGraph:HistoricalEvent`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E5_Event
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: crm:P9_consists_of min 0
   - ➖ rdfs:subClassOf: crm:P9_consists_of only heritageGraph:RitualEvent
   - ➖ rdfs:subClassOf: heritageGraph:architecturalStructures min 0
+  - ➖ skos:broadMatch: crm:E5_Event
 - **Homa** (`https://cair-nepal.org/heritagegraph/RitualType#Homa`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Fire offering ritual."@en
@@ -1360,15 +1330,16 @@ In First Order Logic:
   - ➖ skos:definition: "Reconstructed or theorized; never physically realized"@en
 - **Iconographic Object** (`heritageGraph:IconographicObject`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Sacred visual art objects that depict or embody deities through iconographic conventions."@en
   - ➕ skos:relatedMatch: crm:E36_Visual_Item
   - ➖ rdfs:subClassOf: crm:P108i_was_produced_by min 0
+  - ➖ rdfs:subClassOf: crm:P108i_was_produced_by only crm:E12_Production
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
   - ➖ rdfs:subClassOf: crm:P55_has_current_location max 1
   - ➖ rdfs:subClassOf: crm:P55_has_current_location min 0
+  - ➖ rdfs:subClassOf: crm:P55_has_current_location only crm:E53_Place
   - ➖ rdfs:subClassOf: crm:P62_depicts min 0
   - ➖ rdfs:subClassOf: crm:P62_depicts only heritageGraph:Deity
   - ➖ rdfs:subClassOf: heritageGraph:participatesInRitual min 0
@@ -1586,9 +1557,12 @@ In First Order Logic of the inverse property:
 - **Kumari Enthronement Event** (`heritageGraph:KumariEnthronementEvent`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: heritageGraph:hasAssertion min 0
 - **Kumari House** (`heritageGraph:KumariHouse`, class)
@@ -1600,18 +1574,18 @@ In First Order Logic of the inverse property:
   - ➖ skos:definition: "Abstract event that bounds a KumariTenure (selection, enthronement, or retirement). Each concrete subclass requires exactly one tenure edge via slot_usage: initiated_tenure (selection), ended_tenure_of (retirement), or bounds_tenure itself (enthronement)."@en
 - **Kumari Retirement Event** (`heritageGraph:KumariRetirementEvent`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Ritual or administrative event that formally ends a Living Goddess tenure according to tradition, returning the person to secular life. Record the event and its date, not the reason: the traditional grounds concern the bodily state of a child, and HeritageGraph does not record health or bodily data about persons."@en
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
-  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E21_Person
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: heritageGraph:hasAssertion min 0
   - ➖ rdfs:subClassOf: heritageGraph:performedByGroup min 0
@@ -1627,9 +1601,12 @@ In First Order Logic of the inverse property:
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: heritageGraph:confersRole min 0
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: heritageGraph:hasAssertion min 0
@@ -1646,6 +1623,7 @@ In First Order Logic of the inverse property:
   - ➕ rdfs:subClassOf: heritageGraph:tenureHolder min 1
   - ➕ rdfs:subClassOf: heritageGraph:tenureHolder only crm:E21_Person
   - ➕ skos:editorialNote: "Design note: PROV placement: a prov:Entity, i.e. a thing whose provenance is tracked (sources, attributions, assertions about it), and a crm:E4_Period (stated, 1.1.0). A period is not a crm:E7_Activity, so the class stays outside any E7 ⊑ prov:Activity alignment and the PROV-O Entity/Activity disjointness is not engaged; reasoning with CIDOC-CRM, CRMinf, CRMsci and PROV-O loaded is consistent with the example data."@en
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: heritageGraph:assumesRole min 0
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: heritageGraph:enthronedThrough min 0
@@ -1788,9 +1766,10 @@ In First Order Logic:
   - ➕ skos:definition: "Buddhist votive shrine style."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Chaitya instead."@en
   - ➕ skos:prefLabel: "obsolete Chaitya style"@en
-  - ➖ rdfs:label: "Chaitya"@en
+  - ➖ dcterms:title: "Chaitya style"@en
+  - ➖ rdfs:label: "Chaitya style"@en
   - ➖ skos:definition: "Buddhist votive shrine style"@en
-  - ➖ skos:prefLabel: "Chaitya"@en
+  - ➖ skos:prefLabel: "Chaitya style"@en
 - **obsolete condition assessments** (`heritageGraph:condition_assessments`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -1909,9 +1888,9 @@ In First Order Logic:
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:label: "obsolete crminf pattern"@en
-  - ➕ skos:definition: "Editorial note naming the CRMinf pattern that a class instantiates."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'CRMinf pattern: '."@en
   - ➕ skos:inScheme: heritageGraph:schema
+  - ➖ rdfs:label: "crminf pattern"@en
 - **obsolete curator** (`heritageGraph:curator`, datatype property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -1974,9 +1953,9 @@ In First Order Logic:
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:label: "obsolete design note"@en
-  - ➕ skos:definition: "Editorial note recording a modelling decision about a term."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'Design note: '."@en
   - ➕ skos:inScheme: heritageGraph:schema
+  - ➖ rdfs:label: "design note"@en
 - **obsolete documentation activities** (`heritageGraph:documentation_activities`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2026,7 +2005,8 @@ In First Order Logic:
   - ➕ rdfs:label: "obsolete has metadata"@en
   - ➕ skos:definition: "Dataset metadata."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: a LinkML serialization construct for JSON/YAML data files, not a domain term. It is defined in HeritageGraph-container.yaml and used only by the JSON Schema; RDF instance data should not use it."@en
-  - ➖ rdfs:label: "metadata"@en
+  - ➖ dcterms:title: "has metadata"@en
+  - ➖ rdfs:label: "has metadata"@en
   - ➖ rdfs:range: heritageGraph:Metadata
   - ➖ skos:definition: "Dataset metadata"@en
 - **obsolete historical events** (`heritageGraph:historical_events`, object property)
@@ -2186,25 +2166,25 @@ In First Order Logic:
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:label: "obsolete prov alignment"@en
-  - ➕ skos:definition: "Editorial note naming the PROV-O term that a slot is aligned with."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'PROV-O alignment: '."@en
   - ➕ skos:inScheme: heritageGraph:schema
+  - ➖ rdfs:label: "prov alignment"@en
 - **obsolete prov alignment note** (`heritageGraph:prov_alignment_note`, annotation property)
   - ➕ dcterms:isReplacedBy: skos:editorialNote
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:label: "obsolete prov alignment note"@en
-  - ➕ skos:definition: "Editorial note explaining the status of a class's PROV-O alignment."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'PROV-O alignment note: '."@en
   - ➕ skos:inScheme: heritageGraph:schema
+  - ➖ rdfs:label: "prov alignment note"@en
 - **obsolete provenance scope** (`heritageGraph:provenance_scope`, annotation property)
   - ➕ dcterms:isReplacedBy: skos:editorialNote
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:label: "obsolete provenance scope"@en
-  - ➕ skos:definition: "States whether a class's provenance slots describe the data record or the real-world referent."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: the note is published as skos:editorialNote with the prefix 'Provenance scope: '."@en
   - ➕ skos:inScheme: heritageGraph:schema
+  - ➖ rdfs:label: "provenance scope"@en
 - **obsolete religious traditions** (`heritageGraph:religious_traditions`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2260,12 +2240,9 @@ In First Order Logic:
   - ➖ rdfs:range: heritageGraph:SelectionCriterion
   - ➖ skos:definition: "Collection of SelectionCriterion instances"@en
 - **obsolete selection criteria met** (`heritageGraph:selectionCriteriaMet`, datatype property)
-  - ➕ dcterms:isReplacedBy: heritageGraph:hasCriterion
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "obsolete selection criteria met"@en
   - ➕ rdfs:range: rdf:PlainLiteral
   - ➕ skos:definition: "DEPRECATED free-text list; use hg:hasCriterion -> SelectionCriterion subclasses instead. Retained for backward compatibility."@en
-  - ➖ rdfs:label: "Selection criteria met"@en
   - ➖ rdfs:range: xsd:string
   - ➖ skos:definition: "DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility."@en
 - **obsolete structures** (`heritageGraph:structures`, object property)
@@ -2286,9 +2263,10 @@ In First Order Logic:
   - ➕ skos:definition: "Buddhist dome-shaped reliquary."@en
   - ➕ skos:editorialNote: "Deprecated in HeritageGraph 1.1.0: A building type, not an architectural style: type the structure as a Stupa instead."@en
   - ➕ skos:prefLabel: "obsolete Stupa style"@en
-  - ➖ rdfs:label: "Stupa"@en
+  - ➖ dcterms:title: "Stupa style"@en
+  - ➖ rdfs:label: "Stupa style"@en
   - ➖ skos:definition: "Buddhist dome-shaped reliquary"@en
-  - ➖ skos:prefLabel: "Stupa"@en
+  - ➖ skos:prefLabel: "Stupa style"@en
 - **obsolete syncretic relationships** (`heritageGraph:syncretic_relationships`, object property)
   - ➕ owl:deprecated: true
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2340,14 +2318,9 @@ In First Order Logic:
 - **Oral History Recording** (`heritageGraph:OralHistoryRecording`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
 - **Pagoda style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda`, concept)
-  - ➕ dcterms:title: "Pagoda style"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "Pagoda style"@en
   - ➕ skos:definition: "Multi-tiered roof form of the Kathmandu Valley, as in the Newar tiered temple: roofs that diminish upward and rest on carved struts (also used on other building types)."@en
-  - ➕ skos:prefLabel: "Pagoda style"@en
-  - ➖ rdfs:label: "Pagoda"@en
   - ➖ skos:definition: "Multi-tiered roof style indigenous to Nepal"@en
-  - ➖ skos:prefLabel: "Pagoda"@en
 - **Part of selection** (`heritageGraph:partOfSelection`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:RitualAssessment
@@ -2366,7 +2339,7 @@ In First Order Logic:
   - ➖ skos:definition: "Open-air pavilion for resting travelers"@en
 - **Paubha** (`heritageGraph:Paubha`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ skos:definition: "Traditional Newari scroll painting (thangka) with mandala and deity iconography."@en
+  - ➕ skos:definition: "Traditional Newar religious scroll painting, Hindu or Buddhist, with mandala and deity iconography; related to, but not the same as, the Tibetan thangka."@en
   - ➖ skos:definition: "Traditional Newari scroll painting (thangka) with mandala and deity iconography"@en
 - **performed** (`crm:P14i_performed`, object property)
   - ➕ rdfs:isDefinedBy: http://www.cidoc-crm.org/cidoc-crm/
@@ -2485,6 +2458,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: heritageGraph:propositionLiteralValue min 0
   - ➖ rdfs:subClassOf: heritageGraph:propositionLiteralValue only xsd:string
   - ➖ rdfs:subClassOf: heritageGraph:propositionObjectEntity min 0
+  - ➖ skos:broadMatch: crminf:I4_Proposition_Set
 - **Proposition object entity** (`heritageGraph:propositionObjectEntity`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:Proposition
@@ -2511,7 +2485,7 @@ In First Order Logic:
   - ➖ skos:definition: "Daily worship trust"@en
 - **Raj Guthi** (`https://cair-nepal.org/heritagegraph/GuthiType#RajGuthi`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ skos:definition: "Royal endowment trust."@en
+  - ➕ skos:definition: "Raj guthi (state trust): a guthi in which the Guthi Sansthan holds rights and which it manages and operates, under the Guthi Corporation Act 2033 BS (1976); a legal-administrative status, not a functional type."@en
   - ➖ skos:definition: "Royal endowment trust"@en
 - **Reconciliation status** (`heritageGraph:reconciliationStatus`, datatype property)
   - ➕ rdfs:domain: crminf:I2_Belief
@@ -2545,11 +2519,11 @@ In First Order Logic:
 - **Religious Tradition** (`heritageGraph:ReligiousTradition`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E55_Type
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)."@en
   - ➖ rdfs:subClassOf: crm:P3_has_note max 1
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
+  - ➖ skos:broadMatch: crm:E55_Type
   - ➖ skos:definition: "Religious or philosophical tradition (e.g., Hindu, Buddhist, Syncretic)"@en
 - **Residence structure** (`heritageGraph:residenceStructure`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2573,7 +2547,9 @@ In First Order Logic:
 - **Ritual Assessment** (`heritageGraph:RitualAssessment`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: heritageGraph:assessesCandidate min 0
   - ➖ rdfs:subClassOf: heritageGraph:documentedBy min 0
   - ➖ rdfs:subClassOf: heritageGraph:hasAssertion min 0
@@ -2585,7 +2561,6 @@ In First Order Logic:
 - **Ritual Event** (`heritageGraph:RitualEvent`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E7_Activity
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:lunarDateTithi only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:recurrencePattern only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:routeDescription only rdf:PlainLiteral
@@ -2593,7 +2568,9 @@ In First Order Logic:
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
   - ➖ heritageGraph:prov_alignment_note: "prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."
   - ➖ rdfs:subClassOf: crm:P125_used_object_of_type min 0
+  - ➖ rdfs:subClassOf: crm:P125_used_object_of_type only crm:E57_Material
   - ➖ rdfs:subClassOf: crm:P14_carried_out_by min 0
+  - ➖ rdfs:subClassOf: crm:P14_carried_out_by only crm:E39_Actor
   - ➖ rdfs:subClassOf: crm:P183_ends_before_the_start_of max 1
   - ➖ rdfs:subClassOf: crm:P183_ends_before_the_start_of min 0
   - ➖ rdfs:subClassOf: crm:P183_ends_before_the_start_of only heritageGraph:RitualEvent
@@ -2604,8 +2581,10 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: crm:P3_has_note min 0
   - ➖ rdfs:subClassOf: crm:P3_has_note only xsd:string
   - ➖ rdfs:subClassOf: crm:P4_has_time-span min 0
+  - ➖ rdfs:subClassOf: crm:P4_has_time-span only crm:E52_Time-Span
   - ➖ rdfs:subClassOf: crm:P7_took_place_at max 1
   - ➖ rdfs:subClassOf: crm:P7_took_place_at min 0
+  - ➖ rdfs:subClassOf: crm:P7_took_place_at only crm:E53_Place
   - ➖ rdfs:subClassOf: crm:P8_took_place_on_or_within max 1
   - ➖ rdfs:subClassOf: crm:P8_took_place_on_or_within min 0
   - ➖ rdfs:subClassOf: crm:P8_took_place_on_or_within only heritageGraph:PhysicalHeritageThing
@@ -2631,6 +2610,7 @@ In First Order Logic:
   - ➖ rdfs:subClassOf: heritageGraph:routeDescription only xsd:string
   - ➖ rdfs:subClassOf: heritageGraph:routePlaces min 0
   - ➖ rdfs:subClassOf: heritageGraph:startPlace min 0
+  - ➖ skos:broadMatch: crm:E7_Activity
   - ➖ skos:definition: "Intentional ritual activity that activates sacred space, invokes deities, and binds social groups"@en
 - **Ritual Type** (`heritageGraph:RitualType`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2656,9 +2636,6 @@ In First Order Logic:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/RitualType#RitualConsecration
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/RitualType#Vrata
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/RitualType#Yagna
-- **Ritual Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/RitualType`, concept scheme)
-  - ➕ skos:prefLabel: "Ritual Type (concept scheme)"@en
-  - ➖ skos:prefLabel: "Ritual Type"@en
 - **Role deity** (`heritageGraph:roleDeity`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ schema1:domainIncludes: heritageGraph:KumariRole
@@ -2686,7 +2663,7 @@ In First Order Logic:
   - ➖ skos:definition: "Agricultural cooperative trust"@en
 - **Sattal** (`heritageGraph:Sattal`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ skos:definition: "Multi-story rest house (3-5 floors) with ritual and social functions."@en
+  - ➕ skos:definition: "Multi-storey public rest house (e.g. the three-storey Kasthamandap) with ritual and social functions."@en
   - ➖ skos:definition: "Multi-story rest house (3-5 floors) with ritual and social functions"@en
 - **Selected person** (`heritageGraph:selectedPerson`, object property)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2702,16 +2679,12 @@ In First Order Logic:
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E55_Type
   - ➕ skos:definition: "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text. Ethics: candidates are children. Criteria describe the tradition; data about how a named or identifiable child met them (bodily marks, health, horoscope) must not be recorded."@en
+  - ➖ skos:broadMatch: crm:E55_Type
   - ➖ skos:definition: "An eligibility criterion a candidate must satisfy to assume the Kumari role. Modelled as explicit subclasses so 'what are the eligibility criteria?' is a subclass query, not free text."@en
 - **Shikhara style** (`https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Shikhara`, concept)
-  - ➕ dcterms:title: "Shikhara style"@en
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:label: "Shikhara style"@en
   - ➕ skos:definition: "North Indian spire-shaped style."@en
-  - ➕ skos:prefLabel: "Shikhara style"@en
-  - ➖ rdfs:label: "Shikhara"@en
   - ➖ skos:definition: "North Indian spire-shaped style"@en
-  - ➖ skos:prefLabel: "Shikhara"@en
 - **Si Guthi** (`https://cair-nepal.org/heritagegraph/GuthiType#SiGuthi`, concept)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:definition: "Death guthi (si guthi): the association whose members carry out the cremation and death rites of member households."@en
@@ -2800,7 +2773,6 @@ In First Order Logic of the inverse property:
 - **Syncretic Relationship** (`heritageGraph:SyncreticRelationship`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ rdfs:subClassOf: crm:E13_Attribute_Assignment
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ skos:definition: "The act of identifying one deity with another across theological frameworks (a CIDOC-CRM E13 Attribute Assignment: P140 the deity identified, P141 the deity it is identified with), recorded with the source that reports it (hg:mentionedInSource)."@en
   - ➖ rdfs:subClassOf: crm:P140_assigned_attribute_to max 1
   - ➖ rdfs:subClassOf: crm:P140_assigned_attribute_to only heritageGraph:Deity
@@ -2813,6 +2785,7 @@ In First Order Logic of the inverse property:
   - ➖ rdfs:subClassOf: heritageGraph:syncreticType min 0
   - ➖ rdfs:subClassOf: prov:used min 0
   - ➖ rdfs:subClassOf: prov:used only prov:Entity
+  - ➖ skos:broadMatch: crm:E13_Attribute_Assignment
   - ➖ skos:definition: "Formalizes the syncretic equivalence between divine entities across different theological frameworks. Following CIDOC CRM E13, it treats syncretism as a propositional claim with associated epistemic authority and provenance."@en
 - **Syncretic Type** (`heritageGraph:SyncreticType`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
@@ -2821,9 +2794,6 @@ In First Order Logic of the inverse property:
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/SyncreticType#Fusion
   - ➖ linkml:permissible_values: https://cair-nepal.org/heritagegraph/SyncreticType#Historical
-- **Syncretic Type (concept scheme)** (`https://cair-nepal.org/heritagegraph/scheme/SyncreticType`, concept scheme)
-  - ➕ skos:prefLabel: "Syncretic Type (concept scheme)"@en
-  - ➖ skos:prefLabel: "Syncretic Type"@en
 - **Temple** (`heritageGraph:Temple`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
   - ➕ skos:broadMatch: schema1:PlaceOfWorship
@@ -3075,7 +3045,6 @@ In First Order Logic:
   - ➖ skos:inScheme: heritageGraph:schema
 - **Verification** (`heritageGraph:Verification`, class)
   - ➕ rdfs:isDefinedBy: heritageGraph:ontology
-  - ➕ rdfs:subClassOf: crm:P3_has_note only rdf:PlainLiteral
   - ➕ rdfs:subClassOf: heritageGraph:verificationMethod only rdf:PlainLiteral
   - ➕ skos:definition: "Process of cross-checking heritage claims against multiple sources."@en
   - ➕ skos:editorialNote: "PROV-O alignment note: prov:Activity alignment is a HeritageGraph project-level assertion (not a normative CIDOC axiom; no official CRM<->PROV mapping exists). Asserted on this class, not on crm:E7_Activity globally."@en
