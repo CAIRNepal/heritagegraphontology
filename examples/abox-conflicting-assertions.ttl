@@ -16,7 +16,10 @@
 # machine-readable proposition (crminf:J4_that -> hg:Proposition); theological
 # equivalence is additionally reified as a SyncreticRelationship rather than
 # collapsed with owl:sameAs. Illustrates the pattern of the paper's
-# "Epistemic Provenance" section. All individuals are fictional exemplars.
+# "Epistemic Provenance" section. All individuals, sources and organisations
+# are fictional exemplars; none names a real guthi, community body, person or
+# journal (earlier versions named the real Jyapu Mahaguthi and the real
+# "Journal of Newar Studies").
 # ---------------------------------------------------------------------------
 
 # --- Referents (the deities the claims are about) ---
@@ -31,12 +34,12 @@ ex:oral_source a hg:OralHistoryRecording ;
 
 ex:scholarly_source a hg:ArchivalRecord ;
     rdfs:label "Published syncretism study (example)"@en ;
-    hg:sourceCitation "Fictional example citation, Journal of Newar Studies (n.d.)." .
+    hg:sourceCitation "Fictional example citation: an invented article in an invented journal (Example Journal of Heritage Studies, fictional, n.d.)." .
 
 # --- Responsible agents ---
 ex:guthi_elder a crm:E21_Person ; rdfs:label "Guthi elder (example)"@en .
 ex:scholar     a crm:E21_Person ; rdfs:label "Heritage scholar (example)"@en .
-ex:tradition_bearers a crm:E39_Actor ; rdfs:label "Jyapu Mahaguthi tradition-bearers (fictional example)"@en .
+ex:tradition_bearers a crm:E39_Actor ; rdfs:label "Tradition-bearers of a guthi (fictional example)"@en .
 
 # --- Belief 1: community claim (identity) ---
 ex:assertion_community a crminf:I2_Belief ;

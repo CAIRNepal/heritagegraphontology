@@ -204,7 +204,7 @@ b:KumariService a crm:E7_Activity ;
     crm:P4_has_time-span b:ts ;
     crm:P7_took_place_at ex:KumariGhar ;
     crm:P15_was_influenced_by ex:Taleju .
-b:pc1 a crm:PC14_carried_out_by ; crm:P02_has_range ex:KumariPerson ;
+b:pc1 a crm:PC14_carried_out_by ; crm:P02_has_range ex:RoyalKumariHolder_2017 ;
     crm:P14.1_in_the_role_of b:KumariOffice .
 b:pc2 a crm:PC14_carried_out_by ; crm:P02_has_range ex:GuthiSansthan ;
     crm:P14.1_in_the_role_of b:SupportingInstitution .
@@ -224,7 +224,7 @@ b:KumariEnthronement a crm:E55_Type . b:KumariRetirement a crm:E55_Type .
 @prefix ex: <https://cair-nepal.org/heritagegraph/example/> .
 @prefix b:  <https://cair-nepal.org/heritagegraph/example/baseline/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-ex:KumariPerson p:P39 b:stmt .
+ex:RoyalKumariHolder_2017 p:P39 b:stmt .
 b:stmt ps:P39 b:KumariOffice ;
     pq:P580 "2017-09-28T00:00:00"^^xsd:dateTime ;
     pq:P582 "2025-09-30T00:00:00"^^xsd:dateTime ;
@@ -237,28 +237,28 @@ b:stmt ps:P39 b:KumariOffice ;
 
     Q = [
         ("Q1 deity, with the period it applies to",
-         """SELECT ?deity ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+         """SELECT ?deity ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:RoyalKumariHolder_2017 ;
               hg:embodiedDeity ?deity ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
-         """SELECT ?deity ?from WHERE { ?pc crm:P02_has_range ex:KumariPerson ;
+         """SELECT ?deity ?from WHERE { ?pc crm:P02_has_range ex:RoyalKumariHolder_2017 ;
               crm:P14.1_in_the_role_of b:KumariOffice . ?a crm:P01i_is_domain_of ?pc ;
               crm:P15_was_influenced_by ?deity ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
-         """SELECT ?deity ?from WHERE { ex:KumariPerson p:P39 ?s . ?s ps:P39 b:KumariOffice ;
+         """SELECT ?deity ?from WHERE { ex:RoyalKumariHolder_2017 p:P39 ?s . ?s ps:P39 b:KumariOffice ;
               pq:P1268 ?deity ; pq:P580 ?from . }"""),
         ("Q2 typed events that began and ended the office",
-         """SELECT ?open ?close WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+         """SELECT ?open ?close WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:RoyalKumariHolder_2017 ;
               hg:enthronedThrough ?open . ?open a hg:KumariEnthronementEvent .
               ?close a hg:KumariRetirementEvent ; hg:endedTenureOf ?t . }""",
          """SELECT ?open ?close WHERE { ?o crm:P182_ends_before_or_with_the_start_of ?a ; crm:P2_has_type ?open .
               ?a crm:P182_ends_before_or_with_the_start_of ?c ; crm:P01i_is_domain_of ?pc .
               ?c crm:P2_has_type ?close . ?pc crm:P14.1_in_the_role_of b:KumariOffice . }""",
-         """SELECT ?close WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P1534 ?close . }"""),
+         """SELECT ?close WHERE { ex:RoyalKumariHolder_2017 p:P39 ?s . ?s pq:P1534 ?close . }"""),
         ("Q3 residence during the period",
-         """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+         """SELECT ?res ?from WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:RoyalKumariHolder_2017 ;
               hg:residenceStructure ?res ; crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from . }""",
          """SELECT ?res ?from WHERE { ?a crm:P01i_is_domain_of ?pc ; crm:P7_took_place_at ?res ;
               crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?from .
-              ?pc crm:P02_has_range ex:KumariPerson ; crm:P14.1_in_the_role_of b:KumariOffice . }""",
-         """SELECT ?res ?from WHERE { ex:KumariPerson p:P39 ?s . ?s pq:P276 ?res ; pq:P580 ?from . }"""),
+              ?pc crm:P02_has_range ex:RoyalKumariHolder_2017 ; crm:P14.1_in_the_role_of b:KumariOffice . }""",
+         """SELECT ?res ?from WHERE { ex:RoyalKumariHolder_2017 p:P39 ?s . ?s pq:P276 ?res ; pq:P580 ?from . }"""),
         ("Q4 who held the office on 1 January 2020",
          """SELECT ?holder WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ?holder ;
               crm:P4_has_time-span ?ts . ?ts crm:P82a_begin_of_the_begin ?b ; crm:P82b_end_of_the_end ?e .
@@ -270,10 +270,10 @@ b:stmt ps:P39 b:KumariOffice ;
          """SELECT ?holder WHERE { ?holder p:P39 ?s . ?s ps:P39 b:KumariOffice ; pq:P580 ?b ; pq:P582 ?e .
               FILTER(?b <= "2020-01-01T00:00:00"^^xsd:dateTime && "2020-01-01T00:00:00"^^xsd:dateTime <= ?e) }"""),
         ("Q5 institution supporting the office holder",
-         """SELECT ?inst WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+         """SELECT ?inst WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:RoyalKumariHolder_2017 ;
               hg:supportedByInstitution ?inst . }""",
          """SELECT ?inst WHERE { ?a crm:P01i_is_domain_of ?pc , ?pk .
-              ?pk crm:P02_has_range ex:KumariPerson ; crm:P14.1_in_the_role_of b:KumariOffice .
+              ?pk crm:P02_has_range ex:RoyalKumariHolder_2017 ; crm:P14.1_in_the_role_of b:KumariOffice .
               ?pc crm:P02_has_range ?inst ; crm:P14.1_in_the_role_of b:SupportingInstitution . }""",
          None),
     ]
@@ -306,7 +306,7 @@ b:stmt ps:P39 b:KumariOffice ;
     def vals(g, q):
         return {tuple(norm(x) for x in r) for r in g.query(PFX + q)}
     WANT = {"Q1": {("Taleju", "2017-09-28")}, "Q3": {("KumariGhar", "2017-09-28")},
-            "Q4": {("KumariPerson",)}, "Q5": {("GuthiSansthan",)}}
+            "Q4": {("RoyalKumariHolder_2017",)}, "Q5": {("GuthiSansthan",)}}
     # Q2: the beginning and ending events, as each arm identifies them
     WANT_Q2 = [{("Enth_2017", "Ret_2025")}, {("KumariEnthronement", "KumariRetirement")},
                {("KumariRetirement",)}]           # Wikidata: the end cause only (no start cause)
@@ -1107,7 +1107,7 @@ def run_reuse() -> int:
                    for r in g.query(REUSE_QUERY)}, key=lambda r: [str(v) for v in r])
     for r in rows:
         print(f"    {r}")
-    want = {("Tenure_2017", "KumariPerson", "RoyalKumariRole"),
+    want = {("Tenure_2017", "RoyalKumariHolder_2017", "RoyalKumariRole"),
             ("HRT_BarahiChariot", "Barahis", "Office_BungadyahChariotBuilder"),
             ("CP_Kasthamandap_KRC", "KRC", None),
             ("RectorTenure", "PersonR", "RectorOffice"),

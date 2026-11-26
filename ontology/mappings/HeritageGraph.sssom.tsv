@@ -26,8 +26,9 @@
 #   lclabel: https://localcontexts.org/label/
 subject_id	subject_label	predicate_id	object_id	mapping_justification	author_label	reviewer_label	comment
 hg:AccessProtocol	Access Protocol	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
-hg:AccessProtocol#Seasonal	Seasonal	skos:closeMatch	lclabel:tk-seasonal/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
-hg:AccessProtocol#SecretSacred	Secret Sacred	skos:closeMatch	lclabel:tk-secret-sacred/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
+hg:AccessProtocol#CommunityUseOnly	Community Use Only	skos:relatedMatch	lclabel:tk-community-use-only/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
+hg:AccessProtocol#Seasonal	Seasonal	skos:relatedMatch	lclabel:tk-seasonal/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
+hg:AccessProtocol#SecretSacred	Secret Sacred	skos:relatedMatch	lclabel:tk-secret-sacred/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Acquisition	Acquisition	rdfs:subClassOf	crm:E8_Acquisition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Activity	Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Appellation	Appellation	rdfs:subClassOf	crm:E41_Appellation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module

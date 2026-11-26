@@ -31,8 +31,15 @@ enums:
 
 
   AccessProtocol:
-    # 1.1.0 (M11): cultural access protocols, aligned where a published label
-    # exists with the Local Contexts Traditional Knowledge (TK) labels
+    # 1.1.0 (M11): cultural access protocols, related where a published label
+    # exists to the Local Contexts Traditional Knowledge (TK) Labels.
+    # MAPPING (R4 review): skos:relatedMatch, not closeMatch or exactMatch. A TK
+    # Label is applied by the community itself, through the Local Contexts Hub,
+    # with community-specific text ("Communities can select and customize their
+    # Labels", https://localcontexts.org/label/tk-community-use-only/), while
+    # institutions and researchers generate Notices
+    # (https://localcontexts.org/notices/about-the-notices/). A value set here by
+    # a cataloguer is not a community Label, only related to one.
     description: "Cultural access protocol for heritage knowledge or a record of it, to be set with the community
       concerned."
     permissible_values:
@@ -40,15 +47,19 @@ enums:
         description: "No community restriction on access or publication"
       CommunityUseOnly:
         description: "For use within the community concerned; not for general publication"
+        # TK Community Use Only (TK CO), a Permission Label:
+        # https://localcontexts.org/labels/traditional-knowledge-labels/
+        related_mappings:
+          - https://localcontexts.org/label/tk-community-use-only/
       InitiatesOnly:
         description: "Restricted to initiates (e.g. the agam deity and rites of a lineage or monastery)"
       SecretSacred:
         description: "Secret or sacred knowledge with specific conditions of access"
-        close_mappings:
+        related_mappings:
           - https://localcontexts.org/label/tk-secret-sacred/
       Seasonal:
         description: "Access or use only at certain times (e.g. during a festival)"
-        close_mappings:
+        related_mappings:
           - https://localcontexts.org/label/tk-seasonal/
 
   ExistenceStatus:
@@ -267,7 +278,13 @@ enums:
           life-cycle ritual trust."
         deprecated_element_has_exact_replacement: SanaGuthi
       RajGuthi:
-        description: "Royal endowment trust"
+        # R4 review: "royal endowment" was wrong. Raj guthi is a legal status:
+        # a guthi in which the Guthi Corporation (Guthi Sansthan) holds rights
+        # and which it manages and operates (Guthi Corporation Act 2033 BS /
+        # 1976, s. 2; English text: https://nepalarchives.com/?p=2513).
+        description: "Raj guthi (state trust): a guthi in which the Guthi Sansthan holds rights and which it manages
+          and operates, under the Guthi Corporation Act 2033 BS (1976); a legal-administrative status, not a
+          functional type"
 
   EndowmentEventType:
     description: "Controlled vocabulary for events in the life of a Guthi endowment."
@@ -571,7 +588,10 @@ classes:
   Sattal:
     is_a: RestHouse
     class_uri: heritageGraph:Sattal
-    description: "Multi-story rest house (3-5 floors) with ritual and social functions"
+    # R4 review: "3-5 floors" is not attested; Kasthamandap, the best-known
+    # sattal, is a three-storey structure
+    # (https://en.wikipedia.org/wiki/Kasthamandap).
+    description: "Multi-storey public rest house (e.g. the three-storey Kasthamandap) with ritual and social functions"
 
   Dharmashala:
     is_a: RestHouse
@@ -635,7 +655,12 @@ classes:
       - aat:300033618
     close_mappings:
       - wikidata:Q916651
-    description: "Traditional Newari scroll painting (thangka) with mandala and deity iconography"
+    # R4 review: a paubha is not a thangka. It is a Newar religious painting,
+    # Hindu or Buddhist; the Tibetan thangka is its counterpart, which is only
+    # Buddhist (https://en.wikipedia.org/wiki/Paubha, citing Acharya 1997).
+    # Hence the close (not exact) mapping to thangka above.
+    description: "Traditional Newar religious scroll painting, Hindu or Buddhist, with mandala and deity iconography;
+      related to, but not the same as, the Tibetan thangka"
 
   Murti:
     is_a: IconographicObject
@@ -1548,7 +1573,9 @@ classes:
       has_timespan:
         required: true
         range: TimeSpan
-        description: "Duration of Living Goddess tenure (from selection to retirement)"
+        # R4 review: the enthronement, not the selection, opens the tenure
+        # (enthroned_through; Kathmandu Post, 28 September 2017).
+        description: "Duration of Living Goddess tenure (from enthronement to retirement)"
       supported_by_institution:
         range: Group
         multivalued: true
