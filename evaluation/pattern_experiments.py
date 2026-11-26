@@ -413,7 +413,7 @@ ex:Matsyendranath a hg:Deity ; rdfs:label "Matsyendranath" ;
     hg:hasReligiousTradition ex:Hindu .
 ex:Buddhist a hg:ReligiousTradition ; rdfs:label "Buddhist" .
 ex:Hindu a hg:ReligiousTradition ; rdfs:label "Hindu" .
-ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
+ex:Src_Alsop a hg:DataSource ; rdfs:label "Alsop, Bunga Dya / Avalokiteshvara (Rubin Museum)" .
 """
 
     SAMEAS = "ex:Avalokitesvara owl:sameAs ex:Matsyendranath .\n"
@@ -422,7 +422,7 @@ ex:Src_Slusser a hg:DataSource ; rdfs:label "Slusser, Nepal Mandala (1982)" .
     crm:P140_assigned_attribute_to ex:Avalokitesvara ;
     crm:P141_assigned ex:Matsyendranath ;
     hg:syncreticType <https://cair-nepal.org/heritagegraph/SyncreticType#Equivalence> ;
-    prov:wasDerivedFrom ex:Src_Slusser .
+    hg:mentionedInSource ex:Src_Alsop .
 """
 
     def closed(ttl: str) -> Graph:
@@ -625,7 +625,7 @@ ex:Src_Excavation a hg:DataSource ;
 
 ex:Historian a crm:E39_Actor ; rdfs:label "Attributing historian" .
 ex:Slusser a crm:E39_Actor ; rdfs:label "M. S. Slusser" .
-ex:ExcavationTeam a crm:E39_Actor ; rdfs:label "DoA excavation team" .
+ex:ExcavationTeam a crm:E39_Actor ; rdfs:label "Excavation team (illustrative)" .
 
 ex:Assert_Date_v1 a crminf:I2_Belief ;
     rdfs:label "Kasthamandap build date, v1" ;

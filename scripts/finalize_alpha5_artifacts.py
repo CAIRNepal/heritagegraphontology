@@ -1895,8 +1895,17 @@ def bridge_shacl_classes(g: Graph) -> None:
     so validation accepts what it accepted with the axioms in the core, plus
     crm:E6_Destruction (which the core never placed under prov:Activity and the
     bridge's single rule does). Violations are reported as sh:or results."""
+    # validation runs without inference, so list every CIDOC-CRM / CRMinf
+    # subclass of the bridge's classes (E12 Production under E7 Activity, E31
+    # Document under E73, E21 Person under E39 ...), read from the pinned snapshots
+    official = Graph()
+    for _, vg, _ in _official_sources():
+        official += vg
+    expanded = {pc: set(members) | {s for m in members for s in official.transitive_subjects(RDFS.subClassOf, m)
+                                     if isinstance(s, URIRef)}
+                for pc, members in BRIDGE.items()}
     n = 0
-    for pc, members in BRIDGE.items():
+    for pc, members in expanded.items():
         for node in list(g.subjects(SH["class"], pc)):
             g.remove((node, SH["class"], pc))
             alts = []
