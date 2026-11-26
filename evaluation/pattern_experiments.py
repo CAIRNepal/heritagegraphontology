@@ -82,7 +82,7 @@ PREFIX st:  <https://cair-nepal.org/heritagegraph/example/static/>
 @prefix aat: <http://vocab.getty.edu/aat/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-ex:Kasthamandap a hg:Temple ;
+ex:Kasthamandap a hg:Sattal ;
     rdfs:label "Kasthamandap" ;
     hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P55_has_current_location ex:KathmanduDurbarSquare ;
@@ -614,7 +614,7 @@ PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 @prefix ex:     <https://cair-nepal.org/heritagegraph/example/> .
 
-ex:Kasthamandap a hg:Temple ;
+ex:Kasthamandap a hg:Sattal ;
     rdfs:label "Kasthamandap" ;
     hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> .
 
