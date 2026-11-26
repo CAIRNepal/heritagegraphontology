@@ -212,11 +212,11 @@ b:KumariOffice a crm:E55_Type . b:SupportingInstitution a crm:E55_Type .
 b:ts a crm:E52_Time-Span ;
     crm:P82a_begin_of_the_begin "2017-09-28T00:00:00"^^xsd:dateTime ;
     crm:P82b_end_of_the_end "2025-09-30T00:00:00"^^xsd:dateTime .
-b:Selection a crm:E5_Event ; crm:P2_has_type b:KumariSelection ;
+b:Enthronement a crm:E5_Event ; crm:P2_has_type b:KumariEnthronement ;
     crm:P182_ends_before_or_with_the_start_of b:KumariService .
 b:KumariService crm:P182_ends_before_or_with_the_start_of b:Retirement .
 b:Retirement a crm:E5_Event ; crm:P2_has_type b:KumariRetirement .
-b:KumariSelection a crm:E55_Type . b:KumariRetirement a crm:E55_Type .
+b:KumariEnthronement a crm:E55_Type . b:KumariRetirement a crm:E55_Type .
 """
     WIKIDATA = """@prefix p:  <http://www.wikidata.org/prop/> .
 @prefix ps: <http://www.wikidata.org/prop/statement/> .
@@ -245,8 +245,8 @@ b:stmt ps:P39 b:KumariOffice ;
          """SELECT ?deity ?from WHERE { ex:KumariPerson p:P39 ?s . ?s ps:P39 b:KumariOffice ;
               pq:P1268 ?deity ; pq:P580 ?from . }"""),
         ("Q2 typed events that began and ended the office",
-         """SELECT ?open ?close WHERE { ?t a hg:KumariTenure .
-              ?open a hg:KumariSelectionEvent ; hg:initiatedTenure ?t .
+         """SELECT ?open ?close WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+              hg:enthronedThrough ?open . ?open a hg:KumariEnthronementEvent .
               ?close a hg:KumariRetirementEvent ; hg:endedTenureOf ?t . }""",
          """SELECT ?open ?close WHERE { ?o crm:P182_ends_before_or_with_the_start_of ?a ; crm:P2_has_type ?open .
               ?a crm:P182_ends_before_or_with_the_start_of ?c ; crm:P01i_is_domain_of ?pc .
@@ -270,9 +270,10 @@ b:stmt ps:P39 b:KumariOffice ;
          """SELECT ?holder WHERE { ?holder p:P39 ?s . ?s ps:P39 b:KumariOffice ; pq:P580 ?b ; pq:P582 ?e .
               FILTER(?b <= "2020-01-01T00:00:00"^^xsd:dateTime && "2020-01-01T00:00:00"^^xsd:dateTime <= ?e) }"""),
         ("Q5 institution supporting the office holder",
-         """SELECT ?inst WHERE { ?t a hg:KumariTenure ; hg:supportedByInstitution ?inst . }""",
+         """SELECT ?inst WHERE { ?t a hg:KumariTenure ; hg:tenureHolder ex:KumariPerson ;
+              hg:supportedByInstitution ?inst . }""",
          """SELECT ?inst WHERE { ?a crm:P01i_is_domain_of ?pc , ?pk .
-              ?pk crm:P14.1_in_the_role_of b:KumariOffice .
+              ?pk crm:P02_has_range ex:KumariPerson ; crm:P14.1_in_the_role_of b:KumariOffice .
               ?pc crm:P02_has_range ?inst ; crm:P14.1_in_the_role_of b:SupportingInstitution . }""",
          None),
     ]
@@ -307,7 +308,7 @@ b:stmt ps:P39 b:KumariOffice ;
     WANT = {"Q1": {("Taleju", "2017-09-28")}, "Q3": {("KumariGhar", "2017-09-28")},
             "Q4": {("KumariPerson",)}, "Q5": {("GuthiSansthan",)}}
     # Q2: the beginning and ending events, as each arm identifies them
-    WANT_Q2 = [{("Sel_2017", "Ret_2025")}, {("KumariSelection", "KumariRetirement")},
+    WANT_Q2 = [{("Enth_2017", "Ret_2025")}, {("KumariEnthronement", "KumariRetirement")},
                {("KumariRetirement",)}]           # Wikidata: the end cause only (no start cause)
 
     print(f"{'question':<46}{'HG':>10}{'CRM role':>12}{'Wikidata':>12}   (answered? / triple patterns)")

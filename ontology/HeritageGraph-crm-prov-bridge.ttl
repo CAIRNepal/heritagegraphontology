@@ -9,44 +9,14 @@ dcterms:license a owl:AnnotationProperty .
 
 dcterms:source a owl:AnnotationProperty .
 
-crm:E10_Transfer_of_Custody a owl:Class ;
-    rdfs:subClassOf prov:Activity .
-
-crm:E12_Production a owl:Class ;
-    rdfs:subClassOf prov:Activity .
-
-crm:E14_Condition_Assessment a owl:Class ;
-    rdfs:subClassOf prov:Activity .
-
-crm:E21_Person a owl:Class ;
-    rdfs:subClassOf prov:Agent .
-
-crm:E22_Human-Made_Object a owl:Class ;
-    rdfs:subClassOf prov:Entity .
-
-crm:E29_Design_or_Procedure a owl:Class ;
-    rdfs:subClassOf prov:Entity .
-
 crm:E39_Actor a owl:Class ;
     rdfs:subClassOf prov:Agent .
 
-crm:E3_Condition_State a owl:Class ;
+crm:E73_Information_Object a owl:Class ;
     rdfs:subClassOf prov:Entity .
 
-crm:E52_Time-Span a owl:Class ;
-    rdfs:subClassOf prov:Entity .
-
-crm:E53_Place a owl:Class ;
-    rdfs:subClassOf prov:Entity .
-
-crm:E57_Material a owl:Class ;
-    rdfs:subClassOf prov:Entity .
-
-crm:E6_Destruction a owl:Class ;
+crm:E7_Activity a owl:Class ;
     rdfs:subClassOf prov:Activity .
-
-crm:E74_Group a owl:Class ;
-    rdfs:subClassOf prov:Agent .
 
 crminf:I2_Belief a owl:Class ;
     rdfs:subClassOf prov:Entity .
@@ -55,11 +25,11 @@ crminf:I2_Belief a owl:Class ;
     rdfs:label "HeritageGraph CIDOC-CRM to PROV-O bridge"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     dcterms:source <https://github.com/CAIRNepal/heritagegraphontology> ;
-    rdfs:comment "Optional module. HeritageGraph's alignment of the CIDOC-CRM and CRMinf classes it reuses to PROV-O: each reused class whose HeritageGraph usage is a PROV activity, entity or agent is stated a subclass of it. These axioms are about classes HeritageGraph does not own, so they are not in the core ontology; load this module together with the core, CIDOC-CRM, CRMinf and PROV-O when PROV-O-only clients should see CRM-typed data as PROV."@en .
-
-prov:Agent a owl:Class .
+    rdfs:comment "Optional module. HeritageGraph's alignment of CIDOC-CRM and CRMinf to PROV-O by one rule: E7 Activity is a subclass of prov:Activity, E39 Actor of prov:Agent, and E73 Information Object and CRMinf I2 Belief of prov:Entity (records and claims, not heritage things). These axioms are about classes HeritageGraph does not own, so they are not in the core ontology; load this module together with the core, CIDOC-CRM, CRMinf and PROV-O when PROV-O-only clients should see CRM-typed data as PROV."@en .
 
 prov:Activity a owl:Class .
+
+prov:Agent a owl:Class .
 
 prov:Entity a owl:Class .
 

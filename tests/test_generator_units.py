@@ -125,9 +125,12 @@ def test_bridge_rule(sv, tmp_path, monkeypatch):
     monkeypatch.setattr(fin, "BRIDGE_OUT", tmp_path / "bridge.ttl")
     fin.write_crm_prov_bridge(sv)
     b = Graph().parse(tmp_path / "bridge.ttl", format="turtle")
-    assert (CRM.E12_Production, RDFS.subClassOf, PROV.Activity) in b
-    assert (CRM.E6_Destruction, RDFS.subClassOf, PROV.Activity) in b   # inherited mixin
-    assert (CRM.E39_Actor, RDFS.subClassOf, PROV.Agent) in b
+    # one rule over the CRM hierarchy: activities, actors, records and beliefs
+    assert set(b.subject_objects(RDFS.subClassOf)) == {
+        (CRM.E7_Activity, PROV.Activity), (CRM.E39_Actor, PROV.Agent),
+        (CRM.E73_Information_Object, PROV.Entity),
+        (URIRef("http://www.cidoc-crm.org/extensions/crminf/I2_Belief"), PROV.Entity)}
+    assert (CRM.E6_Destruction, RDFS.subClassOf, PROV.Activity) not in b   # a natural destruction is no activity
     assert not any(str(s).startswith(str(HG)) for s in b.subjects(RDFS.subClassOf, None))
     # every class it uses is declared: the module is OWL 2 DL on its own
     used = set(b.subjects(RDFS.subClassOf, None)) | set(b.objects(None, RDFS.subClassOf))
@@ -163,9 +166,13 @@ def test_syncretic_is_activity(core):
 # --- M5: value restrictions and disjoint kinds -----------------------------------
 def test_drop_reused_value_restrictions():
     g = Graph()
+    # Rule 3: every value restriction on a reused property goes (to an HG class, a
+    # CRM class, or a datatype); restrictions on HeritageGraph's own properties stay
     cases = ((CRM.P50i_is_current_keeper_of, HG.ArchitecturalStructure, False),
              (HG.performsRitual, HG.RitualEvent, True),
-             (CRM["P4_has_time-span"], CRM["E52_Time-Span"], True))
+             (CRM["P4_has_time-span"], CRM["E52_Time-Span"], False),
+             (CRM.P105_right_held_by, CRM.E74_Group, False),
+             (CRM.P3_has_note, RDF.PlainLiteral, False))
     for p, v, _ in cases:
         r = BNode()
         g.add((HG.C, RDFS.subClassOf, r)); g.add((r, OWL.onProperty, p)); g.add((r, OWL.allValuesFrom, v))

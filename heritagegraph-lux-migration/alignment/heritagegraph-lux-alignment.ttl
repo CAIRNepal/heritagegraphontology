@@ -517,7 +517,6 @@ hg:hasDigitalRepresentation a owl:ObjectProperty ;
 
 hg:hasRight a owl:ObjectProperty ;
     rdfs:label "has right"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:Right .
 
 # 1.1.0: no longer rdfs:subPropertyOf crm:P67i_is_referred_to_by, whose
@@ -527,7 +526,6 @@ hg:hasRight a owl:ObjectProperty ;
 # the legal-status modelling (crm:E30 Right, P104) is decided.
 hg:subjectToLegalObject a owl:ObjectProperty ;
     rdfs:label "subject to legal status"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:LegalObject ;
     skos:relatedMatch crm:P67i_is_referred_to_by .
 
@@ -535,13 +533,11 @@ hg:subjectToLegalObject a owl:ObjectProperty ;
 
 hg:identifiedByIdentifier a owl:ObjectProperty ;
     rdfs:label "identified by identifier"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:Identifier ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
 hg:identifiedByName a owl:ObjectProperty ;
     rdfs:label "identified by name"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:Name ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
@@ -552,7 +548,6 @@ hg:identifiedByName a owl:ObjectProperty ;
 # P102 is itself a subproperty.
 hg:identifiedByTitle a owl:ObjectProperty ;
     rdfs:label "has title"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:Title ;
     rdfs:subPropertyOf crm:P1_is_identified_by .
 
@@ -652,7 +647,6 @@ hg:hasLanguage a owl:ObjectProperty ;
 
 hg:memberOfSet a owl:ObjectProperty ;
     rdfs:label "is member of set"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:Set .
 
 # 1.1.0: range narrowed from AssertionSubject (which includes events, roles
@@ -682,7 +676,6 @@ hg:occursDuringPeriod a owl:ObjectProperty ;
 # subject is the subject of the proposition: crm:P129i_is_subject_of.
 hg:aboutProposition a owl:ObjectProperty ;
     rdfs:label "is subject of proposition"@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range hg:PropositionalObject ;
     rdfs:subPropertyOf crm:P129i_is_subject_of .
 
@@ -691,7 +684,6 @@ hg:aboutProposition a owl:ObjectProperty ;
 hg:hasMetadata a owl:ObjectProperty ;
     rdfs:label "has metadata"@en ;
     rdfs:comment "Range is crm:E73_Information_Object: the core's hg:Metadata is deprecated in HeritageGraph 1.1.0 (a JSON/YAML serialization construct)."@en ;
-    rdfs:domain hg:AssertionSubject ;
     rdfs:range crm:E73_Information_Object ;
     rdfs:subPropertyOf crm:P67i_is_referred_to_by .
 

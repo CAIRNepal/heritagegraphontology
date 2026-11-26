@@ -456,6 +456,7 @@ def finalize_owl(sv: SchemaView) -> Graph:
     add_disjoint_kinds(g, sv)
     add_enumeration_axioms(g)
     add_official_inverses(g)
+    drop_range_unions_and_double_grounding(g)
     # schema build directives, not ontology content
     for d in ("owl_property_chain", "lexical_form", "crm_superclass", "disjoint_kind"):
         g.remove((None, URIRef(HG_NS + d), None))
@@ -495,7 +496,8 @@ def finalize_owl(sv: SchemaView) -> Graph:
                     if not any((subj, p, tgt) in g for p in mapping_preds):
                         missing.append(f"{key}: {section} {name} -> {curie}")
     for cn, c in sv.all_classes().items():
-        if c.union_of:
+        # range-naming classes whose union is dropped on purpose (it lives in SHACL)
+        if c.union_of and cn not in ("AssertionSubject", "TenureEvent"):
             cls = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
             ok = any((eq, OWL.unionOf, None) in g
                      for eq in list(g.objects(cls, OWL.equivalentClass))
@@ -1028,8 +1030,11 @@ def drop_reused_value_restrictions(g: Graph) -> None:
         # also a datatype range on a reused property (schema:inLanguage only
         # xsd:string): the property belongs to another vocabulary, so the
         # value check stays in the SHACL shapes
-        if (isinstance(p, URIRef) and not str(p).startswith(HG_NS)
-                and isinstance(v, URIRef) and (str(v).startswith(HG_NS) or str(v).startswith(str(XSD)))):
+        # every value restriction on a reused property (to a HeritageGraph class, a
+        # CRM class narrower than CRM's own range such as P105 only E74, or a datatype
+        # such as P3 only rdf:PlainLiteral): the property belongs to another
+        # vocabulary, so its value check stays in the SHACL shapes (Rule 3)
+        if isinstance(p, URIRef) and not str(p).startswith(HG_NS) and isinstance(v, URIRef):
             for c in list(g.subjects(RDFS.subClassOf, r)):
                 g.remove((c, RDFS.subClassOf, r))
                 dropped.append(f"{str(c).rsplit('/', 1)[-1]} ∀{str(p).rsplit('/', 1)[-1]}")
@@ -1134,6 +1139,34 @@ def add_official_inverses(g: Graph) -> None:
             g.add((p, OWL.inverseOf, q))
             n += 1
     print(f"m2: copied {n} official owl:inverseOf axiom(s) between reused CRM properties")
+
+
+def drop_range_unions_and_double_grounding(g: Graph) -> None:
+    """(1) A class that only names the range of a property and is declared a
+    subclass of a union (AssertionSubject for assertsAbout, TenureEvent for the
+    tenure-bounding properties) constrains the wrong way: every subject of such a
+    property is forced into one of the union's members, so an assertion about a
+    class the union omits reclassifies its subject. The union stays in the SHACL
+    shapes (sh:or); the OWL keeps the named class without the union axiom.
+    (2) A class stated rdfs:subClassOf a CRM class does not also skos:broadMatch
+    the same class (the grounding rule: subclass, or broadMatch, not both)."""
+    n_u = 0
+    for name in ("AssertionSubject", "TenureEvent"):
+        c = URIRef(HG_NS + name)
+        for o in list(g.objects(c, RDFS.subClassOf)):
+            if isinstance(o, BNode) and (o, OWL.unionOf, None) in g:
+                g.remove((c, RDFS.subClassOf, o))
+                lst = g.value(o, OWL.unionOf)
+                Collection(g, lst).clear()
+                g.remove((lst, RDF.first, None)); g.remove((lst, RDF.rest, None))
+                g.remove((o, None, None))
+                n_u += 1
+    n_b = 0
+    for c, o in list(g.subject_objects(RDFS.subClassOf)):
+        if isinstance(o, URIRef) and (c, SKOS.broadMatch, o) in g:
+            g.remove((c, SKOS.broadMatch, o))
+            n_b += 1
+    print(f"dropped {n_u} range-union axiom(s) and {n_b} broadMatch(es) duplicating a subclass axiom")
 
 
 def add_domain_includes(g: Graph, sv: SchemaView) -> None:
@@ -1341,15 +1374,16 @@ def write_crm_prov_bridge(sv: SchemaView) -> None:
     are kept out of the core; load the module with the core when PROV-O-only
     clients should see CRM-typed data as PROV."""
     BRIDGE.clear()
-    mixin_to_prov = {"Activity": "Activity", "Entity": "Entity", "Agent": "Agent"}
-    for cn, c in sv.all_classes().items():
-        iri = uri_for(sv, str(c.class_uri or f"heritageGraph:{cn}"))
-        if str(iri).startswith(HG_NS) or c.mixin or cn in mixin_to_prov:
-            continue
-        ancestors = set(sv.class_ancestors(cn))
-        for m, pc in mixin_to_prov.items():
-            if m in ancestors:
-                BRIDGE.setdefault(URIRef(PROV_NS + pc), set()).add(iri)
+    # one written rule over the CIDOC-CRM hierarchy (not over HeritageGraph usage):
+    # activities are PROV activities, actors are PROV agents, and information
+    # objects and beliefs (records and claims) are PROV entities. Physical
+    # things, places and time-spans are not mapped: PROV describes the record,
+    # not the heritage thing itself.
+    crm = "http://www.cidoc-crm.org/cidoc-crm/"
+    BRIDGE[URIRef(PROV_NS + "Activity")] = {URIRef(crm + "E7_Activity")}
+    BRIDGE[URIRef(PROV_NS + "Agent")] = {URIRef(crm + "E39_Actor")}
+    BRIDGE[URIRef(PROV_NS + "Entity")] = {URIRef(crm + "E73_Information_Object"),
+                                          URIRef("http://www.cidoc-crm.org/extensions/crminf/I2_Belief")}
     b = Graph()
     b.bind("owl", OWL); b.bind("rdfs", RDFS); b.bind("prov", PROV_NS)
     b.bind("crm", "http://www.cidoc-crm.org/cidoc-crm/")
@@ -1358,9 +1392,9 @@ def write_crm_prov_bridge(sv: SchemaView) -> None:
     b.add((BRIDGE_IRI, RDF.type, OWL.Ontology))
     b.add((BRIDGE_IRI, RDFS.label, Literal("HeritageGraph CIDOC-CRM to PROV-O bridge", lang="en")))
     b.add((BRIDGE_IRI, RDFS.comment, Literal(
-        "Optional module. HeritageGraph's alignment of the CIDOC-CRM and CRMinf classes it reuses "
-        "to PROV-O: each reused class whose HeritageGraph usage is a PROV activity, entity or agent "
-        "is stated a subclass of it. These axioms are about classes HeritageGraph does not own, so "
+        "Optional module. HeritageGraph's alignment of CIDOC-CRM and CRMinf to PROV-O by one rule: "
+        "E7 Activity is a subclass of prov:Activity, E39 Actor of prov:Agent, and E73 Information "
+        "Object and CRMinf I2 Belief of prov:Entity (records and claims, not heritage things). These axioms are about classes HeritageGraph does not own, so "
         "they are not in the core ontology; load this module together with the core, CIDOC-CRM, "
         "CRMinf and PROV-O when PROV-O-only clients should see CRM-typed data as PROV.", lang="en")))
     b.add((BRIDGE_IRI, DCTERMS.license, URIRef("https://creativecommons.org/licenses/by/4.0/")))
