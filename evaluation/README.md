@@ -49,7 +49,8 @@ stale.
 
 - `lux/`: the Yale LUX case study. `generate_lux_eval.py --offline` recomputes class-type coverage
   from the committed instance-count snapshot. Its migration counts come from a pilot run with an
-  earlier version of the Linked Art module and are not part of the paper's evaluation.
+  earlier version of the Linked Art module; the paper reports them as a dated record that cannot be
+  regenerated from the release.
 - `rater/`: the protocol and sheet for an independent rating of the mappings (see its README).
 - `expert_cq/`: the protocol for held-out competency questions from external experts (see its README).
 - `setup_protege.sh` and `protege/`: an optional local Protégé installation for inspecting the
