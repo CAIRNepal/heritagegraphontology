@@ -151,10 +151,10 @@ hg-migrator       Exited (0) 8 minutes ago
 hg-delta-syncer   Up 7 minutes
 
 Triple counts:
-  https://lux.collections.yale.edu/                              3,210,000
-  https://cair-nepal.org/heritagegraph/                                  120
-  https://cair-nepal.org/heritagegraph/alignment/lux                     273
-  https://cair-nepal.org/heritagegraph/imported/lux                  120,000
+  https://lux.collections.yale.edu/                     3,210,000
+  https://cair-nepal.org/heritagegraph/                       120
+  https://cair-nepal.org/heritagegraph/alignment/lux          772
+  https://cair-nepal.org/heritagegraph/imported/lux       120,000
 ```
 
 ### Ad-hoc SPARQL sorgu
