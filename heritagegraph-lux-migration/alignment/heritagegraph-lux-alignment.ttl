@@ -727,7 +727,11 @@ hg:hasDataCustodian a owl:ObjectProperty ;
 #
 #    Deliberate HG roots after this section (documented, not orphans):
 #    hg:Period (temporal top), hg:Concept (conceptual top),
-#    hg:Dimension (value-space top), hg:LegalObject (legal top).
+#    hg:Dimension (value-space top), hg:LegalObject (legal top),
+#    hg:Appellation (appellation top). Since 1.1.0 the activity tops
+#    (CurationActivity, ProvenanceActivity, AttributeAssignment, Encounter,
+#    Joining, Leaving) sit directly under crm:E7_Activity, which the core
+#    reuses as its GenericActivity class, so they are not roots.
 #####################################################################
 
 # ---- 5.1  Structural super-classes -----------------------------------------
@@ -931,6 +935,8 @@ hg:ArchitecturalElement rdfs:subClassOf hg:PhysicalFeature .  # E25 ⊏ E26
 hg:Period rdfs:comment "Deliberate HG root: temporal top (crm:E4). Children: HistoricalEvent, KumariTenure, Presence."@en .
 hg:Dimension rdfs:comment "Deliberate HG root: value-space top (crm:E54). Child: MonetaryAmount."@en .
 hg:LegalObject rdfs:comment "Deliberate HG root: legal-framework top (crm:E72 has no natural HG parent)."@en .
+# hg:Appellation is the fifth deliberate root (appellation top, crm:E41; children Name and Identifier);
+# its July 2026 parent hg:Metadata was removed in 1.1.0 with that deprecated core class.
 
 # ---- 5.5  Object properties wiring the new classes (§4 pattern) ------------
 
