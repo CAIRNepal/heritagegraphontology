@@ -1,5 +1,7 @@
 # Deep verification — what I found and fixed
 
+> **Historical record (May 2026).** This report describes alignment v0.1.0 (273 triples, 12 `owl:equivalentClass`, `https://w3id.org/heritagegraph/` namespace); release 1.1.0 states no `owl:equivalentClass`. Current figures: README and CHANGELOG [1.1.0].
+
 **Date:** May 2026
 **Scope:** Cross-checked every class and property mapping in `heritagegraph-lux-alignment.ttl`, `HeritageGraph_LUX_Mapping.xlsx`, and `lux_to_hg_migration.sparql` against the official Linked Art JSON-LD context (`https://linked.art/ns/v1/linked-art.json`) and CIDOC-CRM v7.x.
 
