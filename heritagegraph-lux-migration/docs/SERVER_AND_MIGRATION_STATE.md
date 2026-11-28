@@ -1,5 +1,7 @@
 # HeritageGraph ↔ LUX — Server, Migration, and Alignment State
 
+> **English note:** this is a working note in Turkish from July 2026 (alpha5 sync, `https://w3id.org/heritagegraph/` namespace). It is kept as a historical record and is superseded by CHANGELOG.md [1.1.0].
+
 *Bu dosya, `heritagegraph-lux-migration` projesinin sunucu, migration pipeline ve
 alignment ontolojisi ile ilgili her şeyi tek bir yerde tutar. Başka bir Claude
 oturumuna context olarak yapıştırıldığında hızlı katılım sağlar.*
