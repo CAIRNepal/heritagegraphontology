@@ -1,0 +1,94 @@
+# Test fixture: multilingual text and many-valued CIDOC CRM properties.
+# Synthetic: the identifiers, notes and the production and custody events are
+# made up to exercise the shapes and the axioms. They are not historical claims.
+#  - labels and notes with language tags (English, Nepali) and untagged
+#  - an assertion whose content is language-tagged text (prov:value)
+#  - a note and a source citation on the same record;
+#    a route description and a citation each in two languages; a source in
+#    two languages (schema:inLanguage)
+#  - a procession over two distinct route places (hg:routePlaces)
+#  - a destruction (E6) of a structure (crm:P13_destroyed)
+#  - a local building type given as a StructureType term (hg:structureType)
+#  - one production of two objects, one custody transfer of two objects
+#    from one actor to two (CRM: many objects and actors per event)
+@prefix hg:<https://cair-nepal.org/heritagegraph/> .
+@prefix crm:<http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix owl:<http://www.w3.org/2002/07/owl#> .
+@prefix crminf:<http://www.cidoc-crm.org/extensions/crminf/> .
+@prefix prov:<http://www.w3.org/ns/prov#> .
+@prefix schema:<http://schema.org/> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:<http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:<https://cair-nepal.org/heritagegraph/example/ml/> .
+
+ex:Pulchowk a crm:E53_Place ; rdfs:label "Pulchowk"@en , "पुल्चोक"@ne .
+ex:Lagankhel a crm:E53_Place ; rdfs:label "Lagankhel"@en , "लगनखेल"@ne .
+ex:Pulchowk owl:differentFrom ex:Lagankhel .
+
+ex:TS a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "2024-05-01T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "2024-05-31T00:00:00"^^xsd:dateTime .
+
+ex:Procession a hg:RitualEvent ;
+    rdfs:label "Chariot procession"@en , "रथयात्रा"@ne ;
+    crm:P3_has_note "Test record: the chariot is pulled in stages."@en ,
+        "परीक्षण अभिलेख"@ne ;
+    hg:routePlaces ex:Pulchowk , ex:Lagankhel ;
+    hg:routeDescription "From Pulchowk to Lagankhel"@en , "पुल्चोकदेखि लगनखेलसम्म"@ne ;
+    crm:P4_has_time-span ex:TS .
+
+ex:Temple a hg:Temple ;
+    rdfs:label "Test temple"@en , "परीक्षण मन्दिर"@ne , "Test temple" ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/ml/temple"^^xsd:anyURI ;
+    crm:P3_has_note "Two notes on one temple."@en , "Second, untagged note." .
+
+ex:Deity a hg:Deity ; rdfs:label "Taleju Bhawani"@en , "तलेजु भवानी"@ne .
+
+ex:Source a hg:DataSource ;
+    rdfs:label "Test source"@en ;
+    crm:P3_has_note "A free-text note about the source."@en ;
+    hg:sourceCitation "Test citation, p. 1."@en , "परीक्षण उद्धरण, पृ. १"@ne ;
+    schema:inLanguage "ne" , "new" .
+
+ex:ObjectA a hg:IconographicObject ; rdfs:label "Test object A"@en .
+ex:ObjectB a hg:IconographicObject ; rdfs:label "Test object B"@en .
+ex:ObjectA owl:differentFrom ex:ObjectB .
+
+ex:Production a crm:E12_Production ;
+    rdfs:label "Production of two objects"@en ;
+    crm:P108_has_produced ex:ObjectA , ex:ObjectB .
+
+ex:ActorA a crm:E39_Actor ; rdfs:label "Test actor A"@en .
+ex:ActorB a crm:E39_Actor ; rdfs:label "Test actor B"@en .
+ex:ActorC a crm:E39_Actor ; rdfs:label "Test actor C"@en .
+[] a owl:AllDifferent ; owl:distinctMembers ( ex:ActorA ex:ActorB ex:ActorC ) .
+
+ex:Transfer a crm:E10_Transfer_of_Custody ;
+    rdfs:label "Custody transfer of two objects"@en ;
+    crm:P30_transferred_custody_of ex:ObjectA , ex:ObjectB ;
+    crm:P28_custody_surrendered_by ex:ActorA ;
+    crm:P29_custody_received_by ex:ActorB , ex:ActorC .
+
+ex:Claim a crminf:I2_Belief ;
+    rdfs:label "Test claim"@en ;
+    hg:assertsAbout ex:Temple ;
+    prov:value "परीक्षण दावी: मन्दिर दुई तले छ"@ne .
+
+# a destruction (crm:E6) of a structure, linked by destroyed (crm:P13)
+ex:Shrine a hg:Temple ; rdfs:label "Test shrine"@en ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/ml/shrine"^^xsd:anyURI .
+ex:ShrineDestruction a crm:E6_Destruction ;
+    rdfs:label "Destruction of the test shrine"@en ;
+    crm:P13_destroyed ex:Shrine ;
+    crm:P4_has_time-span ex:TSDestruction .
+ex:TSDestruction a crm:E52_Time-Span ;
+    crm:P82a_begin_of_the_begin "1934-01-15T00:00:00"^^xsd:dateTime ;
+    crm:P82b_end_of_the_end "1934-01-15T23:59:59"^^xsd:dateTime .
+
+# a local building type as a term, not a class (hg:structureType ⊑ crm:P2)
+ex:BahahType a hg:StructureType ; rdfs:label "Bahah"@en , "बहाः"@new .
+ex:TestBahah a hg:ReligiousStructure ; rdfs:label "Test bahah"@en ;
+    hg:structureType ex:BahahType ;
+    dcterms:identifier "https://cair-nepal.org/heritagegraph/example/ml/bahah"^^xsd:anyURI .
+

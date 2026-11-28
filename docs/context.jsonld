@@ -1,5 +1,6 @@
 {
   "@context": {
+    "hg": "https://cair-nepal.org/heritagegraph/",
     "heritageGraph": "https://cair-nepal.org/heritagegraph/",
     "crm": "http://www.cidoc-crm.org/cidoc-crm/",
     "crminf": "http://www.cidoc-crm.org/extensions/crminf/",
@@ -14,578 +15,684 @@
     "dcterms": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "@version": 1.1,
-    "AgeCriterion": "heritageGraph:AgeCriterion",
-    "ArchitecturalElement": "heritageGraph:ArchitecturalElement",
-    "ArchitecturalStructure": "heritageGraph:ArchitecturalStructure",
-    "ArchitecturalStyle": "heritageGraph:ArchitecturalStyle",
-    "ArchivalRecord": "heritageGraph:ArchivalRecord",
-    "AssertionSubject": "heritageGraph:AssertionSubject",
-    "CalendarSystem": "heritageGraph:CalendarSystem",
-    "CasteGroup": "heritageGraph:CasteGroup",
-    "Chaitya": "heritageGraph:Chaitya",
-    "ChariotFestival": "heritageGraph:ChariotFestival",
-    "ConditionType": "heritageGraph:ConditionType",
-    "Consecration": "heritageGraph:Consecration",
-    "Container": "heritageGraph:Container",
-    "DataCustodian": "heritageGraph:DataCustodian",
-    "DataSource": "heritageGraph:DataSource",
-    "DatePrecision": "heritageGraph:DatePrecision",
-    "Deity": "heritageGraph:Deity",
-    "Dharmashala": "heritageGraph:Dharmashala",
-    "DhungeDhara": "heritageGraph:DhungeDhara",
-    "DocumentationActivity": "heritageGraph:DocumentationActivity",
-    "Enshrinement": "heritageGraph:Enshrinement",
-    "ExistenceStatus": "heritageGraph:ExistenceStatus",
-    "FearlessnessAssessment": "heritageGraph:FearlessnessAssessment",
-    "Festival": "heritageGraph:Festival",
-    "FieldSurveyActivity": "heritageGraph:FieldSurveyActivity",
-    "FieldSurveyDataset": "heritageGraph:FieldSurveyDataset",
-    "Guthi": "heritageGraph:Guthi",
-    "GuthiType": "heritageGraph:GuthiType",
-    "HistoricalEvent": "heritageGraph:HistoricalEvent",
-    "HoroscopeCompatibilityCriterion": "heritageGraph:HoroscopeCompatibilityCriterion",
-    "IconographicObject": "heritageGraph:IconographicObject",
-    "InformationObject": "heritageGraph:InformationObject",
-    "KumariEnthronementEvent": "heritageGraph:KumariEnthronementEvent",
-    "KumariHouse": "heritageGraph:KumariHouse",
-    "KumariLifecycleEvent": "heritageGraph:KumariLifecycleEvent",
-    "KumariRetirementEvent": "heritageGraph:KumariRetirementEvent",
-    "KumariRole": "heritageGraph:KumariRole",
-    "KumariSelectionEvent": "heritageGraph:KumariSelectionEvent",
-    "KumariTenure": "heritageGraph:KumariTenure",
-    "LineageCriterion": "heritageGraph:LineageCriterion",
-    "MaskedDance": "heritageGraph:MaskedDance",
-    "Metadata": "heritageGraph:Metadata",
-    "Murti": "heritageGraph:Murti",
-    "OralHistoryInterview": "heritageGraph:OralHistoryInterview",
-    "OralHistoryRecording": "heritageGraph:OralHistoryRecording",
-    "Pati": "heritageGraph:Pati",
-    "Paubha": "heritageGraph:Paubha",
-    "PhysicalHeritageThing": "heritageGraph:PhysicalHeritageThing",
-    "PhysicalIntegrityCriterion": "heritageGraph:PhysicalIntegrityCriterion",
-    "Pokhari": "heritageGraph:Pokhari",
-    "Proposition": "heritageGraph:Proposition",
-    "ReligiousStructure": "heritageGraph:ReligiousStructure",
-    "ReligiousTradition": "heritageGraph:ReligiousTradition",
-    "RestHouse": "heritageGraph:RestHouse",
-    "RitualAssessment": "heritageGraph:RitualAssessment",
-    "RitualEvent": "heritageGraph:RitualEvent",
-    "RitualType": "heritageGraph:RitualType",
-    "Sattal": "heritageGraph:Sattal",
-    "SelectionCriterion": "heritageGraph:SelectionCriterion",
-    "Stupa": "heritageGraph:Stupa",
-    "SyncreticRelationship": "heritageGraph:SyncreticRelationship",
-    "SyncreticType": "heritageGraph:SyncreticType",
-    "Temple": "heritageGraph:Temple",
-    "ThirtyTwoPerfectionsCriterion": "heritageGraph:ThirtyTwoPerfectionsCriterion",
-    "Verification": "heritageGraph:Verification",
-    "WaterStructure": "heritageGraph:WaterStructure",
+    "AccessProtocol": "hg:AccessProtocol",
+    "AgeCriterion": "hg:AgeCriterion",
+    "ArchitecturalElement": "hg:ArchitecturalElement",
+    "ArchitecturalStructure": "hg:ArchitecturalStructure",
+    "ArchitecturalStyle": "hg:ArchitecturalStyle",
+    "ArchivalRecord": "hg:ArchivalRecord",
+    "AssertionSubject": "hg:AssertionSubject",
+    "CalendarSystem": "hg:CalendarSystem",
+    "CasteGroup": "hg:CasteGroup",
+    "Chaitya": "hg:Chaitya",
+    "ChariotFestival": "hg:ChariotFestival",
+    "ConditionType": "hg:ConditionType",
+    "Consecration": "hg:Consecration",
+    "Container": "hg:Container",
+    "CustodyPeriod": "hg:CustodyPeriod",
+    "DataCustodian": "hg:DataCustodian",
+    "DataSource": "hg:DataSource",
+    "DatePrecision": "hg:DatePrecision",
+    "Deity": "hg:Deity",
+    "Dharmashala": "hg:Dharmashala",
+    "DhungeDhara": "hg:DhungeDhara",
+    "DocumentationActivity": "hg:DocumentationActivity",
+    "Endowment": "hg:Endowment",
+    "EndowmentEvent": "hg:EndowmentEvent",
+    "EndowmentEventType": "hg:EndowmentEventType",
+    "Enshrinement": "hg:Enshrinement",
+    "ExistenceStatus": "hg:ExistenceStatus",
+    "FearlessnessAssessment": "hg:FearlessnessAssessment",
+    "Festival": "hg:Festival",
+    "FieldSurveyActivity": "hg:FieldSurveyActivity",
+    "FieldSurveyDataset": "hg:FieldSurveyDataset",
+    "Guthi": "hg:Guthi",
+    "GuthiType": "hg:GuthiType",
+    "HereditaryRoleTenure": "hg:HereditaryRoleTenure",
+    "HistoricalEvent": "hg:HistoricalEvent",
+    "HoroscopeCompatibilityCriterion": "hg:HoroscopeCompatibilityCriterion",
+    "IconographicObject": "hg:IconographicObject",
+    "InformationObject": "hg:InformationObject",
+    "KumariEnthronementEvent": "hg:KumariEnthronementEvent",
+    "KumariHouse": "hg:KumariHouse",
+    "KumariLifecycleEvent": "hg:KumariLifecycleEvent",
+    "KumariRetirementEvent": "hg:KumariRetirementEvent",
+    "KumariRole": "hg:KumariRole",
+    "KumariSelectionEvent": "hg:KumariSelectionEvent",
+    "KumariTenure": "hg:KumariTenure",
+    "LineageCriterion": "hg:LineageCriterion",
+    "MaskedDance": "hg:MaskedDance",
+    "Metadata": "hg:Metadata",
+    "Murti": "hg:Murti",
+    "Office": "hg:Office",
+    "OralHistoryInterview": "hg:OralHistoryInterview",
+    "OralHistoryRecording": "hg:OralHistoryRecording",
+    "Pati": "hg:Pati",
+    "Paubha": "hg:Paubha",
+    "PhysicalHeritageThing": "hg:PhysicalHeritageThing",
+    "PhysicalIntegrityCriterion": "hg:PhysicalIntegrityCriterion",
+    "Pokhari": "hg:Pokhari",
+    "Proposition": "hg:Proposition",
+    "ReligiousStructure": "hg:ReligiousStructure",
+    "ReligiousTradition": "hg:ReligiousTradition",
+    "RestHouse": "hg:RestHouse",
+    "RitualAssessment": "hg:RitualAssessment",
+    "RitualEvent": "hg:RitualEvent",
+    "RitualOffice": "hg:RitualOffice",
+    "RitualType": "hg:RitualType",
+    "Sattal": "hg:Sattal",
+    "SelectionCriterion": "hg:SelectionCriterion",
+    "StateHeritageAuthority": "hg:StateHeritageAuthority",
+    "StructureType": "hg:StructureType",
+    "Stupa": "hg:Stupa",
+    "SyncreticRelationship": "hg:SyncreticRelationship",
+    "SyncreticType": "hg:SyncreticType",
+    "Temple": "hg:Temple",
+    "Tenure": "hg:Tenure",
+    "TenureEvent": "hg:TenureEvent",
+    "ThirtyTwoPerfectionsCriterion": "hg:ThirtyTwoPerfectionsCriterion",
+    "Verification": "hg:Verification",
+    "WaterStructure": "hg:WaterStructure",
+    "accessProtocol": {
+      "@id": "hg:accessProtocol",
+      "@type": "@id"
+    },
     "actors": {
-      "@id": "heritageGraph:actors",
+      "@id": "hg:actors",
       "@type": "@id"
     },
     "architecturalStructures": {
-      "@id": "heritageGraph:architecturalStructures",
+      "@id": "hg:architecturalStructures",
       "@type": "@id"
     },
     "architectural_elements": {
-      "@id": "heritageGraph:architectural_elements",
+      "@id": "hg:architectural_elements",
       "@type": "@id"
     },
     "assertions": {
-      "@id": "heritageGraph:assertions",
+      "@id": "hg:assertions",
       "@type": "@id"
     },
     "assertsAbout": {
-      "@id": "heritageGraph:assertsAbout",
+      "@id": "hg:assertsAbout",
       "@type": "@id"
     },
     "assessesCandidate": {
-      "@id": "heritageGraph:assessesCandidate",
+      "@id": "hg:assessesCandidate",
       "@type": "@id"
     },
     "assumesRole": {
-      "@id": "heritageGraph:assumesRole",
+      "@id": "hg:assumesRole",
       "@type": "@id"
     },
     "birthTimespan": {
-      "@id": "heritageGraph:birthTimespan",
+      "@id": "hg:birthTimespan",
       "@type": "@id"
     },
     "boundsTenure": {
-      "@id": "heritageGraph:boundsTenure",
+      "@id": "hg:boundsTenure",
       "@type": "@id"
     },
     "calendarSystem": {
-      "@id": "heritageGraph:calendarSystem",
+      "@id": "hg:calendarSystem",
       "@type": "@id"
     },
     "calendar_systems": {
-      "@id": "heritageGraph:calendar_systems",
+      "@id": "hg:calendar_systems",
       "@type": "@id"
     },
     "caste_groups": {
-      "@id": "heritageGraph:caste_groups",
+      "@id": "hg:caste_groups",
       "@type": "@id"
     },
     "commissionedBy": {
-      "@id": "heritageGraph:commissionedBy",
+      "@id": "hg:commissionedBy",
+      "@type": "@id"
+    },
+    "concernsEndowment": {
+      "@id": "hg:concernsEndowment",
       "@type": "@id"
     },
     "condition_assessments": {
-      "@id": "heritageGraph:condition_assessments",
+      "@id": "hg:condition_assessments",
       "@type": "@id"
     },
     "condition_states": {
-      "@id": "heritageGraph:condition_states",
+      "@id": "hg:condition_states",
       "@type": "@id"
     },
     "confersRole": {
-      "@id": "heritageGraph:confersRole",
+      "@id": "hg:confersRole",
+      "@type": "@id"
+    },
+    "confidenceMethod": {
+      "@id": "hg:confidenceMethod",
       "@type": "@id"
     },
     "consecratedByEvent": {
-      "@id": "heritageGraph:consecratedByEvent",
+      "@id": "hg:consecratedByEvent",
       "@type": "@id"
     },
     "consecration_events": {
-      "@id": "heritageGraph:consecration_events",
+      "@id": "hg:consecration_events",
+      "@type": "@id"
+    },
+    "custodyClosedBy": {
+      "@id": "hg:custodyClosedBy",
+      "@type": "@id"
+    },
+    "custodyHolder": {
+      "@id": "hg:custodyHolder",
+      "@type": "@id"
+    },
+    "custodyObject": {
+      "@id": "hg:custodyObject",
+      "@type": "@id"
+    },
+    "custodyOpenedBy": {
+      "@id": "hg:custodyOpenedBy",
       "@type": "@id"
     },
     "custody_events": {
-      "@id": "heritageGraph:custody_events",
+      "@id": "hg:custody_events",
       "@type": "@id"
     },
     "data_custodians": {
-      "@id": "heritageGraph:data_custodians",
+      "@id": "hg:data_custodians",
       "@type": "@id"
     },
     "data_sources": {
-      "@id": "heritageGraph:data_sources",
+      "@id": "hg:data_sources",
       "@type": "@id"
     },
     "datePrecision": {
-      "@id": "heritageGraph:datePrecision",
+      "@id": "hg:datePrecision",
       "@type": "@id"
     },
     "deathTimespan": {
-      "@id": "heritageGraph:deathTimespan",
+      "@id": "hg:deathTimespan",
       "@type": "@id"
     },
     "deities": {
-      "@id": "heritageGraph:deities",
+      "@id": "hg:deities",
       "@type": "@id"
     },
     "destructionEvent": {
-      "@id": "heritageGraph:destructionEvent",
+      "@id": "hg:destructionEvent",
       "@type": "@id"
     },
     "documentation_activities": {
-      "@id": "heritageGraph:documentation_activities",
+      "@id": "hg:documentation_activities",
       "@type": "@id"
     },
     "documentedBy": {
-      "@id": "heritageGraph:documentedBy",
+      "@id": "hg:documentedBy",
       "@type": "@id"
     },
     "documents": {
-      "@id": "heritageGraph:documents",
+      "@id": "hg:documents",
+      "@type": "@id"
+    },
+    "dutyFor": {
+      "@id": "hg:dutyFor",
       "@type": "@id"
     },
     "embodiedDeity": {
-      "@id": "heritageGraph:embodiedDeity",
+      "@id": "hg:embodiedDeity",
       "@type": "@id"
     },
     "endPlace": {
-      "@id": "heritageGraph:endPlace",
+      "@id": "hg:endPlace",
       "@type": "@id"
     },
     "endedTenureOf": {
-      "@id": "heritageGraph:endedTenureOf",
+      "@id": "hg:endedTenureOf",
+      "@type": "@id"
+    },
+    "endowedLand": {
+      "@id": "hg:endowedLand",
+      "@type": "@id"
+    },
+    "endowmentDonor": {
+      "@id": "hg:endowmentDonor",
+      "@type": "@id"
+    },
+    "endowmentEventType": {
+      "@id": "hg:endowmentEventType",
+      "@type": "@id"
+    },
+    "endowmentRecipient": {
+      "@id": "hg:endowmentRecipient",
       "@type": "@id"
     },
     "enshrinedDeity": {
-      "@id": "heritageGraph:enshrinedDeity",
+      "@id": "hg:enshrinedDeity",
       "@type": "@id"
     },
     "enshrinedInStructure": {
-      "@id": "heritageGraph:enshrinedInStructure",
+      "@id": "hg:enshrinedInStructure",
       "@type": "@id"
     },
     "enshrinement_events": {
-      "@id": "heritageGraph:enshrinement_events",
+      "@id": "hg:enshrinement_events",
       "@type": "@id"
     },
     "enshrinesDeityThroughEvent": {
-      "@id": "heritageGraph:enshrinesDeityThroughEvent",
+      "@id": "hg:enshrinesDeityThroughEvent",
       "@type": "@id"
     },
     "enthronedPerson": {
-      "@id": "heritageGraph:enthronedPerson",
+      "@id": "hg:enthronedPerson",
       "@type": "@id"
     },
     "enthronedThrough": {
-      "@id": "heritageGraph:enthronedThrough",
+      "@id": "hg:enthronedThrough",
       "@type": "@id"
     },
     "existenceStatus": {
-      "@id": "heritageGraph:existenceStatus",
+      "@id": "hg:existenceStatus",
       "@type": "@id"
     },
     "festivals": {
-      "@id": "heritageGraph:festivals",
+      "@id": "hg:festivals",
       "@type": "@id"
     },
     "guthiType": {
-      "@id": "heritageGraph:guthiType",
+      "@id": "hg:guthiType",
       "@type": "@id"
     },
     "guthis": {
-      "@id": "heritageGraph:guthis",
+      "@id": "hg:guthis",
       "@type": "@id"
     },
     "hadParticipant": {
-      "@id": "heritageGraph:hadParticipant",
+      "@id": "hg:hadParticipant",
       "@type": "@id"
     },
     "hasArchitecturalStyle": {
-      "@id": "heritageGraph:hasArchitecturalStyle",
+      "@id": "hg:hasArchitecturalStyle",
       "@type": "@id"
     },
     "hasAssertion": {
-      "@id": "heritageGraph:hasAssertion",
+      "@id": "hg:hasAssertion",
       "@type": "@id"
     },
     "hasConditionType": {
-      "@id": "heritageGraph:hasConditionType",
+      "@id": "hg:hasConditionType",
       "@type": "@id"
     },
     "hasCriterion": {
-      "@id": "heritageGraph:hasCriterion",
+      "@id": "hg:hasCriterion",
       "@type": "@id"
     },
     "hasReligiousTradition": {
-      "@id": "heritageGraph:hasReligiousTradition",
+      "@id": "hg:hasReligiousTradition",
       "@type": "@id"
     },
     "historical_events": {
-      "@id": "heritageGraph:historical_events",
+      "@id": "hg:historical_events",
       "@type": "@id"
     },
     "human_made_objects": {
-      "@id": "heritageGraph:human_made_objects",
+      "@id": "hg:human_made_objects",
       "@type": "@id"
     },
     "hypothesizedLocation": {
-      "@id": "heritageGraph:hypothesizedLocation",
+      "@id": "hg:hypothesizedLocation",
       "@type": "@id"
     },
     "iconographic_objects": {
-      "@id": "heritageGraph:iconographic_objects",
+      "@id": "hg:iconographic_objects",
       "@type": "@id"
     },
     "information_objects": {
-      "@id": "heritageGraph:information_objects",
+      "@id": "hg:information_objects",
       "@type": "@id"
     },
     "initiatedTenure": {
-      "@id": "heritageGraph:initiatedTenure",
+      "@id": "hg:initiatedTenure",
       "@type": "@id"
     },
     "invokesDeity": {
-      "@id": "heritageGraph:invokesDeity",
+      "@id": "hg:invokesDeity",
       "@type": "@id"
     },
     "isAboutDeity": {
-      "@id": "heritageGraph:isAboutDeity",
+      "@id": "hg:isAboutDeity",
       "@type": "@id"
     },
     "isEnshrinedThroughEvent": {
-      "@id": "heritageGraph:isEnshrinedThroughEvent",
+      "@id": "hg:isEnshrinedThroughEvent",
       "@type": "@id"
     },
     "isInvokedInRitual": {
-      "@id": "heritageGraph:isInvokedInRitual",
+      "@id": "hg:isInvokedInRitual",
       "@type": "@id"
     },
     "isPrimaryForTradition": {
-      "@id": "heritageGraph:isPrimaryForTradition",
+      "@id": "hg:isPrimaryForTradition",
       "@type": "@id"
     },
     "kumari_lifecycle_events": {
-      "@id": "heritageGraph:kumari_lifecycle_events",
+      "@id": "hg:kumari_lifecycle_events",
       "@type": "@id"
     },
     "kumari_roles": {
-      "@id": "heritageGraph:kumari_roles",
+      "@id": "hg:kumari_roles",
       "@type": "@id"
     },
     "kumari_tenures": {
-      "@id": "heritageGraph:kumari_tenures",
+      "@id": "hg:kumari_tenures",
       "@type": "@id"
     },
     "makesDeityPresent": {
-      "@id": "heritageGraph:makesDeityPresent",
+      "@id": "hg:makesDeityPresent",
       "@type": "@id"
     },
     "managedByGuthi": {
-      "@id": "heritageGraph:managedByGuthi",
+      "@id": "hg:managedByGuthi",
+      "@type": "@id"
+    },
+    "mandatedBy": {
+      "@id": "hg:mandatedBy",
       "@type": "@id"
     },
     "materials": {
-      "@id": "heritageGraph:materials",
+      "@id": "hg:materials",
       "@type": "@id"
     },
     "mentionedInSource": {
-      "@id": "heritageGraph:mentionedInSource",
+      "@id": "hg:mentionedInSource",
       "@type": "@id"
     },
     "metadata": {
-      "@id": "heritageGraph:metadata",
+      "@id": "hg:metadata",
       "@type": "@id"
     },
     "partOfSelection": {
-      "@id": "heritageGraph:partOfSelection",
+      "@id": "hg:partOfSelection",
       "@type": "@id"
     },
     "participatesInRitual": {
-      "@id": "heritageGraph:participatesInRitual",
+      "@id": "hg:participatesInRitual",
       "@type": "@id"
     },
     "performedByGroup": {
-      "@id": "heritageGraph:performedByGroup",
+      "@id": "hg:performedByGroup",
       "@type": "@id"
     },
     "performsRitual": {
-      "@id": "heritageGraph:performsRitual",
+      "@id": "hg:performsRitual",
       "@type": "@id"
     },
     "persons": {
-      "@id": "heritageGraph:persons",
+      "@id": "hg:persons",
       "@type": "@id"
     },
     "physical_heritage_things": {
-      "@id": "heritageGraph:physical_heritage_things",
+      "@id": "hg:physical_heritage_things",
       "@type": "@id"
     },
     "places": {
-      "@id": "heritageGraph:places",
+      "@id": "hg:places",
       "@type": "@id"
     },
     "production_events": {
-      "@id": "heritageGraph:production_events",
+      "@id": "hg:production_events",
       "@type": "@id"
     },
     "propositionObjectEntity": {
-      "@id": "heritageGraph:propositionObjectEntity",
+      "@id": "hg:propositionObjectEntity",
       "@type": "@id"
     },
     "propositionSubject": {
-      "@id": "heritageGraph:propositionSubject",
+      "@id": "hg:propositionSubject",
       "@type": "@id"
     },
     "propositions": {
-      "@id": "heritageGraph:propositions",
+      "@id": "hg:propositions",
       "@type": "@id"
     },
     "publicationTimespan": {
-      "@id": "heritageGraph:publicationTimespan",
+      "@id": "hg:publicationTimespan",
       "@type": "@id"
     },
     "religious_traditions": {
-      "@id": "heritageGraph:religious_traditions",
+      "@id": "hg:religious_traditions",
       "@type": "@id"
     },
     "residenceStructure": {
-      "@id": "heritageGraph:residenceStructure",
+      "@id": "hg:residenceStructure",
       "@type": "@id"
     },
     "retiredThrough": {
-      "@id": "heritageGraph:retiredThrough",
+      "@id": "hg:retiredThrough",
       "@type": "@id"
     },
     "ritualType": {
-      "@id": "heritageGraph:ritualType",
+      "@id": "hg:ritualType",
       "@type": "@id"
     },
     "ritual_assessments": {
-      "@id": "heritageGraph:ritual_assessments",
+      "@id": "hg:ritual_assessments",
       "@type": "@id"
     },
     "ritual_events": {
-      "@id": "heritageGraph:ritual_events",
+      "@id": "hg:ritual_events",
       "@type": "@id"
     },
     "roleDeity": {
-      "@id": "heritageGraph:roleDeity",
+      "@id": "hg:roleDeity",
+      "@type": "@id"
+    },
+    "roleHolder": {
+      "@id": "hg:roleHolder",
       "@type": "@id"
     },
     "routePlaces": {
-      "@id": "heritageGraph:routePlaces",
+      "@id": "hg:routePlaces",
       "@type": "@id"
     },
     "selectedPerson": {
-      "@id": "heritageGraph:selectedPerson",
+      "@id": "hg:selectedPerson",
       "@type": "@id"
     },
     "selectedThrough": {
-      "@id": "heritageGraph:selectedThrough",
+      "@id": "hg:selectedThrough",
       "@type": "@id"
     },
     "selection_criteria": {
-      "@id": "heritageGraph:selection_criteria",
+      "@id": "hg:selection_criteria",
       "@type": "@id"
     },
     "sourceCreator": {
-      "@id": "heritageGraph:sourceCreator",
+      "@id": "hg:sourceCreator",
       "@type": "@id"
     },
     "sourcePublisher": {
-      "@id": "heritageGraph:sourcePublisher",
+      "@id": "hg:sourcePublisher",
       "@type": "@id"
     },
     "startPlace": {
-      "@id": "heritageGraph:startPlace",
+      "@id": "hg:startPlace",
+      "@type": "@id"
+    },
+    "structureType": {
+      "@id": "hg:structureType",
       "@type": "@id"
     },
     "structures": {
-      "@id": "heritageGraph:structures",
+      "@id": "hg:structures",
+      "@type": "@id"
+    },
+    "succeeds": {
+      "@id": "hg:succeeds",
       "@type": "@id"
     },
     "supportedByInstitution": {
-      "@id": "heritageGraph:supportedByInstitution",
+      "@id": "hg:supportedByInstitution",
+      "@type": "@id"
+    },
+    "sustains": {
+      "@id": "hg:sustains",
       "@type": "@id"
     },
     "syncreticType": {
-      "@id": "heritageGraph:syncreticType",
+      "@id": "hg:syncreticType",
       "@type": "@id"
     },
     "syncretic_relationships": {
-      "@id": "heritageGraph:syncretic_relationships",
+      "@id": "hg:syncretic_relationships",
       "@type": "@id"
     },
     "techniques": {
-      "@id": "heritageGraph:techniques",
+      "@id": "hg:techniques",
+      "@type": "@id"
+    },
+    "tenureClosedBy": {
+      "@id": "hg:tenureClosedBy",
+      "@type": "@id"
+    },
+    "tenureHolder": {
+      "@id": "hg:tenureHolder",
+      "@type": "@id"
+    },
+    "tenureOffice": {
+      "@id": "hg:tenureOffice",
+      "@type": "@id"
+    },
+    "tenureOpenedBy": {
+      "@id": "hg:tenureOpenedBy",
       "@type": "@id"
     },
     "time_spans": {
-      "@id": "heritageGraph:time_spans",
+      "@id": "hg:time_spans",
       "@type": "@id"
     },
     "transferredToGuthi": {
-      "@id": "heritageGraph:transferredToGuthi",
+      "@id": "hg:transferredToGuthi",
       "@type": "@id"
     },
     "usedBy": {
-      "@id": "heritageGraph:usedBy",
+      "@id": "hg:usedBy",
       "@type": "@id"
     },
     "verifiedAssertion": {
-      "@id": "heritageGraph:verifiedAssertion",
+      "@id": "hg:verifiedAssertion",
       "@type": "@id"
     },
     "verifiedByExpert": {
-      "@id": "heritageGraph:verifiedByExpert",
+      "@id": "hg:verifiedByExpert",
       "@type": "@id"
     },
     "confidenceScore": {
-      "@id": "heritageGraph:confidenceScore"
+      "@id": "hg:confidenceScore",
+      "@type": "xsd:decimal"
     },
     "curator": {
-      "@id": "heritageGraph:curator"
+      "@id": "hg:curator"
     },
     "custodianType": {
-      "@id": "heritageGraph:custodianType"
+      "@id": "hg:custodianType"
     },
     "dataQualityNote": {
-      "@id": "heritageGraph:dataQualityNote"
+      "@id": "hg:dataQualityNote"
     },
     "dataset_name": {
-      "@id": "heritageGraph:dataset_name"
+      "@id": "hg:dataset_name"
     },
     "dataset_version": {
-      "@id": "heritageGraph:dataset_version"
+      "@id": "hg:dataset_version"
     },
     "epochDateGregorian": {
-      "@id": "heritageGraph:epochDateGregorian"
+      "@id": "hg:epochDateGregorian"
     },
     "expertiseArea": {
-      "@id": "heritageGraph:expertiseArea"
+      "@id": "hg:expertiseArea"
     },
     "generated_date": {
-      "@id": "heritageGraph:generated_date"
+      "@id": "hg:generated_date"
     },
     "identifierScheme": {
-      "@id": "heritageGraph:identifierScheme"
+      "@id": "hg:identifierScheme"
     },
     "institutionalAffiliation": {
-      "@id": "heritageGraph:institutionalAffiliation"
+      "@id": "hg:institutionalAffiliation"
     },
     "isCriticalForFestival": {
-      "@id": "heritageGraph:isCriticalForFestival",
+      "@id": "hg:isCriticalForFestival",
       "@type": "xsd:boolean"
     },
     "lastKnownExistenceDate": {
-      "@id": "heritageGraph:lastKnownExistenceDate",
+      "@id": "hg:lastKnownExistenceDate",
       "@type": "xsd:dateTime"
     },
     "license": {
-      "@id": "heritageGraph:license"
+      "@id": "hg:license"
     },
     "lunarDateTithi": {
-      "@id": "heritageGraph:lunarDateTithi"
+      "@id": "hg:lunarDateTithi"
     },
     "persistentIdentifier": {
-      "@id": "heritageGraph:persistentIdentifier"
+      "@id": "hg:persistentIdentifier"
     },
     "placeType": {
-      "@id": "heritageGraph:placeType"
+      "@id": "hg:placeType"
     },
     "propositionLiteralValue": {
-      "@id": "heritageGraph:propositionLiteralValue"
+      "@id": "hg:propositionLiteralValue"
     },
     "propositionPredicate": {
-      "@id": "heritageGraph:propositionPredicate",
+      "@id": "hg:propositionPredicate",
       "@type": "@id"
     },
     "reconciliationStatus": {
-      "@id": "heritageGraph:reconciliationStatus"
+      "@id": "hg:reconciliationStatus"
+    },
+    "recordedDate": {
+      "@id": "hg:recordedDate"
     },
     "recurrencePattern": {
-      "@id": "heritageGraph:recurrencePattern"
+      "@id": "hg:recurrencePattern"
     },
     "resourceType": {
-      "@id": "heritageGraph:resourceType"
+      "@id": "hg:resourceType"
+    },
+    "roleDuty": {
+      "@id": "hg:roleDuty"
     },
     "routeDescription": {
-      "@id": "heritageGraph:routeDescription"
+      "@id": "hg:routeDescription"
     },
     "schema_version": {
-      "@id": "heritageGraph:schema_version"
+      "@id": "hg:schema_version"
     },
     "selectionCriteriaMet": {
-      "@id": "heritageGraph:selectionCriteriaMet"
+      "@id": "hg:selectionCriteriaMet"
     },
     "sourceCitation": {
-      "@id": "heritageGraph:sourceCitation"
+      "@id": "hg:sourceCitation"
     },
     "sourceUrl": {
-      "@id": "heritageGraph:sourceUrl"
+      "@id": "hg:sourceUrl"
+    },
+    "successionRule": {
+      "@id": "hg:successionRule"
     },
     "traditionalRole": {
-      "@id": "heritageGraph:traditionalRole"
+      "@id": "hg:traditionalRole"
     },
     "usedEquipment": {
-      "@id": "heritageGraph:usedEquipment"
+      "@id": "hg:usedEquipment"
     },
     "usedMethod": {
-      "@id": "heritageGraph:usedMethod"
+      "@id": "hg:usedMethod"
     },
     "verificationMethod": {
-      "@id": "heritageGraph:verificationMethod"
+      "@id": "hg:verificationMethod"
     },
     "yearOffsetFromGregorian": {
-      "@id": "heritageGraph:yearOffsetFromGregorian",
+      "@id": "hg:yearOffsetFromGregorian",
       "@type": "xsd:integer"
     }
   }

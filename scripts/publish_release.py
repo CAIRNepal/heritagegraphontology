@@ -6,8 +6,8 @@ return that exact release's files, independent of later releases. This script
 reads ontology/HeritageGraph.ttl, takes the version from its owl:versionIRI,
 and writes <docs>/releases/<version>/ontology.{ttl,owl,nt,jsonld} plus a small
 index.html linking them (deploy/nginx/heritagegraph.conf routes the version
-IRI there). Once the release is tagged in git (v<version> or <version>), it
-refuses to overwrite the copy with different content unless --force is given,
+IRI there). Once the release is published (tagged in git, or given its own
+CHANGELOG section), its copy is never overwritten with different content (unless --force),
 so a published release cannot change silently (dcterms:modified, which the
 pipeline stamps on every run, is ignored). Before the tag, the copy tracks the
 release candidate.
@@ -35,6 +35,14 @@ def tagged(version: str) -> bool:
     return bool(tags)
 
 
+def released(version: str) -> bool:
+    """A release is published once it is tagged or has its own CHANGELOG section
+    (1.0.1 was released without a tag)."""
+    changelog = ROOT / "CHANGELOG.md"
+    return tagged(version) or (changelog.exists()
+                               and f"## [{version}]" in changelog.read_text(encoding="utf-8"))
+
+
 def main(argv: list[str]) -> int:
     force = "--force" in argv
     args = [a for a in argv if a != "--force"]
@@ -48,7 +56,7 @@ def main(argv: list[str]) -> int:
     out = docs / "releases" / version
 
     existing = out / "ontology.ttl"
-    if existing.exists() and not force and tagged(version):
+    if existing.exists() and not force and released(version):
         old = Graph()
         old.parse(existing, format="turtle")
         new = Graph()
@@ -57,9 +65,11 @@ def main(argv: list[str]) -> int:
         for graph in (old, new):
             graph.remove((None, DCTERMS.modified, None))
         if not isomorphic(old, new):
-            print(f"release {version} already published with different content; "
-                  f"bump the version or pass --force", file=sys.stderr)
-            return 1
+            # the source has moved on but still carries the released version IRI
+            # (unreleased work): keep the published copy, never overwrite it
+            print(f"release {version} is published and the ontology now differs from it; its copy "
+                  f"is kept unchanged (bump owl:versionIRI to publish a new release)", file=sys.stderr)
+            return 0
 
     out.mkdir(parents=True, exist_ok=True)
     for ext, fmt in FORMATS.items():

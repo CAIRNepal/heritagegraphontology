@@ -2,7 +2,7 @@
 """Verify ontology/HeritageGraph.ttl (+ .shacl.ttl) were generated from the
 CURRENT ontology/HeritageGraph.yaml. Fails (exit 1) if the YAML changed after
 the TTLs were generated — i.e., someone edited the YAML without regenerating,
-or edited a TTL by hand. Run scripts/finalize_alpha5_artifacts.py to re-sync."""
+or edited a TTL by hand. Run scripts/finalize_artifacts.py to re-sync."""
 import hashlib
 import re
 import sys

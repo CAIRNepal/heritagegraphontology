@@ -2,17 +2,144 @@
 
 ## [Unreleased]
 
-### Changed (documentation generated with OntoReview)
+## [1.1.0] - 2026-11-26
+
+### Breaking changes and migration rules
+
+Data valid under 1.0.x that 1.1.0 rejects or reads differently. This release is an exception to the
+minor-release rule in GOVERNANCE.md; each change has a migration rule.
+
+- Place coordinates move from geo:asWKT to crm:P168_place_is_defined_by (same WKT literal).
+- Data giving one structure two values of a single-valued enumeration slot is now inconsistent.
+- On an instance of a HeritageGraph class, an `hg:` property the ontology does not declare is now a
+  SHACL violation (the open shapes ignored it), and a deprecated one a warning, which fails
+  conformance unless warnings are allowed. An empty string as a text value is a violation.
+- The holder of a Kumari tenure is given with `hg:tenureHolder`, not `hg:hadParticipant`
+  (rewrite `?t hg:hadParticipant ?p` on a `hg:KumariTenure` to `?t hg:tenureHolder ?p`).
+- An endowment that sustained a tenure now sustains the tenure's office
+  (`hg:sustains ?tenure` becomes `hg:sustains ?office`, where `?tenure hg:tenureOffice ?office`).
+- The ArchitecturalStyle values Stupa and Chaitya are deprecated, replaced by the classes
+  `hg:Stupa` and `hg:Chaitya`.
+- A syncretic relationship is cited with `hg:mentionedInSource`, not `prov:wasDerivedFrom`.
+
+### Added
+- The generic tenure pattern: `hg:Tenure`, `hg:Office`, `hg:RitualOffice`, `hg:TenureEvent`, with
+  `hg:tenureHolder`, `hg:tenureOffice`, `hg:tenureOpenedBy` and `hg:tenureClosedBy`.
+- `hg:StructureType` and `hg:structureType` (generic typing in place of new structure classes);
+  `hg:StateHeritageAuthority`.
+- Reuse of crm:P13 destroyed (required on a destruction event) and crm:P17 was motivated by;
+  ExistenceStatus `Reconstructed`.
+- dcterms:accessRights, and its subproperty `hg:accessProtocol` with the AccessProtocol values.
+- An optional CRM-PROV bridge module; an SSSOM mapping set; GOVERNANCE.md and a term-request template.
+
+### Changed
+- The core states no axiom about a term of another vocabulary unless that vocabulary states it.
+- HeritageGraph classes are stated subclasses of the CIDOC-CRM class every instance belongs to.
+  Disjoint kinds are stated with `owl:AllDisjointClasses`.
+- Max cardinality 1 is kept on a reused CRM property only where CRM's own quantification allows it.
+- Free text accepts language-tagged literals, with at most one value per language.
+- JSON Schema: date-times use the xsd:dateTime lexical form (offset optional). Abstract references
+  are resolved, and multivalued text accepts a single string.
+- Mappings: corrected SKOS strengths (Temple, Deity, IconographicObject, documentedBy).
+- LUX module: corrected the mappings, and the minted terms are marked `rdfs:isDefinedBy` the module.
+- Enumerations are subclasses of crm:E55_Type and their values are `owl:AllDifferent`, so two
+  values of a single-valued status (Destroyed and Extant) are inconsistent rather than merged.
+- The official CIDOC-CRM `owl:inverseOf` axioms are copied for reused inverse pairs.
+  `hg:invokesDeity` and `hg:isInvokedInRitual` are inverses, and `hg:succeeds` is irreflexive
+  and asymmetric.
+- Properties without `rdfs:domain` carry `schema:domainIncludes` (an annotation) for the classes
+  that use them. Class context stays in restrictions and SHACL, so reusing a property elsewhere
+  does not retype its subject.
+- `hg:EndowmentEvent` is a subclass of crm:E8_Acquisition. Its donor and recipient are
+  subproperties of crm:P23 / crm:P22.
+- Place geometry uses crm:P168 place is defined by (a GeoSPARQL WKT literal), not geo:asWKT,
+  whose domain is geo:Geometry.
+- Related mappings: confidenceScore to crminf:J5, recordedDate to crm:P1, startPlace / endPlace
+  to crm:P27 / P26, managedByGuthi to crm:P49 (each with the reason it is not a subproperty).
+- The normative source route is stated: `hg:mentionedInSource` for descriptions;
+  `prov:wasDerivedFrom` with `prov:wasAttributedTo` for beliefs; `hg:sourceCitation`,
+  `hg:sourceCreator` and `hg:sourceUrl` for a source's own data. The demonstrator uses it, links
+  to Wikidata with skos:exactMatch / closeMatch (not owl:sameAs), and gives each belief a
+  CRMinf proposition (J4).
+- Controlled-vocabulary glosses corrected (Gellner & Quigley 1995; Toffin 1984):
+  - Sanah guthi is a funeral association.
+  - TempleGuthi is the deity guthi (dyah guthi).
+  - Calendars are not divided by religion: Nepal Sambat is the Newar ritual era, Bikram Sambat the
+    civil era.
+  - Pagoda: the Newar tiered temple.
+  - Murti includes aniconic seats.
+  - SyncreticType values are kinds of claimed relationship.
+  - The Kumari selection officiants are described as in published accounts.
+- `hg:MaskedDance` is a RitualEvent (usually part of a festival), no longer a Festival.
+  DatePrecision gains Month.
+- SHACL:
+  - Dependent nodes (time-spans, productions, condition states and assessments, propositions)
+    may be blank nodes.
+  - The confidence score also accepts xsd:integer.
+  - No text value may be empty.
+  - Three SHACL-SPARQL rules: an undeclared `hg:` property is a violation; a deprecated one is a
+    warning; a belief marked conflicting needs a rival.
+  - The shapes graph states its licence and version.
+- The epoch date pattern accepts only valid months and days.
+- OWL:
+  - Definitions end with a full stop; YAML slot names in annotations are replaced by CURIEs.
+  - Every term is `rdfs:isDefinedBy` the ontology.
+  - Creators are ORCID IRIs.
+  - Cardinalities are typed `xsd:nonNegativeInteger`.
+  - `dcterms:modified` is deterministic (the date of the YAML's last commit).
+- The JSON Schema carries its licence. The JSON-LD context types `confidenceScore` as `xsd:decimal`.
+- NOTICE.md gives the licence of each reused vocabulary; `sources.json` records it per snapshot.
+- The README has a normative validation recipe.
+- `hg:routePlaces` is no longer a subproperty of crm:P7, and `hg:sourceCitation` no longer one of
+  crm:P3 (related mappings instead). `crm:P183` (occurs before) is described as strict precedence.
+- The LUX module has a versionIRI (…/alignment/lux/1.1.0).
+- Labels: deprecated enumeration values are labelled "obsolete …" (ROBOT convention); `hg:documents`
+  is labelled "records" (CIDOC-CRM's P70 is "documents" and means a document, not an activity),
+  with a related mapping to crm:P70; `hg:InformationObject` is "Heritage information object", and
+  the properties accessProtocol and endowmentEventType are "has access protocol" and "has endowment
+  event type", so no label repeats a CRM label or a class name.
+- Demonstrator: the successor Kumari tenure of the same office (2025, open), the tradition's
+  selection criteria (Allen 1975), and Nepali labels for the main places and the deity.
+- Demonstrator sources: Allen (1975) is cited for the Kumari tradition only, not for the
+  2017--2025 tenure, its selection, or its retirement, which cite the 2017 and 2025 news reports;
+  the attributed belief on Kumari syncretism is about the Royal Kumari office; the
+  Kasthamandap reconstruction is `ex:Rebuild_Kasthamandap` (an `E11 Modification`, not a
+  production). The definition of `hg:syncreticType` names its four values.
+
+### Deprecated
+
+Kept, and marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a replacement.
+- The 1.0.x container terms, and the ArchitecturalStyle values Stupa and Chaitya.
+- GuthiType SanGuthi (a variant spelling of sanah guthi), replaced by SanaGuthi.
+
+### Evaluation
+- `make reproduce` regenerates every artefact from a clean checkout and compares it with the
+  committed copy. It also runs all release gates, the mutation analysis and the metric reports, and
+  writes the paper's numbers.
+- The reasoning gates pin each downloaded vocabulary by sha256.
+
+### Documentation
 - The documentation site (GitHub Pages) is generated with OntoReview 1.0.1 (`ontoreview build`, configured
   by `ontoreview.toml`) instead of WIDOCO: term pages, class graph, a quality report (HermiT consistency,
-  ROBOT, OOPS!, OntoCheck, IRI checks, cross-domain interoperability) and a changelog against the
+  ROBOT and OntoCheck; OOPS! when its web service is available) and a changelog against the
   previous release (from `owl:priorVersion`). The abstract, introduction, description and references are
   kept as Markdown in `docs-src/`.
 - `scripts/build.sh` still publishes the immutable release copies (`docs/releases/<version>/`), the
   enumeration-value pages and the JSON-LD context; OntoReview's self-hosting files (Docker, nginx, Pages
   workflow) are left out. CI installs OntoReview in its own environment.
-- Removed the WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
+
+### Removed
+- The WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
   `scripts/declutter_webvowl.py`; `make webvowl` is now `make serve`.
+- The pre-1.1.0 quality report and its aggregator (`release/`, `scripts/run_release_quality.py`), the
+  scripts it alone ran (`evaluation/run_consistency.py`, `run_hermit.py`, `run_tgdk_eval.py`), the
+  RDF/XML copy `ontology/review.owl` they read, and six unreferenced figure and export scripts. The
+  release gates of `make check` and `make reproduce` replace them, and `docs/ontology.owl` is the
+  RDF/XML serialisation.
+- `scripts/finalize_alpha5_artifacts.py` is renamed `scripts/finalize_artifacts.py`.
+- The DANAM and Wikidata data bundle (`data/`), its SPARQL deployment (`deploy/fuseki/`) and
+  `evaluation/run_danam_scale_cq.py`. They were not part of the evaluation, and the data set is
+  maintained in a separate repository.
 
 ## [1.0.1] - 2026-10-20
 

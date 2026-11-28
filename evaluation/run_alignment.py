@@ -310,31 +310,47 @@ def run_evaluation():
     log(f"  {'-' * 44}")
     log(f"  {'TOTAL':<20} {total_c:>10} {total_p:>12}")
 
-    # Paper claims vs actual
+    # alignment counts
     crm_c = all_ns_classes.get("CIDOC-CRM", 0)
     crm_ext_c = crm_c + all_ns_classes.get("CRMinf", 0) + all_ns_classes.get("CRMsci", 0)
     crm_p = all_ns_props.get("CIDOC-CRM", 0)
     prov_p = all_ns_props.get("PROV-O", 0)
 
-    log(f"\n  Paper §4.4 claims vs Actual:")
-    log(f"    {'Metric':<40} {'Paper':>8} {'Actual':>8}  {'Match':>6}")
-    log(f"    {'-' * 64}")
-    ext_subclass = sum(
-        1 for s, o in g.subject_objects(RDFS.subClassOf)
-        if isinstance(s, URIRef) and str(s).startswith(str(HG))
-        and isinstance(o, URIRef) and not str(o).startswith(str(HG))
-        and "owl#" not in str(o)
-    )
-    rows = [
-        ("CIDOC-CRM aligned classes (SKOS/slot)", 32, crm_c),
-        ("External rdfs:subClassOf axioms (TTL)", 31, ext_subclass),
-        ("CRM-family (CRM+CRMinf+CRMsci) classes", 35, crm_ext_c),
-        ("CIDOC-CRM aligned properties (slot_uri)", 40, crm_p),
-        ("PROV-O aligned properties (slot_uri)", 9, prov_p),
-    ]
-    for label, paper, actual in rows:
-        match = "✅" if paper == actual else "❌"
-        log(f"    {label:<40} {paper:>8} {actual:>8}  {match:>6}")
+    # live counts (results/alignment.json is what the paper cites): distinct
+    # IRIs, deprecated terms excluded, split into HeritageGraph terms linked to
+    # the vocabulary by an axiom or a SKOS mapping, and the vocabulary's own
+    # terms reused directly (declared in the release)
+    from rdflib.namespace import SKOS as _SKOS
+    deprecated = set(g.subjects(OWL.deprecated, None))
+    LINKS = (RDFS.subClassOf, RDFS.subPropertyOf, OWL.equivalentClass, OWL.equivalentProperty,
+             _SKOS.exactMatch, _SKOS.closeMatch, _SKOS.broadMatch, _SKOS.narrowMatch,
+             _SKOS.relatedMatch)
+    VOCABS = {"cidoc_crm": ("http://www.cidoc-crm.org/cidoc-crm/",),
+              "crm_family": ("http://www.cidoc-crm.org/cidoc-crm/",
+                             "http://www.cidoc-crm.org/extensions/crminf/",
+                             "http://www.cidoc-crm.org/extensions/crmsci/"),
+              "prov_o": ("http://www.w3.org/ns/prov#",)}
+    hg_cls = {c for c in g.subjects(RDF.type, OWL.Class)
+              if str(c).startswith(str(HG)) and c not in deprecated}
+    hg_prop = {p for t in (OWL.ObjectProperty, OWL.DatatypeProperty) for p in g.subjects(RDF.type, t)
+               if str(p).startswith(str(HG)) and p not in deprecated}
+    live = {}
+    for name, nss in VOCABS.items():
+        def linked(terms):
+            return {t for t in terms for pr in LINKS for o in g.objects(t, pr)
+                    if isinstance(o, URIRef) and str(o).startswith(nss)}
+        live[f"{name}_hg_classes_linked"] = len(linked(hg_cls))
+        live[f"{name}_hg_properties_linked"] = len(linked(hg_prop))
+        live[f"{name}_classes_reused"] = len({c for c in g.subjects(RDF.type, OWL.Class)
+                                              if isinstance(c, URIRef) and str(c).startswith(nss)})
+        live[f"{name}_properties_reused"] = len({p for t in (OWL.ObjectProperty, OWL.DatatypeProperty)
+                                                 for p in g.subjects(RDF.type, t)
+                                                 if isinstance(p, URIRef) and str(p).startswith(nss)})
+    import json as _json
+    (RESULTS_DIR / "alignment.json").write_text(_json.dumps(live, indent=2) + "\n", encoding="utf-8")
+    log("\n  Live alignment counts (results/alignment.json; distinct IRIs):")
+    for k, v in live.items():
+        log(f"    {k:<40} {v:>6}")
 
     # Write outputs
     report_path = RESULTS_DIR / "alignment_report.txt"

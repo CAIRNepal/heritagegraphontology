@@ -13,11 +13,12 @@ __pycache__/
 figures/
 methodology.tex
 *.tex
+!evaluation/heritagegraph-numbers.tex
+!evaluation/shacl-census.tex
 *.pdf
 *.bib
 main/
 tgdk-overleaf/
-HeritageGraph_ontology.xlsx
 
 # Backup / scratch
 *.bak-prefix
@@ -26,14 +27,13 @@ HeritageGraph_ontology.xlsx
 
 # Intermediate regeneration artefacts (source of truth is HeritageGraph.yaml)
 *.regen.ttl
-.webvowl-out/
 evaluation/HeritageGraph.hermit-check.*
 
 # Reasoner / scratch logs
 *_hermit.log
 *.log
 
-# Local-only evaluation scratch (archived reports live under release/evaluation/)
+# Local-only evaluation scratch
 evaluation/results/
 reference-papers/
 related_paper/
@@ -41,7 +41,7 @@ related_paper/
 # Personal / non-repo assets
 Eval.pdf
 
-# WIDOCO build artifacts (source of truth is ontology/HeritageGraph.ttl)
+# Build intermediates (source of truth is ontology/HeritageGraph.yaml)
 ontology/HeritageGraph.merged.ttl
 ontology/HeritageGraph.build.ttl
 

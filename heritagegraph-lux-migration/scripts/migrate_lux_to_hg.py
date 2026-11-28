@@ -339,7 +339,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
       ?hgPlace a crm:E53_Place ; owl:sameAs ?pl ;
-               <http://www.w3.org/2000/01/rdf-schema#label> ?plname ; <http://www.opengis.net/ont/geosparql#asWKT> ?wkt .
+               <http://www.w3.org/2000/01/rdf-schema#label> ?plname ; crm:P168_place_is_defined_by ?wkt .
     } } WHERE {
       { SELECT ?pl WHERE { ?pl a crm:E53_Place . } ORDER BY ?pl LIMIT {LIMIT} OFFSET {OFFSET} }
       BIND(IRI(CONCAT("https://cair-nepal.org/heritagegraph/imported/lux/place/",

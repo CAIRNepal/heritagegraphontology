@@ -29,7 +29,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="${1:-$ROOT/docs}"
 PY="${PYTHON:-$ROOT/venv/bin/python}"; command -v "$PY" >/dev/null 2>&1 || PY="python3"
 ONTOREVIEW="${ONTOREVIEW:-ontoreview}"
-command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install ontoreview==1.0.1, or set ONTOREVIEW)" >&2; exit 1; }
+command -v "$ONTOREVIEW" >/dev/null 2>&1 || { echo "ontoreview not found (pip install 'ontoreview==1.0.1', or set ONTOREVIEW)" >&2; exit 1; }
 
 WORK="$(mktemp -d)"; trap 'rm -rf "$WORK" 2>/dev/null || true' EXIT
 ARGS=(--config "$ROOT/ontoreview.toml" --output "$WORK/site")
@@ -93,5 +93,21 @@ echo "   generating JSON-LD @context → $OUT/context.jsonld"
 # Ship content-negotiation rules alongside the published RDF serializations.
 [ -f "$ROOT/.htaccess" ] && cp -f "$ROOT/.htaccess" "$OUT/.htaccess"
 touch "$OUT/.nojekyll"
+
+# OntoReview records local cache paths (e.g. ~/Library/Caches/ontoreview/iri.sqlite3) in its
+# reports; publish them with the home directory replaced by "~" so no local user name ships
+"$PY" - "$OUT" <<'PYEOF'
+import os, sys
+from pathlib import Path
+home = os.path.expanduser("~")
+n = 0
+for p in Path(sys.argv[1]).rglob("*"):
+    if p.is_file() and "releases" not in p.parts and p.suffix in {".json", ".html", ".js", ".md", ".txt", ".ttl", ".jsonld"}:
+        t = p.read_text(encoding="utf-8", errors="surrogateescape")
+        if home in t:
+            p.write_text(t.replace(home, "~"), encoding="utf-8", errors="surrogateescape")
+            n += 1
+print(f"   removed the local home path from {n} report file(s)")
+PYEOF
 
 echo "✓ done. Open:  $OUT/index.html"

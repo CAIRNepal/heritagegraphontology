@@ -4,13 +4,24 @@
     "vars": [
       "structure",
       "style",
-      "place"
+      "place",
+      "from",
+      "to"
     ],
     "expected": [
       [
         "Kasthamandap",
         "ArchitecturalStyle#Pagoda",
-        "KathmanduDurbarSquare"
+        "KathmanduDurbarSquare",
+        "0600-01-01T00:00:00",
+        "1200-12-31T23:59:59"
+      ],
+      [
+        "TalejuTemple",
+        "ArchitecturalStyle#Pagoda",
+        "KathmanduDurbarSquare",
+        "1564-01-01T00:00:00",
+        "1564-12-31T23:59:59"
       ]
     ]
   },
@@ -69,7 +80,7 @@
     "expected": [
       [
         "KathmanduDurbarSquare",
-        "Temple",
+        "Sattal",
         "Kasthamandap"
       ],
       [
@@ -87,6 +98,31 @@
       "style"
     ],
     "expected": [
+      [
+        "BhavanishankarMandira",
+        "JogeshvaraMandira",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "BhavanishankarMandira",
+        "Kasthamandap",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "BhavanishankarMandira",
+        "TalejuTemple",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "JogeshvaraMandira",
+        "Kasthamandap",
+        "ArchitecturalStyle#Pagoda"
+      ],
+      [
+        "JogeshvaraMandira",
+        "TalejuTemple",
+        "ArchitecturalStyle#Pagoda"
+      ],
       [
         "Kasthamandap",
         "TalejuTemple",
@@ -112,7 +148,7 @@
     ]
   },
   "CQ8": {
-    "question": "Among temples that conduct daily Nitya Puja, which are assessed as damaged/endangered?",
+    "question": "Among sacred structures that conduct daily Nitya Puja, which are assessed as damaged/endangered?",
     "vars": [
       "temple",
       "state",
@@ -121,8 +157,8 @@
     "expected": [
       [
         "Kasthamandap",
-        "CS_Damaged",
-        "ConditionType#Damaged"
+        "CS_Ruined",
+        "ConditionType#Ruined"
       ]
     ]
   },
@@ -131,12 +167,14 @@
     "vars": [
       "group",
       "role",
-      "ritual"
+      "ritual",
+      "festival"
     ],
     "expected": [
       [
         "Manandhars",
-        "hereditary chariot pullers and oil pressers",
+        "responsible, through the Manandhar Sangh, for the rituals of the yosin (lingo) pole of Indra Jatra",
+        "YosinErection",
         "IndraJatra"
       ]
     ]
@@ -148,13 +186,7 @@
       "ritual",
       "actor"
     ],
-    "expected": [
-      [
-        "Murti_Taleju",
-        "IndraJatra",
-        "KarmacharyaPriest"
-      ]
-    ]
+    "expected": []
   },
   "CQ11": {
     "question": "Which rituals are associated with which sites, invoke which deities, with what recurrence?",
@@ -184,6 +216,11 @@
       [
         "YosinErection",
         "KumariProcession",
+        "ChansaSayamis"
+      ],
+      [
+        "YosinErection",
+        "KumariProcession",
         "Manandhars"
       ]
     ]
@@ -199,9 +236,9 @@
     "expected": [
       [
         "BungadyahProcession",
-        "Bungamati",
+        "Pulchowk",
         "Jawalakhel",
-        "Bungamati to Patan to Jawalakhel (chariot route)"
+        "Pulchowk through Gabahal, Mangal Bazar, Hakha, Sundhara, Chakrabahil and Lagankhel to Jawalakhel (ordinary-year chariot route)"
       ]
     ]
   },
@@ -236,37 +273,26 @@
     ]
   },
   "CQ16": {
-    "question": "What are the ritual obligations of participant groups, and how are their roles recorded?",
+    "question": "What hereditary ritual obligations do groups hold, for which festival, under which Guthi's mandate, and how do they pass on?",
     "vars": [
-      "ritual",
       "group",
-      "role"
+      "duty",
+      "festival",
+      "guthi",
+      "rule"
     ],
     "expected": [
       [
-        "BungadyahJatra",
         "Barahis",
-        "hereditary chariot carpenters"
-      ],
-      [
+        "search for, carve and assemble the wooden parts of the Bungadyah (Rato Machhindranath) chariot each year; rebuild it from scratch every 12 years, when it is built at Bungamati",
         "BungadyahJatra",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
-      ],
-      [
-        "IndraJatra",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
-      ],
-      [
-        "KumariProcession",
-        "Manandhars",
-        "hereditary chariot pullers and oil pressers"
+        "GuthiSansthan",
+        "hereditary within the Barahi (Newar carpenter) community"
       ]
     ]
   },
   "CQ17": {
-    "question": "Which rituals have documented transformations, and which sources attest them?",
+    "question": "Which rituals have source-attested assertions about them (such as documented transformations), and which sources attest them?",
     "vars": [
       "assertion",
       "ritual",
@@ -277,13 +303,13 @@
       [
         "Assert_RouteChange",
         "BungadyahProcession",
-        "Procession route adjusted after the 1934 earthquake",
-        "Src_DoA"
+        "Illustrative only: a route change after the 1934 earthquake (no source)",
+        "Src_Illustrative"
       ]
     ]
   },
   "CQ18": {
-    "question": "How do changes in structures reflect broader transitions (via provenance assertions)?",
+    "question": "Which structures carry source-attested assertions about their history (such as conflicting build dates)?",
     "vars": [
       "structure",
       "assertion",
@@ -298,24 +324,24 @@
       [
         "Kasthamandap",
         "Assert_BuildB",
-        "Src_DoA"
+        "Src_Durham_Kasthamandap"
       ]
     ]
   },
   "CQ19": {
-    "question": "Which organisations manage which heritage, perform which rituals, and hold custody?",
+    "question": "Which organisation held custody of a heritage structure when a given event took place there, and over which custody period?",
     "vars": [
-      "heritage",
-      "guthi",
-      "ritual",
-      "custody"
+      "event",
+      "structure",
+      "holder",
+      "period"
     ],
     "expected": [
       [
+        "ShuvarambhaPuja2018",
         "Kasthamandap",
-        "KasthamandapGuthi",
-        "IndraJatra",
-        "Kasthamandap"
+        "KRC",
+        "CP_Kasthamandap_KRC"
       ]
     ]
   },
@@ -328,22 +354,49 @@
     ],
     "expected": [
       [
-        "Prod_Kasthamandap",
-        "KingLakshmiNarasimhaMalla",
-        "Kasthamandap"
+        "Prod_TalejuTemple",
+        "KingMahendraMalla",
+        "TalejuTemple"
       ]
     ]
   },
   "CQ21": {
-    "question": "Which institutions provide economic and ritual support for sites, rituals, or sacred figures?",
+    "question": "Which endowments sustain which sites, rituals or sacred offices, which Guthi or state body holds them, and through which founding or nationalisation events?",
     "vars": [
-      "supported",
-      "institution"
+      "endowment",
+      "sustained",
+      "holder",
+      "event",
+      "type"
     ],
     "expected": [
       [
-        "Tenure_2017",
-        "KasthamandapGuthi"
+        "Endow_Bhavanishankar",
+        "BhavanishankarRituals",
+        "BhavanishankarGuthi",
+        "EE_Bhavanishankar_Founding",
+        "EndowmentEventType#Founding"
+      ],
+      [
+        "Endow_GuthiSansthan",
+        "BungadyahJatra",
+        "GuthiSansthan",
+        "EE_Nationalisation_1964",
+        "EndowmentEventType#Nationalisation"
+      ],
+      [
+        "Endow_GuthiSansthan",
+        "RoyalKumariRole",
+        "GuthiSansthan",
+        "EE_Nationalisation_1964",
+        "EndowmentEventType#Nationalisation"
+      ],
+      [
+        "Endow_Jogeshvara",
+        "JogeshvaraMandira",
+        "JogeshvaraGuthi",
+        "EE_Jogeshvara_Founding",
+        "EndowmentEventType#Founding"
       ]
     ]
   },
@@ -358,9 +411,9 @@
     "expected": [
       [
         "BungadyahJatra",
-        "Matsyendranath",
+        "Bungadyah",
         "Barahis",
-        "Manandhars"
+        "Yewals"
       ]
     ]
   },
@@ -373,7 +426,7 @@
     ],
     "expected": [
       [
-        "Kasthamandap",
+        "BungamatiTemple",
         "Buddhist",
         "Hindu"
       ]
@@ -387,14 +440,7 @@
       "deityA",
       "deityB"
     ],
-    "expected": [
-      [
-        "NityaPuja_Bungamati",
-        "GunlaBajan",
-        "Matsyendranath",
-        "Avalokitesvara"
-      ]
-    ]
+    "expected": []
   },
   "CQ25": {
     "question": "How do syncretic deities link traditions, and what evidence supports these links?",
@@ -407,15 +453,21 @@
     "expected": [
       [
         "Syn_Karunamaya",
+        "Bungadyah",
         "Avalokitesvara",
-        "Matsyendranath",
-        "Src_Slusser"
+        "Src_Alsop_BungaDya"
       ],
       [
-        "Syn_Taleju",
-        "Taleju",
-        "Vajradevi",
-        "Src_Slusser"
+        "Syn_Karunamaya",
+        "Bungadyah",
+        "Avalokitesvara",
+        "Src_Locke1980"
+      ],
+      [
+        "Syn_Matsyendranath",
+        "Bungadyah",
+        "Matsyendranath",
+        "Src_Alsop_BungaDya"
       ]
     ]
   },
@@ -430,9 +482,15 @@
     "expected": [
       [
         "Tenure_2017",
-        "KumariPerson",
+        "RoyalKumariHolder_2017",
         "KumariGhar",
         "TS_Tenure2017"
+      ],
+      [
+        "Tenure_2025",
+        "RoyalKumariHolder_2025",
+        "KumariGhar",
+        "TS_Tenure2025"
       ]
     ]
   },
@@ -447,10 +505,10 @@
       [
         "Tenure_2017",
         "Taleju",
-        "Buddhist"
+        "Hindu"
       ],
       [
-        "Tenure_2017",
+        "Tenure_2025",
         "Taleju",
         "Hindu"
       ]
@@ -465,22 +523,13 @@
       "residence",
       "timespan"
     ],
-    "expected": [
-      [
-        "Tenure_2017",
-        "Taleju",
-        "Syn_Taleju",
-        "KumariGhar",
-        "TS_Tenure2017"
-      ]
-    ]
+    "expected": []
   },
   "CQ29": {
     "question": "What daily rituals does a Kumari perform at her residence, with what temporal pattern?",
     "vars": [
       "tenure",
       "ritual",
-      "type",
       "residence",
       "pattern"
     ],
@@ -488,7 +537,6 @@
       [
         "Tenure_2017",
         "KumariNityaPuja",
-        "RitualType#NityaPuja",
         "KumariGhar",
         "daily"
       ]
@@ -505,7 +553,7 @@
     "expected": [
       [
         "Tenure_2017",
-        "KumariPerson",
+        "RoyalKumariHolder_2017",
         "KumariProcession",
         "YosinErection"
       ]
@@ -520,7 +568,7 @@
     "expected": [
       [
         "Tenure_2017",
-        "KasthamandapGuthi"
+        "GuthiSansthan"
       ]
     ]
   },
@@ -537,7 +585,7 @@
         "Ret_2025",
         "Tenure_2017",
         "TS_Ret2025",
-        "Tenure ended at first menstruation, per tradition."
+        "The successor was installed on 30 September 2025."
       ]
     ]
   }

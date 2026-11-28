@@ -1,0 +1,45 @@
+# Competency questions answered only with HeritageGraph's axioms.
+# Each is asked in the vocabulary of a client that knows only part of the
+# picture (CIDOC-CRM only, PROV-O only, or the generic classes).
+# evaluation/run_inference_cq.py runs each over the demonstrator three ways:
+#   asserted   the ABox triples alone (no reasoning)
+#   vocab-only OWL 2 RL closure of ABox + official CIDOC-CRM, CRMinf, PROV-O
+#   with HG    OWL 2 RL closure of ABox + those vocabularies + HeritageGraph
+# A CQ passes when "with HG" equals the frozen expected set
+# (evaluation/cq_inference_expected.json) and "vocab-only" equals its frozen
+# set and is strictly smaller: the extra rows are due to HeritageGraph's axioms.
+
+# IQ1: Which groups performed which rituals, as a CIDOC-CRM-only client sees them (crm:P14i)?
+# (hg:performsRitual rdfs:subPropertyOf crm:P14i_performed; hg:performedByGroup rdfs:subPropertyOf
+#  crm:P14_carried_out_by, the inverse of P14i in CIDOC-CRM; Guthi and CasteGroup rdfs:subClassOf crm:E74_Group)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT ?group ?ritual WHERE {
+  ?group a crm:E74_Group ; crm:P14i_performed ?ritual .
+  ?ritual a hg:RitualEvent .
+}
+
+# IQ2: Which PROV activities are recorded, as a PROV-O-only client sees them?
+# (HeritageGraph's event classes rdfs:subClassOf prov:Activity. CRM-typed events, crm:E12_Production,
+#  crm:E10_Transfer_of_Custody, crm:E14_Condition_Assessment, are prov:Activity only with the optional
+#  CRM-PROV bridge module loaded, which the core does not assert.)
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?activity WHERE {
+  ?activity a prov:Activity .
+}
+
+# IQ3: Which assertions are recorded about each heritage subject, seen from the subject?
+# (hg:hasAssertion owl:inverseOf hg:assertsAbout)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+SELECT ?subject ?assertion WHERE {
+  ?subject hg:hasAssertion ?assertion .
+}
+
+# IQ4: Which physical heritage things are located where?
+# (hg:PhysicalHeritageThing owl:equivalentClass the union of ArchitecturalStructure, IconographicObject,
+#  ArchitecturalElement; class hierarchy)
+PREFIX hg: <https://cair-nepal.org/heritagegraph/>
+PREFIX crm: <http://www.cidoc-crm.org/cidoc-crm/>
+SELECT ?thing ?place WHERE {
+  ?thing a hg:PhysicalHeritageThing ; crm:P55_has_current_location ?place .
+}

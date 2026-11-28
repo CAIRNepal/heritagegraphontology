@@ -68,6 +68,29 @@ CACHE = RESULTS / ".vocab_cache"
 CACHE.mkdir(parents=True, exist_ok=True)
 
 HG = "https://cair-nepal.org/heritagegraph/"
+
+# Rater verdicts are recorded by a human rater in evaluation/mapping_rater_verdicts.csv
+# (subject_id, predicate_id, object_id as in the SSSOM file; verdict; rater; date;
+# note). The audit only reads them: an empty file leaves every verdict empty.
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from gen_sssom import curie as _sssom_curie  # noqa: E402
+
+
+def _curie(target: str) -> str:
+    return _sssom_curie(URIRef(target)) if target.startswith("http") else target
+
+
+def _rater_verdicts() -> dict:
+    path = Path(__file__).resolve().parent / "mapping_rater_verdicts.csv"
+    if not path.exists():
+        return {}
+    with open(path, newline="", encoding="utf-8") as f:
+        return {(r["subject_id"], r["predicate_id"].split(":")[-1], r["object_id"]): r["verdict"].strip()
+                for r in csv.DictReader(f) if r.get("verdict", "").strip()}
+
+
+RATER_VERDICTS = _rater_verdicts()
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 MAPPING_PREDS = [SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch,
                  SKOS.relatedMatch, SKOS.narrowMatch,
@@ -291,7 +314,8 @@ def run_audit() -> int:
             "target_kind": kind or "n/a",
             "target_exists": exists,
             "category_ok": "yes" if kind_ok else "MISMATCH",
-            "rater_verdict": "",
+            "rater_verdict": RATER_VERDICTS.get(
+                (str(s).replace(HG, "hg:"), str(p).split("#")[-1].split("/")[-1], _curie(target)), ""),
         })
 
     out = RESULTS / "mapping_audit.csv"

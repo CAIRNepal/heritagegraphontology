@@ -107,8 +107,10 @@ def main() -> int:
             types = [ty for ty in TYPE_ORDER if (t, RDF.type, ty) in g]
             if types:
                 declared.append((t, types[0]))
-            else:
-                external.append(t)
+            elif not str(t).startswith(("http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+                                        "http://www.w3.org/2000/01/rdf-schema#",
+                                        "http://www.w3.org/2002/07/owl#")):
+                external.append(t)   # RDF/RDFS/OWL vocabulary (e.g. rdfs:subClassOf paths) is not listed
         patterns = [f"  {curie(t)} a {TYPE_CURIE[ty]} ." for t, ty in declared]
         ask = "ASK WHERE {\n" + "\n".join(patterns) + "\n}"
         header = "".join(f"PREFIX {p}: <{ns}>\n" for p, ns in DOC_PREFIXES.items())
@@ -122,7 +124,16 @@ def main() -> int:
         print(f"ASK false for CQ(s) {failures}: the query uses an undeclared term",
               file=sys.stderr)
         return 1
-    OUT.write_text("\n".join(out) + "\n", encoding="utf-8")
+    text = "\n".join(out) + "\n"
+    if "--check" in sys.argv:
+        # gate: the committed file must be what the queries generate
+        if not OUT.exists() or OUT.read_text(encoding="utf-8") != text:
+            print(f"STALE: {OUT.name} differs from what examples/queries/cq-abox-32.rq generates; "
+                  f"run python3 scripts/gen_cq_tbox_doc.py", file=sys.stderr)
+            return 1
+        print(f"OK: {OUT.name} is up to date (32 TBox ASK queries, all true)")
+        return 0
+    OUT.write_text(text, encoding="utf-8")
     print(f"Wrote {OUT} (32 TBox ASK queries, all true against {TTL.name})")
     return 0
 

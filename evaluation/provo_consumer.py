@@ -10,10 +10,14 @@ Two consumers are tested against the released demonstrator ABox, in both
 cases with the HeritageGraph vocabulary deliberately withheld:
 
   1. A vocabulary-blind SPARQL consumer. The ABox is merged with the
-     ontology TBox and closed under RDFS semantics, so the alignment
-     axioms (crminf:I2_Belief rdfs:subClassOf prov:Entity,
-     crm:E39_Actor rdfs:subClassOf prov:Agent, hg:DataSource
-     rdfs:subClassOf prov:Entity, ...) materialise PROV-level types.
+     ontology TBox and the optional CRM-PROV bridge module, and closed under
+     RDFS semantics, so the alignment axioms (crminf:I2_Belief
+     rdfs:subClassOf prov:Entity and crm:E39_Actor rdfs:subClassOf prov:Agent,
+     from the bridge; hg:DataSource rdfs:subClassOf prov:Entity, from the
+     core) materialise PROV-level types. Without the bridge (the core alone
+     states nothing about CRM classes) the CRM-typed believers and actors are
+     not PROV agents. (A consumer that loads PROV-O itself gets the same types
+     from PROV-O's own domains and ranges; this test loads the bridge instead.)
      Three queries mentioning ONLY prov: terms (plus rdfs:label) then
      retrieve the beliefs with their attribution, derivation, and
      generation times.
@@ -52,8 +56,9 @@ g = Graph()
 g.parse(ROOT / "examples/kathmandu-mini-abox.ttl", format="turtle")
 abox_size = len(g)
 g.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+g.parse(ROOT / "ontology/HeritageGraph-crm-prov-bridge.ttl", format="turtle")
 DeductiveClosure(RDFS_Semantics).expand(g)
-print(f"ABox {abox_size} triples + TBox, RDFS-closed: {len(g)} triples\n")
+print(f"ABox {abox_size} triples + TBox + CRM-PROV bridge, RDFS-closed: {len(g)} triples\n")
 
 PFX = """PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -155,7 +160,7 @@ for belief_id, agent_id in sorted(attributed.items(), key=lambda kv: str(kv[0]))
     if ok_agent and ok_src:
         walked += 1
 
-expected_beliefs = 4   # Assert_BuildA, Assert_BuildB, Assert_RouteChange, Assert_KumariSyncretism
+expected_beliefs = 5   # Assert_BuildA, Assert_BuildB, Assert_RouteChange, Assert_KumariSyncretism, Assert_KumariVajradevi
 if walked < expected_beliefs:
     failures.append(f"generic-consumer walk ({walked}/{expected_beliefs})")
 print()

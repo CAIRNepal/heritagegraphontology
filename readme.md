@@ -1,7 +1,7 @@
 # HeritageGraph Ontology
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23435676.svg)](https://doi.org/10.5281/zenodo.23435676)
 [![Documentation](https://img.shields.io/badge/docs-online-blue.svg)](https://cairnepal.github.io/heritagegraphontology/)
 
@@ -20,7 +20,7 @@ at the Center for Artificial Intelligence Research Nepal (CAIR-Nepal).
 |---|---|
 | Namespace | `https://cair-nepal.org/heritagegraph/` (prefix `hg:`) |
 | Ontology IRI | `https://cair-nepal.org/heritagegraph/ontology` |
-| Version IRI | `https://cair-nepal.org/heritagegraph/ontology/1.0.1` |
+| Version IRI | `https://cair-nepal.org/heritagegraph/ontology/1.1.0` |
 | Ontology | [`ontology/HeritageGraph.ttl`](ontology/HeritageGraph.ttl) (Turtle; RDF/XML and JSON-LD in the [documentation](https://cairnepal.github.io/heritagegraphontology/)) |
 | SHACL shapes | [`ontology/HeritageGraph.shacl.ttl`](ontology/HeritageGraph.shacl.ttl) |
 | JSON Schema | [`ontology/HeritageGraph.schema.json`](ontology/HeritageGraph.schema.json) |
@@ -28,17 +28,17 @@ at the Center for Artificial Intelligence Research Nepal (CAIR-Nepal).
 | Linked Art alignment | [`heritagegraph-lux-migration/`](heritagegraph-lux-migration/) |
 | Archived releases | Zenodo, [doi:10.5281/zenodo.23435676](https://doi.org/10.5281/zenodo.23435676) (all versions) |
 
-## At a glance (v1.0.1)
+## At a glance (v1.1.0)
 
 | | |
 |---|---|
-| Classes | 66 |
-| Object / datatype properties | 102 / 32 |
-| Controlled vocabularies | 7 enumerations, 51 values |
+| Classes | 67 |
+| Object / datatype properties | 85 / 28 |
+| Controlled vocabularies | 9 closed enumerations, 59 current values |
 | Expressivity | OWL 2 DL, $\mathcal{ALCHOIN(D)}$; consistent under HermiT, no unsatisfiable classes |
-| Validation | 75 SHACL node shapes |
-| Alignment | 42 classes and 25 properties mapped to 11 external vocabularies |
-| Competency questions | 32, each answered by a SPARQL query over the demonstrator data |
+| Validation | 82 SHACL node shapes |
+| Alignment | 275 SSSOM mappings, mainly to CIDOC-CRM, CRMinf, CRMsci and PROV-O |
+| Competency questions | 32 SPARQL queries, each returning exactly its expected answers over the demonstrator data |
 
 ## Modelling patterns
 
@@ -95,20 +95,21 @@ Each value has its own IRI, e.g.
 
 ## Example
 
-A temple, its production, and a condition assessment after the 2015 earthquake:
+A building, its production, and a condition assessment after the 2015 earthquake:
 
 ```turtle
 @prefix hg:  <https://cair-nepal.org/heritagegraph/> .
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
 @prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
 
-ex:Kasthamandap a hg:Temple ;
+ex:Kasthamandap a hg:Sattal ;
     hg:hasArchitecturalStyle <https://cair-nepal.org/heritagegraph/ArchitecturalStyle#Pagoda> ;
     crm:P34i_was_assessed_by ex:CA_2015 .
 
 ex:Prod_Kasthamandap a crm:E12_Production ;
-    crm:P108_has_produced ex:Kasthamandap ;
-    crm:P14_carried_out_by ex:LicchaviBuilders .
+    crm:P108_has_produced ex:Kasthamandap .
+# who built it and when are contested: recorded as source-attributed beliefs
+# (crminf:I2_Belief), not as facts of the production
 
 ex:CA_2015 a crm:E14_Condition_Assessment ;
     crm:P35_has_identified ex:CS_Damaged .
@@ -133,6 +134,25 @@ SELECT ?tenure ?selection ?enthronement ?retirement WHERE {
 All 32 competency queries are in [`examples/queries/cq-abox-32.rq`](examples/queries/cq-abox-32.rq),
 and the demonstrator data in [`examples/kathmandu-mini-abox.ttl`](examples/kathmandu-mini-abox.ttl).
 
+## Validating data
+
+Validate instance data with the SHACL shapes and the OWL ontology as the ontology graph, without
+inference (the shapes check the asserted data; the result does not depend on loading other
+vocabularies):
+
+```sh
+pyshacl -s ontology/HeritageGraph.shacl.ttl -e ontology/HeritageGraph.ttl -i none --allow-warnings -f human your-data.ttl
+```
+
+This is the configuration the release gates use (`evaluation/check_examples.py`). Adding other
+vocabularies with `-e` (e.g. PROV-O, so that a `prov:SoftwareAgent` counts as a `prov:Agent`) can
+make more data conform; the normative result is the one above. The shapes are open: data may use
+other vocabularies freely. On an instance of a HeritageGraph class, a property in the HeritageGraph
+namespace that the ontology does not declare (a misspelling) is a violation, and a deprecated one a
+warning (`--allow-warnings` keeps warnings from failing conformance). Misspelt class names and
+untyped nodes are not checked by the shapes. JSON data is validated with
+`ontology/HeritageGraph.schema.json`.
+
 ## Repository structure
 
 ```text
@@ -155,7 +175,7 @@ pip install -r requirements.txt -r evaluation/requirements.txt
 make artefacts   # regenerate OWL, SHACL and JSON Schema from the LinkML source
 make check       # release checks: source/artefact sync, declared terms, OWL 2 DL and
                  # HermiT consistency with every example, no changes to reused vocabularies
-make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.1)
+make docs        # regenerate the documentation with OntoReview (pip install ontoreview==1.0.1; documentation only, the evaluation is `make reproduce`)
 ```
 
 The evaluation reported in the accompanying paper (competency questions, SHACL tests,
@@ -171,7 +191,7 @@ cd evaluation && make all
 @software{heritagegraph_2026,
   author    = {Karki, Niraj and Oli, Nabin and Sapkota, Anu and Chhetri, Tek Raj and Yumusak, Semih},
   title     = {{HeritageGraph Ontology}},
-  version   = {1.0.1},
+  version   = {1.1.0},
   year      = {2026},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.23435676},
@@ -184,5 +204,7 @@ cd evaluation && make all
 The ontology and its documentation are licensed under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see [LICENSE.md](LICENSE.md).
 The LUX migration tooling in `heritagegraph-lux-migration/` is licensed under Apache 2.0.
+Labels and definitions of reused terms are copied from their vocabularies and keep those licences;
+see [NOTICE.md](NOTICE.md).
 Contributions are welcome through issues and pull requests; please edit the LinkML source,
 not the generated files.

@@ -185,7 +185,7 @@ def main():
              f"(**{100*n_cov/n_cls:.1f}%**); **{inst_cov:,}/{inst:,}** typed instances covered "
              f"(**{100*inst_cov/inst:.2f}%**).")
     L.append(f"- **E3 Migration:** {migrated:,} LUX records re-typed into {len(e3)} HeritageGraph classes "
-             "in graph `…/imported/lux`.")
+             "in graph `…/imported/lux` (a pilot run with the pre-1.0.0 module; not part of the paper's evaluation).")
     L.append(f"- **E4 Mapping:** {stats['equivalentClass']} `owl:equivalentClass` + "
              f"{stats['equivalentProperty']} `owl:equivalentProperty` axioms to CIDOC-CRM.")
     L.append(f"- **Module:** {stats['triples']} triples; {stats['subClassOf']} `rdfs:subClassOf`, "

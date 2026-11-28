@@ -7,14 +7,12 @@ and saves the XML response + a human-readable summary.
 
 If the OOPS! service is unavailable, falls back to a local heuristic
 pitfall scan covering the most common issues:
-  P04  Creating unconnected ontology elements
   P08  Missing annotations (label / definition)
   P10  Missing disjointness
   P11  Missing domain or range
   P13  Missing inverse relationships
-  P19  Defining multiple domains / ranges (swallowed by union)
-  P22  Using non-HTTP URIs
   P41  No license declared
+  plus one check outside the OOPS! catalogue: LOCAL-URI (non-HTTP or file: IRIs)
 
 Output:  results/oops_report.txt
          results/oops_response.xml   (if online)
@@ -171,12 +169,12 @@ def local_pitfall_scan(g: Graph) -> list[dict]:
                                  "element": f"{a} / {b}",
                                  "detail": "Likely inverse pair lacks owl:inverseOf"})
 
-    # P22 — Non-HTTP URIs
+    # LOCAL-URI — non-HTTP IRIs (not an OOPS! pitfall; OOPS! P22 is naming conventions)
     for s in g.subjects():
         if isinstance(s, URIRef):
             uri = str(s)
             if uri.startswith("file:") or uri.startswith("/"):
-                pitfalls.append({"id": "P22", "severity": "Critical",
+                pitfalls.append({"id": "LOCAL-URI", "severity": "Critical",
                                  "element": uri, "detail": "Non-HTTP/filesystem URI"})
                 break  # Don't flood
 
@@ -184,7 +182,7 @@ def local_pitfall_scan(g: Graph) -> list[dict]:
     for ont in g.subjects(RDF.type, OWL.Ontology):
         uri = str(ont)
         if not uri.startswith("http"):
-            pitfalls.append({"id": "P22", "severity": "Critical",
+            pitfalls.append({"id": "LOCAL-URI", "severity": "Critical",
                              "element": uri,
                              "detail": "Ontology IRI is not an absolute HTTP URI"})
 
@@ -217,9 +215,14 @@ def run_evaluation():
     g.parse(str(ONTOLOGY_FILE), format="turtle")
     log(f"  Parsed {len(g)} triples")
 
-    # --- Try OOPS! online ---
+    # --- Try OOPS! online (not with --local: that sends the ontology to an
+    # external service, which an unreleased version should not be) ---
     log(section("OOPS! Online Service"))
-    xml_response = try_oops_online(RDFXML_FILE.read_text(encoding="utf-8"))
+    if "--local" in sys.argv:
+        xml_response = None
+        log("  --local: the ontology was NOT submitted to the OOPS! service.")
+    else:
+        xml_response = try_oops_online(RDFXML_FILE.read_text(encoding="utf-8"))
 
     if xml_response:
         xml_path = RESULTS_DIR / "oops_response.xml"
@@ -227,11 +230,14 @@ def run_evaluation():
         log(f"  ✅ OOPS! response saved to: {xml_path}")
         log(f"  Response size: {len(xml_response)} chars")
         log("  → Open the XML file to review detected pitfalls.")
-    else:
+    elif "--local" not in sys.argv:
         log("  ⚠️  OOPS! online service not available.")
 
     # --- Local heuristic scan (always run) ---
     log(section("Local Heuristic Pitfall Scan"))
+    log("  NOTE: this is a local heuristic re-implementation of a subset of the OOPS!")
+    log("  pitfall catalogue (P08, P10, P11, P13, P41; plus LOCAL-URI), NOT a run of the")
+    log("  OOPS! service; its counts are not OOPS! results and must not be cited as such.")
     pitfalls = local_pitfall_scan(g)
 
     severity_order = {"Critical": 0, "Important": 1, "Minor": 2}
@@ -251,13 +257,11 @@ def run_evaluation():
     log(f"  Unique pitfall types:    {len(summary)}\n")
 
     PITFALL_NAMES = {
-        "P04": "Unconnected ontology elements",
         "P08": "Missing annotations",
         "P10": "Missing disjointness",
         "P11": "Missing domain or range",
         "P13": "Missing inverse relationships",
-        "P19": "Multiple domains/ranges swallowed by union",
-        "P22": "Non-HTTP URIs",
+        "LOCAL-URI": "Non-HTTP IRIs (local check, not an OOPS! pitfall)",
         "P41": "No license declared",
     }
 

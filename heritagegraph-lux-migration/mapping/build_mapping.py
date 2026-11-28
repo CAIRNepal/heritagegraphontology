@@ -104,8 +104,8 @@ CLASS_ROWS = [
     ('CalendarSystem', '(none)', '(no LUX alias)', 'crm:E29_Designated_Reference_System', 'dropped in v1.0.0', 'time:Calendar exact match retained.'),
 
     # ---- Containers / metadata ----
-    ("Container",                  "(none)",                       "(no direct match)", "(none)",                          "no_direct_match", "LinkML container; LUX has no analogue."),
-    ("Metadata",                   "(none)",                       "InformationObject", "crm:E73_Information_Object",      "subClassOf",      "Map at instance level via Identifier / Name."),
+    ("Container",                  "(none)",                       "(not mapped)",      "(none)",                          "deprecated",      "Deprecated in HeritageGraph 1.1.0: LinkML serialization construct for JSON/YAML data files (HeritageGraph-container.yaml), not a domain class."),
+    ("Metadata",                   "(none)",                       "(not mapped)",      "(none)",                          "deprecated",      "Deprecated in HeritageGraph 1.1.0: dataset header of the JSON/YAML Container, not a domain class; hasMetadata ranges over crm:E73_Information_Object."),
     ("PhysicalHeritageThing",      "(none)",                       "HumanMadeObject",   "crm:E22_Human-Made_Object",       "closeMatch",      "Union class — LUX equivalent is HumanMadeObject (closeMatch)."),
 
     # ---- Enums (treated as concept schemes / Type instances in LUX) ----
@@ -131,7 +131,7 @@ PROP_ROWS = [
     ('took_place_at', 'Place', 'took_place_at', 'crm:P7_took_place_at', 'identity (direct URI reuse)', ''),
     ('has_timespan', 'TimeSpan', 'timespan', 'crm:P4_has_time-span', 'identity (direct URI reuse)', ''),
     ('has_current_location', 'Place', 'current_location', 'crm:P55_has_current_location', 'identity (direct URI reuse)', ''),
-    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55",                      "subPropertyOf",   "Provenance assertion needed for hypothetical."),
+    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55",                      "relatedMatch",    "A hypothesis, not the current location: model it as a provenance assertion (crminf:I2 about a P53 location)."),
     ('has_component', 'ArchitecturalElement', 'part', 'crm:P46_is_composed_of', 'identity (direct URI reuse)', 'P46 for physical (P106 for visual/linguistic).'),
     ('is_component_of', 'ArchitecturalStructure', 'part_of', 'crm:P46i_forms_part_of', 'identity (direct URI reuse)', ''),
     ('contains_structure', 'ArchitecturalStructure', '(no LUX alias)', 'crm:P59i_is_located_on_or_within', 'none (v1.0.0 uses crm:P53i_is_former_or_current_location_of)', ''),
@@ -160,7 +160,7 @@ PROP_ROWS = [
 
     ('has_membership', 'Person', 'current_or_former_member', 'crm:P107_has_current_or_former_member', 'identity (direct URI reuse)', ''),
     ('member_of_group', 'Guthi', 'member_of', 'crm:P107i_is_current_or_former_member_of', 'identity (direct URI reuse)', ''),
-    ('managed_by_guthi', 'Guthi', 'current_keeper / current_owner', 'crm:P49_has_former_or_current_keeper', 'closeMatch', ''),
+    ('managed_by_guthi', 'Guthi', 'current_keeper / current_owner', 'crm:P49_has_former_or_current_keeper', 'relatedMatch', ''),
 
     ('birth_timespan', 'TimeSpan', 'born → timespan', 'crm:E67_Birth via P4_has_time-span', 'closeMatch', "Better modeled via 'born' Activity (P98i_was_born) with timespan."),
     ('death_timespan', 'TimeSpan', 'died → timespan', 'crm:E69_Death via P4_has_time-span', 'closeMatch', ''),
@@ -190,7 +190,7 @@ PROP_ROWS = [
     ('note', 'xsd:string', 'referred_to_by → LinguisticObject', 'crm:P3_has_note', 'identity (direct URI reuse)', ''),
     ('source_citation', 'xsd:string', 'referred_to_by', 'crm:P67i_is_referred_to_by', 'seeAlso', ''),
     ("source_url",               "xsd:string",           "digitally_carried_by",       "la:digitally_carried_by",         "subPropertyOf",      "One of the genuine la: properties (no CRM equivalent)."),
-    ('place_coordinates', 'geo:wktLiteral', 'defined_by', 'crm:P168_place_is_defined_by', 'none (v1.0.0 uses geo:asWKT)', ''),
+    ('place_coordinates', 'geo:wktLiteral', 'defined_by', 'crm:P168_place_is_defined_by', 'identity (direct URI reuse)', 'Since 1.1.0; v1.0.0 used geo:asWKT.'),
 
     ('assertion_author', 'Actor', '(carried_out_by on AttributeAssignment)', 'crm:P14_carried_out_by', 'removed in v1.0.0', 'Property not in HeritageGraph v1.0.0.'),
     ('was_attributed_to', 'Person', 'carried_out_by', 'crm:P14_carried_out_by', 'none (v1.0.0 uses prov:wasAttributedTo)', 'Renamed from was_attributed_to_agent in v1.0.0.'),
@@ -217,7 +217,7 @@ MISSING_ROWS = [
     ("hg:Inscription",        "Inscription",          "crm:E34_Inscription",          "Stone/metal/manuscript inscriptions."),
     ("hg:Title",              "Title",                "crm:E35_Title",                "Titled name of a work or object."),
     # ---- Time / period ----
-    ("hg:Period",             "Period",               "crm:E4_Period",                "Generic period (Lichhavi, Malla, Shah, Rana). KumariTenure becomes its subclass."),
+    ("hg:Period",             "Period",               "crm:E4_Period",                "Generic period (Licchavi, Malla, Shah, Rana). KumariTenure becomes its subclass."),
     # ---- Event / activity branch ----
     ("hg:Birth",              "Birth",                "crm:E67_Birth",                "First-class person life event — LUX exposes 'born' for Person records."),
     ("hg:Death",              "Death",                "crm:E69_Death",                "Mirror of Birth — 'died' on Person records."),

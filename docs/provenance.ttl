@@ -1,48 +1,14 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <urn:ontoreview:documentation> a prov:Entity ;
-    prov:generatedAtTime "2026-11-22T15:28:50+00:00"^^xsd:dateTime ;
-    prov:wasDerivedFrom <https://cair-nepal.org/heritagegraph/ontology/1.0.1> ;
+    prov:generatedAtTime "2026-11-28T07:24:36+00:00"^^xsd:dateTime ;
+    prov:wasDerivedFrom <https://cair-nepal.org/heritagegraph/ontology/1.1.0> ;
     prov:wasGeneratedBy <urn:ontoreview:build> .
 
-<http://purl.obolibrary.org/obo/gsso/releases/2.0.11/gsso.owl> a prov:Entity ;
-    dcterms:date "2026-11-22T04:51:15Z"^^xsd:string ;
-    dcterms:hasVersion "2.0.11" ;
-    dcterms:isVersionOf <http://purl.obolibrary.org/obo/gsso.owl> ;
-    dcterms:title "Gender, Sex, and Sexual Orientation (GSSO) ontology" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via ols)." .
-
-<http://purl.obolibrary.org/obo/ncit/releases/2026-03-19/ncit.owl> a prov:Entity ;
-    dcterms:date "2026-11-22T04:51:19Z"^^xsd:string ;
-    dcterms:hasVersion "26.02d" ;
-    dcterms:isVersionOf <http://purl.obolibrary.org/obo/ncit.owl> ;
-    dcterms:title "NCI Thesaurus OBO Edition" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (13 correspondence(s), via ols)." .
-
-<http://www.cidoc-crm.org/extensions/crminf/1.2.1/> a prov:Entity ;
-    dcterms:date "2026-11-22T04:47:22.803450+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:d7d9bb51339380abf56acdcc7229f529c65c547b467dc913b1c8d31bccf95298" ;
-    dcterms:isVersionOf <http://www.cidoc-crm.org/extensions/crminf/> ;
-    dcterms:source <http://cidoc-crm.org/extensions/crminf/rdfs/1.2.1/CRMinf_v1.2.1.rdf> ;
-    dcterms:title "crminf (www.cidoc-crm.org)" ;
-    rdfs:comment "Release used to verify 1 external term(s) (via cache)." .
-
-<http://www.w3.org/ns/prov-o-20130430> a prov:Entity ;
-    dcterms:date "2026-11-18T01:08:30.540459+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:7d203989f67b38bca572253942acc5a1bf24ce3ccfece16f072dcb4be2b79a96" ;
-    dcterms:isVersionOf prov: ;
-    dcterms:source <https://www.w3.org/ns/prov-o.ttl> ;
-    dcterms:title "PROV-O",
-        "http://www.w3.org/ns/prov-o#" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (19 correspondence(s), via term database (bundled)).",
-        "Release used to verify 8 external term(s) (via bundle)." .
-
-<https://cair-nepal.org/heritagegraph/ontology/1.0.1> a prov:Entity ;
-    dcterms:modified "2026-11-22" ;
+<https://cair-nepal.org/heritagegraph/ontology/1.1.0> a prov:Entity ;
+    dcterms:modified "2026-11-28" ;
     dcterms:title "HeritageGraph Ontology" ;
     prov:generatedAtTime "2026-10-17" ;
     prov:wasAttributedTo <https://orcid.org/0000-0002-3905-7878>,
@@ -50,7 +16,7 @@
         <https://orcid.org/0009-0000-7679-0107>,
         <https://orcid.org/0009-0004-5297-5990>,
         <https://orcid.org/0009-0007-3770-4668> ;
-    prov:wasRevisionOf <https://cair-nepal.org/heritagegraph/ontology/1.0.0> .
+    prov:wasRevisionOf <https://cair-nepal.org/heritagegraph/ontology/1.0.1> .
 
 <https://orcid.org/0000-0002-3905-7878> a prov:Agent .
 
@@ -62,197 +28,14 @@
 
 <https://orcid.org/0009-0007-3770-4668> a prov:Agent .
 
-<https://w3id.org/biopragmatics/resources/mesh/2025/mesh.ofn> a prov:Entity ;
-    dcterms:date "2026-11-22T04:51:28Z"^^xsd:string ;
-    dcterms:hasVersion "2025" ;
-    dcterms:isVersionOf <https://w3id.org/biopragmatics/resources/mesh/mesh.ofn> ;
-    dcterms:title "Medical Subject Headings" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (8 correspondence(s), via ols)." .
-
 <urn:ontoreview:build> a prov:Activity ;
-    prov:endedAtTime "2026-11-22T15:28:50+00:00"^^xsd:dateTime ;
-    prov:startedAtTime "2026-11-22T15:26:24+00:00"^^xsd:dateTime ;
-    prov:used <http://purl.obolibrary.org/obo/gsso/releases/2.0.11/gsso.owl>,
-        <http://purl.obolibrary.org/obo/ncit/releases/2026-03-19/ncit.owl>,
-        <http://www.cidoc-crm.org/extensions/crminf/1.2.1/>,
-        <http://www.w3.org/ns/prov-o-20130430>,
-        <https://w3id.org/biopragmatics/resources/mesh/2025/mesh.ofn>,
-        <urn:ontoreview:release:867519f9e6f267ae>,
-        <urn:ontoreview:release:b451a2ca4ec20503>,
-        <urn:ontoreview:release:d210957a6449a574>,
-        <urn:sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310>,
-        <urn:sha256:57ae3992768f56430ab26e32a6530be9bce1e3a8e414cac1044d585583c8de99>,
-        <urn:sha256:667fd01d1584f092b9e31b2bfa84b524736d6a4ec77a6a89d7a476a5a279292f>,
-        <urn:sha256:74d6e82afaa91eeb70e8e38f6c6a9255907d843459fb32fca10aa7a3902d9136>,
-        <urn:sha256:7b645a0e1b0379b6f24ed719797f26f0f2b7a8f6ece6861fa159ffbf70a9e904>,
-        <urn:sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7>,
-        <urn:sha256:c70b0d1c843c0047e4c98e0a89392e46a05752ff6365bda7f7f55303905a0392>,
-        <urn:sha256:c905b9c3760653eda5a3fc4f9aefb2b0dac0cb374cc10ff7847d1e0bd121f551>,
-        <urn:sha256:ddd9159098c46f5e9c79010e8b09b092e94b7e617fced634bfad08d510e3f75f>,
-        <urn:sha256:e79633b8d0564816cee8a99f5c9acf9a0e6fc7257c7209acd684ecad53a89dd6>,
+    prov:endedAtTime "2026-11-28T07:24:36+00:00"^^xsd:dateTime ;
+    prov:startedAtTime "2026-11-28T07:24:27+00:00"^^xsd:dateTime ;
+    prov:used <urn:sha256:e21c0577e1620e1bdea5fefffc6af1fea7185ac0515630f8813c66c663e7287e>,
         "HeritageGraph.ttl" ;
     prov:wasAssociatedWith <https://w3id.org/ontoreview#v1.0.1> .
 
-<urn:ontoreview:release:867519f9e6f267ae> a prov:Entity ;
-    dcterms:date "2026-11-21T00:09:03.193403165"^^xsd:string ;
-    rdfs:comment "Release used to verify 1 external term(s) (via ols)." .
-
-<urn:ontoreview:release:b451a2ca4ec20503> a prov:Entity ;
-    dcterms:date "2026-11-22T04:45:56.377941+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:1219135296c7e3e6216adf11d9eac5dd8180f0a8b212c2fe26e308181d7f075b",
-        "sha256:15957a1e8dface223266d372828ad67d03dda0c9e97b1f12c7470776f8e38f30",
-        "sha256:1ab31b44f07941a9223762ac183f647d43d75593f289cc63adf8e801bd0e2e9b",
-        "sha256:1d022e6bab173faa76079f8bdb0a8ca0114a0a9707b845fd8f0ffb66164a6514",
-        "sha256:2f3fb598430d4ec92d8f7c21c4dfdff369cfe581fa124c21dc5f517a3f01b517",
-        "sha256:32fc71c8df5c096b14a33df58ff38d85c8d0e956744ae45c53ed892c14d6a4f2",
-        "sha256:3479eab1d3484f5cbb47c3eb8c39ba8e65b2575557e5dda13cbdb0994b684b12",
-        "sha256:37fcf07451e980e1d221be8d062cbc7b8f56a59d97bc508522f354c642d0760e",
-        "sha256:388aa8ecadbb1e306b2618633a7e4cb4bfa18139a78e27c5edc7301d53397baa",
-        "sha256:3bcb740dc9e420e693c97ad9fd564324bbe9eb18e3edae0cb9b0c41314b841c1",
-        "sha256:50a4a9e08593e179598c6f7136c8af505e5ec2a8f4ee6a3307018b3d0604b275",
-        "sha256:53639ebc283084729d5045acaafda32f3c344a0a33aefea4b2a76e57abb1ee81",
-        "sha256:57ae3992768f56430ab26e32a6530be9bce1e3a8e414cac1044d585583c8de99",
-        "sha256:667fd01d1584f092b9e31b2bfa84b524736d6a4ec77a6a89d7a476a5a279292f",
-        "sha256:6b2832f3d39a5bf4441129b60b164fd07e909ede2f670d6d25507f8e6be97da9",
-        "sha256:74d6e82afaa91eeb70e8e38f6c6a9255907d843459fb32fca10aa7a3902d9136",
-        "sha256:7637fd76611f9869dc069bd5753de0a60fd184783ff666a739bf902547410892",
-        "sha256:7fbc21d5de5529b47186dcb999d96e850141826588460fab14d5ae38d048c628",
-        "sha256:8c2e654327b14546afafdccca5ba7e19fa30bce47301b724854418279183ed43",
-        "sha256:97a6a92c98667b9a862ed6bcb2d06c29381fb4f2585fe09b1c841b9948637b11",
-        "sha256:a9a28160dcd69c267fc1efab20a5452c1f3a2e93f0869a59f7cd2145e150acf5",
-        "sha256:ab5485f1b42182d18d75e67acdab33a7fd09c03bf0d0e0aa582d26d52705f53d",
-        "sha256:afb544fe02a02751bf8f276678a54809562f996b4e2584b265666a888522fea4",
-        "sha256:b11345d67031c39c1ec09a4c1ce768e06273fd109d96793634edb6fc118fe212",
-        "sha256:b50c941a5953b108abdbcb284b7956002cf19a359fcb881d04a9cb970e88370b",
-        "sha256:bb0dcb5681fe49298c87d9a3664452ffcd705635bf6a553930fa4c4fbe70ff4e",
-        "sha256:c905b9c3760653eda5a3fc4f9aefb2b0dac0cb374cc10ff7847d1e0bd121f551",
-        "sha256:caa7db42371fc7cde514fe434fdf61b5c08447f69aab928a28bba44bf6b2eb88",
-        "sha256:cbb4154f62577212bd050ed60d658afe921feac0fdb0b0d7f5daf09ba1374fb2",
-        "sha256:d476e736d0061fdb74480cb772add03b240977a2ca4f3d7fbc28d313887d0f02",
-        "sha256:d5c90d157558572a9275bdf1c88173ab6e402e0f5385b5537eecf2cea56115e3",
-        "sha256:df3e0b189ba9d6699e57eef78ca3e7f25b2368df67dac356952886a24167c076",
-        "sha256:df48a5ce25cf9087f52533eaf09cb09c982b47412f7b089defb87596fbc1d811",
-        "sha256:e264a18f23dbba2dec5edac88450d0706349dc767349635922f6fbf6fa9a6615",
-        "sha256:e3ace1d2986f14a615e38670d403c8267c143b5b820673a4d35333c3893d461c",
-        "sha256:eba6655264b58f6da516fb81c8f72d78d171ca6bbfbb20432af23d5c3fd061ec",
-        "sha256:ef5e137aa640725f9e1a4b5850b710c6c75080bb7f684fa02ff481e88bfe7495",
-        "sha256:f1b2452ad4c6373a0146db0720dd5b035dc891c9ca83fef62c4942c839b0a4cc",
-        "sha256:f9ee088843086f6cc831b5aa5efb652537e2811369142da994d00d64c5468d7a",
-        "sha256:fb3728e8e3ce6dce04102f200624227ae610594799f0b68127ac59eed2b763b7" ;
-    dcterms:isVersionOf <http://www.cidoc-crm.org/cidoc-crm/> ;
-    dcterms:source <http://cidoc-crm.org/rdfs/7.1.3/E10_Transfer_of_Custody.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E12_Production.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E14_Condition_Assessment.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E21_Person.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E22_Human-Made_Object.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E29_Design_or_Procedure.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E39_Actor.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E3_Condition_State.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E52_Time-Span.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E53_Place.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E57_Material.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/E6_Destruction.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P107_has_current_or_former_member.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P108i_was_produced_by.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P125_used_object_of_type.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P129_is_about.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P12_occurred_in_the_presence_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P12i_was_present_at.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P140_assigned_attribute_to.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P141_assigned.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P14_carried_out_by.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P14i_performed.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P16_used_specific_object.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P183_ends_before_the_start_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P183i_starts_after_the_end_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P29_custody_received_by.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P2_has_type.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P34i_was_assessed_by.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P3_has_note.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P46_is_composed_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P46i_forms_part_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P4_has_time-span.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P50i_is_current_keeper_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P55_has_current_location.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P62_depicts.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P62i_is_depicted_by.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P7_took_place_at.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P8_took_place_on_or_within.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P9_consists_of.rdf>,
-        <http://cidoc-crm.org/rdfs/7.1.3/P9i_forms_part_of.rdf> ;
-    dcterms:title "cidoc-crm (www.cidoc-crm.org)" ;
-    rdfs:comment "Release used to verify 40 external term(s) (via cache)." .
-
-<urn:ontoreview:release:d210957a6449a574> a prov:Entity ;
-    dcterms:date "2026-11-21T00:09:02.747865110"^^xsd:string ;
-    rdfs:comment "Release used to verify 4 external term(s) (via ols)." .
-
-<urn:sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310> a prov:Entity ;
-    dcterms:date "2026-11-22T04:45:47.718834+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:2cf16dfa7421e5deb41e2e8ee5575e91913f443a758214b07a9682c9d6025310" ;
-    dcterms:isVersionOf <http://purl.org/ontology/bibo/> ;
-    dcterms:source <https://www.dublincore.org/specifications/bibo/bibo/bibo.ttl> ;
-    dcterms:title "The Bibliographic Ontology" ;
-    rdfs:comment "Release used to verify 8 external term(s) (via cache)." .
-
-<urn:sha256:57ae3992768f56430ab26e32a6530be9bce1e3a8e414cac1044d585583c8de99> a prov:Entity ;
-    dcterms:date "2026-11-22T04:46:30.433452+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:57ae3992768f56430ab26e32a6530be9bce1e3a8e414cac1044d585583c8de99" ;
-    dcterms:source <http://cidoc-crm.org/rdfs/7.1.3/P12_occurred_in_the_presence_of.rdf> ;
-    dcterms:title "http://www.cidoc-crm.org/cidoc-crm/P12_occurred_in_the_presence_of" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via term database (cache))." .
-
-<urn:sha256:667fd01d1584f092b9e31b2bfa84b524736d6a4ec77a6a89d7a476a5a279292f> a prov:Entity ;
-    dcterms:date "2026-11-22T04:46:51.765493+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:667fd01d1584f092b9e31b2bfa84b524736d6a4ec77a6a89d7a476a5a279292f" ;
-    dcterms:source <http://cidoc-crm.org/rdfs/7.1.3/P2_has_type.rdf> ;
-    dcterms:title "http://www.cidoc-crm.org/cidoc-crm/P2_has_type" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (6 correspondence(s), via term database (cache))." .
-
-<urn:sha256:74d6e82afaa91eeb70e8e38f6c6a9255907d843459fb32fca10aa7a3902d9136> a prov:Entity ;
-    dcterms:date "2026-11-22T04:46:08.965117+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:74d6e82afaa91eeb70e8e38f6c6a9255907d843459fb32fca10aa7a3902d9136" ;
-    dcterms:source <http://cidoc-crm.org/rdfs/7.1.3/E39_Actor.rdf> ;
-    dcterms:title "http://www.cidoc-crm.org/cidoc-crm/E39_Actor" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via term database (cache))." .
-
-<urn:sha256:7b645a0e1b0379b6f24ed719797f26f0f2b7a8f6ece6861fa159ffbf70a9e904> a prov:Entity ;
-    dcterms:date "2026-11-22T04:50:51Z"^^xsd:string ;
-    dcterms:isVersionOf <http://schema.org/> ;
-    dcterms:title "ols:schemaorg_http" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via ols)." .
-
-<urn:sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7> a prov:Entity ;
-    dcterms:identifier "sha256:95ec5e432a086227fe5a5d5e68be99123de4517fb1b22697285b771823ff26c7" ;
+<urn:sha256:e21c0577e1620e1bdea5fefffc6af1fea7185ac0515630f8813c66c663e7287e> a prov:Entity ;
+    dcterms:identifier "sha256:e21c0577e1620e1bdea5fefffc6af1fea7185ac0515630f8813c66c663e7287e" ;
     dcterms:title "HeritageGraph.ttl" .
-
-<urn:sha256:c70b0d1c843c0047e4c98e0a89392e46a05752ff6365bda7f7f55303905a0392> a prov:Entity ;
-    dcterms:date "2026-11-18T01:08:30.672748+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:c70b0d1c843c0047e4c98e0a89392e46a05752ff6365bda7f7f55303905a0392" ;
-    dcterms:isVersionOf sosa: ;
-    dcterms:source <https://www.w3.org/ns/sosa/sosa.ttl> ;
-    dcterms:title "Sensor, Observation, Sample, and Actuator" ;
-    rdfs:comment "Release used to verify 3 external term(s) (via bundle)." .
-
-<urn:sha256:c905b9c3760653eda5a3fc4f9aefb2b0dac0cb374cc10ff7847d1e0bd121f551> a prov:Entity ;
-    dcterms:date "2026-11-22T04:47:02.547900+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:c905b9c3760653eda5a3fc4f9aefb2b0dac0cb374cc10ff7847d1e0bd121f551" ;
-    dcterms:source <http://cidoc-crm.org/rdfs/7.1.3/P4_has_time-span.rdf> ;
-    dcterms:title "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via term database (cache))." .
-
-<urn:sha256:ddd9159098c46f5e9c79010e8b09b092e94b7e617fced634bfad08d510e3f75f> a prov:Entity ;
-    dcterms:date "2026-11-22T04:50:42Z"^^xsd:string ;
-    dcterms:hasVersion "1.1" ;
-    dcterms:isVersionOf <https://w3id.org/reproduceme> ;
-    dcterms:title "REPRODUCE-ME Ontology" ;
-    rdfs:comment "Reference release used for the cross-domain interoperability score (3 correspondence(s), via ols)." .
-
-<urn:sha256:e79633b8d0564816cee8a99f5c9acf9a0e6fc7257c7209acd684ecad53a89dd6> a prov:Entity ;
-    dcterms:date "2026-11-18T01:08:31.108081+00:00"^^xsd:string ;
-    dcterms:identifier "sha256:e79633b8d0564816cee8a99f5c9acf9a0e6fc7257c7209acd684ecad53a89dd6" ;
-    dcterms:isVersionOf <http://www.w3.org/2004/02/skos/core> ;
-    dcterms:source <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
-    dcterms:title "Simple Knowledge Organization System" ;
-    rdfs:comment "Release used to verify 12 external term(s) (via bundle)." .
 

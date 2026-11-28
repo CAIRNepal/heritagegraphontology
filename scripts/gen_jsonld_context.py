@@ -24,7 +24,8 @@ OUT = ROOT / "docs" / "context.jsonld"
 HG = "https://cair-nepal.org/heritagegraph/"
 
 PREFIXES = OrderedDict([
-    ("heritageGraph", HG),
+    ("hg", HG),
+    ("heritageGraph", HG),   # the 1.0.x prefix, kept so 1.0.x compact IRIs still expand
     ("crm", "http://www.cidoc-crm.org/cidoc-crm/"),
     ("crminf", "http://www.cidoc-crm.org/extensions/crminf/"),
     ("crmsci", "http://www.cidoc-crm.org/extensions/crmsci/"),
@@ -65,24 +66,30 @@ def main() -> int:
 
     terms: "OrderedDict[str, object]" = OrderedDict()
 
+    deprecated = {s for s in g.subjects(OWL.deprecated, None)}
     classes = sorted(str(s) for s in g.subjects(RDF.type, OWL.Class)
                      if isinstance(s, URIRef) and str(s).startswith(HG)
                      and "/scheme/" not in str(s))
     for c in classes:
-        terms[local(c)] = f"heritageGraph:{local(c)}"
+        terms[local(c)] = f"hg:{local(c)}"
 
     def add_props(prop_type, is_object):
         props = sorted(str(s) for s in g.subjects(RDF.type, prop_type)
-                       if isinstance(s, URIRef) and str(s).startswith(HG))
+                       if isinstance(s, URIRef) and str(s).startswith(HG)
+                       )   # deprecated terms stay mapped until the next major version (GOVERNANCE.md), so 1.0.x documents still expand
         for p in props:
             name = local(p)
             if name in terms:
                 continue
-            entry = {"@id": f"heritageGraph:{name}"}
+            entry = {"@id": f"hg:{name}"}
             if is_object:
                 entry["@type"] = "@id"
             else:
-                rng = next((str(o) for o in g.objects(URIRef(p), RDFS.range)), None)
+                r = next(iter(g.objects(URIRef(p), RDFS.range)), None)
+                # a facet-restricted range (confidenceScore: decimal[0, 1]) is typed by its base datatype
+                if r is not None and not isinstance(r, URIRef):
+                    r = g.value(r, OWL.onDatatype) or r
+                rng = str(r) if r is not None else None
                 token = DATATYPE_TOKEN.get(rng, None) if rng else None
                 if token:
                     entry["@type"] = token

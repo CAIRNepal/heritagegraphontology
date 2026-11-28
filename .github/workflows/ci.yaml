@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - HeritageGraph
+  pull_request:
   workflow_dispatch:
 
 # the Pages deploy pushes to gh-pages; newer repositories give GITHUB_TOKEN read-only access by default
@@ -16,7 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          # full history: dcterms:modified is the date of the YAML source's last commit
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,14 +32,34 @@ jobs:
           # pinned toolchain that built the release (unpinned LinkML regenerates different SHACL)
           pip install -r requirements-build.txt
 
+      - name: Generator unit tests
+        run: |
+          pip install pytest
+          python3 -m pytest -q tests/
+
       - name: Committed OWL/SHACL generated from the committed YAML
         run: python3 scripts/check_yaml_ttl_sync.py
 
+      - name: OWL, SHACL and JSON Schema in lockstep with the YAML
+        run: python3 evaluation/artifact_lockstep.py
+
+      - name: SHACL conformance of the examples and negative tests
+        run: |
+          python3 evaluation/independent_abox.py
+          python3 evaluation/check_examples.py
+
+      - name: A PROV-O-only consumer traverses the provenance layer (with the CRM-PROV bridge)
+        run: python3 evaluation/provo_consumer.py
+
       - name: Regenerate ontology artefacts
         run: |
-          python3 scripts/finalize_alpha5_artifacts.py
+          python3 scripts/finalize_artifacts.py
           python3 scripts/gen_jsonld_context.py
           python3 scripts/gen_cq_tbox_doc.py
+          python3 scripts/gen_sssom.py
+
+      - name: Regenerated artefacts equal the committed ones
+        run: python3 scripts/check_regenerated.py
 
       - name: Set up Java (ROBOT / HermiT)
         uses: actions/setup-java@v4
@@ -57,6 +81,9 @@ jobs:
       - name: Ontology + each example ABox is OWL 2 DL and HermiT-consistent
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/check_combined_dl.py
 
+      - name: Inconsistency injection (the OWL axioms bite)
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py injection
+
       - name: Core + LUX + CIDOC-CRM give no external class an HG superclass
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py no-external-superclass
 
@@ -66,11 +93,37 @@ jobs:
       - name: LUX module + CIDOC-CRM give HG data no contradictory CRM type and no unentailed core class
         run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py lux-conservativity
 
+      - name: Core + CIDOC-CRM give no subject of an HG property both E2 and E77
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py core-crm-disjointness
+
+      - name: Every example ABox is consistent with HG + CRM + CRMinf + CRMsci + PROV-O
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py merged-abox
+
+      - name: Merged-vocabulary classification, with and without the CRM-PROV bridge
+        run: ROBOT_JAR=.tools/robot.jar python3 evaluation/reasoning_extras.py merged-import
+
       - name: Competency questions match their expected answer sets
         run: python3 evaluation/run_abox_cq32.py
 
-      - name: Run ontology evaluation suite
-        run: python3 scripts/run_release_quality.py
+      - name: cq_sparql.md is generated from the committed CQ queries
+        run: python3 scripts/gen_cq_tbox_doc.py --check
+
+      - name: The SSSOM mapping set is generated from the committed mappings
+        run: python3 scripts/gen_sssom.py --check
+
+      - name: Inference CQs are answered only with HeritageGraph's axioms
+        run: python3 evaluation/run_inference_cq.py
+
+      - name: Multi-calendar resolution and conversion
+        run: python3 evaluation/pattern_experiments.py multicalendar
+
+      - name: Tenure pattern reused outside Nepal (RQ3)
+        run: python3 evaluation/pattern_experiments.py reuse
+
+      - name: Tenure against the CRM role and Wikidata P39 idioms; custody and endowment scenario
+        run: |
+          python3 evaluation/pattern_experiments.py tenure
+          python3 evaluation/pattern_experiments.py custodianship
 
       - name: Generate documentation with OntoReview (term pages, graph, quality report, changelog)
         run: |
@@ -84,6 +137,8 @@ jobs:
 
 
       - name: Deploy to GitHub Pages
+        # pull requests run the gates only; only the published branches deploy (a manual run on another branch does not)
+        if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/HeritageGraph')
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,417 +1,484 @@
 # Datatype properties
 
-### Assertion content
-
-**IRI:** `http://www.w3.org/ns/prov#value` · `prov:value`
-
-The factual claim being asserted
-
-### Confidence score
-
-**IRI:** `https://cair-nepal.org/heritagegraph/confidenceScore` · `heritageGraph:confidenceScore`
-
-Reliability score for assertion (0.0-1.0)
-
-| | |
-|---|---|
-| Range | [xsd:decimal](http://www.w3.org/2001/XMLSchema#decimal)[*>=* `0.0`, *<=* `1.0`] |
-
-### curator
-
-**IRI:** `https://cair-nepal.org/heritagegraph/curator` · `heritageGraph:curator`
-
-Person or organization curating the dataset.
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
-
-### Custodian type
-
-**IRI:** `https://cair-nepal.org/heritagegraph/custodianType` · `heritageGraph:custodianType`
-
-Type of custodian (government, academic, community), free text
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Data Custodian](classes.md#datacustodian) |
-
-### Data quality note
-
-**IRI:** `https://cair-nepal.org/heritagegraph/dataQualityNote` · `heritageGraph:dataQualityNote`
-
-Notes on data quality, completeness, or uncertainty
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-
-### Datacite identifier
-
-**IRI:** `https://cair-nepal.org/heritagegraph/persistentIdentifier` · `heritageGraph:persistentIdentifier`
-
-Persistent identifier for the source (DOI, archive ID, catalog number)
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Data Source](classes.md#datasource) |
-
-### Datacite identifier type
-
-**IRI:** `https://cair-nepal.org/heritagegraph/identifierScheme` · `heritageGraph:identifierScheme`
-
-Type of identifier (DOI, ISBN, Handle, LocalArchiveID)
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Data Source](classes.md#datasource) |
-
-### Datacite resource type
-
-**IRI:** `https://cair-nepal.org/heritagegraph/resourceType` · `heritageGraph:resourceType`
-
-High-level DataCite resource type (Dataset, Text, Image, Audio, Interview)
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Data Source](classes.md#datasource) |
-
-### Dataset name
-
-**IRI:** `https://cair-nepal.org/heritagegraph/dataset_name` · `heritageGraph:dataset_name`
-
-Human-readable name of the dataset.
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
-
-### Dataset version
-
-**IRI:** `https://cair-nepal.org/heritagegraph/dataset_version` · `heritageGraph:dataset_version`
-
-Version identifier of the dataset instance.
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
-
-### Date earliest
+### begin of the begin
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P82a_begin_of_the_begin` · `crm:P82a_begin_of_the_begin`
 
-Earliest possible date (for uncertain dates)
+### Confidence score
 
-### Date latest
+**IRI:** `https://cair-nepal.org/heritagegraph/confidenceScore` · `hg:confidenceScore`
+
+Degree of belief, between 0 and 1, that the asserted value is correct: 1 = certain, 0.5 = undecided, 0 = believed false. The assessor is either the agent the assertion is attributed to (prov:wasAttributedTo) or the activity that generated the assertion (prov:wasGeneratedBy), e.g. an extraction that codes how firmly the source states the claim; hg:confidenceMethod says which, and by what rubric. Scores are comparable only when they share an assessor or a method.
+
+| | |
+|---|---|
+| Domain | [Belief](classes.md#i2_belief) |
+| Range | [xsd:decimal](http://www.w3.org/2001/XMLSchema#decimal)[*>=* `0.0`, *<=* `1.0`] |
+
+### Custodian type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/custodianType` · `hg:custodianType`
+
+Type of custodian (government, academic, community), free text.
+
+| | |
+|---|---|
+| Domain | [Data Custodian](classes.md#datacustodian) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+| Used in | used in axioms of [Data Custodian](classes.md#datacustodian) |
+| domainIncludes | hg:DataCustodian |
+
+### Data quality note
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataQualityNote` · `hg:dataQualityNote`
+
+Notes on data quality, completeness, or uncertainty.
+
+| | |
+|---|---|
+| Domain | [Belief](classes.md#i2_belief) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+
+### Datacite identifier
+
+**IRI:** `https://cair-nepal.org/heritagegraph/persistentIdentifier` · `hg:persistentIdentifier`
+
+Persistent identifier for the source (DOI, archive ID, catalog number).
+
+| | |
+|---|---|
+| Domain | [Data Source](classes.md#datasource) |
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+| domainIncludes | hg:DataSource |
+
+### Datacite identifier type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/identifierScheme` · `hg:identifierScheme`
+
+Type of identifier (DOI, ISBN, Handle, LocalArchiveID).
+
+| | |
+|---|---|
+| Domain | [Data Source](classes.md#datasource) |
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+| domainIncludes | hg:DataSource |
+
+### Datacite resource type
+
+**IRI:** `https://cair-nepal.org/heritagegraph/resourceType` · `hg:resourceType`
+
+High-level DataCite resource type (Dataset, Text, Image, Audio, Interview).
+
+| | |
+|---|---|
+| Domain | [Data Source](classes.md#datasource) |
+| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Used in | used in axioms of [Data Source](classes.md#datasource) |
+| domainIncludes | hg:DataSource |
+
+### end of the end
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P82b_end_of_the_end` · `crm:P82b_end_of_the_end`
 
-Latest possible date (for uncertain dates)
-
-### Ended at time
+### endedAtTime
 
 **IRI:** `http://www.w3.org/ns/prov#endedAtTime` · `prov:endedAtTime`
 
-Time at which this activity ended.
+The time at which an activity ended. See also prov:startedAtTime.
 
 ### Epoch date gregorian
 
-**IRI:** `https://cair-nepal.org/heritagegraph/epochDateGregorian` · `heritageGraph:epochDateGregorian`
+**IRI:** `https://cair-nepal.org/heritagegraph/epochDateGregorian` · `hg:epochDateGregorian`
 
-The start date of this calendar era in Gregorian ISO format.
+Proleptic Gregorian (ISO 8601, astronomical year numbering) date on which the era began, in the era's own reckoning (Bikram Sambat counts from year 1, e.g. -0056-04-14, a nominal back-projection of the modern solar reckoning rather than an attested date; Nepal Sambat counts elapsed years from year 0, 0879-10-24 = 20 October 879 Julian). Its month and day only indicate the approximate new-year season: the actual new year varies (Bikram Sambat 13-15 April, solar; Nepal Sambat late October to November, lunisolar), so it must not be used for day-level conversion. A value ending in -01-01 marks a calendar whose new year is 1 January, for which year conversion is exact.
 
 | | |
 |---|---|
+| Domain | [Calendar System](classes.md#calendarsystem) |
 | Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
 | Used in | used in axioms of [Calendar System](classes.md#calendarsystem) |
+| domainIncludes | hg:CalendarSystem |
 
 ### Expertise area
 
-**IRI:** `https://cair-nepal.org/heritagegraph/expertiseArea` · `heritageGraph:expertiseArea`
+**IRI:** `https://cair-nepal.org/heritagegraph/expertiseArea` · `hg:expertiseArea`
 
-Areas of expertise (e.g., Lichhavi inscriptions, Sanskrit epigraphy, Newari archaeology)
+Areas of expertise (e.g., Licchavi inscriptions, Sanskrit epigraphy, Newari archaeology).
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Person](classes.md#e21_person) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 
-### Generated at time
+### generatedAtTime
 
 **IRI:** `http://www.w3.org/ns/prov#generatedAtTime` · `prov:generatedAtTime`
 
-Time at which this entity was generated (ISO 8601).
+The time at which an entity was completely created and is available for use.
 
-### Generated date
-
-**IRI:** `https://cair-nepal.org/heritagegraph/generated_date` · `heritageGraph:generated_date`
-
-Date the dataset serialization was generated (ISO 8601).
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
-
-### ID
-
-**IRI:** `http://purl.org/dc/terms/identifier` · `dcterms:identifier`
-
-Globally unique URI identifier
-
-### Institutional affiliation
-
-**IRI:** `https://cair-nepal.org/heritagegraph/institutionalAffiliation` · `heritageGraph:institutionalAffiliation`
-
-Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society)
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-
-### Is critical for festival
-
-**IRI:** `https://cair-nepal.org/heritagegraph/isCriticalForFestival` · `heritageGraph:isCriticalForFestival`
-
-Whether this ritual is essential for the festival's completion
-
-| | |
-|---|---|
-| Range | [xsd:boolean](http://www.w3.org/2001/XMLSchema#boolean) |
-| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
-
-### Last known existence date
-
-**IRI:** `https://cair-nepal.org/heritagegraph/lastKnownExistenceDate` · `heritageGraph:lastKnownExistenceDate`
-
-Latest date when this structure is documented as existing (ISO 8601)
-
-| | |
-|---|---|
-| Range | [xsd:dateTime](http://www.w3.org/2001/XMLSchema#dateTime) |
-| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
-
-### license
-
-**IRI:** `https://cair-nepal.org/heritagegraph/license` · `heritageGraph:license`
-
-License under which the dataset is released.
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
-
-### Lunar date tithi
-
-**IRI:** `https://cair-nepal.org/heritagegraph/lunarDateTithi` · `heritageGraph:lunarDateTithi`
-
-Lunar day (Tithi) for ritual timing
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
-
-### note
+### has note
 
 **IRI:** `http://www.cidoc-crm.org/cidoc-crm/P3_has_note` · `crm:P3_has_note`
 
-Free-text note (description, reason, verification notes)
+Quantification: one to many (0,n:0,1)
+
+Scope note:
+This property is a container for all informal descriptions about an object that have not been expressed in terms of CIDOC CRM constructs. 
+In particular, it captures the characterisation of the item itself, its internal structures, appearance, etc.
+Like property P2 has type (is type of), this property is a consequence of the restricted focus of the CIDOC CRM. The aim is not to capture, in a structured form, everything that can be said about an item; indeed, the CIDOC CRM formalism is not regarded as sufficient to express everything that can be said. Good practice requires use of distinct note fields for different aspects of a characterisation. The P3.1 has type property of P3 has note allows differentiation of specific notes, e.g. “construction”, “decoration”, etc. 
+An item may have many notes, but a note is attached to a specific item.
+
+Examples:
+- Coffee mug – OXCMS:1983.1.1 (E19) has note “chipped at edge of handle” (E62) has type Condition (E55). (fictitious)
+
+Properties:
+- P3.1 has type: E55 Type
+
+In First Order Logic:
+- P3(x,y) ⇒ E1(x)
+- P3(x,y) ⇒ E62(y) 
+- P3(x,y,z) ⇒ [P3(x,y) ∧ E55(z)]
+
+### Identifier
+
+**IRI:** `http://purl.org/dc/terms/identifier` · `dcterms:identifier`
+
+An unambiguous reference to the resource within a given context.
+
+### inLanguage
+
+**IRI:** `http://schema.org/inLanguage` · `schema1:inLanguage`
+
+The language of the content or performance or used in an action. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[availableLanguage]].
+
+### Institutional affiliation
+
+**IRI:** `https://cair-nepal.org/heritagegraph/institutionalAffiliation` · `hg:institutionalAffiliation`
+
+Institutional affiliation (e.g., Tribhuvan University, Nepal Heritage Society).
 
 | | |
 |---|---|
-| Sub-properties | [Source citation](datatype-properties.md#sourcecitation) |
-| Used in | used in axioms of [Architectural Element](classes.md#architecturalelement); used in axioms of [Architectural Structure](classes.md#architecturalstructure); used in axioms of [Calendar System](classes.md#calendarsystem); used in axioms of [Caste Group](classes.md#castegroup); used in axioms of [Data Custodian](classes.md#datacustodian); used in axioms of [Data Source](classes.md#datasource); used in axioms of [Deity](classes.md#deity); used in axioms of [Guthi](classes.md#guthi); used in axioms of [Historical Event](classes.md#historicalevent); used in axioms of [Iconographic Object](classes.md#iconographicobject); used in axioms of [Kumari Retirement Event](classes.md#kumariretirementevent); used in axioms of [Religious Tradition](classes.md#religioustradition); used in axioms of [Ritual Event](classes.md#ritualevent); used in axioms of [Syncretic Relationship](classes.md#syncreticrelationship); used in axioms of [Verification](classes.md#verification) |
+| Domain | [Person](classes.md#e21_person) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+
+### Is critical for festival
+
+**IRI:** `https://cair-nepal.org/heritagegraph/isCriticalForFestival` · `hg:isCriticalForFestival`
+
+Whether this ritual is essential for the festival's completion.
+
+| | |
+|---|---|
+| Domain | [Kumari Selection Event](classes.md#kumariselectionevent) |
+| Range | [xsd:boolean](http://www.w3.org/2001/XMLSchema#boolean) |
+| Used in | used in axioms of [Kumari Selection Event](classes.md#kumariselectionevent) |
+| domainIncludes | hg:KumariSelectionEvent |
+
+### Last known existence date
+
+**IRI:** `https://cair-nepal.org/heritagegraph/lastKnownExistenceDate` · `hg:lastKnownExistenceDate`
+
+Latest date when this structure is documented as existing (ISO 8601).
+
+| | |
+|---|---|
+| Domain | [Architectural Structure](classes.md#architecturalstructure) |
+| Range | [xsd:dateTime](http://www.w3.org/2001/XMLSchema#dateTime) |
+| Used in | used in axioms of [Architectural Structure](classes.md#architecturalstructure) |
+| domainIncludes | hg:ArchitecturalStructure |
+
+### Lunar date tithi
+
+**IRI:** `https://cair-nepal.org/heritagegraph/lunarDateTithi` · `hg:lunarDateTithi`
+
+Lunar day (tithi) by which the practice is timed, in free text (e.g. 'Bhadra Shukla Chaturdashi').
+
+| | |
+|---|---|
+| Domain | [Ritual Event](classes.md#ritualevent) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+| Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+| domainIncludes | hg:RitualEvent |
+
+### obsolete curator ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/curator` · `hg:curator`
+
+Person or organization curating the dataset.
+
+### obsolete dataset name ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataset_name` · `hg:dataset_name`
+
+Human-readable name of the dataset.
+
+### obsolete dataset version ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/dataset_version` · `hg:dataset_version`
+
+Version identifier of the dataset instance.
+
+### obsolete generated date ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/generated_date` · `hg:generated_date`
+
+Date the dataset serialization was generated (ISO 8601).
+
+### obsolete license ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/license` · `hg:license`
+
+License under which the dataset is released.
+
+### obsolete schema version ~~deprecated~~
+
+**IRI:** `https://cair-nepal.org/heritagegraph/schema_version` · `hg:schema_version`
+
+HeritageGraph schema version the dataset conforms to.
 
 ### obsolete selection criteria met ~~deprecated~~
 
-**IRI:** `https://cair-nepal.org/heritagegraph/selectionCriteriaMet` · `heritageGraph:selectionCriteriaMet`
+**IRI:** `https://cair-nepal.org/heritagegraph/selectionCriteriaMet` · `hg:selectionCriteriaMet`
 
-DEPRECATED free-text list; use has_criterion -> SelectionCriterion subclasses instead. Retained for backward compatibility.
+DEPRECATED free-text list; use hg:hasCriterion -> SelectionCriterion subclasses instead. Retained for backward compatibility.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 
-### Place coordinates
+### place is defined by
 
-**IRI:** `http://www.opengis.net/ont/geosparql#asWKT` · `geo:asWKT`
+**IRI:** `http://www.cidoc-crm.org/cidoc-crm/P168_place_is_defined_by` · `crm:P168_place_is_defined_by`
 
-Coordinates as WKT literal
+Quantification: one to many, dependent (0,n:1,1)
+
+Scope note:
+This property associates an instance of E53 Place with an instance of E94 Space Primitive that defines it. Syntactic variants or use of different scripts may result in multiple instances of E94 Space Primitive defining exactly the same place. Transformations between different reference systems always result in new definitions of places approximating each other and not in alternative definitions.
+
+Examples:
+- The centroid from https://sws.geonames.org/735927 (E53) place is defined by 40°31'17.9"N 21°15'48.3"E (E94). [A single point for approximating the centre of the city of Kastoria, Greece]
+- Martin’s coordinates for Kastoria (E53) place is defined by 40°30'23"N 21°14'53"E, 40°31'40"N 21°16'43"E (E94). [A square covering the built settlement structure of Kastoria, Greece]
+- Martin’s centroid for Kastoria (E53) place is defined by 40°31'01.5"N 21°15'48"E (E94). [A point in the lake of Kastoria in the centre of the area covered by the city]
+- The position measured by Alexander von Humboldt for the Plaza Mayor in Cumaná, Sucre, Venezuela 1799-1800AD (E53) place is defined by 10°27'52"N 66°30'02"W (E94). [West of the Observatory of Paris = 64°09'51"W of Greenwich, actually 1.1km east of today’s Plaza Andrés Eloy Blanco of Cumaná] (Humboldt, 1859)
+
+In First Order Logic:
+- P168(x,y) ⇒ E53(x)
+- P168(x,y) ⇒ E94(y)
 
 ### Place type
 
-**IRI:** `https://cair-nepal.org/heritagegraph/placeType` · `heritageGraph:placeType`
+**IRI:** `https://cair-nepal.org/heritagegraph/placeType` · `hg:placeType`
 
-Type of place (city, village, region), free text
+Type of place (city, village, region), free text.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Place](classes.md#e53_place) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 
 ### Proposition object literal
 
-**IRI:** `https://cair-nepal.org/heritagegraph/propositionLiteralValue` · `heritageGraph:propositionLiteralValue`
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionLiteralValue` · `hg:propositionLiteralValue`
 
 Object of the proposition when it is a literal value (e.g. a date).
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Proposition](classes.md#proposition) |
+| Range | [rdfs:Literal](http://www.w3.org/2000/01/rdf-schema#Literal) |
 | Used in | used in axioms of [Proposition](classes.md#proposition) |
+| domainIncludes | hg:Proposition |
 
 ### Proposition predicate
 
-**IRI:** `https://cair-nepal.org/heritagegraph/propositionPredicate` · `heritageGraph:propositionPredicate`
+**IRI:** `https://cair-nepal.org/heritagegraph/propositionPredicate` · `hg:propositionPredicate`
 
 Property (URI/CURIE) claimed of the subject, e.g. crm:P108i_was_produced_by (plays the role of rdf:predicate).
 
 | | |
 |---|---|
+| Domain | [Proposition](classes.md#proposition) |
 | Range | [xsd:anyURI](http://www.w3.org/2001/XMLSchema#anyURI) |
 | Used in | used in axioms of [Proposition](classes.md#proposition) |
+| domainIncludes | hg:Proposition |
 
 ### Reconciliation status
 
-**IRI:** `https://cair-nepal.org/heritagegraph/reconciliationStatus` · `heritageGraph:reconciliationStatus`
+**IRI:** `https://cair-nepal.org/heritagegraph/reconciliationStatus` · `hg:reconciliationStatus`
 
-Status of multi-source reconciliation (confirmed, conflicting, unverified)
+Status of multi-source reconciliation of the asserted value: confirmed (independent sources agree), conflicting (sources disagree; see the competing assertions), or unverified (single source, not yet checked).
 
 | | |
 |---|---|
+| Domain | [Belief](classes.md#i2_belief) |
 | Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+
+### Recorded date
+
+**IRI:** `https://cair-nepal.org/heritagegraph/recordedDate` · `hg:recordedDate`
+
+The date as written in the source, in the calendar given by hg:calendarSystem (e.g. '2072' for a Bikram Sambat year, 'NS 1135 Kaulaathwa', 'VS 2021'). It is never put into an xsd:dateTime: the converted Gregorian bounds go in crm:P82a_begin_of_the_begin / crm:P82b_end_of_the_end.
+
+| | |
+|---|---|
+| Domain | [Time-Span](classes.md#e52_time-span) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 
 ### Recurrence pattern
 
-**IRI:** `https://cair-nepal.org/heritagegraph/recurrencePattern` · `heritageGraph:recurrencePattern`
+**IRI:** `https://cair-nepal.org/heritagegraph/recurrencePattern` · `hg:recurrencePattern`
 
-Frequency of recurring ritual (e.g., annual, monthly)
+How the practice this occurrence belongs to recurs (e.g. annual, monthly), in free text. It describes the practice, not the occurrence: each occurrence is its own RitualEvent with its own time-span.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Ritual Event](classes.md#ritualevent) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
+| domainIncludes | hg:RitualEvent |
+
+### Role duty
+
+**IRI:** `https://cair-nepal.org/heritagegraph/roleDuty` · `hg:roleDuty`
+
+The ritual duty held (e.g. building the festival chariot, performing the daily worship).
+
+| | |
+|---|---|
+| Domain | [Hereditary Role Tenure](classes.md#hereditaryroletenure) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+| Used in | used in axioms of [Hereditary Role Tenure](classes.md#hereditaryroletenure) |
+| domainIncludes | hg:HereditaryRoleTenure |
 
 ### Route description
 
-**IRI:** `https://cair-nepal.org/heritagegraph/routeDescription` · `heritageGraph:routeDescription`
+**IRI:** `https://cair-nepal.org/heritagegraph/routeDescription` · `hg:routeDescription`
 
-Text description of the procession route
+Text description of the procession route.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Ritual Event](classes.md#ritualevent) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Ritual Event](classes.md#ritualevent) |
-
-### Schema version
-
-**IRI:** `https://cair-nepal.org/heritagegraph/schema_version` · `heritageGraph:schema_version`
-
-HeritageGraph schema version the dataset conforms to.
-
-| | |
-|---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
-| Used in | used in axioms of [Metadata](classes.md#metadata) |
+| domainIncludes | hg:RitualEvent |
 
 ### Source citation
 
-**IRI:** `https://cair-nepal.org/heritagegraph/sourceCitation` · `heritageGraph:sourceCitation`
+**IRI:** `https://cair-nepal.org/heritagegraph/sourceCitation` · `hg:sourceCitation`
 
-Formal citation of source
+Formal citation of source.
 
 | | |
 |---|---|
-| Super-properties | [note](datatype-properties.md#p3_has_note) |
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Data Source](classes.md#datasource) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Data Source](classes.md#datasource) |
-
-### Source language
-
-**IRI:** `http://schema.org/inLanguage` · `schema1:inLanguage`
-
-Language of the source material
-
-| | |
-|---|---|
-| Used in | used in axioms of [Data Source](classes.md#datasource); used in axioms of [Information Object](classes.md#informationobject) |
+| domainIncludes | hg:DataSource |
 
 ### Source url
 
-**IRI:** `https://cair-nepal.org/heritagegraph/sourceUrl` · `heritageGraph:sourceUrl`
+**IRI:** `https://cair-nepal.org/heritagegraph/sourceUrl` · `hg:sourceUrl`
 
-URL or digital identifier for source
+URL or digital identifier for source.
 
 | | |
 |---|---|
+| Domain | [Data Source](classes.md#datasource) |
 | Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
 | Used in | used in axioms of [Data Source](classes.md#datasource) |
+| domainIncludes | hg:DataSource |
 
-### Started at time
+### startedAtTime
 
 **IRI:** `http://www.w3.org/ns/prov#startedAtTime` · `prov:startedAtTime`
 
-Time at which this activity started.
+The time at which an activity started. See also prov:endedAtTime.
+
+### Succession rule
+
+**IRI:** `https://cair-nepal.org/heritagegraph/successionRule` · `hg:successionRule`
+
+Rule by which the duty passes on (e.g. eldest son of the lineage; within the caste group).
+
+| | |
+|---|---|
+| Domain | [Hereditary Role Tenure](classes.md#hereditaryroletenure) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
+| Used in | used in axioms of [Hereditary Role Tenure](classes.md#hereditaryroletenure) |
+| domainIncludes | hg:HereditaryRoleTenure |
 
 ### Traditional role
 
-**IRI:** `https://cair-nepal.org/heritagegraph/traditionalRole` · `heritageGraph:traditionalRole`
+**IRI:** `https://cair-nepal.org/heritagegraph/traditionalRole` · `hg:traditionalRole`
 
-Hereditary occupation or ritual duty
+Hereditary occupation or ritual duty.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Caste Group](classes.md#castegroup) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Caste Group](classes.md#castegroup) |
+| domainIncludes | hg:CasteGroup |
 
 ### Used equipment
 
-**IRI:** `https://cair-nepal.org/heritagegraph/usedEquipment` · `heritageGraph:usedEquipment`
+**IRI:** `https://cair-nepal.org/heritagegraph/usedEquipment` · `hg:usedEquipment`
 
-Equipment used in documentation
+Equipment used in documentation.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Documentation Activity](classes.md#documentationactivity) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+| domainIncludes | hg:DocumentationActivity |
 
 ### Used method
 
-**IRI:** `https://cair-nepal.org/heritagegraph/usedMethod` · `heritageGraph:usedMethod`
+**IRI:** `https://cair-nepal.org/heritagegraph/usedMethod` · `hg:usedMethod`
 
-Documentation method used
+Documentation method used.
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Documentation Activity](classes.md#documentationactivity) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Documentation Activity](classes.md#documentationactivity) |
+| domainIncludes | hg:DocumentationActivity |
+
+### value
+
+**IRI:** `http://www.w3.org/ns/prov#value` · `prov:value`
+
+Provides a value that is a direct representation of an entity.
 
 ### Verification method
 
-**IRI:** `https://cair-nepal.org/heritagegraph/verificationMethod` · `heritageGraph:verificationMethod`
+**IRI:** `https://cair-nepal.org/heritagegraph/verificationMethod` · `hg:verificationMethod`
 
-Method used for verification (cross-check, expert review, field visit)
+Method used for verification (cross-check, expert review, field visit).
 
 | | |
 |---|---|
-| Range | [xsd:string](http://www.w3.org/2001/XMLSchema#string) |
+| Domain | [Verification](classes.md#verification) |
+| Range | [rdf:PlainLiteral](http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral) |
 | Used in | used in axioms of [Verification](classes.md#verification) |
+| domainIncludes | hg:Verification |
 
 ### Year offset from gregorian
 
-**IRI:** `https://cair-nepal.org/heritagegraph/yearOffsetFromGregorian` · `heritageGraph:yearOffsetFromGregorian`
+**IRI:** `https://cair-nepal.org/heritagegraph/yearOffsetFromGregorian` · `hg:yearOffsetFromGregorian`
 
-Mathematical offset to convert to Common Era (e.g., +57 for BS).
+Number of years this calendar runs ahead of the Gregorian (Common Era) year at the start of its year (e.g. 57 for Bikram Sambat, -879 for Nepal Sambat). Because the calendar's new year does not fall on 1 January (see hg:epochDateGregorian), a year-precision date Y converts to the two-year interval [Y - offset, Y - offset + 1] CE; the single year Y - offset is correct only for dates between the calendar's new year and 31 December. A calendar whose new year is 1 January converts to Y - offset exactly.
 
 | | |
 |---|---|
+| Domain | [Calendar System](classes.md#calendarsystem) |
 | Range | [xsd:integer](http://www.w3.org/2001/XMLSchema#integer) |
 | Used in | used in axioms of [Calendar System](classes.md#calendarsystem) |
+| domainIncludes | hg:CalendarSystem |
 

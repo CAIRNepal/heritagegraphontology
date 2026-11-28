@@ -16,9 +16,11 @@ after Carriero et al. 2020; and ICON-style, Sartini et al. 2023). This makes the
 suite a re-runnable regression oracle: any change to the schema, the queries, or
 the demonstrator data that alters an answer fails the test.
 
-A negative control (--self-test, on by default) perturbs one expected answer and
-confirms the harness reports a mismatch, demonstrating the oracle discriminates
-rather than trivially confirming itself.
+A negative control (on by default; --no-self-test skips it) replaces one
+predicate of CQ11 with a predicate no triple uses and confirms that both arms
+report a mismatch: the oracle discriminates rather than trivially confirming
+itself. It is one control, not a mutation analysis; evaluation/cq_coverage.py
+reports the systematic one (ABox deletion, IRI swap, TBox deletion).
 
 Writes a per-CQ report (txt + csv) and a LaTeX table body for the paper
 appendix. This is the single canonical CQ runner for the paper.
@@ -98,9 +100,45 @@ def load_queries(path: Path) -> list[tuple[int, str, str]]:
     return blocks
 
 
-def actual_rows(graph: Graph, sparql: str) -> list[list]:
+# Symmetric-pair CQs: (?x, ?y) and (?y, ?x) are one answer, and a pair whose
+# two members are the same resource (modulo owl:sameAs) is no answer.
+PAIRS = {6: ("a", "b"), 22: ("group1", "group2"), 23: ("tradition1", "tradition2")}
+
+
+def sameas_alias(abox: Graph) -> dict:
+    """owl:sameAs aliases in the ABox mapped back to the resource they were
+    asserted equal to (a safety net: the demonstrator links to Wikidata with
+    SKOS, so it has none). Built from the
+    asserted ABox only, so its direction is fixed."""
+    from rdflib import OWL
+    alias = {o: s for s, o in abox.subject_objects(OWL.sameAs)}
+    # collision-safe: an alias linked to two resources would merge them
+    targets = [o for _, o in abox.subject_objects(OWL.sameAs)]
+    assert len(targets) == len(set(targets)), "an owl:sameAs alias names two demonstrator resources"
+    assert not set(alias) & set(alias.values()), "owl:sameAs chains are not supported by the alias map"
+    return alias
+
+
+def actual_rows(graph: Graph, sparql: str, alias: dict | None = None,
+                pair: tuple[str, str] | None = None) -> list[list]:
+    """Bindings modulo owl:sameAs, as a duplicate-free sorted list: every
+    alias is replaced by its demonstrator resource before comparison; for a
+    symmetric-pair CQ the pair is put in a canonical order and identical
+    members drop the row."""
+    alias = alias or {}
     res = graph.query(sparql)
-    return sorted([[short(row[v]) for v in res.vars] for row in res])
+    out = set()
+    names = [str(v) for v in res.vars]
+    for row in res:
+        vals = [short(alias.get(row[v], row[v])) for v in res.vars]
+        if pair:
+            i, j = names.index(pair[0]), names.index(pair[1])
+            if vals[i] == vals[j]:
+                continue
+            if (vals[i] or "") > (vals[j] or ""):
+                vals[i], vals[j] = vals[j], vals[i]
+        out.add(tuple(vals))
+    return sorted(list(r) for r in out)
 
 
 # Pattern vocabulary for the multi-pattern census (used by --entailment): a CQ
@@ -113,7 +151,9 @@ PATTERN_TERMS = {
                "invokesDeity", "P9i_forms_part_of", "ritualType", "performedByGroup",
                "ritualCriticality", "P183"],
     "institutional": ["Guthi", "guthiType", "CasteGroup", "traditionalRole",
-                      "managedByGuthi", "transferredToGuthi", "P107"],
+                      "managedByGuthi", "transferredToGuthi", "P107",
+                      "Endowment", "P105_right_held_by", "HereditaryRoleTenure",
+                      "mandatedBy", "CustodyPeriod", "custodyHolder"],
     "syncretic": ["SyncreticRelationship", "syncreticType", "Deity", "assignedDeity",
                   "P141_assigned", "religiousTradition"],
     "living-goddess": ["Kumari", "embodiedDeity", "KumariTenure", "tenure",
@@ -154,6 +194,7 @@ def run_entailment() -> int:
     asserted.parse(TBOX, format="turtle")
     asserted.parse(ABOX, format="turtle")
     print(f"Asserted graph (TBox + ABox): {len(asserted)} triples")
+    alias = sameas_alias(Graph().parse(ABOX, format="turtle"))
 
     closed = Graph()
     for t in asserted:
@@ -174,8 +215,9 @@ def run_entailment() -> int:
         except Exception:
             tp = -1
         try:
-            n_a = len(set(map(tuple, asserted.query(sparql))))
-            n_c = len(set(map(tuple, closed.query(sparql))))
+            # modulo owl:sameAs, as the oracle: an alias is not a new answer
+            n_a = len(actual_rows(asserted, sparql, alias, PAIRS.get(cq)))
+            n_c = len(actual_rows(closed, sparql, alias, PAIRS.get(cq)))
         except Exception as e:
             errors.append((cq, str(e)))
             continue
@@ -193,7 +235,7 @@ def run_entailment() -> int:
           f"median {sorted(tps.values())[len(tps)//2]}, max {max(tps.values())}")
     print(f"CQs joining >=2 design patterns: {len(multi)}/32 "
           f"({', '.join('CQ%d' % cq for cq, _, _ in multi)})")
-    print(f"CQs whose answer set GROWS under OWL-RL entailment: {len(gained)}/32")
+    print(f"CQs whose answer set GROWS under OWL-RL entailment (modulo owl:sameAs): {len(gained)}/32")
     for cq, n_a, n_c, touched in gained:
         print(f"  CQ{cq}: {n_a} -> {n_c} rows  (patterns: {', '.join(touched) or '-'})")
     print(f"CQs unchanged under entailment: {len(unchanged)}/32")
@@ -244,6 +286,14 @@ def main() -> int:
     g = Graph()
     g.parse(TBOX, format="turtle")
     g.parse(ABOX, format="turtle")
+    alias = sameas_alias(Graph().parse(ABOX, format="turtle"))
+    # second arm: the same CQs over the OWL-RL closure must give the same
+    # answers (modulo owl:sameAs): the gold does not depend on whether the
+    # consumer reasons
+    from owlrl import DeductiveClosure, OWLRL_Semantics
+    entailed = Graph()
+    entailed += g
+    DeductiveClosure(OWLRL_Semantics).expand(entailed)
 
     queries = load_queries(QUERIES)
     assert len(queries) == 32, f"expected 32 queries, found {len(queries)}"
@@ -256,23 +306,27 @@ def main() -> int:
         f"TBox: {TBOX.name}",
         f"ABox: {ABOX.name}",
         f"Triples loaded: {len(g)}",
-        "Pass criterion: returned bindings == expected answer set (exact match).",
+        "Pass criterion: returned bindings == expected answer set (exact match, modulo owl:sameAs),",
+        "over the asserted graph AND over its OWL-RL closure.",
         "",
     ]
     rows = []
     passed = 0
     for cq, question, sparql in queries:
         gold = [list(r) for r in expected[f"CQ{cq}"]["expected"]]
-        gold_sorted = sorted(gold)
-        got = actual_rows(g, sparql)
-        match = got == gold_sorted
+        gold_sorted = sorted({tuple(r) for r in gold})
+        gold_sorted = [list(r) for r in gold_sorted]
+        got = actual_rows(g, sparql, alias, PAIRS.get(cq))
+        got_e = actual_rows(entailed, sparql, alias, PAIRS.get(cq))
+        match = got == gold_sorted and got_e == gold_sorted
         passed += bool(match)
         status = "PASS" if match else "FAIL"
         detail = ""
-        if not match:
-            missing = [r for r in gold_sorted if r not in got]
-            unexpected = [r for r in got if r not in gold_sorted]
-            detail = f"  missing={missing} unexpected={unexpected}"
+        for arm, rows_ in (("asserted", got), ("OWL-RL", got_e)):
+            if rows_ != gold_sorted:
+                missing = [r for r in gold_sorted if r not in rows_]
+                unexpected = [r for r in rows_ if r not in gold_sorted]
+                detail += f"  [{arm}] missing={missing} unexpected={unexpected}"
         lines.append(
             f"CQ{cq:<3} [{status}] expected={len(gold_sorted):<2} "
             f"actual={len(got):<2} {question}{detail}"
@@ -295,11 +349,12 @@ def main() -> int:
         broken = cq11[2].replace(
             "hg:recurrencePattern ?pattern", "hg:doesNotExistPattern ?pattern"
         )
-        broken_rows = actual_rows(g, broken)
-        self_test_ok = broken_rows != gold11
+        broken_rows = actual_rows(g, broken, alias)
+        broken_rows_e = actual_rows(entailed, broken, alias)
+        self_test_ok = broken_rows != gold11 and broken_rows_e != gold11
         lines += [
             "",
-            "Negative control (CQ11 with a broken predicate): "
+            "Negative control (CQ11 with a broken predicate, both arms): "
             f"actual={len(broken_rows)} vs expected={len(gold11)} -> "
             f"{'mismatch detected (oracle discriminates)' if self_test_ok else 'NOT detected -- oracle is trivial'}",
         ]

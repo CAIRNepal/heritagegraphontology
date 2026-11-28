@@ -1,17 +1,27 @@
 {
   "title": "HeritageGraph: An Ontology for Living Heritage Systems",
   "upload_type": "software",
-  "description": "<p>HeritageGraph is a CIDOC-CRM-based ontology for representing living heritage systems: the networks of sites, recurring rituals, custodial institutions, people, and beliefs through which a tradition is sustained. Developed with the Kathmandu Valley (Nepal) as its case study, it provides four ontology design patterns (event-mediated tangible heritage, the Living Goddess lifecycle, provenance-aware syncretic relationships, and institutional infrastructure for Guthi trusts) and a provenance layer reusing PROV-O, CRMinf, and SKOS, with support for Bikram Sambat, Nepal Sambat, and Gregorian dates.</p><p>The ontology (66 classes, 134 properties) is generated from a single LinkML source into OWL 2, SHACL, and JSON Schema. This release includes the alignment to the Linked Art data model, a demonstrator ABox, competency-question SPARQL queries, and evaluation scripts.</p>",
+  "description": "<p>HeritageGraph is a CIDOC-CRM-based ontology for representing living heritage systems: the networks of sites, recurring rituals, custodial institutions, people, and beliefs through which a tradition is sustained. Developed with the Kathmandu Valley (Nepal) as its case study, it provides four modelling patterns (event-mediated tangible heritage, the Living Goddess lifecycle, provenance-aware syncretic relationships, and institutional infrastructure for Guthis) and a provenance layer reusing PROV-O, CRMinf, and SKOS, with support for Bikram Sambat, Nepal Sambat, and Gregorian dates.</p><p>The ontology (67 classes, 85 object properties and 28 datatype properties) is generated from a single LinkML source into OWL 2, SHACL, and JSON Schema. This release includes the alignment to the Linked Art data model, a demonstrator ABox, competency-question SPARQL queries, and evaluation scripts.</p>",
   "creators": [
     {
-      "name": "Lastname, Firstname",
-      "affiliation": "Your institution",
-      "orcid": "0000-0000-0000-0000"
+      "name": "Karki, Niraj",
+      "orcid": "0009-0000-7679-0107"
     },
     {
-      "name": "Lastname, Firstname",
-      "affiliation": "Co-author institution",
-      "orcid": "0000-0000-0000-0000"
+      "name": "Oli, Nabin",
+      "orcid": "0009-0007-3770-4668"
+    },
+    {
+      "name": "Sapkota, Anu",
+      "orcid": "0009-0004-5297-5990"
+    },
+    {
+      "name": "Chhetri, Tek Raj",
+      "orcid": "0000-0002-3905-7878"
+    },
+    {
+      "name": "Yumuşak, Semih",
+      "orcid": "0000-0002-8878-4991"
     }
   ],
   "license": "cc-by-4.0",
@@ -29,5 +39,6 @@
     "Nepal",
     "Kathmandu Valley"
   ],
-  "language": "eng"
+  "language": "eng",
+  "version": "1.1.0"
 }

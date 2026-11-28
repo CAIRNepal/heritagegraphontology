@@ -22,6 +22,13 @@ This script checks that property term by term, treating the YAML schema
                          entry; abstract classes (mixins, unions) are exempt
                          because instance payloads cannot instantiate them,
                          and no $defs entry lacks a YAML counterpart.
+  P  Prefixes            the JSON/YAML wrapper schema binds every core prefix.
+  L  Language-tagged text: a slot whose OWL range is rdf:PlainLiteral
+                         (text that may carry a language tag) accepts
+                         xsd:string or rdf:langString in every SHACL shape; a
+                         code slot (xsd:string in OWL) only xsd:string. No
+                         JSON field accepts a language map (JSON values are
+                         plain strings). Sample instances check the JSON side.
 
 Exit status is non-zero if any drift is found, so the audit can gate the
 release pipeline.
@@ -51,6 +58,11 @@ owl_g = rdflib.Graph()
 owl_g.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
 shacl_g = rdflib.Graph()
 shacl_g.parse(ROOT / "ontology/HeritageGraph.shacl.ttl", format="turtle")
+# The JSON Schema is generated from the serialization wrapper (core schema +
+# the LinkML tree_root Container and its Metadata header, since 1.1.0), so its
+# $defs are compared against the wrapper's classes.
+cv = SchemaView(str(ROOT / "ontology/HeritageGraph-container.yaml"))
+wrapper_only = {n: c for n, c in cv.all_classes().items() if n not in classes}
 json_schema = json.loads((ROOT / "ontology/HeritageGraph.schema.json").read_text())
 defs = json_schema.get("$defs", json_schema.get("definitions", {}))
 
@@ -71,6 +83,31 @@ owl_classes = {s for s in owl_g.subjects(RDF.type, OWL.Class)
 drift = [c.name for c in classes.values()
          if URIRef(sv.get_uri(c, expand=True)) not in owl_classes]
 report("A classes in OWL", len(classes) - len(drift), len(classes), drift)
+
+# A'. No active (non-deprecated) HeritageGraph class in OWL without a YAML class
+#     or enum (enumerations are owl:oneOf classes).
+HG_NS = sv.schema.prefixes[sv.schema.default_prefix].prefix_reference
+deprecated = {s for s, o in owl_g.subject_objects(OWL.deprecated)
+              if str(o).lower() == "true"}
+yaml_class_uris = ({URIRef(sv.get_uri(c, expand=True)) for c in classes.values()}
+                   | {URIRef(sv.get_uri(e, expand=True)) for e in enums.values()})
+active_hg = {c for c in owl_classes if str(c).startswith(HG_NS) and c not in deprecated}
+drift = sorted(str(c) for c in active_hg - yaml_class_uris)
+report("A' active HG OWL classes in YAML", len(active_hg) - len(drift), len(active_hg), drift)
+
+# W. Wrapper-only terms (Container, Metadata and their attributes) appear in
+# OWL only as owl:deprecated stubs: they are JSON/YAML serialization devices.
+wterms, absent = [], []
+for c in wrapper_only.values():
+    wterms.append(URIRef(cv.get_uri(c, expand=True)))
+    wterms += [URIRef(HG_NS + n) for n, a in (c.attributes or {}).items()
+               if not (a.annotations and "since" in a.annotations)]
+    # collections added after 1.0.x were never OWL terms: they must stay out of the OWL
+    absent += [URIRef(HG_NS + n) for n, a in (c.attributes or {}).items()
+              if a.annotations and "since" in a.annotations]
+drift = [str(u) for u in wterms if u not in deprecated]
+drift += [f"{u} (new collection in OWL)" for u in absent if (u, None, None) in owl_g]
+report("W wrapper-only terms deprecated in OWL", len(wterms) - len(drift), len(wterms), drift)
 
 # B. YAML slots -> OWL properties (declared, or used in an axiom).
 owl_props = set()
@@ -101,26 +138,128 @@ report("C enums in OWL (member counts)", len(enums) - len(drift),
 targets = {t for t in shacl_g.objects(None, SH.targetClass)
            if isinstance(t, URIRef)}
 class_uris = {URIRef(sv.get_uri(c, expand=True)) for c in classes.values()}
+# abstract/mixin classes whose IRI is an external term (prov:Entity, crm:E74,
+# ...) have no shape of their own since 1.1.0: their property shapes are
+# repeated in every concrete subclass, and a shape would constrain all
+# third-party instances of the external class
+def _shape_exempt(c) -> bool:
+    return bool(c.abstract or c.mixin) and not sv.get_uri(c, expand=True).startswith(
+        sv.schema.prefixes[sv.schema.default_prefix].prefix_reference)
 missing_shape = [c.name for c in classes.values()
-                 if URIRef(sv.get_uri(c, expand=True)) not in targets]
+                 if URIRef(sv.get_uri(c, expand=True)) not in targets and not _shape_exempt(c)]
 orphan_shapes = sorted(str(t) for t in targets - class_uris)
-report("D classes with SHACL shape", len(classes) - len(missing_shape),
-       len(classes), missing_shape)
+n_shape = sum(1 for c in classes.values() if not _shape_exempt(c))
+report("D classes with SHACL shape", n_shape - len(missing_shape),
+       n_shape, missing_shape)
 report("D' orphan SHACL targets", len(targets) - len(orphan_shapes),
        len(targets), orphan_shapes)
 
 # E. Concrete YAML classes + enums <-> JSON Schema $defs (both directions).
-concrete = [c for c in classes.values() if not c.abstract]
-abstract = [c.name for c in classes.values() if c.abstract]
-expected = {c.name for c in concrete} | set(enums)
+json_classes = cv.all_classes()
+concrete = [c for c in json_classes.values() if not c.abstract]
+abstract = [c.name for c in json_classes.values() if c.abstract]
+expected = {c.name for c in concrete} | set(cv.all_enums())
 missing_defs = sorted(expected - set(defs))
 orphan_defs = sorted(set(defs) - expected)
 report("E concrete classes+enums in JSON Schema",
        len(expected) - len(missing_defs), len(expected), missing_defs)
 report("E' orphan JSON Schema defs", len(defs) - len(orphan_defs),
        len(defs), orphan_defs)
+# E''. Every "$ref" in the JSON Schema resolves to a $defs entry.
+import re as _re
+_txt = json.dumps(json_schema)
+_refs = sorted(set(_re.findall(r'"#/\$defs/([^"]+)"', _txt)))
+drift = [r for r in _refs if r not in defs]
+report("E'' JSON Schema $refs resolve", len(_refs) - len(drift), len(_refs), drift)
 print(f"       (abstract classes exempt from JSON Schema by design: "
       f"{len(abstract)}: {', '.join(sorted(abstract))})")
+
+# P. The serialization wrapper binds every prefix the core schema binds, to
+# the same IRI: LinkML takes prefixes from the root schema only, so a missing
+# binding makes linkml-convert write <crm:P3_has_note> as a literal IRI.
+core_px = {k: v.prefix_reference for k, v in sv.schema.prefixes.items()}
+wrap_px = {k: v.prefix_reference for k, v in cv.schema.prefixes.items()}
+drift = sorted(k for k, v in core_px.items() if wrap_px.get(k) != v)
+report("P container schema binds the core prefixes", len(core_px) - len(drift), len(core_px), drift)
+
+# L. Language-tagged text: OWL, SHACL and JSON Schema agree slot by slot.
+RDFNS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+XSD_STRING = URIRef("http://www.w3.org/2001/XMLSchema#string")
+PLAIN = URIRef(RDFNS + "PlainLiteral")
+LANGSTRING = URIRef(RDFNS + "langString")
+
+
+def owl_text_kind(u):
+    vals = set(owl_g.objects(u, rdflib.RDFS.range))
+    vals |= {owl_g.value(r, OWL.allValuesFrom) for r in owl_g.subjects(OWL.onProperty, u)}
+    if PLAIN in vals:
+        return "text"
+    if XSD_STRING in vals:
+        return "code"
+    return None
+
+
+def json_has_langmap(pdef):
+    alts = pdef.get("anyOf", [])
+    return any(a.get("type") == "object" and "propertyNames" in a for a in alts)
+
+
+def shacl_accepts_langstring(u):
+    shapes = [ps for ps in shacl_g.subjects(SH.path, u)]
+    ok = []
+    for ps in shapes:
+        dts = set(shacl_g.objects(ps, SH.datatype))
+        for lst in shacl_g.objects(ps, SH["or"]):
+            for m in Collection(shacl_g, lst):
+                dts |= set(shacl_g.objects(m, SH.datatype))
+        if dts:   # shapes with no datatype constraint (e.g. maxCount 0) are neutral
+            ok.append(LANGSTRING in dts)
+    return shapes, ok
+
+
+drift, n = [], 0
+for s in slots.values():
+    if not s.slot_uri:
+        continue
+    u = URIRef(sv.get_uri(s, expand=True))
+    kind = owl_text_kind(u)
+    if kind is None:
+        continue
+    n += 1
+    shapes, ok = shacl_accepts_langstring(u)
+    if any(o != (kind == "text") for o in ok):
+        drift.append(f"{s.name} SHACL ({kind})")
+bad_slots = {d.split()[0] for d in drift}
+report("L text vs code slots agree across OWL and SHACL", n - len(bad_slots), n, drift)
+
+# L'' JSON values are plain strings: no JSON field accepts a language map
+# (language-tagged text is an RDF-level feature with no JSON form).
+drift = [f"{c}.{p}" for c, d in defs.items() for p, pd in d.get("properties", {}).items()
+         if json_has_langmap(pd)]
+n_props = sum(len(d.get("properties", {})) for d in defs.values())
+report("L'' no JSON field accepts a language map", n_props - len(drift), n_props, drift)
+
+try:
+    import jsonschema
+except ImportError:
+    jsonschema = None
+if jsonschema is not None:
+    def valid(cls, inst):
+        sch = {"$schema": json_schema["$schema"], "$defs": defs, "$ref": f"#/$defs/{cls}"}
+        return not list(jsonschema.Draft201909Validator(sch).iter_errors(inst))
+    samples = [
+        ("Deity, plain-string name", "Deity", {"id": "ex:d", "name": "Taleju"}, True),
+        ("Deity, name as a language map (no JSON form)", "Deity",
+         {"id": "ex:d", "name": {"en": "Taleju Bhawani", "ne": "तलेजु भवानी"}}, False),
+        ("Deity, one note as a plain string (1.0.x form)", "Deity", {"id": "ex:d", "note": "x"}, True),
+        ("Deity, several notes", "Deity", {"id": "ex:d", "note": ["first", "second"]}, True),
+        ("Assertion, asserts_about given by id", "Assertion",
+         {"id": "ex:a", "asserts_about": "ex:d"}, True),
+    ]
+    bad = [f"{name} (expected {'valid' if exp else 'invalid'})"
+           for name, cls, inst, exp in samples if valid(cls, inst) != exp]
+    report("L' JSON instances: plain strings and ids accepted, language maps refused",
+           len(samples) - len(bad), len(samples), bad)
 
 print()
 if failures:

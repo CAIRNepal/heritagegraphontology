@@ -17,19 +17,27 @@ Subcommands (default: all):
                   owl:differentFrom embodiedDeity values must clash with the
                   max-1 restriction; (B) the same ABox without differentFrom
                   stays consistent (the names co-denote); (C) an individual
-                  typed both hg:Stupa and hg:Chaitya (the one owl:disjointWith
-                  pair) must be unsatisfiable.
+                  typed both hg:Temple and hg:Deity (a physical thing and a
+                  concept, disjoint kinds) must be inconsistent.
 
   merged-import   Merged-vocabulary classification: HermiT over HeritageGraph +
                   the full CIDOC-CRM, CRMinf, CRMsci, and PROV-O vocabularies, closing
                   the threat that consistency was specific to the self-contained
-                  released axiom set. Reports the documented PROV-O property-
-                  chain vs. HG-cardinality DL collision and classifies under
-                  both minimal repairs.
+                  released axiom set. Every vocabulary is loaded unmodified;
+                  fails if an HG cardinality restriction names a PROV-O
+                  property-chain (non-simple) property, which would take the
+                  merge outside OWL 2 DL.
+
+  core-crm-disjointness  Core + CIDOC-CRM must not type any subject or object
+                  of an HG property as both crm:E2 Temporal Entity and crm:E77
+                  Persistent Item; each CRM-path shortcut (property chain)
+                  must be inferred from data written the CRM way.
 
   no-external-superclass  Core + LUX module + CIDOC-CRM (+ CRMinf, CRMsci) must not give
                   an external class a HeritageGraph superclass, or an enumeration
-                  individual an extra HeritageGraph type.
+                  individual an extra HeritageGraph type; and the core must
+                  assert no logical axiom about an external term that its
+                  owning vocabulary does not state.
 
   tenure-not-event  The same merge plus the demonstrator ABox must not infer that a
                   KumariTenure is a crm:E5_Event.
@@ -39,13 +47,12 @@ Subcommands (default: all):
                   CRM's disjointness (E2/E77 stated; E18/E28 from the scope notes) or
                   with a core class that core + CIDOC-CRM alone do not entail.
 
-Run:  ROBOT_JAR=/tmp/hgtools/robot.jar \\
-      JAVA_HOME=/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home \\
-      python3 evaluation/reasoning_extras.py [injection|merged-import|all]
+Run:  ROBOT_JAR=.tools/robot-1.9.8.jar [JAVA_HOME=...] python3 evaluation/reasoning_extras.py [injection|merged-import|all]
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 import subprocess
 import tempfile
@@ -57,9 +64,9 @@ from rdflib.collection import Collection
 
 ROOT = Path(__file__).resolve().parents[1]
 ROBOT_JAR = os.environ.get("ROBOT_JAR", "/tmp/hgtools/robot.jar")
-JAVA_HOME = os.environ.get("JAVA_HOME",
-                           "/tmp/hgtools/jdk-21.0.11+10-jre/Contents/Home")
-JAVA = str(Path(JAVA_HOME) / "bin" / "java")
+# Java from JAVA_HOME when it is set (CI's setup-java sets it), else `java` on PATH
+JAVA = (str(Path(os.environ["JAVA_HOME"]) / "bin" / "java")
+        if os.environ.get("JAVA_HOME") else "java")
 
 
 # ===========================================================================
@@ -88,9 +95,21 @@ ex:D2 a hg:Deity , owl:NamedIndividual ; rdfs:label "deity two" .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
 
-ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
-    rdfs:label "joint Stupa-and-Chaitya individual" .
+ex:J a hg:Temple , hg:Deity , owl:NamedIndividual ;
+    rdfs:label "joint Temple-and-Deity individual" .
 """
+
+    # m1: enumeration values are owl:AllDifferent, so two values of a
+    # single-valued enumeration slot clash without any owl:differentFrom in
+    # the data (arm D); one value is consistent (arm E, control)
+    ENUM_BASE = """@prefix hg:  <https://cair-nepal.org/heritagegraph/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix es:  <https://cair-nepal.org/heritagegraph/ExistenceStatus#> .
+@prefix ex:  <https://cair-nepal.org/heritagegraph/example/> .
+hg:existenceStatus a owl:ObjectProperty .
+"""
+    ENUM_TWO = ENUM_BASE + "ex:S a hg:Temple ; hg:existenceStatus es:Destroyed , es:Extant .\n"
+    ENUM_ONE = ENUM_BASE + "ex:S a hg:Temple ; hg:existenceStatus es:Extant .\n"
 
     def hermit_verdict(abox_ttl: str) -> tuple[bool, str]:
         """Merge the ontology with the injected ABox and classify with HermiT.
@@ -124,16 +143,28 @@ ex:J a hg:Stupa , hg:Chaitya , owl:NamedIndividual ;
     print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
     arm_b_ok = consistent
 
-    print("Arm C: joint Stupa-and-Chaitya individual (expect INCONSISTENT)")
+    print("Arm C: joint Temple-and-Deity individual, disjoint kinds (expect INCONSISTENT)")
     consistent, evidence = hermit_verdict(DISJOINT_JOINT)
     print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
     arm_c_ok = not consistent
 
-    if arm_a_ok and arm_b_ok and arm_c_ok:
+    print("Arm D: a temple both Destroyed and Extant, no owl:differentFrom (expect INCONSISTENT)")
+    consistent, evidence = hermit_verdict(ENUM_TWO)
+    print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
+    arm_d_ok = not consistent
+
+    print("Arm E: the same temple with one status (control; expect CONSISTENT)")
+    consistent, evidence = hermit_verdict(ENUM_ONE)
+    print(f"  HermiT: {'CONSISTENT' if consistent else 'INCONSISTENT'} -- {evidence}")
+    arm_e_ok = consistent
+
+    if arm_a_ok and arm_b_ok and arm_c_ok and arm_d_ok and arm_e_ok:
         print("\nPASS: the max-1 embodiment axiom is load-bearing (arm A clashes), the")
         print("control confirms the clash is driven by distinctness, not by the mere")
-        print("presence of two property values (arm B merges the names), and the")
-        print("asserted disjointness pair likewise bites (arm C clashes).")
+        print("presence of two property values (arm B merges the names), the")
+        print("asserted disjointness pair likewise bites (arm C clashes), and the")
+        print("enumeration values are distinct without help from the data (arm D")
+        print("clashes, arm E is consistent).")
         return 0
     print("\nFAIL: unexpected verdict in at least one arm.")
     return 1
@@ -155,6 +186,15 @@ VOCABS = {
         "https://cidoc-crm.org/extensions/crmsci/rdfs/2.0/CRMsci_v2.0.rdf"),
     "PROV-O": ("prov.ttl", "https://www.w3.org/ns/prov.ttl"),
 }
+# sha256 of each file as retrieved for the release, so a changed upstream file
+# cannot silently change a gate's result (CRM and CRMinf equal the snapshots in
+# ontology/imports/; CRMsci and the full PROV-O bundle are not snapshotted there).
+VOCAB_SHA256 = {
+    "cidoc_crm.rdf": "3f9c634092e34f65927ea73b6ac232cda724da927dd93ff9efb8624cfff562d2",
+    "crminf.rdf": "b25d006afcbb798ce5081da19c240ae4094b83c432d0e53f1adb017f57739e43",
+    "crmsci.rdf": "3988699f51e9e468f06735b78e1a3d4001a4f150037dcc79ccb97e6e12d0eb9b",
+    "prov.ttl": "d7ea634dbcd31347eba38157197f69d314077ef7f88fd4f90e4f24a78bfe1097",
+}
 
 # Namespace each vocabulary document declares its terms in. A merge only tests
 # the alignment if HG's terms in that namespace are the very terms the
@@ -175,6 +215,7 @@ def _fetch(name: str, fname: str, url: str) -> Path:
     at merge time. The axioms under test are supplied explicitly, so the
     import declarations are dropped from a local copy.
     """
+    CACHE.mkdir(parents=True, exist_ok=True)
     p = CACHE / fname
     if not p.exists() or p.stat().st_size == 0:
         print(f"  fetching {name} from {url}")
@@ -185,6 +226,11 @@ def _fetch(name: str, fname: str, url: str) -> Path:
             ctx = None
         with urllib.request.urlopen(url, context=ctx, timeout=120) as r:
             p.write_bytes(r.read())
+    digest = hashlib.sha256(p.read_bytes()).hexdigest()
+    if digest != VOCAB_SHA256[fname]:
+        raise RuntimeError(f"{name}: {p} has sha256 {digest}, not the pinned "
+                         f"{VOCAB_SHA256[fname]}; the upstream file changed (delete the "
+                         f"cached copy to refetch, and review the change before re-pinning)")
     clean = p.with_suffix(".noimports.ttl")
     if not clean.exists():
         g = Graph()
@@ -288,11 +334,23 @@ def run_merged_import() -> int:
             continue
         ok &= _classify(f"HG + {name}", [hg, p])
 
-    # --- PROV-O: report the DL collision, then classify under both repairs ---
+    # --- PROV-O: no HG cardinality restriction may name a non-simple
+    # (property-chain) PROV-O property, or the merge leaves OWL 2 DL ---
     print("PROV-O: DL global-restrictions check:")
     prov_g = Graph()
     prov_g.parse(paths["PROV-O"], format="turtle")
+    # non-simple: a property with a chain axiom, any superproperty of one,
+    # and the inverses of all of these (OWL 2 structural spec, sec. 11.1)
     chains = {s for s in prov_g.subjects(OWL.propertyChainAxiom, None)}
+    while True:
+        grown = set(chains)
+        for p in chains:
+            grown |= set(prov_g.objects(p, RDFS.subPropertyOf))
+            grown |= set(prov_g.objects(p, OWL.inverseOf)) | set(prov_g.subjects(OWL.inverseOf, p))
+        grown = {x for x in grown if isinstance(x, URIRef)}
+        if grown == chains:
+            break
+        chains = grown
     hg_g = Graph()
     hg_g.parse(hg, format="turtle")
     constrained = set()
@@ -303,48 +361,28 @@ def run_merged_import() -> int:
                 if prop is not None and str(prop).startswith(PROV_NS):
                     constrained.add(prop)
     collide = sorted(str(p).split("#")[-1] for p in chains & constrained)
-    print(f"  PROV-O chain-axiom (non-simple) properties: {len(chains)}")
-    print(f"  of which under an HG cardinality restriction: {len(collide)}")
-    print(f"  collision set: {', '.join(collide)}")
-    print("  => merged graph is outside OWL 2 DL (non-simple property in a")
-    print("     cardinality restriction); HermiT rejects it on profile grounds.")
+    print(f"  PROV-O non-simple properties (chain axioms, their superproperties and inverses): {len(chains)}")
+    print(f"  of which under an HG cardinality restriction: {len(collide)}"
+          + (f" ({', '.join(collide)})" if collide else ""))
+    if collide:
+        print("  FAIL: the merge is outside OWL 2 DL (non-simple property in a "
+              "cardinality restriction)")
+        ok = False
+    ok &= _classify("HG + PROV-O (unmodified)", [hg, paths["PROV-O"]])
 
-    # Repair 1: drop PROV-O's chain axioms.
-    prov_nochain = CACHE / "prov.nochain.ttl"
-    g = Graph()
-    g.parse(paths["PROV-O"], format="turtle")
-    for s, o in list(g.subject_objects(OWL.propertyChainAxiom)):
-        g.remove((s, OWL.propertyChainAxiom, o))
-    g.serialize(prov_nochain, format="turtle")
-    ok &= _classify("HG + PROV-O (chain axioms dropped)", [hg, prov_nochain])
-
-    # Repair 2: drop HG's cardinality restrictions on the colliding properties.
-    hg_relaxed = CACHE / "hg.relaxed.ttl"
-    g = Graph()
-    g.parse(hg, format="turtle")
-    for r in list(g.subjects(RDF.type, OWL.Restriction)):
-        prop = next(g.objects(r, OWL.onProperty), None)
-        if prop in chains:
-            for kind in (OWL.maxCardinality, OWL.minCardinality, OWL.cardinality):
-                for v in list(g.objects(r, kind)):
-                    g.remove((r, kind, v))
-                    # neutralise the emptied restriction
-                    g.add((r, OWL.minCardinality, v.__class__("0", datatype=v.datatype)))
-    g.serialize(hg_relaxed, format="turtle")
-    ok &= _classify("HG (prov cardinalities relaxed) + PROV-O",
-                    [hg_relaxed, paths["PROV-O"]])
-
-    print("Full merge (chain axioms dropped from PROV-O):")
+    print("Full merge (all vocabularies unmodified):")
     ok &= _classify("HG + CRM + CRMinf + CRMsci + PROV-O",
                     [hg, paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
-                     paths["CRMsci v2.0"], prov_nochain])
+                     paths["CRMsci v2.0"], paths["PROV-O"]])
+    ok &= _classify("HG + CRM-PROV bridge + CRM + CRMinf + CRMsci + PROV-O",
+                    [hg, ROOT / "ontology/HeritageGraph-crm-prov-bridge.ttl",
+                     paths["CIDOC-CRM v7.1.3"], paths["CRMinf v1.0"],
+                     paths["CRMsci v2.0"], paths["PROV-O"]])
 
     if ok:
-        print("\nPASS: HermiT classifies every DL-admissible merged graph "
-              "consistent, with no unsatisfiable classes and no unintended class "
-              "equivalences; the one obstruction is the documented DL profile "
-              "collision between PROV-O's property chains and HG's cardinality "
-              "restrictions, not a semantic clash.")
+        print("\nPASS: HermiT classifies every merged graph, each vocabulary "
+              "unmodified, consistent, with no unsatisfiable classes and no "
+              "unintended class equivalences.")
         return 0
     print("\nFAIL: at least one merged classification did not come back clean.")
     return 1
@@ -474,6 +512,32 @@ def _hijacks(extra_ttl: str = "") -> tuple[list[str], int, int]:
     return violations, len(ext_classes), len(enum_members)
 
 
+FOREIGN_LOGICAL = (RDFS.domain, RDFS.range, RDFS.subClassOf, RDFS.subPropertyOf,
+                   OWL.equivalentClass, OWL.equivalentProperty, OWL.inverseOf,
+                   OWL.disjointWith, OWL.propertyChainAxiom)
+
+
+def _foreign_axioms(core: Graph) -> list[str]:
+    """Logical axioms of the core whose subject is not a HeritageGraph IRI
+    and that the owning vocabulary does not itself state (checked against the
+    official snapshots in ontology/imports/)."""
+    import json as _json
+    meta = _json.loads((ROOT / "ontology/imports/sources.json").read_text(encoding="utf-8"))
+    official = Graph()
+    for src in meta["sources"]:
+        official.parse(ROOT / "ontology/imports" / src["file"], format=src["format"])
+    out = []
+    for pred in FOREIGN_LOGICAL:
+        for s_, o in core.subject_objects(pred):
+            if not isinstance(s_, URIRef) or str(s_).startswith(HG_NS):
+                continue
+            if (s_, pred, o) in official or (pred == OWL.inverseOf and (o, pred, s_) in official):
+                continue
+            out.append(f"{s_} {pred.n3(core.namespace_manager)} "
+                       f"{o if isinstance(o, URIRef) else '[anonymous]'}")
+    return sorted(out)
+
+
 def run_no_external_superclass() -> int:
     """Fail if core + LUX module + CIDOC-CRM 7.1.3 (+ CRMinf, CRMsci) entail
     that an external class gains a HeritageGraph superclass or that an
@@ -486,18 +550,36 @@ def run_no_external_superclass() -> int:
           f"{n_cls} external classes, {n_ind} enumeration individuals examined")
     for v in violations:
         print("  VIOLATION:", v)
+    # control: an external class given a HeritageGraph superclass; it keeps the
+    # merge coherent (Deity ≡ E28 would not: with the disjoint kinds every E28
+    # class becomes unsatisfiable before the detector runs)
     control, _, _ = _hijacks(
-        "<https://cair-nepal.org/heritagegraph/Deity> "
-        "<http://www.w3.org/2002/07/owl#equivalentClass> "
-        "<http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object> .")
-    caught = any("E28_Conceptual_Object" in v or "E55_Type" in v for v in control)
-    print(f"negative control (Deity ≡ crm:E28_Conceptual_Object): "
+        "<http://www.cidoc-crm.org/cidoc-crm/E57_Material> "
+        "<http://www.w3.org/2000/01/rdf-schema#subClassOf> "
+        "<https://cair-nepal.org/heritagegraph/Deity> .")
+    caught = any("E57_Material" in v and "Deity" in v and "not classifiable" not in v
+                 for v in control)
+    print(f"negative control (crm:E57_Material ⊑ hg:Deity): "
           f"{len(control)} violation(s) -> {'caught' if caught else 'NOT caught'}")
-    if violations or not caught:
+    # asserted: no logical axiom about another vocabulary's term, unless that
+    # vocabulary states it itself (e.g. crm:E21_Person ⊑ crm:E39_Actor)
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    foreign = _foreign_axioms(core)
+    print(f"asserted axioms about external terms not stated by their owner: {len(foreign)}")
+    for f in foreign:
+        print("  VIOLATION:", f)
+    ctl = Graph(); ctl += core
+    ctl.add((URIRef("http://www.cidoc-crm.org/cidoc-crm/E12_Production"), RDFS.subClassOf,
+             URIRef(PROV_NS + "Activity")))
+    caught_f = len(_foreign_axioms(ctl)) > len(foreign)
+    print(f"negative control (crm:E12_Production ⊑ prov:Activity in the core): "
+          f"{'caught' if caught_f else 'NOT caught'}")
+    if violations or not caught or foreign or not caught_f:
         print("FAIL")
         return 1
-    print("PASS: no external class gains a HeritageGraph superclass and no enumeration "
-          "individual gains a HeritageGraph type beyond its own enumeration.")
+    print("PASS: no external class gains a HeritageGraph superclass, no enumeration "
+          "individual gains a HeritageGraph type beyond its own enumeration, and the core "
+          "states no axiom about an external term that its owner does not state.")
     return 0
 
 
@@ -593,6 +675,7 @@ def _lux_probe_abox(module: Graph) -> tuple[Graph, dict]:
               for s, o in module.subject_objects(p)
               if str(s).startswith(HG_NS) and not str(o).startswith(HG_NS)}
     sv = SchemaView(str(ROOT / "ontology/HeritageGraph.yaml"))
+    by_iri = {URIRef(sv.get_uri(c, expand=True)): n for n, c in sv.all_classes().items()}
     abox, where = Graph(), {}
     i = 0
     for c in sv.all_classes():
@@ -618,6 +701,26 @@ def _lux_probe_abox(module: Graph) -> tuple[Graph, dict]:
         if isinstance(rng, URIRef): abox.add((obj, RDF.type, rng))
         n = str(prop)[len(HG_NS):]
         where[subj] = f"{n} (subject)"; where[obj] = f"{n} (object)"
+        # a union domain or range (AssertionSubject: rituals, tenures, temples,
+        # sources, ...) is probed member by member: typing the subject with the
+        # union alone never meets a member's CRM disjointness (a ritual is an
+        # E2, a P102 subject an E77)
+        for side, cls in (("subject", dom), ("object", rng)):
+            name = by_iri.get(cls)
+            members = (sv.get_class(name).union_of or []) if name else []
+            for m in members:
+                i += 1
+                subj, obj = URIRef(f"{PROBE_NS}s{i}"), URIRef(f"{PROBE_NS}o{i}")
+                abox.add((subj, prop, obj))
+                m_iri = URIRef(sv.get_uri(sv.get_class(m), expand=True))
+                if side == "subject":
+                    abox.add((subj, RDF.type, m_iri))
+                    if isinstance(rng, URIRef): abox.add((obj, RDF.type, rng))
+                else:
+                    abox.add((obj, RDF.type, m_iri))
+                    if isinstance(dom, URIRef): abox.add((subj, RDF.type, dom))
+                where[subj] = f"{n} (subject{', ' + m if side == 'subject' else ''})"
+                where[obj] = f"{n} (object{', ' + m if side == 'object' else ''})"
     return abox, where
 
 
@@ -651,6 +754,14 @@ def _lux_violations(module: Graph) -> tuple[list[str], int]:
     core_ttl = ROOT / "ontology/HeritageGraph.ttl"
     core = Graph(); core.parse(core_ttl, format="turtle")
     core_classes = {c for c in core.subjects(RDF.type, OWL.Class) if isinstance(c, URIRef)}
+    # union class -> its members: a probe typed with a member is in the union
+    # by definition, so gaining the union class is not new for that probe
+    union_members: dict = {}
+    for c in core_classes:
+        for ref in [c] + list(core.objects(c, OWL.equivalentClass)) + list(core.objects(c, RDFS.subClassOf)):
+            lst = core.value(ref, OWL.unionOf)
+            if lst is not None:
+                union_members.setdefault(c, set()).update(Collection(core, lst))
     abox, where = _lux_probe_abox(module)
     base = _reason_types([core_ttl] + vocabs, abox)
     full = _reason_types([core_ttl, module] + vocabs, abox)
@@ -664,7 +775,10 @@ def _lux_violations(module: Graph) -> tuple[list[str], int]:
             out.append(f"C2 {where[x]}: both crm:E18_Physical_Thing and crm:E28_Conceptual_Object")
         asserted = set(abox.objects(x, RDF.type))
         if asserted and asserted <= core_classes:   # C3 concerns instances of core classes only
-            for t in sorted((types - base.get(x, set())) & core_classes):
+            # a member of a union class (AssertionSubject) is in the union by
+            # definition: gaining it through a union-typed domain is not new
+            definitional = {u for u, ms in union_members.items() if asserted & ms}
+            for t in sorted((types - base.get(x, set())) & core_classes - definitional):
                 out.append(f"C3 {where[x]}: gains core class {t}")
     return sorted(set(out)), len(where)
 
@@ -696,13 +810,170 @@ def run_lux_conservativity() -> int:
     return 0
 
 
+def run_merged_abox() -> int:
+    """Each example ABox with HG + CIDOC-CRM + CRMinf + CRMsci + PROV-O.
+
+    merged-import classifies the TBoxes only; data can still clash with the
+    imported vocabularies' domains, ranges and disjointness (e.g. prov:
+    wasDerivedFrom, domain prov:Entity, on an individual of a class that HG
+    places under prov:Activity). Every example must be HermiT-consistent with
+    all vocabularies loaded. The graphs are combined in rdflib into ONE file
+    (not `robot merge`), so that data triples on properties the example does
+    not itself declare are read with the vocabularies' declarations rather
+    than as annotations. Every vocabulary is loaded unmodified.
+    """
+    print("merged-abox: each example ABox + HG + CRM + CRMinf + CRMsci + PROV-O (all unmodified)")
+    paths = {name: _fetch(name, fname, url) for name, (fname, url) in VOCABS.items()}
+    root = Path(__file__).resolve().parents[1]
+    ok = True
+    for ex in sorted((root / "examples").glob("*.ttl")):
+        g = Graph()
+        g.parse(root / "ontology" / "HeritageGraph.ttl", format="turtle")
+        for name, p in paths.items():
+            g.parse(p, format="turtle")
+        g.parse(ex, format="turtle")
+        g.remove((None, OWL.imports, None))
+        combined = CACHE / f"merged_abox_{ex.stem}.ttl"
+        g.serialize(combined, format="turtle")
+        proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                               "--output", str(CACHE / f"merged_abox_{ex.stem}.reasoned.ttl"),
+                               "--input", str(combined)], capture_output=True, text=True)
+        good = proc.returncode == 0
+        ok &= good
+        verdict = "consistent" if good else (
+            "INCONSISTENT" if "inconsistent" in (proc.stdout + proc.stderr) else "FAILED")
+        print(f"  [{ex.name}] {verdict}")
+    print("PASS: every example ABox is consistent with HG and all aligned vocabularies."
+          if ok else "FAIL: an example ABox is inconsistent with the aligned vocabularies.")
+    return 0 if ok else 1
+
+
+def _core_crm_probe(core: Graph) -> tuple[Graph, dict]:
+    """One subject per (HG property, domain class) and one object typed with
+    the property's range, linked by the property."""
+    from rdflib.collection import Collection as _C
+    abox, where = Graph(), {}
+    props = sorted({p for t in (OWL.ObjectProperty, OWL.DatatypeProperty)
+                    for p in core.subjects(RDF.type, t)
+                    if isinstance(p, URIRef) and str(p).startswith(HG_NS)
+                    and (p, OWL.deprecated, None) not in core})
+
+    def named(c):
+        if isinstance(c, URIRef):
+            return [c]
+        u = core.value(c, OWL.unionOf)
+        return [m for m in _C(core, u) if isinstance(m, URIRef)] if u is not None else []
+
+    # classes that use each property: its rdfs:domain, and every class with a
+    # restriction on it (most HG properties carry no rdfs:domain)
+    users: dict = {}
+    for r in core.subjects(OWL.onProperty, None):
+        p = core.value(r, OWL.onProperty)
+        for c in core.subjects(RDFS.subClassOf, r):
+            if isinstance(c, URIRef):
+                users.setdefault(p, set()).add(c)
+    for i, p in enumerate(props):
+        doms = sorted({d for c in core.objects(p, RDFS.domain) for d in named(c)}
+                      | users.get(p, set()))
+        rngs = [r for c in core.objects(p, RDFS.range) for r in named(c)]
+        is_obj = (p, RDF.type, OWL.ObjectProperty) in core
+        for j, d in enumerate(doms):
+            x = URIRef(f"{PROBE_NS}core/{i}-{j}")
+            abox.add((x, RDF.type, d)); abox.add((x, RDF.type, OWL.NamedIndividual))
+            where[x] = f"{p.split('/')[-1]} subject ({d.split('/')[-1]})"
+            if is_obj:
+                y = URIRef(f"{PROBE_NS}core/{i}-{j}-o")
+                abox.add((y, RDF.type, OWL.NamedIndividual))
+                for r in rngs:
+                    abox.add((y, RDF.type, r))
+                abox.add((x, p, y))
+                where[y] = f"{p.split('/')[-1]} object"
+    return abox, where
+
+
+def _core_crm_violations(edit=None) -> tuple[list[str], int]:
+    vocabs = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3", "CRMinf v1.0", "CRMsci v2.0")]
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    if edit:
+        edit(core)
+    abox, where = _core_crm_probe(core)
+    types = _reason_types([core] + vocabs, abox)
+    out = [f"C1 {where[x]}: both crm:E2_Temporal_Entity and crm:E77_Persistent_Item"
+           for x, t in types.items() if x in where and E2 in t and E77 in t]
+    return sorted(set(out)), len(where)
+
+
+def run_core_crm_disjointness() -> int:
+    """Fail if the core with CIDOC-CRM (+ CRMinf, CRMsci) types any subject or
+    object of a HeritageGraph property as both crm:E2 Temporal Entity and
+    crm:E77 Persistent Item (disjoint by the E2 scope note). This is what
+    hg:birthTimespan ⊑ crm:P4_has_time-span did to every person with a birth
+    date (P4 has domain E2, a person is an E77); the negative control re-adds
+    that axiom and must be caught. Also checks that each CRM-path shortcut
+    (owl:propertyChainAxiom) is inferred from data written the CRM way."""
+    CACHE.mkdir(parents=True, exist_ok=True)
+    violations, n = _core_crm_violations()
+    print(f"core + CIDOC-CRM 7.1.3 + CRMinf + CRMsci, HermiT: {n} probe individuals "
+          f"(a subject per HG property and domain class, an object per range)")
+    for v in violations:
+        print("  VIOLATION:", v)
+    def _old_birth(g: Graph) -> None:   # the 1.0.x modelling
+        bt = URIRef(HG_NS + "birthTimespan")
+        g.remove((bt, OWL.propertyChainAxiom, None))
+        g.add((bt, RDFS.subPropertyOf, URIRef(CRM_NS + "P4_has_time-span")))
+    control, _ = _core_crm_violations(_old_birth)
+    caught = len(control) > len(violations)
+    print(f"negative control (1.0.x: birthTimespan ⊑ crm:P4_has_time-span, no chain): "
+          f"{len(control) - len(violations)} additional violation(s) -> {'caught' if caught else 'NOT caught'}")
+
+    # shortcuts: person -P98i-> E67 -P4-> ts must give person birthTimespan ts
+    core = Graph(); core.parse(ROOT / "ontology/HeritageGraph.ttl", format="turtle")
+    vocabs = [_fetch(n, *VOCABS[n]) for n in ("CIDOC-CRM v7.1.3",)]
+    chains_ok = True
+    from rdflib.collection import Collection as _C
+    for prop, lst in core.subject_objects(OWL.propertyChainAxiom):
+        steps = list(_C(core, lst))
+        nodes = [URIRef(f"{PROBE_NS}chain/{prop.split('/')[-1]}/{k}") for k in range(len(steps) + 1)]
+        abox = Graph()
+        for k, st in enumerate(steps):
+            abox.add((nodes[k], st, nodes[k + 1]))
+        for x in nodes:
+            abox.add((x, RDF.type, OWL.NamedIndividual))
+        with tempfile.TemporaryDirectory() as td:
+            merged = Graph(); merged += core
+            for v in vocabs:
+                merged.parse(v)
+            merged += abox; merged.remove((None, OWL.imports, None))
+            src, out = Path(td) / "m.ttl", Path(td) / "r.ttl"
+            merged.serialize(src, format="turtle")
+            proc = subprocess.run([JAVA, "-jar", ROBOT_JAR, "reason", "--reasoner", "hermit",
+                                   "--axiom-generators", "PropertyAssertion",
+                                   "--input", str(src), "--output", str(out)],
+                                  capture_output=True, text=True)
+            got = False
+            if proc.returncode == 0:
+                r = Graph(); r.parse(out, format="turtle")
+                got = (nodes[0], prop, nodes[-1]) in r
+        chains_ok &= got
+        print(f"shortcut {prop.split('/')[-1]} from {' / '.join(x.split('/')[-1] for x in steps)}: "
+              f"{'inferred' if got else 'NOT inferred'}")
+    if violations or not caught or not chains_ok:
+        print("FAIL")
+        return 1
+    print("PASS: no HeritageGraph property makes a CRM persistent item a temporal entity, "
+          "and every CRM-path shortcut is inferred.")
+    return 0
+
+
 PROBES = {
     "injection": run_injection,
     "merged-import": run_merged_import,
+    "merged-abox": run_merged_abox,
     "entailments": run_entailments,
     "no-external-superclass": run_no_external_superclass,
     "tenure-not-event": run_tenure_not_event,
     "lux-conservativity": run_lux_conservativity,
+    "core-crm-disjointness": run_core_crm_disjointness,
 }
 
 
