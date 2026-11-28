@@ -2139,7 +2139,7 @@ def run_pyshacl() -> None:
         data_graph=str(ABOX), shacl_graph=str(SHACL_OUT),
         ont_graph=ont, inference="none")
     RESULTS.mkdir(parents=True, exist_ok=True)
-    (RESULTS / "shacl_alpha5_report.txt").write_text(
+    (RESULTS / "shacl_report.txt").write_text(
         f"pyshacl {date.today().isoformat()}\nconforms: {conforms}\n\n{text}\n",
         encoding="utf-8")
     print(f"SHACL conforms: {conforms}")
