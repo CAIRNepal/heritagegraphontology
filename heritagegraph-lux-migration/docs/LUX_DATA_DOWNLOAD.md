@@ -1,5 +1,7 @@
 # LUX verilerini nasıl indireceğiz?
 
+> **Historical note (May 2026, in Turkish).** The "16M" record count below was an early estimate; LUX holds more than 41 million records (Sanderson 2024). For the current harvest options see `MIGRATION_PLAN.md` and the README.
+
 **Status (May 2026):** Yale, LUX için tek-tıkla bir bulk N-Quads / Turtle dump'ı *kamuya açık olarak yayınlamıyor.* Önceki `MIGRATION_PLAN.md` ve docker stack'inde `https://linked-art.lux.collections.yale.edu/data/dump/latest.nq.gz` URL'i benim varsayımımdı, gerçek bir endpoint değil. Bu belge gerçek alternatifleri sıralar.
 
 ## TL;DR — Tavsiye edilen yol
