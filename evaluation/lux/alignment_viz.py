@@ -9,6 +9,8 @@ Deprecated module classes (owl:deprecated, e.g. hg:Group since 1.1.0) are left o
 Outputs (in evaluation/lux/):
   alignment_graph.html  — interactive, self-contained (vis-network via CDN); open in a browser
   alignment_graph.dot   — Graphviz source; render with:  dot -Tpdf alignment_graph.dot -o alignment.pdf
+and a copy of the HTML as heritagegraph-lux-migration/docs/heritagegraph-alignment-graph.html,
+so that the module folder carries the current graph.
 
 Usage:  python evaluation/lux/alignment_viz.py
 """
@@ -19,6 +21,7 @@ from rdflib import Graph, RDFS, OWL, URIRef
 
 HERE = Path(__file__).resolve().parent
 BRIDGE = HERE.parents[1] / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
+MODULE_COPY = HERE.parents[1] / "heritagegraph-lux-migration" / "docs" / "heritagegraph-alignment-graph.html"
 HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 
@@ -106,9 +109,10 @@ def main():
     html = (HTML.replace("NODES", json.dumps(nodes)).replace("EDGES", json.dumps(edges))
             .replace("{{", "{").replace("}}", "}"))   # template used doubled braces
     (HERE / "alignment_graph.html").write_text(html)
+    MODULE_COPY.write_text(html)
     (HERE / "alignment_graph.dot").write_text(dot(nodes, edges))
     hg = sum(1 for n in nodes if n["group"] == "hg")
-    print(f"wrote alignment_graph.html and alignment_graph.dot  "
+    print(f"wrote alignment_graph.html, alignment_graph.dot and the module copy  "
           f"({hg} HG nodes, {len(nodes)-hg} external nodes, "
           f"{len(eqc)} equivalentClass + {len(sc)} subClassOf edges)")
 
