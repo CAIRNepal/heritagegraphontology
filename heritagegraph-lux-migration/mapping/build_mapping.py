@@ -41,6 +41,9 @@ CLASS_ROWS = [
     ("Production",                 "(none)",                       "Production",        "crm:E12_Production",              "identity (direct URI reuse)", "alpha5 (July 2026): hg:Production retired, crm:E12 is now the class itself."),
     ("DestructionEvent",           "HistoricalEvent",              "Destruction",       "crm:E6_Destruction",              "identity (direct URI reuse)", "alpha5 (July 2026): hg:DestructionEvent retired, crm:E6 is now the class itself (still subClassOf hg:EndOfExistence in alignment §5)."),
     ("TransferOfCustody",          "(none)",                       "TransferOfCustody", "crm:E10_Transfer_of_Custody",     "identity (direct URI reuse)", "alpha5 (July 2026): hg:TransferOfCustody retired, crm:E10 is now the class itself."),
+    ("Group",                      "(none)",                       "Group",             "crm:E74_Group",                   "identity (direct URI reuse)", "1.1.0: the core reuses crm:E74_Group as Group (super-class of Guthi and CasteGroup); the module's hg:Group wrapper is deprecated (dct:isReplacedBy crm:E74_Group)."),
+    ("Death",                      "(none)",                       "Death",             "crm:E69_Death",                   "identity (direct URI reuse)", "1.1.0: the core reuses crm:E69_Death as Death; the module's hg:Death wrapper is deprecated (dct:isReplacedBy crm:E69_Death)."),
+    ("GenericActivity",            "(none)",                       "Activity",          "crm:E7_Activity",                 "identity (direct URI reuse)", "1.1.0: the core reuses crm:E7_Activity as GenericActivity; the module's hg:Activity wrapper is deprecated (dct:isReplacedBy crm:E7_Activity)."),
     ('HistoricalEvent', '(none)', 'Event', 'crm:E5_Event', 'subClassOf', ''),
     ("ConditionState",             "(none)",                       "ConditionState",    "crm:E3_Condition_State",          "identity (direct URI reuse)", "alpha5 (July 2026): hg:ConditionState retired, crm:E3 is now the class itself."),
     ('Deity', '(none)', 'ConceptualObject', 'crm:E28_Conceptual_Object', 'dropped in v1.0.0', 'Already exactMatch crm:E28 in HG.'),
@@ -67,12 +70,12 @@ CLASS_ROWS = [
     ("Paubha",                     "IconographicObject",           "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "classified_as <aat:300033666> 'thangka'."),
 
     # ---- Person / group / actor ----
-    ("Guthi",                      "Group",                        "Group",             "crm:E74_Group",                   "subClassOf",      "Nepal-specific endowed trust. Semantically a Group."),
-    ("CasteGroup",                 "Group",                        "Group",             "crm:E74_Group",                   "subClassOf",      ""),
+    ("Guthi",                      "Group (crm:E74_Group)",                        "Group",             "crm:E74_Group",                   "subClassOf",      "Nepal-specific endowed trust. Semantically a Group."),
+    ("CasteGroup",                 "Group (crm:E74_Group)",                        "Group",             "crm:E74_Group",                   "subClassOf",      ""),
     ("DataCustodian",              "Actor",                        "Actor",             "crm:E39_Actor",                   "subClassOf",      "Could be Person or Group; LUX models as Actor."),
 
     # ---- Activities / events ----
-    ("RitualEvent",                "Activity",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      "Re-parented under hg:Activity (alignment §5, July 2026)."),
+    ("RitualEvent",                "GenericActivity (crm:E7_Activity)", "Activity",     "crm:E7_Activity",                 "subClassOf",      "Directly under crm:E7_Activity (the July 2026 hg:Activity parent was dropped in 1.1.0 with that wrapper)."),
     ("Festival",                   "RitualEvent",                  "Activity",          "crm:E7_Activity",                 "subClassOf",      "Festival = Period-spanning Activity in LUX."),
     ("ChariotFestival",            "Festival",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      ""),
     ("MaskedDance",                "Festival",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      ""),
@@ -83,7 +86,7 @@ CLASS_ROWS = [
     ('KumariTenure', '(none)', 'Period', 'crm:E4_Period', 'subClassOf', 'Renamed from LivingGoddessTenure in v1.0.0.'),
 
     # ---- Documentation / source ----
-    ("DocumentationActivity",      "Activity",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      "Aligned via prov:Activity already in HG. Re-parented under hg:Activity (§5)."),
+    ("DocumentationActivity",      "GenericActivity (crm:E7_Activity)", "Activity",     "crm:E7_Activity",                 "subClassOf",      "Also prov:Activity in the core. Directly under crm:E7_Activity (the July 2026 hg:Activity parent was dropped in 1.1.0)."),
     ("FieldSurveyActivity",        "DocumentationActivity",        "(no LUX alias)",    "sci:S4_Observation",              "subClassOf",      "CRMsci preferred at deep level. LUX itself uses 'Activity' (E7)."),
     ("OralHistoryInterview",       "DocumentationActivity",        "Creation",          "crm:E65_Creation",                "subClassOf",      ""),
     ("Verification",               "DocumentationActivity",        "AttributeAssignment","crm:E13_Attribute_Assignment",   "subClassOf",      ""),
@@ -204,7 +207,7 @@ PROP_ROWS = [
 MISSING_ROWS = [
     # Suggested HG class | LUX alias | URI in LUX data | Why we need it
     # ---- Actor branch ----
-    ("hg:Group",              "Group",                "crm:E74_Group",                "Generic group above Guthi/CasteGroup; LUX exposes Group as top-level."),
+    ("hg:Group",              "Group",                "crm:E74_Group",                "DEPRECATED in 1.1.0: replaced by crm:E74_Group, which the core reuses directly as Group (super-class of Guthi and CasteGroup). Kept for data minted by earlier versions."),
     # ---- Object branch ----
     ("hg:DigitalObject",      "DigitalObject",        "dig:D1_Digital_Object",        "LUX top-level type at /data/digital/. Note: dig: (CRMdig), NOT crmdig:."),
     # ---- Information / work branch ----
@@ -220,7 +223,7 @@ MISSING_ROWS = [
     ("hg:Period",             "Period",               "crm:E4_Period",                "Generic period (Licchavi, Malla, Shah, Rana). KumariTenure becomes its subclass."),
     # ---- Event / activity branch ----
     ("hg:Birth",              "Birth",                "crm:E67_Birth",                "First-class person life event — LUX exposes 'born' for Person records."),
-    ("hg:Death",              "Death",                "crm:E69_Death",                "Mirror of Birth — 'died' on Person records."),
+    ("hg:Death",              "Death",                "crm:E69_Death",                "DEPRECATED in 1.1.0: replaced by crm:E69_Death, which the core reuses directly as Death. Kept for data minted by earlier versions."),
     ("hg:Formation",          "Formation",            "crm:E66_Formation",            "Founding event of a Guthi/Group; LUX uses 'formed_by' on Group records."),
     ("hg:Dissolution",        "Dissolution",          "crm:E68_Dissolution",          "Termination event of a Group; LUX uses 'dissolved_by'."),
     ("hg:BeginningOfExistence","BeginningOfExistence","crm:E63_Beginning_of_Existence","Generic existence-start fallback when no Production/Birth/Formation applies."),
@@ -249,7 +252,7 @@ MISSING_ROWS = [
 
     # ---- July 2026 gap audit (alignment §5) --------------------------------
     # Structural supers:
-    ("hg:Activity",           "Activity",             "crm:E7_Activity",              "Generic activity top + landing class for E7-typed LUX records (provenance wrappers). Internal parent of RitualEvent/DocumentationActivity/CurationActivity/ProvenanceActivity/AttributeAssignment."),
+    ("hg:Activity",           "Activity",             "crm:E7_Activity",              "DEPRECATED in 1.1.0: replaced by crm:E7_Activity, which the core reuses directly as GenericActivity. The former children (CurationActivity, ProvenanceActivity, AttributeAssignment, Encounter, Creation, Joining, Leaving) sit directly under crm:E7_Activity."),
     ("hg:Concept",            "Type",                 "crm:E55_Type",                 "Conceptual top; landing class for /data/concept/ records. Internal parent of Language/Currency/MeasurementUnit/ProductType/ReligiousTradition/enums."),
     ("hg:Appellation",        "Appellation",          "crm:E41_Appellation",          "Super of Identifier and Name; closes unmapped E41."),
     ("hg:Creation",           "Creation",             "crm:E65_Creation",             "Generic creation of information objects (E65 ⊏ E7 ∧ E63)."),
@@ -293,8 +296,8 @@ LUX_COVERAGE = [
     ("Person",               "crm:E21_Person",              "/data/person/  (top-level)",
         "crm:E21_Person",                                      "IDENTITY", "alpha5 (July 2026): hg:Person retired; typed crm:E21 directly."),
     ("Group",                "crm:E74_Group",               "/data/group/   (top-level)",
-        "hg:Group",                                            "NEW",
-        "New super-class above Guthi and CasteGroup."),
+        "crm:E74_Group",                                       "IDENTITY",
+        "1.1.0: typed crm:E74_Group directly (the core's Group, super-class of Guthi and CasteGroup); hg:Group is deprecated."),
     ("Actor",                "crm:E39_Actor",               "(union; not its own endpoint)",
         "crm:E39_Actor",                                       "IDENTITY", "Generic actor — Person OR Group. alpha5 (July 2026): hg:Actor retired; typed crm:E39 directly."),
 
@@ -333,8 +336,8 @@ LUX_COVERAGE = [
     ("Event",                "crm:E5_Event",                "/data/event/   (top-level)",
         "hg:HistoricalEvent",                                  "EXISTING", "Generic event."),
     ("Activity",             "crm:E7_Activity",             "/data/event/   (top-level)",
-        "hg:Activity (fallback) + subclasses",                 "NEW",
-        "Was PARENT-ONLY. §5 adds hg:Activity ≡ E7 so generic/provenance E7 records now migrate (guarded fallback in template t6)."),
+        "crm:E7_Activity (fallback) + subclasses",             "IDENTITY",
+        "1.1.0: generic E7 records are typed crm:E7_Activity directly (the core's GenericActivity; guarded fallback in template t6); hg:Activity is deprecated."),
 
     ("Production",           "crm:E12_Production",          "embedded (in Object)",
         "crm:E12_Production",                                  "IDENTITY", "alpha5 (July 2026): hg:Production retired; typed crm:E12 directly."),
@@ -351,7 +354,7 @@ LUX_COVERAGE = [
     ("Birth",                "crm:E67_Birth",               "embedded (on Person)",
         "hg:Birth",                                            "NEW",     "First-class person life event."),
     ("Death",                "crm:E69_Death",               "embedded (on Person)",
-        "hg:Death",                                            "NEW",     "Mirror of Birth."),
+        "crm:E69_Death",                                       "IDENTITY", "1.1.0: typed crm:E69_Death directly (the core's Death); hg:Death is deprecated."),
     ("Formation",            "crm:E66_Formation",           "embedded (on Group)",
         "hg:Formation",                                        "NEW",     "Founding event of a Guthi/Group."),
     ("Dissolution",          "crm:E68_Dissolution",         "embedded (on Group)",
