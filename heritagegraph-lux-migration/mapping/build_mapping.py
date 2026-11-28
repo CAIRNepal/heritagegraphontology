@@ -39,20 +39,20 @@ CLASS_ROWS = [
     ("TimeSpan",                   "(none)",                       "TimeSpan",          "crm:E52_Time-Span",               "identity (direct URI reuse)", "alpha5 (July 2026): hg:TimeSpan retired, crm:E52 is now the class itself."),
     ("Material",                   "(none)",                       "Material",          "crm:E57_Material",                "identity (direct URI reuse)", "alpha5 (July 2026): hg:Material retired, crm:E57 is now the class itself."),
     ("Production",                 "(none)",                       "Production",        "crm:E12_Production",              "identity (direct URI reuse)", "alpha5 (July 2026): hg:Production retired, crm:E12 is now the class itself."),
-    ("DestructionEvent",           "HistoricalEvent",              "Destruction",       "crm:E6_Destruction",              "identity (direct URI reuse)", "alpha5 (July 2026): hg:DestructionEvent retired, crm:E6 is now the class itself (still subClassOf hg:EndOfExistence in alignment §5)."),
+    ("DestructionEvent",           "(none)",                       "Destruction",       "crm:E6_Destruction",              "identity (direct URI reuse)", "alpha5 (July 2026): hg:DestructionEvent retired, crm:E6 is now the class itself. (No axiom on crm:E6 is stated: the module makes no statements about external terms.)"),
     ("TransferOfCustody",          "(none)",                       "TransferOfCustody", "crm:E10_Transfer_of_Custody",     "identity (direct URI reuse)", "alpha5 (July 2026): hg:TransferOfCustody retired, crm:E10 is now the class itself."),
     ("Group",                      "(none)",                       "Group",             "crm:E74_Group",                   "identity (direct URI reuse)", "1.1.0: the core reuses crm:E74_Group as Group (super-class of Guthi and CasteGroup); the module's hg:Group wrapper is deprecated (dct:isReplacedBy crm:E74_Group)."),
     ("Death",                      "(none)",                       "Death",             "crm:E69_Death",                   "identity (direct URI reuse)", "1.1.0: the core reuses crm:E69_Death as Death; the module's hg:Death wrapper is deprecated (dct:isReplacedBy crm:E69_Death)."),
     ("GenericActivity",            "(none)",                       "Activity",          "crm:E7_Activity",                 "identity (direct URI reuse)", "1.1.0: the core reuses crm:E7_Activity as GenericActivity; the module's hg:Activity wrapper is deprecated (dct:isReplacedBy crm:E7_Activity)."),
-    ('HistoricalEvent', '(none)', 'Event', 'crm:E5_Event', 'subClassOf', ''),
+    ('HistoricalEvent', 'Period', 'Event', 'crm:E5_Event', 'subClassOf', 'Internal parent hg:Period (E5 ⊏ E4) added by the module.'),
     ("ConditionState",             "(none)",                       "ConditionState",    "crm:E3_Condition_State",          "identity (direct URI reuse)", "alpha5 (July 2026): hg:ConditionState retired, crm:E3 is now the class itself."),
-    ('Deity', '(none)', 'ConceptualObject', 'crm:E28_Conceptual_Object', 'dropped in v1.0.0', 'Already exactMatch crm:E28 in HG.'),
-    ("ConditionAssessment",        "(none)",                       "ConditionAssessment","crm:E14_Condition_Assessment",   "identity (direct URI reuse)", "alpha5 (July 2026): hg:ConditionAssessment retired, crm:E14 is now the class itself (still subClassOf hg:CurationActivity in alignment §5)."),
+    ('Deity', '(none)', 'ConceptualObject', 'crm:E28_Conceptual_Object', 'dropped in v1.0.0', 'The core has skos:broadMatch crm:E28; the module adds nothing.'),
+    ("ConditionAssessment",        "(none)",                       "ConditionAssessment","crm:E14_Condition_Assessment",   "identity (direct URI reuse)", "alpha5 (July 2026): hg:ConditionAssessment retired, crm:E14 is now the class itself. (No axiom on crm:E14 is stated: the module makes no statements about external terms.)"),
 
     # ---- Architectural / object hierarchy (LUX uses HumanMadeObject + classified_as Type) ----
-    ("ArchitecturalStructure",     "HumanMadeObject",              "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "In LUX a building is HumanMadeObject classified_as <aat:300004792> 'building'."),
+    ("ArchitecturalStructure",     "crm:E22_Human-Made_Object",             "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "In LUX a building is HumanMadeObject classified_as <aat:300004792> 'building'."),
     ("ArchitecturalElement",       "PhysicalFeature",              "HumanMadeFeature",  "crm:E25_Human-Made_Feature",      "subClassOf",      "LUX exposes 'HumanMadeFeature' for embedded architectural elements. E25 ⊏ E26 → internal parent hg:PhysicalFeature (§5)."),
-    ("Temple",                     "ArchitecturalStructure",       "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "Use classified_as <aat:300007595> 'temple' to mirror LUX style."),
+    ("Temple",                     "ReligiousStructure",           "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "Use classified_as <aat:300007595> 'temple' to mirror LUX style."),
     ('Stupa', 'ReligiousStructure', 'HumanMadeObject', 'crm:E22_Human-Made_Object', 'subClassOf', "classified_as <aat:300007576> 'stupas'."),
     ('Chaitya', 'ReligiousStructure', 'HumanMadeObject', 'crm:E22_Human-Made_Object', 'subClassOf', "classified_as <aat:300007562> 'chaitya'."),
     ('BuddhistMonument', 'ArchitecturalStructure', 'HumanMadeObject', 'crm:E22_Human-Made_Object', 'removed in v1.0.0', 'Modeled with type assignment in LUX. Class not in HeritageGraph v1.0.0.'),
@@ -65,25 +65,25 @@ CLASS_ROWS = [
     ("WaterStructure",             "ArchitecturalStructure",       "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      ""),
 
     # ---- Iconographic / sacred objects ----
-    ("IconographicObject",         "HumanMadeObject",              "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "The PHYSICAL object. Depicted content is VisualItem (E36)."),
+    ("IconographicObject",         "crm:E22_Human-Made_Object",             "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "The PHYSICAL object. Depicted content is VisualItem (E36)."),
     ("Murti",                      "IconographicObject",           "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "classified_as <aat:300047090> 'sculpture'. Consecration adds 'sacred' aspect."),
     ("Paubha",                     "IconographicObject",           "HumanMadeObject",   "crm:E22_Human-Made_Object",       "subClassOf",      "classified_as <aat:300033666> 'thangka'."),
 
     # ---- Person / group / actor ----
     ("Guthi",                      "Group (crm:E74_Group)",                        "Group",             "crm:E74_Group",                   "subClassOf",      "Nepal-specific endowed trust. Semantically a Group."),
     ("CasteGroup",                 "Group (crm:E74_Group)",                        "Group",             "crm:E74_Group",                   "subClassOf",      ""),
-    ("DataCustodian",              "Actor",                        "Actor",             "crm:E39_Actor",                   "subClassOf",      "Could be Person or Group; LUX models as Actor."),
+    ("DataCustodian",              "crm:E39_Actor",                     "Actor",             "crm:E39_Actor",                   "subClassOf",      "Could be Person or Group; LUX models as Actor."),
 
     # ---- Activities / events ----
     ("RitualEvent",                "GenericActivity (crm:E7_Activity)", "Activity",     "crm:E7_Activity",                 "subClassOf",      "Directly under crm:E7_Activity (the July 2026 hg:Activity parent was dropped in 1.1.0 with that wrapper)."),
     ("Festival",                   "RitualEvent",                  "Activity",          "crm:E7_Activity",                 "subClassOf",      "Festival = Period-spanning Activity in LUX."),
     ("ChariotFestival",            "Festival",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      ""),
-    ("MaskedDance",                "Festival",                     "Activity",          "crm:E7_Activity",                 "subClassOf",      ""),
+    ("MaskedDance",                "RitualEvent",                   "Activity",          "crm:E7_Activity",                 "subClassOf",      ""),
     ("Consecration",               "RitualEvent",                  "Activity",          "crm:E7_Activity",                 "subClassOf",      "Custom HG event; LUX has no specific class. Re-parented under RitualEvent (§5)."),
     ("Enshrinement",               "RitualEvent",                  "Activity",          "crm:E7_Activity",                 "subClassOf",      "Novel HG event. Re-parented under RitualEvent (§5)."),
-    ('KumariSelectionEvent', 'RitualEvent', 'Activity', 'crm:E7_Activity', 'subClassOf', 'Novel HG event. Renamed from LivingGoddessSelection in v1.0.0.'),
-    ('KumariRetirementEvent', 'RitualEvent', 'Activity', 'crm:E7_Activity', 'subClassOf', 'Novel HG event. Renamed from LivingGoddessRetirement in v1.0.0.'),
-    ('KumariTenure', '(none)', 'Period', 'crm:E4_Period', 'subClassOf', 'Renamed from LivingGoddessTenure in v1.0.0.'),
+    ('KumariSelectionEvent', 'KumariLifecycleEvent', 'Activity', 'crm:E7_Activity', 'subClassOf', 'Novel HG event. Renamed from LivingGoddessSelection in v1.0.0.'),
+    ('KumariRetirementEvent', 'KumariLifecycleEvent', 'Activity', 'crm:E7_Activity', 'subClassOf', 'Novel HG event. Renamed from LivingGoddessRetirement in v1.0.0.'),
+    ('KumariTenure', 'Tenure; Period', 'Period', 'crm:E4_Period', 'subClassOf', 'Renamed from LivingGoddessTenure in v1.0.0. Core parent hg:Tenure; the module adds hg:Period.'),
 
     # ---- Documentation / source ----
     ("DocumentationActivity",      "GenericActivity (crm:E7_Activity)", "Activity",     "crm:E7_Activity",                 "subClassOf",      "Also prov:Activity in the core. Directly under crm:E7_Activity (the July 2026 hg:Activity parent was dropped in 1.1.0)."),
@@ -98,12 +98,12 @@ CLASS_ROWS = [
 
     # ---- Provenance / assertion ----
     ('Assertion', '(none)', 'AttributeAssignment', 'crm:E13_Attribute_Assignment', 'none (v1.0.0 uses crminf:I2_Belief)', 'LUX uses E13 inside provenance/identification. Renamed from HeritageAssertion in v1.0.0.'),
-    ("SyncreticRelationship",      "(none)",                       "AttributeAssignment","crm:E13_Attribute_Assignment",   "subClassOf",      "Already exactMatch crm:E13 in HG."),
-    ('AssertionSubject', '(none)', '(no direct match)', 'crminf:E1_Entity', 'broadMatch', 'Abstract; LUX has no equivalent. Keep CRMinf alignment. Renamed from AssertableEntity in v1.0.0.'),
+    ("SyncreticRelationship",      "AttributeAssignment",                       "AttributeAssignment","crm:E13_Attribute_Assignment",   "subClassOf",      "The core has rdfs:subClassOf crm:E13; the module adds the internal parent hg:AttributeAssignment."),
+    ('AssertionSubject', '(none)', '(no direct match)', 'crm:E1_CRM_Entity', 'broadMatch', 'Abstract; LUX has no equivalent. skos:broadMatch crm:E1_CRM_Entity (E1 is a CIDOC-CRM class, not CRMinf). Renamed from AssertableEntity in v1.0.0; since 1.1.0 no longer the domain of the module properties.'),
 
     # ---- Concepts / types ----
-    ("ReligiousTradition",         "(none)",                       "Type",              "crm:E55_Type",                    "subClassOf",      "Tradition modeled as a typed Concept (skos:Concept) in LUX."),
-    ('Technique', '(none)', 'DesignOrProcedure', 'crm:E29_Design_or_Procedure', 'identity (direct URI reuse)', 'alpha5 (July 2026): hg:Technique retired, crm:E29 is now the class itself (still subClassOf hg:PropositionalObject in alignment §5).'),
+    ("ReligiousTradition",         "Concept",                       "Type",              "crm:E55_Type",                    "subClassOf",      "Tradition modeled as a typed Concept (skos:Concept) in LUX."),
+    ('Technique', '(none)', 'DesignOrProcedure', 'crm:E29_Design_or_Procedure', 'identity (direct URI reuse)', 'alpha5 (July 2026): hg:Technique retired, crm:E29 is now the class itself. (No axiom on crm:E29 is stated: the module makes no statements about external terms.)'),
     ('CalendarSystem', '(none)', '(no LUX alias)', 'crm:E29_Designated_Reference_System', 'dropped in v1.0.0', 'time:Calendar exact match retained.'),
 
     # ---- Containers / metadata ----
@@ -123,18 +123,18 @@ CLASS_ROWS = [
 # ---------------- Property mapping ----------------
 PROP_ROWS = [
     # HG property | Range | LUX alias (JSON-LD) | URI in LUX data | Mapping
-    ("commissioned_by",          "Actor",                "(commissioning Activity → carried_out_by)", "crm:P14_carried_out_by", "subPropertyOf",   "LUX models as separate 'Activity' carried_out_by Actor."),
+    ("commissioned_by",          "Actor",                "(commissioning Activity → carried_out_by)", "crm:P14_carried_out_by", "no_direct_match", "No axiom: the core mints commissionedBy (CRM's idiom is a role-qualified P14). LUX models it as a separate 'Activity' carried_out_by Actor."),
     ('carried_out_by', 'Actor', 'carried_out_by', 'crm:P14_carried_out_by', 'identity (direct URI reuse)', ''),
     ('carried_out_activity', 'RitualEvent', 'carried_out', 'crm:P14i_performed', 'identity (direct URI reuse)', ''),
     ("performed_by_group",       "Guthi/CasteGroup",     "carried_out_by",             "crm:P14_carried_out_by",          "subPropertyOf",      "Group-restricted variant."),
     ("performs_ritual",          "RitualEvent",          "carried_out",                "crm:P14i_performed",              "subPropertyOf",      ""),
     ('had_participant', 'Actor', 'participant', 'crm:P11_had_participant', 'closeMatch', ''),
-    ("invokes_deity",            "Deity",                "(participant on Activity)",  "crm:P12_occurred_in_the_presence_of", "subPropertyOf", "Already broadMatch P12 in HG."),
+    ("invokes_deity",            "Deity",                "(participant on Activity)",  "crm:P12_occurred_in_the_presence_of", "subPropertyOf", "The core has rdfs:subPropertyOf P12 (restated in the module)."),
     ("is_invoked_in_ritual",     "RitualEvent",          "(inverse: present_at)",      "crm:P12i_was_present_at",         "subPropertyOf",   ""),
     ('took_place_at', 'Place', 'took_place_at', 'crm:P7_took_place_at', 'identity (direct URI reuse)', ''),
     ('has_timespan', 'TimeSpan', 'timespan', 'crm:P4_has_time-span', 'identity (direct URI reuse)', ''),
     ('has_current_location', 'Place', 'current_location', 'crm:P55_has_current_location', 'identity (direct URI reuse)', ''),
-    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55",                      "relatedMatch",    "A hypothesis, not the current location: model it as a provenance assertion (crminf:I2 about a P53 location)."),
+    ("hypothesized_location",    "Place",                "(current_location + assertion)","crm:P55_has_current_location", "relatedMatch",    "A hypothesis, not the current location: model it as a provenance assertion (crminf:I2 about a P53 location)."),
     ('has_component', 'ArchitecturalElement', 'part', 'crm:P46_is_composed_of', 'identity (direct URI reuse)', 'P46 for physical (P106 for visual/linguistic).'),
     ('is_component_of', 'ArchitecturalStructure', 'part_of', 'crm:P46i_forms_part_of', 'identity (direct URI reuse)', ''),
     ('contains_structure', 'ArchitecturalStructure', '(no LUX alias)', 'crm:P59i_is_located_on_or_within', 'none (v1.0.0 uses crm:P53i_is_former_or_current_location_of)', ''),
@@ -170,7 +170,7 @@ PROP_ROWS = [
     ('publication_timespan', 'TimeSpan', 'created → timespan', 'crm:E65_Creation via P4_has_time-span', 'closeMatch', ''),
 
     ('documented_in_source', 'DataSource', 'referred_to_by', 'crm:P67i_is_referred_to_by', 'subPropertyOf', ''),
-    ('was_documented_by', 'DocumentationActivity', '(provenance)', 'crm:P94i_was_created_by', 'closeMatch', ''),
+    ('was_documented_by', 'DocumentationActivity', '(provenance)', 'sci:O8i_was_observed_by', 'closeMatch', 'Since 1.1.0 (was crm:P94i_was_created_by): documentation observes the thing, it does not create it.'),
     ('generated', 'InformationObject', 'created', 'crm:P94_has_created', 'none (v1.0.0 uses prov:generated)', 'Renamed from produced_information_object in v1.0.0.'),
     ('was_generated_by', 'DocumentationActivity', 'created_by', 'crm:P94i_was_created_by', 'none (v1.0.0 uses prov:wasGeneratedBy)', 'Renamed from created_by_documentation in v1.0.0.'),
 
@@ -192,14 +192,14 @@ PROP_ROWS = [
     ('id', 'xsd:anyURI', 'id', 'crm:P1_is_identified_by', 'none (v1.0.0 uses dcterms:identifier)', ''),
     ('note', 'xsd:string', 'referred_to_by → LinguisticObject', 'crm:P3_has_note', 'identity (direct URI reuse)', ''),
     ('source_citation', 'xsd:string', 'referred_to_by', 'crm:P67i_is_referred_to_by', 'seeAlso', ''),
-    ("source_url",               "xsd:string",           "digitally_carried_by",       "la:digitally_carried_by",         "subPropertyOf",      "One of the genuine la: properties (no CRM equivalent)."),
+    ("source_url",               "xsd:string",           "digitally_carried_by",       "la:digitally_carried_by",         "no_direct_match",    "No axiom: source_url is a string, la:digitally_carried_by an object property."),
     ('place_coordinates', 'geo:wktLiteral', 'defined_by', 'crm:P168_place_is_defined_by', 'identity (direct URI reuse)', 'Since 1.1.0; v1.0.0 used geo:asWKT.'),
 
     ('assertion_author', 'Actor', '(carried_out_by on AttributeAssignment)', 'crm:P14_carried_out_by', 'removed in v1.0.0', 'Property not in HeritageGraph v1.0.0.'),
     ('was_attributed_to', 'Person', 'carried_out_by', 'crm:P14_carried_out_by', 'none (v1.0.0 uses prov:wasAttributedTo)', 'Renamed from was_attributed_to_agent in v1.0.0.'),
     ('asserted_property', 'xsd:string', 'assigned_property', 'crm:P177_assigned_property_of_type', 'removed in v1.0.0', 'Property not in HeritageGraph v1.0.0.'),
     ('asserted_value', 'xsd:string', 'assigned', 'crm:P141_assigned', 'removed in v1.0.0', 'Property not in HeritageGraph v1.0.0.'),
-    ("generated_at_time",        "xsd:dateTime",         "(AttributeAssignment.timespan)","crm:P4_has_time-span",          "subPropertyOf",      ""),
+    ("generated_at_time",        "xsd:dateTime",         "(AttributeAssignment.timespan)","crm:P4_has_time-span",          "none (v1.0.0 uses prov:generatedAtTime)", "No axiom: a datatype property cannot be a subproperty of crm:P4."),
     ('confidence_score', 'xsd:decimal', '(no LUX equivalent)', '(none)', 'no_direct_match', 'LUX/Linked Art has no built-in confidence score. Keep as HG-specific.'),
 ]
 
@@ -214,7 +214,7 @@ MISSING_ROWS = [
     ("hg:VisualItem",         "VisualItem",           "crm:E36_Visual_Item",          "Depicted *content* (scene/deity) separate from the physical Murti/Paubha."),
     ("hg:LinguisticObject",   "LinguisticObject",     "crm:E33_Linguistic_Object",    "Inscriptions, manuscripts, transcribed oral history."),
     ("hg:PropositionalObject","PropositionalObject",  "crm:E89_Propositional_Object", "Abstract works, beliefs, doctrines."),
-    ("hg:InformationObject",  "InformationObject",    "crm:E73_Information_Object",   "Generic super of LinguisticObject/VisualItem/DigitalObject."),
+    ("hg:InformationObject",  "InformationObject",    "crm:E73_Information_Object",   "EXISTING core class (not minted by the module): generic super of LinguisticObject/VisualItem/DigitalObject."),
     ("hg:Set",                "Set",                  "la:Set (closeMatch crm:E78)",  "GENUINE la: class — Linked Art mints la:Set distinct from crm:E78_Curated_Holding."),
     ("hg:CuratedHolding",     "CuratedHolding",       "crm:E78_Curated_Holding",      "Formally curated holding (museum collection, library set)."),
     ("hg:Inscription",        "Inscription",          "crm:E34_Inscription",          "Stone/metal/manuscript inscriptions."),
@@ -236,7 +236,7 @@ MISSING_ROWS = [
     ("hg:Measurement",        "Measurement",          "crm:E16_Measurement",          "Act of measuring an object's dimension."),
     ("hg:ProvenanceActivity", "(Activity classified_as Provenance)","crm:E7_Activity","NOT a separate la: class. LUX uses crm:E7_Activity classified_as a 'provenance' Type."),
     # ---- Information sub-classes ----
-    ("hg:AttributeAssignment","AttributeAssignment",  "crm:E13_Attribute_Assignment", "Super of HeritageAssertion / Verification / SyncreticRelationship."),
+    ("hg:AttributeAssignment","AttributeAssignment",  "crm:E13_Attribute_Assignment", "Super of Verification / SyncreticRelationship / Measurement / IdentifierAssignment / TypeAssignment (the core's Assertion, crminf:I2, is not under it)."),
     # ---- Concept / type branch ----
     ("hg:Language",           "Language",             "crm:E56_Language",             "Devanagari / Nepali / Newari / Sanskrit / English language tags."),
     ("hg:Currency",           "Currency",             "crm:E98_Currency",             "Used in provenance Acquisition/Payment records."),
@@ -380,7 +380,7 @@ LUX_COVERAGE = [
         "NOT a separate la: class. LUX models as crm:E7_Activity classified_as 'provenance' Type."),
     ("AttributeAssignment",  "crm:E13_Attribute_Assignment","embedded",
         "hg:AttributeAssignment",                              "NEW",
-        "Super of HeritageAssertion / Verification / SyncreticRelationship."),
+        "Super of Verification / SyncreticRelationship / Measurement / IdentifierAssignment / TypeAssignment (the core's Assertion, crminf:I2, is not under it)."),
 
     # ---- Information / Work branch -----------------------------------------------------
     ("LinguisticObject",     "crm:E33_Linguistic_Object",   "/data/work/    (top-level)",
@@ -486,11 +486,20 @@ NOTES = [
     "  The 'URI in LUX data' column shows the ACTUAL URI that appears in LUX data after parsing.",
     "",
     "Mapping_Type values",
-    "  equivalentClass / equivalentProperty -> identical semantics; safe to use owl:equivalentClass / owl:equivalentProperty.",
+    "  identity (direct URI reuse)          -> HeritageGraph uses the CRM class/property itself; no hg: term, no axiom.",
+    "  equivalentProperty                   -> identical semantics (owl:equivalentProperty; one case, destructionEvent ≡ crm:P13i).",
+    "                                          HeritageGraph 1.1.0 states no owl:equivalentClass to external classes.",
     "  subClassOf / subPropertyOf            -> HG class is more specific; rdfs:subClassOf to the CRM class.",
     "  closeMatch                            -> not strictly equivalent but semantically close; use skos:closeMatch.",
     "  broadMatch                            -> HG class is BROADER than the CRM target; use skos:broadMatch.",
+    "  relatedMatch / seeAlso                -> related but not hierarchical; skos:relatedMatch / rdfs:seeAlso.",
+    "  deprecated                            -> deprecated term (owl:deprecated); not mapped anew.",
+    "  dropped / removed in v1.0.0           -> mapping or term no longer present.",
+    "  none (v1.0.0 uses ...)                -> the core's slot is itself the external property named.",
     "  no_direct_match                       -> no usable LUX/CRM class; keep HG-only, document rationale.",
+    "",
+    "Property names",
+    "  Property rows use the LinkML slot names (snake_case); the IRIs in the TTL are camelCase (e.g. was_documented_by -> hg:documentedBy).",
     "",
     "Special-case mappings",
     "  Encounter        -> sci:S19_Encounter_Event  (CRMsci, NOT crm:E87 Curation Activity)",
@@ -502,10 +511,11 @@ NOTES = [
     "  ProvenanceActivity -> crm:E7_Activity classified_as 'Provenance'  (NOT a separate la: class)",
     "",
     "What's already in HeritageGraph.ttl",
-    "  HG already aligns to crm: via skos:exactMatch / skos:broadMatch for ~30 classes (HumanMadeObject, Person,",
-    "  Place, TimeSpan, Production, DestructionEvent, TransferOfCustody, ConditionState, etc.).",
-    "  This workbook upgrades those skos:* alignments to owl:equivalentClass / rdfs:subClassOf where appropriate,",
-    "  and adds 30 new HG classes for full LUX migration coverage.",
+    "  HeritageGraph 1.1.0 reuses 15 CIDOC-CRM classes directly (Person, HumanMadeObject, Actor, Place, TimeSpan,",
+    "  Material, Production, Destruction, TransferOfCustody, ConditionAssessment, ConditionState, Technique, Group,",
+    "  Death, GenericActivity) and aligns its own classes by rdfs:subClassOf or skos:* mappings.",
+    "  The module states no owl:equivalentClass and no axioms on external terms, and defines 59 classes",
+    "  (3 of them, hg:Group, hg:Death and hg:Activity, deprecated in 1.1.0) and 34 object properties (rdfs:isDefinedBy the module).",
     "",
     "How to apply the alignment",
     "  1) Append heritagegraph-lux-alignment.ttl to HeritageGraph.ttl (or owl:imports).",
@@ -519,7 +529,8 @@ NOTES = [
     "      RightAcquisition, DigitalService) plus E96/E85/E86/E20/E37/E26/E27/E32/E15/E17/E79/E80/E81/E93/E99/E41.",
     "  (b) Taxonomy orphans — 20 Section-3 classes had object-property edges but no HG-internal",
     "      subClassOf parent; re-parented with CRM-consistent internal edges (see alignment §5.4).",
-    "  Deliberate documented HG roots: Period, Concept, Dimension, LegalObject.",
+    "  Deliberate documented HG roots: Period, Concept, Dimension, LegalObject, Appellation.",
+    "  (Since 1.1.0 the activity tops sit directly under crm:E7_Activity, the core's GenericActivity.)",
     "  Abstract CRM supers (E1, E2, E18, E19, E24, E70, E71, E77, E90, E92) remain deliberately",
     "  unmapped — LUX never uses them as @type on instances.",
 ]
