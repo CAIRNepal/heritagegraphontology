@@ -260,6 +260,11 @@ def crawl(args: argparse.Namespace) -> None:
 
 # Each tuple: (label, type-of-LUX-class, transform CONSTRUCT-style INSERT WHERE template)
 #
+# Classes that HeritageGraph reuses directly from CIDOC-CRM (alignment §6:
+# crm:E21_Person, crm:E22_Human-Made_Object, crm:E53_Place, ... and, since
+# 1.1.0, crm:E74_Group, crm:E69_Death and crm:E7_Activity) are minted under
+# the CRM IRI, not under a hg: wrapper.
+#
 # Use {OFFSET} and {LIMIT} placeholders. The transform engine substitutes them
 # while iterating, so a single declarative pattern handles 100 K+ batches.
 TRANSFORM_TEMPLATES: dict[str, str] = {
@@ -321,7 +326,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
     PREFIX hg:  <https://cair-nepal.org/heritagegraph/>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     INSERT { GRAPH <{TARGET}> {
-      ?hgGroup a hg:Group ; owl:sameAs ?g ; <http://www.w3.org/2000/01/rdf-schema#label> ?gname ;
+      ?hgGroup a crm:E74_Group ; owl:sameAs ?g ; <http://www.w3.org/2000/01/rdf-schema#label> ?gname ;
                hg:wasFormedBy ?formed ; hg:dissolvedBy ?dissolved .
     } } WHERE {
       { SELECT ?g WHERE { ?g a crm:E74_Group . } ORDER BY ?g LIMIT {LIMIT} OFFSET {OFFSET} }
@@ -372,7 +377,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
           UNION { ?ev a crm:E96_Purchase        . BIND(hg:Purchase                AS ?hgClass) }
           UNION { ?ev a crm:E8_Acquisition      . BIND(hg:Acquisition             AS ?hgClass) }
           UNION { ?ev a crm:E67_Birth           . BIND(hg:Birth                   AS ?hgClass) }
-          UNION { ?ev a crm:E69_Death           . BIND(hg:Death                   AS ?hgClass) }
+          UNION { ?ev a crm:E69_Death           . BIND(crm:E69_Death             AS ?hgClass) }
           UNION { ?ev a crm:E66_Formation       . BIND(hg:Formation               AS ?hgClass) }
           UNION { ?ev a crm:E68_Dissolution     . BIND(hg:Dissolution             AS ?hgClass) }
           UNION { ?ev a crm:E85_Joining         . BIND(hg:Joining                 AS ?hgClass) }
@@ -401,7 +406,7 @@ TRANSFORM_TEMPLATES: dict[str, str] = {
                   FILTER NOT EXISTS { ?ev a ?sub .
                     FILTER(?sub IN (crm:E14_Condition_Assessment, crm:E15_Identifier_Assignment,
                                     crm:E16_Measurement, crm:E17_Type_Assignment)) } }
-          UNION { ?ev a crm:E7_Activity         . BIND(hg:Activity                AS ?hgClass)
+          UNION { ?ev a crm:E7_Activity         . BIND(crm:E7_Activity           AS ?hgClass)
                   FILTER NOT EXISTS { ?ev a ?sub .
                     FILTER(?sub IN (crm:E12_Production, crm:E11_Modification, crm:E9_Move,
                                     crm:E10_Transfer_of_Custody, crm:E8_Acquisition, crm:E96_Purchase,
