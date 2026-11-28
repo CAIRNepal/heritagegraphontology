@@ -52,6 +52,7 @@ E3_GRAPH = os.environ.get("LUX_E3_GRAPH", "https://w3id.org/heritagegraph/import
 LEGACY_HG = "https://w3id.org/heritagegraph/"   # pre-1.0.0 namespace of the pilot's types
 HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
+HG_DIRECT = URIRef(HG + "alignmentLuxDirectlyReuses")
 NAMESPACES = {
     "hg:": HG, "crm:": CRM,
     "sci:": "http://www.ics.forth.gr/isl/CRMsci/",   # as in the Linked Art context LUX is serialised with
@@ -155,8 +156,9 @@ def module_stats(bridge: Graph, core: Graph) -> dict:
         "equivalentProperty": count(OWL.equivalentProperty),
         "subClassOf": count(RDFS.subClassOf),
         "subPropertyOf": count(RDFS.subPropertyOf),
-        "crm_reused_by_core": sorted(short(str(c)) for c in core.subjects(RDF.type, OWL.Class)
-                                     if str(c).startswith(CRM)),
+        "crm_used_by_core": sorted(short(str(c)) for c in core.subjects(RDF.type, OWL.Class)
+                                   if str(c).startswith(CRM)),
+        "crm_reused_directly": sorted(short(str(o)) for o in bridge.objects(None, HG_DIRECT)),
     }
 
 
@@ -195,6 +197,11 @@ def main():
     core_rows = [(c, n) for c, n, cv, via in cov if cv == "YES" and via == "core"]
     mod_rows = [(c, n) for c, n, cv, via in cov if cv == "YES" and via == "module"]
     n_core, i_core = len(core_rows), sum(n for _, n in core_rows)
+    direct = set(stats["crm_reused_directly"])
+    dir_rows = [(c, n) for c, n in core_rows if c in direct]
+    sub_rows = [(c, n) for c, n in core_rows if c not in direct]
+    n_dir, i_dir = len(dir_rows), sum(n for _, n in dir_rows)
+    n_sub, i_sub = len(sub_rows), sum(n for _, n in sub_rows)
     n_mod, i_mod = len(mod_rows), sum(n for _, n in mod_rows)
     migrated = sum(n for _, n in e3)
     source = ("the committed snapshot of the live endpoint" if args.offline
@@ -211,20 +218,23 @@ def main():
              f"(**{100*n_cov/n_cls:.1f}%**); **{inst_cov:,}/{inst:,}** typed instances covered "
              f"(**{100*inst_cov/inst:.2f}%**).")
     L.append(f"  - **{n_core}** class types ({i_core:,} instances, {100*i_core/inst:.1f}%) are CIDOC-CRM "
-             "classes the core reuses directly.")
+             f"classes the core uses: {n_dir} ({i_dir:,} instances) it reuses directly as its own classes, "
+             f"and {n_sub} ({i_sub:,} instances; {', '.join(f'`{c}`' for c, _ in sub_rows)}) it uses as "
+             "superclasses of its own classes.")
     L.append(f"  - **{n_mod}** class types ({i_mod:,} instances, {100*i_mod/inst:.1f}%) are covered only "
              "through `hg:` classes that the LUX module defines (the core alone covers none of them).")
     L.append("  - Coverage is structural: every LUX type has a place in the alignment; a subclass link "
              "does not make LUX instances HeritageGraph instances.")
     L.append(f"- **E3 Migration:** {migrated:,} LUX entities (typed nodes) re-typed into {len(e3)} HeritageGraph classes "
              "in the pilot's migrated graph (a May 2026 pilot run with the pre-1.0.0 module; not reproducible "
-             "from the release and not part of the paper's evaluation).")
+             "from the release, so the paper reports it as a dated record, not a benchmark).")
     L.append(f"- **E4 Mapping:** {stats['equivalentClass']} `owl:equivalentClass` + "
              f"{stats['equivalentProperty']} `owl:equivalentProperty` axioms to CIDOC-CRM.")
     L.append(f"- **Module:** {stats['triples']} triples; {stats['subClassOf']} `rdfs:subClassOf`, "
              f"{stats['subPropertyOf']} `rdfs:subPropertyOf`. The core reuses "
-             f"{len(stats['crm_reused_by_core'])} CIDOC-CRM class IRIs directly "
-             f"({', '.join(stats['crm_reused_by_core'])}).\n")
+             f"{len(stats['crm_reused_directly'])} CIDOC-CRM classes directly as its own classes "
+             f"({', '.join(stats['crm_reused_directly'])}) and declares "
+             f"{len(stats['crm_used_by_core'])} CIDOC-CRM classes in all.\n")
 
     L.append("## E1 — Coverage of external classes present in LUX\n")
     L.append("| LUX class (instantiated) | Instances | HG target | Covered via |")
@@ -240,7 +250,7 @@ def main():
     L.append(f"| **total** | **{migrated:,}** |")
     L.append("\nThe migrated graph on the endpoint was produced with the pre-1.0.0 module, "
              "which typed persons, places, human-made objects and groups with HeritageGraph aliases "
-             "of the CIDOC-CRM classes the 1.1.0 core reuses directly; they are reported here "
+             "of CIDOC-CRM classes that the 1.1.0 core reuses directly; they are reported here "
              "under the 1.1.0 class.")
 
     L.append("\n## E4 — HeritageGraph ↔ CIDOC-CRM equivalence axioms\n")
@@ -256,12 +266,13 @@ def main():
           f"crm_mapping.csv ({len(eqc)+len(eqp)} rows), LUX_EVALUATION.md")
     print(f"E1 coverage: {n_cov}/{n_cls} class types ({100*n_cov/n_cls:.1f}%), "
           f"{inst_cov:,}/{inst:,} instances ({100*inst_cov/inst:.2f}%) | E3 migrated: {migrated:,}")
-    print(f"  via core reuse: {n_core} class types, {i_core:,} instances; "
+    print(f"  via core classes: {n_core} class types, {i_core:,} instances "
+          f"({n_dir} reused directly, {i_dir:,}; {n_sub} as superclasses, {i_sub:,}); "
           f"only via module classes: {n_mod} class types, {i_mod:,} instances")
     print(f"module: {stats['triples']} triples, {stats['equivalentClass']} equivalentClass, "
           f"{stats['equivalentProperty']} equivalentProperty, {stats['subClassOf']} subClassOf, "
           f"{stats['subPropertyOf']} subPropertyOf; core reuses "
-          f"{len(stats['crm_reused_by_core'])} CRM classes directly")
+          f"{len(stats['crm_reused_directly'])} CRM classes directly")
     return 0
 
 
