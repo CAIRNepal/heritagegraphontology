@@ -59,11 +59,12 @@ NAMESPACES = {
     "la:": "https://linked.art/ns/terms/",
 }
 # Types the migrated graph on the endpoint carries from the pre-1.0.0 module
-# (aliases of classes the v1.0.0 core reuses directly) -> v1.0.0 class.
+# (aliases of classes the 1.1.0 core reuses directly) -> 1.1.0 class.
 LEGACY_TYPES = {
     "hg:Person": "crm:E21_Person",
     "hg:Place": "crm:E53_Place",
     "hg:HumanMadeObject": "crm:E22_Human-Made_Object",
+    "hg:Group": "crm:E74_Group",   # module wrapper, deprecated in 1.1.0
 }
 
 
@@ -176,19 +177,25 @@ def main():
     merged = core + bridge
 
     counts = instance_counts(args.offline)
-    cov = [(c, n, "YES" if covered(merged, core, expand(c)) else "NO") for c, n in counts]
+    cov = [(c, n, "YES" if covered(merged, core, expand(c)) else "NO",
+            "core" if (expand(c), RDF.type, OWL.Class) in core else "module")
+           for c, n in counts]
     e3 = e3_counts(args.offline)
     eqc = sorted((short(str(s)), short(str(o))) for s, o in bridge.subject_objects(OWL.equivalentClass))
     eqp = sorted((short(str(s)), short(str(o))) for s, o in bridge.subject_objects(OWL.equivalentProperty))
     stats = module_stats(bridge, core)
 
-    write_csv(HERE / "coverage_E1.csv", ["lux_class", "instances", "covered"], cov)
+    write_csv(HERE / "coverage_E1.csv", ["lux_class", "instances", "covered", "via"], cov)
     write_csv(HERE / "migration_counts_E3.csv", ["v1_class", "instances"], e3)
     write_csv(HERE / "crm_mapping.csv", ["hg_term", "axiom", "crm_term"],
               [(s, "equivalentClass", o) for s, o in eqc] + [(s, "equivalentProperty", o) for s, o in eqp])
 
-    n_cls = len(cov); n_cov = sum(1 for _, _, c in cov if c == "YES")
-    inst = sum(n for _, n, _ in cov); inst_cov = sum(n for _, n, c in cov if c == "YES")
+    n_cls = len(cov); n_cov = sum(1 for _, _, c, _ in cov if c == "YES")
+    inst = sum(n for _, n, _, _ in cov); inst_cov = sum(n for _, n, c, _ in cov if c == "YES")
+    core_rows = [(c, n) for c, n, cv, via in cov if cv == "YES" and via == "core"]
+    mod_rows = [(c, n) for c, n, cv, via in cov if cv == "YES" and via == "module"]
+    n_core, i_core = len(core_rows), sum(n for _, n in core_rows)
+    n_mod, i_mod = len(mod_rows), sum(n for _, n in mod_rows)
     migrated = sum(n for _, n in e3)
     source = ("the committed snapshot of the live endpoint" if args.offline
               else f"the live endpoint `{ENDPOINT}`")
@@ -203,8 +210,15 @@ def main():
              f"class types instantiated in LUX have a HeritageGraph target "
              f"(**{100*n_cov/n_cls:.1f}%**); **{inst_cov:,}/{inst:,}** typed instances covered "
              f"(**{100*inst_cov/inst:.2f}%**).")
-    L.append(f"- **E3 Migration:** {migrated:,} LUX records re-typed into {len(e3)} HeritageGraph classes "
-             "in graph `…/imported/lux` (a pilot run with the pre-1.0.0 module; not part of the paper's evaluation).")
+    L.append(f"  - **{n_core}** class types ({i_core:,} instances, {100*i_core/inst:.1f}%) are CIDOC-CRM "
+             "classes the core reuses directly.")
+    L.append(f"  - **{n_mod}** class types ({i_mod:,} instances, {100*i_mod/inst:.1f}%) are covered only "
+             "through `hg:` classes that the LUX module defines (the core alone covers none of them).")
+    L.append("  - Coverage is structural: every LUX type has a place in the alignment; a subclass link "
+             "does not make LUX instances HeritageGraph instances.")
+    L.append(f"- **E3 Migration:** {migrated:,} LUX entities (typed nodes) re-typed into {len(e3)} HeritageGraph classes "
+             "in the pilot's migrated graph (a May 2026 pilot run with the pre-1.0.0 module; not reproducible "
+             "from the release and not part of the paper's evaluation).")
     L.append(f"- **E4 Mapping:** {stats['equivalentClass']} `owl:equivalentClass` + "
              f"{stats['equivalentProperty']} `owl:equivalentProperty` axioms to CIDOC-CRM.")
     L.append(f"- **Module:** {stats['triples']} triples; {stats['subClassOf']} `rdfs:subClassOf`, "
@@ -213,21 +227,21 @@ def main():
              f"({', '.join(stats['crm_reused_by_core'])}).\n")
 
     L.append("## E1 — Coverage of external classes present in LUX\n")
-    L.append("| LUX class (instantiated) | Instances | HG target |")
-    L.append("|---|--:|:--:|")
-    for c, n, cv in cov:
-        L.append(f"| `{c}` | {n:,} | {cv} |")
+    L.append("| LUX class (instantiated) | Instances | HG target | Covered via |")
+    L.append("|---|--:|:--:|:--:|")
+    for c, n, cv, via in cov:
+        L.append(f"| `{c}` | {n:,} | {cv} | {via} |")
 
     L.append("\n## E3 — Migrated instances per HeritageGraph class\n")
-    L.append("| v1.0.0 class | Instances |")
+    L.append("| 1.1.0 class | Instances |")
     L.append("|---|--:|")
     for c, n in e3:
         L.append(f"| `{c}` | {n:,} |")
     L.append(f"| **total** | **{migrated:,}** |")
     L.append("\nThe migrated graph on the endpoint was produced with the pre-1.0.0 module, "
-             "which typed persons, places, and human-made objects with HeritageGraph aliases "
-             "of the CIDOC-CRM classes the v1.0.0 core reuses directly; they are reported here "
-             "under the v1.0.0 class.")
+             "which typed persons, places, human-made objects and groups with HeritageGraph aliases "
+             "of the CIDOC-CRM classes the 1.1.0 core reuses directly; they are reported here "
+             "under the 1.1.0 class.")
 
     L.append("\n## E4 — HeritageGraph ↔ CIDOC-CRM equivalence axioms\n")
     L.append("| HeritageGraph term | Axiom | CIDOC-CRM term |")
@@ -242,6 +256,8 @@ def main():
           f"crm_mapping.csv ({len(eqc)+len(eqp)} rows), LUX_EVALUATION.md")
     print(f"E1 coverage: {n_cov}/{n_cls} class types ({100*n_cov/n_cls:.1f}%), "
           f"{inst_cov:,}/{inst:,} instances ({100*inst_cov/inst:.2f}%) | E3 migrated: {migrated:,}")
+    print(f"  via core reuse: {n_core} class types, {i_core:,} instances; "
+          f"only via module classes: {n_mod} class types, {i_mod:,} instances")
     print(f"module: {stats['triples']} triples, {stats['equivalentClass']} equivalentClass, "
           f"{stats['equivalentProperty']} equivalentProperty, {stats['subClassOf']} subClassOf, "
           f"{stats['subPropertyOf']} subPropertyOf; core reuses "
