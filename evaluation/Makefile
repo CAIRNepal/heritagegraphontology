@@ -8,6 +8,9 @@
 #   make cq          — Competency-question execution over the demonstrator
 #   make alignment   — Alignment counts
 #   make metrics     — Structural metrics
+#   make terms       — Every hg: term used is declared in the ontology
+#   make combined    — Ontology + each example in OWL 2 DL and HermiT-consistent
+#   make independent — SHACL conformance of the demonstrator + negative tests
 #   make protege     — Download & configure Protégé
 #   make clean       — Remove results (keep venv)
 #   make cleanall    — Remove results + venv + Protégé
@@ -39,7 +42,7 @@ $(VENV)/bin/activate: requirements.txt
 	touch $(VENV)/bin/activate
 	@echo "✅ Virtual environment ready. Run: source $(VENV)/bin/activate"
 
-independent: setup ## SHACL conformance + negative tests (independent_eval.py was removed in 1.1.0: superseded by the release gates)
+independent: setup ## SHACL conformance of the demonstrator + negative tests
 	@echo "Running independent cross-check..."
 	$(PYTHON) independent_abox.py
 	@echo ""

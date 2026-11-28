@@ -137,6 +137,9 @@ Kept, and marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a r
   release gates of `make check` and `make reproduce` replace them, and `docs/ontology.owl` is the
   RDF/XML serialisation.
 - `scripts/finalize_alpha5_artifacts.py` is renamed `scripts/finalize_artifacts.py`.
+- The DANAM and Wikidata data bundle (`data/`), its SPARQL deployment (`deploy/fuseki/`) and
+  `evaluation/run_danam_scale_cq.py`. They were not part of the evaluation, and the data set is
+  maintained in a separate repository.
 
 ## [1.0.1] - 2026-10-20
 

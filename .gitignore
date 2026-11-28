@@ -19,7 +19,6 @@ methodology.tex
 *.bib
 main/
 tgdk-overleaf/
-HeritageGraph_ontology.xlsx
 
 # Backup / scratch
 *.bak-prefix
@@ -28,7 +27,6 @@ HeritageGraph_ontology.xlsx
 
 # Intermediate regeneration artefacts (source of truth is HeritageGraph.yaml)
 *.regen.ttl
-.webvowl-out/
 evaluation/HeritageGraph.hermit-check.*
 
 # Reasoner / scratch logs
@@ -43,7 +41,7 @@ related_paper/
 # Personal / non-repo assets
 Eval.pdf
 
-# WIDOCO build artifacts (source of truth is ontology/HeritageGraph.ttl)
+# Build intermediates (source of truth is ontology/HeritageGraph.yaml)
 ontology/HeritageGraph.merged.ttl
 ontology/HeritageGraph.build.ttl
 

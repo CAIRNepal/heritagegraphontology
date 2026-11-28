@@ -19,5 +19,5 @@ Definitions copied from Schema.org are CC BY-SA 3.0: a redistribution of those d
 that licence. The evaluation also downloads CRMsci 2.0 and the full PROV-O bundle (CC BY 4.0 and the
 W3C licence respectively), pinned by sha256, without redistributing them.
 
-The DANAM records referenced by the examples and the dataset are © Heidelberg Academy of Sciences
+The DANAM records referenced by the examples are © Heidelberg Academy of Sciences
 and Humanities (DANAM project) and are cited, not redistributed, here.

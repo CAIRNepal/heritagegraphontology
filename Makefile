@@ -1,7 +1,7 @@
 # HeritageGraph — top-level build targets.
 # The ontology lives in ontology/ ; generated docs live in docs/ (never hand-edit).
 
-.PHONY: help docs preview serve artefacts check robot conneg clean
+.PHONY: help docs preview serve artefacts check robot reproduce coverage conneg clean
 
 help:                ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

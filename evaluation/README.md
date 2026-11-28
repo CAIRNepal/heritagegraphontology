@@ -28,7 +28,7 @@ make coverage    # competency-question traceability matrix and mutation analysis
 | `check_combined_dl.py` | The ontology alone and with each example is in OWL 2 DL and HermiT-consistent |
 | `reasoning_extras.py` | Inconsistency injection, no HeritageGraph superclass on external terms, no Kumari tenure inferred to be an event, Linked Art module conservativity, CRM disjointness, and classification merged with the external vocabularies |
 | `run_inference_cq.py` | The four inference questions, answered only under reasoning (`cq_inference_expected.json`) |
-| `pattern_experiments.py` | The pattern experiments: tenure, syncretic identification, custodianship, multiple calendars, reuse outside Nepal, ablation, belief supersession |
+| `pattern_experiments.py` | The pattern experiments: tenure, custodianship, multiple calendars, and reuse outside Nepal (the ablation, `owl:sameAs`, and belief-supersession experiments run under `make reproduce`) |
 
 ## Metrics and reports (`make reproduce`)
 
@@ -52,8 +52,6 @@ stale.
   earlier version of the Linked Art module and are not part of the paper's evaluation.
 - `rater/`: the protocol and sheet for an independent rating of the mappings (see its README).
 - `expert_cq/`: the protocol for held-out competency questions from external experts (see its README).
-- `run_danam_scale_cq.py`: runs the competency questions over the DANAM bundle in `../data/`. It is
-  not part of the paper's evaluation.
 - `setup_protege.sh` and `protege/`: an optional local Protégé installation for inspecting the
   ontology with HermiT.
 
