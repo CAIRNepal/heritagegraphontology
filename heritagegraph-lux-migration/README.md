@@ -4,9 +4,10 @@ Ontology alignment and migration pipeline that lifts Yale's [LUX](https://lux.co
 
 | | |
 |---|---|
-| Source dataset | LUX — ~16 M Linked Art records across objects, persons, places, concepts, events, sets, works |
+| Source dataset | LUX — more than 41 million Linked Art records across objects, persons, places, concepts, events, sets, works ([Sanderson 2024](https://doi.org/10.16995/olh.15407)) |
 | Target dataset | HeritageGraph — Nepal-focused cultural heritage ontology |
-| Alignment | 273 OWL triples (33 new HG class declarations, 12 `owl:equivalentClass`, 88 `rdfs:subClassOf`, 18 `owl:equivalentProperty`, 45 `rdfs:subPropertyOf`) |
+| Alignment | 772 OWL triples (59 module classes, 3 of them deprecated, and 34 object properties; 0 `owl:equivalentClass`, 167 `rdfs:subClassOf`, 1 `owl:equivalentProperty`, 44 `rdfs:subPropertyOf`, 14 SKOS mappings) |
+| Version | 1.1.0 (versionIRI `https://cair-nepal.org/heritagegraph/alignment/lux/1.1.0`), follows HeritageGraph 1.1.0; terms the module mints are marked `rdfs:isDefinedBy` it, and the module passes the `lux-conservativity` gate |
 | Migration tooling | Python (`rdflib`, `pyoxigraph`) + SPARQL CONSTRUCTs + Docker Compose |
 | Target triplestore | [Oxigraph](https://github.com/oxigraph/oxigraph) — embedded or HTTP |
 | Status | alignment verified · pilot ready · server-deployable |
@@ -72,7 +73,7 @@ heritagegraph-lux-migration/
 │   └── build_mapping.py             ← regenerates the XLSX
 │
 ├── queries/                         ← SPARQL
-│   ├── lux_to_hg_migration.sparql   ← 9 CONSTRUCT-as-INSERT transforms
+│   ├── lux_to_hg_migration.sparql   ← 10 CONSTRUCT transforms + sanity check (t11)
 │   └── validation_queries.sparql    ← 8 post-migration checks (V1/V2 hard gates)
 │
 ├── scripts/                         ← runnable Python + shell
@@ -100,9 +101,9 @@ heritagegraph-lux-migration/
 
 ### The alignment (`alignment/heritagegraph-lux-alignment.ttl`)
 
-* **65 HG classes** mapped to either `crm:` (CIDOC-CRM) or `la:` (Linked Art-only — only seven of these exist; the rest of the LUX short names expand directly to `crm:` URIs).
-* **69 HG properties** aligned via `owl:equivalentProperty` or `rdfs:subPropertyOf`.
-* **34 new HG classes proposed** (drop-in TTL scaffolding) for full LUX migration coverage — Birth, Death, Formation, Dissolution, Acquisition, Move, VisualItem, LinguisticObject, DigitalObject, Set, Identifier, Name, MeasurementUnit, Dimension, Right, LegalObject, Modification, Language, Currency, BeginningOfExistence, EndOfExistence, PropositionalObject, Measurement, Inscription, Title, CuratedHolding, CurationActivity, MonetaryAmount, AttributeAssignment, Period, Encounter, ProvenanceActivity, Group, AttributeAssignment.
+* **68 class rows / 69 property rows** in the mapping workbook (including identity, deprecated and dropped rows), mapped to `crm:` (CIDOC-CRM) or `la:` (Linked Art-only — only seven of these exist; the rest of the LUX short names expand directly to `crm:` URIs).
+* **15 CIDOC-CRM classes reused directly** (no `hg:` wrapper), as the core does: Person, HumanMadeObject, Actor, Place, TimeSpan, Material, Production, Destruction, TransferOfCustody, ConditionAssessment, ConditionState, Technique, and since 1.1.0 Group (`crm:E74_Group`), Death (`crm:E69_Death`) and generic Activity (`crm:E7_Activity`).
+* **59 HG classes defined by this module** (`rdfs:isDefinedBy` the module) for full LUX migration coverage — e.g. Birth, Formation, Dissolution, Acquisition, Move, VisualItem, LinguisticObject, DigitalObject, Set, Identifier, Name, MeasurementUnit, Dimension, Right, LegalObject, Modification, Language, Currency, BeginningOfExistence, EndOfExistence, PropositionalObject, Measurement, Inscription, Title, CuratedHolding, CurationActivity, MonetaryAmount, AttributeAssignment, Period, Encounter, ProvenanceActivity, and the six genuine `la:` activity classes. Three of them (`hg:Group`, `hg:Death`, `hg:Activity`) are deprecated in 1.1.0 in favour of the CRM classes.
 * Verified against the [official Linked Art JSON-LD context](https://linked.art/ns/v1/linked-art.json) — see [`docs/VERIFICATION_FINDINGS.md`](docs/VERIFICATION_FINDINGS.md) for the six material bugs found and fixed.
 
 ### The migration (`scripts/migrate_lux_to_hg.py`)
