@@ -17,12 +17,15 @@
 #####################################################################
 # HeritageGraph  ↔  LUX (Linked Art / CIDOC-CRM)  alignment ontology
 #
-# Companion to HeritageGraph.ttl  (CAIRNepal/heritagegraphontology@HeritageGraph)
+# Companion to HeritageGraph.ttl  (CAIRNepal/heritagegraphontology, main branch,
+#               release 1.1.0)
+# Version     : 1.1.0 (November 2026), versionIRI
+#               <https://cair-nepal.org/heritagegraph/alignment/lux/1.1.0>
 # Author      : Semih Yumuşak, May 2026
 # Contributor : Niraj Karki (CAIR Nepal) — orphan fix (§4) + OWL/DL cleanup,
-#               June 2026 (see the official copy at
-#               heritagegraph-lux-migration/alignment/ in the heritagegraphontology repo,
-#               HeritageGraph branch, v1.0.0)
+#               June 2026; sync to HeritageGraph 1.0.0 and 1.1.0 (see the
+#               official copy at heritagegraph-lux-migration/alignment/ in the
+#               heritagegraphontology repo, main branch, 1.1.0)
 # Goal   : LUX → HG migration. LUX records are JSON-LD whose @context
 #          maps short names ('HumanMadeObject', 'Person', …) to
 #          *crm:* / *dig:* / *sci:* URIs (the real URIs that appear in
@@ -60,6 +63,16 @@
 # property dropped as redundant, and hadParticipant ≡ crm:P11 replaced by
 # skos:closeMatch. LUX-facing targets follow the Linked Art JSON-LD context
 # (sci: = http://www.ics.forth.gr/isl/CRMsci/, as LUX data is serialised).
+#
+# 1.1.0 (November 2026): follows HeritageGraph 1.1.0. Groups, deaths and
+# generic activities are migrated by direct reuse of crm:E74_Group,
+# crm:E69_Death and crm:E7_Activity (hg:Group, hg:Death and hg:Activity are
+# deprecated, §6); terms this module mints are marked rdfs:isDefinedBy it
+# (§8); the module is checked to be conservative over the core
+# (evaluation/reasoning_extras.py lux-conservativity). Some §1/§2 axioms
+# restate axioms the core already has (e.g. Guthi ⊑ crm:E74_Group): the
+# validation queries V1/V4 look only inside the alignment named graph, so
+# they are kept here. See CHANGELOG.md [1.1.0].
 #
 # Apply with:  owl:imports  or  cat alignment.ttl >> HeritageGraph.ttl
 #####################################################################
