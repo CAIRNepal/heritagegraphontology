@@ -104,16 +104,12 @@ if [[ -f "$HG_TTL" ]]; then
 else
     say "fetching HeritageGraph.ttl from CAIR Nepal GitHub"
     # HeritageGraph 1.1.0 (which this module imports) is published on 'main'
-    # at ontology/HeritageGraph.ttl. The fallback, the same path on the
-    # 'HeritageGraph' branch, serves release 1.0.x; it is kept only so that
-    # bootstrap does not hard-fail. (The old root path main/HeritageGraph.ttl
-    # no longer exists.)
+    # at ontology/HeritageGraph.ttl. There is no fallback: other branches serve
+    # release 1.0.x, which this module does not align with, so a failed fetch
+    # skips the ontology load instead of loading the wrong version.
     if curl -fL --retry 3 \
         -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/ontology/HeritageGraph.ttl" \
-       || curl -fL --retry 3 \
-        -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl"; then
+        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/ontology/HeritageGraph.ttl"; then
         ok "HeritageGraph.ttl downloaded ($(wc -l < "$HG_TTL") lines)"
     else
         warn "couldn't fetch HeritageGraph.ttl — migrator will skip the HG ontology load until you put it in alignment/"
