@@ -1,5 +1,7 @@
 # Pilot Run — What was migrated and how to query it
 
+> **Historical record (May 2026).** This run used alignment v0.1.0 (273 triples, `https://w3id.org/heritagegraph/` namespace), which predates HeritageGraph 1.0.0; it cannot be reproduced from release 1.1.0. Current figures: README "Results" and CHANGELOG [1.1.0].
+
 First end-to-end pilot run executed against the production stack on
 `server42.dnsbilisim.net` (Oxigraph 0.4.4). This document records what the
 imported dataset looks like, where the data lives, and how to query it.
