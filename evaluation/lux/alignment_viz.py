@@ -4,6 +4,7 @@
 Unlike the full merged WebVOWL (which has a noisy owl:Thing hub), this shows ONLY
 the alignment edges — every HG class and the external (CRM/CRMdig/CRMsci/Linked-Art)
 class it maps to, coloured by axiom type (equivalentClass vs subClassOf).
+Deprecated module classes (owl:deprecated, e.g. hg:Group since 1.1.0) are left out.
 
 Outputs (in evaluation/lux/):
   alignment_graph.html  — interactive, self-contained (vis-network via CDN); open in a browser
@@ -25,6 +26,7 @@ CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 def short(u: str) -> str:
     return (u.replace(HG, "").replace(CRM, "crm:")
             .replace("http://www.cidoc-crm.org/extensions/crmsci/", "sci:")
+            .replace("http://www.ics.forth.gr/isl/CRMsci/", "sci:")   # the IRI the module (and LUX data) use
             .replace("http://www.ics.forth.gr/isl/CRMdig/", "dig:")
             .replace("https://linked.art/ns/terms/", "la:"))
 
@@ -32,9 +34,10 @@ def short(u: str) -> str:
 def collect():
     g = Graph().parse(str(BRIDGE), format="turtle")
     ext = lambda o: isinstance(o, URIRef) and not str(o).startswith(HG)
+    deprecated = set(g.subjects(OWL.deprecated, None))
     eqc = [(str(s), str(o)) for s, _, o in g.triples((None, OWL.equivalentClass, None)) if ext(o)]
     sc = [(str(s), str(o)) for s, _, o in g.triples((None, RDFS.subClassOf, None))
-          if ext(o) and str(s).startswith(HG)]
+          if ext(o) and str(s).startswith(HG) and s not in deprecated]
     return eqc, sc
 
 
