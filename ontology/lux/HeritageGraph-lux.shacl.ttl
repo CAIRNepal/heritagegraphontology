@@ -123,7 +123,7 @@ heritageGraph:BirthShape a sh:NodeShape ;
                   sh:description "Time-span of the birth." ] .
 
 heritageGraph:DeathShape a sh:NodeShape ;
-    sh:targetClass heritageGraph:Death ;
+    sh:targetClass crm:E69_Death ;  # 1.1.0: direct reuse; heritageGraph:Death is deprecated
     sh:property [ sh:path crm:P4_has_time-span ;
                   sh:maxCount 1 ] .
 
@@ -173,7 +173,7 @@ heritageGraph:ProvenanceActivityShape a sh:NodeShape ;
 #####################################################################
 
 heritageGraph:GroupShape a sh:NodeShape ;
-    sh:targetClass heritageGraph:Group ;
+    sh:targetClass crm:E74_Group ;  # 1.1.0: direct reuse; heritageGraph:Group is deprecated
     sh:property heritageGraph:LuxLabelShape ;
     sh:property [ sh:path heritageGraph:wasFormedBy ;
                   sh:class heritageGraph:Formation ;
