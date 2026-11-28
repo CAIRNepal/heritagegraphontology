@@ -1032,7 +1032,7 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 #    13 such lines were removed. All rdfs:domain / rdfs:range
 #    declarations on object properties (§4, §5.5) and all rdfs:subClassOf
 #    statements that used one of these 12 classes as SUBJECT (e.g.
-#    hg:DataCustodian rdfs:subClassOf the former hg:Actor) were
+#    hg:DataCustodian rdfs:subClassOf the former Actor class) were
 #    rewritten to the crm: URI. The companion files were updated the same
 #    way — see ../queries/lux_to_hg_migration.sparql and
 #    ../scripts/migrate_lux_to_hg.py (TRANSFORM_TEMPLATES): every CONSTRUCT
