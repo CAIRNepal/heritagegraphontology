@@ -103,22 +103,17 @@ if [[ -f "$HG_TTL" ]]; then
     ok "HeritageGraph.ttl already present"
 else
     say "fetching HeritageGraph.ttl from CAIR Nepal GitHub"
-    # NB July 2026 (alpha5 sync, see docs/SERVER_AND_MIGRATION_STATE.md §6):
-    # 'main' has been stale since Feb 2026 — active development is on the
-    # 'HeritageGraph' branch, and as of the alpha5 regeneration (2026-07-22)
-    # the ontology lives at ontology/HeritageGraph.ttl on THAT branch (moved
-    # out of the repo root). Try that first; fall back to the old root path
-    # on 'HeritageGraph' (pre-alpha5 layout), then to 'main' (known stale,
-    # last resort so bootstrap doesn't hard-fail).
+    # HeritageGraph 1.1.0 (which this module imports) is published on 'main'
+    # at ontology/HeritageGraph.ttl. The fallback, the same path on the
+    # 'HeritageGraph' branch, serves release 1.0.x; it is kept only so that
+    # bootstrap does not hard-fail. (The old root path main/HeritageGraph.ttl
+    # no longer exists.)
     if curl -fL --retry 3 \
         -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl" \
+        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/ontology/HeritageGraph.ttl" \
        || curl -fL --retry 3 \
         -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl" \
-       || curl -fL --retry 3 \
-        -o "$HG_TTL" \
-        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/HeritageGraph.ttl"; then
+        "https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl"; then
         ok "HeritageGraph.ttl downloaded ($(wc -l < "$HG_TTL") lines)"
     else
         warn "couldn't fetch HeritageGraph.ttl — migrator will skip the HG ontology load until you put it in alignment/"

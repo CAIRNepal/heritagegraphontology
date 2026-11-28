@@ -28,7 +28,7 @@ docker/
 cp .env.example .env
 # put HeritageGraph.ttl into alignment/  (download from CAIRNepal/heritagegraphontology)
 curl -L -o alignment/HeritageGraph.ttl \
-  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/HeritageGraph/ontology/HeritageGraph.ttl
+  https://raw.githubusercontent.com/CAIRNepal/heritagegraphontology/main/ontology/HeritageGraph.ttl
 
 docker compose up -d
 docker compose logs -f migrator
