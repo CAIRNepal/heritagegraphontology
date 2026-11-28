@@ -4,13 +4,37 @@ All notable changes to this project will be documented in this file. Format insp
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-11-28 (follows HeritageGraph 1.1.0)
+
+### Changed — alignment (`alignment/heritagegraph-lux-alignment.ttl`)
+- **Direct reuse of three more CIDOC-CRM classes.** The 1.1.0 core reuses `crm:E74_Group` (Group), `crm:E69_Death` (Death) and `crm:E7_Activity` (GenericActivity), so LUX groups, deaths and generic activities are migrated as those classes. `hg:Group`, `hg:Death` and `hg:Activity` are `owl:deprecated` with `dct:isReplacedBy` the CRM class and an "obsolete" label; Guthi and CasteGroup no longer sit under `hg:Group`, RitualEvent and DocumentationActivity no longer under `hg:Activity`, and the module's activity classes (Creation, Joining, Leaving, CurationActivity, ProvenanceActivity, AttributeAssignment, Encounter) sit directly under `crm:E7_Activity`; `wasFormedBy`/`dissolvedBy` have domain `crm:E74_Group` and `diedInEvent` range `crm:E69_Death`. The `hg:alignmentLuxDirectlyReuses` marker lists 15 classes (was 12).
+- Prefix `heritageGraph:` → `hg:` in the alignment, matching the core TTL (same namespace, `https://cair-nepal.org/heritagegraph/`); the reference SPARQL file keeps `heritageGraph:`.
+- Container and Metadata (deprecated in the 1.1.0 core) are no longer mapped; `hasMetadata` ranges over `crm:E73_Information_Object`; `Appellation ⊑ hg:Metadata` removed (Appellation is a documented root).
+- `documentedBy` is `skos:closeMatch sci:O8i_was_observed_by` (was `crm:P94i_was_created_by`); `hypothesizedLocation` is `skos:relatedMatch crm:P55_has_current_location` (was ⊑); `identifiedByTitle ⊑ crm:P1_is_identified_by` (was P102); `aboutProposition ⊑ crm:P129i_is_subject_of` (was P129); `subjectToLegalObject` is `skos:relatedMatch crm:P67i`; `holdsItem` ranges over `crm:E18_Physical_Thing`.
+- `AssertionSubject` dropped as the domain of eight module properties (`aboutProposition`, `hasMetadata`, `hasRight`, `identifiedBy{Identifier,Name,Title}`, `memberOfSet`, `subjectToLegalObject`).
+- Section 8: every term the module mints is marked `rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux>`; `owl:versionIRI <https://cair-nepal.org/heritagegraph/alignment/lux/1.1.0>`, `owl:versionInfo "1.1.0"`, `dct:creator`, `dct:license`.
+- Header, `dct:description` and comments describe 1.1.0 (no alpha5/July framing, no "(retired alias)" leftovers, KumariTenure, the actual children of `hg:AttributeAssignment`, Appellation among the deliberate roots, `# end of file` at the end).
+
+### Changed — migration, mapping, tooling and docs
+- `queries/lux_to_hg_migration.sparql` and `scripts/migrate_lux_to_hg.py` (`TRANSFORM_TEMPLATES`) type groups, deaths and generic activities as `crm:E74_Group`, `crm:E69_Death`, `crm:E7_Activity`; validation-query comments count 15 direct-reuse classes; t5 comment says `hg:Concept ⊑ crm:E55_Type`.
+- `mapping/build_mapping.py` rows corrected against the TTL and the 1.1.0 core (AssertionSubject `crm:E1_CRM_Entity`, `was_documented_by` `sci:O8i`, no claimed axioms for `commissioned_by`/`source_url`/`generated_at_time`, HG Parent column, notes, Mapping_Type legend); workbook regenerated (68 / 69 / 60 / 70 rows).
+- The ontology is fetched from `main/ontology/HeritageGraph.ttl` (release 1.1.0) in README, `deploy.sh`, `docs/DOCKER_USAGE.md`, `docs/GITHUB_SETUP.md` and `scripts/server-bootstrap.sh` (duplicate and 404 fallbacks removed).
+- CI asserts zero `owl:equivalentClass` (it asserted at least ten).
+- README: current numbers, LUX scale as more than 41 million records (Sanderson 2024), a version row, and a Results section (May 2026 pilot, coverage against 1.1.0). `docs/heritagegraph-alignment-graph.html` is the graph generated from 1.1.0. CONTRIBUTING adds the conservativity gate. Historical-record notes on `docs/PILOT_RUN.md`, `docs/VERIFICATION_FINDINGS.md` and `docs/SERVER_AND_MIGRATION_STATE.md`; stale figures fixed in `docs/MIGRATION_PLAN.md`, `docs/GITHUB_SETUP.md`, `docs/DEPLOY_SERVER.md`.
+
+### Statistics
+- Alignment: 772 triples, 0 `owl:equivalentClass`, 167 `rdfs:subClassOf`, 1 `owl:equivalentProperty` (`destructionEvent ≡ crm:P13i_was_destroyed_by`), 44 `rdfs:subPropertyOf`, 10 `skos:closeMatch`, 3 `skos:relatedMatch`, 1 `skos:broadMatch`, 3 `rdfs:seeAlso`; 59 classes (3 deprecated) and 34 object properties defined by the module (`rdfs:isDefinedBy`), plus 1 annotation property; 15 directly reused CIDOC-CRM classes.
+- Core + module is OWL 2 DL; `evaluation/reasoning_extras.py lux-conservativity` (HeritageGraph repository) passes.
+
+## Earlier unreleased changes (June–October 2026)
+
 ### Changed — synced to HeritageGraph v1.0.0 (October 2026)
 - Namespace `https://w3id.org/heritagegraph/` → `https://cair-nepal.org/heritagegraph/` (terms, named graphs, minted instance IRIs); the ontology is fetched from `ontology/HeritageGraph.ttl` on the HeritageGraph branch.
 - Every HeritageGraph term in the alignment, queries, migrator templates and mapping workbook resolved to its v1.0.0 IRI: LinkML class → `class_uri`, slot → `slot_uri`, new LUX classes/properties → camelCase. Renames: `LivingGoddessTenure/Selection/Retirement` → `KumariTenure/KumariSelectionEvent/KumariRetirementEvent`, `*Enum` → enumeration names, `AssertableEntity` → `AssertionSubject`, `HeritageAssertion` → `Assertion` (`crminf:I2_Belief`).
 - Mappings whose HG property is now the CRM property itself (e.g. `carried_out_by` = `crm:P14_carried_out_by`) are identity, not `owl:equivalentProperty`; no axioms are asserted on external CRM/PROV terms; `Activity`, `Concept`, `HistoricalEvent` are `rdfs:subClassOf` (not `≡`) their CRM class; `Deity ≡ crm:E28`, `CalendarSystem → crm:E29_Designated_Reference_System` (not a CRM class) and enumeration ⊑ `Concept` dropped; `hadParticipant ≡ crm:P11` → `skos:closeMatch`; datatype shortcuts `placeType`, `custodianType`, `sourceCitation` use `rdfs:seeAlso`; `dissolvedBy ⊑ crm:P99i_was_dissolved_by` (the Linked Art IRI).
 - Conservativity repair: loaded with CIDOC-CRM, ten axioms typed HeritageGraph data against CIDOC-CRM's disjointness (E2/E77; E18 vs E28) or with core classes the core does not entail. `documentedBy`, `isAboutDeity`, `birthTimespan`, `deathTimespan`, `publicationTimespan`, `hasDataCustodian` → `skos:closeMatch`; `managedByGuthi` → `skos:relatedMatch` (P49's domain E18 would make a managed ritual a physical thing); `mentionedInSource ≡ crm:P67i` → `rdfs:subPropertyOf`; `hg:Activity ⊑ hg:HistoricalEvent` and `Metadata ⊑ hg:InformationObject` removed.
 - Object materials migrate to `crm:P45_consists_of` (LA `made_of`); the reference CONSTRUCTs link imported nodes with `owl:sameAs`, as the production templates do.
-- Alignment: 677 triples, 0 `owl:equivalentClass`, 178 `rdfs:subClassOf`, 2 `owl:equivalentProperty`, 52 `rdfs:subPropertyOf`; core + alignment is OWL 2 DL and HermiT-consistent.
+- Alignment at the 1.0.0 sync (superseded by [1.1.0]): 677 triples, 0 `owl:equivalentClass`, 178 `rdfs:subClassOf`, 2 `owl:equivalentProperty`, 52 `rdfs:subPropertyOf`; core + alignment is OWL 2 DL and HermiT-consistent.
 
 ### Added
 - **`alignment/heritagegraph-lux-alignment.ttl` Section 4** — internal HG hierarchy and 29 new object properties wiring every new class from Section 3 into the existing HG graph. Closes the "orphan nodes" feedback (Niraj, June 2026): before this change the 33 new classes (Birth, Death, Inscription, VisualItem, …) sat only under external CRM/Linked-Art URIs and appeared disconnected in HG-only visualisations. Now each has at least one HG-internal `rdfs:subClassOf` and / or appears in the domain or range of an HG object property.
