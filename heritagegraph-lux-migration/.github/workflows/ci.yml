@@ -45,7 +45,7 @@ jobs:
           sp  = sum(1 for _ in g.triples((None, rdflib.RDFS.subPropertyOf, None)))
           cls = sum(1 for _ in g.triples((None, rdflib.RDF.type, rdflib.OWL.Class)))
           print(f"alignment summary: triples={len(g)}, classes={cls}, equivalentClass={ec}, subClassOf={sc}, equivalentProperty={ep}, subPropertyOf={sp}")
-          assert ec >= 10, "expected at least 10 owl:equivalentClass triples — regression?"
+          assert ec == 0, "HeritageGraph 1.1.0 asserts no owl:equivalentClass to external classes"
           assert sp >= 30, "expected at least 30 rdfs:subPropertyOf triples — regression?"
           PY
 
