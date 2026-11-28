@@ -79,7 +79,7 @@ Keep LUX raw, alignment, HG-native, and HG-imported in separate graphs so we can
 | Graph URI | Contents |
 |---|---|
 | `<https://lux.collections.yale.edu/>` | Raw LUX dump (read-only after load) |
-| `<https://cair-nepal.org/heritagegraph/alignment/lux>` | The 273-triple alignment ontology |
+| `<https://cair-nepal.org/heritagegraph/alignment/lux>` | The alignment ontology (772 triples, v1.1.0) |
 | `<https://cair-nepal.org/heritagegraph/>` | HeritageGraph.ttl + native (Niraj/Nabin's) data |
 | `<https://cair-nepal.org/heritagegraph/imported/lux>` | LUX records transformed into HG instances (this graph is the migration output) |
 
@@ -187,8 +187,8 @@ What each query writes:
 | # | Query | Writes (HG class) | Approx records |
 |---|---|---|---|
 | 1 | Object branch | `crm:E22_Human-Made_Object` | ~5.5 M |
-| 2 | Person branch | `crm:E21_Person` + `hg:Birth`/`hg:Death` | ~1.2 M |
-| 3 | Group branch | `hg:Group` + `hg:Formation`/`hg:Dissolution` | ~150 K |
+| 2 | Person branch | `crm:E21_Person` + `hg:Birth`/`crm:E69_Death` | ~1.2 M |
+| 3 | Group branch | `crm:E74_Group` + `hg:Formation`/`hg:Dissolution` | ~150 K |
 | 4 | Place branch | `crm:E53_Place` | ~700 K |
 | 5 | Concept branch | `hg:Concept`/`crm:E57_Material`/`hg:Language`/… | ~3 M |
 | 6 | Activity branch | 14 HG event subclasses | ~5 M |
@@ -244,10 +244,16 @@ hgi:object/UUID  a crm:E22_Human-Made_Object ;
 | V3 Count parity | per-class counts in LUX vs HG-imported | within ±5 % per class |
 | V4 Property coverage | LUX properties referenced but unaligned | manual review |
 | V5 Spot-check round-trip | random 100 records: full LUX record vs reconstructed HG record | manual diff, no semantic loss |
-| V6 HG-only preserved | HG-only classes (LivingGoddessTenure, SyncreticRelationship, Guthi, …) untouched | counts before == after |
+| V6 HG-only preserved | HG-only classes (KumariTenure, SyncreticRelationship, Guthi, …) untouched | counts before == after |
 | V7 SHACL constraints | run any SHACL shapes Niraj/Nabin defined | 0 violations |
 
 ### 6.1 Sanity check (V1) — the critical query
+
+Simplified. The query actually run (`queries/validation_queries.sparql`, V1) also accepts
+`skos:closeMatch` / `skos:broadMatch` from an `hg:` class, the schema-level
+`hg:alignmentLuxDirectlyReuses` marker for the 15 CIDOC-CRM classes HeritageGraph reuses
+directly, and instances already in the imported graph. Since 1.1.0 the alignment states no
+`owl:equivalentClass`, so that branch never fires.
 
 ```sparql
 SELECT DISTINCT ?luxClass (COUNT(?x) AS ?instances)
