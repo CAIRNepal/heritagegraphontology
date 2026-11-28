@@ -42,12 +42,10 @@
 # generated 2026-07-22): the core ontology stopped minting separate
 # hg: URIs for 12 classes that map 1:1 onto an external term
 # (class_uri in HeritageGraph.yaml now points directly at the crm: URI).
-# Person (retired alias), HumanMadeObject (retired alias), Actor (retired alias),
-# Place (retired alias), TimeSpan (retired alias), Material (retired alias),
-# Production (retired alias), DestructionEvent (retired alias),
-# TransferOfCustody (retired alias), ConditionAssessment (retired alias),
-# ConditionState (retired alias) and Technique (retired alias) NO LONGER EXIST
-# as distinct resources — the crm: URI itself IS the HG class now. This
+# The former HeritageGraph classes Person, HumanMadeObject, Actor, Place,
+# TimeSpan, Material, Production, DestructionEvent, TransferOfCustody,
+# ConditionAssessment, ConditionState and Technique no longer exist as
+# distinct resources — the crm: URI itself is the HG class now. This
 # file (and the migration templates in ../queries/ and ../scripts/) were
 # updated to reference those crm: URIs directly instead of the retired
 # hg: wrapper. See §6 below for the full note.
@@ -988,22 +986,22 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 #    `class_uri` directly to that external URI instead of minting a new
 #    hg: resource related to it by owl:equivalentClass. The
 #    LinkML → OWL generator therefore emits the class ONLY under the
-#    external URI. Concretely, these 12 hg: URIs no longer
-#    exist as separate resources in the core ontology — the crm: URI
-#    IS the class:
+#    external URI. Concretely, these 12 former HeritageGraph classes no
+#    longer exist as separate hg: resources in the core ontology — the
+#    crm: URI IS the class:
 #
-#      HumanMadeObject (retired alias)      → crm:E22_Human-Made_Object
-#      Person (retired alias)               → crm:E21_Person
-#      Actor (retired alias)                → crm:E39_Actor
-#      Place (retired alias)                → crm:E53_Place
-#      TimeSpan (retired alias)             → crm:E52_Time-Span
-#      Material (retired alias)             → crm:E57_Material
-#      Production (retired alias)           → crm:E12_Production
-#      DestructionEvent (retired alias)     → crm:E6_Destruction
-#      TransferOfCustody (retired alias)    → crm:E10_Transfer_of_Custody
-#      ConditionAssessment (retired alias)  → crm:E14_Condition_Assessment
-#      ConditionState (retired alias)       → crm:E3_Condition_State
-#      Technique (retired alias)            → crm:E29_Design_or_Procedure
+#      HumanMadeObject      → crm:E22_Human-Made_Object
+#      Person               → crm:E21_Person
+#      Actor                → crm:E39_Actor
+#      Place                → crm:E53_Place
+#      TimeSpan             → crm:E52_Time-Span
+#      Material             → crm:E57_Material
+#      Production           → crm:E12_Production
+#      DestructionEvent     → crm:E6_Destruction
+#      TransferOfCustody    → crm:E10_Transfer_of_Custody
+#      ConditionAssessment  → crm:E14_Condition_Assessment
+#      ConditionState       → crm:E3_Condition_State
+#      Technique            → crm:E29_Design_or_Procedure
 #
 #    (Three more classes moved the same way but were never referenced by
 #    name in this alignment file, so nothing to change for them: Entity →
@@ -1028,7 +1026,7 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 #    13 such lines were removed. All rdfs:domain / rdfs:range
 #    declarations on object properties (§4, §5.5) and all rdfs:subClassOf
 #    statements that used one of these 12 classes as SUBJECT (e.g.
-#    hg:DataCustodian rdfs:subClassOf Actor (retired alias)) were
+#    hg:DataCustodian rdfs:subClassOf the former hg:Actor) were
 #    rewritten to the crm: URI. The companion files were updated the same
 #    way — see ../queries/lux_to_hg_migration.sparql and
 #    ../scripts/migrate_lux_to_hg.py (TRANSFORM_TEMPLATES): every CONSTRUCT
