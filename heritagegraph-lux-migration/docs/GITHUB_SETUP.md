@@ -77,7 +77,7 @@ Eğer GitHub Actions'tan otomatik deploy etmek isterseniz (opsiyonel — şu an 
 * `REMOTE_DIR` — `/root/github/heritagegraph-lux-migration`
 
 ### 3. About panelini düzenle (sağ üst köşede ⚙️)
-* Description: `Yale LUX → CAIR Nepal HeritageGraph migration: 273-triple OWL alignment + Docker pipeline targeting Oxigraph`
+* Description: `Yale LUX → CAIR Nepal HeritageGraph migration: OWL alignment (v1.1.0) + Docker pipeline targeting Oxigraph`
 * Website: `https://heritagegraph.cair-nepal.org/` (veya boş)
 * Topics: `cultural-heritage`, `linked-art`, `cidoc-crm`, `ontology-alignment`, `sparql`, `oxigraph`, `nepal`, `heritage-data`
 
