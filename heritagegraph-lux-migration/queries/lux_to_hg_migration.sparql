@@ -8,6 +8,11 @@
 # TransferOfCustody, ConditionAssessment, ConditionState and Technique are
 # now minted directly under their crm: URI (no heritageGraph: wrapper);
 # see alignment/heritagegraph-lux-alignment.ttl §6 for why.
+# Updated November 2026 for release 1.1.0 (follows HeritageGraph 1.1.0):
+# groups, deaths and generic activities are minted as crm:E74_Group,
+# crm:E69_Death and crm:E7_Activity (hg:Group, hg:Death and hg:Activity are
+# deprecated); the heritageGraph: prefix used here is the same namespace as
+# hg: in the alignment (https://cair-nepal.org/heritagegraph/).
 #
 # Important: Linked Art's JSON-LD context maps short names directly to crm: /
 # dig: / sci: URIs. So in LUX RDF data after parsing, the @type triples are
@@ -140,7 +145,7 @@ CONSTRUCT {
 
 
 # === t5_concept ===
-# 5. Concept branch. Generic E55 lands on hg:Concept (equivalentClass E55);
+# 5. Concept branch. Generic E55 lands on hg:Concept (rdfs:subClassOf E55);
 #    specialised concept types get their specific HG class.
 CONSTRUCT {
   ?hgConcept a ?hgType ;
