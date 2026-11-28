@@ -2939,7 +2939,7 @@ slots:
     related_mappings:
       - crminf:J5_holds_to_be
     # DATATYPE FIX: xsd:decimal, so the OWL range is ONE facet-restricted
-    # datatype, decimal[>= 0, <= 1] (see finalize_alpha5_artifacts.py); float
+    # datatype, decimal[>= 0, <= 1] (see finalize_artifacts.py); float
     # with LinkML's integer-typed bounds produced an empty range.
     range: decimal
     # CONSTRAINT FIX (alpha.5): the 0.0-1.0 range promised in prose is now

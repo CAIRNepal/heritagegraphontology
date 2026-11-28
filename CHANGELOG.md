@@ -131,6 +131,12 @@ Kept, and marked `owl:deprecated` with `dcterms:isReplacedBy` where there is a r
 ### Removed
 - The WIDOCO-specific `Dockerfile`, `scripts/refresh_docs_metadata.py` and
   `scripts/declutter_webvowl.py`; `make webvowl` is now `make serve`.
+- The pre-1.1.0 quality report and its aggregator (`release/`, `scripts/run_release_quality.py`), the
+  scripts it alone ran (`evaluation/run_consistency.py`, `run_hermit.py`, `run_tgdk_eval.py`), the
+  RDF/XML copy `ontology/review.owl` they read, and six unreferenced figure and export scripts. The
+  release gates of `make check` and `make reproduce` replace them, and `docs/ontology.owl` is the
+  RDF/XML serialisation.
+- `scripts/finalize_alpha5_artifacts.py` is renamed `scripts/finalize_artifacts.py`.
 
 ## [1.0.1] - 2026-10-20
 

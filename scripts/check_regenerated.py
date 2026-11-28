@@ -19,7 +19,7 @@ from rdflib import BNode, Graph
 
 ROOT = Path(__file__).resolve().parents[1]
 RDF_FILES = ["ontology/HeritageGraph.ttl", "ontology/HeritageGraph.shacl.ttl",
-             "ontology/HeritageGraph-crm-prov-bridge.ttl", "ontology/review.owl"]
+             "ontology/HeritageGraph-crm-prov-bridge.ttl"]
 JSON_FILES = ["ontology/HeritageGraph.schema.json"]
 TEXT_FILES = ["cq_sparql.md", "ontology/mappings/HeritageGraph.sssom.tsv"]
 

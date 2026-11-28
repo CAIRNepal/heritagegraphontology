@@ -1,4 +1,4 @@
-"""Unit tests for the release generator (scripts/finalize_alpha5_artifacts.py).
+"""Unit tests for the release generator (scripts/finalize_artifacts.py).
 
 Each test exercises one post-processing function on a small synthetic input,
 or one invariant of the committed artefacts, so that a regression points at
@@ -17,7 +17,7 @@ from rdflib.namespace import XSD
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-import finalize_alpha5_artifacts as fin  # noqa: E402
+import finalize_artifacts as fin  # noqa: E402
 
 HG = Namespace("https://cair-nepal.org/heritagegraph/")
 CRM = Namespace("http://www.cidoc-crm.org/cidoc-crm/")

@@ -20,7 +20,7 @@ ROBOT_VERSION ?= 1.9.8
 ROBOT_JAR     ?= .tools/robot-$(ROBOT_VERSION).jar
 
 artefacts:           ## regenerate OWL/SHACL/JSON Schema (+ JSON-LD context, CQ TBox doc) from ontology/HeritageGraph.yaml
-	python3 scripts/finalize_alpha5_artifacts.py
+	python3 scripts/finalize_artifacts.py
 	python3 scripts/gen_jsonld_context.py
 	python3 scripts/gen_cq_tbox_doc.py
 	python3 scripts/gen_sssom.py

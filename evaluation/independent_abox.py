@@ -6,7 +6,7 @@ released TTL (KumariTenure, crminf:I2_Belief, camelCase slot IRIs, native CRM
 property reuse), the demonstrator is examples/kathmandu-mini-abox.ttl,
 and validation mirrors the pipeline gate (ont_graph mixed in, inference="none";
 owl:NamedIndividual declarations stripped from the in-memory copy only, to
-avoid the known pySHACL slowdown -- see scripts/finalize_alpha5_artifacts.py).
+avoid the known pySHACL slowdown -- see scripts/finalize_artifacts.py).
 """
 from pathlib import Path
 from rdflib import Graph, RDF, OWL, URIRef

@@ -53,7 +53,7 @@ jobs:
 
       - name: Regenerate ontology artefacts
         run: |
-          python3 scripts/finalize_alpha5_artifacts.py
+          python3 scripts/finalize_artifacts.py
           python3 scripts/gen_jsonld_context.py
           python3 scripts/gen_cq_tbox_doc.py
           python3 scripts/gen_sssom.py
@@ -124,9 +124,6 @@ jobs:
         run: |
           python3 evaluation/pattern_experiments.py tenure
           python3 evaluation/pattern_experiments.py custodianship
-
-      - name: Run ontology evaluation suite
-        run: python3 scripts/run_release_quality.py
 
       - name: Generate documentation with OntoReview (term pages, graph, quality report, changelog)
         run: |
