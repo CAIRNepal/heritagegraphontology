@@ -264,12 +264,12 @@ hg:sourceCitation rdfs:seeAlso crm:P67i_is_referred_to_by .
 #####################################################################
 
 hg:Group a owl:Class ;
-    rdfs:label "Group"@en ;
-    rdfs:comment "Generic group of actors. Super-class of Guthi and CasteGroup."@en ;
+    rdfs:label "obsolete Group"@en ;
+    rdfs:comment "Generic group of actors (LUX alias: 'Group'). Superseded by crm:E74_Group."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy crm:E74_Group ;
+    skos:editorialNote "Deprecated in 1.1.0: HeritageGraph 1.1.0 reuses crm:E74_Group directly as its Group class (super-class of Guthi and CasteGroup), so LUX groups are migrated as crm:E74_Group by direct URI reuse (§6). This wrapper is kept only so that data minted by earlier versions still resolves."@en ;
     rdfs:subClassOf crm:E74_Group .
-
-hg:Guthi rdfs:subClassOf hg:Group .
-hg:CasteGroup rdfs:subClassOf hg:Group .
 
 hg:Birth a owl:Class ;
     rdfs:label "Birth"@en ;
@@ -277,8 +277,11 @@ hg:Birth a owl:Class ;
     rdfs:subClassOf crm:E67_Birth .
 
 hg:Death a owl:Class ;
-    rdfs:label "Death"@en ;
-    rdfs:comment "Death event of a Person. LUX alias: 'Death'."@en ;
+    rdfs:label "obsolete Death"@en ;
+    rdfs:comment "Death event of a Person (LUX alias: 'Death'). Superseded by crm:E69_Death."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy crm:E69_Death ;
+    skos:editorialNote "Deprecated in 1.1.0: HeritageGraph 1.1.0 reuses crm:E69_Death directly as its Death class, so LUX deaths are migrated as crm:E69_Death by direct URI reuse (§6). This wrapper is kept only so that data minted by earlier versions still resolves."@en ;
     rdfs:subClassOf crm:E69_Death .
 
 hg:Formation a owl:Class ;
@@ -562,18 +565,18 @@ hg:wasBornBy a owl:ObjectProperty ;
 hg:diedInEvent a owl:ObjectProperty ;
     rdfs:label "died in event"@en ;
     rdfs:domain crm:E21_Person ;
-    rdfs:range hg:Death ;
+    rdfs:range crm:E69_Death ;
     rdfs:subPropertyOf crm:P100i_died_in .
 
 hg:wasFormedBy a owl:ObjectProperty ;
     rdfs:label "was formed by"@en ;
-    rdfs:domain hg:Group ;
+    rdfs:domain crm:E74_Group ;
     rdfs:range hg:Formation ;
     rdfs:subPropertyOf crm:P95i_was_formed_by .
 
 hg:dissolvedBy a owl:ObjectProperty ;
     rdfs:label "dissolved by"@en ;
-    rdfs:domain hg:Group ;
+    rdfs:domain crm:E74_Group ;
     rdfs:range hg:Dissolution ;
     rdfs:subPropertyOf crm:P99i_was_dissolved_by .
 
@@ -719,11 +722,12 @@ hg:hasDataCustodian a owl:ObjectProperty ;
 # ---- 5.1  Structural super-classes -----------------------------------------
 
 hg:Activity a owl:Class ;
-    rdfs:label "Activity"@en ;
-    rdfs:comment "Generic intentional activity; landing class for LUX crm:E7_Activity instances that match no more specific HG class. LUX alias: 'Activity'. NOTE (July 2026): the core ontology also uses the English label 'Activity' for an unrelated abstract class whose class_uri is prov:Activity (PROV-O top, no crm:E7 relation) — a naming coincidence only. hg:Activity (this resource, our own URI) and prov:Activity (theirs) are distinct RDF resources; no logical clash, but avoid confusing the two in documentation/diagrams."@en ;
+    rdfs:label "obsolete Activity"@en ;
+    rdfs:comment "Generic intentional activity (LUX alias: 'Activity'). Superseded by crm:E7_Activity."@en ;
+    owl:deprecated true ;
+    dct:isReplacedBy crm:E7_Activity ;
+    skos:editorialNote "Deprecated in 1.1.0: HeritageGraph 1.1.0 reuses crm:E7_Activity directly as its generic activity class (GenericActivity), so LUX activities that match no more specific class are migrated as crm:E7_Activity by direct URI reuse (§6), and the module's activity classes sit directly under crm:E7_Activity. This wrapper is kept only so that data minted by earlier versions still resolves."@en ;
     rdfs:subClassOf crm:E7_Activity .
-    # hg:Activity ⊑ hg:HistoricalEvent removed: with HistoricalEvent ⊑ crm:E5 (not ≡) it placed the core's
-    # RitualEvent and DocumentationActivity under the core's HistoricalEvent. E7 ⊑ E5 still holds via CRM.
 
 hg:Concept a owl:Class ;
     rdfs:label "Concept"@en ;
@@ -739,7 +743,7 @@ hg:Creation a owl:Class ;
     rdfs:label "Creation"@en ;
     rdfs:comment "Creation of an information object (non-physical). LUX alias: 'Creation' → crm:E65. CRM: E65 ⊏ E7 ∧ E63, mirrored internally."@en ;
     rdfs:subClassOf crm:E65_Creation ;
-    rdfs:subClassOf hg:Activity ;
+    rdfs:subClassOf crm:E7_Activity ;
     rdfs:subClassOf hg:BeginningOfExistence .
 
 # ---- 5.2  The six missing genuine la: classes -------------------------------
@@ -792,13 +796,13 @@ hg:Joining a owl:Class ;
     rdfs:label "Joining"@en ;
     rdfs:comment "Actor joining a Group (Linked Art models group membership changes via E85/E86). LUX alias: 'Joining' → crm:E85."@en ;
     rdfs:subClassOf crm:E85_Joining ;
-    rdfs:subClassOf hg:Activity .
+    rdfs:subClassOf crm:E7_Activity .
 
 hg:Leaving a owl:Class ;
     rdfs:label "Leaving"@en ;
     rdfs:comment "Actor leaving a Group. LUX alias: 'Leaving' → crm:E86. Mirror of hg:Joining."@en ;
     rdfs:subClassOf crm:E86_Leaving ;
-    rdfs:subClassOf hg:Activity .
+    rdfs:subClassOf crm:E7_Activity .
 
 hg:TypeCreation a owl:Class ;
     rdfs:label "Type Creation"@en ;
@@ -883,17 +887,16 @@ hg:Presence a owl:Class ;
 # §4 connected these via object properties only; the subClassOf edges below
 # make each class reachable in the HG-only CLASS HIERARCHY view as well.
 
-hg:Group rdfs:subClassOf crm:E39_Actor .  # E74 ⊏ E39
 hg:VisualItem rdfs:subClassOf hg:InformationObject .  # E36 ⊏ E73
 hg:Name rdfs:subClassOf hg:LinguisticObject ;  # E33_E41 ⊏ E33 ∧ E41
     rdfs:subClassOf hg:Appellation .
 hg:Identifier rdfs:subClassOf hg:Appellation .  # E42 ⊏ E41
 hg:CuratedHolding rdfs:subClassOf hg:PhysicalHeritageThing .  # E78 ⊏ E24 (pragmatic HG parent)
-hg:CurationActivity rdfs:subClassOf hg:Activity .  # E87 ⊏ E7
-hg:ProvenanceActivity rdfs:subClassOf hg:Activity .  # E7-classified
-hg:AttributeAssignment rdfs:subClassOf hg:Activity .  # E13 ⊏ E7
-hg:Encounter rdfs:subClassOf hg:Activity ;  # S19 ⊏ S4 ⊏ E13 ⊏ E7 (flattened)
-    rdfs:comment "Internal parent flattened to hg:Activity; the full CRMsci chain S19 ⊏ S4_Observation ⊏ E13 would land it under hg:AttributeAssignment — kept simpler for HG navigation."@en .
+hg:CurationActivity rdfs:subClassOf crm:E7_Activity .  # E87 ⊏ E7
+hg:ProvenanceActivity rdfs:subClassOf crm:E7_Activity .  # E7-classified
+hg:AttributeAssignment rdfs:subClassOf crm:E7_Activity .  # E13 ⊏ E7
+hg:Encounter rdfs:subClassOf crm:E7_Activity ;  # S19 ⊏ S4 ⊏ E13 ⊏ E7 (flattened)
+    rdfs:comment "Parent flattened to crm:E7_Activity; the full CRMsci chain S19 ⊏ S4_Observation ⊏ E13 would land it under hg:AttributeAssignment — kept simpler for HG navigation."@en .
 hg:Measurement rdfs:subClassOf hg:AttributeAssignment .  # E16 ⊏ E13
 hg:BeginningOfExistence rdfs:subClassOf hg:HistoricalEvent .  # E63 ⊏ E5
 hg:EndOfExistence rdfs:subClassOf hg:HistoricalEvent .  # E64 ⊏ E5
@@ -904,10 +907,6 @@ hg:Language rdfs:subClassOf hg:Concept .  # E56 ⊏ E55
 hg:Currency rdfs:subClassOf hg:Concept .  # E98 ⊏ E55
 hg:MeasurementUnit rdfs:subClassOf hg:Concept .  # E58 ⊏ E55
 hg:Inscription rdfs:subClassOf hg:Mark .  # E34 ⊏ E33 ∧ E37
-
-# Existing HG activity roots rewired under the new hg:Activity top:
-hg:RitualEvent rdfs:subClassOf hg:Activity .
-hg:DocumentationActivity rdfs:subClassOf hg:Activity .
 
 # Concept-branch classes gathered under hg:Concept for HG-only navigation:
 hg:ReligiousTradition rdfs:subClassOf hg:Concept .
@@ -996,9 +995,18 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 #    (Three more classes moved the same way but were never referenced by
 #    name in this alignment file, so nothing to change for them: Entity →
 #    prov:Entity, Activity → prov:Activity, Agent → prov:Agent — all
-#    abstract PROV-O tops. NOTE: hg:Activity as declared in
-#    §5.1 above is OUR OWN, unrelated resource — see the disambiguation
-#    comment on that class.)
+#    abstract PROV-O tops.)
+#
+#    1.1.0 (November 2026): the 1.1.0 core reuses three more CRM classes
+#    directly: crm:E74_Group (Group, super-class of Guthi and CasteGroup),
+#    crm:E69_Death (Death) and crm:E7_Activity (GenericActivity). The same
+#    rule therefore applies to them: LUX groups, deaths and generic
+#    activities are migrated as the CRM classes, and the module's own
+#    wrappers hg:Group, hg:Death and hg:Activity are owl:deprecated with
+#    dct:isReplacedBy the CRM class. Module classes that had hg:Activity
+#    as parent now sit directly under crm:E7_Activity; the properties
+#    wasFormedBy / dissolvedBy (domain) and diedInEvent (range) use the
+#    CRM classes.
 #
 #    Fix applied here: every owl:equivalentClass / skos:closeMatch /
 #    rdfs:subClassOf axiom that related one of the 12 hg:
@@ -1021,7 +1029,10 @@ hg:digitallyAvailableVia a owl:ObjectProperty ;
 #    covers the LUX ↔ HG bridge, not HG's native domain coverage.
 #####################################################################
 
-# ---- 6.1  Schema-level coverage marker for the 12 direct-URI-reuse classes -
+# ---- 6.1  Schema-level coverage marker for the direct-URI-reuse classes ----
+#
+# (12 classes from the alpha5 sync plus, in 1.1.0, crm:E74_Group,
+# crm:E69_Death and crm:E7_Activity: 15 in total.)
 #
 # V1 (validation_queries.sparql) originally proved coverage by finding an
 # alignment-graph triple relating a hg:-prefixed subject to the
@@ -1049,7 +1060,8 @@ hg:alignmentLuxDirectlyReuses a owl:AnnotationProperty ;
         crm:E53_Place, crm:E52_Time-Span, crm:E57_Material,
         crm:E12_Production, crm:E6_Destruction, crm:E10_Transfer_of_Custody,
         crm:E14_Condition_Assessment, crm:E3_Condition_State,
-        crm:E29_Design_or_Procedure .
+        crm:E29_Design_or_Procedure,
+        crm:E74_Group, crm:E69_Death, crm:E7_Activity .
 
 
 #####################################################################
