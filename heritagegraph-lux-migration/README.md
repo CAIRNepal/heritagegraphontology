@@ -151,6 +151,37 @@ After migration, `make validate` runs eight queries (`queries/validation_queries
 
 The other six (count parity, unaligned-property usage, round-trip spot-check, HG-native class preservation, unique type per record, orphan check) are informational.
 
+## Results
+
+### Pilot run — May 2026 (server42, Oxigraph 0.4.4)
+
+> Produced by alignment **v0.1.0** (273 triples, `https://w3id.org/heritagegraph/` namespace), which predates HeritageGraph 1.0.0. The raw harvest and the store are not published, so these figures are a dated record, not a reproducible benchmark: they cannot be regenerated from this release. Details: [`docs/PILOT_RUN.md`](docs/PILOT_RUN.md).
+
+| | |
+|---|---|
+| Harvest | keyword-selected: `RING_MODE=crawl`, `LUX_FILTER="religious heritage"`, `LIMIT_PER_QUERY=10000` |
+| LUX records fetched | **20,871** (≈0.05 % of LUX's more than 41 million records) |
+| Raw LUX graph | **3,467,368** triples |
+| Typed nodes in raw graph | **898,656** across **28** CRM / CRMdig / CRMsci / Linked Art classes (counted 2026-06-23) |
+| Imported HG graph | **98,131** triples, **32,342** instances in five classes, each `owl:sameAs` its LUX origin |
+
+| HG class (1.1.0 name) | Migrated | Raw LUX nodes of that class |
+|---|---:|---:|
+| `crm:E21_Person` (pilot: `hg:Person`) | 25,281 | 25,285 |
+| `crm:E74_Group` (pilot: `hg:Group`) | 3,558 | 3,572 |
+| `crm:E53_Place` (pilot: `hg:Place`) | 3,281 | 3,281 |
+| `crm:E22_Human-Made_Object` (pilot: `hg:HumanMadeObject`) | 137 | 163 |
+| `hg:Set` | 85 | 85 |
+| **total** | **32,342** | **32,386** |
+
+The 32,342 instances exceed the 20,871 records fetched because LUX records carry typed references to other entities (persons, places); they are entities, not records.
+
+**Known gaps:** the activity, work and embedded-node templates produced no instances in this run, so 32,342 is 99.9 % of the nodes in the five handled classes but 3.6 % of all typed nodes. Templates added since (10 in total) cover these branches but have not been re-run on the server. V1 passed although whole branches were empty, because it checks classes, not instances.
+
+### Coverage against HeritageGraph 1.1.0 (recomputed 2026-11-28)
+
+All **28/28** LUX class types (898,656 nodes) have a HeritageGraph target. **13** of them (208,735 nodes, 23.2 %) are CIDOC-CRM classes that HeritageGraph reuses directly. **15** (689,921 nodes, 76.8 %) are reached only through `hg:` subclasses that this alignment declares; the core alone covers none of them (the largest are `crm:E33_E41_Linguistic_Appellation`, 258,678; `crm:E33_Linguistic_Object`, 188,712; `crm:E65_Creation`, 136,441 — mostly embedded name, text and creation nodes). Coverage is structural: it shows that every LUX type has a place in the alignment, not that LUX instances become HeritageGraph instances. Reproduce it with `python3 evaluation/lux/generate_lux_eval.py --offline` in the HeritageGraph repository (output: `evaluation/lux/LUX_EVALUATION.md`).
+
 ## Citing
 
 If you use this package in a paper:
