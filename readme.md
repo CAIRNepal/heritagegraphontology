@@ -37,7 +37,7 @@ at the Center for Artificial Intelligence Research Nepal (CAIR-Nepal).
 | Controlled vocabularies | 9 closed enumerations, 59 current values |
 | Expressivity | OWL 2 DL, $\mathcal{ALCHOIN(D)}$; consistent under HermiT, no unsatisfiable classes |
 | Validation | 82 SHACL node shapes |
-| Alignment | 275 SSSOM mappings, mainly to CIDOC-CRM, CRMinf, CRMsci and PROV-O |
+| Alignment | 277 SSSOM mappings, mainly to CIDOC-CRM, CRMinf, CRMsci and PROV-O |
 | Competency questions | 32 SPARQL queries, each returning exactly its expected answers over the demonstrator data |
 
 ## Modelling patterns

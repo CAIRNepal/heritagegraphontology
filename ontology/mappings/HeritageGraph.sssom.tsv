@@ -30,7 +30,6 @@ hg:AccessProtocol#CommunityUseOnly	Community Use Only	skos:relatedMatch	lclabel:
 hg:AccessProtocol#Seasonal	Seasonal	skos:relatedMatch	lclabel:tk-seasonal/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:AccessProtocol#SecretSacred	Secret Sacred	skos:relatedMatch	lclabel:tk-secret-sacred/	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Acquisition	Acquisition	rdfs:subClassOf	crm:E8_Acquisition	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
-hg:Activity	Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Appellation	Appellation	rdfs:subClassOf	crm:E41_Appellation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:ArchitecturalElement	Architectural Element	rdfs:subClassOf	crm:E24_Physical_Human-Made_Thing	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:ArchitecturalElement	Architectural Element	rdfs:subClassOf	crm:E25_Human-Made_Feature	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
@@ -49,6 +48,7 @@ hg:ArchivalRecord	Archival Record	skos:broadMatch	crm:E31_Document	semapv:Manual
 hg:ArchivalRecord	Archival Record	skos:exactMatch	rico:Record	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:AssertionSubject	Assertion Subject	skos:broadMatch	crm:E1_CRM_Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
 hg:AttributeAssignment	Attribute Assignment	rdfs:subClassOf	crm:E13_Attribute_Assignment	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
+hg:AttributeAssignment	Attribute Assignment	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:AuthorityDocument	Authority Document	rdfs:subClassOf	crm:E32_Authority_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:BeginningOfExistence	Beginning of Existence	rdfs:subClassOf	crm:E63_Beginning_of_Existence	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:BiologicalObject	Biological Object	rdfs:subClassOf	crm:E20_Biological_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
@@ -64,7 +64,9 @@ hg:ConditionType	Condition Type	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappin
 hg:Consecration	Consecration	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
 hg:Consecration	Consecration	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Creation	Creation	rdfs:subClassOf	crm:E65_Creation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
+hg:Creation	Creation	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:CuratedHolding	Curated Holding	rdfs:subClassOf	crm:E78_Curated_Holding	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
+hg:CurationActivity	Curation Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:CurationActivity	Curation Activity	rdfs:subClassOf	crm:E87_Curation_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Currency	Currency	rdfs:subClassOf	crm:E98_Currency	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:CustodyPeriod	Custody Period	skos:broadMatch	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
@@ -73,7 +75,6 @@ hg:DataCustodian	Data Custodian	skos:broadMatch	prov:Agent	semapv:ManualMappingC
 hg:DataSource	Data Source	rdfs:subClassOf	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
 hg:DataSource	Data Source	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:DatePrecision	Date Precision	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
-hg:Death	Death	rdfs:subClassOf	crm:E69_Death	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Deity	Deity	rdfs:subClassOf	prov:Entity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Deity	Deity	skos:broadMatch	crm:E28_Conceptual_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Deity	Deity	skos:closeMatch	aat:300343850	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
@@ -87,6 +88,7 @@ hg:Dimension	Dimension	rdfs:subClassOf	crm:E54_Dimension	semapv:ManualMappingCur
 hg:Dissolution	Dissolution	rdfs:subClassOf	crm:E68_Dissolution	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:DocumentationActivity	Documentation Activity	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
 hg:DocumentationActivity	Documentation Activity	rdfs:subClassOf	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
+hg:Encounter	Encounter Event	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Encounter	Encounter Event	rdfs:subClassOf	sci:S19_Encounter_Event	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:EndOfExistence	End of Existence	rdfs:subClassOf	crm:E64_End_of_Existence	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Endowment	Endowment	rdfs:subClassOf	crm:E72_Legal_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
@@ -105,8 +107,6 @@ hg:FieldSurveyActivity	Field Survey Activity	skos:broadMatch	crmsci:S4_Observati
 hg:FieldSurveyDataset	Field Survey Dataset	rdfs:subClassOf	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:FieldSurveyDataset	Field Survey Dataset	skos:broadMatch	crm:E31_Document	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Formation	Formation	rdfs:subClassOf	crm:E66_Formation	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
-hg:Group	Group	rdfs:subClassOf	crm:E39_Actor	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
-hg:Group	Group	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Guthi	Guthi	rdfs:subClassOf	crm:E74_Group	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
 hg:Guthi	Guthi	skos:broadMatch	prov:Organization	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:GuthiType	Guthi Type	rdfs:subClassOf	crm:E55_Type	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module, core
@@ -121,6 +121,7 @@ hg:IdentifierAssignment	Identifier Assignment	rdfs:subClassOf	crm:E15_Identifier
 hg:InformationObject	Heritage information object	rdfs:subClassOf	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:InformationObject	Heritage information object	skos:broadMatch	crm:E73_Information_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Inscription	Inscription	rdfs:subClassOf	crm:E34_Inscription	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
+hg:Joining	Joining	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Joining	Joining	rdfs:subClassOf	crm:E85_Joining	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:KumariEnthronementEvent	Kumari Enthronement Event	skos:broadMatch	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:KumariEnthronementEvent	Kumari Enthronement Event	skos:broadMatch	prov:Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
@@ -136,6 +137,7 @@ hg:KumariSelectionEvent	Kumari Selection Event	skos:broadMatch	prov:Activity	sem
 hg:KumariTenure	Kumari Tenure	rdfs:subClassOf	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:KumariTenure	Kumari Tenure	skos:broadMatch	crm:E4_Period	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: core
 hg:Language	Language	rdfs:subClassOf	crm:E56_Language	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
+hg:Leaving	Leaving	rdfs:subClassOf	crm:E7_Activity	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:Leaving	Leaving	rdfs:subClassOf	crm:E86_Leaving	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:LegalObject	Legal Object	rdfs:subClassOf	crm:E72_Legal_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module
 hg:LinguisticObject	Linguistic Object	rdfs:subClassOf	crm:E33_Linguistic_Object	semapv:ManualMappingCuration	HeritageGraph authors (CAIR-Nepal)		stated in: LUX module

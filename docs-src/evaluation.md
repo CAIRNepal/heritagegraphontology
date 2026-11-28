@@ -11,7 +11,7 @@ All figures on this page are produced by one command from a clean checkout of th
 | Classes stated subclasses of a CIDOC-CRM class | 21 |
 | Deprecated terms (kept, never deleted) | 55 |
 | SHACL shapes | 82 node shapes, 40,293 triples |
-| Mappings to other vocabularies (SSSOM) | 275 |
+| Mappings to other vocabularies (SSSOM) | 277 |
 | CIDOC-CRM terms reused / HeritageGraph terms linked to CIDOC-CRM | 23 classes, 48 properties / 47 classes, 28 properties |
 
 ## Logic
