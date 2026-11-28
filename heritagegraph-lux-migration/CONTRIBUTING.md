@@ -48,7 +48,9 @@ The alignment ontology is the source of truth that downstream consumers depend o
 1. **Cite your evidence** in the PR description. For Linked Art mappings, link to the relevant section of `linked.art/model/...` or quote the JSON-LD context at `https://linked.art/ns/v1/linked-art.json`. For CIDOC-CRM, link to `cidoc-crm.org/Property/Pnn-…` or `cidoc-crm.org/Entity/Enn-…/version-7.1.3`.
 2. **Re-run the verification** (see `docs/VERIFICATION_FINDINGS.md` §method). Update that doc if your change invalidates any prior finding.
 3. **Update the XLSX**: `python mapping/build_mapping.py` regenerates it from the canonical Python data; commit the regenerated file too.
-4. **Keep `owl:equivalentClass` strict.** Use `rdfs:subClassOf` for one-way refinements, `skos:closeMatch` for non-strict semantic neighbours, `skos:broadMatch` when HG is broader.
+4. **Keep `owl:equivalentClass` strict.** Use `rdfs:subClassOf` for one-way refinements, `skos:closeMatch` for non-strict semantic neighbours, `skos:broadMatch` when HG is broader. Since 1.1.0 the module states no `owl:equivalentClass` to external classes (CI asserts zero) and no axioms whose subject is an external term; where the core reuses a CIDOC-CRM class directly, migrate to that class rather than minting an `hg:` wrapper (alignment §6).
+5. **Mark terms the module mints** with `rdfs:isDefinedBy <https://cair-nepal.org/heritagegraph/alignment/lux>` (alignment §8).
+6. **Run the conservativity gate.** From the root of the heritagegraphontology repository, run `python3 evaluation/reasoning_extras.py lux-conservativity` (needs Java and ROBOT; set `ROBOT_JAR`). It must report PASS: the module may not give HeritageGraph data a CIDOC-CRM type that contradicts CIDOC-CRM's disjointness, nor a core class the core does not entail.
 
 ## Coding style
 
@@ -63,6 +65,7 @@ The alignment ontology is the source of truth that downstream consumers depend o
 - [ ] Pilot run completes locally: `make up && make logs` shows phase P7 = master.done
 - [ ] V1 / V2 hard gates pass: `make validate` returns 0
 - [ ] If you changed alignment: V3 (count parity) still within ±5%
+- [ ] If you changed alignment: `python3 evaluation/reasoning_extras.py lux-conservativity` passes (run from the heritagegraphontology root)
 - [ ] If you changed entrypoint/Dockerfile: image rebuilds cleanly
 
 ## Reporting LUX upstream changes
