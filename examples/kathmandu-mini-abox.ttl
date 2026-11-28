@@ -570,9 +570,9 @@ ex:Allen a crm:E39_Actor ; rdfs:label "Michael Allen" ;
     dcterms:identifier "https://cair-nepal.org/heritagegraph/example/agent/allen"^^xsd:anyURI .
 
 # --- per-cluster source attribution (hg:mentionedInSource) ---
-ex:Tenure_2017      hg:mentionedInSource ex:Src_Allen .
-ex:Sel_2017         hg:mentionedInSource ex:Src_Allen .
-ex:Ret_2025         hg:mentionedInSource ex:Src_Allen .
+# Allen (1975) documents the tradition, not the 2017--2025 tenure, its selection,
+# or its retirement; those cite the 2017 and 2025 news reports.
+ex:Sel_2017         hg:mentionedInSource ex:Src_KP_Kumari2017 .
 ex:KumariGhar       hg:mentionedInSource ex:Src_Allen .
 ex:KumariNityaPuja  hg:mentionedInSource ex:Src_Allen .
 ex:KumariProcession hg:mentionedInSource ex:Src_Allen .
@@ -595,7 +595,7 @@ ex:ShakyaCommunity a hg:CasteGroup ;
     hg:mentionedInSource ex:Src_Allen .
 ex:Assert_KumariSyncretism a crminf:I2_Belief ;
     rdfs:label "Kumari embodies a Hindu goddess yet is drawn from a Buddhist lineage" ;
-    hg:assertsAbout ex:Tenure_2017 ;
+    hg:assertsAbout ex:RoyalKumariRole ;
     prov:value "Selected from the Buddhist Shakya lineage; venerated as the Hindu goddess Taleju/Durga" ;
     prov:wasDerivedFrom ex:Src_Allen ;
     prov:wasAttributedTo ex:Allen ;
@@ -874,7 +874,7 @@ ex:ShuvarambhaPuja2018 a hg:RitualEvent ;
     hg:recurrencePattern "once (commencement of reconstruction)" ;
     crm:P4_has_time-span ex:TS_Shuvarambha2018 ;
     hg:mentionedInSource ex:Src_KP_MaruSatta .
-ex:Prod_KasthamandapRebuild a crm:E11_Modification ;
+ex:Rebuild_Kasthamandap a crm:E11_Modification ;
     rdfs:label "Reconstruction of Kasthamandap (2018-2022)" ;
     crm:P31_has_modified ex:Kasthamandap ;
     crm:P14_carried_out_by ex:KRC ;

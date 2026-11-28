@@ -100,6 +100,11 @@ minor-release rule in GOVERNANCE.md; each change has a migration rule.
   event type", so no label repeats a CRM label or a class name.
 - Demonstrator: the successor Kumari tenure of the same office (2025, open), the tradition's
   selection criteria (Allen 1975), and Nepali labels for the main places and the deity.
+- Demonstrator sources: Allen (1975) is cited for the Kumari tradition only, not for the
+  2017--2025 tenure, its selection, or its retirement, which cite the 2017 and 2025 news reports;
+  the attributed belief on Kumari syncretism is about the Royal Kumari office; the
+  Kasthamandap reconstruction is `ex:Rebuild_Kasthamandap` (an `E11 Modification`, not a
+  production). The definition of `hg:syncreticType` names its four values.
 
 ### Deprecated
 
