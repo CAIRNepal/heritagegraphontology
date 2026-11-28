@@ -8,7 +8,7 @@
 
 ## TL;DR
 
-Seven phases — Discovery → Infrastructure → Extraction → Bulk-load → Transformation → Validation → Maintenance. The recommended path uses Oxigraph's native CLI for bulk loading and Python (`pyoxigraph` + `rdflib`) for orchestration and transformation. Full LUX is ~16 M records, ~300–600 M triples after JSON-LD expansion; expect 4-12 hours wall-clock on a 16-core / 64 GB machine. Phase 6 (validation) is the gate — only after the sanity-check returns zero unmapped LUX classes do we declare migration complete.
+Seven phases — Discovery → Infrastructure → Extraction → Bulk-load → Transformation → Validation → Maintenance. The recommended path uses Oxigraph's native CLI for bulk loading and Python (`pyoxigraph` + `rdflib`) for orchestration and transformation. Full LUX is more than 41 M records (Sanderson 2024). The estimates in this plan were sized in May 2026 for an assumed ~16 M records (~300–600 M triples after JSON-LD expansion, 4-12 hours wall-clock on a 16-core / 64 GB machine); scale them by about 2.6 for the full dataset. Phase 6 (validation) is the gate — only after the sanity-check returns zero unmapped LUX classes do we declare migration complete.
 
 > **Strong recommendation: do a 10K-record pilot first**, validate end-to-end, *then* scale to full LUX. The plan below supports both modes. Pilot gates production; expect 1-2 days for pilot, 1 week for full.
 
@@ -22,7 +22,7 @@ Seven phases — Discovery → Infrastructure → Extraction → Bulk-load → T
 |---|---|
 | Top-level entity types | HumanMadeObject, DigitalObject, Person, Group, Place, Event, Activity, Period, Type, Set, LinguisticObject, VisualItem, PropositionalObject — 13 endpoints |
 | Approximate counts (May 2026) | ~5.5 M objects · ~1.2 M persons · ~700 K places · ~3 M concepts · ~150 K sets · ~5 M activities/events |
-| Total records | ~16 M |
+| Total records | more than 41 M (Sanderson 2024); the estimates below assume ~16 M |
 | Avg triples per record | ~25 (after JSON-LD expansion + provenance graphs) |
 | Estimated total triples | 300–600 M |
 | Compressed dump size | 15–35 GB (N-Quads gzipped) |
@@ -43,7 +43,7 @@ We migrate full LUX as the eventual target, but **stage in three rings**:
 
 1. **Pilot (10 K records, ~30 min):** filter LUX to `classified_as` Hindu/Buddhist religious objects via the search API. Validate transform end-to-end and the sanity-check query.
 2. **Domain ring (~50–100 K records, ~3 hours):** South Asian + East Asian religious heritage (Nepal, India, Tibet, Bhutan, China, Japan).
-3. **Full ring (16 M records, ~12 hours):** the rest of LUX.
+3. **Full ring (more than 41 M records; the ~12-hour estimate assumed ~16 M):** the rest of LUX.
 
 Each ring writes to the same target named graph; the pilot's HG instances are not deleted before scaling up — additivity is the rollback strategy.
 
