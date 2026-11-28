@@ -77,7 +77,7 @@
 
 <https://cair-nepal.org/heritagegraph/alignment/lux> a owl:Ontology ;
     rdfs:label "HeritageGraph–LUX alignment (Linked Art / CIDOC-CRM)"@en ;
-    dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. Version 1.1.0 (November 2026) follows HeritageGraph 1.1.0: no equivalence to or axioms on external terms, conservative over the core (lux-conservativity gate), direct reuse of the 15 CIDOC-CRM classes the core reuses, and terms it mints marked rdfs:isDefinedBy."@en ;
+    dct:description "Class- and property-level mapping from CAIR Nepal HeritageGraph to LUX, the Yale Linked Art / CIDOC-CRM dataset, validated against the official Linked Art JSON-LD context. Version 1.1.0 (November 2026) follows HeritageGraph 1.1.0: no logical axiom whose subject is an external term, no class equivalence to external classes (one property equivalence, destructionEvent with crm:P13i_was_destroyed_by), conservative over the core (lux-conservativity gate), direct reuse of the 15 CIDOC-CRM classes the core reuses, and terms it mints marked rdfs:isDefinedBy."@en ;
     dct:creator "Semih Yumuşak" , "Niraj Karki" ;
     dct:license <https://www.apache.org/licenses/LICENSE-2.0> ;
     rdfs:comment "Licensed under Apache-2.0 (the heritagegraph-lux-migration folder), unlike the core ontology (CC BY 4.0). Terms in the HeritageGraph namespace that this module mints are marked rdfs:isDefinedBy this module."@en ;
