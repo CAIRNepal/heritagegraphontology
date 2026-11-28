@@ -15,6 +15,13 @@ core reuses C directly (declares it as a class) or some HeritageGraph class is
 rdfs:subClassOf+ / owl:equivalentClass C in core + module. The endpoint only
 supplies per-class instance counts (E1) and the migrated graph (E3).
 
+The endpoint is the pilot's Oxigraph store, which is access-restricted (HTTP
+Basic authentication): live mode reads the credentials from LUX_SPARQL_USER and
+LUX_SPARQL_PASSWORD, and the endpoint and migrated-graph IRIs can be overridden
+with LUX_SPARQL_ENDPOINT and LUX_E3_GRAPH. The pilot's migrated graph uses the
+pre-1.0.0 namespace (https://w3id.org/heritagegraph/imported/lux); its
+w3id-namespace types are read as hg: terms.
+
 Usage:
   python evaluation/lux/generate_lux_eval.py            # live endpoint
   python evaluation/lux/generate_lux_eval.py --offline  # instance counts from the
@@ -22,13 +29,13 @@ Usage:
                                                         # migration_counts_E3.csv snapshot
 """
 from __future__ import annotations
-import argparse, csv, json, ssl, sys, urllib.parse, urllib.request
+import argparse, base64, csv, json, os, ssl, sys, urllib.parse, urllib.request
 from pathlib import Path
 
 from rdflib import Graph, OWL, RDF, RDFS, URIRef
 
 # macOS Python.framework ships without a CA bundle; use certifi if present,
-# else fall back to an unverified context (the endpoint is a public, read-only store).
+# else fall back to an unverified context (the queries are read-only).
 try:
     import certifi
     _SSL = ssl.create_default_context(cafile=certifi.where())
@@ -39,7 +46,10 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CORE = ROOT / "ontology" / "HeritageGraph.ttl"
 BRIDGE = ROOT / "heritagegraph-lux-migration" / "alignment" / "heritagegraph-lux-alignment.ttl"
-ENDPOINT = "https://semihyumusak.com.tr/oxigraph/query"
+ENDPOINT = os.environ.get("LUX_SPARQL_ENDPOINT", "https://semihyumusak.com.tr/oxigraph/query")
+# Migrated graph of the May 2026 pilot (written by the pre-1.0.0 module, w3id namespace).
+E3_GRAPH = os.environ.get("LUX_E3_GRAPH", "https://w3id.org/heritagegraph/imported/lux")
+LEGACY_HG = "https://w3id.org/heritagegraph/"   # pre-1.0.0 namespace of the pilot's types
 HG = "https://cair-nepal.org/heritagegraph/"
 CRM = "http://www.cidoc-crm.org/cidoc-crm/"
 NAMESPACES = {
@@ -58,6 +68,8 @@ LEGACY_TYPES = {
 
 
 def short(u: str) -> str:
+    if u.startswith(LEGACY_HG):          # pilot data: same local names, older namespace
+        u = HG + u[len(LEGACY_HG):]
     for p, ns in NAMESPACES.items():
         if u.startswith(ns):
             return p + u[len(ns):]
@@ -78,6 +90,10 @@ def sparql(query: str) -> list[dict]:
         headers={"Accept": "application/sparql-results+json",
                  "Content-Type": "application/x-www-form-urlencoded",
                  "User-Agent": "curl/8.4 (heritagegraph-eval)"})
+    user, pw = os.environ.get("LUX_SPARQL_USER"), os.environ.get("LUX_SPARQL_PASSWORD")
+    if user and pw:
+        req.add_header("Authorization",
+                       "Basic " + base64.b64encode(f"{user}:{pw}".encode()).decode())
     with urllib.request.urlopen(req, timeout=120, context=_SSL) as r:
         return json.load(r)["results"]["bindings"]
 
@@ -102,9 +118,12 @@ def e3_counts(offline: bool) -> list[tuple[str, int]]:
         with (HERE / "migration_counts_E3.csv").open() as f:
             return [(LEGACY_TYPES.get(r["v1_class"], r["v1_class"]), int(r["instances"]))
                     for r in csv.DictReader(f)]
-    rows = sparql("""SELECT ?t (COUNT(?s) AS ?n) WHERE {
-      GRAPH <https://cair-nepal.org/heritagegraph/imported/lux> { ?s a ?t } }
+    rows = sparql(f"""SELECT ?t (COUNT(?s) AS ?n) WHERE {{
+      GRAPH <{E3_GRAPH}> {{ ?s a ?t }} }}
       GROUP BY ?t ORDER BY DESC(?n)""")
+    if not rows:
+        sys.exit(f"no typed nodes in graph <{E3_GRAPH}>; refusing to overwrite "
+                 "migration_counts_E3.csv with an empty table (set LUX_E3_GRAPH)")
     return [(LEGACY_TYPES.get(short(b["t"]["value"]), short(b["t"]["value"])),
              int(b["n"]["value"])) for b in rows]
 
