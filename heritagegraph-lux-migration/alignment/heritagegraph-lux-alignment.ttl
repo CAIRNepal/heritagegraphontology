@@ -372,7 +372,7 @@ hg:LegalObject a owl:Class ;
 
 hg:AttributeAssignment a owl:Class ;
     rdfs:label "Attribute Assignment"@en ;
-    rdfs:comment "Generic super-class above HeritageAssertion / Verification / SyncreticRelationship. LUX alias: 'AttributeAssignment'."@en ;
+    rdfs:comment "Generic super-class above Verification / SyncreticRelationship / Measurement / IdentifierAssignment / TypeAssignment (the core's Assertion, crminf:I2_Belief, is not under it). LUX alias: 'AttributeAssignment'."@en ;
     rdfs:subClassOf crm:E13_Attribute_Assignment .
 
 hg:Verification rdfs:subClassOf hg:AttributeAssignment .
@@ -928,7 +928,7 @@ hg:Enshrinement rdfs:subClassOf hg:RitualEvent .
 hg:ArchitecturalElement rdfs:subClassOf hg:PhysicalFeature .  # E25 ⊏ E26
 
 # Documented deliberate roots (no HG-internal parent BY DESIGN):
-hg:Period rdfs:comment "Deliberate HG root: temporal top (crm:E4). Children: HistoricalEvent, LivingGoddessTenure, Presence."@en .
+hg:Period rdfs:comment "Deliberate HG root: temporal top (crm:E4). Children: HistoricalEvent, KumariTenure, Presence."@en .
 hg:Dimension rdfs:comment "Deliberate HG root: value-space top (crm:E54). Child: MonetaryAmount."@en .
 hg:LegalObject rdfs:comment "Deliberate HG root: legal-framework top (crm:E72 has no natural HG parent)."@en .
 
