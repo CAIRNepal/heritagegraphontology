@@ -32,7 +32,9 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 # TransferOfCustody, ConditionAssessment, ConditionState, Technique) are
 # migrated by DIRECT URI REUSE — the imported node is typed with the same
 # crm: URI as the LUX source, with no separate heritageGraph: wrapper
-# class (see alignment §6). The old "some heritageGraph:-prefixed class
+# class (see alignment §6). Release 1.1.0 adds three more (Group, Death,
+# Activity: crm:E74_Group, crm:E69_Death, crm:E7_Activity), 15 in all;
+# their former wrappers hg:Group, hg:Death, hg:Activity are deprecated. The old "some heritageGraph:-prefixed class
 # maps to ?luxClass" test alone would flag all of them as unmapped.
 #
 # First fix (same day) checked for *any instance* of ?luxClass already in
@@ -96,12 +98,12 @@ HAVING (COUNT(?orig) != 1)
 
 # === V3_count_parity ===
 # Soft check — Per-class counts: LUX raw vs HG imported. Expect ±5 % per row.
-# KNOWN GAP (July 2026, informational only, not a hard gate): the 12
+# KNOWN GAP (July 2026, informational only, not a hard gate): the 15
 # direct-URI-reuse classes (see V1 note) have no heritageGraph:-prefixed
 # ?hgClass row here since the alignment graph no longer relates a
 # heritageGraph: subject to them — their parity is implicitly covered by
 # V1/V2 instead. Not fixed here to keep this query's shape stable for
-# manual review; revisit if per-class parity on those 12 is needed.
+# manual review; revisit if per-class parity on those 15 is needed.
 SELECT ?luxClass ?hgClass ?lux_count ?hg_count
 WHERE {
   {

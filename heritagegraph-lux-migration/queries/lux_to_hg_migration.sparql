@@ -78,7 +78,7 @@ CONSTRUCT {
   ?birth a heritageGraph:Birth ;
          crm:P4_has_time-span  ?bSpan ;
          crm:P7_took_place_at ?bPlace .
-  ?death a heritageGraph:Death ;
+  ?death a crm:E69_Death ;
          crm:P4_has_time-span  ?dSpan ;
          crm:P7_took_place_at ?dPlace .
   ?hgPerson heritageGraph:wasBornBy   ?birth ;
@@ -98,9 +98,9 @@ CONSTRUCT {
 
 
 # === t3_group ===
-# 3. Group branch → hg:Group (Formation / Dissolution)
+# 3. Group branch → crm:E74_Group (Formation / Dissolution)
 CONSTRUCT {
-  ?hgGroup a heritageGraph:Group ;
+  ?hgGroup a crm:E74_Group ;
            owl:sameAs   ?g ;
            <http://www.w3.org/2000/01/rdf-schema#label> ?gname ;
            heritageGraph:wasFormedBy ?formed ;
@@ -195,7 +195,7 @@ CONSTRUCT {
   UNION
   {  ?ev a crm:E67_Birth                 . BIND(heritageGraph:Birth                 AS ?hgClass) }
   UNION
-  {  ?ev a crm:E69_Death                 . BIND(heritageGraph:Death                 AS ?hgClass) }
+  {  ?ev a crm:E69_Death                 . BIND(crm:E69_Death                       AS ?hgClass) }
   UNION
   {  ?ev a crm:E66_Formation             . BIND(heritageGraph:Formation             AS ?hgClass) }
   UNION
@@ -249,7 +249,7 @@ CONSTRUCT {
        FILTER(?sub IN (crm:E14_Condition_Assessment, crm:E15_Identifier_Assignment,
                        crm:E16_Measurement, crm:E17_Type_Assignment)) } }
   UNION
-  {  ?ev a crm:E7_Activity               . BIND(heritageGraph:Activity              AS ?hgClass)
+  {  ?ev a crm:E7_Activity               . BIND(crm:E7_Activity                     AS ?hgClass)
      FILTER NOT EXISTS { ?ev a ?sub .
        FILTER(?sub IN (crm:E12_Production, crm:E11_Modification, crm:E9_Move,
                        crm:E10_Transfer_of_Custody, crm:E8_Acquisition, crm:E96_Purchase,
